@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>경쟁 구도 · Humanoid Dashboard</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"><style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}a{color:inherit}
+.hdr{margin-bottom:24px}.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}.hdr-sub{font-size:13px;color:var(--ink-2);max-width:680px}
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-top:20px}.card-title{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--line-s);display:flex;align-items:center;gap:8px;flex-wrap:wrap}.card-title .badge{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700}
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}.st-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.04em;padding:6px 10px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s;text-transform:uppercase}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+.th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}.td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.td-sum{font-weight:700;border-top:2px solid var(--ink);border-bottom:none}
+.num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}.num-value{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}.num-sub{font-size:10px;color:var(--ink-3)}
+.year-row{display:flex;align-items:center;gap:12px;margin:12px 0}.year-slider{flex:1;-webkit-appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none}.year-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card)}.year-display{font-family:var(--mono);font-size:24px;font-weight:700;min-width:60px;text-align:center}
+.scroll-x{overflow-x:auto}.section-gap{margin-top:32px}.guide-desc{font-size:12px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px;font-family:var(--mono);letter-spacing:.02em}
+.vc-row{display:grid;grid-template-columns:140px 200px 200px 1fr;gap:0;font-size:11.5px;border-bottom:1px solid var(--line);padding:7px 0}.vc-company{font-weight:600;display:flex;align-items:center;gap:4px}.vc-ticker{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-left:4px}.vc-parts,.vc-customer{color:var(--ink-2)}.vc-note{color:var(--ink-3);font-size:10px}
+.hm-cell{font-family:var(--mono);font-size:10px;padding:6px 8px;text-align:center;border:1px solid var(--line)}.hm-green{background:#e8f5e9;color:#2e7d32}.hm-yellow{background:#fff8e1;color:#f57f17}.hm-red{background:#ffebee;color:#c62828}.hm-gray{background:var(--bg-soft);color:var(--ink-3)}
+.bom-row{background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px}.bom-name{font-weight:700;font-size:13px;margin-bottom:4px}.bom-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}.bom-tag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg-card);border:1px solid var(--line);color:var(--ink-2)}.bom-total{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}.bom-note{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-bottom:6px}.bom-edit{display:flex;gap:12px;font-size:11px;color:var(--ink-2)}.bom-input{font-family:var(--mono);font-size:11px;width:70px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);text-align:right}.bom-edit label{display:flex;align-items:center;gap:4px}
+.chem-bar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:1px}.chem-bar span{display:block;min-width:2px}
+.pw-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}.pw-bar-label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:100px;text-align:right}.pw-bar{height:20px;border-radius:4px;min-width:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}.pw-bar-val{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+svg text{font-family:'JetBrains Mono',monospace}
+@media(max-width:700px){main{padding:16px 12px 80px}.vc-row{grid-template-columns:1fr;gap:2px}.num-value{font-size:16px}}
+</style>
+<script>
+const SH={
+  2025:[{n:'AGIBOT',u:5168,f:'🇨🇳'},{n:'Unitree',u:4200,f:'🇨🇳'},{n:'UBTECH',u:1000,f:'🇨🇳'},{n:'Leju',u:500,f:'🇨🇳'},{n:'Engine AI',u:400,f:'🇨🇳'},{n:'Fourier',u:300,f:'🇨🇳'},{n:'Figure AI',u:150,f:'🇺🇸'},{n:'Agility',u:150,f:'🇺🇸'},{n:'Tesla',u:150,f:'🇺🇸'},{n:'기타',u:1350,f:'🌐'}],
+  2026:[{n:'AGIBOT',u:30000,f:'🇨🇳'},{n:'Unitree',u:10000,f:'🇨🇳'},{n:'UBTECH',u:10000,f:'🇨🇳'},{n:'Tesla',u:5000,f:'🇺🇸'},{n:'Figure AI',u:1000,f:'🇺🇸'},{n:'Agility',u:1000,f:'🇺🇸'},{n:'기타',u:3000,f:'🌐'}],
+  2027:[{n:'Tesla',u:30000,f:'🇺🇸'},{n:'AGIBOT',u:40000,f:'🇨🇳'},{n:'Unitree',u:15000,f:'🇨🇳'},{n:'UBTECH',u:12000,f:'🇨🇳'},{n:'Figure AI',u:3000,f:'🇺🇸'},{n:'기타',u:5000,f:'🌐'}],
+};
+let selYr=2025;
+const CM=[{y:2024,v:27.6},{y:2025,v:55},{y:2026,v:103},{y:2027,v:200},{y:2028,v:387},{y:2029,v:750}];
+const TM=[{d:'폼팩터·이동성',a:'★★★',b:'★★★',c:'★★★',e:'★★★',f:'★★★',g:'★★☆'},{d:'적재·리프팅',a:'★★☆',b:'★★★',c:'★★★',e:'★★★',f:'★★★',g:'★★★'},{d:'조작 능력',a:'★★★',b:'★★☆',c:'★★☆',e:'★★★',f:'★★★',g:'★★☆'},{d:'AI 학습',a:'★★★',b:'★★☆',c:'★☆☆',e:'★★★',f:'★★★',g:'★★☆'},{d:'양산 확장성',a:'★★★',b:'★★★',c:'★★★',e:'★☆☆',f:'★☆☆',g:'★☆☆'},{d:'상업적 파급력',a:'★★★',b:'★★★',c:'★★★',e:'★★☆',f:'★☆☆',g:'★★☆'}];
+const $=s=>document.querySelector(s);
+function render(){
+  // Year tabs
+  $('#yrTabs').innerHTML=Object.keys(SH).map(y=>`<button class="st-btn ${+y===selYr?'on':''}" onclick="selYr=${y};render()">${y}${+y>=2026?'E':''}</button>`).join('');
+  const data=SH[selYr]||[];
+  const tot=data.reduce((s,x)=>s+x.u,0),cn=data.filter(x=>x.f==='🇨🇳').reduce((s,x)=>s+x.u,0),us=data.filter(x=>x.f==='🇺🇸').reduce((s,x)=>s+x.u,0);
+  $('#cs').textContent=(cn/tot*100).toFixed(0)+'%';$('#us').textContent=(us/tot*100).toFixed(0)+'%';$('#tu').textContent=tot.toLocaleString()+'대';
+  let h='';data.forEach(s=>{const p=s.u/tot*100;h+=`<div class="td" style="text-align:left;font-weight:600">${s.f} ${s.n}</div><div class="td" style="text-align:right">${s.u.toLocaleString()}</div><div class="td" style="text-align:right">${p.toFixed(1)}%</div><div class="td"><div style="height:12px;width:${Math.max(8,p*2.5)}px;background:${s.f==='🇨🇳'?'#e74c3c':s.f==='🇺🇸'?'#3498db':'#95a5a6'};border-radius:2px"></div></div>`;});
+  $('#og').innerHTML=h;
+  let ch='';CM.forEach(c=>{ch+=`<div class="td" style="font-weight:600">${c.y}</div><div class="td" style="text-align:right">${c.v}억위안</div><div class="td"><div style="height:14px;width:${Math.max(4,c.v/750*100)}%;background:linear-gradient(90deg,#e74c3c,#FF6B6B);border-radius:2px"></div></div>`;});
+  $('#cg').innerHTML=ch;
+  let th='<div class="th"></div><div class="th">AGIBOT</div><div class="th">Unitree</div><div class="th">UBTECH</div><div class="th">Figure</div><div class="th">Tesla</div><div class="th">Agility</div>';
+  TM.forEach(r=>{th+=`<div class="td" style="text-align:left;font-weight:600;font-size:10px">${r.d}</div>`;[r.a,r.b,r.c,r.e,r.f,r.g].forEach(v=>{const s=(v.match(/★/g)||[]).length;th+=`<div class="hm-cell ${s>=3?'hm-green':s>=2?'hm-yellow':'hm-red'}">${v}</div>`;});});
+  $('#tg').innerHTML=th;
+}
+
+const HM_DATA=[{n:'HDS',ms:40.4,c:'#6C5CE7'},{n:'Nidec',ms:14.7,c:'#636E72'},{n:'Leader Drive',ms:12.0,c:'#F8B739'},{n:'Laifual Drive',ms:7.4,c:'#00B894'},{n:'기타',ms:25.5,c:'var(--line)'}];
+const CN_PROD=[{n:'Unitree',ms:49,c:'#6C5CE7'},{n:'AgiBot',ms:30,c:'#FF6B6B'},{n:'UBTech',ms:8,c:'#F8B739'},{n:'Fourier',ms:5,c:'#00B894'},{n:'Galbot',ms:3,c:'#E17055'},{n:'MagicLab',ms:2,c:'#636E72'},{n:'기타',ms:3,c:'var(--line)'}];
+function renderExtra(){
+  let h='';HM_DATA.forEach(d=>{h+=`<div class="td" style="font-weight:600">${d.n}</div><div class="td" style="text-align:right">${d.ms}%</div><div class="td"><div style="height:14px;width:${d.ms*2}px;background:${d.c};border-radius:2px"></div></div>`;});
+  const el=document.getElementById('hmGrid');if(el)el.innerHTML=h;
+  let p='';CN_PROD.forEach(d=>{p+=`<div class="td" style="font-weight:600">${d.n}</div><div class="td" style="text-align:right">${d.ms}%</div><div class="td"><div style="height:14px;width:${d.ms*1.5}px;background:${d.c};border-radius:2px"></div></div>`;});
+  const el2=document.getElementById('cnProdGrid');if(el2)el2.innerHTML=p;
+}
+window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
+</script>
+<body><main><header class="hdr"><div class="hdr-tag">Humanoid Dashboard</div><h1><b>경쟁</b>구도</h1><p class="hdr-sub">중국 vs 미국 점유율·기술 성숙도·시장 규모. 출처: Omdia (2025), 중국 휴머노이드 산업대회.</p><nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">경쟁 구도</a></nav></header>
+  <section class="card">
+    <div class="card-title">📊 글로벌 출하량 <span class="badge" style="background:#e74c3c;color:#fff">Omdia + 각 사 IR</span></div>
+    <div class="st-tabs" id="yrTabs" style="margin-bottom:12px"></div>
+    <div class="num-row"><div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">🇨🇳 중국</div><div class="num-value" id="cs">-</div></div><div class="num-box" style="border-left:3px solid #3498db"><div class="num-label">🇺🇸 미국</div><div class="num-value" id="us">-</div></div><div class="num-box"><div class="num-label">합계</div><div class="num-value" id="tu">-</div></div></div>
+    <div class="scroll-x"><div id="og" style="display:grid;grid-template-columns:130px 80px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div></div>
+  </section>
+  <section class="card section-gap">
+    <div class="card-title">🇨🇳 중국 시장 규모 <span class="badge" style="background:#e74c3c;color:#fff">CAGR 93.6%</span></div>
+    <div class="scroll-x"><div id="cg" style="display:grid;grid-template-columns:80px 100px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">2026E~2027E는 각 OEM IR 발언 기반 추정치. 2029년 750억위안 ≈ 전 세계 시장의 약 1/3. 비중국산 대체 시 원가 ~3배 상승</div>
+  </section>
+  <section class="card section-gap">
+    <div class="card-title">🎯 기술 성숙도 <span class="badge" style="background:var(--ink);color:var(--bg)">Omdia</span></div>
+    <div class="scroll-x"><div id="tg" style="display:grid;grid-template-columns:100px repeat(6,1fr);gap:0;font-family:var(--mono);font-size:10px"></div></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">★★★ Advanced / ★★☆ Broad / ★☆☆ Limited</div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">⚙️ 글로벌 하모닉 감속기 M/S (2024) <span class="badge" style="background:#6C5CE7;color:#fff">GGII</span></div>
+    <div id="hmGrid" style="display:grid;grid-template-columns:140px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
+  </section>
+  <section class="card section-gap">
+    <div class="card-title">🏭 중국 2026E 생산 M/S <span class="badge" style="background:#e74c3c;color:#fff">Trendforce</span></div>
+    <div id="cnProdGrid" style="display:grid;grid-template-columns:100px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">Unitree IPO: 26년 3Q 상장 예정. 예상 시총 420억위안(약 9조원). 매출 17.1억위안, 순익 2.9억위안</div>
+  </section>
+
+
+  <!-- ═══ Update Log ═══ -->
+  <section class="card section-gap">
+    <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
+      📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
+    </div>
+    <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>
+          <span style="font-size:12px;font-weight:600">JPM Conference 2026 발표 내용 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">JPM Healthcare Conference 2026 / Boston Dynamics IR / HMG IR</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Atlas 스펙: payload 50kg, IP67, -20~40°C, self-swappable battery</li>
+          <li>액추에이터 8종 → 2종 통합 설계</li>
+          <li>현대모비스 BD 모든 액추에이터 100% 공급 공식 발표</li>
+          <li>HMG 역할: 모비스(부품) / 오토에버(SI) / 글로비스(물류)</li>
+          <li>RMCA 2026 여름 개소 / 양산공장 2028 개소 30K CAPA</li>
+          <li>HMG 내부 배포 2.5만대 captive demand</li>
+          <li>Google DeepMind AI Partnership</li>
+          <li>기술 설명 탭 신설 / KR 밸류체인 업데이트</li>
+        </ul>
+      </div>
+    </div>
+    <style>#updateLogContent.open{max-height:2000px}</style>
+  </section>
+
+</main></body></html>

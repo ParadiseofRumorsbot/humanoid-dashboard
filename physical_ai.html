@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physical AI 5계층 · Humanoid Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}
+a{color:inherit}
+.hdr{margin-bottom:24px}
+.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}
+.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}
+.hdr-sub{font-size:13px;color:var(--ink-2);max-width:680px}
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-top:20px}
+.card-title{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--line-s);display:flex;align-items:center;gap:8px}
+.card-title .badge{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:.04em}
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}
+.st-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.04em;padding:6px 10px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s;text-transform:uppercase}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+.capa-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.capa-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tam-grid{display:grid;grid-template-columns:160px 90px 100px 100px 70px;gap:0;font-family:var(--mono);font-size:11px}
+.tam-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.tam-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px}
+.tam-sum{font-weight:700;border-top:2px solid var(--ink);border-bottom:none}
+.bom-row{background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.bom-name{font-weight:700;font-size:13px;margin-bottom:4px}
+.bom-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.bom-tag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg-card);border:1px solid var(--line);color:var(--ink-2)}
+.bom-total{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.bom-note{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-bottom:6px}
+.bom-edit{display:flex;gap:12px;font-size:11px;color:var(--ink-2)}
+.bom-input{font-family:var(--mono);font-size:11px;width:70px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);text-align:right}
+.bom-edit label{display:flex;align-items:center;gap:4px}
+.chem-bar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:1px}
+.chem-bar span{display:block;min-width:2px}
+.pw-bar-wrap{margin:6px 0}
+.pw-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.pw-bar-label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:100px;text-align:right}
+.pw-bar{height:20px;border-radius:4px;transition:width .4s;position:relative;min-width:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.pw-bar-val{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+.vc-row{display:grid;grid-template-columns:140px 200px 200px 1fr;gap:0;font-size:11.5px;border-bottom:1px solid var(--line);padding:7px 0}
+.vc-company{font-weight:600;display:flex;align-items:center;gap:4px}
+.vc-flag{font-size:13px}
+.vc-ticker{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-left:4px}
+.vc-parts{color:var(--ink-2)}
+.vc-customer{color:var(--ink-2)}
+.vc-note{color:var(--ink-3);font-size:10px}
+.num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}
+.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.num-value{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}
+.num-sub{font-size:10px;color:var(--ink-3)}
+.year-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+.year-slider{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none}
+.year-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.year-display{font-family:var(--mono);font-size:24px;font-weight:700;min-width:60px;text-align:center}
+.scen-meta{font-size:11px;color:var(--ink-3);margin:6px 0 0;line-height:1.6}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chem-legend{display:flex;gap:12px;font-family:var(--mono);font-size:10px;margin-top:8px;flex-wrap:wrap}
+.section-gap{margin-top:32px}
+.guide-desc{font-size:12px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px;font-family:var(--mono);letter-spacing:.02em}
+@media(max-width:700px){
+  main{padding:16px 12px 80px}
+  .tam-grid{grid-template-columns:120px 70px 80px 80px 60px;font-size:10px}
+  .vc-row{grid-template-columns:1fr;gap:2px}
+  .num-row{gap:8px}
+  .num-value{font-size:16px}
+}
+</style>
+<script>
+const DATA = {
+  physicalAILayers: {
+    automationCell: {
+      total: 90724,
+      source: 'Universal Robots / NVIDIA / Robotiq 공개가 기반 추정',
+      layers: [
+        { name: '실행 (Execution)', pct: 43.8, cost: 39725, items: '로봇 본체 $35K, 그리퍼 $4.7K', color: '#FF6B6B' },
+        { name: '통합/안전 (Integration)', pct: 34.2, cost: 31000, items: '안전장비 $8K, 지그 $5K, 설치·튜닝 $15K, 교육 $3K', color: '#636E72' },
+        { name: '인지 (Perception)', pct: 9.9, cost: 9000, items: '비전 카메라 $4K, 힘·토크센서 $5K', color: '#00B894' },
+        { name: '제어 (Control)', pct: 6.6, cost: 6000, items: 'PLC·네트워크 연계', color: '#F8B739' },
+        { name: '두뇌 (Brain)', pct: 5.5, cost: 4999, items: 'Jetson AGX Orin $2K, SW $3K', color: '#6C5CE7' },
+      ]
+    },
+    humanoid: {
+      source: 'McKinsey',
+      ranges: { low: 30000, base: 90000, high: 150000 },
+      breakdown: [
+        { name: '액추에이터', pctRange: '40~60%', color: '#FF6B6B' },
+        { name: '센싱·인지', pctRange: '10~20%', color: '#00B894' },
+        { name: '연산·제어', pctRange: '10~15%', color: '#6C5CE7' },
+        { name: '구조 부품', pctRange: '5~10%', color: '#636E72' },
+        { name: '배터리', pctRange: '5~10%', color: '#4ecdc4' },
+        { name: '기타 (냉각·배선)', pctRange: '10~15%', color: '#A29BFE' },
+      ]
+    }
+  },
+  cellBom: [
+    { item: '로봇 본체', cost: 35000, layer: '실행', note: '중소형~중형 협동로봇 (UR5e $30~45K)' },
+    { item: '그리퍼·말단 작업장치', cost: 4725, layer: '실행', note: 'Robotiq 공개 판매가 기준' },
+    { item: '비전 카메라·조명', cost: 4000, layer: '인지', note: '기본 비전 패키지' },
+    { item: '힘·토크 센서', cost: 5000, layer: '인지', note: 'Robotiq FT-300-S 6축 (€5K대)' },
+    { item: 'Jetson AGX Orin', cost: 1999, layer: '두뇌', note: 'NVIDIA 공개 판매가' },
+    { item: '현장 소프트웨어', cost: 3000, layer: '두뇌', note: '기본 운용 SW' },
+    { item: 'PLC·네트워크 연계', cost: 6000, layer: '제어', note: '기존 설비 연동' },
+    { item: '안전장비·위험성 평가', cost: 8000, layer: '통합', note: '안전펜스 $5K+, 안전 PLC $2K+' },
+    { item: '작업셀 지그·주변장치', cost: 5000, layer: '통합', note: '공작물 고정·반복정밀도 확보' },
+    { item: '설치·튜닝·시운전', cost: 15000, layer: '통합', note: '현장 통합 서비스' },
+    { item: '교육·초기 지원', cost: 3000, layer: '통합', note: '작업자 교육' },
+  ],
+  timeline: [
+    { phase: '도입 초기', focus: '실행 + 통합/안전', items: '로봇 본체·감속기·안전·설치튜닝', note: '초기 예산 78%가 실행+통합에 집중' },
+    { phase: '확산 국면', focus: '인지 + 제어', items: '머신비전·힘센서·PLC·모션제어', note: '비정형 작업·복수 장비 연동 병목' },
+    { phase: '고도화 국면', focus: '두뇌 + SW', items: 'AI 모델·디지털트윈·시뮬레이션', note: '고객 Lock-in·반복 매출 핵심' },
+    { phase: '장기 옵션', focus: '휴머노이드', items: '액추에이터 40~60% + 전신 통합', note: '범용 이동·조작 플랫폼' },
+  ]
+};
+const $ = s => document.querySelector(s);
+function render() {
+  // Cell cost bar
+  const cell = DATA.physicalAILayers.automationCell;
+  $('#cellCostBar').innerHTML = cell.layers.map(l =>
+    `<div style="width:${l.pct}%;background:${l.color};height:32px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#fff;font-weight:600;min-width:36px" title="${l.name}: $${l.cost.toLocaleString()} (${l.pct}%)">${l.pct}%</div>`
+  ).join('');
+  $('#cellTotal').textContent = '$' + cell.total.toLocaleString();
+
+  // Cell BOM table
+  let bhtml = '<div class="capa-th" style="text-align:left">항목</div><div class="capa-th">비용</div><div class="capa-th">계층</div><div class="capa-th" style="text-align:left">비고</div>';
+  const lc = {'실행':'#FF6B6B','통합':'#636E72','인지':'#00B894','제어':'#F8B739','두뇌':'#6C5CE7'};
+  DATA.cellBom.forEach(b => {
+    bhtml += `<div class="capa-td" style="text-align:left;font-weight:600">${b.item}</div>`;
+    bhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${b.cost.toLocaleString()}</div>`;
+    bhtml += `<div class="capa-td"><span style="font-size:9px;padding:1px 5px;border-radius:3px;background:${(lc[b.layer]||'#888')}15;color:${lc[b.layer]||'#888'}">${b.layer}</span></div>`;
+    bhtml += `<div class="capa-td" style="text-align:left;color:var(--ink-3);font-size:10px">${b.note}</div>`;
+  });
+  $('#cellBomGrid').innerHTML = bhtml;
+
+  // Humanoid cost table
+  const hum = DATA.physicalAILayers.humanoid;
+  let hhtml = '<div class="capa-th" style="text-align:left">구성요소</div><div class="capa-th">비중</div><div class="capa-th">저가 $30K</div><div class="capa-th">기본 $90K</div><div class="capa-th">고가 $150K</div>';
+  hum.breakdown.forEach(b => {
+    const pcts = b.pctRange.replace(/%/g,'').split('~').map(Number);
+    const lo = pcts[0]/100, hi = (pcts[1]||pcts[0])/100;
+    hhtml += `<div class="capa-td" style="text-align:left;border-left:3px solid ${b.color};padding-left:10px;font-weight:600">${b.name}</div>`;
+    hhtml += `<div class="capa-td" style="text-align:center">${b.pctRange}</div>`;
+    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(30000*lo/1000).toFixed(1)}~${(30000*hi/1000).toFixed(1)}K</div>`;
+    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(90000*lo/1000).toFixed(1)}~${(90000*hi/1000).toFixed(1)}K</div>`;
+    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(150000*lo/1000).toFixed(1)}~${(150000*hi/1000).toFixed(1)}K</div>`;
+  });
+  $('#humCostGrid').innerHTML = hhtml;
+
+  // Timeline
+  let thtml = '';
+  DATA.timeline.forEach(t => {
+    thtml += `<div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">${t.phase}</div>
+      <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px">${t.focus}</div>
+      <div style="font-size:11px;color:var(--ink-2);margin-bottom:2px">${t.items}</div>
+      <div style="font-size:10px;color:var(--ink-3)">${t.note}</div>
+    </div>`;
+  });
+  $('#timelineGrid').innerHTML = thtml;
+}
+window.addEventListener('DOMContentLoaded', render);
+</script>
+<body>
+<main>
+  <header class="hdr">
+    <div class="hdr-tag">Humanoid Dashboard</div>
+    <h1><b>Physical</b>AI 5계층</h1>
+    <p class="hdr-sub">피지컬 AI는 인지→두뇌→제어→실행→통합 5계층 플랫폼. 초기 비용은 실행+통합에 78% 집중, 장기 부가가치는 두뇌·SW로 이동.</p>
+    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
+  </header>
+
+  <section class="card">
+    <div class="card-title">🏭 협동로봇 자동화 셀 비용 구조 <span class="badge" style="background:#e74c3c;color:#fff">총 $90,724</span></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">합계: <strong id="cellTotal">-</strong> — 출처: Universal Robots / NVIDIA Jetson / Robotiq 공개가 기반 추정</div>
+    <div id="cellCostBar" style="display:flex;border-radius:6px;overflow:hidden;gap:1px"></div>
+    <div style="display:flex;gap:8px;margin:8px 0 16px;flex-wrap:wrap;font-family:var(--mono);font-size:9px">
+      <span style="color:#FF6B6B">● 실행 43.8%</span>
+      <span style="color:#636E72">● 통합/안전 34.2%</span>
+      <span style="color:#00B894">● 인지 9.9%</span>
+      <span style="color:#F8B739">● 제어 6.6%</span>
+      <span style="color:#6C5CE7">● 두뇌 5.5%</span>
+    </div>
+    <div class="scroll-x">
+      <div id="cellBomGrid" style="display:grid;grid-template-columns:180px 90px 70px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">🤖 휴머노이드 원가 구조 <span class="badge" style="background:var(--ink);color:var(--bg)">McKinsey</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">대당 제조 비용 <strong>$30K~$150K</strong> 범위. 액추에이터가 40~60%로 최대 비용 항목. IFR 기준 2024년 산업용 로봇 연간 설치 542,100대 (4년 연속 50만대+).</p>
+    <div class="scroll-x">
+      <div id="humCostGrid" style="display:grid;grid-template-columns:110px 80px repeat(3,1fr);gap:0;font-family:var(--mono);font-size:11px"></div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">⏱️ 도입 시기별 수혜 영역</div>
+    <div id="timelineGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px"></div>
+    <div style="margin-top:12px;font-size:10.5px;color:var(--ink-3);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px">
+      <strong>핵심:</strong> 실행 부품은 초기 매출 규모가 크지만 경쟁 심화·가격 하락 압력. 두뇌·SW 계층은 고객별 공정 데이터·운영 노하우 기반 <strong>Lock-in 효과</strong>. Regal Rexnord는 2025년 미국 휴머노이드 OEM으로부터 <strong>$40M 수주</strong> 확보.
+    </div>
+  </section>
+
+  <!-- ═══ Update Log ═══ -->
+  <section class="card section-gap">
+    <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
+      📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
+    </div>
+    <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>
+          <span style="font-size:12px;font-weight:600">JPM Conference 2026 발표 내용 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">JPM Healthcare Conference 2026 / Boston Dynamics IR / HMG IR</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Atlas 스펙: payload 50kg, IP67, -20~40°C, self-swappable battery</li>
+          <li>액추에이터 8종 → 2종 통합 설계</li>
+          <li>현대모비스 BD 모든 액추에이터 100% 공급 공식 발표</li>
+          <li>HMG 역할: 모비스(부품) / 오토에버(SI) / 글로비스(물류)</li>
+          <li>RMCA 2026 여름 개소 / 양산공장 2028 개소 30K CAPA</li>
+          <li>HMG 내부 배포 2.5만대 captive demand</li>
+          <li>Google DeepMind AI Partnership</li>
+          <li>기술 설명 탭 신설 / KR 밸류체인 업데이트</li>
+        </ul>
+      </div>
+    </div>
+    <style>#updateLogContent.open{max-height:2000px}</style>
+  </section>
+
+</main>
+</body>
+</html>

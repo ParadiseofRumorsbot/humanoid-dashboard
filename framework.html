@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>투자 프레임워크 · Humanoid Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}
+a{color:inherit}
+.hdr{margin-bottom:24px}
+.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}
+.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}
+.hdr-sub{font-size:13px;color:var(--ink-2);max-width:680px}
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-top:20px}
+.card-title{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--line-s);display:flex;align-items:center;gap:8px}
+.card-title .badge{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:.04em}
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}
+.st-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.04em;padding:6px 10px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s;text-transform:uppercase}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+.capa-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.capa-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tam-grid{display:grid;grid-template-columns:160px 90px 100px 100px 70px;gap:0;font-family:var(--mono);font-size:11px}
+.tam-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.tam-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px}
+.tam-sum{font-weight:700;border-top:2px solid var(--ink);border-bottom:none}
+.bom-row{background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.bom-name{font-weight:700;font-size:13px;margin-bottom:4px}
+.bom-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.bom-tag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg-card);border:1px solid var(--line);color:var(--ink-2)}
+.bom-total{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.bom-note{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-bottom:6px}
+.bom-edit{display:flex;gap:12px;font-size:11px;color:var(--ink-2)}
+.bom-input{font-family:var(--mono);font-size:11px;width:70px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);text-align:right}
+.bom-edit label{display:flex;align-items:center;gap:4px}
+.chem-bar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:1px}
+.chem-bar span{display:block;min-width:2px}
+.pw-bar-wrap{margin:6px 0}
+.pw-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.pw-bar-label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:100px;text-align:right}
+.pw-bar{height:20px;border-radius:4px;transition:width .4s;position:relative;min-width:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.pw-bar-val{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+.vc-row{display:grid;grid-template-columns:140px 200px 200px 1fr;gap:0;font-size:11.5px;border-bottom:1px solid var(--line);padding:7px 0}
+.vc-company{font-weight:600;display:flex;align-items:center;gap:4px}
+.vc-flag{font-size:13px}
+.vc-ticker{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-left:4px}
+.vc-parts{color:var(--ink-2)}
+.vc-customer{color:var(--ink-2)}
+.vc-note{color:var(--ink-3);font-size:10px}
+.num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}
+.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.num-value{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}
+.num-sub{font-size:10px;color:var(--ink-3)}
+.year-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+.year-slider{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none}
+.year-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.year-display{font-family:var(--mono);font-size:24px;font-weight:700;min-width:60px;text-align:center}
+.scen-meta{font-size:11px;color:var(--ink-3);margin:6px 0 0;line-height:1.6}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chem-legend{display:flex;gap:12px;font-family:var(--mono);font-size:10px;margin-top:8px;flex-wrap:wrap}
+.section-gap{margin-top:32px}
+.guide-desc{font-size:12px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px;font-family:var(--mono);letter-spacing:.02em}
+@media(max-width:700px){
+  main{padding:16px 12px 80px}
+  .tam-grid{grid-template-columns:120px 70px 80px 80px 60px;font-size:10px}
+  .vc-row{grid-template-columns:1fr;gap:2px}
+  .num-row{gap:8px}
+  .num-value{font-size:16px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="hdr">
+    <div class="hdr-tag">Humanoid Dashboard</div>
+    <h1><b>Investment</b>Framework</h1>
+    <p class="hdr-sub">"액추에이터는 뉴턴의 법칙을 따른다" — 소프트웨어로 압축되지 않는 물리 레이어가 구조적 수혜 자산.</p>
+    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
+  </header>
+
+  <section class="card">
+    <div class="card-title">📐 핵심 투자 명제</div>
+    <div class="guide-desc" style="font-family:var(--sans);letter-spacing:0;font-size:13px;line-height:1.8">
+      <strong style="color:var(--ink);font-size:15px">"액추에이터는 뉴턴의 법칙을 따른다"</strong><br><br>
+      칩 레이어는 <strong>무어의 법칙</strong>으로 효율화되므로 전력 수요가 연산량 증가보다 느리게 늘지만,
+      <strong>액추에이터 레이어는 뉴턴의 법칙</strong>(W = F × d)으로 로봇 대수에 정비례하여 전력·재료·인프라 수요가 선형 또는 초선형으로 증가한다.<br><br>
+      따라서 <strong>소프트웨어로 압축되지 않는 물리 레이어</strong>(자석·구리·감속기·전력 반도체·전송망)가 로봇 시대의 구조적 수혜 자산이다.
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">🧱 물리 레이어 병목 — 5대 수혜 영역</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #6C5CE7">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">전력 반도체 (SiC/GaN)</div>
+        <div style="font-size:13px;font-weight:600;margin:6px 0">Wolfspeed · Onsemi · STM · Infineon</div>
+        <div style="font-size:10.5px;color:var(--ink-3);line-height:1.5">시계: 3~7년 / 효율 × 대수<br>인버터 효율 1%p 개선 = 100GW 절감 (원전 100기)</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #A29BFE">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">희토류 자석 (NdFeB)</div>
+        <div style="font-size:13px;font-weight:600;margin:6px 0">MP Materials · Lynas</div>
+        <div style="font-size:10.5px;color:var(--ink-3);line-height:1.5">시계: 5~15년 / 공급 지정학<br>10억대 × 2kg = 200만톤 (현 생산 20만톤의 10배)<br>중국 처리 공정 85% 통제</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #E17055">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">구리</div>
+        <div style="font-size:13px;font-weight:600;margin:6px 0">Freeport-McMoRan · Southern Copper</div>
+        <div style="font-size:10.5px;color:var(--ink-3);line-height:1.5">시계: 5~10년 / 채굴 리드타임<br>10억대 × 5kg = 500만톤 (세계 채굴량의 24%)</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #FF6B6B">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">정밀 감속기</div>
+        <div style="font-size:13px;font-weight:600;margin:6px 0">HDS · Nabtesco</div>
+        <div style="font-size:10.5px;color:var(--ink-3);line-height:1.5">시계: 3~10년 / 독과점·생산 캐파<br>HDS M/S 60~70%, 증설 리드타임 2~3년<br>로봇 수요 폭발 시 가장 먼저 병목</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #636E72">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">산업 전력 인프라</div>
+        <div style="font-size:13px;font-weight:600;margin:6px 0">ABB · Eaton · Schneider Electric</div>
+        <div style="font-size:10.5px;color:var(--ink-3);line-height:1.5">시계: 5~15년 / CapEx 사이클<br>완전자동화 공장 200~500MW × 1,000곳 = 200~500GW</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">⚡ 칩 vs 액추에이터 — 효율화 한계 비교</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;font-size:12px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:14px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">칩 (GPU/CPU)</div>
+        <div style="line-height:1.7;color:var(--ink-2)">
+          효율 개선: 전압 감소·공정 미세화·알고리즘<br>
+          유휴 전력: 거의 0까지 감소 가능<br>
+          스케일: 소형화로 성능 유지·전력 절감<br>
+          <strong style="color:var(--ink)">→ 무어의 법칙으로 지속 개선</strong>
+        </div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:14px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">액추에이터 (전동기)</div>
+        <div style="line-height:1.7;color:var(--ink-2)">
+          효율 개선: 자성 재료 한계·동선 저항·마찰<br>
+          유휴 전력: 토크 유지 시 지속 소비<br>
+          스케일: 더 강한 힘 = 더 큰 모터 = 더 많은 전력<br>
+          <strong style="color:#e74c3c">→ BLDC 90~95% = 물리 한계 근접</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">📊 전력 수요 규모 비교</div>
+    <div style="font-family:var(--mono);font-size:11px;line-height:2.2">
+      <div style="display:flex;align-items:center;gap:8px"><span style="min-width:120px;text-align:right;color:var(--ink-3)">100만 대 × 2kW</span><div style="width:2px;height:16px;background:var(--ink);border-radius:1px"></div><span><strong>2 GW</strong></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="min-width:120px;text-align:right;color:var(--ink-3)">1,000만 대 × 2kW</span><div style="width:4px;height:16px;background:#e74c3c;border-radius:1px"></div><span><strong>20 GW</strong></span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="min-width:120px;text-align:right;color:var(--ink-3)">10억 대 × 2kW</span><div style="width:80px;height:16px;background:linear-gradient(90deg,#e74c3c,#FF6B6B);border-radius:2px"></div><span><strong>2,000 GW = 2 TW</strong> (미국 전체 그리드 1.2TW 초과)</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="min-width:120px;text-align:right;color:var(--ink-3)">DC 수요 (26E)</span><div style="width:50px;height:16px;background:#6C5CE7;border-radius:2px"></div><span>120 GW → 로봇 10억대 = DC의 <strong>~17배</strong></span></div>
+    </div>
+  </section>
+
+  <!-- ═══ Update Log ═══ -->
+  <section class="card section-gap">
+    <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
+      📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
+    </div>
+    <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>
+          <span style="font-size:12px;font-weight:600">JPM Conference 2026 발표 내용 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">JPM Healthcare Conference 2026 / Boston Dynamics IR / HMG IR</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Atlas 스펙: payload 50kg, IP67, -20~40°C, self-swappable battery</li>
+          <li>액추에이터 8종 → 2종 통합 설계</li>
+          <li>현대모비스 BD 모든 액추에이터 100% 공급 공식 발표</li>
+          <li>HMG 역할: 모비스(부품) / 오토에버(SI) / 글로비스(물류)</li>
+          <li>RMCA 2026 여름 개소 / 양산공장 2028 개소 30K CAPA</li>
+          <li>HMG 내부 배포 2.5만대 captive demand</li>
+          <li>Google DeepMind AI Partnership</li>
+          <li>기술 설명 탭 신설 / KR 밸류체인 업데이트</li>
+        </ul>
+      </div>
+    </div>
+    <style>#updateLogContent.open{max-height:2000px}</style>
+  </section>
+
+</main>
+</body>
+</html>

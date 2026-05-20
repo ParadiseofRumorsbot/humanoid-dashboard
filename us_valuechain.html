@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>US 밸류체인 · Humanoid Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}
+a{color:inherit}
+.hdr{margin-bottom:24px}
+.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}
+.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}
+.hdr-sub{font-size:13px;color:var(--ink-2);max-width:680px}
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-top:20px}
+.card-title{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--line-s);display:flex;align-items:center;gap:8px}
+.card-title .badge{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:.04em}
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}
+.st-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.04em;padding:6px 10px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s;text-transform:uppercase}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+.capa-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.capa-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tam-grid{display:grid;grid-template-columns:160px 90px 100px 100px 70px;gap:0;font-family:var(--mono);font-size:11px}
+.tam-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.tam-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px}
+.tam-sum{font-weight:700;border-top:2px solid var(--ink);border-bottom:none}
+.bom-row{background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.bom-name{font-weight:700;font-size:13px;margin-bottom:4px}
+.bom-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.bom-tag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg-card);border:1px solid var(--line);color:var(--ink-2)}
+.bom-total{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.bom-note{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-bottom:6px}
+.bom-edit{display:flex;gap:12px;font-size:11px;color:var(--ink-2)}
+.bom-input{font-family:var(--mono);font-size:11px;width:70px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);text-align:right}
+.bom-edit label{display:flex;align-items:center;gap:4px}
+.chem-bar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:1px}
+.chem-bar span{display:block;min-width:2px}
+.pw-bar-wrap{margin:6px 0}
+.pw-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.pw-bar-label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:100px;text-align:right}
+.pw-bar{height:20px;border-radius:4px;transition:width .4s;position:relative;min-width:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.pw-bar-val{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+.vc-row{display:grid;grid-template-columns:140px 200px 200px 1fr;gap:0;font-size:11.5px;border-bottom:1px solid var(--line);padding:7px 0}
+.vc-company{font-weight:600;display:flex;align-items:center;gap:4px}
+.vc-flag{font-size:13px}
+.vc-ticker{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-left:4px}
+.vc-parts{color:var(--ink-2)}
+.vc-customer{color:var(--ink-2)}
+.vc-note{color:var(--ink-3);font-size:10px}
+.num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}
+.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.num-value{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}
+.num-sub{font-size:10px;color:var(--ink-3)}
+.year-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+.year-slider{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none}
+.year-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.year-display{font-family:var(--mono);font-size:24px;font-weight:700;min-width:60px;text-align:center}
+.scen-meta{font-size:11px;color:var(--ink-3);margin:6px 0 0;line-height:1.6}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chem-legend{display:flex;gap:12px;font-family:var(--mono);font-size:10px;margin-top:8px;flex-wrap:wrap}
+.section-gap{margin-top:32px}
+.guide-desc{font-size:12px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px;font-family:var(--mono);letter-spacing:.02em}
+@media(max-width:700px){
+  main{padding:16px 12px 80px}
+  .tam-grid{grid-template-columns:120px 70px 80px 80px 60px;font-size:10px}
+  .vc-row{grid-template-columns:1fr;gap:2px}
+  .num-row{gap:8px}
+  .num-value{font-size:16px}
+}
+</style>
+<script>
+const DATA = [
+  { company: 'NVIDIA', ticker: 'NVDA', layer: '두뇌', parts: 'GPU·시뮬레이션·Omniverse·Jetson Thor', note: '피지컬 AI 두뇌 인프라 대표. 훈련→시뮬레이션→현장추론 3계층 컴퓨팅', tp: '$269.82', cp: '$211.50' },
+  { company: 'Amazon', ticker: 'AMZN', layer: '두뇌·통합', parts: 'AWS·물류 자동화·창고 로봇', note: '클라우드 M/S 28% + 대규모 물류 자동화 실사용자', tp: '$312.94', cp: '$271.17' },
+  { company: 'Rockwell Automation', ticker: 'ROK', layer: '제어', parts: 'PLC·모션제어·산업용 네트워크', note: '기존 공장 제어 병목 대표. PLC 글로벌 M/S 2위', tp: '-', cp: '-' },
+  { company: 'Novanta', ticker: 'NOVT', layer: '실행·인지', parts: '정밀 모션·힘토크 센서·로봇 말단부', note: 'ATI Industrial 인수. 로보틱스&자동화 매출 32.5%', tp: '$157.00', cp: '$136.28' },
+  { company: 'Cognex', ticker: 'CGNX', layer: '인지', parts: '머신비전·검사 자동화·OneVision', note: '비정형 작업 확산의 인지 계층 대표. 물류·자동차 85%', tp: '$67.60', cp: '$65.92' },
+  { company: 'Timken', ticker: 'TKR', layer: '실행', parts: '고정밀 베어링·리니어모션·동력전달', note: 'Cone Drive·Spinea·Rollon 보유. Industrial Motion +12% YoY', tp: '$122.42', cp: '$116.34' },
+  { company: 'Regal Rexnord', ticker: 'RRX', layer: '실행', parts: '모터·드라이브·감속기·베어링·액추에이터', note: '2025 휴머노이드 OEM $40M 수주. 관절 시스템 통합 공급', tp: '$243.56', cp: '$206.26' },
+  { company: 'Symbotic', ticker: 'SYM', layer: '통합', parts: 'AI 물류 자동화 시스템', note: '물류 자동화 순수 성장주. 고객 집중도 리스크', tp: '-', cp: '-' },
+  { company: 'Parker-Hannifin', ticker: 'PH', layer: '실행', parts: '액추에이터·리니어모션', note: '산업용 구동부 대형주', tp: '-', cp: '-' },
+];
+const $ = s => document.querySelector(s);
+function render() {
+  const el = $('#grid');
+  const lc = {'두뇌':'#6C5CE7','제어':'#F8B739','실행':'#FF6B6B','인지':'#00B894','통합':'#636E72','실행·인지':'#E17055','두뇌·통합':'#0984E3'};
+  let html = '';
+  DATA.forEach(c => {
+    const color = lc[c.layer] || '#8B8B82';
+    html += `<div class="vc-row" style="border-left:3px solid ${color}">
+      <div class="vc-company"><span class="vc-flag">🇺🇸</span>${c.company}<span class="vc-ticker">${c.ticker}</span></div>
+      <div class="vc-parts"><span style="font-family:var(--mono);font-size:9px;background:${color}15;color:${color};padding:1px 5px;border-radius:3px;margin-right:4px">${c.layer}</span>${c.parts}</div>
+      <div class="vc-customer">${c.note}</div>
+      <div class="vc-note">${c.tp !== '-' ? 'TP '+c.tp+' / CP '+c.cp : ''}</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+window.addEventListener('DOMContentLoaded', render);
+</script>
+<body>
+<main>
+  <header class="hdr">
+    <div class="hdr-tag">Humanoid Dashboard</div>
+    <h1><b>US</b>Value Chain</h1>
+    <p class="hdr-sub">Physical AI 5계층별 미국 핵심 기업. 출처: 각 사 IR, NVIDIA, IFR, McKinsey, FactSet.</p>
+    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
+  </header>
+
+  <section class="card">
+    <div class="card-title">🇺🇸 US Physical AI Value Chain <span class="badge" style="background:#0984E3;color:#fff">각 사 IR</span></div>
+    <div class="scroll-x">
+      <div style="min-width:700px">
+        <div class="vc-row" style="border-bottom:2px solid var(--line-s);font-weight:600;font-size:10px;color:var(--ink-3)">
+          <div>기업</div><div>계층 · 부품</div><div>투자포인트</div><div>TP / CP</div>
+        </div>
+        <div id="grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">📊 계층별 분류</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700">두뇌 (BRAIN)</div><div style="font-size:12px;margin-top:4px">NVIDIA · Amazon</div><div style="font-size:10px;color:var(--ink-3)">GPU·클라우드·시뮬레이션</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:#F8B739;font-weight:700">제어 (CONTROL)</div><div style="font-size:12px;margin-top:4px">Rockwell Automation</div><div style="font-size:10px;color:var(--ink-3)">PLC·모션제어</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;font-weight:700">실행 (EXECUTION)</div><div style="font-size:12px;margin-top:4px">Timken · Regal Rexnord · Novanta · Parker</div><div style="font-size:10px;color:var(--ink-3)">모터·감속기·베어링·액추에이터</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:#00B894;font-weight:700">인지 (PERCEPTION)</div><div style="font-size:12px;margin-top:4px">Cognex · Novanta</div><div style="font-size:10px;color:var(--ink-3)">머신비전·힘토크센서</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #636E72"><div style="font-family:var(--mono);font-size:9px;color:#636E72;font-weight:700">통합 (INTEGRATION)</div><div style="font-size:12px;margin-top:4px">Symbotic · Amazon</div><div style="font-size:10px;color:var(--ink-3)">물류 자동화·시스템 통합</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ Update Log ═══ -->
+  <section class="card section-gap">
+    <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
+      📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
+    </div>
+    <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>
+          <span style="font-size:12px;font-weight:600">JPM Conference 2026 발표 내용 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">JPM Healthcare Conference 2026 / Boston Dynamics IR / HMG IR</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Atlas 스펙: payload 50kg, IP67, -20~40°C, self-swappable battery</li>
+          <li>액추에이터 8종 → 2종 통합 설계</li>
+          <li>현대모비스 BD 모든 액추에이터 100% 공급 공식 발표</li>
+          <li>HMG 역할: 모비스(부품) / 오토에버(SI) / 글로비스(물류)</li>
+          <li>RMCA 2026 여름 개소 / 양산공장 2028 개소 30K CAPA</li>
+          <li>HMG 내부 배포 2.5만대 captive demand</li>
+          <li>Google DeepMind AI Partnership</li>
+          <li>기술 설명 탭 신설 / KR 밸류체인 업데이트</li>
+        </ul>
+      </div>
+    </div>
+    <style>#updateLogContent.open{max-height:2000px}</style>
+  </section>
+</main>
+</body>
+</html>

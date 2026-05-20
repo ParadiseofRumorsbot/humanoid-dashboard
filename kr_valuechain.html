@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KR 밸류체인 · Humanoid Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}
+a{color:inherit}
+.hdr{margin-bottom:24px}
+.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}
+.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}
+.hdr-sub{font-size:13px;color:var(--ink-2);max-width:680px}
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-top:20px}
+.card-title{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--line-s);display:flex;align-items:center;gap:8px}
+.card-title .badge{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:.04em}
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}
+.st-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.04em;padding:6px 10px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s;text-transform:uppercase}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+.capa-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.capa-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tam-grid{display:grid;grid-template-columns:160px 90px 100px 100px 70px;gap:0;font-family:var(--mono);font-size:11px}
+.tam-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.tam-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px}
+.tam-sum{font-weight:700;border-top:2px solid var(--ink);border-bottom:none}
+.bom-row{background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.bom-name{font-weight:700;font-size:13px;margin-bottom:4px}
+.bom-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.bom-tag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg-card);border:1px solid var(--line);color:var(--ink-2)}
+.bom-total{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.bom-note{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-bottom:6px}
+.bom-edit{display:flex;gap:12px;font-size:11px;color:var(--ink-2)}
+.bom-input{font-family:var(--mono);font-size:11px;width:70px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);text-align:right}
+.bom-edit label{display:flex;align-items:center;gap:4px}
+.chem-bar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:1px}
+.chem-bar span{display:block;min-width:2px}
+.pw-bar-wrap{margin:6px 0}
+.pw-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.pw-bar-label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:100px;text-align:right}
+.pw-bar{height:20px;border-radius:4px;transition:width .4s;position:relative;min-width:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.pw-bar-val{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+.vc-row{display:grid;grid-template-columns:140px 200px 200px 1fr;gap:0;font-size:11.5px;border-bottom:1px solid var(--line);padding:7px 0}
+.vc-company{font-weight:600;display:flex;align-items:center;gap:4px}
+.vc-flag{font-size:13px}
+.vc-ticker{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-left:4px}
+.vc-parts{color:var(--ink-2)}
+.vc-customer{color:var(--ink-2)}
+.vc-note{color:var(--ink-3);font-size:10px}
+.num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}
+.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.num-value{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}
+.num-sub{font-size:10px;color:var(--ink-3)}
+.year-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+.year-slider{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none}
+.year-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.year-display{font-family:var(--mono);font-size:24px;font-weight:700;min-width:60px;text-align:center}
+.scen-meta{font-size:11px;color:var(--ink-3);margin:6px 0 0;line-height:1.6}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chem-legend{display:flex;gap:12px;font-family:var(--mono);font-size:10px;margin-top:8px;flex-wrap:wrap}
+.section-gap{margin-top:32px}
+.guide-desc{font-size:12px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px;font-family:var(--mono);letter-spacing:.02em}
+@media(max-width:700px){
+  main{padding:16px 12px 80px}
+  .tam-grid{grid-template-columns:120px 70px 80px 80px 60px;font-size:10px}
+  .vc-row{grid-template-columns:1fr;gap:2px}
+  .num-row{gap:8px}
+  .num-value{font-size:16px}
+}
+</style>
+<script>
+const DATA = [
+  // ── 현대차그룹 Captive ──
+  { company: '현대모비스', ticker: '012330', parts: '액추에이터·헤드모듈·그리퍼·배터리팩', customer: 'BD Atlas', note: 'BD 모든 액추에이터 부품 100% 공급 공식 발표 (JPM 2026)', cat: 'act' },
+  { company: 'HL만도', ticker: '204320', parts: '액추에이터·주차로봇', customer: 'BD Spot·EV', note: '2028 휴머노이드 공급 원년', cat: 'act' },
+  { company: '에스엘', ticker: '005765', parts: '레그모듈·MobED 위탁생산', customer: 'BD·현대차', note: '배터리팩 포함 위탁생산', cat: 'act' },
+  { company: '계양전기', ticker: '012200', parts: '액추에이터 (대당 12개)', customer: '현대차 MobED', note: '-', cat: 'act' },
+  // ── 제어·SW·물류 (JPM 2026 신규) ──
+  { company: '현대오토에버', ticker: '307950', parts: 'SI·관제·Robot OS', customer: 'BD·HMG', note: 'HMG 로보틱스 시스템 통합 담당 (JPM 2026)', cat: 'ctrl' },
+  { company: '현대글로비스', ticker: '086280', parts: '생산·판매 물류', customer: 'BD·HMG', note: 'SCM 백본 · 물류 테스트베드 (JPM 2026)', cat: 'ctrl' },
+  // ── 감속기 ──
+  { company: '로보티즈', ticker: '108490', parts: '유성감속기 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀. 우즈베키스탄 신공장', cat: 'gear' },
+  { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
+  { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
+  { company: 'SHG', ticker: '024410', parts: '감속기', customer: '-', note: '-', cat: 'gear' },
+  // ── 구조·외장 ──
+  { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
+  { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
+  { company: '한국피아이엠', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
+  { company: '삼현', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
+  // ── 배터리·소재 ──
+  { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 2170', customer: 'Optimus + 로봇 6곳', note: '미국 AZ 현지조달', cat: 'batt' },
+  { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산', cat: 'batt' },
+  { company: '대주전자재료', ticker: '078600', parts: '실리콘 음극재', customer: '-', note: '고출력 배터리 핵심', cat: 'batt' },
+  { company: '엘앤에프', ticker: '066970', parts: '하이니켈 양극재', customer: '-', note: 'NCMA 양극재', cat: 'batt' },
+  // ── 제어·SW ──
+  { company: '알에스오토메이션', ticker: '140670', parts: '제어기', customer: '-', note: '-', cat: 'ctrl' },
+  { company: '아진에스텍', ticker: '-', parts: '제어기', customer: '-', note: '-', cat: 'ctrl' },
+  // ── 군사·방산 ──
+  { company: '현대로템', ticker: '064350', parts: '군사용 로봇', customer: '한국 국방부', note: '고스트로보틱스 인수', cat: 'mil' },
+  { company: 'LIG넥스원', ticker: '079550', parts: '군사용 로봇', customer: '한국 국방부', note: 'FCT 통과', cat: 'mil' },
+];
+const $ = s => document.querySelector(s);
+function render() {
+  const catNames={act:'액추에이터',gear:'감속기',body:'구조·외장',batt:'배터리·소재',ctrl:'제어·SW',mil:'군사·방산'};
+  const catColors={act:'#FF6B6B',gear:'#6C5CE7',body:'#636E72',batt:'#4ecdc4',ctrl:'#0984E3',mil:'#e74c3c'};
+  let html = '';
+  let lastCat = '';
+  DATA.forEach(c => {
+    if(c.cat !== lastCat) {
+      html += `<div style="grid-column:1/-1;font-family:var(--mono);font-size:10px;color:${catColors[c.cat]||'#888'};padding:10px 0 4px;border-bottom:2px solid ${catColors[c.cat]||'#888'};font-weight:700;text-transform:uppercase">${catNames[c.cat]||c.cat}</div>`;
+      lastCat = c.cat;
+    }
+    html += `<div class="vc-row" style="border-left:3px solid ${catColors[c.cat]||'#888'}">
+      <div class="vc-company"><span style="font-size:13px">🇰🇷</span>${c.company}<span class="vc-ticker">${c.ticker!=='-'?c.ticker:''}</span></div>
+      <div class="vc-parts">${c.parts}</div>
+      <div class="vc-customer">${c.customer}</div>
+      <div class="vc-note">${c.note}</div>
+    </div>`;
+  });
+  $('#grid').innerHTML = html;
+}
+window.addEventListener('DOMContentLoaded', render);
+</script>
+<body>
+<main>
+  <header class="hdr">
+    <div class="hdr-tag">Humanoid Dashboard</div>
+    <h1><b>KR</b>Value Chain</h1>
+    <p class="hdr-sub">한국 휴머노이드 밸류체인 — Boston Dynamics·현대차·Tesla 공급망. 출처: 각 사 IR, 현대차그룹.</p>
+    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
+  </header>
+
+  <section class="card">
+    <div class="card-title">🇰🇷 Korea Value Chain <span class="badge" style="background:var(--ink);color:var(--bg)">각 사 IR</span></div>
+    <div class="scroll-x">
+      <div style="min-width:700px">
+        <div class="vc-row" style="border-bottom:2px solid var(--line-s);font-weight:600;font-size:10px;color:var(--ink-3)">
+          <div>기업</div><div>부품</div><div>고객사</div><div>비고</div>
+        </div>
+        <div id="grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">🏭 Boston Dynamics 밸류체인</div>
+    <div class="guide-desc" style="font-family:var(--sans);letter-spacing:0">
+      <strong>E-Atlas:</strong> 현대모비스 (액추에이터 전량 100% 공급) — 액추에이터 8종 → 2종 통합 설계 (JPM 2026)<br>
+      <strong>Spot:</strong> HL만도 (액추에이터, 2027 2세대) · 에스엘 (레그모듈)<br>
+      <strong>Stretch:</strong> 에스엘 (방향지시등)<br>
+      <strong>SI/관제:</strong> 현대오토에버 (시스템 통합·Robot OS)<br>
+      <strong>물류:</strong> 현대글로비스 (생산·판매 SCM 백본, 물류 테스트베드)<br><br>
+      <strong>MobED:</strong> 계양전기 (액추에이터 대당 12개) · 삼성SDI (원통형 배터리) · 에스엘 (배터리팩 포함 위탁생산) · DEEPX (DX-M1 NPU) · 에스오에스랩 (LiDAR 대당 2개)<br><br>
+      <strong>HMG 로보틱스 역할 분담 (JPM Conference 2026):</strong><br>
+      • 현대모비스 → BD 모든 액추에이터 부품 100% 공급<br>
+      • 현대오토에버 → 시스템 통합 (SI) / Robot OS<br>
+      • 현대글로비스 → 생산·판매 물류
+    </div>
+  </section>
+
+  <!-- ═══ Update Log ═══ -->
+  <section class="card section-gap">
+    <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
+      📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
+    </div>
+    <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>
+          <span style="font-size:12px;font-weight:600">JPM Conference 2026 발표 내용 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">JPM Healthcare Conference 2026 / Boston Dynamics IR / HMG IR</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Atlas 스펙: payload 50kg, IP67, -20~40°C, self-swappable battery</li>
+          <li>액추에이터 8종 → 2종 통합 설계</li>
+          <li>현대모비스 BD 모든 액추에이터 100% 공급 공식 발표</li>
+          <li>HMG 역할: 모비스(부품) / 오토에버(SI) / 글로비스(물류)</li>
+          <li>RMCA 2026 여름 개소 / 양산공장 2028 개소 30K CAPA</li>
+          <li>HMG 내부 배포 2.5만대 captive demand</li>
+          <li>Google DeepMind AI Partnership</li>
+          <li>기술 설명 탭 신설 / KR 밸류체인 업데이트</li>
+        </ul>
+      </div>
+    </div>
+    <style>#updateLogContent.open{max-height:2000px}</style>
+  </section>
+</main>
+</body>
+</html>

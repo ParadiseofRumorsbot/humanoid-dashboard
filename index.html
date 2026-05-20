@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Humanoid Scenario · 휴머노이드 TAM 시뮬레이터</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<script>
+/* ════════════════════════════════════════════════════════════════
+   DATA LAYER — 모든 숫자의 출처와 근거를 주석으로 명시
+   ════════════════════════════════════════════════════════════════ */
+const DATA = {
+  fx: 1450, // KRW/USD
+
+  /* ── 연도별 출하량 시나리오 (단위: 천 대) ── */
+  scenarios: {
+    sne_base: {
+      name: 'SNE Base',
+      source: 'SNE Research (2025)',
+      desc: 'SNE Research 기준 보수적 전망. 2030년 전후 초기 양산, 2035년 ROI 검증 후 본격 확장.',
+      // 누적 → 연간 역산: 2025 2.3만, 2026 ~5만(TF참고), 2027~2029 증분, 2030 69만누적
+      shipments: {
+        // [humanoid, industrial_robot, amr] 단위: 천 대
+        2024: [2.3, 4500, 800],
+        2025: [13.4, 4700, 1200],
+        2026: [50, 5000, 1800],
+        2027: [100, 5400, 2600],
+        2028: [200, 5900, 3500],
+        2029: [400, 6500, 4500],
+        2030: [690, 7200, 5500],
+        2031: [1100, 7800, 6500],
+        2032: [1800, 8500, 7500],
+        2033: [2800, 9200, 8500],
+        2034: [4200, 10000, 9500],
+        2035: [6790, 11000, 10500],
+        2036: [10000, 12000, 11500],
+        2037: [15000, 13000, 12500],
+        2038: [22000, 14000, 13500],
+        2039: [33000, 15000, 14500],
+        2040: [53300, 16500, 15500],
+      }
+    },
+    gs_bull: {
+      name: 'GS Bull',
+      source: 'Goldman Sachs (2025)',
+      desc: 'GS 낙관 전망. 2030년 25만대, 2035년 140만대, 2040년 2,300만대.',
+      shipments: {
+        2024: [2.3, 4500, 800],
+        2025: [13.4, 4700, 1200],
+        2026: [50, 5000, 1800],
+        2027: [80, 5400, 2600],
+        2028: [130, 5900, 3500],
+        2029: [190, 6500, 4500],
+        2030: [250, 7200, 5500],
+        2031: [380, 7800, 6500],
+        2032: [550, 8500, 7500],
+        2033: [780, 9200, 8500],
+        2034: [1050, 10000, 9500],
+        2035: [1400, 11000, 10500],
+        2036: [2000, 12000, 11500],
+        2037: [3200, 13000, 12500],
+        2038: [5500, 14000, 13500],
+        2039: [10000, 15000, 14500],
+        2040: [23000, 16500, 15500],
+      }
+    },
+    tesla_acc: {
+      name: 'Tesla 가속',
+      source: 'Tesla IR + Musk 발언 (2026)',
+      desc: 'Tesla Optimus 100만대 목표 중심. 중국 업체 양산 가속 반영. 2030년 100만대 돌파 시나리오.',
+      shipments: {
+        2024: [2.3, 4500, 800],
+        2025: [13.4, 4700, 1200],
+        2026: [80, 5000, 1800],
+        2027: [200, 5400, 2600],
+        2028: [500, 5900, 3500],
+        2029: [800, 6500, 4500],
+        2030: [1200, 7200, 5500],
+        2031: [2000, 7800, 6500],
+        2032: [3500, 8500, 7500],
+        2033: [5500, 9200, 8500],
+        2034: [8000, 10000, 9500],
+        2035: [12000, 11000, 10500],
+        2036: [18000, 12000, 11500],
+        2037: [28000, 13000, 12500],
+        2038: [42000, 14000, 13500],
+        2039: [65000, 15000, 14500],
+        2040: [100000, 16500, 15500],
+      }
+    },
+    oecd_replace: {
+      name: 'OECD 대체율',
+      source: 'OECD 노동가능인구 전망 + 대체율 40% 가정',
+      desc: 'OECD 노동가능인구 감소분 기반. 2035년 누적 2,161만대 필요, 내구연한 3년 가정 시 연 1,000만대 생산.',
+      shipments: {
+        2024: [2.3, 4500, 800],
+        2025: [15, 4700, 1200],
+        2026: [70, 5000, 1800],
+        2027: [189, 5400, 2600],
+        2028: [361, 5900, 3500],
+        2029: [667, 6500, 4500],
+        2030: [1167, 7200, 5500],
+        2031: [1926, 7800, 6500],
+        2032: [2986, 8500, 7500],
+        2033: [4643, 9200, 8500],
+        2034: [6965, 10000, 9500],
+        2035: [10000, 11000, 10500],
+        2036: [12000, 12000, 11500],
+        2037: [14000, 13000, 12500],
+        2038: [16000, 14000, 13500],
+        2039: [18000, 15000, 14500],
+        2040: [21609, 16500, 15500],
+      }
+    },
+  },
+
+  /* ── 2025년 실적 업체별 출하량 (Omdia, 2025) ── */
+  shipments2025: [
+    { name: 'AGIBOT', units: 5168, country: '🇨🇳' },
+    { name: 'Unitree', units: 4200, country: '🇨🇳' },
+    { name: 'UBTECH', units: 1000, country: '🇨🇳' },
+    { name: 'Leju Robotics', units: 500, country: '🇨🇳' },
+    { name: 'Engine AI', units: 400, country: '🇨🇳' },
+    { name: 'Fourier Intelligence', units: 300, country: '🇨🇳' },
+    { name: 'Figure AI', units: 150, country: '🇺🇸' },
+    { name: 'Agility Robotics', units: 150, country: '🇺🇸' },
+    { name: 'Tesla', units: 150, country: '🇺🇸' },
+    { name: '기타', units: 1350, country: '🌐' },
+  ],
+
+  /* ── 1대당 BOM 원단위 ── */
+  bom: [
+    { id: 'battery',   name: '배터리 팩',           unit: 'kWh', qty: 2.3,  price: 130,  priceUnit: '$/kWh',
+      note: 'Optimus 2.3kWh, 52V. NCMA/NCA 원통형. SNE: 25년 1.35→30년 1.98→35년 2.6kWh', color: '#4ecdc4' },
+    { id: 'harmonic',  name: '하모닉 감속기',       unit: '개',  qty: 20,   price: 350,  priceUnit: '$/개',
+      note: 'HDS 독과점 60-70% M/S. 손가락 포함 시 최대 28개. R&D 난이도 5', color: '#FF6B6B' },
+    { id: 'rv_gear',   name: 'RV 감속기',           unit: '개',  qty: 4,    price: 800,  priceUnit: '$/개',
+      note: 'Nabtesco 독점. 고토크 관절(엉덩이·무릎·어깨) 전용', color: '#C44569' },
+    { id: 'servo',     name: '서보모터 (BLDC/PMSM)', unit: '개', qty: 28,   price: 120,  priceUnit: '$/개',
+      note: '관절당 1개. PMSM 효율 90-95% 물리한계 근접', color: '#F8B739' },
+    { id: 'inverter',  name: '인버터/모터드라이브',  unit: '개',  qty: 28,   price: 15,   priceUnit: '$/개',
+      note: 'SiC/GaN 전력반도체. 효율 1%p 개선 = GW 스케일 절감', color: '#6C5CE7' },
+    { id: 'ndfeb',     name: 'NdFeB 자석',          unit: 'kg',  qty: 2.0,  price: 95,   priceUnit: '$/kg',
+      note: '중국 처리 85% 통제. 무어의 법칙 없음 → 선형 증가', color: '#A29BFE' },
+    { id: 'copper',    name: '구리 (모터 권선)',     unit: 'kg',  qty: 5.0,  price: 9.5,  priceUnit: '$/kg',
+      note: 'LME 기준. 10억대×5kg = 500만톤 (세계 채굴량 24%)', color: '#E17055' },
+    { id: 'sensor',    name: '센서 (LiDAR·토크·IMU)', unit: '세트', qty: 1, price: 1500, priceUnit: '$/세트',
+      note: '제조원가 비중 약 15%. 촉각센서 원가 11%', color: '#00B894' },
+    { id: 'compute',   name: 'AI SoC / 엣지칩',     unit: '개',  qty: 1,    price: 500,  priceUnit: '$/개',
+      note: 'DEEPX DX-M1 NPU 30FPS/5W. SW 비중 6%', color: '#0984E3' },
+    { id: 'structure', name: '구조체 (프레임·케이블)', unit: '세트', qty: 1, price: 800, priceUnit: '$/세트',
+      note: '탄소섬유 뼈대·전력케이블. 제조원가 비중 10%', color: '#636E72' },
+  ],
+
+  /* ── 부품사 M/S 매핑 (TAM 배분용) ── */
+  companies: {
+    harmonic: [
+      { name: 'HDS (일본)', ms: 0.65, ticker: '6324.JP', flag: '🇯🇵' },
+      { name: '중국 업체', ms: 0.25, ticker: '-', flag: '🇨🇳' },
+      { name: '기타', ms: 0.10, ticker: '-', flag: '🌐' },
+    ],
+    rv_gear: [
+      { name: 'Nabtesco', ms: 0.60, ticker: '6268.JP', flag: '🇯🇵' },
+      { name: '기타', ms: 0.40, ticker: '-', flag: '🌐' },
+    ],
+    servo: [
+      { name: 'Yaskawa', ms: 0.20, ticker: '6506.JP', flag: '🇯🇵' },
+      { name: 'Nidec', ms: 0.15, ticker: '6594.JP', flag: '🇯🇵' },
+      { name: '현대모비스', ms: 0.10, ticker: '012330', flag: '🇰🇷' },
+      { name: 'HL만도', ms: 0.08, ticker: '204320', flag: '🇰🇷' },
+      { name: '중국 업체', ms: 0.30, ticker: '-', flag: '🇨🇳' },
+      { name: '기타', ms: 0.17, ticker: '-', flag: '🌐' },
+    ],
+    inverter: [
+      { name: 'Infineon', ms: 0.25, ticker: 'IFNNY', flag: '🇩🇪' },
+      { name: 'Onsemi', ms: 0.20, ticker: 'ON', flag: '🇺🇸' },
+      { name: 'STMicro', ms: 0.18, ticker: 'STM', flag: '🇪🇺' },
+      { name: 'ROHM', ms: 0.12, ticker: '6963.JP', flag: '🇯🇵' },
+      { name: 'Wolfspeed', ms: 0.08, ticker: 'WOLF', flag: '🇺🇸' },
+      { name: '기타', ms: 0.17, ticker: '-', flag: '🌐' },
+    ],
+    ndfeb: [
+      { name: '중국 업체', ms: 0.85, ticker: '-', flag: '🇨🇳' },
+      { name: 'MP Materials', ms: 0.05, ticker: 'MP', flag: '🇺🇸' },
+      { name: 'Lynas', ms: 0.05, ticker: 'LYC', flag: '🇦🇺' },
+      { name: '기타', ms: 0.05, ticker: '-', flag: '🌐' },
+    ],
+    battery: [
+      { name: 'LG에너지솔루션', ms: 0.30, ticker: '373220', flag: '🇰🇷' },
+      { name: '삼성SDI', ms: 0.15, ticker: '006400', flag: '🇰🇷' },
+      { name: 'CATL', ms: 0.25, ticker: '300750.SZ', flag: '🇨🇳' },
+      { name: 'Panasonic', ms: 0.10, ticker: '6752.JP', flag: '🇯🇵' },
+      { name: '기타', ms: 0.20, ticker: '-', flag: '🌐' },
+    ],
+  },
+
+  /* ── 배터리 케미스트리 믹스 (SNE Research) ── */
+  chemMix: {
+    2025: { ncm: 0.70, lfp: 0.20, semiSolid: 0.08, solidState: 0.02 },
+    2030: { ncm: 0.50, lfp: 0.15, semiSolid: 0.20, solidState: 0.15 },
+    2035: { ncm: 0.25, lfp: 0.05, semiSolid: 0.20, solidState: 0.50 },
+    2040: { ncm: 0.10, lfp: 0.02, semiSolid: 0.15, solidState: 0.73 },
+  },
+
+  /* ── 전력 수요 기준 ── */
+  power: {
+    perRobotKW: 2.0,  // Tesla Optimus 평균 소비전력
+    perIndustrialKW: 5.0,
+    perAmrKW: 0.5,
+    usGridCapTW: 1.2,
+    dcDemandGW: 120,  // 2026E 하이퍼스케일러 DC 수요
+  },
+
+  /* ── OEM 생산 목표 ── */
+  oemTargets: [
+    { name: 'Tesla', flag: '🇺🇸', target2026: '5~10만 CAPA', target2030: '100만대 목표', price: '$20~30K', battery: '2.3kWh / 2170 원통형' },
+    { name: 'AGIBOT', flag: '🇨🇳', target2026: '수만대', target2030: '-', price: '-', battery: '-' },
+    { name: 'UBTECH', flag: '🇨🇳', target2026: '1만대', target2030: '-', price: '-', battery: '-' },
+    { name: 'Unitree', flag: '🇨🇳', target2026: '-', target2030: '-', price: '$16K~', battery: '-' },
+    { name: 'Figure AI', flag: '🇺🇸', target2026: '-', target2030: '-', price: '-', battery: '-' },
+    { name: 'Agility', flag: '🇺🇸', target2026: '1만 CAPA', target2030: '3만대(28E)', price: '-', battery: '-' },
+    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMCA 개소 (2026 여름)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
+  ],
+
+  /* ── 한국 밸류체인 ── */
+  krValueChain: [
+    { company: '현대모비스', ticker: '012330', parts: '액추에이터·헤드모듈·그리퍼·배터리팩', customer: 'Boston Dynamics (Atlas)', note: 'BD 모든 액추에이터 100% 공급 (JPM 2026)' },
+    { company: 'HL만도', ticker: '204320', parts: '액추에이터', customer: 'Boston Dynamics (Spot)', note: '2027년 2세대 출시 예정' },
+    { company: '에스엘', ticker: '005765', parts: '레그모듈·MobED 위탁생산', customer: 'Boston Dynamics·현대차', note: '배터리팩 포함 위탁생산' },
+    { company: '계양전기', ticker: '012200', parts: '액추에이터 (대당 12개)', customer: '현대차 (MobED)', note: '-' },
+    { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 (2170)', customer: 'Tesla Optimus + 로봇 고객사 6곳', note: '미국 AZ 공장 현지 조달 가능' },
+    { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 (MobED)', note: '헝가리 원통형 2028 양산 목표' },
+    { company: '대주전자재료', ticker: '078600', parts: '실리콘 음극재', customer: '-', note: '고출력 배터리 핵심 소재' },
+    { company: '엘앤에프', ticker: '066970', parts: '하이니켈 양극재', customer: '-', note: 'NCMA 양극재 → 로봇용 고출력 셀' },
+  ],
+
+  /* ── US Physical AI 밸류체인 ── */
+  usValueChain: [
+    { company: 'NVIDIA', ticker: 'NVDA', layer: '두뇌', parts: 'GPU·시뮬레이션·Omniverse·Jetson Thor', note: '피지컬 AI 두뇌 인프라 대표', tp: '$269.82', cp: '$211.50' },
+    { company: 'Amazon', ticker: 'AMZN', layer: '두뇌·통합', parts: 'AWS·물류 자동화·창고 로봇', note: '대규모 실사용자 + 클라우드', tp: '$312.94', cp: '$271.17' },
+    { company: 'Rockwell Automation', ticker: 'ROK', layer: '제어', parts: 'PLC·모션제어·산업용 네트워크', note: '기존 공장 제어 병목 대표. PLC M/S 2위', tp: '-', cp: '-' },
+    { company: 'Novanta', ticker: 'NOVT', layer: '실행·인지', parts: '정밀 모션·힘토크 센서·로봇 말단부', note: 'ATI Industrial 인수. 순수 노출도 높음', tp: '$157.00', cp: '$136.28' },
+    { company: 'Cognex', ticker: 'CGNX', layer: '인지', parts: '머신비전·검사 자동화·OneVision', note: '비정형 작업 확산의 인지 계층 대표', tp: '$67.60', cp: '$65.92' },
+    { company: 'Timken', ticker: 'TKR', layer: '실행', parts: '고정밀 베어링·리니어모션·동력전달', note: 'Cone Drive·Spinea·Rollon 보유', tp: '$122.42', cp: '$116.34' },
+    { company: 'Regal Rexnord', ticker: 'RRX', layer: '실행', parts: '모터·드라이브·감속기·베어링·액추에이터', note: '2025 휴머노이드 OEM $40M 수주', tp: '$243.56', cp: '$206.26' },
+    { company: 'Symbotic', ticker: 'SYM', layer: '통합', parts: 'AI 물류 자동화 시스템', note: '물류 자동화 순수 성장주', tp: '-', cp: '-' },
+    { company: 'Parker-Hannifin', ticker: 'PH', layer: '실행', parts: '액추에이터·리니어모션', note: '산업용 구동부 대형주', tp: '-', cp: '-' },
+  ],
+
+  /* ── 피지컬 AI 5계층 비용 구조 ── */
+  physicalAILayers: {
+    // 협동로봇 기반 공작기계 자동화 셀 비용 추정 — 총 $90,724
+    automationCell: {
+      total: 90724,
+      source: 'Universal Robots / NVIDIA / Robotiq 공개가 기반 추정',
+      layers: [
+        { name: '실행 (Execution)', pct: 43.8, cost: 39725, items: '로봇 본체 $35K, 그리퍼 $4.7K', color: '#FF6B6B' },
+        { name: '통합/안전 (Integration)', pct: 34.2, cost: 31000, items: '안전장비 $8K, 지그 $5K, 설치·튜닝 $15K, 교육 $3K', color: '#636E72' },
+        { name: '인지 (Perception)', pct: 9.9, cost: 9000, items: '비전 카메라 $4K, 힘·토크센서 $5K', color: '#00B894' },
+        { name: '제어 (Control)', pct: 6.6, cost: 6000, items: 'PLC·네트워크 연계', color: '#F8B739' },
+        { name: '두뇌 (Brain)', pct: 5.5, cost: 4999, items: 'Jetson AGX Orin $2K, SW $3K', color: '#6C5CE7' },
+      ]
+    },
+    // 휴머노이드 원가 구조 — 맥킨지
+    humanoid: {
+      source: 'McKinsey',
+      ranges: { low: 30000, base: 90000, high: 150000 },
+      breakdown: [
+        { name: '액추에이터', pctRange: '40~60%', color: '#FF6B6B' },
+        { name: '센싱·인지', pctRange: '10~20%', color: '#00B894' },
+        { name: '연산·제어', pctRange: '10~15%', color: '#6C5CE7' },
+        { name: '구조 부품', pctRange: '5~10%', color: '#636E72' },
+        { name: '배터리', pctRange: '5~10%', color: '#4ecdc4' },
+        { name: '기타 (냉각·배선)', pctRange: '10~15%', color: '#A29BFE' },
+      ]
+    }
+  },
+
+  /* ── IFR 산업용 로봇 데이터 (IFR, 2024) ── */
+  ifrData: {
+    annualInstall2024: 542100,  // 4년 연속 50만대 이상
+    top5share: 0.80,  // 중국·일본·미국·한국·독일
+    chinaShare: 0.54, // 중국 54%
+    cobotShare: 0.105, // 협동로봇 10.5% (2023)
+    usMfgSMEpct: 0.983, // 미국 제조기업 98.3%가 중소기업
+    usCapUtil: 0.756, // 미국 제조업 가동률 75.6% (2026.02)
+  },
+};
+
+/* ════════════ STATE ════════════ */
+let S = {
+  scenario: 'sne_base',
+  year: 2030,
+  bom: JSON.parse(JSON.stringify(DATA.bom)),
+  editingBom: null,
+};
+
+/* ════════════ HELPERS ════════════ */
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const fmt = (n, d=0) => n >= 1e6 ? (n/1e6).toFixed(1)+'M' : n >= 1e3 ? (n/1e3).toFixed(d > 0 ? d : (n >= 1e4 ? 0 : 1))+'K' : n.toFixed(d);
+const fmtKRW = n => n >= 1e4 ? (n/1e4).toFixed(1)+'조' : n >= 1 ? n.toFixed(0)+'억' : (n*100).toFixed(0)+'백만';
+const fmtGWh = n => n >= 1 ? n.toFixed(1)+' GWh' : (n*1000).toFixed(0)+' MWh';
+const fmtGW = n => n >= 1000 ? (n/1000).toFixed(2)+' TW' : n.toFixed(1)+' GW';
+
+function getShipments(year) {
+  const sc = DATA.scenarios[S.scenario];
+  return sc.shipments[year] || [0,0,0];
+}
+
+function getChemMix(year) {
+  const keys = Object.keys(DATA.chemMix).map(Number).sort((a,b)=>a-b);
+  if (year <= keys[0]) return DATA.chemMix[keys[0]];
+  if (year >= keys[keys.length-1]) return DATA.chemMix[keys[keys.length-1]];
+  let lo = keys[0], hi = keys[keys.length-1];
+  for (let i = 0; i < keys.length-1; i++) {
+    if (year >= keys[i] && year <= keys[i+1]) { lo = keys[i]; hi = keys[i+1]; break; }
+  }
+  const t = (year - lo) / (hi - lo);
+  const a = DATA.chemMix[lo], b = DATA.chemMix[hi];
+  return { ncm: a.ncm+(b.ncm-a.ncm)*t, lfp: a.lfp+(b.lfp-a.lfp)*t, semiSolid: a.semiSolid+(b.semiSolid-a.semiSolid)*t, solidState: a.solidState+(b.solidState-a.solidState)*t };
+}
+
+/* ════════════ RENDER ════════════ */
+function render() {
+  renderScenarioTabs();
+  renderYearSlider();
+  renderShipmentTable();
+  renderBomEditor();
+  renderTamOutput();
+  renderBatteryDemand();
+  renderPowerDemand();
+  renderOemTargets();
+}
+
+function renderScenarioTabs() {
+  const el = $('#scenTabs');
+  el.innerHTML = Object.entries(DATA.scenarios).map(([k,v]) =>
+    `<button class="st-btn ${S.scenario===k?'on':''}" onclick="S.scenario='${k}';renderAll()">${v.name}</button>`
+  ).join('');
+  const sc = DATA.scenarios[S.scenario];
+  $('#scenDesc').textContent = sc.desc;
+  $('#scenSource').textContent = sc.source;
+}
+
+function renderYearSlider() {
+  const sl = $('#yearSlider');
+  sl.value = S.year;
+  $('#yearLabel').textContent = S.year;
+}
+
+function renderShipmentTable() {
+  const years = [2025,2026,2027,2028,2029,2030,2032,2035,2040];
+  const sc = DATA.scenarios[S.scenario];
+  let html = '<div class="capa-th" style="text-align:left">연도</div>';
+  html += '<div class="capa-th">휴머노이드</div><div class="capa-th">산업로봇</div><div class="capa-th">AMR</div><div class="capa-th">합계</div>';
+  years.forEach(y => {
+    const d = sc.shipments[y] || [0,0,0];
+    const isNow = y === S.year;
+    const cls = isNow ? 'capa-td' : 'capa-td';
+    const style = isNow ? 'background:rgba(78,205,196,.08);font-weight:700' : '';
+    const total = d[0]+d[1]+d[2];
+    html += `<div class="${cls}" style="${style};text-align:left;font-weight:600">${y}${isNow?' ◂':''}</div>`;
+    html += `<div class="${cls}" style="${style};text-align:right;color:#FF6B6B">${(d[0]/10).toFixed(d[0]/10>=100?0:1)}</div>`;
+    html += `<div class="${cls}" style="${style};text-align:right;color:#0984E3">${(d[1]/10).toFixed(0)}</div>`;
+    html += `<div class="${cls}" style="${style};text-align:right;color:#00B894">${(d[2]/10).toFixed(0)}</div>`;
+    html += `<div class="${cls}" style="${style};text-align:right">${(total/10).toFixed(0)}</div>`;
+  });
+  $('#shipmentGrid').innerHTML = html;
+  // 단위 범례
+  $('#shipmentUnit').textContent = '단위: 만 대 (연간 출하)';
+}
+
+function renderBomEditor() {
+  const el = $('#bomGrid');
+  let html = '';
+  S.bom.forEach((b, i) => {
+    const totalPerUnit = b.qty * b.price;
+    html += `<div class="bom-row" style="border-left:3px solid ${b.color}">
+      <div class="bom-name">${b.name}</div>
+      <div class="bom-specs">
+        <span class="bom-tag">${b.qty} ${b.unit}</span>
+        <span class="bom-tag">× ${b.priceUnit === '$/kWh' ? '$'+b.price+'/kWh' : '$'+b.price+'/'+b.unit.replace('개','ea')}</span>
+        <span class="bom-tag bom-total">= $${totalPerUnit.toLocaleString()}/대</span>
+      </div>
+      <div class="bom-note">${b.note}</div>
+      <div class="bom-edit">
+        <label>수량: <input type="number" value="${b.qty}" step="0.1" min="0" class="bom-input" onchange="S.bom[${i}].qty=+this.value;renderAll()"></label>
+        <label>단가($): <input type="number" value="${b.price}" step="1" min="0" class="bom-input" onchange="S.bom[${i}].price=+this.value;renderAll()"></label>
+      </div>
+    </div>`;
+  });
+  el.innerHTML = html;
+
+  // 대당 총 BOM
+  const totalBom = S.bom.reduce((s,b) => s + b.qty*b.price, 0);
+  $('#bomTotal').textContent = '$' + totalBom.toLocaleString();
+  $('#bomTotalKRW').textContent = '₩' + (totalBom * DATA.fx / 10000).toFixed(0) + '만';
+}
+
+function renderTamOutput() {
+  const [hum] = getShipments(S.year);
+  const humUnits = hum * 1000; // 천대 → 대
+  const el = $('#tamGrid');
+  let html = '<div class="tam-th" style="text-align:left">부품</div><div class="tam-th">대당 비용</div><div class="tam-th">TAM ($M)</div><div class="tam-th">TAM (억원)</div><div class="tam-th">YoY</div>';
+
+  let totalTam = 0;
+  S.bom.forEach(b => {
+    const perUnit = b.qty * b.price;
+    const tam = perUnit * humUnits / 1e6; // $M
+    const tamKrw = tam * DATA.fx / 100; // 억원
+    totalTam += tam;
+    // YoY
+    const prevShip = (getShipments(S.year-1)[0] || 0) * 1000;
+    const prevTam = perUnit * prevShip / 1e6;
+    const yoy = prevTam > 0 ? ((tam/prevTam - 1)*100).toFixed(0)+'%' : '-';
+    html += `<div class="tam-td" style="text-align:left;border-left:3px solid ${b.color};padding-left:10px">${b.name}</div>`;
+    html += `<div class="tam-td" style="text-align:right">$${perUnit.toLocaleString()}</div>`;
+    html += `<div class="tam-td" style="text-align:right;font-weight:600">${tam >= 1000 ? (tam/1000).toFixed(1)+'B' : tam.toFixed(0)+'M'}</div>`;
+    html += `<div class="tam-td" style="text-align:right">${tamKrw >= 10000 ? (tamKrw/10000).toFixed(1)+'조' : tamKrw.toFixed(0)}</div>`;
+    html += `<div class="tam-td" style="text-align:right;color:${yoy!=='-'&&parseInt(yoy)>0?'#e74c3c':'var(--ink-3)'}">${yoy}</div>`;
+  });
+  // 합계
+  const totalKrw = totalTam * DATA.fx / 100;
+  html += `<div class="tam-td tam-sum" style="text-align:left">합계 (${S.year})</div>`;
+  html += `<div class="tam-td tam-sum" style="text-align:right">-</div>`;
+  html += `<div class="tam-td tam-sum" style="text-align:right">${totalTam >= 1000 ? (totalTam/1000).toFixed(1)+'B' : totalTam.toFixed(0)+'M'}</div>`;
+  html += `<div class="tam-td tam-sum" style="text-align:right">${totalKrw >= 10000 ? (totalKrw/10000).toFixed(1)+'조' : totalKrw.toFixed(0)+'억'}</div>`;
+  html += `<div class="tam-td tam-sum" style="text-align:right">-</div>`;
+
+  el.innerHTML = html;
+
+  // 핵심 숫자
+  $('#tamHumanoidUnits').textContent = (hum/10).toFixed(1) + '만대';
+  $('#tamTotalUSD').textContent = totalTam >= 1000 ? '$' + (totalTam/1000).toFixed(1) + 'B' : '$' + totalTam.toFixed(0) + 'M';
+}
+
+function renderBatteryDemand() {
+  const sc = DATA.scenarios[S.scenario];
+  const years = [2025,2026,2027,2028,2029,2030,2032,2035,2040];
+  let html = '<div class="capa-th" style="text-align:left">연도</div><div class="capa-th">출하(천대)</div><div class="capa-th">kWh/대</div><div class="capa-th">수요(GWh)</div><div class="capa-th">케미 믹스</div>';
+  years.forEach(y => {
+    const [hum] = sc.shipments[y] || [0];
+    // 대당 kWh: BOM에서 가져옴
+    const battBom = S.bom.find(b => b.id === 'battery');
+    const kwhPerUnit = battBom.qty;
+    const gwh = hum * 1000 * kwhPerUnit / 1e6;
+    const mix = getChemMix(y);
+    const isNow = y === S.year;
+    const style = isNow ? 'background:rgba(78,205,196,.08);font-weight:700' : '';
+    html += `<div class="capa-td" style="${style};text-align:left;font-weight:600">${y}${isNow?' ◂':''}</div>`;
+    html += `<div class="capa-td" style="${style};text-align:right">${fmt(hum)}</div>`;
+    html += `<div class="capa-td" style="${style};text-align:right">${kwhPerUnit.toFixed(1)}</div>`;
+    html += `<div class="capa-td" style="${style};text-align:right;font-weight:600">${fmtGWh(gwh)}</div>`;
+    // 케미 믹스 바
+    html += `<div class="capa-td" style="${style}"><div class="chem-bar">
+      <span style="width:${mix.ncm*100}%;background:#FF6B6B" title="NCM ${(mix.ncm*100).toFixed(0)}%"></span>
+      <span style="width:${mix.lfp*100}%;background:#00B894" title="LFP ${(mix.lfp*100).toFixed(0)}%"></span>
+      <span style="width:${mix.semiSolid*100}%;background:#F8B739" title="반고체 ${(mix.semiSolid*100).toFixed(0)}%"></span>
+      <span style="width:${mix.solidState*100}%;background:#6C5CE7" title="전고체 ${(mix.solidState*100).toFixed(0)}%"></span>
+    </div></div>`;
+  });
+  $('#batteryGrid').innerHTML = html;
+  // 범례
+  const mix = getChemMix(S.year);
+  $('#chemLegend').innerHTML = `
+    <span style="color:#FF6B6B">● NCM ${(mix.ncm*100).toFixed(0)}%</span>
+    <span style="color:#00B894">● LFP ${(mix.lfp*100).toFixed(0)}%</span>
+    <span style="color:#F8B739">● 반고체 ${(mix.semiSolid*100).toFixed(0)}%</span>
+    <span style="color:#6C5CE7">● 전고체 ${(mix.solidState*100).toFixed(0)}%</span>
+  `;
+}
+
+function renderPowerDemand() {
+  const [hum, ind, amr] = getShipments(S.year);
+  const pw = DATA.power;
+  const humGW = hum * 1000 * pw.perRobotKW / 1e6;
+  const indGW = ind * 1000 * pw.perIndustrialKW / 1e6;
+  const amrGW = amr * 1000 * pw.perAmrKW / 1e6;
+  const totalGW = humGW + indGW + amrGW;
+  const dcRatio = (totalGW / pw.dcDemandGW * 100);
+  const usRatio = (totalGW / (pw.usGridCapTW*1000) * 100);
+
+  $('#pwHumanoid').textContent = fmtGW(humGW);
+  $('#pwIndustrial').textContent = fmtGW(indGW);
+  $('#pwAmr').textContent = fmtGW(amrGW);
+  $('#pwTotal').textContent = fmtGW(totalGW);
+  $('#pwDcRatio').textContent = dcRatio.toFixed(1) + '%';
+  $('#pwUsRatio').textContent = usRatio.toFixed(1) + '%';
+
+  // Bar visualization
+  const maxGW = Math.max(totalGW, pw.dcDemandGW, pw.usGridCapTW*1000);
+  const barScale = 100 / maxGW;
+  $('#pwBarRobot').style.width = Math.max(1, totalGW * barScale) + '%';
+  $('#pwBarDc').style.width = Math.max(1, pw.dcDemandGW * barScale) + '%';
+  $('#pwBarUs').style.width = Math.max(1, pw.usGridCapTW * 1000 * barScale) + '%';
+  $('#pwBarRobotLabel').textContent = fmtGW(totalGW);
+  $('#pwBarDcLabel').textContent = fmtGW(pw.dcDemandGW);
+  $('#pwBarUsLabel').textContent = fmtGW(pw.usGridCapTW * 1000);
+}
+
+function renderKrValueChain() {
+  const el = $('#krVcGrid');
+  let html = '';
+  DATA.krValueChain.forEach(c => {
+    html += `<div class="vc-row">
+      <div class="vc-company"><span class="vc-flag">🇰🇷</span>${c.company}<span class="vc-ticker">${c.ticker}</span></div>
+      <div class="vc-parts">${c.parts}</div>
+      <div class="vc-customer">${c.customer}</div>
+      <div class="vc-note">${c.note}</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderUsValueChain() {
+  const el = $('#usVcGrid');
+  let html = '';
+  DATA.usValueChain.forEach(c => {
+    const layerColors = {'두뇌':'#6C5CE7','제어':'#F8B739','실행':'#FF6B6B','인지':'#00B894','통합':'#636E72','실행·인지':'#E17055','두뇌·통합':'#0984E3'};
+    const lc = layerColors[c.layer] || '#8B8B82';
+    html += `<div class="vc-row" style="border-left:3px solid ${lc}">
+      <div class="vc-company"><span class="vc-flag">🇺🇸</span>${c.company}<span class="vc-ticker">${c.ticker}</span></div>
+      <div class="vc-parts"><span style="font-family:var(--mono);font-size:9px;background:${lc}15;color:${lc};padding:1px 5px;border-radius:3px;margin-right:4px">${c.layer}</span>${c.parts}</div>
+      <div class="vc-customer">${c.note}</div>
+      <div class="vc-note">${c.tp !== '-' ? 'TP '+c.tp+' / CP '+c.cp : ''}</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderPhysicalAILayers() {
+  // Automation cell cost bar
+  const cell = DATA.physicalAILayers.automationCell;
+  const barEl = $('#cellCostBar');
+  barEl.innerHTML = cell.layers.map(l =>
+    `<div style="width:${l.pct}%;background:${l.color};height:28px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#fff;font-weight:600;min-width:30px" title="${l.name}: $${l.cost.toLocaleString()} (${l.pct}%)">${l.pct}%</div>`
+  ).join('');
+  $('#cellCostTotal').textContent = '$' + cell.total.toLocaleString();
+
+  // Humanoid cost table
+  const hum = DATA.physicalAILayers.humanoid;
+  const humEl = $('#humCostGrid');
+  let html = '<div class="capa-th" style="text-align:left">구성요소</div><div class="capa-th">비중</div><div class="capa-th">저가형 $30K</div><div class="capa-th">기본형 $90K</div><div class="capa-th">고가형 $150K</div>';
+  hum.breakdown.forEach(b => {
+    const pcts = b.pctRange.replace('%','').split('~').map(Number);
+    const lo = pcts[0]/100, hi = (pcts[1]||pcts[0])/100;
+    html += `<div class="capa-td" style="text-align:left;border-left:3px solid ${b.color};padding-left:10px;font-weight:600">${b.name}</div>`;
+    html += `<div class="capa-td" style="text-align:right">${b.pctRange}</div>`;
+    html += `<div class="capa-td" style="text-align:right">$${(30000*lo/1000).toFixed(1)}~${(30000*hi/1000).toFixed(1)}K</div>`;
+    html += `<div class="capa-td" style="text-align:right">$${(90000*lo/1000).toFixed(1)}~${(90000*hi/1000).toFixed(1)}K</div>`;
+    html += `<div class="capa-td" style="text-align:right">$${(150000*lo/1000).toFixed(1)}~${(150000*hi/1000).toFixed(1)}K</div>`;
+  });
+  humEl.innerHTML = html;
+}
+
+function renderOemTargets() {
+  const el = $('#oemGrid');
+  let html = '<div class="capa-th" style="text-align:left">OEM</div><div class="capa-th">2026 목표</div><div class="capa-th">2028~30 목표</div><div class="capa-th">단가 목표</div><div class="capa-th">배터리</div>';
+  DATA.oemTargets.forEach(o => {
+    html += `<div class="capa-td" style="text-align:left;font-weight:600">${o.flag} ${o.name}</div>`;
+    html += `<div class="capa-td" style="text-align:right">${o.target2026}</div>`;
+    html += `<div class="capa-td" style="text-align:right">${o.target2030}</div>`;
+    html += `<div class="capa-td" style="text-align:right">${o.price}</div>`;
+    html += `<div class="capa-td" style="text-align:right;font-size:10px">${o.battery}</div>`;
+  });
+  el.innerHTML = html;
+}
+
+function handleYear(v) {
+  S.year=+v;
+  renderAll();
+}
+
+
+// ═══ OEM Bottom-Up ═══
+const OEMS=[{n:'Tesla',f:'🇺🇸',d:20},{n:'AGIBOT',f:'🇨🇳',d:15},{n:'Unitree',f:'🇨🇳',d:8},{n:'UBTECH',f:'🇨🇳',d:5},{n:'Figure',f:'🇺🇸',d:5},{n:'BD/Agility',f:'🇺🇸',d:5},{n:'중국 기타',f:'🇨🇳',d:8},{n:'기타',f:'🌐',d:3}];
+let ov=OEMS.map(o=>o.d);
+function rOEM(){const e=document.getElementById('oemBU');if(!e)return;let h='';OEMS.forEach((o,i)=>{h+=`<div style="font-weight:600">${o.f} ${o.n}</div><input type="range" min="0" max="200" step="0.5" value="${ov[i]}" style="width:100%" oninput="ov[${i}]=+this.value;rOEM()"><div style="font-family:var(--mono);text-align:right">${ov[i]}만</div>`;});e.innerHTML=h;
+const bu=ov.reduce((s,v)=>s+v,0),td=getShipments(S.year)[0]/10;document.getElementById('buSum').textContent=bu.toFixed(1)+'만';document.getElementById('buTD').textContent=td.toFixed(1)+'만';const g=bu-td;document.getElementById('buGap').innerHTML=g>0?`<span style="color:#e74c3c">+${g.toFixed(1)}만</span>`:`<span style="color:#00B894">${g.toFixed(1)}만</span>`;}
+
+// ═══ Scenario Comparison ═══
+function rSCN(){const e=document.getElementById('scnCmp');if(!e)return;const yrs=[2025,2026,2028,2030,2035,2040],scs=Object.entries(DATA.scenarios);let h='<div class="th">연도</div>';scs.forEach(([k,v])=>h+=`<div class="th">${v.name}</div>`);yrs.forEach(y=>{h+=`<div class="td" style="font-weight:600">${y}</div>`;scs.forEach(([k,v])=>{const hu=(v.shipments[y]||[0])[0];const tam=S.bom.reduce((s,b)=>s+b.qty*b.price,0)*hu*1000/1e9;h+=`<div class="td" style="text-align:right"><strong>${hu>=1000?(hu/1000).toFixed(0)+'M':hu.toFixed(0)+'K'}</strong><br><span style="font-size:9px;color:var(--ink-3)">$${tam.toFixed(1)}B</span></div>`;});});e.innerHTML=h;}
+
+// ═══ Power Demand Curve ═══
+function rPWR(){const e=document.getElementById('pwrSVG');if(!e)return;const sc=DATA.scenarios[S.scenario],yrs=[2025,2026,2027,2028,2029,2030,2032,2035,2038,2040],W=680,H=280,ml=55,mr=15,mt=15,mb=35;
+const pw=y=>{const d=sc.shipments[y]||[0,0,0];return(d[0]*2+d[1]*5+d[2]*0.5)/1000;};
+const maxGW=Math.max(...yrs.map(pw),150);
+const xS=i=>ml+i/(yrs.length-1)*(W-ml-mr),yS=v=>mt+(1-v/maxGW)*(H-mt-mb);
+let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px">`;
+for(let g=0;g<=4;g++){const gy=mt+g/4*(H-mt-mb),gv=maxGW*(1-g/4);svg+=`<line x1="${ml}" y1="${gy}" x2="${W-mr}" y2="${gy}" stroke="var(--line)" stroke-width="0.5"/><text x="${ml-4}" y="${gy+3}" text-anchor="end" font-size="8" fill="var(--ink-3)">${gv>=1000?(gv/1000).toFixed(0)+'TW':gv.toFixed(0)+'GW'}</text>`;}
+const dcY=yS(120);svg+=`<line x1="${ml}" y1="${dcY}" x2="${W-mr}" y2="${dcY}" stroke="#6C5CE7" stroke-width="1" stroke-dasharray="4,3"/><text x="${W-mr-2}" y="${dcY-4}" text-anchor="end" font-size="7" fill="#6C5CE7">DC 120GW</text>`;
+const pts=yrs.map((y,i)=>`${xS(i)},${yS(pw(y))}`).join(' ');svg+=`<polyline points="${pts}" fill="none" stroke="#FF6B6B" stroke-width="2.5"/>`;
+const hpts=yrs.map((y,i)=>`${xS(i)},${yS((sc.shipments[y]||[0])[0]*2/1000)}`).join(' ');svg+=`<polyline points="${hpts}" fill="none" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="4,2"/>`;
+yrs.forEach((y,i)=>{const v=pw(y);svg+=`<circle cx="${xS(i)}" cy="${yS(v)}" r="2.5" fill="#FF6B6B"/>`;svg+=`<text x="${xS(i)}" y="${H-mb+14}" text-anchor="middle" font-size="8" fill="var(--ink-3)">${y}</text>`;if(i===yrs.length-1||y===2030)svg+=`<text x="${xS(i)}" y="${yS(v)-7}" text-anchor="middle" font-size="8" fill="#FF6B6B" font-weight="700">${v>=1000?(v/1000).toFixed(1)+'TW':v.toFixed(0)+'GW'}</text>`;});
+svg+=`<text x="${ml+4}" y="${mt+10}" font-size="8" fill="#FF6B6B">── 로봇 합계</text><text x="${ml+4}" y="${mt+20}" font-size="8" fill="#e74c3c">- - 휴머노이드</text></svg>`;e.innerHTML=svg;}
+
+function renderAll(){render();rOEM();rPWR();}
+window.addEventListener('DOMContentLoaded', renderAll);
+</script>
+
+<style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}
+a{color:inherit}
+
+/* ── Header ── */
+.hdr{margin-bottom:24px}
+.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}
+.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}
+.hdr-sub{font-size:13px;color:var(--ink-2);max-width:680px}
+
+/* ── Cards ── */
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-top:20px}
+.card-title{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--line-s);display:flex;align-items:center;gap:8px}
+.card-title .badge{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:.04em}
+
+/* ── Tabs ── */
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}
+.st-btn{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.04em;padding:6px 10px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s;text-transform:uppercase}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+
+/* ── Grid tables ── */
+.capa-grid-5{display:grid;grid-template-columns:80px repeat(4,1fr);gap:0;font-family:var(--mono);font-size:11px}
+.capa-grid-5b{display:grid;grid-template-columns:80px repeat(4,1fr);gap:0;font-family:var(--mono);font-size:11px}
+.capa-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.capa-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ── TAM grid ── */
+.tam-grid{display:grid;grid-template-columns:160px 90px 100px 100px 70px;gap:0;font-family:var(--mono);font-size:11px}
+.tam-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.tam-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px}
+.tam-sum{font-weight:700;border-top:2px solid var(--ink);border-bottom:none}
+
+/* ── BOM editor ── */
+.bom-row{background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px}
+.bom-name{font-weight:700;font-size:13px;margin-bottom:4px}
+.bom-specs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.bom-tag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:4px;background:var(--bg-card);border:1px solid var(--line);color:var(--ink-2)}
+.bom-total{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:700}
+.bom-note{font-size:10.5px;color:var(--ink-3);line-height:1.5;margin-bottom:6px}
+.bom-edit{display:flex;gap:12px;font-size:11px;color:var(--ink-2)}
+.bom-input{font-family:var(--mono);font-size:11px;width:70px;padding:3px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);text-align:right}
+.bom-edit label{display:flex;align-items:center;gap:4px}
+
+/* ── Chemistry bar ── */
+.chem-bar{display:flex;height:14px;border-radius:3px;overflow:hidden;gap:1px}
+.chem-bar span{display:block;min-width:2px}
+
+/* ── Power bars ── */
+.pw-bar-wrap{margin:6px 0}
+.pw-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.pw-bar-label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:100px;text-align:right}
+.pw-bar{height:20px;border-radius:4px;transition:width .4s;position:relative;min-width:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}
+.pw-bar-val{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
+
+/* ── Value chain ── */
+.vc-row{display:grid;grid-template-columns:140px 200px 200px 1fr;gap:0;font-size:11.5px;border-bottom:1px solid var(--line);padding:7px 0}
+.vc-company{font-weight:600;display:flex;align-items:center;gap:4px}
+.vc-flag{font-size:13px}
+.vc-ticker{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-left:4px}
+.vc-parts{color:var(--ink-2)}
+.vc-customer{color:var(--ink-2)}
+.vc-note{color:var(--ink-3);font-size:10px}
+
+/* ── Highlight numbers ── */
+.num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}
+.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.num-value{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}
+.num-sub{font-size:10px;color:var(--ink-3)}
+
+/* ── Year slider ── */
+.year-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+.year-slider{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none}
+.year-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.year-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card)}
+.year-display{font-family:var(--mono);font-size:24px;font-weight:700;min-width:60px;text-align:center}
+
+/* ── Misc ── */
+.scen-meta{font-size:11px;color:var(--ink-3);margin:6px 0 0;line-height:1.6}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chem-legend{display:flex;gap:12px;font-family:var(--mono);font-size:10px;margin-top:8px;flex-wrap:wrap}
+.section-gap{margin-top:32px}
+.guide-desc{font-size:12px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px;font-family:var(--mono);letter-spacing:.02em}
+
+/* ── OEM grid ── */
+.oem-grid{display:grid;grid-template-columns:110px repeat(4,1fr);gap:0;font-family:var(--mono);font-size:11px}
+
+@media(max-width:700px){
+  main{padding:16px 12px 80px}
+  .tam-grid{grid-template-columns:120px 70px 80px 80px 60px;font-size:10px}
+  .capa-grid-5{grid-template-columns:60px repeat(4,1fr);font-size:10px}
+  .vc-row{grid-template-columns:1fr;gap:2px}
+  .oem-grid{grid-template-columns:90px repeat(4,1fr);font-size:9px}
+  .num-row{gap:8px}
+  .num-value{font-size:16px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="hdr">
+    <div class="hdr-tag">Humanoid Scenario Simulator</div>
+    <h1><b>Humanoid</b>Scenario</h1>
+    <p class="hdr-sub">로봇 출하 시나리오 × 1대당 BOM 원단위 → 부품별 TAM 시뮬레이터. 배터리·감속기·자석·전력반도체 수요를 즉시 확인.</p>
+    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
+  </header>
+
+  <!-- ═══ 1. 가이드 ═══ -->
+  <section class="card">
+    <div class="card-title">📘 사용법 <span class="badge" style="background:#4ecdc4;color:#fff">v1.0</span></div>
+    <div class="guide-desc">
+      <strong>3-Layer 구조:</strong> ❶ 시나리오 프리셋 선택 → ❷ 연도 슬라이더로 타겟 연도 설정 → ❸ BOM 원단위 에디터에서 수량·단가 직접 수정 → 부품별 TAM·배터리 수요·전력 수요가 즉시 재계산됩니다.<br>
+      <strong>데이터 출처:</strong> SNE Research, Goldman Sachs, Trendforce, Omdia, Omdia, SNE Research, Goldman Sachs, Trendforce, McKinsey, IFR, NVIDIA, Tesla IR, 각 사 IR
+    </div>
+  </section>
+
+  <!-- ═══ 2. 시나리오 선택 + 연도 ═══ -->
+  <section class="card">
+    <div class="card-title">🎛️ Scenario & Year</div>
+    <div class="st-tabs" id="scenTabs"></div>
+    <div class="scen-meta"><span id="scenDesc"></span> <span style="color:var(--ink-3);font-style:italic">— <span id="scenSource"></span></span></div>
+    <div class="year-row" style="margin-top:16px">
+      <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">YEAR</span>
+      <input type="range" id="yearSlider" class="year-slider" min="2024" max="2040" step="1" value="2030" oninput="handleYear(this.value)">
+      <div class="year-display" id="yearLabel">2030</div>
+    </div>
+  </section>
+
+  <!-- ═══ 3. 출하량 테이블 ═══ -->
+  <section class="card">
+    <div class="card-title">📊 Global Robot Shipments <span class="badge" style="background:#FF6B6B;color:#fff" id="shipmentUnit">단위: 천 대</span></div>
+    <div class="scroll-x">
+      <div class="capa-grid-5" id="shipmentGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══ 3.5 2025 실적 & OEM 목표 ═══ -->
+  <section class="card">
+    <div class="card-title">🏭 OEM Production Targets</div>
+    <div class="scroll-x">
+      <div class="oem-grid" id="oemGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- OEM Bottom-Up -->
+  <section class="card">
+    <div class="card-title">🏭 OEM Bottom-Up <span class="badge" style="background:#FF6B6B;color:#fff">개별 OEM 입력</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:8px">OEM별 출하량(만대)을 조정 → 합산과 Top-Down 비교</p>
+    <div id="oemBU" style="display:grid;grid-template-columns:100px 1fr 60px;gap:4px 8px;align-items:center;font-size:12px"></div>
+    <div style="margin-top:8px;font-family:var(--mono);font-size:11px">BU 합산: <strong id="buSum">-</strong> vs TD: <strong id="buTD" style="color:var(--ink-3)">-</strong> <span id="buGap"></span></div>
+  </section>
+
+  <!-- ═══ 4. BOM 원단위 에디터 ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">🔧 Per-Robot BOM Editor <span class="badge" style="background:#4ecdc4;color:#fff">기준: Tesla Optimus (28관절, 2.3kWh)</span> <span class="badge" style="background:var(--ink);color:var(--bg)">수량·단가 직접 수정 가능</span></div>
+    <div class="num-row">
+      <div class="num-box"><div class="num-label">대당 총 BOM</div><div class="num-value" id="bomTotal">-</div><div class="num-sub" id="bomTotalKRW">-</div></div>
+    </div>
+    <div id="bomGrid"></div>
+  </section>
+
+  <!-- ═══ 5. TAM 산출 ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">💰 Component TAM Output</div>
+    <div class="num-row">
+      <div class="num-box"><div class="num-label">Humanoid 출하</div><div class="num-value" id="tamHumanoidUnits">-</div></div>
+      <div class="num-box"><div class="num-label">총 TAM</div><div class="num-value" id="tamTotalUSD">-</div></div>
+    </div>
+    <div class="scroll-x">
+      <div class="tam-grid" id="tamGrid"></div>
+    </div>
+  </section>
+
+  <!-- ═══ 6. 배터리 수요 ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">🔋 Battery Demand (Humanoid Only)</div>
+    <div class="scroll-x">
+      <div class="capa-grid-5b" id="batteryGrid" style="grid-template-columns:80px 90px 80px 100px 1fr"></div>
+    </div>
+    <div class="chem-legend" id="chemLegend"></div>
+  </section>
+
+  <!-- ═══ 7. 전력 수요 ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">⚡ 전력 수요 추정</div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">로봇 대수 × 대당 소비전력으로 산출. 산업로봇·AMR 포함 합산.</p>
+    <div class="num-row">
+      <div class="num-box"><div class="num-label">🤖 휴머노이드</div><div class="num-value" id="pwHumanoid">-</div><div class="num-sub">@2kW/대</div></div>
+      <div class="num-box"><div class="num-label">🏭 산업로봇</div><div class="num-value" id="pwIndustrial">-</div><div class="num-sub">@5kW/대</div></div>
+      <div class="num-box"><div class="num-label">📦 AMR</div><div class="num-value" id="pwAmr">-</div><div class="num-sub">@0.5kW/대</div></div>
+      <div class="num-box" style="border:2px solid var(--ink)"><div class="num-label">합계</div><div class="num-value" id="pwTotal">-</div></div>
+    </div>
+    <div style="margin-top:12px">
+      <div class="num-row">
+        <div class="num-box"><div class="num-label">vs DC 수요 비율</div><div class="num-value" id="pwDcRatio">-</div><div class="num-sub">하이퍼스케일러 DC 120GW 기준</div></div>
+        <div class="num-box"><div class="num-label">vs 미국 전체 그리드</div><div class="num-value" id="pwUsRatio">-</div><div class="num-sub">US 1.2TW 기준</div></div>
+      </div>
+    </div>
+    <div class="pw-bar-wrap" style="margin-top:12px">
+      <div class="pw-bar-row"><div class="pw-bar-label">로봇 합계</div><div class="pw-bar" id="pwBarRobot" style="background:linear-gradient(90deg,#FF6B6B,#e74c3c)"><span class="pw-bar-val" id="pwBarRobotLabel"></span></div></div>
+      <div class="pw-bar-row"><div class="pw-bar-label">DC 수요 (26E)</div><div class="pw-bar" id="pwBarDc" style="background:linear-gradient(90deg,#6C5CE7,#a29bfe)"><span class="pw-bar-val" id="pwBarDcLabel"></span></div></div>
+      <div class="pw-bar-row"><div class="pw-bar-label">US 그리드</div><div class="pw-bar" id="pwBarUs" style="background:linear-gradient(90deg,#636E72,#b2bec3)"><span class="pw-bar-val" id="pwBarUsLabel"></span></div></div>
+    </div>
+  </section>
+
+  <!-- Power Demand Curve -->
+  <section class="card section-gap">
+    <div class="card-title">⚡ 전력 수요 누적 곡선 <span class="badge" style="background:#e74c3c;color:#fff">SVG</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:6px">로봇 전력이 DC 수요(120GW)를 넘어서는 교차점 시각화</p>
+    <div id="pwrSVG"></div>
+  </section>
+
+
+  <!-- ═══ Update Log ═══ -->
+  <section class="card section-gap">
+    <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
+      📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
+    </div>
+    <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>
+          <span style="font-size:12px;font-weight:600">JPM Conference 2026 발표 내용 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">JPM Healthcare Conference 2026 / Boston Dynamics IR / HMG IR</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Atlas 스펙: payload 50kg, IP67, -20~40°C, self-swappable battery</li>
+          <li>액추에이터 8종 → 2종 통합 설계</li>
+          <li>현대모비스 BD 모든 액추에이터 100% 공급 공식 발표</li>
+          <li>HMG 역할: 모비스(부품) / 오토에버(SI) / 글로비스(물류)</li>
+          <li>RMCA 2026 여름 개소 / 양산공장 2028 개소 30K CAPA</li>
+          <li>HMG 내부 배포 2.5만대 captive demand</li>
+          <li>Google DeepMind AI Partnership</li>
+          <li>기술 설명 탭 신설 / KR 밸류체인 업데이트</li>
+        </ul>
+      </div>
+    </div>
+    <style>#updateLogContent.open{max-height:2000px}</style>
+  </section>
+
+</main>
+</body>
+</html>
