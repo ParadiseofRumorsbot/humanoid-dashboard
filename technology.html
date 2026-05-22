@@ -56,8 +56,15 @@ a{color:inherit}
 .toc-nav{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 16px;font-size:10px}
 .toc-nav a{padding:4px 8px;border-radius:5px;background:var(--bg-soft);color:var(--ink-2);text-decoration:none;font-family:var(--mono);letter-spacing:.02em;border:1px solid var(--line);transition:all .2s}
 .toc-nav a:hover{background:var(--ink);color:var(--bg)}
-.yt-embed{position:relative;width:100%;padding-bottom:56.25%;border-radius:8px;overflow:hidden;margin:12px 0}
-.yt-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.fig-wrap{margin:14px 0;text-align:center}
+.fig-wrap img{max-width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.fig-wrap .fig-cap{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px;letter-spacing:.02em}
+.fig-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0}
+.fig-row img{width:100%;border-radius:8px;border:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.arch-diagram{background:var(--bg-soft);border-radius:10px;padding:16px 20px;margin:14px 0;border:1px solid var(--line)}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin:10px 0}
+.arch-box{padding:8px 14px;border-radius:6px;font-family:var(--mono);font-size:10px;font-weight:700;color:#fff;text-align:center;min-width:80px}
+.arch-arrow{font-size:16px;color:var(--ink-3);padding:0 4px}
 .pipeline-flow{display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:12px 0}
 .pipeline-step{flex:1;min-width:120px;padding:10px 12px;background:var(--bg-soft);border-radius:8px;text-align:center;position:relative;margin-right:8px}
 .pipeline-step:last-child{margin-right:0}
@@ -614,10 +621,11 @@ window.addEventListener('DOMContentLoaded', render);
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY CONCEPTS</div>
       <div id="pipelineConcepts"></div>
     </div>
-    <div class="yt-embed">
-      <iframe src="https://www.youtube.com/embed/DycoYh6imj8" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <div class="fig-row">
+      <div class="fig-wrap"><img src="https://arxiv.org/html/2403.07788v1/x1.png" alt="DexCap Figure 1: 사람 손 모션캡처 → 로봇 손 학습 파이프라인" loading="lazy"><div class="fig-cap">DexCap Fig.1 — 사람 손 MoCap → Retargeting → 로봇 손 정책 학습</div></div>
+      <div class="fig-wrap"><img src="https://airexo.github.io/static/images/airexo.png" alt="AirExo: 양팔 외골격 시스템 개요" loading="lazy"><div class="fig-cap">AirExo — 저비용 양팔 외골격 데이터 수집 시스템</div></div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: DexCap (Stanford), AirExo/AirExo-2 (THU) 논문 원문 / 영상: 엥지유니버스</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: DexCap (Stanford, arXiv:2403.07788), AirExo/AirExo-2 (THU) 논문 원문</div>
   </section>
 
   <!-- ═══ 8. Digital Twin ═══ -->
@@ -632,10 +640,12 @@ window.addEventListener('DOMContentLoaded', render);
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY TECHNOLOGIES</div>
       <div id="dtKeyTech"></div>
     </div>
-    <div class="yt-embed">
-      <iframe src="https://www.youtube.com/embed/g7y7y7xGpxU" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <div class="fig-row">
+      <div class="fig-wrap"><img src="https://arxiv.org/html/2410.15536v1/x2.jpg" alt="GRS Workflow: RGBD → 시뮬레이션 자동 생성" loading="lazy"><div class="fig-cap">GRS Fig.2 — RGBD 이미지 → 장면 이해 → 에셋 매칭 → 태스크 코드 생성</div></div>
+      <div class="fig-wrap"><img src="https://robotwin-platform.github.io/assets/images/50-tasks.gif" alt="RoboTwin: 50가지 양팔 로봇 태스크 데모" loading="lazy"><div class="fig-cap">RoboTwin — 생성형 디지털 트윈 기반 50가지 양팔 조작 태스크</div></div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: GRS, Gen2Sim, RoboTwin, SplatSim, SyncTwin, TwinRL 논문 원문 / 영상: 엥지유니버스</div>
+    <div class="fig-wrap"><img src="https://robotwin-platform.github.io/assets/images/teaser.png" alt="RoboTwin Platform 개요" loading="lazy" style="max-width:700px"><div class="fig-cap">RoboTwin Platform — 2D 이미지 → 3D 에셋 → Spatial Annotation → Expert Data 생성</div></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: GRS (arXiv:2410.15536), RoboTwin (robotwin-platform.github.io) 논문 원문</div>
   </section>
 
   <!-- ═══ 9. WFM Deep ═══ -->
@@ -650,10 +660,39 @@ window.addEventListener('DOMContentLoaded', render);
     </div>
     <div style="margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">REMAINING CHALLENGES</div>
     <div id="wfmChallenges" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"></div>
-    <div class="yt-embed">
-      <iframe src="https://www.youtube.com/embed/2a6OYcYcOOw" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <div class="arch-diagram">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">VLA vs WFM-BASED POLICY STRUCTURE</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">CONVENTIONAL VLA</div>
+          <div class="arch-flow" style="flex-direction:column;gap:4px">
+            <div class="arch-box" style="background:#6C5CE7">Image + Language</div>
+            <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+            <div class="arch-box" style="background:#636E72">VLM Backbone</div>
+            <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+            <div class="arch-box" style="background:#FF6B6B">Action Head</div>
+            <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+            <div class="arch-box" style="background:#E17055">Motor Command</div>
+          </div>
+          <div style="font-size:9px;color:var(--ink-3);margin-top:4px">보고 → 바로 행동</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">WFM-BASED POLICY</div>
+          <div class="arch-flow" style="flex-direction:column;gap:4px">
+            <div class="arch-box" style="background:#6C5CE7">Image + Language</div>
+            <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+            <div class="arch-box" style="background:#00B894">World Model (미래 예측)</div>
+            <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+            <div class="arch-box" style="background:#F8B739">Value (최적 미래 선택)</div>
+            <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+            <div class="arch-box" style="background:#E17055">Motor Command</div>
+          </div>
+          <div style="font-size:9px;color:var(--ink-3);margin-top:4px">보고 → 상상하고 → 최적 행동 선택</div>
+        </div>
+      </div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: Cosmos Policy (NVIDIA), VPP, DreamVLA, V-JEPA 2 (Meta), Generators=Policies (Columbia/TRI) 논문 원문 / 영상: 엥지유니버스</div>
+    <div class="fig-wrap"><img src="https://video-prediction-policy.github.io/media/images/method.png" alt="VPP: Video Prediction Policy 아키텍처" loading="lazy" style="max-width:800px"><div class="fig-cap">VPP Fig.2 — Stage1: 비디오 모델 내부 Predictive Representation 추출 → Stage2: DiT Policy로 Action 학습</div></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: Cosmos Policy (NVIDIA), VPP (arXiv:2412.14803), DreamVLA, V-JEPA 2 (Meta), Generators=Policies (Columbia/TRI) 논문 원문</div>
   </section>
 
   <!-- ═══ 10. VLA Architecture Evolution ═══ -->
@@ -664,10 +703,26 @@ window.addEventListener('DOMContentLoaded', render);
     <div id="vlaTimeline" class="vla-timeline"></div>
     <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:16px 0 6px">4TH GEN BREAKTHROUGH MODELS</div>
     <div id="vlaModels"></div>
-    <div class="yt-embed">
-      <iframe src="https://www.youtube.com/embed/sx2ytqe3hcI" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    <div class="fig-row">
+      <div class="fig-wrap"><img src="https://rd-vla.github.io/static/images/img_overview.jpeg" alt="RD-VLA: 텍스트 CoT vs Latent Iterative Reasoning 비교" loading="lazy"><div class="fig-cap">RD-VLA Fig.1 — 기존 텍스트 CoT(좌) vs Latent 반복 추론(우). 80x 속도 향상</div></div>
+      <div class="fig-wrap"><img src="https://rd-vla.github.io/static/images/img_architecture.png" alt="RD-VLA 아키텍처: Recurrent Depth 구조" loading="lazy"><div class="fig-cap">RD-VLA Architecture — VLM + Latent Iterative Refinement + Continuous Action</div></div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: π0.6 (Physical Intelligence), RD-VLA, MeM 논문 원문 / 영상: 엥지유니버스</div>
+    <div class="arch-diagram">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px;text-align:center">π0.6 RECAP SELF-IMPROVEMENT LOOP</div>
+      <div class="arch-flow">
+        <div class="arch-box" style="background:#6C5CE7">π0 Base Policy</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#F8B739">자율 경험 수집</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#00B894">Advantage 계산</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#FF6B6B">RL Fine-tuning</div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#E17055">π0.6 개선 Policy</div>
+      </div>
+      <div style="text-align:center;font-size:9px;color:var(--ink-3);margin-top:6px">성공 Trajectory에 높은 Advantage → 반복 자기개선 루프</div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: π0.6 RECAP (Physical Intelligence), RD-VLA (arXiv:2602.07845), MeM 논문 원문</div>
   </section>
 
   <!-- ═══ 11. VLA 3대장 비교 ═══ -->
@@ -679,7 +734,11 @@ window.addEventListener('DOMContentLoaded', render);
     <div class="scroll-x">
       <div id="vlaDimensions" class="cmp-matrix"></div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA GR00T (2025), Google DeepMind Gemini Robotics (2025), Physical Intelligence π0/0.5/0.6 논문 원문</div>
+    <div class="fig-row" style="margin-top:16px">
+      <div class="fig-wrap"><img src="https://raw.githubusercontent.com/NVIDIA/Isaac-GR00T/main/media/model-architecture.png" alt="GR00T N1 Dual System Architecture" loading="lazy"><div class="fig-cap">GR00T N1 — Dual System: VLM (System 2) + Diffusion Transformer (System 1)</div></div>
+      <div class="fig-wrap"><img src="https://lh3.googleusercontent.com/I7a1f6DPm4Qs4JuiieahA4ki0Dc5IQDU8PxfsMRy3UCf3HF7Td_zZfXg35_M-Td1EELJUY2dJLEkdyjt7IVah658uuqvwAQFtarOukXs44MHGMiSd64=w1440-h810-n-nu" alt="Gemini Robotics 데모" loading="lazy"><div class="fig-cap">Gemini Robotics — Gemini 2.0 기반 범용 로봇 조작</div></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA Isaac-GR00T GitHub, Google DeepMind Blog, Physical Intelligence 논문 원문</div>
   </section>
 
   <!-- ═══ 12. AI Factory ═══ -->
@@ -692,6 +751,23 @@ window.addEventListener('DOMContentLoaded', render);
     <div id="roboticsStack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin-bottom:16px"></div>
     <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">TRAINING → DEPLOYMENT LOOP</div>
     <div id="trainingLoop" class="pipeline-flow"></div>
+    <div class="arch-diagram" style="margin-top:16px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">NVIDIA PHYSICAL AI ECOSYSTEM</div>
+      <div class="arch-flow">
+        <div class="arch-box" style="background:#6C5CE7">Omniverse<br><span style="font-size:8px;opacity:.8">디지털 트윈</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#00B894">Cosmos<br><span style="font-size:8px;opacity:.8">World Model</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#F8B739">Isaac Lab<br><span style="font-size:8px;opacity:.8">RL/IL 학습</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#FF6B6B">GR00T<br><span style="font-size:8px;opacity:.8">Foundation</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#E17055">Jetson Thor<br><span style="font-size:8px;opacity:.8">엣지 추론</span></div>
+      </div>
+      <div style="text-align:center;margin-top:8px">
+        <div class="arch-box" style="background:#76B900;display:inline-block;padding:6px 20px">OSMO — 전체 워크플로우 오케스트레이션</div>
+      </div>
+    </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA GTC 2025 Keynote, NVIDIA IR</div>
   </section>
 
