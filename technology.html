@@ -51,13 +51,61 @@ a{color:inherit}
 .cmp-grid{display:grid;grid-template-columns:120px 1fr 1fr 60px;gap:0;font-family:var(--mono);font-size:11px}
 .cost-bar{height:28px;border-radius:4px;display:flex;align-items:center;padding:0 10px;font-family:var(--mono);font-size:10px;color:#fff;font-weight:600;transition:width .4s}
 .update-log{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.update-log.open{max-height:2000px}
+.update-log.open{max-height:5000px}
 .log-toggle{cursor:pointer;user-select:none}
+.toc-nav{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 16px;font-size:10px}
+.toc-nav a{padding:4px 8px;border-radius:5px;background:var(--bg-soft);color:var(--ink-2);text-decoration:none;font-family:var(--mono);letter-spacing:.02em;border:1px solid var(--line);transition:all .2s}
+.toc-nav a:hover{background:var(--ink);color:var(--bg)}
+.yt-embed{position:relative;width:100%;padding-bottom:56.25%;border-radius:8px;overflow:hidden;margin:12px 0}
+.yt-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+.pipeline-flow{display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:12px 0}
+.pipeline-step{flex:1;min-width:120px;padding:10px 12px;background:var(--bg-soft);border-radius:8px;text-align:center;position:relative;margin-right:8px}
+.pipeline-step:last-child{margin-right:0}
+.pipeline-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-3)}
+.pipeline-step:last-child::after{display:none}
+.pipeline-icon{font-size:20px;margin-bottom:4px}
+.pipeline-name{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink)}
+.pipeline-desc{font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px}
+.paper-card{background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid var(--ink-3);margin-bottom:8px}
+.paper-card h4{font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px}
+.paper-card p{font-size:10.5px;color:var(--ink-2);line-height:1.6}
+.paper-card .highlight{font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:600;margin-top:4px}
+.wfm-row{display:grid;grid-template-columns:100px 80px 1fr 140px 100px;gap:0;font-size:10.5px;border-bottom:1px solid var(--line);align-items:center}
+.wfm-row.hdr-row{font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;border-bottom:1px solid var(--line-s);padding:6px 0}
+.wfm-row>div{padding:8px 6px}
+.vla-timeline{display:flex;gap:0;position:relative;margin:16px 0;padding:12px 0}
+.vla-timeline::before{content:'';position:absolute;top:50%;left:0;right:0;height:2px;background:var(--line-s)}
+.vla-gen{flex:1;text-align:center;position:relative;z-index:1}
+.vla-gen .dot{width:12px;height:12px;border-radius:50%;background:var(--ink);margin:0 auto 6px;border:2px solid var(--bg-card)}
+.vla-gen .gen-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);font-weight:700}
+.vla-gen .gen-name{font-size:10px;font-weight:600;margin:2px 0}
+.vla-gen .gen-desc{font-size:9px;color:var(--ink-2)}
+.vla-gen .gen-year{font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:600}
+.cmp-matrix{display:grid;grid-template-columns:140px repeat(3,1fr);gap:0;font-size:10.5px}
+.cmp-matrix .m-th{padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;border-bottom:1px solid var(--line-s)}
+.cmp-matrix .m-td{padding:6px 8px;border-bottom:1px solid var(--line)}
+.cake-layer{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;margin-bottom:6px;color:#fff;font-size:12px}
+.cake-layer .layer-num{font-family:var(--mono);font-size:20px;font-weight:700;opacity:.6;min-width:28px}
+.cake-layer .layer-info{flex:1}
+.cake-layer .layer-name{font-weight:700;font-size:13px}
+.cake-layer .layer-desc{font-size:10px;opacity:.85;margin-top:1px}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+.glossary-item{background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid}
+.glossary-term{font-family:var(--mono);font-size:12px;font-weight:700}
+.glossary-full{font-family:var(--mono);font-size:9px;color:var(--ink-3)}
+.glossary-def{font-size:11px;color:var(--ink-2);margin-top:2px;line-height:1.5}
+.cat-colors{--cat-model:#6C5CE7;--cat-method:#FF6B6B;--cat-arch:#F8B739;--cat-data:#00B894;--cat-sim:#0984E3}
 @media(max-width:700px){
   main{padding:16px 12px 80px}
   .spec-grid{grid-template-columns:repeat(2,1fr)}
   .cmp-grid{grid-template-columns:90px 1fr 1fr 50px;font-size:10px}
   .num-value{font-size:16px}
+  .pipeline-flow{flex-direction:column}
+  .pipeline-step::after{display:none}
+  .wfm-row{grid-template-columns:1fr;gap:4px}
+  .wfm-row.hdr-row{display:none}
+  .cmp-matrix{grid-template-columns:1fr}
+  .glossary-grid{grid-template-columns:1fr}
 }
 </style>
 <script src="data.js"></script>
@@ -71,6 +119,13 @@ function render() {
   renderDataFlywheel();
   renderAtlasSpecs();
   renderCostRoadmap();
+  renderRobotDataPipeline();
+  renderDigitalTwin();
+  renderWFMDeep();
+  renderVLAEvolution();
+  renderVLAComparison();
+  renderAIFactory();
+  renderGlossary();
   renderUpdateLog();
 }
 
@@ -155,6 +210,210 @@ function renderCostRoadmap() {
   el.innerHTML = html;
 }
 
+/* ── 7. Robot Data Pipeline ── */
+function renderRobotDataPipeline() {
+  const d = D.technology.robotDataPipeline;
+  // Methods grid
+  const el = $('#pipelineMethods');
+  el.innerHTML = d.methods.map(m =>
+    `<div class="layer-card" style="border-color:${m.color}">
+      <h3 style="color:${m.color}">${m.name}</h3>
+      <p>${m.desc}</p>
+      <div style="margin-top:6px;font-size:10px"><span style="color:#00B894;font-weight:600">+</span> ${m.pros}</div>
+      <div style="font-size:10px"><span style="color:#FF6B6B;font-weight:600">-</span> ${m.cons}</div>
+    </div>`
+  ).join('');
+  // Pipeline flow
+  const pEl = $('#pipelineFlow');
+  pEl.innerHTML = d.pipeline.map(s =>
+    `<div class="pipeline-step">
+      <div class="pipeline-icon">${s.icon}</div>
+      <div class="pipeline-name">${s.name}</div>
+      <div class="pipeline-desc">${s.desc}</div>
+    </div>`
+  ).join('');
+  // Key concepts
+  const kEl = $('#pipelineConcepts');
+  kEl.innerHTML = d.keyConcepts.map(c =>
+    `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:700;min-width:140px;color:#6C5CE7">${c.term}</span>
+      <span style="font-size:11px;color:var(--ink-2)">${c.def}</span>
+    </div>`
+  ).join('');
+}
+
+/* ── 8. Digital Twin ── */
+function renderDigitalTwin() {
+  const d = D.technology.digitalTwin;
+  // Approaches
+  const aEl = $('#dtApproaches');
+  aEl.innerHTML = d.approaches.map(a =>
+    `<div class="layer-card" style="border-color:${a.color}">
+      <h3 style="color:${a.color}">${a.name}</h3>
+      <p>${a.desc}</p>
+      <div class="examples">${a.examples}</div>
+    </div>`
+  ).join('');
+  // Papers
+  const pEl = $('#dtPapers');
+  pEl.innerHTML = d.papers.map(p =>
+    `<div class="paper-card">
+      <h4>${p.name} <span style="font-weight:400;color:var(--ink-3)">— ${p.full}</span></h4>
+      <p>${p.method}</p>
+      <div class="highlight">${p.highlight}</div>
+    </div>`
+  ).join('');
+  // Key tech
+  const kEl = $('#dtKeyTech');
+  kEl.innerHTML = d.keyTech.map(c =>
+    `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:700;min-width:160px;color:#0984E3">${c.term}</span>
+      <span style="font-size:11px;color:var(--ink-2)">${c.def}</span>
+    </div>`
+  ).join('');
+}
+
+/* ── 9. WFM Deep ── */
+function renderWFMDeep() {
+  const d = D.technology.wfmDeep;
+  const el = $('#wfmTable');
+  let html = `<div class="wfm-row hdr-row"><div>Model</div><div>Organization</div><div>Method</div><div>Result</div><div>Approach</div></div>`;
+  d.comparison.forEach(m => {
+    html += `<div class="wfm-row">
+      <div style="font-weight:700">${m.model}</div>
+      <div style="font-family:var(--mono);color:var(--ink-3)">${m.org}</div>
+      <div>${m.method}</div>
+      <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600">${m.result}</div>
+      <div><span style="font-family:var(--mono);font-size:9px;padding:2px 6px;background:var(--bg-soft);border-radius:4px;font-weight:600">${m.approach}</span></div>
+    </div>`;
+  });
+  el.innerHTML = html;
+  // Challenges
+  const cEl = $('#wfmChallenges');
+  cEl.innerHTML = d.challenges.map(c =>
+    `<div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #FF6B6B">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:2px">${c.issue}</div>
+      <div style="font-size:11px;color:var(--ink-2)">${c.desc}</div>
+    </div>`
+  ).join('');
+}
+
+/* ── 10. VLA Evolution ── */
+function renderVLAEvolution() {
+  const d = D.technology.vlaEvolution;
+  // Models
+  const mEl = $('#vlaModels');
+  mEl.innerHTML = d.models.map(m =>
+    `<div class="card" style="border-left:4px solid ${m.color};margin-top:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <h3 style="font-size:14px;font-weight:700;color:${m.color}">${m.name}</h3>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${m.org}</span>
+      </div>
+      <div style="font-size:12px;font-weight:600;margin-bottom:6px">${m.keyIdea}</div>
+      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;margin-bottom:6px"><strong>Architecture:</strong> ${m.architecture}</div>
+      <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600">${m.breakthrough}</div>
+    </div>`
+  ).join('');
+  // Timeline
+  const tEl = $('#vlaTimeline');
+  tEl.innerHTML = d.evolutionPath.map(e =>
+    `<div class="vla-gen">
+      <div class="dot"></div>
+      <div class="gen-label">${e.gen}</div>
+      <div class="gen-name">${e.name}</div>
+      <div class="gen-desc">${e.desc}</div>
+      <div class="gen-year">${e.year}</div>
+    </div>`
+  ).join('');
+}
+
+/* ── 11. VLA Comparison ── */
+function renderVLAComparison() {
+  const d = D.technology.vlaComparison;
+  // Model cards
+  const mEl = $('#vlaFamilies');
+  mEl.innerHTML = d.models.map(m =>
+    `<div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-top:4px solid ${m.color}">
+      <div style="font-size:14px;font-weight:700;color:${m.color};margin-bottom:2px">${m.family}</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:8px">${m.org}</div>
+      ${m.versions.map(v => `
+        <div style="background:var(--bg-card);border-radius:6px;padding:8px 10px;margin-bottom:6px;border:1px solid var(--line)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700">${v.ver}</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${v.date}</span>
+          </div>
+          <div style="font-size:10.5px;color:var(--ink-2);margin-top:4px">${v.keyFeature}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:2px">Action: ${v.actionHead}</div>
+        </div>
+      `).join('')}
+      <div style="margin-top:8px;font-size:10px">
+        <div style="color:#00B894;font-weight:600">+ ${m.strength}</div>
+        <div style="color:#FF6B6B;font-weight:600;margin-top:2px">- ${m.weakness}</div>
+      </div>
+    </div>`
+  ).join('');
+  // Dimension matrix
+  const dEl = $('#vlaDimensions');
+  let html = '<div class="m-th">Dimension</div><div class="m-th" style="color:#76B900">GR00T</div><div class="m-th" style="color:#4285F4">Gemini</div><div class="m-th" style="color:#E17055">π0</div>';
+  d.dimensions.forEach(r => {
+    html += `<div class="m-td" style="font-weight:600">${r.dim}</div>`;
+    html += `<div class="m-td" style="text-align:center">${r.groot}</div>`;
+    html += `<div class="m-td" style="text-align:center">${r.gemini}</div>`;
+    html += `<div class="m-td" style="text-align:center">${r.pi}</div>`;
+  });
+  dEl.innerHTML = html;
+}
+
+/* ── 12. AI Factory ── */
+function renderAIFactory() {
+  const d = D.technology.aiFactory;
+  // 5-Layer Cake
+  const cEl = $('#cakeLayers');
+  cEl.innerHTML = d.fiveLayerCake.slice().reverse().map(l =>
+    `<div class="cake-layer" style="background:${l.color}">
+      <div class="layer-num">${l.icon}</div>
+      <div class="layer-info">
+        <div class="layer-name">L${l.layer}. ${l.name}</div>
+        <div class="layer-desc">${l.desc}</div>
+      </div>
+    </div>`
+  ).join('');
+  // Robotics Stack
+  const sEl = $('#roboticsStack');
+  sEl.innerHTML = d.nvidiaRoboticsStack.map(s =>
+    `<div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #76B900">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#76B900">${s.name}</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${s.role}</span>
+      </div>
+      <div style="font-size:10.5px;color:var(--ink-2)">${s.desc}</div>
+    </div>`
+  ).join('');
+  // Training Loop
+  const tEl = $('#trainingLoop');
+  tEl.innerHTML = d.trainingLoop.map(s =>
+    `<div class="pipeline-step">
+      <div class="pipeline-icon" style="font-size:14px;font-family:var(--mono);font-weight:700;color:#76B900">${s.step}</div>
+      <div class="pipeline-name">${s.name}</div>
+      <div class="pipeline-desc">${s.desc}</div>
+    </div>`
+  ).join('');
+}
+
+/* ── 13. Glossary ── */
+function renderGlossary() {
+  const d = D.technology.glossary;
+  const catColors = { model: '#6C5CE7', method: '#FF6B6B', architecture: '#F8B739', data: '#00B894', sim: '#0984E3' };
+  const el = $('#glossaryGrid');
+  el.innerHTML = d.map(g =>
+    `<div class="glossary-item" style="border-color:${catColors[g.category]||'var(--ink-3)'}">
+      <div class="glossary-term" style="color:${catColors[g.category]||'var(--ink)'}">${g.term}</div>
+      <div class="glossary-full">${g.full}</div>
+      <div class="glossary-def">${g.def}</div>
+    </div>`
+  ).join('');
+}
+
 function renderUpdateLog() {
   const el = $('#updateLogContent');
   let html = '';
@@ -188,12 +447,27 @@ window.addEventListener('DOMContentLoaded', render);
   <header class="hdr">
     <div class="hdr-tag">Humanoid Dashboard</div>
     <h1><b>Tech</b>기술 설명</h1>
-    <p class="hdr-sub">Physical AI 기술 스택 · Locomotion vs Manipulation · Data Flywheel · Atlas 스펙 · 원가 로드맵. 출처: BD IR, NVIDIA, Google DeepMind, McKinsey.</p>
+    <p class="hdr-sub">Physical AI 핵심 기술 13개 섹션. 기술 스택 · VLA 아키텍처 진화 · WFM · 데이터 수집 · 디지털 트윈 · AI Factory 인프라. 출처: 논문 원문, NVIDIA, Google DeepMind, Physical Intelligence.</p>
+    <div class="toc-nav">
+      <a href="#sec-aistack">AI 스택</a>
+      <a href="#sec-lvm">이동 vs 조작</a>
+      <a href="#sec-flywheel">Data Flywheel</a>
+      <a href="#sec-atlas">Atlas 스펙</a>
+      <a href="#sec-hmg">HMG 전략</a>
+      <a href="#sec-cost">원가 로드맵</a>
+      <a href="#sec-pipeline" style="color:#6C5CE7;border-color:#6C5CE7">데이터 수집</a>
+      <a href="#sec-dt" style="color:#0984E3;border-color:#0984E3">디지털 트윈</a>
+      <a href="#sec-wfm" style="color:#00B894;border-color:#00B894">WFM 심화</a>
+      <a href="#sec-vlaevo" style="color:#FF6B6B;border-color:#FF6B6B">VLA 진화</a>
+      <a href="#sec-vlacmp" style="color:#E17055;border-color:#E17055">VLA 3대장</a>
+      <a href="#sec-factory" style="color:#76B900;border-color:#76B900">AI Factory</a>
+      <a href="#sec-glossary">용어 사전</a>
+    </div>
     <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
   </header>
 
   <!-- ═══ 1. AI Tech Stack ═══ -->
-  <section class="card">
+  <section id="sec-aistack" class="card">
     <div class="card-title">🧠 Physical AI 기술 스택 <span class="badge" style="background:#6C5CE7;color:#fff">5대 핵심 기술</span></div>
     <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">로봇 두뇌를 구성하는 AI 기술 계층. "프로그래밍하지 않고 가르친다" — BD Interim CEO Amanda McMaster</p>
     <div id="aiStackGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px"></div>
@@ -201,7 +475,7 @@ window.addEventListener('DOMContentLoaded', render);
   </section>
 
   <!-- ═══ 2. Locomotion vs Manipulation ═══ -->
-  <section class="card section-gap">
+  <section id="sec-lvm" class="card section-gap">
     <div class="card-title">🦿 vs 🤲 Locomotion vs Manipulation <span class="badge" style="background:#F8B739;color:#fff">기술 비교</span></div>
     <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">보행(Locomotion)은 해결 단계에 진입했으나, 조작(Manipulation)은 여전히 핵심 난제. ROI를 직접 창출하는 것은 조작 능력.</p>
     <div class="scroll-x">
@@ -211,7 +485,7 @@ window.addEventListener('DOMContentLoaded', render);
   </section>
 
   <!-- ═══ 3. Data Flywheel ═══ -->
-  <section class="card section-gap">
+  <section id="sec-flywheel" class="card section-gap">
     <div class="card-title">🔄 Data Flywheel <span class="badge" style="background:#4ecdc4;color:#fff">BD 핵심 경쟁력</span></div>
     <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">Physical AI는 실세계 데이터가 핵심. 수백 개 고객 사이트에서 이미 데이터를 수집하는 유일한 기업 — BD</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
@@ -233,7 +507,7 @@ window.addEventListener('DOMContentLoaded', render);
   </section>
 
   <!-- ═══ 4. BD Atlas Specs ═══ -->
-  <section class="card section-gap">
+  <section id="sec-atlas" class="card section-gap">
     <div class="card-title">🤖 BD Atlas 상세 스펙 <span class="badge" style="background:var(--ink);color:var(--bg)">JPM Conference 2026</span></div>
     <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">"Blank-sheet design focused on simplicity, building strongest base for cost and reliability" — Zack Jackowski, Chief Product Technology Officer</p>
     <div id="atlasSpecGrid" class="spec-grid"></div>
@@ -270,7 +544,7 @@ window.addEventListener('DOMContentLoaded', render);
   </section>
 
   <!-- ═══ 5. HMG Robotics Strategy ═══ -->
-  <section class="card section-gap">
+  <section id="sec-hmg" class="card section-gap">
     <div class="card-title">🏭 HMG 로보틱스 전략 <span class="badge" style="background:#0984E3;color:#fff">JPM 2026</span></div>
     <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">"Not just showcase robots — with Boston Dynamics, we will bring them into real industries" — Jaehoon Chang, HMG Vice Chair</p>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
@@ -318,7 +592,7 @@ window.addEventListener('DOMContentLoaded', render);
   </section>
 
   <!-- ═══ 6. Cost Roadmap ═══ -->
-  <section class="card section-gap">
+  <section id="sec-cost" class="card section-gap">
     <div class="card-title">📉 휴머노이드 원가 로드맵 <span class="badge" style="background:#e74c3c;color:#fff">ASP vs Volume</span></div>
     <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">양산 규모 확대에 따른 ASP 하락 궤적. 2035년 Tesla $20-30K 목표, 2040년 가전 수준 $15K.</p>
     <div id="costGrid"></div>
@@ -327,6 +601,105 @@ window.addEventListener('DOMContentLoaded', render);
       <span style="color:#4ecdc4">● Volume (대)</span>
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: McKinsey, Goldman Sachs, Tesla IR, SNE Research</div>
+  </section>
+
+  <!-- ═══ 7. Robot Data Pipeline ═══ -->
+  <section id="sec-pipeline" class="card section-gap">
+    <div class="card-title">🧤 로봇 행동 데이터 수집 파이프라인 <span class="badge" style="background:#6C5CE7;color:#fff">DexCap · AirExo · AirExo-2</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">Physical AI 시대의 데이터 확보 경쟁은 단순 촬영이 아니라 센서·좌표계 정렬·Retargeting·Visual Adaptation이 결합된 데이터 파이프라인 경쟁.</p>
+    <div id="pipelineMethods" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:16px"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">DATA COLLECTION → POLICY LEARNING PIPELINE</div>
+    <div id="pipelineFlow" class="pipeline-flow"></div>
+    <div style="margin-top:16px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY CONCEPTS</div>
+      <div id="pipelineConcepts"></div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/DycoYh6imj8" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: DexCap (Stanford), AirExo/AirExo-2 (THU) 논문 원문 / 영상: 엥지유니버스</div>
+  </section>
+
+  <!-- ═══ 8. Digital Twin ═══ -->
+  <section id="sec-dt" class="card section-gap">
+    <div class="card-title">🏗️ 디지털 트윈 학습 환경 <span class="badge" style="background:#0984E3;color:#fff">핵심 논문 6편</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">디지털 트윈은 단순한 3D 복원을 넘어 로봇이 실제로 학습·검증받는 필수 학습 인프라. 3가지 접근법으로 분류.</p>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">3 APPROACHES</div>
+    <div id="dtApproaches" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">PAPER ANALYSIS</div>
+    <div id="dtPapers"></div>
+    <div style="margin-top:16px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY TECHNOLOGIES</div>
+      <div id="dtKeyTech"></div>
+    </div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/g7y7y7xGpxU" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: GRS, Gen2Sim, RoboTwin, SplatSim, SyncTwin, TwinRL 논문 원문 / 영상: 엥지유니버스</div>
+  </section>
+
+  <!-- ═══ 9. WFM Deep ═══ -->
+  <section id="sec-wfm" class="card section-gap">
+    <div class="card-title">🌍 World Foundation Model 심화 <span class="badge" style="background:#00B894;color:#fff">WFM → Policy</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:8px">기존 VLA가 "보고 바로 행동"한다면, WFM 기반은 "미래를 예측하고 최적 행동을 선택"하는 구조로 발전.</p>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:11.5px;color:var(--ink-2);border-left:3px solid #00B894">
+      <strong>핵심 전환:</strong> VLA = 현재 관측 → Action 직접 출력 → <strong style="color:#00B894">WFM 기반 = 현재 관측 → 미래 예측 → 최적 Action 선택</strong>
+    </div>
+    <div class="scroll-x">
+      <div id="wfmTable"></div>
+    </div>
+    <div style="margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">REMAINING CHALLENGES</div>
+    <div id="wfmChallenges" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"></div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/2a6OYcYcOOw" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: Cosmos Policy (NVIDIA), VPP, DreamVLA, V-JEPA 2 (Meta), Generators=Policies (Columbia/TRI) 논문 원문 / 영상: 엥지유니버스</div>
+  </section>
+
+  <!-- ═══ 10. VLA Architecture Evolution ═══ -->
+  <section id="sec-vlaevo" class="card section-gap">
+    <div class="card-title">🧬 VLA 아키텍처 진화 <span class="badge" style="background:#FF6B6B;color:#fff">4세대 진화</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">VLA는 이산 토큰 출력 → Diffusion/Flow Action Head → Dual System → RL 자기개선/Latent Reasoning으로 빠르게 진화 중.</p>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">EVOLUTION TIMELINE</div>
+    <div id="vlaTimeline" class="vla-timeline"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:16px 0 6px">4TH GEN BREAKTHROUGH MODELS</div>
+    <div id="vlaModels"></div>
+    <div class="yt-embed">
+      <iframe src="https://www.youtube.com/embed/sx2ytqe3hcI" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: π0.6 (Physical Intelligence), RD-VLA, MeM 논문 원문 / 영상: 엥지유니버스</div>
+  </section>
+
+  <!-- ═══ 11. VLA 3대장 비교 ═══ -->
+  <section id="sec-vlacmp" class="card section-gap">
+    <div class="card-title">⚔️ VLA 3대장 비교 <span class="badge" style="background:#E17055;color:#fff">GR00T vs Gemini vs π0</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">현재 Physical AI를 리드하는 3대 VLA 패밀리. 각각 인프라(NVIDIA), Foundation Model(Google), 실전 성능(PI)에서 강점.</p>
+    <div id="vlaFamilies" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">CAPABILITY MATRIX</div>
+    <div class="scroll-x">
+      <div id="vlaDimensions" class="cmp-matrix"></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA GR00T (2025), Google DeepMind Gemini Robotics (2025), Physical Intelligence π0/0.5/0.6 논문 원문</div>
+  </section>
+
+  <!-- ═══ 12. AI Factory ═══ -->
+  <section id="sec-factory" class="card section-gap">
+    <div class="card-title">🏭 AI Factory 인프라 <span class="badge" style="background:#76B900;color:#fff">NVIDIA 5-Layer Cake</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">NVIDIA의 Physical AI 인프라 스택. Energy → Chips → Infrastructure → Foundation Models → Applications 5계층 구조.</p>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">5-LAYER CAKE (Bottom → Top)</div>
+    <div id="cakeLayers" style="margin-bottom:16px"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">NVIDIA ROBOTICS STACK</div>
+    <div id="roboticsStack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin-bottom:16px"></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">TRAINING → DEPLOYMENT LOOP</div>
+    <div id="trainingLoop" class="pipeline-flow"></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA GTC 2025 Keynote, NVIDIA IR</div>
+  </section>
+
+  <!-- ═══ 13. Glossary ═══ -->
+  <section id="sec-glossary" class="card section-gap">
+    <div class="card-title">📖 핵심 기술 용어 사전 <span class="badge" style="background:var(--ink);color:var(--bg)">20 Terms</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">Physical AI / VLA / WFM / 디지털 트윈 관련 핵심 용어 정리. 색상: <span style="color:#6C5CE7">모델</span> · <span style="color:#FF6B6B">방법론</span> · <span style="color:#F8B739">아키텍처</span> · <span style="color:#00B894">데이터</span> · <span style="color:#0984E3">시뮬레이션</span></p>
+    <div id="glossaryGrid" class="glossary-grid cat-colors"></div>
   </section>
 
   <!-- ═══ Update Log ═══ -->

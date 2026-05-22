@@ -572,12 +572,208 @@ const DASHBOARD_DATA = {
         { year: 2040, asp: 15000, volume: 53300000, note: '가전 수준 가격대' },
       ],
     },
+
+    /* ── 7. 로봇 행동 데이터 수집 파이프라인 ── */
+    robotDataPipeline: {
+      source: 'DexCap (Stanford, 2024), AirExo (THU, 2024), AirExo-2 (THU, 2025)',
+      videoUrl: 'https://www.youtube.com/watch?v=DycoYh6imj8',
+      methods: [
+        { name: 'Teleoperation', desc: '사람이 VR/조이스틱/리더암으로 로봇을 원격조작하며 데이터 수집', pros: '로봇 관절·센서 데이터 직접 취득, 고품질', cons: '비싸고 느림, 실제 로봇 필요', color: '#FF6B6B' },
+        { name: 'DexCap', desc: 'SLAM + 전자기장 장갑으로 사람 손 모션캡처 → 로봇 손 retargeting', pros: '사람 손 정교한 조작 데이터 수집, Portable', cons: '손끝 위주, 전신 대응 한계', color: '#6C5CE7' },
+        { name: 'AirExo', desc: '저비용 양팔 외골격으로 Whole-arm manipulation 데이터 수집', pros: 'In-the-wild + Teleoperation 병용, 다중 로봇 호환', cons: '외골격-로봇 도메인 갭 존재', color: '#F8B739' },
+        { name: 'AirExo-2', desc: '$600 외골격으로 수집 → Visual Adaptor로 Pseudo-robot Demonstration 변환', pros: '시각·깊이·행동 모두 로봇 도메인 변환, Zero-shot 배포', cons: '생성 이미지 품질에 의존', color: '#00B894' },
+      ],
+      pipeline: [
+        { step: 1, name: 'In-the-Wild 수집', desc: '사람이 외골격/장갑 착용 후 실제 환경에서 작업', icon: '🧤' },
+        { step: 2, name: 'Retargeting', desc: '사람 움직임을 로봇 Embodiment에 맞게 좌표 변환 (IK)', icon: '🔄' },
+        { step: 3, name: 'Visual Adaptation', desc: 'Image/Depth Adaptor로 로봇 시점 이미지 생성', icon: '🖼️' },
+        { step: 4, name: 'Pseudo-Robot Demo', desc: '변환된 RGB + Depth + Action으로 학습 데이터 구성', icon: '🤖' },
+        { step: 5, name: 'Policy Learning', desc: 'Diffusion Policy / Action Chunking으로 정책 학습', icon: '🧠' },
+      ],
+      keyConcepts: [
+        { term: 'Retargeting', def: '사람 움직임을 로봇 관절 구조에 맞게 재매핑 (역기구학 IK 사용)' },
+        { term: 'Pseudo-Robot Demo', def: '실제 로봇 수집 아니지만 로봇 학습에 사용 가능하도록 변환한 데이터' },
+        { term: 'Domain Gap', def: '사람 도메인과 로봇 도메인 사이의 시각적·기구학적 차이' },
+        { term: 'Action Chunking', def: '단일 스텝이 아닌 미래 여러 스텝 행동을 묶어 출력' },
+      ],
+    },
+
+    /* ── 8. 디지털 트윈 학습 환경 ── */
+    digitalTwin: {
+      source: 'GRS (2024), Gen2Sim (2024), RoboTwin (2024), SplatSim (2024), SyncTwin, TwinRL, Policy Eval',
+      videoUrl: 'https://www.youtube.com/watch?v=g7y7y7xGpxU',
+      approaches: [
+        { name: 'Real→Sim', desc: '실제 환경 스캔 → 시뮬레이터 이전', examples: 'GRS, SplatSim', color: '#6C5CE7' },
+        { name: 'Generative Sim', desc: '생성형 AI로 3D 에셋·태스크·리워드 자동 생성', examples: 'Gen2Sim, RoboTwin', color: '#FF6B6B' },
+        { name: 'Real-Sim 협업', desc: '디지털 트윈을 RL 탐색·정책 평가에 실시간 활용', examples: 'SyncTwin, TwinRL', color: '#00B894' },
+      ],
+      papers: [
+        { name: 'GRS', full: 'Generating Robotic Simulation Tasks from Real-World Images', method: 'RGBD 1장 → SAM2 세그먼트 → VLM 장면 설명 → 에셋 매칭 → 태스크 코드 자동생성', highlight: 'LLM Router가 시뮬레이션·테스트 코드 반복 수정' },
+        { name: 'Gen2Sim', full: 'Scaling Up Robot Learning in Simulation with Generative Models', method: '2D 이미지 → Diffusion 3D 리프팅 → 물리 파라미터 LLM 추정 → URDF 생성 → PPO 학습', highlight: 'Score Distillation Sampling으로 3D 에셋 품질 향상' },
+        { name: 'RoboTwin', full: 'Dual-Arm Robot Benchmark with Generative Digital Twins', method: 'RGB 1장 → 3D Foundation Model → Spatial Annotation → LLM 코드 생성', highlight: 'Function/Approach/Lateral Axis 공간 주석으로 로봇 파지 안내' },
+        { name: 'SplatSim', full: '3D Gaussian Splatting 기반 초현실적 시뮬레이션', method: '다중 시점 촬영 → 3DGS 재구성 → 물리 시뮬레이터 실시간 연동', highlight: 'Sim-to-Real gap 최소화, 사실적 렌더링 + 빠른 속도' },
+        { name: 'SyncTwin', full: '실시간 양방향 디지털 트윈 동기화', method: '실제 로봇 ↔ 시뮬레이션 실시간 연동, 상태 미러링', highlight: '실시간 모니터링 + 장애 예측' },
+        { name: 'TwinRL', full: '디지털 트윈 환경에서 RL 탐색 후 Real 배포', method: '디지털 트윈에서 PPO/SAC 학습 → Domain Randomization → 실제 배포', highlight: '안전한 RL 탐색 + Sim-to-Real Transfer' },
+      ],
+      keyTech: [
+        { term: '3D Gaussian Splatting', def: '점 기반 3D 표현으로 빠른 렌더링과 사실적 재구성 동시 달성' },
+        { term: 'NeRF', def: 'Neural Radiance Field — 신경망으로 3D 공간의 색·밀도 표현' },
+        { term: 'URDF', def: 'Unified Robot Description Format — 로봇/물체 구조 정의 파일' },
+        { term: 'Domain Randomization', def: '시뮬레이션 물리·시각 파라미터를 무작위 변경해 일반화 향상' },
+      ],
+    },
+
+    /* ── 9. WFM (World Foundation Model) 심화 ── */
+    wfmDeep: {
+      source: 'NVIDIA Cosmos (2025), VPP (2024), DreamVLA (2025), V-JEPA 2 (Meta, 2025), Generators=Policies (Columbia/TRI, 2024)',
+      videoUrl: 'https://www.youtube.com/watch?v=2a6OYcYcOOw',
+      comparison: [
+        { model: 'Cosmos Policy', org: 'NVIDIA+Stanford', method: 'Cosmos Predict 2.5B 비디오 모델을 Post-training → Action+Future State+Value를 Latent Frame으로 동시 생성', result: 'LIBERO 98.5%, RoboCasa 67.1%', approach: 'WFM = Policy' },
+        { model: 'VPP', org: 'THU+NVIDIA', method: 'SVD 1.5B 비디오 모델 내부 Predictive Visual Representation 추출 → VideoFormer → DiT Policy', result: 'Calvin ABCD +18.6%, Real Dexterous +31.6%', approach: 'WFM 내부 표현 활용' },
+        { model: 'DreamVLA', org: '복합', method: 'VLA 내부에 World Knowledge Forecasting(Dynamic Region, Depth, Semantic) 삽입', result: 'Real Robot 76.7%, Calvin 4.44 avg length', approach: 'VLA + WFM 융합' },
+        { model: 'V-JEPA 2', org: 'Meta', method: '100만시간 비디오 Action-free 사전학습 → 62시간 로봇 비디오로 Action-conditioned 모델', result: 'Pick-and-Place MPC Planning', approach: '표현 공간 예측' },
+        { model: 'Generators=Policies', org: 'Columbia/TRI', method: '비디오 생성 모델로 성공 행동 비디오 상상 → Inverse Dynamics로 Action 디코딩', result: 'Unseen Object/Background 일반화', approach: '비디오 생성 = 정책' },
+      ],
+      keyInsight: '기존 VLA: 현재 관측 → 직접 Action 출력 / WFM 기반: 현재 관측 → 미래 예측 → 최적 행동 선택',
+      challenges: [
+        { issue: '추론 속도', desc: '대형 비디오 모델 실시간 실행 어려움 → VPP처럼 내부 표현만 활용하는 절충안' },
+        { issue: '정밀도', desc: '그럴듯한 영상 ≠ mm 단위 정밀 제어. 공간·시간 정밀도 확보 과제' },
+        { issue: 'Action Mapping', desc: '예측된 미래 → 실제 Motor Command 변환 필요 (Inverse Dynamics)' },
+      ],
+    },
+
+    /* ── 10. VLA 아키텍처 진화 ── */
+    vlaEvolution: {
+      source: 'Physical Intelligence (π0.6), RD-VLA (2026), MeM (2025)',
+      videoUrl: 'https://www.youtube.com/watch?v=sx2ytqe3hcI',
+      models: [
+        { name: 'π0.6 (RECAP)', org: 'Physical Intelligence', keyIdea: 'Advantage-conditioned RL로 VLA 후속 학습. 성공 Trajectory에 높은 Advantage 부여 → 자기 개선 루프', architecture: 'π0 VLM backbone + Flow Matching Action Head + RECAP RL fine-tuning', breakthrough: '로봇 자체 경험으로 자기 개선, 학습 효율성 극대화', color: '#6C5CE7' },
+        { name: 'RD-VLA', org: '복합 연구팀', keyIdea: '텍스트 CoT 대신 Latent Space에서 반복 정제 (Recurrent Depth). 잠재 공간 반복 추론으로 80x 속도 향상', architecture: 'VLM + Latent Iterative Refinement + Continuous Action Output', breakthrough: '0.5B 모델로 7B 모델 성능 초과, 난이도 적응형 연산', color: '#FF6B6B' },
+        { name: 'MeM', org: '복합 연구팀', keyIdea: 'Multi-Scale Embodied Memory — 단기(Video) + 장기(Language) 이중 메모리로 긴 작업 수행', architecture: 'Short-term Video Memory + Long-term Language Memory + Dual Retrieval', breakthrough: 'Long-horizon 태스크 성공률 대폭 향상', color: '#00B894' },
+      ],
+      evolutionPath: [
+        { gen: '1세대', name: 'RT-2 / Octo', desc: 'VLM + 이산 액션 토큰', year: '2023' },
+        { gen: '2세대', name: 'π0 / OpenVLA', desc: 'VLM + Diffusion/Flow Action Head', year: '2024' },
+        { gen: '3세대', name: 'π0.5 / GR00T N1', desc: 'Dual System (System1 빠른 행동 + System2 느린 추론)', year: '2025' },
+        { gen: '4세대', name: 'π0.6 / RD-VLA / MeM', desc: 'RL 자기개선 + Latent Reasoning + Embodied Memory', year: '2025-26' },
+      ],
+    },
+
+    /* ── 11. VLA 3대장 비교 ── */
+    vlaComparison: {
+      source: 'NVIDIA GR00T (2025), Google DeepMind Gemini Robotics (2025), Physical Intelligence π0 (2024-2026)',
+      models: [
+        {
+          family: 'GR00T', org: 'NVIDIA', color: '#76B900',
+          versions: [
+            { ver: 'N1', date: '2025.03', keyFeature: 'Dual System (S1 빠른 액션 + S2 느린 VLM 추론)', actionHead: 'Diffusion Transformer', training: 'Omniverse 시뮬레이션 + Real Data' },
+            { ver: 'N1.5', date: '2025.05', keyFeature: 'Cross-Embodiment 강화, 더 많은 로봇 지원', actionHead: 'Diffusion Transformer', training: 'Expanded Sim+Real, 더 많은 로봇 폼팩터' },
+          ],
+          strength: 'NVIDIA 인프라(Omniverse/Cosmos/OSMO) 통합 에코시스템',
+          weakness: '독자 하드웨어 없음, 파트너 의존',
+        },
+        {
+          family: 'Gemini Robotics', org: 'Google DeepMind', color: '#4285F4',
+          versions: [
+            { ver: 'Gemini Robotics', date: '2025.03', keyFeature: 'Gemini 2.0 VLM + Action Output, 강력한 언어·시각 이해', actionHead: 'Autoregressive + Flow Matching', training: 'Web-scale Pretraining + Robot Fine-tuning' },
+            { ver: 'Gemini Robotics-ER', date: '2025.03', keyFeature: 'Embodied Reasoning 특화. Safety, Human-Robot Interaction', actionHead: 'Autoregressive', training: 'Diverse Robot Fleet' },
+          ],
+          strength: '초대형 Foundation Model 기반, 최강 언어·시각 이해력',
+          weakness: '공개 접근 제한, 특정 로봇 플랫폼 종속',
+        },
+        {
+          family: 'π0', org: 'Physical Intelligence', color: '#E17055',
+          versions: [
+            { ver: 'π0', date: '2024.10', keyFeature: 'VLM + Flow Matching Action Expert. 범용 조작 Foundation Model', actionHead: 'Flow Matching', training: 'Cross-Embodiment 10K+ hours' },
+            { ver: 'π0.5', date: '2025.02', keyFeature: 'Web 데이터 추가 학습, 언어 지시 이해 강화, High-level + Low-level 통합', actionHead: 'Flow Matching', training: 'Internet Data + Robot Data' },
+            { ver: 'π0.6 (RECAP)', date: '2025.05', keyFeature: 'RL 자기개선 (Advantage-conditioned). Self-improvement Loop', actionHead: 'Flow Matching + RL', training: 'Self-generated Experience + Advantage Filtering' },
+          ],
+          strength: '실제 로봇 성능 최강, 다중 로봇 범용성, RL 자기개선',
+          weakness: '비공개 모델, 독자 하드웨어 없음',
+        },
+      ],
+      dimensions: [
+        { dim: 'Foundation Model 규모', groot: '★★☆', gemini: '★★★', pi: '★★☆' },
+        { dim: '실제 조작 성능', groot: '★★☆', gemini: '★★☆', pi: '★★★' },
+        { dim: 'Cross-Embodiment', groot: '★★★', gemini: '★★☆', pi: '★★★' },
+        { dim: '시뮬레이션 통합', groot: '★★★', gemini: '★☆☆', pi: '★☆☆' },
+        { dim: '언어 이해력', groot: '★★☆', gemini: '★★★', pi: '★★☆' },
+        { dim: '자기개선(RL)', groot: '★☆☆', gemini: '★☆☆', pi: '★★★' },
+        { dim: '에코시스템', groot: '★★★', gemini: '★★★', pi: '★☆☆' },
+      ],
+    },
+
+    /* ── 12. AI Factory 인프라 ── */
+    aiFactory: {
+      source: 'NVIDIA GTC 2025, Jensen Huang Keynote, NVIDIA IR',
+      fiveLayerCake: [
+        { layer: 1, name: 'Energy', desc: '전력 공급 인프라 (원전·데이터센터 전력)', color: '#636E72', icon: '⚡' },
+        { layer: 2, name: 'Chips', desc: 'GPU/DPU/NIC (Blackwell, Vera Rubin, Dynamo)', color: '#6C5CE7', icon: '🔲' },
+        { layer: 3, name: 'Infrastructure', desc: 'AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD)', color: '#0984E3', icon: '🏗️' },
+        { layer: 4, name: 'Foundation Models', desc: 'Cosmos (World Model), NeMo, Llama 학습 인프라', color: '#F8B739', icon: '🧠' },
+        { layer: 5, name: 'Applications', desc: 'Omniverse, Isaac Sim, GR00T, OSMO 오케스트레이션', color: '#00B894', icon: '🤖' },
+      ],
+      nvidiaRoboticsStack: [
+        { name: 'Omniverse', role: '디지털 트윈 / 시뮬레이션 플랫폼', desc: 'USD 기반 물리 정확 시뮬레이션. 공장·도시·로봇 학습 환경 구축' },
+        { name: 'Cosmos', role: 'World Foundation Model', desc: '물리 세계 예측 모델. Sim 데이터 증강 + Synthetic Data 생성' },
+        { name: 'GR00T', role: 'Humanoid Foundation Model', desc: '범용 휴머노이드 AI. Dual System (N1/N1.5). Cross-Embodiment' },
+        { name: 'Isaac Lab', role: '로봇 학습 프레임워크', desc: 'GPU 병렬 RL/IL 학습. Sim-to-Real Transfer Pipeline' },
+        { name: 'OSMO', role: '오케스트레이션 플랫폼', desc: 'Omniverse + Cosmos 통합. 시뮬-학습-배포 전체 워크플로우 관리' },
+        { name: 'Jetson Thor', role: '로봇 엣지 컴퓨팅', desc: '차세대 로봇 SoC. GR00T 추론 실행. 275 TOPS AI 성능' },
+      ],
+      trainingLoop: [
+        { step: 1, name: 'Omniverse 환경 구축', desc: '물리 정확 디지털 트윈에서 작업 시나리오 생성' },
+        { step: 2, name: 'Cosmos 데이터 증강', desc: 'World Model로 다양한 시각·물리 조건 합성' },
+        { step: 3, name: 'Isaac Lab 학습', desc: 'GPU 수천 병렬 환경에서 RL/IL 정책 학습' },
+        { step: 4, name: 'OSMO 배포', desc: '학습된 정책을 실 로봇(Jetson Thor)에 배포' },
+        { step: 5, name: 'Real→Sim 피드백', desc: '실세계 데이터 다시 수집 → 디지털 트윈 업데이트' },
+      ],
+    },
+
+    /* ── 13. 핵심 기술 용어 사전 ── */
+    glossary: [
+      { term: 'VLA', full: 'Vision-Language-Action', def: '시각+언어 입력 → 로봇 제어 명령 출력하는 End-to-end 모델', category: 'model' },
+      { term: 'VLM', full: 'Vision-Language Model', def: '이미지와 텍스트를 동시에 이해하는 멀티모달 모델 (VLA의 백본)', category: 'model' },
+      { term: 'WFM', full: 'World Foundation Model', def: '물리 세계의 시간적 변화를 예측하는 대규모 모델 (Cosmos, Genie 등)', category: 'model' },
+      { term: 'Flow Matching', full: 'Flow Matching', def: '확률 분포 사이의 최적 경로를 학습하여 행동 생성. Diffusion보다 효율적', category: 'method' },
+      { term: 'Diffusion Policy', full: 'Diffusion Policy', def: '노이즈에서 점진적으로 행동을 정제하여 생성하는 방식', category: 'method' },
+      { term: 'Action Chunking', full: 'Action Chunking', def: '한 번에 미래 여러 스텝의 행동을 묶어 예측 (시간적 일관성 향상)', category: 'method' },
+      { term: 'Sim-to-Real', full: 'Simulation to Reality Transfer', def: '시뮬레이션에서 학습한 정책을 실제 로봇에 적용하는 기술', category: 'method' },
+      { term: 'Cross-Embodiment', full: 'Cross-Embodiment Learning', def: '다양한 로봇 형태 간 지식 전이 학습', category: 'method' },
+      { term: 'Knowledge Insulation', full: 'Knowledge Insulation', def: '액션 학습이 VLM 백본의 언어·시각 능력을 훼손하지 않도록 분리', category: 'method' },
+      { term: 'Dual System', full: 'System 1 + System 2', def: 'System1=빠른 반사 행동, System2=느린 추론/계획. 인간 인지 구조 모방', category: 'architecture' },
+      { term: 'RECAP', full: 'Reinforced Advantage-Conditioned Policy', def: 'π0.6의 RL 알고리즘. Advantage 기반 자기개선 학습', category: 'method' },
+      { term: 'Latent Reasoning', full: 'Latent Space Reasoning', def: '텍스트 CoT 대신 잠재 벡터 공간에서 반복 추론 (RD-VLA)', category: 'architecture' },
+      { term: 'Teleoperation', full: 'Teleoperation', def: '사람이 원격 장비(VR/조이스틱)로 로봇을 직접 조작하여 데이터 수집', category: 'data' },
+      { term: 'Pseudo-Robot Demo', full: 'Pseudo-Robot Demonstration', def: '사람 데이터를 로봇이 수행한 것처럼 변환한 학습용 데이터', category: 'data' },
+      { term: 'Retargeting', full: 'Motion Retargeting', def: '사람 움직임을 로봇 관절 구조에 맞게 재매핑 (IK 활용)', category: 'data' },
+      { term: '3DGS', full: '3D Gaussian Splatting', def: '가우시안 점 기반 3D 표현. 빠른 렌더링 + 사실적 재구성', category: 'sim' },
+      { term: 'Digital Twin', full: 'Digital Twin', def: '물리 환경의 정밀 가상 복제본. 로봇 학습·검증 인프라로 활용', category: 'sim' },
+      { term: 'Domain Randomization', full: 'Domain Randomization', def: '시뮬레이션 파라미터를 무작위 변경하여 Sim-to-Real 일반화 향상', category: 'sim' },
+      { term: 'Inverse Dynamics', full: 'Inverse Dynamics Model', def: '현재→목표 상태로 가기 위한 행동을 추정하는 모델', category: 'method' },
+      { term: 'MPC', full: 'Model Predictive Control', def: '여러 행동 후보를 시뮬레이션하여 최적 행동을 선택하는 제어 방식', category: 'method' },
+    ],
   },
 
   /* ══════════════════════════════════════
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-05-22',
+      title: 'Physical AI 기술 심화 7개 섹션 추가',
+      source: 'DexCap, AirExo, AirExo-2, GRS, Gen2Sim, RoboTwin, SplatSim, Cosmos Policy, VPP, DreamVLA, V-JEPA 2, π0.6, RD-VLA, MeM, NVIDIA GTC 2025',
+      changes: [
+        '로봇 행동 데이터 수집 파이프라인 (DexCap/AirExo/AirExo-2) 섹션 추가',
+        '디지털 트윈 학습 환경 7편 논문 분석 (GRS/Gen2Sim/RoboTwin/SplatSim/SyncTwin/TwinRL)',
+        'WFM 심화 분석 (Cosmos Policy/VPP/DreamVLA/V-JEPA 2/Generators=Policies)',
+        'VLA 아키텍처 진화 (π0.6 RECAP/RD-VLA/MeM) 섹션 추가',
+        'VLA 3대장 비교 (GR00T vs Gemini Robotics vs π0) 매트릭스',
+        'AI Factory 인프라 (NVIDIA 5-Layer Cake + Robotics Stack) 섹션 추가',
+        '핵심 기술 용어 사전 20개 항목 추가',
+        'YouTube 영상 임베드 (엥지유니버스 채널)',
+      ],
+    },
     {
       date: '2026-05-20',
       title: 'JPM Conference 2026 발표 내용 반영',
