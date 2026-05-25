@@ -953,38 +953,26 @@ const DASHBOARD_DATA = {
       { group: '도입', items: [
         { id: 'sec-demand', label: '수요 논거 4 Pillars' },
       ]},
-      { group: '기술 개요', items: [
-        { id: 'sec-paradigm', label: '패러다임 시프트' },
-        { id: 'sec-flowmatch', label: '플로우 매칭 (Pi0)' },
-        { id: 'sec-cogact', label: '뇌·몸 역할 분담' },
-        { id: 'sec-wfmintro', label: '물리적 상상력 (WFM)' },
+      { group: 'Part 1 — 범용 OS', items: [
+        { id: 'sec-paradigm', label: '패러다임 시프트 + AI 스택' },
+      ]},
+      { group: 'Part 2 — 부드러운 제어', items: [
+        { id: 'sec-flowmatch', label: '플로우 매칭 + VLA 진화' },
+      ]},
+      { group: 'Part 3 — 뇌·몸 분리', items: [
+        { id: 'sec-cogact', label: 'Dual System + 3대장 비교' },
+      ]},
+      { group: 'Part 4 — 물리적 상상력', items: [
+        { id: 'sec-wfmintro', label: 'WFM 개요 + 심화' },
+      ]},
+      { group: 'Part 5 — 실전 경량화', items: [
         { id: 'sec-ondevice', label: '온디바이스 최적화' },
       ]},
-      { group: 'Part 1 — HW × AI', items: [
-        { id: 'sec-aistack', label: 'Physical AI 기술 스택' },
-        { id: 'sec-lvm', label: 'Locomotion vs Manipulation' },
+      { group: 'Part 6 — 데이터+시뮬', items: [
+        { id: 'sec-pipeline', label: '데이터 + 디지털 트윈' },
       ]},
-      { group: 'Part 2 — VLA', items: [
-        { id: 'sec-vlaevo', label: 'VLA 아키텍처 진화' },
-        { id: 'sec-vlacmp', label: 'VLA 3대장 비교' },
-      ]},
-      { group: 'Part 3 — WFM', items: [
-        { id: 'sec-wfm', label: 'WFM 심화' },
-      ]},
-      { group: 'Part 4 — 데이터+시뮬', items: [
-        { id: 'sec-pipeline', label: '데이터 수집 파이프라인' },
-        { id: 'sec-dt', label: '디지털 트윈' },
-      ]},
-      { group: 'Part 5 — BD Atlas', items: [
-        { id: 'sec-atlas', label: 'Atlas 상세 스펙' },
-        { id: 'sec-flywheel', label: 'Data Flywheel' },
-      ]},
-      { group: 'Part 6 — NVIDIA', items: [
-        { id: 'sec-factory', label: 'AI Factory 인프라' },
-      ]},
-      { group: 'Part 7 — 투자', items: [
-        { id: 'sec-hmg', label: 'HMG 로보틱스 전략' },
-        { id: 'sec-cost', label: '원가 로드맵' },
+      { group: 'Part 7 — HW+인프라', items: [
+        { id: 'sec-atlas', label: 'Atlas + NVIDIA + HMG + 원가' },
       ]},
       { group: '부록', items: [
         { id: 'sec-glossary', label: '용어 사전' },
