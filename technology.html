@@ -766,6 +766,76 @@ window.addEventListener('DOMContentLoaded', render);
       <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
     </header>
 
+    <!-- ═══ 팩트체크: 액추에이터 데이터 Lock-in ═══ -->
+    <section id="sec-factcheck" class="card" style="border-left:4px solid #F8B739">
+      <div class="card-title">🔍 로보티즈의 "액추에이터가 바뀌면 데이터 90%를 다시 쌓아야 한다" — 팩트체크 <span class="badge" style="background:#F8B739;color:#fff">로보티즈 IR</span></div>
+
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:14px;border-left:3px solid var(--ink-3)">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">로보티즈 그룹미팅(20260518) IR 발언</div>
+        <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
+          · "100개 데이터 테이블 중 약 10%만 재활용 가능, 나머지 90%는 재수집 필요함"<br>
+          · "현재 기술적 한계일 수 있고, 범용 로봇으로 발전하면 달라질 수도 있음"<br>
+          · "시장 선점이 굉장히 중요함. 테슬라도 부품 미확정 시 데이터 무의미해지므로 폐쇄적으로 운영하는 것임"
+        </div>
+      </div>
+
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:4px">이 주장의 맥락</div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:14px">로보티즈의 비즈니스 모델은 "다이나믹셀 판매 → 데이터 lock-in → 데이터 팩토리 매출(시간당 $800~$1,000)"로 연결되는 구조임. "바꾸면 90% 날아간다"는 주장은 이 lock-in 논리를 강화하는 방향의 발언임.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #00B894">
+          <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:6px">✅ 맞는 부분</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">텔레오퍼레이션으로 수집하는 관절 위치·속도·토크·전류값은 해당 액추에이터의 감속비·토크 커브·백래시에 100% 종속됨. 액추에이터가 바뀌면 이 수치들은 못 씀. 여기까지는 기술적으로 정확함.</div>
+        </div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #FF6B6B">
+          <div style="font-size:12px;font-weight:700;color:#FF6B6B;margin-bottom:6px">❌ 과장된 부분</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">VLA 모델 전체 학습 파이프라인에서 시각·언어 데이터(~50%)는 액추에이터와 무관하게 재활용됨. "90%"는 로우레벨 관절 데이터만 놓고 본 수치이며, 실제 재수집 비율은 50% 내외임.</div>
+        </div>
+      </div>
+
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">VLA 데이터 계층별 액추에이터 종속 여부</div>
+      <div class="scroll-x">
+        <table class="tco-table" style="margin-bottom:14px">
+          <thead><tr><th>데이터 계층</th><th>비중</th><th>액추에이터 종속</th><th>교체 시 재활용</th></tr></thead>
+          <tbody>
+            <tr><td style="font-weight:600">카메라 이미지</td><td>~40%</td><td>❌ 무관</td><td class="highlight-cell">✅ 전량 재활용</td></tr>
+            <tr><td style="font-weight:600">언어 명령</td><td>~10%</td><td>❌ 무관</td><td class="highlight-cell">✅ 전량 재활용</td></tr>
+            <tr><td style="font-weight:600">관절 궤적 (Action)</td><td>~30%</td><td style="color:#FF6B6B;font-weight:600">✅ 종속</td><td>❌ 재수집 필요</td></tr>
+            <tr><td style="font-weight:600">로봇 상태 (State)</td><td>~20%</td><td style="color:#FF6B6B;font-weight:600">✅ 종속</td><td>❌ 재수집 필요</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">구조적으로 해결되고 있는 문제임</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #6C5CE7">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">Cross-Embodiment</div>
+          <div style="font-size:10px;color:var(--ink-2);line-height:1.6">Octo/OpenVLA: 25종+ 로봇 통합 학습. 새 액추에이터에 수 시간 fine-tuning으로 적응 가능</div>
+        </div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #FF6B6B">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:4px">Dual System</div>
+          <div style="font-size:10px;color:var(--ink-2);line-height:1.6">GR00T N1/CogACT: System 2(인지)는 액추에이터 무관. System 1(모터)만 fine-tuning</div>
+        </div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #00B894">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">Sim-to-Real</div>
+          <div style="font-size:10px;color:var(--ink-2);line-height:1.6">새 액추에이터 물리 파라미터를 시뮬레이터에 넣고 합성 데이터 자동 생성 가능</div>
+        </div>
+      </div>
+
+      <div style="background:#FFF8E1;border-radius:8px;padding:12px 14px;border-left:3px solid #F8B739;margin-bottom:10px">
+        <div style="font-size:12px;font-weight:700;color:#E17055;margin-bottom:4px">💡 로보티즈 스스로 인정한 부분이 핵심임</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">"범용 로봇으로 발전하면 달라질 수도 있음"이라고 직접 답변함. 데이터 팩토리의 lock-in 근거가 시간이 갈수록 약해질 수 있다는 의미임.</div>
+      </div>
+
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">결론</div>
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px">
+        · <strong>현재(2026)</strong>: 로우레벨 한정으로 50~70% 재수집 필요. "90%"는 과장임.<br>
+        · <strong>2027~28</strong>: VLA Cross-Embodiment 성숙 시 fine-tuning 수 시간으로 대체 가능해져 lock-in 효과 점진 약화 전망.<br>
+        · <strong>진짜 해자</strong>: lock-in이 아니라, 우즈벡 인건비(한국의 1/10) 기반 가격 경쟁력과 다이나믹셀 유저 네트워크에 있음.
+      </div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 로보티즈 그룹미팅 IR (2026.05.18) / Octo (UC Berkeley) / OpenVLA (Stanford/TRI) / GR00T N1 (NVIDIA) / CogACT (THU/BIGAI) [개인 의견]</div>
+    </section>
+
     <!-- ═══ Update Log (top) ═══ -->
     <section id="sec-updatelog" class="card">
       <div class="card-title log-toggle" onclick="toggleLog()">
