@@ -786,345 +786,231 @@ window.addEventListener('DOMContentLoaded', render);
       <div class="intro-card" style="border-color:#F8B739"><h3 style="color:#F8B739">자동화 끝판 OEM이 직접 휴머노이드에 베팅</h3><div class="detail">BD(HMG) captive 25,000대, Tesla Optimus 100만대 목표, Amazon Digit 배포 — 최강자들이 직접 투자.</div><div class="source-tag">출처: BD IR, Tesla IR, Amazon IR, HMG IR (JPM 2026)</div></div>
     </section>
 
-    <!-- ═══ 기술 개요: Physical AI 로드맵 배너 ═══ -->
+    <!-- ═══ 로드맵 배너 ═══ -->
     <section id="sec-roadmap-banner" class="card section-gap">
       <div class="card-title">🗺️ Physical AI 기술 발전 로드맵 <span class="badge" style="background:var(--ink);color:var(--bg)">5 Stages</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">아래 5개 기술 개요 섹션은 독립적 파편이 아니라 하나의 발전 궤적 위에 놓여 있음. 병목 파악 → 아키텍처 혁신 → 데이터로 증명의 논리 구조를 따름.</p>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">각 Part는 '초보자 설명 → 심화 분석'으로 구성. 하나의 발전 궤적 위에 놓여 있음.</p>
       <div id="roadmapBanner"></div>
     </section>
 
-    <!-- ═══ 기술 개요 [1] 패러다임 시프트 ═══ -->
+    <!-- ══════════════════════════════════════════
+         Part 1. 범용 OS — 패러다임 시프트
+         ══════════════════════════════════════════ -->
     <section id="sec-paradigm" class="card section-gap">
-      <div class="card-title">🔄 패러다임 시프트: 로봇어의 등장 <span class="badge" style="background:#6C5CE7;color:#fff">Octo · OpenVLA</span></div>
+      <div class="card-title">🔄 Part 1. 범용 OS — 패러다임 시프트 <span class="badge" style="background:#6C5CE7;color:#fff">Octo · OpenVLA</span></div>
+      <!-- 초보자 블록 -->
       <div id="paradigmContent"></div>
+      <!-- 심화: AI 기술 스택 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">심화 — Physical AI 기술 스택</div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">로봇 두뇌를 구성하는 AI 기술 계층. "프로그래밍하지 않고 가르친다" — BD Interim CEO Amanda McMaster</p>
+        <div id="aiStackGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px"></div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:10px">출처: NVIDIA, Google DeepMind, Physical Intelligence, Toyota Research</div>
+      </div>
+      <!-- 심화: Locomotion vs Manipulation -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">심화 — Locomotion vs Manipulation</div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">보행(Locomotion)은 해결 단계에 진입했으나, 조작(Manipulation)은 여전히 핵심 난제. ROI를 직접 창출하는 것은 조작 능력.</p>
+        <div class="scroll-x"><div id="cmpGrid" class="cmp-grid"></div></div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: BD IR, Tesla IR, IFR</div>
+      </div>
     </section>
 
-    <!-- ═══ 기술 개요 [2] 플로우 매칭 ═══ -->
+    <!-- ══════════════════════════════════════════
+         Part 2. 부드러운 제어 — VLA 진화
+         ══════════════════════════════════════════ -->
     <section id="sec-flowmatch" class="card section-gap">
-      <div class="card-title">🌊 부드러운 움직임의 비밀: 플로우 매칭 <span class="badge" style="background:#00B894;color:#fff">Pi0</span></div>
+      <div class="card-title">🌊 Part 2. 부드러운 제어 — VLA 진화 <span class="badge" style="background:#00B894;color:#fff">Pi0 · Flow Matching</span></div>
+      <!-- 초보자 블록 -->
       <div id="flowMatchContent"></div>
+      <!-- 심화: VLA 아키텍처 진화 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">심화 — VLA 아키텍처 4세대 진화</div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">VLA는 이산 토큰 출력 → Diffusion/Flow Action Head → Dual System → RL 자기개선/Latent Reasoning으로 빠르게 진화 중.</p>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">EVOLUTION TIMELINE</div>
+        <div id="vlaTimeline" class="vla-timeline"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:16px 0 6px">4TH GEN BREAKTHROUGH MODELS</div>
+        <div id="vlaModels"></div>
+        <div class="fig-row">
+          <div class="fig-wrap"><img src="https://raw.githubusercontent.com/rd-vla/rd-vla.github.io/main/static/images/img_overview.jpeg" alt="RD-VLA overview" loading="lazy" onerror="this.style.display='none'"><div class="fig-cap">RD-VLA — 기존 텍스트 CoT(좌) vs Latent 반복 추론(우). 80x 속도 향상</div></div>
+          <div class="fig-wrap"><img src="https://raw.githubusercontent.com/rd-vla/rd-vla.github.io/main/static/images/img_architecture.png" alt="RD-VLA architecture" loading="lazy" onerror="this.style.display='none'"><div class="fig-cap">RD-VLA Architecture — VLM + Latent Iterative Refinement</div></div>
+        </div>
+        <div class="arch-diagram">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px;text-align:center">π0.6 RECAP SELF-IMPROVEMENT LOOP</div>
+          <div class="arch-flow">
+            <div class="arch-box" style="background:#6C5CE7">π0 Base Policy</div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#F8B739">자율 경험 수집</div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#00B894">Advantage 계산</div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#FF6B6B">RL Fine-tuning</div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#E17055">π0.6 개선 Policy</div>
+          </div>
+          <div style="text-align:center;font-size:9px;color:var(--ink-3);margin-top:6px">성공 Trajectory에 높은 Advantage → 반복 자기개선 루프</div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: π0.6 RECAP, RD-VLA, MeM 논문 원문</div>
+      </div>
     </section>
 
-    <!-- ═══ 기술 개요 [3] 뇌·몸 역할 분담 ═══ -->
+    <!-- ══════════════════════════════════════════
+         Part 3. 뇌·몸 분리 — Dual System
+         ══════════════════════════════════════════ -->
     <section id="sec-cogact" class="card section-gap">
-      <div class="card-title">🧠 뇌와 몸의 역할 분담 <span class="badge" style="background:#6C5CE7;color:#fff">CogACT · Dual System</span></div>
+      <div class="card-title">🧠 Part 3. 뇌·몸 분리 — Dual System <span class="badge" style="background:#6C5CE7;color:#fff">CogACT · GR00T N1</span></div>
+      <!-- 초보자 블록 -->
       <div id="cogActContent"></div>
+      <!-- 심화: VLA 3대장 비교 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">심화 — VLA 3대장 비교</div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">현재 Physical AI를 리드하는 3대 VLA 패밀리. 각각 인프라(NVIDIA), Foundation Model(Google), 실전 성능(PI)에서 강점.</p>
+        <div id="vlaFamilies" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">CAPABILITY MATRIX</div>
+        <div class="scroll-x"><div id="vlaDimensions" class="cmp-matrix"></div></div>
+        <div class="fig-row" style="margin-top:16px">
+          <div class="fig-wrap"><img src="https://raw.githubusercontent.com/NVIDIA/Isaac-GR00T/main/media/model-architecture.png" alt="GR00T N1" loading="lazy" onerror="this.style.display='none'"><div class="fig-cap">GR00T N1 — Dual System: VLM (System 2) + Diffusion Transformer (System 1)</div></div>
+          <div class="fig-wrap"><img src="https://lh3.googleusercontent.com/I7a1f6DPm4Qs4JuiieahA4ki0Dc5IQDU8PxfsMRy3UCf3HF7Td_zZfXg35_M-Td1EELJUY2dJLEkdyjt7IVah658uuqvwAQFtarOukXs44MHGMiSd64=w1440-h810-n-nu" alt="Gemini Robotics" loading="lazy" onerror="this.style.display='none'"><div class="fig-cap">Gemini Robotics — Gemini 2.0 기반 범용 로봇 조작</div></div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA Isaac-GR00T, Google DeepMind, Physical Intelligence</div>
+      </div>
     </section>
 
-    <!-- ═══ 기술 개요 [4] 물리적 상상력 (WFM) ═══ -->
+    <!-- ══════════════════════════════════════════
+         Part 4. 물리적 상상력 — WFM
+         ══════════════════════════════════════════ -->
     <section id="sec-wfmintro" class="card section-gap">
-      <div class="card-title">🔮 물리적 상상력 엔진: 월드 파운데이션 모델 <span class="badge" style="background:#F8B739;color:#fff">WFM</span></div>
+      <div class="card-title">🔮 Part 4. 물리적 상상력 — World Foundation Model <span class="badge" style="background:#F8B739;color:#fff">WFM</span></div>
+      <!-- 초보자 블록 -->
       <div id="wfmIntroContent"></div>
+      <!-- 심화: WFM Deep -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">심화 — WFM 모델 비교 및 과제</div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:11.5px;color:var(--ink-2);border-left:3px solid #00B894">
+          <strong>핵심 전환:</strong> VLA = 현재 관측 → Action 직접 출력 → <strong style="color:#00B894">WFM 기반 = 현재 관측 → 미래 예측 → 최적 Action 선택</strong>
+        </div>
+        <div class="scroll-x"><div id="wfmTable"></div></div>
+        <div style="margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">REMAINING CHALLENGES</div>
+        <div id="wfmChallenges" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"></div>
+        <div class="arch-diagram">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">VLA vs WFM-BASED POLICY STRUCTURE</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div style="text-align:center">
+              <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">CONVENTIONAL VLA</div>
+              <div class="arch-flow" style="flex-direction:column;gap:4px">
+                <div class="arch-box" style="background:#6C5CE7">Image + Language</div><div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+                <div class="arch-box" style="background:#636E72">VLM Backbone</div><div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+                <div class="arch-box" style="background:#FF6B6B">Action Head</div><div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+                <div class="arch-box" style="background:#E17055">Motor Command</div>
+              </div>
+              <div style="font-size:9px;color:var(--ink-3);margin-top:4px">보고 → 바로 행동</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">WFM-BASED POLICY</div>
+              <div class="arch-flow" style="flex-direction:column;gap:4px">
+                <div class="arch-box" style="background:#6C5CE7">Image + Language</div><div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+                <div class="arch-box" style="background:#00B894">World Model (미래 예측)</div><div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+                <div class="arch-box" style="background:#F8B739">Value (최적 미래 선택)</div><div class="arch-arrow" style="transform:rotate(90deg)">→</div>
+                <div class="arch-box" style="background:#E17055">Motor Command</div>
+              </div>
+              <div style="font-size:9px;color:var(--ink-3);margin-top:4px">보고 → 상상하고 → 최적 행동 선택</div>
+            </div>
+          </div>
+        </div>
+        <div class="fig-wrap"><img src="https://raw.githubusercontent.com/video-prediction-policy/video-prediction-policy.github.io/main/media/images/method.png" alt="VPP" loading="lazy" onerror="this.style.display='none'" style="max-width:800px"><div class="fig-cap">VPP — Stage1: Predictive Representation 추출 → Stage2: DiT Policy</div></div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: Cosmos Policy, VPP, DreamVLA, V-JEPA 2, Generators=Policies 논문 원문</div>
+      </div>
     </section>
 
-    <!-- ═══ 기술 개요 [5] 온디바이스 최적화 ═══ -->
+    <!-- ══════════════════════════════════════════
+         Part 5. 실전 경량화 — 온디바이스
+         ══════════════════════════════════════════ -->
     <section id="sec-ondevice" class="card section-gap">
-      <div class="card-title">🚀 실전 현장 투입: 온디바이스 최적화 삼총사 <span class="badge" style="background:#FF6B6B;color:#fff">bVLA · PD-VLA · RTC</span></div>
+      <div class="card-title">🚀 Part 5. 실전 경량화 — 온디바이스 최적화 <span class="badge" style="background:#FF6B6B;color:#fff">bVLA · PD-VLA · RTC</span></div>
       <div id="onDeviceContent"></div>
     </section>
 
-    <!-- ═══ Part 1-1. AI Tech Stack ═══ -->
-    <section id="sec-aistack" class="card section-gap">
-      <div class="card-title">🧠 Physical AI 기술 스택 <span class="badge" style="background:#6C5CE7;color:#fff">5대 핵심 기술</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">로봇 두뇌를 구성하는 AI 기술 계층. "프로그래밍하지 않고 가르친다" — BD Interim CEO Amanda McMaster</p>
-      <div id="aiStackGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px"></div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:10px">출처: NVIDIA, Google DeepMind, Physical Intelligence, Toyota Research</div>
-    </section>
-
-    <!-- ═══ Part 1-2. Locomotion vs Manipulation ═══ -->
-    <section id="sec-lvm" class="card section-gap">
-      <div class="card-title">🦿 vs 🤲 Locomotion vs Manipulation <span class="badge" style="background:#F8B739;color:#fff">기술 비교</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">보행(Locomotion)은 해결 단계에 진입했으나, 조작(Manipulation)은 여전히 핵심 난제. ROI를 직접 창출하는 것은 조작 능력.</p>
-      <div class="scroll-x">
-        <div id="cmpGrid" class="cmp-grid"></div>
-      </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: BD IR, Tesla IR, IFR</div>
-    </section>
-
-    <!-- ═══ Part 2-1. VLA Architecture Evolution ═══ -->
-    <section id="sec-vlaevo" class="card section-gap">
-      <div class="card-title">🧬 VLA 아키텍처 진화 <span class="badge" style="background:#FF6B6B;color:#fff">4세대 진화</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">VLA는 이산 토큰 출력 → Diffusion/Flow Action Head → Dual System → RL 자기개선/Latent Reasoning으로 빠르게 진화 중.</p>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">EVOLUTION TIMELINE</div>
-      <div id="vlaTimeline" class="vla-timeline"></div>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:16px 0 6px">4TH GEN BREAKTHROUGH MODELS</div>
-      <div id="vlaModels"></div>
-      <div class="fig-row">
-        <div class="fig-wrap"><img src="https://rd-vla.github.io/static/images/img_overview.jpeg" alt="RD-VLA: 텍스트 CoT vs Latent Iterative Reasoning 비교" loading="lazy"><div class="fig-cap">RD-VLA Fig.1 — 기존 텍스트 CoT(좌) vs Latent 반복 추론(우). 80x 속도 향상</div></div>
-        <div class="fig-wrap"><img src="https://rd-vla.github.io/static/images/img_architecture.png" alt="RD-VLA 아키텍처: Recurrent Depth 구조" loading="lazy"><div class="fig-cap">RD-VLA Architecture — VLM + Latent Iterative Refinement + Continuous Action</div></div>
-      </div>
-      <div class="arch-diagram">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px;text-align:center">π0.6 RECAP SELF-IMPROVEMENT LOOP</div>
-        <div class="arch-flow">
-          <div class="arch-box" style="background:#6C5CE7">π0 Base Policy</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#F8B739">자율 경험 수집</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#00B894">Advantage 계산</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#FF6B6B">RL Fine-tuning</div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#E17055">π0.6 개선 Policy</div>
-        </div>
-        <div style="text-align:center;font-size:9px;color:var(--ink-3);margin-top:6px">성공 Trajectory에 높은 Advantage → 반복 자기개선 루프</div>
-      </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: π0.6 RECAP (Physical Intelligence), RD-VLA (arXiv:2602.07845), MeM 논문 원문</div>
-    </section>
-
-    <!-- ═══ Part 2-2. VLA 3대장 비교 ═══ -->
-    <section id="sec-vlacmp" class="card section-gap">
-      <div class="card-title">⚔️ VLA 3대장 비교 <span class="badge" style="background:#E17055;color:#fff">GR00T vs Gemini vs π0</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">현재 Physical AI를 리드하는 3대 VLA 패밀리. 각각 인프라(NVIDIA), Foundation Model(Google), 실전 성능(PI)에서 강점.</p>
-      <div id="vlaFamilies" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px"></div>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">CAPABILITY MATRIX</div>
-      <div class="scroll-x">
-        <div id="vlaDimensions" class="cmp-matrix"></div>
-      </div>
-      <div class="fig-row" style="margin-top:16px">
-        <div class="fig-wrap"><img src="https://raw.githubusercontent.com/NVIDIA/Isaac-GR00T/main/media/model-architecture.png" alt="GR00T N1 Dual System Architecture" loading="lazy"><div class="fig-cap">GR00T N1 — Dual System: VLM (System 2) + Diffusion Transformer (System 1)</div></div>
-        <div class="fig-wrap"><img src="https://lh3.googleusercontent.com/I7a1f6DPm4Qs4JuiieahA4ki0Dc5IQDU8PxfsMRy3UCf3HF7Td_zZfXg35_M-Td1EELJUY2dJLEkdyjt7IVah658uuqvwAQFtarOukXs44MHGMiSd64=w1440-h810-n-nu" alt="Gemini Robotics 데모" loading="lazy"><div class="fig-cap">Gemini Robotics — Gemini 2.0 기반 범용 로봇 조작</div></div>
-      </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA Isaac-GR00T GitHub, Google DeepMind Blog, Physical Intelligence 논문 원문</div>
-    </section>
-
-    <!-- ═══ Part 3. WFM Deep ═══ -->
-    <section id="sec-wfm" class="card section-gap">
-      <div class="card-title">🌍 World Foundation Model 심화 <span class="badge" style="background:#00B894;color:#fff">WFM → Policy</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:8px">기존 VLA가 "보고 바로 행동"한다면, WFM 기반은 "미래를 예측하고 최적 행동을 선택"하는 구조로 발전.</p>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:11.5px;color:var(--ink-2);border-left:3px solid #00B894">
-        <strong>핵심 전환:</strong> VLA = 현재 관측 → Action 직접 출력 → <strong style="color:#00B894">WFM 기반 = 현재 관측 → 미래 예측 → 최적 Action 선택</strong>
-      </div>
-      <div class="scroll-x">
-        <div id="wfmTable"></div>
-      </div>
-      <div style="margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">REMAINING CHALLENGES</div>
-      <div id="wfmChallenges" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px"></div>
-      <div class="arch-diagram">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">VLA vs WFM-BASED POLICY STRUCTURE</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <div style="text-align:center">
-            <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">CONVENTIONAL VLA</div>
-            <div class="arch-flow" style="flex-direction:column;gap:4px">
-              <div class="arch-box" style="background:#6C5CE7">Image + Language</div>
-              <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
-              <div class="arch-box" style="background:#636E72">VLM Backbone</div>
-              <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
-              <div class="arch-box" style="background:#FF6B6B">Action Head</div>
-              <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
-              <div class="arch-box" style="background:#E17055">Motor Command</div>
-            </div>
-            <div style="font-size:9px;color:var(--ink-3);margin-top:4px">보고 → 바로 행동</div>
-          </div>
-          <div style="text-align:center">
-            <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">WFM-BASED POLICY</div>
-            <div class="arch-flow" style="flex-direction:column;gap:4px">
-              <div class="arch-box" style="background:#6C5CE7">Image + Language</div>
-              <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
-              <div class="arch-box" style="background:#00B894">World Model (미래 예측)</div>
-              <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
-              <div class="arch-box" style="background:#F8B739">Value (최적 미래 선택)</div>
-              <div class="arch-arrow" style="transform:rotate(90deg)">→</div>
-              <div class="arch-box" style="background:#E17055">Motor Command</div>
-            </div>
-            <div style="font-size:9px;color:var(--ink-3);margin-top:4px">보고 → 상상하고 → 최적 행동 선택</div>
-          </div>
-        </div>
-      </div>
-      <div class="fig-wrap"><img src="https://video-prediction-policy.github.io/media/images/method.png" alt="VPP: Video Prediction Policy 아키텍처" loading="lazy" style="max-width:800px"><div class="fig-cap">VPP Fig.2 — Stage1: 비디오 모델 내부 Predictive Representation 추출 → Stage2: DiT Policy로 Action 학습</div></div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: Cosmos Policy (NVIDIA), VPP (arXiv:2412.14803), DreamVLA, V-JEPA 2 (Meta), Generators=Policies (Columbia/TRI) 논문 원문</div>
-    </section>
-
-    <!-- ═══ Part 4-1. Robot Data Pipeline ═══ -->
+    <!-- ══════════════════════════════════════════
+         Part 6. 데이터 + 시뮬레이션
+         ══════════════════════════════════════════ -->
     <section id="sec-pipeline" class="card section-gap">
-      <div class="card-title">🧤 로봇 행동 데이터 수집 파이프라인 <span class="badge" style="background:#6C5CE7;color:#fff">DexCap · AirExo · AirExo-2</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">Physical AI 시대의 데이터 확보 경쟁은 단순 촬영이 아니라 센서·좌표계 정렬·Retargeting·Visual Adaptation이 결합된 데이터 파이프라인 경쟁.</p>
+      <div class="card-title">🧤 Part 6. 데이터 + 시뮬레이션 <span class="badge" style="background:#6C5CE7;color:#fff">DexCap · AirExo · Digital Twin</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">Physical AI 시대의 데이터 확보 경쟁은 센서·좌표계 정렬·Retargeting·Visual Adaptation이 결합된 파이프라인 경쟁.</p>
       <div id="pipelineMethods" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:16px"></div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">DATA COLLECTION → POLICY LEARNING PIPELINE</div>
       <div id="pipelineFlow" class="pipeline-flow"></div>
-      <div style="margin-top:16px">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY CONCEPTS</div>
-        <div id="pipelineConcepts"></div>
+      <div style="margin-top:16px"><div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY CONCEPTS</div><div id="pipelineConcepts"></div></div>
+      <!-- 디지털 트윈 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">디지털 트윈 학습 환경</div>
+        <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">디지털 트윈은 로봇이 학습·검증받는 필수 인프라. 3가지 접근법으로 분류.</p>
+        <div id="dtApproaches" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px"></div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">PAPER ANALYSIS</div>
+        <div id="dtPapers"></div>
+        <div style="margin-top:16px"><div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY TECHNOLOGIES</div><div id="dtKeyTech"></div></div>
       </div>
-      <div class="fig-row">
-        <div class="fig-wrap"><img src="https://arxiv.org/html/2403.07788v1/x1.png" alt="DexCap Figure 1" loading="lazy"><div class="fig-cap">DexCap Fig.1 — 사람 손 MoCap → Retargeting → 로봇 손 정책 학습</div></div>
-        <div class="fig-wrap"><img src="https://airexo.github.io/static/images/airexo.png" alt="AirExo 시스템" loading="lazy"><div class="fig-cap">AirExo — 저비용 양팔 외골격 데이터 수집 시스템</div></div>
-      </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: DexCap (Stanford, arXiv:2403.07788), AirExo/AirExo-2 (THU) 논문 원문</div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: DexCap, AirExo, GRS, Gen2Sim, RoboTwin, SplatSim 논문 원문</div>
     </section>
 
-    <!-- ═══ Part 4-2. Digital Twin ═══ -->
-    <section id="sec-dt" class="card section-gap">
-      <div class="card-title">🏗️ 디지털 트윈 학습 환경 <span class="badge" style="background:#0984E3;color:#fff">핵심 논문 6편</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">디지털 트윈은 단순한 3D 복원을 넘어 로봇이 실제로 학습·검증받는 필수 학습 인프라. 3가지 접근법으로 분류.</p>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">3 APPROACHES</div>
-      <div id="dtApproaches" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px"></div>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">PAPER ANALYSIS</div>
-      <div id="dtPapers"></div>
-      <div style="margin-top:16px">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">KEY TECHNOLOGIES</div>
-        <div id="dtKeyTech"></div>
-      </div>
-      <div class="fig-row">
-        <div class="fig-wrap"><img src="https://arxiv.org/html/2410.15536v1/x2.jpg" alt="GRS Workflow" loading="lazy"><div class="fig-cap">GRS Fig.2 — RGBD 이미지 → 장면 이해 → 에셋 매칭 → 태스크 코드 생성</div></div>
-        <div class="fig-wrap"><img src="https://robotwin-platform.github.io/assets/images/50-tasks.gif" alt="RoboTwin 50 Tasks" loading="lazy"><div class="fig-cap">RoboTwin — 생성형 디지털 트윈 기반 50가지 양팔 조작 태스크</div></div>
-      </div>
-      <div class="fig-wrap"><img src="https://robotwin-platform.github.io/assets/images/teaser.png" alt="RoboTwin Platform" loading="lazy" style="max-width:700px"><div class="fig-cap">RoboTwin Platform — 2D 이미지 → 3D 에셋 → Spatial Annotation → Expert Data 생성</div></div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: GRS (arXiv:2410.15536), RoboTwin (robotwin-platform.github.io) 논문 원문</div>
-    </section>
-
-    <!-- ═══ Part 5-1. BD Atlas Specs ═══ -->
+    <!-- ══════════════════════════════════════════
+         Part 7. HW + 인프라 + 투자
+         ══════════════════════════════════════════ -->
     <section id="sec-atlas" class="card section-gap">
-      <div class="card-title">🤖 BD Atlas 상세 스펙 <span class="badge" style="background:var(--ink);color:var(--bg)">JPM Conference 2026</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">"Blank-sheet design focused on simplicity, building strongest base for cost and reliability" — Zack Jackowski, Chief Product Technology Officer</p>
+      <div class="card-title">🤖 Part 7. HW + 인프라 + 투자 <span class="badge" style="background:var(--ink);color:var(--bg)">Atlas · NVIDIA · HMG</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">"Blank-sheet design focused on simplicity" — Zack Jackowski, BD Chief Product Technology Officer</p>
       <div id="atlasSpecGrid" class="spec-grid"></div>
       <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #FF6B6B">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">HMG Captive Demand</div>
-          <div style="font-family:var(--mono);font-size:22px;font-weight:700;margin:4px 0;color:#FF6B6B">25,000+</div>
-          <div style="font-size:11px;color:var(--ink-2)">현대차·기아 공장 배포 로봇 수 (Assembly + Sequence Work)</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #6C5CE7">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">Factory CAPA (2028E)</div>
-          <div style="font-family:var(--mono);font-size:22px;font-weight:700;margin:4px 0;color:#6C5CE7">30,000</div>
-          <div style="font-size:11px;color:var(--ink-2)">Robotics in America 초기 생산 능력 (units/yr)</div>
-        </div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">HMG Captive Demand</div><div style="font-family:var(--mono);font-size:22px;font-weight:700;margin:4px 0;color:#FF6B6B">25,000+</div><div style="font-size:11px;color:var(--ink-2)">현대차·기아 공장 배포 (Assembly + Sequence Work)</div></div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">Factory CAPA (2028E)</div><div style="font-family:var(--mono);font-size:22px;font-weight:700;margin:4px 0;color:#6C5CE7">30,000</div><div style="font-size:11px;color:var(--ink-2)">Robotics in America (units/yr)</div></div>
       </div>
-      <div style="margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center">
-          <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#F8B739">RMCA</div>
-          <div style="font-size:11px;color:var(--ink-2)">2026 여름 개소</div>
-          <div style="font-size:10px;color:var(--ink-3)">Real-World Training Hub</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center">
-          <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#00B894">RA</div>
-          <div style="font-size:11px;color:var(--ink-2)">2028 개소</div>
-          <div style="font-size:10px;color:var(--ink-3)">Mass Production Facility</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center">
-          <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#E17055">AMF</div>
-          <div style="font-size:11px;color:var(--ink-2)">2028 개소</div>
-          <div style="font-size:10px;color:var(--ink-3)">350K+ actuators/yr</div>
-        </div>
-      </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: JPM Conference 2026 / Boston Dynamics IR / HMG IR</div>
-    </section>
-
-    <!-- ═══ Part 5-2. Data Flywheel ═══ -->
-    <section id="sec-flywheel" class="card section-gap">
-      <div class="card-title">🔄 Data Flywheel <span class="badge" style="background:#4ecdc4;color:#fff">BD 핵심 경쟁력</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">Physical AI는 실세계 데이터가 핵심. 수백 개 고객 사이트에서 이미 데이터를 수집하는 유일한 기업 — BD</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <div id="flywheelGrid"></div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:16px">
-          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">GOOGLE DEEPMIND PARTNERSHIP</div>
-          <div style="font-size:12px;line-height:1.8;color:var(--ink-2)">
-            <strong style="color:#6C5CE7">Reasoning AI Layer</strong><br>
-            via Google DeepMind<br><br>
-            <strong style="color:#F8B739">Physical AI Layer</strong><br>
-            via Boston Dynamics<br><br>
-            <div style="font-family:var(--mono);font-size:10px;padding:8px;background:var(--bg-card);border-radius:6px;border:1px solid var(--line);text-align:center;margin-top:8px">
-              Two AI "Brains" →<br>Reasoning + Physical<br>= Uniquely Positioned
-            </div>
-          </div>
-          <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: JPM Conference 2026 / BD IR</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ Part 6. AI Factory ═══ -->
-    <section id="sec-factory" class="card section-gap">
-      <div class="card-title">🏭 AI Factory 인프라 <span class="badge" style="background:#76B900;color:#fff">NVIDIA 5-Layer Cake</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">NVIDIA의 Physical AI 인프라 스택. Energy → Chips → Infrastructure → Foundation Models → Applications 5계층 구조.</p>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">5-LAYER CAKE (Bottom → Top)</div>
-      <div id="cakeLayers" style="margin-bottom:16px"></div>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">NVIDIA ROBOTICS STACK</div>
-      <div id="roboticsStack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin-bottom:16px"></div>
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">TRAINING → DEPLOYMENT LOOP</div>
-      <div id="trainingLoop" class="pipeline-flow"></div>
-      <div class="arch-diagram" style="margin-top:16px">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">NVIDIA PHYSICAL AI ECOSYSTEM</div>
-        <div class="arch-flow">
-          <div class="arch-box" style="background:#6C5CE7">Omniverse<br><span style="font-size:8px;opacity:.8">디지털 트윈</span></div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#00B894">Cosmos<br><span style="font-size:8px;opacity:.8">World Model</span></div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#F8B739">Isaac Lab<br><span style="font-size:8px;opacity:.8">RL/IL 학습</span></div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#FF6B6B">GR00T<br><span style="font-size:8px;opacity:.8">Foundation</span></div>
-          <div class="arch-arrow">→</div>
-          <div class="arch-box" style="background:#E17055">Jetson Thor<br><span style="font-size:8px;opacity:.8">엣지 추론</span></div>
-        </div>
-        <div style="text-align:center;margin-top:8px">
-          <div class="arch-box" style="background:#76B900;display:inline-block;padding:6px 20px">OSMO — 전체 워크플로우 오케스트레이션</div>
-        </div>
-      </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA GTC 2025 Keynote, NVIDIA IR</div>
-    </section>
-
-    <!-- ═══ Part 7-1. HMG Robotics Strategy ═══ -->
-    <section id="sec-hmg" class="card section-gap">
-      <div class="card-title">🏭 HMG 로보틱스 전략 <span class="badge" style="background:#0984E3;color:#fff">JPM 2026</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">"Not just showcase robots — with Boston Dynamics, we will bring them into real industries" — Jaehoon Chang, HMG Vice Chair</p>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
-        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #FF6B6B">
-          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:4px">현대모비스</div>
-          <div style="font-size:12px;font-weight:600;margin-bottom:4px">BD 모든 액추에이터 부품 100% 공급</div>
-          <div style="font-size:10px;color:var(--ink-3)">액추에이터 8종 → 2종 통합 설계</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #6C5CE7">
-          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">현대오토에버</div>
-          <div style="font-size:12px;font-weight:600;margin-bottom:4px">시스템 통합 (SI) / Robot OS</div>
-          <div style="font-size:10px;color:var(--ink-3)">Data-driven System Integration</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #00B894">
-          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">현대글로비스</div>
-          <div style="font-size:12px;font-weight:600;margin-bottom:4px">생산·판매 물류 / SCM 백본</div>
-          <div style="font-size:10px;color:var(--ink-3)">물류 테스트베드 · Field Adaptability</div>
-        </div>
-      </div>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:14px">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">DUAL ROBOTICS HUB</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div style="background:var(--bg-card);border-radius:6px;padding:12px;border:1px solid var(--line)">
-            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3;margin-bottom:4px">🇺🇸 US — Innovation & Validation Hub</div>
-            <ul style="font-size:10.5px;color:var(--ink-2);line-height:1.7;padding-left:14px;margin:0">
-              <li>BD technology</li>
-              <li>Real-world AI & robotics validation</li>
-              <li>Direct access to North American market</li>
-            </ul>
-          </div>
-          <div style="background:var(--bg-card);border-radius:6px;padding:12px;border:1px solid var(--line)">
-            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#e74c3c;margin-bottom:4px">🇰🇷 Korea — Flexible & Adaptive Hub</div>
-            <ul style="font-size:10.5px;color:var(--ink-2);line-height:1.7;padding-left:14px;margin:0">
-              <li>Application-specific design</li>
-              <li>Cost optimization & flexible manufacturing</li>
-              <li>Rapid commercialization</li>
-            </ul>
+      <!-- Data Flywheel -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">Data Flywheel — BD 핵심 경쟁력</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div id="flywheelGrid"></div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:16px">
+            <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">GOOGLE DEEPMIND PARTNERSHIP</div>
+            <div style="font-size:12px;line-height:1.8;color:var(--ink-2)"><strong style="color:#6C5CE7">Reasoning AI Layer</strong> via Google DeepMind<br><strong style="color:#F8B739">Physical AI Layer</strong> via Boston Dynamics</div>
           </div>
         </div>
       </div>
-      <div style="margin-top:12px;font-size:11px;color:var(--ink-2);padding:10px 12px;background:var(--bg-soft);border-radius:7px">
-        <strong>상업화 전략:</strong> B2B Industrial First → Service → Consumer. "가정용 로봇은 시기상조" — Interim CEO Amanda McMaster. Spot 기반 500+ 고객 레퍼런스로 산업용 시장에서 ROI 검증 (평균 2년 내 회수) 후 확장.
+      <!-- NVIDIA -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">NVIDIA AI Factory 인프라</div>
+        <div id="cakeLayers" style="margin-bottom:16px"></div>
+        <div id="roboticsStack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin-bottom:16px"></div>
+        <div id="trainingLoop" class="pipeline-flow"></div>
+        <div class="arch-diagram" style="margin-top:16px">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">NVIDIA PHYSICAL AI ECOSYSTEM</div>
+          <div class="arch-flow">
+            <div class="arch-box" style="background:#6C5CE7">Omniverse<br><span style="font-size:8px;opacity:.8">디지털 트윈</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#00B894">Cosmos<br><span style="font-size:8px;opacity:.8">World Model</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#F8B739">Isaac Lab<br><span style="font-size:8px;opacity:.8">RL/IL 학습</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#FF6B6B">GR00T<br><span style="font-size:8px;opacity:.8">Foundation</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#E17055">Jetson Thor<br><span style="font-size:8px;opacity:.8">엣지 추론</span></div>
+          </div>
+          <div style="text-align:center;margin-top:8px"><div class="arch-box" style="background:#76B900;display:inline-block;padding:6px 20px">OSMO — 전체 워크플로우 오케스트레이션</div></div>
+        </div>
       </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: JPM Conference 2026 / HMG IR</div>
-    </section>
-
-    <!-- ═══ Part 7-2. Cost Roadmap ═══ -->
-    <section id="sec-cost" class="card section-gap">
-      <div class="card-title">📉 휴머노이드 원가 로드맵 <span class="badge" style="background:#e74c3c;color:#fff">ASP vs Volume</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">양산 규모 확대에 따른 ASP 하락 궤적. 2035년 Tesla $20-30K 목표, 2040년 가전 수준 $15K.</p>
-      <div id="costGrid"></div>
-      <div style="margin-top:8px;display:flex;gap:12px;font-family:var(--mono);font-size:10px;color:var(--ink-3)">
-        <span style="color:#FF6B6B">● ASP ($)</span>
-        <span style="color:#4ecdc4">● Volume (대)</span>
+      <!-- HMG -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">HMG 로보틱스 전략 — JPM 2026</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:4px">현대모비스</div><div style="font-size:12px;font-weight:600">BD 액추에이터 100% 공급</div></div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">현대오토에버</div><div style="font-size:12px;font-weight:600">시스템 통합 / Robot OS</div></div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #00B894"><div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">현대글로비스</div><div style="font-size:12px;font-weight:600">생산·판매 물류 / SCM</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--ink-2);padding:10px 12px;background:var(--bg-soft);border-radius:7px"><strong>상업화 전략:</strong> B2B Industrial First → Service → Consumer. Spot 기반 500+ 고객 레퍼런스로 ROI 검증 (평균 2년 내 회수) 후 확장.</div>
       </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: McKinsey, Goldman Sachs, Tesla IR, SNE Research</div>
+      <!-- 원가 로드맵 -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">휴머노이드 원가 로드맵</div>
+        <div id="costGrid"></div>
+        <div style="margin-top:8px;display:flex;gap:12px;font-family:var(--mono);font-size:10px;color:var(--ink-3)"><span style="color:#FF6B6B">● ASP ($)</span><span style="color:#4ecdc4">● Volume (대)</span></div>
+      </div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: JPM 2026, BD IR, HMG IR, NVIDIA GTC 2025, McKinsey, Goldman Sachs, Tesla IR</div>
     </section>
 
     <!-- ═══ 부록. Glossary ═══ -->
     <section id="sec-glossary" class="card section-gap">
       <div class="card-title">📖 핵심 기술 용어 사전 <span class="badge" style="background:var(--ink);color:var(--bg)">20 Terms</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">Physical AI / VLA / WFM / 디지털 트윈 관련 핵심 용어 정리. 색상: <span style="color:#6C5CE7">모델</span> · <span style="color:#FF6B6B">방법론</span> · <span style="color:#F8B739">아키텍처</span> · <span style="color:#00B894">데이터</span> · <span style="color:#0984E3">시뮬레이션</span></p>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">색상: <span style="color:#6C5CE7">모델</span> · <span style="color:#FF6B6B">방법론</span> · <span style="color:#F8B739">아키텍처</span> · <span style="color:#00B894">데이터</span> · <span style="color:#0984E3">시뮬레이션</span></p>
       <div id="glossaryGrid" class="glossary-grid cat-colors"></div>
     </section>
 
