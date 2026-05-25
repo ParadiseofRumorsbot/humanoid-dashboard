@@ -67,12 +67,22 @@ a{color:inherit}
 .chem-legend{display:flex;gap:12px;font-family:var(--mono);font-size:10px;margin-top:8px;flex-wrap:wrap}
 .section-gap{margin-top:32px}
 .guide-desc{font-size:12px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px;font-family:var(--mono);letter-spacing:.02em}
+.intro-card{background:var(--bg-soft);border-radius:10px;padding:16px 18px;border-left:4px solid;margin-bottom:12px}
+.intro-card h3{font-size:14px;font-weight:700;margin-bottom:6px}
+.intro-card .detail{font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px}
+.intro-card .source-tag{font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:8px;padding-top:6px;border-top:1px dashed var(--line)}
+.tco-table{width:100%;border-collapse:collapse;font-size:11px;margin:10px 0}
+.tco-table th{text-align:left;padding:6px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;border-bottom:2px solid var(--line-s);font-weight:600}
+.tco-table td{padding:6px 10px;border-bottom:1px solid var(--line)}
+.tco-table .highlight-cell{background:#e8f5e9;font-weight:700;color:#00B894}
+.demand-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:700px){
   main{padding:16px 12px 80px}
   .tam-grid{grid-template-columns:120px 70px 80px 80px 60px;font-size:10px}
   .vc-row{grid-template-columns:1fr;gap:2px}
   .num-row{gap:8px}
   .num-value{font-size:16px}
+  .demand-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -85,7 +95,76 @@ a{color:inherit}
     <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
   </header>
 
+  <!-- ═══ 수요 논거 4 Pillars ═══ -->
   <section class="card">
+    <div class="card-title">🎯 단편적인 내용만 보지 말자 — 테슬라와 HMGMA 공장이 표준이 아니다 <span style="font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700;letter-spacing:.04em;background:#FF6B6B;color:#fff">4 Pillars</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px">"자동차 공장 자동화 90% 됐는데 휴머노이드가 왜 필요하냐" — Tesla Austin, HMG HMGMA는 전 세계 제조업의 극히 일부. 나머지 98%의 현실에서 답을 찾는다.</p>
+
+    <div class="demand-grid">
+      <!-- Card 1: 자동화 갭 -->
+      <div class="intro-card" style="border-color:#FF6B6B">
+        <h3 style="color:#FF6B6B">자동화 90%는 미국 제조업의 1.7% 이야기</h3>
+        <div class="detail">미국 제조업 사업체 중 98.3%는 중소기업(종업원 500인 미만). 이들의 자동화 침투율은 한 자릿수. Fortune 500 대공장 자동화 90%는 전체 제조업의 극히 일부.</div>
+        <div class="num-row">
+          <div class="num-box"><div class="num-label">중소기업 비중</div><div class="num-value">98.3%</div><div class="num-sub">미국 전체 제조업체</div></div>
+          <div class="num-box"><div class="num-label">산업용 로봇 설치</div><div class="num-value">542,100</div><div class="num-sub">2024년 글로벌 연간</div></div>
+          <div class="num-box"><div class="num-label">설비가동률</div><div class="num-value">75.6%</div><div class="num-sub">미국 제조업 평균</div></div>
+        </div>
+        <div class="source-tag">1차 출처: US Census Bureau, Statistics of US Businesses (SUSB)</div>
+      </div>
+
+      <!-- Card 2: 노동 부족 -->
+      <div class="intro-card" style="border-color:#6C5CE7">
+        <h3 style="color:#6C5CE7">2030년까지 채울 수 없는 제조업 일자리 210만 개</h3>
+        <div class="detail">Deloitte와 Manufacturing Institute의 공동 연구에 따르면, 미국 제조업은 숙련 노동력 부족으로 2030년까지 약 210만 개의 일자리를 채우지 못할 전망. 이로 인한 경제적 손실은 약 $1T 규모.</div>
+        <div class="num-row">
+          <div class="num-box"><div class="num-label">미충원 일자리</div><div class="num-value">210만</div><div class="num-sub">2030E 미국 제조업</div></div>
+          <div class="num-box"><div class="num-label">경제적 손실</div><div class="num-value">~$1T</div><div class="num-sub">2030E 누적 추정</div></div>
+          <div class="num-box"><div class="num-label">제조업 평균 연령</div><div class="num-value">44.5세</div><div class="num-sub">BLS CPS 기준</div></div>
+        </div>
+        <div class="source-tag">1차 출처: Deloitte &amp; The Manufacturing Institute (2021)</div>
+      </div>
+    </div>
+
+    <!-- Card 3: TCO — 풀 폭 -->
+    <div class="intro-card" style="border-color:#00B894;margin-top:0">
+      <h3 style="color:#00B894">휴머노이드 1대 = 미국 자동차 노동자 인건비 0.7년치</h3>
+      <div class="detail">BLS 데이터 기반 미국 자동차 제조업 노동자 시간당 총비용 $48.28 대비, 2030년 기준 휴머노이드 시간당 비용 $1.49. 회수기간 약 0.5년.</div>
+      <table class="tco-table">
+        <thead><tr><th>항목</th><th>인간 (미국 자동차 제조)</th><th>휴머노이드 (2030E)</th></tr></thead>
+        <tbody>
+          <tr><td style="font-weight:600">시간당 기본급</td><td>$34.00</td><td>—</td></tr>
+          <tr><td style="font-weight:600">시간당 총비용 (Burden 포함)</td><td>$48.28</td><td class="highlight-cell">$1.49</td></tr>
+          <tr><td style="font-weight:600">연간 총비용</td><td>$100,422</td><td class="highlight-cell">$8,000</td></tr>
+          <tr><td style="font-weight:600">연간 가동시간</td><td>2,080h</td><td class="highlight-cell">5,355h</td></tr>
+          <tr><td style="font-weight:600">가동률</td><td>~92% (연차·병가 제외)</td><td class="highlight-cell">85% (유지보수)</td></tr>
+          <tr><td style="font-weight:600">회수기간</td><td>—</td><td class="highlight-cell">~0.5년</td></tr>
+        </tbody>
+      </table>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+        <div style="background:var(--bg-card);border-radius:8px;padding:10px 12px;border:1px solid var(--line)">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">HUMAN TOTAL COMP</div>
+          <div style="font-family:var(--mono);font-size:16px;font-weight:700">$34.00 <span style="font-size:11px;color:var(--ink-3)">× 1.42 = $48.28/h</span></div>
+          <div style="font-size:9px;color:var(--ink-3)">BLS QCEW NAICS 3361 (Motor Vehicle Mfg)</div>
+        </div>
+        <div style="background:var(--bg-card);border-radius:8px;padding:10px 12px;border:1px solid var(--line)">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">ROBOT EFFECTIVE COST</div>
+          <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">$1.49/h</div>
+          <div style="font-size:9px;color:var(--ink-3)">$50K ÷ 10yr + $3K opex / 5,355h</div>
+        </div>
+      </div>
+      <div class="source-tag">1차 출처: BLS QCEW (NAICS 3361, 2024Q4) + BLS ECEC (2025.03)</div>
+    </div>
+
+    <!-- Card 4: OEM 베팅 -->
+    <div class="intro-card" style="border-color:#F8B739">
+      <h3 style="color:#F8B739">자동화 끝판 OEM이 직접 휴머노이드에 베팅</h3>
+      <div class="detail">BD(HMG) captive 25,000대, Tesla Optimus 100만대 목표, Amazon Digit 배포 — 자동차·물류·제조 최강자들이 직접 투자.</div>
+      <div class="source-tag">1차 출처: BD IR, Tesla IR, Amazon IR, HMG IR (JPM Conference 2026)</div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
     <div class="card-title">📐 핵심 투자 명제</div>
     <div class="guide-desc" style="font-family:var(--sans);letter-spacing:0;font-size:13px;line-height:1.8">
       <strong style="color:var(--ink);font-size:15px">"액추에이터는 뉴턴의 법칙을 따른다"</strong><br><br>
