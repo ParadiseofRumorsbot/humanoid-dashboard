@@ -293,6 +293,30 @@ function renderParadigmShift() {
       </div>
     </div>
     <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="arch-diagram">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">VLA CROSS-EMBODIMENT 구조</div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">다양한 입력</div>
+          <div class="arch-box" style="background:#636E72;display:inline-block;margin:2px">📷 카메라 이미지</div><br>
+          <div class="arch-box" style="background:#636E72;display:inline-block;margin:2px">💬 언어 명령</div><br>
+          <div class="arch-box" style="background:#636E72;display:inline-block;margin:2px">🦾 로봇 관절 상태</div>
+        </div>
+        <div style="text-align:center">
+          <div class="arch-arrow">→</div>
+          <div class="arch-box" style="background:#6C5CE7;padding:12px 20px;font-size:11px">🧠 VLA 범용 모델<br><span style="font-size:8px;opacity:.8">하나의 두뇌로 모든 로봇 제어</span></div>
+          <div class="arch-arrow">→</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">어떤 로봇이든 즉시 제어</div>
+          <div class="arch-box" style="background:#00B894;display:inline-block;margin:2px">🤖 팔 로봇</div><br>
+          <div class="arch-box" style="background:#00B894;display:inline-block;margin:2px">🛞 바퀴 로봇</div><br>
+          <div class="arch-box" style="background:#00B894;display:inline-block;margin:2px">🦿 휴머노이드</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:9px;color:var(--ink-3);margin-top:8px">25+ 로봇 종류 × 2.1M 에피소드 학습 → Zero-Shot 제어 성공</div>
+    </div>
     <div class="num-row">${d.stats.map(s =>
       `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
     ).join('')}</div>
@@ -318,6 +342,21 @@ function renderFlowMatching() {
       </div>
     </div>
     <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="arch-diagram">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">π0 ARCHITECTURE — VLM + FLOW MATCHING</div>
+      <div class="arch-flow">
+        <div class="arch-box" style="background:#6C5CE7">📷 카메라<br><span style="font-size:8px;opacity:.8">Image Input</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#636E72">💬 언어 명령<br><span style="font-size:8px;opacity:.8">Language</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#F8B739;padding:10px 16px">🧠 VLM Backbone<br><span style="font-size:8px;opacity:.8">PaliGemma 3B</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#00B894;padding:10px 16px">🌊 Flow Matching<br><span style="font-size:8px;opacity:.8">Action Expert</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#FF6B6B">🦾 50-step<br><span style="font-size:8px;opacity:.8">Action Chunk</span></div>
+      </div>
+      <div style="text-align:center;margin-top:8px;font-size:9px;color:var(--ink-3)">노이즈 → 벡터장 따라 흐름 → 부드러운 연속 행동 생성 (50Hz)</div>
+    </div>
     <div class="num-row">${d.stats.map(s =>
       `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
     ).join('')}</div>
@@ -733,6 +772,18 @@ window.addEventListener('DOMContentLoaded', render);
         📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)" id="logToggleBtn">▼ 펼치기</span>
       </div>
       <div id="updateLogContent" class="update-log"></div>
+    </section>
+
+    <!-- ═══ 수요 논거 4 Pillars ═══ -->
+    <section id="sec-demand" class="card section-gap">
+      <div class="card-title">🎯 단편적인 내용만 보지 말자 — 테슬라와 HMGMA 공장이 표준이 아니다 <span class="badge" style="background:#FF6B6B;color:#fff">4 Pillars</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px">"자동차 공장 자동화 90% 됐는데 휴머노이드가 왜 필요하냐" — Tesla Austin, HMG HMGMA는 전 세계 제조업의 극히 일부. 나머지 98%의 현실에서 답을 찾는다.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="intro-card" style="border-color:#FF6B6B"><h3 style="color:#FF6B6B">자동화 90%는 미국 제조업의 1.7% 이야기</h3><div class="detail">미국 제조업 사업체 중 98.3%는 중소기업(종업원 500인 미만). 이들의 자동화 침투율은 한 자릿수.</div><div class="num-row"><div class="num-box"><div class="num-label">중소기업 비중</div><div class="num-value">98.3%</div><div class="num-sub">미국 전체 제조업체</div></div><div class="num-box"><div class="num-label">산업용 로봇 설치</div><div class="num-value">542,100</div><div class="num-sub">2024년 글로벌 연간</div></div></div><div class="source-tag">출처: US Census Bureau SUSB</div></div>
+        <div class="intro-card" style="border-color:#6C5CE7"><h3 style="color:#6C5CE7">2030년까지 채울 수 없는 제조업 일자리 210만 개</h3><div class="detail">Deloitte 연구: 미국 제조업 숙련 노동력 부족으로 210만 일자리 미충원, 경제적 손실 ~$1T.</div><div class="num-row"><div class="num-box"><div class="num-label">미충원 일자리</div><div class="num-value">210만</div><div class="num-sub">2030E 미국 제조업</div></div><div class="num-box"><div class="num-label">경제적 손실</div><div class="num-value">~$1T</div><div class="num-sub">2030E 누적 추정</div></div></div><div class="source-tag">출처: Deloitte &amp; Manufacturing Institute (2021)</div></div>
+      </div>
+      <div class="intro-card" style="border-color:#00B894"><h3 style="color:#00B894">휴머노이드 1대 = 미국 자동차 노동자 인건비 0.5년 회수</h3><div class="detail">BLS 기반 시간당 총비용 $48.28 vs 휴머노이드 $1.49/h. 연간 가동 5,355h.</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0"><div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">HUMAN TOTAL COMP</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">$34.00 <span style="font-size:11px;color:var(--ink-3)">× 1.42 = $48.28/h</span></div></div><div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">ROBOT EFFECTIVE COST</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">$1.49/h</div></div></div><div class="source-tag">출처: BLS QCEW (NAICS 3361) + BLS ECEC (2025.03)</div></div>
+      <div class="intro-card" style="border-color:#F8B739"><h3 style="color:#F8B739">자동화 끝판 OEM이 직접 휴머노이드에 베팅</h3><div class="detail">BD(HMG) captive 25,000대, Tesla Optimus 100만대 목표, Amazon Digit 배포 — 최강자들이 직접 투자.</div><div class="source-tag">출처: BD IR, Tesla IR, Amazon IR, HMG IR (JPM 2026)</div></div>
     </section>
 
     <!-- ═══ 기술 개요: Physical AI 로드맵 배너 ═══ -->
