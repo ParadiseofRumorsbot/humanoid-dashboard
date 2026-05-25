@@ -779,9 +779,7 @@ const DASHBOARD_DATA = {
           { label: '학습 에피소드', value: '2.1M+', sub: 'Cross-Embodiment 통합' },
           { label: 'Zero-Shot 성공률', value: '55→93%', sub: 'Octo vs OpenVLA (WidowX)' },
         ],
-        figures: [
-          { src: 'https://openvla.github.io/static/images/teaser.png', cap: 'OpenVLA — 다양한 로봇을 하나의 VLA 모델로 제어하는 Cross-Embodiment 구조' },
-        ],
+        figures: [],
         source: 'Octo (UC Berkeley, 2024), OpenVLA (Stanford/TRI, 2024), Open X-Embodiment (2023)',
       },
       /* 섹션 [2] 플로우 매칭 */
@@ -809,9 +807,7 @@ const DASHBOARD_DATA = {
           { label: '학습 태스크 수', value: '10+', sub: '단일 모델 Multi-Task' },
           { label: 'Action Chunk', value: '50 steps', sub: '한 번에 50스텝 행동 생성' },
         ],
-        figures: [
-          { src: 'https://www.physicalintelligence.company/blog/pi0/img-policy-architecture.webp', cap: 'π0 Architecture — VLM Backbone + Flow Matching Action Expert' },
-        ],
+        figures: [],
         source: 'Physical Intelligence π0 (2024), Flow Matching (Lipman et al., 2023)',
       },
       /* 섹션 [3] 뇌와 몸의 역할 분담 */
@@ -840,7 +836,6 @@ const DASHBOARD_DATA = {
           { label: 'System1 제어', value: '100Hz', sub: 'Diffusion Action 생성' },
         ],
         figures: [
-          { src: 'https://cogact.github.io/static/images/main-figure.png', cap: 'CogACT — Cognition(인지)과 Action(행동)의 분리 아키텍처' },
           { src: 'https://raw.githubusercontent.com/NVIDIA/Isaac-GR00T/main/media/model-architecture.png', cap: 'GR00T N1 — System 2 (VLM) + System 1 (DiT Action) Dual System' },
         ],
         source: 'CogACT (THU/BIGAI, 2025), GR00T N1 (NVIDIA, 2025), Kahneman "Thinking, Fast and Slow"',
@@ -867,7 +862,7 @@ const DASHBOARD_DATA = {
           { label: '예측 해상도', value: '1024px', sub: 'Cosmos Predict 2.5B' },
         ],
         figures: [
-          { src: 'https://video-prediction-policy.github.io/media/images/method.png', cap: 'VPP — Stage1: 비디오 모델 내부 Predictive Representation 추출 → Stage2: DiT Policy' },
+          { src: 'https://raw.githubusercontent.com/video-prediction-policy/video-prediction-policy.github.io/main/media/images/method.png', cap: 'VPP — Stage1: 비디오 모델 내부 Predictive Representation 추출 → Stage2: DiT Policy' },
         ],
         source: 'NVIDIA Cosmos Policy (2025), VPP (THU+NVIDIA, 2024), DreamVLA (2025)',
       },
@@ -912,8 +907,8 @@ const DASHBOARD_DATA = {
           { label: 'RTC 레이턴시', value: '53%↓', sub: 'Action Chunk 이어붙임' },
         ],
         figures: [
-          { src: 'https://rd-vla.github.io/static/images/img_overview.jpeg', cap: 'RD-VLA — 텍스트 CoT(좌) vs Latent 반복 추론(우). 0.5B가 7B를 능가' },
-          { src: 'https://rd-vla.github.io/static/images/img_architecture.png', cap: 'RD-VLA Architecture — VLM + Latent Iterative Refinement + Continuous Action' },
+          { src: 'https://raw.githubusercontent.com/rd-vla/rd-vla.github.io/main/static/images/img_overview.jpeg', cap: 'RD-VLA — 텍스트 CoT(좌) vs Latent 반복 추론(우). 0.5B가 7B를 능가' },
+          { src: 'https://raw.githubusercontent.com/rd-vla/rd-vla.github.io/main/static/images/img_architecture.png', cap: 'RD-VLA Architecture — VLM + Latent Iterative Refinement + Continuous Action' },
         ],
         source: 'RD-VLA (2026), bVLA (2025), PD-VLA (2025), RTC (UC Berkeley, 2024)',
       },
