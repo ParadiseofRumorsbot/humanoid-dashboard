@@ -950,6 +950,9 @@ const DASHBOARD_DATA = {
 
     /* ── 사이드바 섹션 구조 (7-Parts 스토리 아크) ── */
     sidebarSections: [
+      { group: '도입', items: [
+        { id: 'sec-demand', label: '수요 논거 4 Pillars' },
+      ]},
       { group: '기술 개요', items: [
         { id: 'sec-paradigm', label: '패러다임 시프트' },
         { id: 'sec-flowmatch', label: '플로우 매칭 (Pi0)' },
