@@ -950,6 +950,9 @@ const DASHBOARD_DATA = {
 
     /* ── 사이드바 섹션 구조 (7-Parts 스토리 아크) ── */
     sidebarSections: [
+      { group: '팩트체크', items: [
+        { id: 'sec-factcheck', label: '액추에이터 데이터 Lock-in' },
+      ]},
       { group: '도입', items: [
         { id: 'sec-demand', label: '수요 논거 4 Pillars' },
       ]},
