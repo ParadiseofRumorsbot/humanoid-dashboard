@@ -154,7 +154,12 @@ const $ = s => document.querySelector(s);
 function render() {
   renderSidebar();
   renderUpdateLog();
-  renderIntroduction();
+  renderRoadmapBanner();
+  renderParadigmShift();
+  renderFlowMatching();
+  renderCogAct();
+  renderWFMIntro();
+  renderOnDevice();
   renderAIStack();
   renderLocomotionVsManipulation();
   renderVLAEvolution();
@@ -226,72 +231,168 @@ function initScrollSpy() {
   });
 }
 
-/* ── 도입부: 회의론 깨기 4 카드 ── */
-function renderIntroduction() {
-  const intro = D.technology.introduction;
+/* ── 기술 개요 로드맵 배너 ── */
+function renderRoadmapBanner() {
+  const t = D.technology.techOverview;
+  const stages = [
+    { num: '01', label: '범용 OS', id: 'sec-paradigm', color: '#6C5CE7', icon: '🔄' },
+    { num: '02', label: '부드러운 제어', id: 'sec-flowmatch', color: '#00B894', icon: '🌊' },
+    { num: '03', label: '뇌·몸 분리', id: 'sec-cogact', color: '#FF6B6B', icon: '🧠' },
+    { num: '04', label: '물리적 상상력', id: 'sec-wfmintro', color: '#F8B739', icon: '🔮' },
+    { num: '05', label: '실전 경량화', id: 'sec-ondevice', color: '#E17055', icon: '🚀' },
+  ];
+  const el = document.getElementById('roadmapBanner');
+  el.innerHTML = `
+    <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:8px 0">
+      ${stages.map((s,i) => `
+        <a href="#${s.id}" style="flex:1;min-width:120px;padding:10px 12px;background:var(--bg-soft);border-radius:8px;text-align:center;text-decoration:none;position:relative;margin-right:${i<4?'8px':'0'};border-top:3px solid ${s.color};cursor:pointer;transition:all .15s" onmouseover="this.style.background='${s.color}22'" onmouseout="this.style.background='var(--bg-soft)'">
+          <div style="font-size:16px;margin-bottom:4px">${s.icon}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:${s.color};font-weight:700">${s.num}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--ink)">${s.label}</div>
+          ${i<4?`<div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--ink-3);z-index:1">→</div>`:''}
+        </a>
+      `).join('')}
+    </div>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--ink-3)">${t.roadmapSubtitle}</div>
+  `;
+}
 
-  // Card 1: 자동화 정체
-  const c1 = intro.automationGap;
-  document.getElementById('introCard1').innerHTML = `
-    <div class="intro-card" style="border-color:#FF6B6B">
-      <h3 style="color:#FF6B6B">${c1.headline}</h3>
-      <div class="detail">${c1.detail}</div>
-      <div class="num-row">${c1.stats.map(s =>
-        `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
-      ).join('')}</div>
-      <div class="source-tag">1차 출처: ${c1.source}</div>
-    </div>`;
-
-  // Card 2: 노동 부족
-  const c2 = intro.laborShortage;
-  document.getElementById('introCard2').innerHTML = `
-    <div class="intro-card" style="border-color:#6C5CE7">
-      <h3 style="color:#6C5CE7">${c2.headline}</h3>
-      <div class="detail">${c2.detail}</div>
-      <div class="num-row">${c2.stats.map(s =>
-        `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
-      ).join('')}</div>
-      <div class="source-tag">1차 출처: ${c2.source}</div>
-    </div>`;
-
-  // Card 3: TCO
-  const c3 = intro.tcoComparison;
-  document.getElementById('introCard3').innerHTML = `
-    <div class="intro-card" style="border-color:#00B894">
-      <h3 style="color:#00B894">${c3.headline}</h3>
-      <div class="detail">${c3.detail}</div>
-      <table class="tco-table">
-        <thead><tr><th>항목</th><th>인간 (미국 자동차 제조)</th><th>휴머노이드 (2030E)</th></tr></thead>
-        <tbody>${c3.comparisonTable.map(r =>
-          `<tr><td style="font-weight:600">${r.item}</td><td>${r.human}</td><td class="${r.robot !== '—' ? 'highlight-cell' : ''}">${r.robot}</td></tr>`
-        ).join('')}</tbody>
-      </table>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
-        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">HUMAN TOTAL COMP</div>
-          <div style="font-family:var(--mono);font-size:16px;font-weight:700">$${c3.human.hourlyWage} <span style="font-size:11px;color:var(--ink-3)">× ${c3.human.burdenMultiplier} = $${c3.human.totalHourlyComp}/h</span></div>
-          <div style="font-size:9px;color:var(--ink-3)">${c3.human.wageSource}</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">ROBOT EFFECTIVE COST</div>
-          <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">$${c3.robot.hourlyEffective}/h</div>
-          <div style="font-size:9px;color:var(--ink-3)">$${(c3.robot.unitCost/1000)}K ÷ ${c3.robot.lifetime}yr + $${(c3.robot.annualOpex/1000)}K opex / ${c3.robot.effectiveHoursPerYear}h</div>
-        </div>
+/* ── 기술 개요 [1] 패러다임 시프트 ── */
+function renderParadigmShift() {
+  const d = D.technology.techOverview.paradigmShift;
+  const el = document.getElementById('paradigmContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:16px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-top:3px solid ${d.before.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.before.color};margin-bottom:8px">${d.before.label}</div>
+        ${d.before.steps.map(s => `<div style="font-size:11px;color:var(--ink-2);padding:3px 0;border-bottom:1px solid var(--line)">→ ${s}</div>`).join('')}
       </div>
-      <div class="source-tag">1차 출처: ${c3.source}</div>
-    </div>`;
+      <div style="text-align:center;padding:0 4px">
+        <div style="font-size:22px;margin-bottom:4px">⚡</div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);max-width:100px;line-height:1.4">패러다임 전환</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-top:3px solid ${d.after.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.after.color};margin-bottom:8px">${d.after.label}</div>
+        ${d.after.steps.map(s => `<div style="font-size:11px;color:var(--ink-2);padding:3px 0;border-bottom:1px solid var(--line)">✓ ${s}</div>`).join('')}
+      </div>
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="fig-row">${d.figures.map(f => `<div class="fig-wrap"><img src="${f.src}" alt="${f.cap}" loading="lazy"><div class="fig-cap">${f.cap}</div></div>`).join('')}</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
 
-  // Card 4: OEM Bridge
-  const c4 = intro.oemBridge;
-  const oem = D.oemTargets || [];
-  document.getElementById('introCard4').innerHTML = `
-    <div class="intro-card" style="border-color:#F8B739">
-      <h3 style="color:#F8B739">${c4.headline}</h3>
-      <div class="detail">${c4.detail}</div>
-      ${oem.length ? `<div class="scroll-x"><table class="tco-table"><thead><tr><th>OEM</th><th>2025E</th><th>2026E</th><th>2028E</th><th>2030E</th></tr></thead>
-      <tbody>${oem.slice(0,6).map(o => `<tr><td style="font-weight:600">${o.name}</td><td>${(o['2025']||0).toLocaleString()}</td><td>${(o['2026']||0).toLocaleString()}</td><td>${(o['2028']||0).toLocaleString()}</td><td>${(o['2030']||0).toLocaleString()}</td></tr>`).join('')}</tbody></table></div>` : ''}
-      <div class="source-tag">1차 출처: ${c4.source}</div>
-    </div>`;
+/* ── 기술 개요 [2] 플로우 매칭 ── */
+function renderFlowMatching() {
+  const d = D.technology.techOverview.flowMatching;
+  const el = document.getElementById('flowMatchContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#00B894;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;border-left:4px solid ${d.before.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.before.color};margin-bottom:6px">${d.before.label}</div>
+        <div style="font-size:12px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.before.desc}</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;border-left:4px solid ${d.after.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.after.color};margin-bottom:6px">${d.after.label}</div>
+        <div style="font-size:12px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.after.desc}</div>
+      </div>
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="fig-row">${d.figures.map(f => `<div class="fig-wrap"><img src="${f.src}" alt="${f.cap}" loading="lazy"><div class="fig-cap">${f.cap}</div></div>`).join('')}</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+/* ── 기술 개요 [3] 뇌·몸 역할 분담 ── */
+function renderCogAct() {
+  const d = D.technology.techOverview.cogAct;
+  const el = document.getElementById('cogActContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0;margin-bottom:16px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;width:100%;border-left:4px solid ${d.system2.color}">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:${d.system2.color};margin-bottom:4px">${d.system2.label}</div>
+        <div style="font-size:11.5px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.system2.desc}</div>
+      </div>
+      <div style="font-size:20px;color:var(--ink-3);padding:4px 0">⬇️</div>
+      <div style="font-size:9px;color:var(--ink-3);font-family:var(--mono);margin-bottom:4px">서브태스크 명령 하달</div>
+      <div style="font-size:20px;color:var(--ink-3);padding:0 0 4px">⬇️</div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;width:100%;border-left:4px solid ${d.system1.color}">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:${d.system1.color};margin-bottom:4px">${d.system1.label}</div>
+        <div style="font-size:11.5px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.system1.desc}</div>
+      </div>
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="fig-row">${d.figures.map(f => `<div class="fig-wrap"><img src="${f.src}" alt="${f.cap}" loading="lazy"><div class="fig-cap">${f.cap}</div></div>`).join('')}</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+/* ── 기술 개요 [4] WFM 초보자 도입부 ── */
+function renderWFMIntro() {
+  const d = D.technology.techOverview.wfmIntro;
+  const el = document.getElementById('wfmIntroContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#F8B739;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:12px 0">
+      ${d.pipeline.map((p,i) => `
+        <div style="flex:1;min-width:120px;padding:12px 14px;background:var(--bg-soft);border-radius:8px;text-align:center;position:relative;margin-right:${i<3?'8px':'0'};border-top:3px solid ${p.color}">
+          <div style="font-size:20px;margin-bottom:4px">${p.icon}</div>
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${p.color}">${p.label}</div>
+          <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">${p.desc}</div>
+          ${i<3?`<div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-3);z-index:1">→</div>`:''}
+        </div>
+      `).join('')}
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="fig-row">${d.figures.map(f => `<div class="fig-wrap"><img src="${f.src}" alt="${f.cap}" loading="lazy"><div class="fig-cap">${f.cap}</div></div>`).join('')}</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+/* ── 기술 개요 [5] 온디바이스 최적화 ── */
+function renderOnDevice() {
+  const d = D.technology.techOverview.onDevice;
+  const el = document.getElementById('onDeviceContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#E17055;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:12px 0">
+      ${d.techniques.map((t,i) => `
+        <div style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg-soft);border-radius:10px;position:relative;margin-right:${i<2?'8px':'0'};border-top:3px solid ${t.color}">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+            <span style="font-size:18px">${t.icon}</span>
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${t.step}</div>
+              <div style="font-size:12px;font-weight:700;color:${t.color}">${t.name}</div>
+            </div>
+          </div>
+          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">${t.desc}</div>
+          <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600">${t.metric}</div>
+          ${i<2?`<div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-3);z-index:1">→</div>`:''}
+        </div>
+      `).join('')}
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="fig-row">${d.figures.map(f => `<div class="fig-wrap"><img src="${f.src}" alt="${f.cap}" loading="lazy"><div class="fig-cap">${f.cap}</div></div>`).join('')}</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
 }
 
 function renderAIStack() {
@@ -606,7 +707,7 @@ window.addEventListener('DOMContentLoaded', render);
     <header class="hdr">
       <div class="hdr-tag">Humanoid Dashboard</div>
       <h1><b>Tech</b>기술 설명</h1>
-      <p class="hdr-sub">Physical AI 핵심 기술 7-Parts 발표 구조. 도입 회의론 깨기 → HW×AI → VLA 진화 → WFM → 데이터+시뮬 → BD Atlas → NVIDIA → 투자 thesis. 출처: 논문 원문, NVIDIA, Google DeepMind, Physical Intelligence, BLS, Deloitte.</p>
+      <p class="hdr-sub">Physical AI 핵심 기술 가이드. 초보자용 기술 개요 → HW×AI → VLA 진화 → WFM → 데이터+시뮬 → BD Atlas → NVIDIA → 투자 thesis. 출처: 논문 원문, NVIDIA, Google DeepMind, Physical Intelligence, BLS, Deloitte.</p>
       <div class="toc-nav-mobile" id="tocMobile"></div>
       <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a></nav>
     </header>
@@ -619,14 +720,41 @@ window.addEventListener('DOMContentLoaded', render);
       <div id="updateLogContent" class="update-log"></div>
     </section>
 
-    <!-- ═══ 도입: 회의론 깨기 4 카드 ═══ -->
-    <section id="sec-intro" class="card section-gap">
-      <div class="card-title">🎯 도입 — 회의론 깨기 <span class="badge" style="background:#FF6B6B;color:#fff">4 Cards</span></div>
-      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px">"자동차 공장 자동화 90% 됐는데 휴머노이드가 왜 필요하냐" — 이 질문에 4장의 카드로 답한다.</p>
-      <div id="introCard1"></div>
-      <div id="introCard2"></div>
-      <div id="introCard3"></div>
-      <div id="introCard4"></div>
+    <!-- ═══ 기술 개요: Physical AI 로드맵 배너 ═══ -->
+    <section id="sec-roadmap-banner" class="card section-gap">
+      <div class="card-title">🗺️ Physical AI 기술 발전 로드맵 <span class="badge" style="background:var(--ink);color:var(--bg)">5 Stages</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">아래 5개 기술 개요 섹션은 독립적 파편이 아니라 하나의 발전 궤적 위에 놓여 있음. 병목 파악 → 아키텍처 혁신 → 데이터로 증명의 논리 구조를 따름.</p>
+      <div id="roadmapBanner"></div>
+    </section>
+
+    <!-- ═══ 기술 개요 [1] 패러다임 시프트 ═══ -->
+    <section id="sec-paradigm" class="card section-gap">
+      <div class="card-title">🔄 패러다임 시프트: 로봇어의 등장 <span class="badge" style="background:#6C5CE7;color:#fff">Octo · OpenVLA</span></div>
+      <div id="paradigmContent"></div>
+    </section>
+
+    <!-- ═══ 기술 개요 [2] 플로우 매칭 ═══ -->
+    <section id="sec-flowmatch" class="card section-gap">
+      <div class="card-title">🌊 부드러운 움직임의 비밀: 플로우 매칭 <span class="badge" style="background:#00B894;color:#fff">Pi0</span></div>
+      <div id="flowMatchContent"></div>
+    </section>
+
+    <!-- ═══ 기술 개요 [3] 뇌·몸 역할 분담 ═══ -->
+    <section id="sec-cogact" class="card section-gap">
+      <div class="card-title">🧠 뇌와 몸의 역할 분담 <span class="badge" style="background:#6C5CE7;color:#fff">CogACT · Dual System</span></div>
+      <div id="cogActContent"></div>
+    </section>
+
+    <!-- ═══ 기술 개요 [4] 물리적 상상력 (WFM) ═══ -->
+    <section id="sec-wfmintro" class="card section-gap">
+      <div class="card-title">🔮 물리적 상상력 엔진: 월드 파운데이션 모델 <span class="badge" style="background:#F8B739;color:#fff">WFM</span></div>
+      <div id="wfmIntroContent"></div>
+    </section>
+
+    <!-- ═══ 기술 개요 [5] 온디바이스 최적화 ═══ -->
+    <section id="sec-ondevice" class="card section-gap">
+      <div class="card-title">🚀 실전 현장 투입: 온디바이스 최적화 삼총사 <span class="badge" style="background:#FF6B6B;color:#fff">bVLA · PD-VLA · RTC</span></div>
+      <div id="onDeviceContent"></div>
     </section>
 
     <!-- ═══ Part 1-1. AI Tech Stack ═══ -->
