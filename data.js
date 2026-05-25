@@ -576,7 +576,6 @@ const DASHBOARD_DATA = {
     /* ── 7. 로봇 행동 데이터 수집 파이프라인 ── */
     robotDataPipeline: {
       source: 'DexCap (Stanford, 2024), AirExo (THU, 2024), AirExo-2 (THU, 2025)',
-      videoUrl: 'https://www.youtube.com/watch?v=DycoYh6imj8',
       methods: [
         { name: 'Teleoperation', desc: '사람이 VR/조이스틱/리더암으로 로봇을 원격조작하며 데이터 수집', pros: '로봇 관절·센서 데이터 직접 취득, 고품질', cons: '비싸고 느림, 실제 로봇 필요', color: '#FF6B6B' },
         { name: 'DexCap', desc: 'SLAM + 전자기장 장갑으로 사람 손 모션캡처 → 로봇 손 retargeting', pros: '사람 손 정교한 조작 데이터 수집, Portable', cons: '손끝 위주, 전신 대응 한계', color: '#6C5CE7' },
@@ -601,7 +600,6 @@ const DASHBOARD_DATA = {
     /* ── 8. 디지털 트윈 학습 환경 ── */
     digitalTwin: {
       source: 'GRS (2024), Gen2Sim (2024), RoboTwin (2024), SplatSim (2024), SyncTwin, TwinRL, Policy Eval',
-      videoUrl: 'https://www.youtube.com/watch?v=g7y7y7xGpxU',
       approaches: [
         { name: 'Real→Sim', desc: '실제 환경 스캔 → 시뮬레이터 이전', examples: 'GRS, SplatSim', color: '#6C5CE7' },
         { name: 'Generative Sim', desc: '생성형 AI로 3D 에셋·태스크·리워드 자동 생성', examples: 'Gen2Sim, RoboTwin', color: '#FF6B6B' },
@@ -626,7 +624,6 @@ const DASHBOARD_DATA = {
     /* ── 9. WFM (World Foundation Model) 심화 ── */
     wfmDeep: {
       source: 'NVIDIA Cosmos (2025), VPP (2024), DreamVLA (2025), V-JEPA 2 (Meta, 2025), Generators=Policies (Columbia/TRI, 2024)',
-      videoUrl: 'https://www.youtube.com/watch?v=2a6OYcYcOOw',
       comparison: [
         { model: 'Cosmos Policy', org: 'NVIDIA+Stanford', method: 'Cosmos Predict 2.5B 비디오 모델을 Post-training → Action+Future State+Value를 Latent Frame으로 동시 생성', result: 'LIBERO 98.5%, RoboCasa 67.1%', approach: 'WFM = Policy' },
         { model: 'VPP', org: 'THU+NVIDIA', method: 'SVD 1.5B 비디오 모델 내부 Predictive Visual Representation 추출 → VideoFormer → DiT Policy', result: 'Calvin ABCD +18.6%, Real Dexterous +31.6%', approach: 'WFM 내부 표현 활용' },
@@ -645,7 +642,6 @@ const DASHBOARD_DATA = {
     /* ── 10. VLA 아키텍처 진화 ── */
     vlaEvolution: {
       source: 'Physical Intelligence (π0.6), RD-VLA (2026), MeM (2025)',
-      videoUrl: 'https://www.youtube.com/watch?v=sx2ytqe3hcI',
       models: [
         { name: 'π0.6 (RECAP)', org: 'Physical Intelligence', keyIdea: 'Advantage-conditioned RL로 VLA 후속 학습. 성공 Trajectory에 높은 Advantage 부여 → 자기 개선 루프', architecture: 'π0 VLM backbone + Flow Matching Action Head + RECAP RL fine-tuning', breakthrough: '로봇 자체 경험으로 자기 개선, 학습 효율성 극대화', color: '#6C5CE7' },
         { name: 'RD-VLA', org: '복합 연구팀', keyIdea: '텍스트 CoT 대신 Latent Space에서 반복 정제 (Recurrent Depth). 잠재 공간 반복 추론으로 80x 속도 향상', architecture: 'VLM + Latent Iterative Refinement + Continuous Action Output', breakthrough: '0.5B 모델로 7B 모델 성능 초과, 난이도 적응형 연산', color: '#FF6B6B' },
@@ -753,12 +749,116 @@ const DASHBOARD_DATA = {
       { term: 'Inverse Dynamics', full: 'Inverse Dynamics Model', def: '현재→목표 상태로 가기 위한 행동을 추정하는 모델', category: 'method' },
       { term: 'MPC', full: 'Model Predictive Control', def: '여러 행동 후보를 시뮬레이션하여 최적 행동을 선택하는 제어 방식', category: 'method' },
     ],
+
+    /* ── 도입부 — 회의론 깨기 4 카드 ── */
+    introduction: {
+      automationGap: {
+        headline: '자동화 90%는 미국 제조업의 1.7% 이야기',
+        detail: '미국 제조업 사업체 중 98.3%는 중소기업(종업원 500인 미만). 이들의 자동화 침투율은 한 자릿수. Fortune 500 대공장 자동화 90%는 전체 제조업의 극히 일부.',
+        source: 'US Census Bureau, Statistics of US Businesses (SUSB)',
+        stats: [
+          { label: '중소기업 비중', value: '98.3%', sub: '미국 전체 제조업체' },
+          { label: '산업용 로봇 설치', value: '542,100', sub: '2024년 글로벌 연간' },
+          { label: '설비가동률', value: '75.6%', sub: '미국 제조업 평균' },
+        ],
+      },
+      laborShortage: {
+        headline: '2030년까지 채울 수 없는 제조업 일자리 210만 개',
+        detail: 'Deloitte와 Manufacturing Institute의 공동 연구에 따르면, 미국 제조업은 숙련 노동력 부족으로 2030년까지 약 210만 개의 일자리를 채우지 못할 전망. 이로 인한 경제적 손실은 약 $1T 규모.',
+        source: 'Deloitte & The Manufacturing Institute, "Creating Pathways for Tomorrow\'s Workforce Today" (2021)',
+        stats: [
+          { label: '미충원 일자리', value: '210만', sub: '2030E 미국 제조업' },
+          { label: '경제적 손실', value: '~$1T', sub: '2030E 누적 추정' },
+          { label: '제조업 평균 연령', value: '44.5세', sub: 'BLS CPS 기준' },
+        ],
+      },
+      tcoComparison: {
+        headline: '휴머노이드 1대 = 미국 자동차 노동자 인건비 0.7년치',
+        detail: 'BLS 데이터 기반 미국 자동차 제조업 노동자 시간당 총비용 $48.28 대비, 2030년 기준 휴머노이드 시간당 비용 $3.00. 회수기간 약 0.7년.',
+        source: 'BLS QCEW (NAICS 3361, 2024Q4) + BLS ECEC (2025.03) + data.js BOM',
+        human: {
+          hourlyWage: 34.00, wageSource: 'BLS QCEW NAICS 3361 (Motor Vehicle Mfg)',
+          burdenMultiplier: 1.42, burdenSource: 'BLS ECEC (Employer Costs for Employee Compensation)',
+          totalHourlyComp: 48.28,
+          annualHours: 2080,
+          annualCost: 100422,
+        },
+        robot: {
+          unitCost: 50000, costYear: '2030E',
+          lifetime: 10,
+          annualOpex: 3000, opexNote: '전기 + 유지보수 보수적 추정',
+          dailyHours: 18, daysPerYear: 350, uptime: 0.85,
+          effectiveHoursPerYear: 5355,
+          annualTotalCost: 8000,
+          hourlyEffective: 1.49,
+        },
+        comparisonTable: [
+          { item: '시간당 기본급', human: '$34.00', robot: '—' },
+          { item: '시간당 총비용 (Burden 포함)', human: '$48.28', robot: '$1.49' },
+          { item: '연간 총비용', human: '$100,422', robot: '$8,000' },
+          { item: '연간 가동시간', human: '2,080h', robot: '5,355h' },
+          { item: '가동률', human: '~92% (연차·병가 제외)', robot: '85% (유지보수)' },
+          { item: '회수기간', human: '—', robot: '~0.5년' },
+        ],
+      },
+      oemBridge: {
+        headline: '자동화 끝판 OEM이 직접 휴머노이드에 베팅',
+        detail: 'BD(HMG) captive 25,000대, Tesla Optimus 100만대 목표, Amazon Digit 배포 — 자동차·물류·제조 최강자들이 직접 투자.',
+        source: 'BD IR, Tesla IR, Amazon IR, HMG IR (JPM Conference 2026)',
+      },
+    },
+
+    /* ── 사이드바 섹션 구조 (7-Parts 스토리 아크) ── */
+    sidebarSections: [
+      { group: '도입', items: [{ id: 'sec-intro', label: '회의론 깨기 4 카드' }] },
+      { group: 'Part 1 — HW × AI', items: [
+        { id: 'sec-aistack', label: 'Physical AI 기술 스택' },
+        { id: 'sec-lvm', label: 'Locomotion vs Manipulation' },
+      ]},
+      { group: 'Part 2 — VLA', items: [
+        { id: 'sec-vlaevo', label: 'VLA 아키텍처 진화' },
+        { id: 'sec-vlacmp', label: 'VLA 3대장 비교' },
+      ]},
+      { group: 'Part 3 — WFM', items: [
+        { id: 'sec-wfm', label: 'WFM 심화' },
+      ]},
+      { group: 'Part 4 — 데이터+시뮬', items: [
+        { id: 'sec-pipeline', label: '데이터 수집 파이프라인' },
+        { id: 'sec-dt', label: '디지털 트윈' },
+      ]},
+      { group: 'Part 5 — BD Atlas', items: [
+        { id: 'sec-atlas', label: 'Atlas 상세 스펙' },
+        { id: 'sec-flywheel', label: 'Data Flywheel' },
+      ]},
+      { group: 'Part 6 — NVIDIA', items: [
+        { id: 'sec-factory', label: 'AI Factory 인프라' },
+      ]},
+      { group: 'Part 7 — 투자', items: [
+        { id: 'sec-hmg', label: 'HMG 로보틱스 전략' },
+        { id: 'sec-cost', label: '원가 로드맵' },
+      ]},
+      { group: '부록', items: [
+        { id: 'sec-glossary', label: '용어 사전' },
+      ]},
+    ],
   },
 
   /* ══════════════════════════════════════
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-05-25',
+      title: '발표용 7-Parts 스토리 아크 재배열 + 도입부 추가',
+      source: 'BLS QCEW (NAICS 3361), BLS ECEC, Deloitte/Manufacturing Institute (2021)',
+      changes: [
+        '도입부 회의론 깨기 4 카드 추가 (자동화 정체 / 노동 부족 / TCO / OEM 베팅)',
+        'TCO 비교 모델: BLS 1차 출처 기반 미국 자동차 제조업 인건비 vs 휴머노이드',
+        '섹션 순서 7-Parts 발표 흐름으로 재배열',
+        '좌측 Contents 사이드바 네비게이션 추가 (스크롤 추적)',
+        'Update Log 페이지 상단 이동',
+      ],
+    },
     {
       date: '2026-05-22',
       title: 'Physical AI 기술 심화 7개 섹션 추가',
@@ -771,7 +871,6 @@ const DASHBOARD_DATA = {
         'VLA 3대장 비교 (GR00T vs Gemini Robotics vs π0) 매트릭스',
         'AI Factory 인프라 (NVIDIA 5-Layer Cake + Robotics Stack) 섹션 추가',
         '핵심 기술 용어 사전 20개 항목 추가',
-        'YouTube 영상 임베드 (엥지유니버스 채널)',
       ],
     },
     {
