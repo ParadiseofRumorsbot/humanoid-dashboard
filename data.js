@@ -750,67 +750,184 @@ const DASHBOARD_DATA = {
       { term: 'MPC', full: 'Model Predictive Control', def: '여러 행동 후보를 시뮬레이션하여 최적 행동을 선택하는 제어 방식', category: 'method' },
     ],
 
-    /* ── 도입부 — 회의론 깨기 4 카드 ── */
-    introduction: {
-      automationGap: {
-        headline: '자동화 90%는 미국 제조업의 1.7% 이야기',
-        detail: '미국 제조업 사업체 중 98.3%는 중소기업(종업원 500인 미만). 이들의 자동화 침투율은 한 자릿수. Fortune 500 대공장 자동화 90%는 전체 제조업의 극히 일부.',
-        source: 'US Census Bureau, Statistics of US Businesses (SUSB)',
-        stats: [
-          { label: '중소기업 비중', value: '98.3%', sub: '미국 전체 제조업체' },
-          { label: '산업용 로봇 설치', value: '542,100', sub: '2024년 글로벌 연간' },
-          { label: '설비가동률', value: '75.6%', sub: '미국 제조업 평균' },
-        ],
-      },
-      laborShortage: {
-        headline: '2030년까지 채울 수 없는 제조업 일자리 210만 개',
-        detail: 'Deloitte와 Manufacturing Institute의 공동 연구에 따르면, 미국 제조업은 숙련 노동력 부족으로 2030년까지 약 210만 개의 일자리를 채우지 못할 전망. 이로 인한 경제적 손실은 약 $1T 규모.',
-        source: 'Deloitte & The Manufacturing Institute, "Creating Pathways for Tomorrow\'s Workforce Today" (2021)',
-        stats: [
-          { label: '미충원 일자리', value: '210만', sub: '2030E 미국 제조업' },
-          { label: '경제적 손실', value: '~$1T', sub: '2030E 누적 추정' },
-          { label: '제조업 평균 연령', value: '44.5세', sub: 'BLS CPS 기준' },
-        ],
-      },
-      tcoComparison: {
-        headline: '휴머노이드 1대 = 미국 자동차 노동자 인건비 0.7년치',
-        detail: 'BLS 데이터 기반 미국 자동차 제조업 노동자 시간당 총비용 $48.28 대비, 2030년 기준 휴머노이드 시간당 비용 $3.00. 회수기간 약 0.7년.',
-        source: 'BLS QCEW (NAICS 3361, 2024Q4) + BLS ECEC (2025.03) + data.js BOM',
-        human: {
-          hourlyWage: 34.00, wageSource: 'BLS QCEW NAICS 3361 (Motor Vehicle Mfg)',
-          burdenMultiplier: 1.42, burdenSource: 'BLS ECEC (Employer Costs for Employee Compensation)',
-          totalHourlyComp: 48.28,
-          annualHours: 2080,
-          annualCost: 100422,
+    /* ── 초보자용 기술 개요 5 섹션 ── */
+    techOverview: {
+      roadmapSubtitle: '범용 OS → 부드러운 제어 → 뇌·몸 분리 → 물리적 상상력 → 실전 경량화',
+      /* 섹션 [1] 패러다임 시프트 */
+      paradigmShift: {
+        title: '패러다임 시프트: 로봇어의 등장',
+        badge: 'Octo · OpenVLA',
+        roadmapPosition: '1/5 — 범용 OS',
+        before: {
+          label: '기존 로봇',
+          steps: ['A로봇 전용 코딩', '컵 하나 쥐어봄', 'B로봇에 이식 불가 — 먹통'],
+          color: '#636E72',
         },
-        robot: {
-          unitCost: 50000, costYear: '2030E',
-          lifetime: 10,
-          annualOpex: 3000, opexNote: '전기 + 유지보수 보수적 추정',
-          dailyHours: 18, daysPerYear: 350, uptime: 0.85,
-          effectiveHoursPerYear: 5355,
-          annualTotalCost: 8000,
-          hourlyEffective: 1.49,
+        transition: '⚡ 패러다임 전환: 인터넷의 글자/이미지 + 수십 종 로봇 행동 데이터를 통합 학습',
+        after: {
+          label: '현재 범용 로봇 (VLA)',
+          steps: ['하나의 두뇌 모델', '팔 달린 로봇 ✓', '바퀴 달린 로봇 ✓', '즉시 제어 성공'],
+          color: '#6C5CE7',
         },
-        comparisonTable: [
-          { item: '시간당 기본급', human: '$34.00', robot: '—' },
-          { item: '시간당 총비용 (Burden 포함)', human: '$48.28', robot: '$1.49' },
-          { item: '연간 총비용', human: '$100,422', robot: '$8,000' },
-          { item: '연간 가동시간', human: '2,080h', robot: '5,355h' },
-          { item: '가동률', human: '~92% (연차·병가 제외)', robot: '85% (유지보수)' },
-          { item: '회수기간', human: '—', robot: '~0.5년' },
+        explanation: [
+          '기존에는 로봇 기종이나 센서 위치가 조금만 바뀌어도 처음부터 다시 코딩해야 했음.',
+          '이 기술은 마치 스마트폰의 범용 OS(안드로이드/iOS)처럼, 수십 종의 이질적인 로봇 데이터를 통째로 학습시켜 어떤 로봇이든 즉시 움직이게 만드는 \'기초 체력 모델\'임.',
+          '로봇의 관절 움직임이나 행동을 문장의 단어처럼 \'토큰(Token)\'으로 쪼개어 AI가 다음 행동을 단어 뱉듯이 자연스럽게 예측하도록 만듦.',
         ],
+        stats: [
+          { label: '학습 로봇 종류', value: '25+', sub: 'Open X-Embodiment 데이터셋' },
+          { label: '학습 에피소드', value: '2.1M+', sub: 'Cross-Embodiment 통합' },
+          { label: 'Zero-Shot 성공률', value: '55→93%', sub: 'Octo vs OpenVLA (WidowX)' },
+        ],
+        figures: [
+          { src: 'https://openvla.github.io/static/images/teaser.png', cap: 'OpenVLA — 다양한 로봇을 하나의 VLA 모델로 제어하는 Cross-Embodiment 구조' },
+        ],
+        source: 'Octo (UC Berkeley, 2024), OpenVLA (Stanford/TRI, 2024), Open X-Embodiment (2023)',
       },
-      oemBridge: {
-        headline: '자동화 끝판 OEM이 직접 휴머노이드에 베팅',
-        detail: 'BD(HMG) captive 25,000대, Tesla Optimus 100만대 목표, Amazon Digit 배포 — 자동차·물류·제조 최강자들이 직접 투자.',
-        source: 'BD IR, Tesla IR, Amazon IR, HMG IR (JPM Conference 2026)',
+      /* 섹션 [2] 플로우 매칭 */
+      flowMatching: {
+        title: '부드러운 움직임의 비밀: 플로우 매칭',
+        badge: 'Pi0',
+        roadmapPosition: '2/5 — 부드러운 제어',
+        before: {
+          label: '토큰 기반 액션',
+          desc: '🤖 뚝. 딱. 뚝. 딱.\n행동을 글자처럼 끊어서 예측 → 각진 움직임',
+          color: '#636E72',
+        },
+        after: {
+          label: '플로우 매칭 (ODE)',
+          desc: '🌊 슈우욱-\n시작점→목표까지 부드러운 벡터장을 통째로 설계 → 사람처럼 움직임',
+          color: '#00B894',
+        },
+        explanation: [
+          '행동을 글자처럼 뚝뚝 끊어서 예측하던 기존 방식은 정밀하고 빠른 물리 제어에 한계가 있었음.',
+          'Pi0 모델에 도입된 \'플로우 매칭(Flow Matching)\'은 노이즈 속에서 확률적으로 행동을 찾는 디퓨전 방식과 달리, 시작점부터 목표 행동까지 움직여야 할 \'속도와 방향의 흐름(벡터장)\'을 통째로 설계함.',
+          '그 결과, 로봇이 계란을 쥐거나 문을 여는 연속적인 조작을 사람처럼 끊김 없이 부드럽고 안정적으로 수행할 수 있게 됨.',
+        ],
+        stats: [
+          { label: '조작 성공률', value: '92%', sub: 'Pi0 Dexterous Tasks' },
+          { label: '학습 태스크 수', value: '10+', sub: '단일 모델 Multi-Task' },
+          { label: 'Action Chunk', value: '50 steps', sub: '한 번에 50스텝 행동 생성' },
+        ],
+        figures: [
+          { src: 'https://www.physicalintelligence.company/blog/pi0/img-policy-architecture.webp', cap: 'π0 Architecture — VLM Backbone + Flow Matching Action Expert' },
+        ],
+        source: 'Physical Intelligence π0 (2024), Flow Matching (Lipman et al., 2023)',
+      },
+      /* 섹션 [3] 뇌와 몸의 역할 분담 */
+      cogAct: {
+        title: '뇌와 몸의 역할 분담',
+        badge: 'CogACT · Dual System',
+        roadmapPosition: '3/5 — 뇌·몸 분리',
+        system2: {
+          label: '🧠 상위 모듈 (System 2)',
+          desc: '"방에 들어가서 컵을 들고 나온다"\n느리지만 똑똑한 거대언어모델 기반 계획 수립',
+          color: '#6C5CE7',
+        },
+        system1: {
+          label: '🦾 하위 모듈 (System 1)',
+          desc: '"오른쪽 관절 15도 회전, 손가락 압력 유지"\n반사적이고 초고속인 연속 제어 신호 생성',
+          color: '#FF6B6B',
+        },
+        explanation: [
+          '복잡한 시각 정보 이해, 언어 명령 해석, 실제 관절 모터 제어를 하나의 AI 네트워크에 다 집어넣으면 과부하가 걸려 실패함.',
+          'CogAct는 인간의 사고 구조처럼 거시적인 계획을 짜는 \'인지(Cognition)\' 영역과 모터를 꺾는 \'행동(Action)\' 영역을 철저히 분리함.',
+          '역할 분담 덕분에 로봇이 긴 시간 동안 여러 단계를 거쳐야 하는 복잡한 임무(Long-Horizon Task)를 수행할 때 성공률이 극대화됨.',
+        ],
+        stats: [
+          { label: 'Long-Horizon 성공률', value: '97%', sub: 'CogACT CALVIN ABC→D' },
+          { label: 'GR00T N1 추론', value: '~400ms', sub: 'System2 VLM 추론 주기' },
+          { label: 'System1 제어', value: '100Hz', sub: 'Diffusion Action 생성' },
+        ],
+        figures: [
+          { src: 'https://cogact.github.io/static/images/main-figure.png', cap: 'CogACT — Cognition(인지)과 Action(행동)의 분리 아키텍처' },
+          { src: 'https://raw.githubusercontent.com/NVIDIA/Isaac-GR00T/main/media/model-architecture.png', cap: 'GR00T N1 — System 2 (VLM) + System 1 (DiT Action) Dual System' },
+        ],
+        source: 'CogACT (THU/BIGAI, 2025), GR00T N1 (NVIDIA, 2025), Kahneman "Thinking, Fast and Slow"',
+      },
+      /* 섹션 [4] 월드 파운데이션 모델 */
+      wfmIntro: {
+        title: '물리적 상상력 엔진: 월드 파운데이션 모델',
+        badge: 'WFM',
+        roadmapPosition: '4/5 — 물리적 상상력',
+        pipeline: [
+          { icon: '👁️', label: '눈앞의 상황', desc: '테이블 끝에 놓인 유리컵', color: '#6C5CE7' },
+          { icon: '⚙️', label: 'WFM 엔진 가동', desc: '물리 법칙 기반 미래 예측', color: '#F8B739' },
+          { icon: '🎬', label: '머릿속 시뮬레이션', desc: '밀면 깨지는 미래 비디오', color: '#FF6B6B' },
+          { icon: '✅', label: '행동 결정', desc: '조심스럽게 안쪽으로 옮김', color: '#00B894' },
+        ],
+        explanation: [
+          '엔비디아 코스모스 플랫폼이나 구글 제미나이 로보틱스가 집중하는 핵심 기술임.',
+          '단순히 카메라로 사물을 식별하는 단계를 넘어, 로봇에게 \'물리적 법칙에 대한 상상력\'을 부여함.',
+          '내가 이 물건을 밀면 바닥으로 떨어져 깨질 것이라는 미래의 결과를, 실제로 행동하기 전에 머릿속으로 시뮬레이션(비디오 생성)하여 위험을 스스로 회피하고 최적의 경로를 찾아냄.',
+        ],
+        stats: [
+          { label: 'Cosmos Policy', value: '98.5%', sub: 'LIBERO 벤치마크 성공률' },
+          { label: 'VPP 개선', value: '+31.6%', sub: 'Real Dexterous 기존 대비' },
+          { label: '예측 해상도', value: '1024px', sub: 'Cosmos Predict 2.5B' },
+        ],
+        figures: [
+          { src: 'https://video-prediction-policy.github.io/media/images/method.png', cap: 'VPP — Stage1: 비디오 모델 내부 Predictive Representation 추출 → Stage2: DiT Policy' },
+        ],
+        source: 'NVIDIA Cosmos Policy (2025), VPP (THU+NVIDIA, 2024), DreamVLA (2025)',
+      },
+      /* 섹션 [5] 온디바이스 최적화 삼총사 */
+      onDevice: {
+        title: '실전 현장 투입: 온디바이스 최적화',
+        badge: 'bVLA · PD-VLA · RTC',
+        roadmapPosition: '5/5 — 실전 경량화',
+        techniques: [
+          {
+            step: '1단계',
+            name: '용량 다이어트 (bVLA)',
+            icon: '📦',
+            desc: 'AI 두뇌의 정밀도를 1비트(삼진값) 수준으로 깎아내어 용량을 극단적으로 줄이면서도 똑똑함은 유지함.',
+            metric: 'GPU 메모리 30%만 사용',
+            color: '#6C5CE7',
+          },
+          {
+            step: '2단계',
+            name: '생각 속도 가속 (PD-VLA)',
+            icon: '⚡',
+            desc: '행동을 순차적으로 하나씩 계산하던 방식을 병렬 방정식 풀이로 전환하여 행동 생성 속도를 비약적으로 끌어올림.',
+            metric: '추론 속도 5~10x 향상',
+            color: '#FF6B6B',
+          },
+          {
+            step: '3단계',
+            name: '움직임 접착제 (RTC)',
+            icon: '🧩',
+            desc: '한 번에 여러 걸음의 행동 묶음을 실행할 때, 경계면에서 멈칫거리지 않도록 다음 움직임을 백그라운드에서 미리 계산해 부드럽게 이어 붙여주는 실전용 접착제 기술임.',
+            metric: '레이턴시 53% 감소',
+            color: '#00B894',
+          },
+        ],
+        explanation: [
+          '거대한 AI 모델은 데이터 센터의 슈퍼컴퓨터에서나 돌아가므로, 실제 공장이나 가정의 로봇 칩에 넣으려면 극단적인 다이어트가 필요함.',
+          'bVLA(1비트 양자화) → PD-VLA(병렬 디코딩) → RTC(실시간 청킹) 세 기술을 순차 적용하면, 수십억 파라미터 모델도 Jetson 급 엣지 칩에서 실시간 구동 가능.',
+        ],
+        stats: [
+          { label: 'RD-VLA 속도', value: '80×', sub: '0.5B ≥ 7B 성능, 80배 빠름' },
+          { label: 'bVLA 압축률', value: '1-bit', sub: '32-bit → 삼진값(−1,0,+1)' },
+          { label: 'RTC 레이턴시', value: '53%↓', sub: 'Action Chunk 이어붙임' },
+        ],
+        figures: [
+          { src: 'https://rd-vla.github.io/static/images/img_overview.jpeg', cap: 'RD-VLA — 텍스트 CoT(좌) vs Latent 반복 추론(우). 0.5B가 7B를 능가' },
+          { src: 'https://rd-vla.github.io/static/images/img_architecture.png', cap: 'RD-VLA Architecture — VLM + Latent Iterative Refinement + Continuous Action' },
+        ],
+        source: 'RD-VLA (2026), bVLA (2025), PD-VLA (2025), RTC (UC Berkeley, 2024)',
       },
     },
 
     /* ── 사이드바 섹션 구조 (7-Parts 스토리 아크) ── */
     sidebarSections: [
-      { group: '도입', items: [{ id: 'sec-intro', label: '회의론 깨기 4 카드' }] },
+      { group: '기술 개요', items: [
+        { id: 'sec-paradigm', label: '패러다임 시프트' },
+        { id: 'sec-flowmatch', label: '플로우 매칭 (Pi0)' },
+        { id: 'sec-cogact', label: '뇌·몸 역할 분담' },
+        { id: 'sec-wfmintro', label: '물리적 상상력 (WFM)' },
+        { id: 'sec-ondevice', label: '온디바이스 최적화' },
+      ]},
       { group: 'Part 1 — HW × AI', items: [
         { id: 'sec-aistack', label: 'Physical AI 기술 스택' },
         { id: 'sec-lvm', label: 'Locomotion vs Manipulation' },
@@ -849,14 +966,13 @@ const DASHBOARD_DATA = {
   updateLog: [
     {
       date: '2026-05-25',
-      title: '발표용 7-Parts 스토리 아크 재배열 + 도입부 추가',
-      source: 'BLS QCEW (NAICS 3361), BLS ECEC, Deloitte/Manufacturing Institute (2021)',
+      title: '초보자용 기술 개요 5섹션 추가 + 수요 논거 프레임워크 이전',
+      source: 'Octo, OpenVLA, π0, CogACT, GR00T N1, RD-VLA, bVLA, PD-VLA, RTC, BLS, Deloitte',
       changes: [
-        '도입부 회의론 깨기 4 카드 추가 (자동화 정체 / 노동 부족 / TCO / OEM 베팅)',
-        'TCO 비교 모델: BLS 1차 출처 기반 미국 자동차 제조업 인건비 vs 휴머노이드',
-        '섹션 순서 7-Parts 발표 흐름으로 재배열',
-        '좌측 Contents 사이드바 네비게이션 추가 (스크롤 추적)',
-        'Update Log 페이지 상단 이동',
+        '기술 설명 탭: 초보자용 기술 개요 5섹션 신설 (패러다임 시프트 / 플로우 매칭 / 뇌·몸 분리 / WFM / 온디바이스)',
+        '5단계 로드맵 배너 추가 (범용 OS → 부드러운 제어 → 뇌·몸 분리 → 물리적 상상력 → 실전 경량화)',
+        '각 섹션에 논문 Figure 이미지, 정량 수치(num-box), 초보자 설명 텍스트 포함',
+        '기존 도입부 4카드 → 프레임워크 탭으로 이전 (수요 논거 4 Pillars)',
       ],
     },
     {
