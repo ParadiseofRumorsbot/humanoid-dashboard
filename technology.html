@@ -852,8 +852,66 @@ window.addEventListener('DOMContentLoaded', render);
         <div class="intro-card" style="border-color:#FF6B6B"><h3 style="color:#FF6B6B">자동화 90%는 미국 제조업의 1.7% 이야기</h3><div class="detail">미국 제조업 사업체 중 98.3%는 중소기업(종업원 500인 미만). 이들의 자동화 침투율은 한 자릿수.</div><div class="num-row"><div class="num-box"><div class="num-label">중소기업 비중</div><div class="num-value">98.3%</div><div class="num-sub">미국 전체 제조업체</div></div><div class="num-box"><div class="num-label">산업용 로봇 설치</div><div class="num-value">542,100</div><div class="num-sub">2024년 글로벌 연간</div></div></div><div class="source-tag">출처: US Census Bureau SUSB</div></div>
         <div class="intro-card" style="border-color:#6C5CE7"><h3 style="color:#6C5CE7">2030년까지 채울 수 없는 제조업 일자리 210만 개</h3><div class="detail">Deloitte 연구: 미국 제조업 숙련 노동력 부족으로 210만 일자리 미충원, 경제적 손실 ~$1T.</div><div class="num-row"><div class="num-box"><div class="num-label">미충원 일자리</div><div class="num-value">210만</div><div class="num-sub">2030E 미국 제조업</div></div><div class="num-box"><div class="num-label">경제적 손실</div><div class="num-value">~$1T</div><div class="num-sub">2030E 누적 추정</div></div></div><div class="source-tag">출처: Deloitte &amp; Manufacturing Institute (2021)</div></div>
       </div>
-      <div class="intro-card" style="border-color:#00B894"><h3 style="color:#00B894">휴머노이드 1대 = 미국 자동차 노동자 인건비 0.5년 회수</h3><div class="detail">BLS 기반 시간당 총비용 $48.28 vs 휴머노이드 $1.49/h. 연간 가동 5,355h.</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0"><div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">HUMAN TOTAL COMP</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">$34.00 <span style="font-size:11px;color:var(--ink-3)">× 1.42 = $48.28/h</span></div></div><div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">ROBOT EFFECTIVE COST</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">$1.49/h</div></div></div><div class="source-tag">출처: BLS QCEW (NAICS 3361) + BLS ECEC (2025.03)</div></div>
-      <div class="intro-card" style="border-color:#F8B739"><h3 style="color:#F8B739">자동화 끝판 OEM이 직접 휴머노이드에 베팅</h3><div class="detail">BD(HMG) captive 25,000대, Tesla Optimus 100만대 목표, Amazon Digit 배포 — 최강자들이 직접 투자.</div><div class="source-tag">출처: BD IR, Tesla IR, Amazon IR, HMG IR (JPM 2026)</div></div>
+      <div class="intro-card" style="border-color:#00B894">
+        <h3 style="color:#00B894">휴머노이드 1대 = 미국 자동차 노동자 인건비 0.5년 회수</h3>
+        <div class="detail">BLS 기반 시간당 총비용 $48.28 vs 휴머노이드 $1.49/h. 연간 가동 5,355h — 사람 대비 32배 저렴.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">HUMAN TOTAL COMP</div>
+            <div style="font-family:var(--mono);font-size:16px;font-weight:700">$34.00 <span style="font-size:11px;color:var(--ink-3)">× 1.42 = $48.28/h</span></div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px">
+            <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">ROBOT EFFECTIVE COST</div>
+            <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">$1.49/h</div>
+          </div>
+        </div>
+        <!-- TCO 비교 상세 테이블 -->
+        <div class="scroll-x">
+          <table class="tco-table">
+            <thead>
+              <tr><th>항목</th><th>사람 (Human)</th><th>휴머노이드 (Robot)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>시간당 기본임금</td><td>$34.00</td><td>—</td></tr>
+              <tr><td>복리후생·보험 배수</td><td>× 1.42</td><td>—</td></tr>
+              <tr><td style="font-weight:700">시간당 총비용</td><td style="font-weight:700">$48.28</td><td class="highlight-cell">$1.49</td></tr>
+              <tr><td>연간 가동시간</td><td>2,080 h</td><td>5,355 h</td></tr>
+              <tr><td style="font-weight:700">연간 총비용</td><td style="font-weight:700">$100,422</td><td class="highlight-cell">$7,979</td></tr>
+              <tr><td>로봇 도입 비용(가정)</td><td colspan="2" style="text-align:center">~$50,000 / 대 (5년 감가)</td></tr>
+              <tr><td style="font-weight:700">1대 교체 연간 절감</td><td colspan="2" style="text-align:center;font-weight:700;color:#00B894">~$92,443 / yr</td></tr>
+              <tr><td style="font-weight:700">투자 회수 기간</td><td colspan="2" style="text-align:center;font-weight:700;color:#00B894">≈ 0.5년 (약 6.5개월)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:4px;line-height:1.5">
+          * 기본임금: BLS QCEW 2024 NAICS 3361 (자동차 제조) 평균 시급<br>
+          * 복리후생 배수: BLS ECEC 2025.03 (민간 제조업 employer cost = 급여 + 복리후생)<br>
+          * 로봇 가동: 24h × 365d × 61% 가동률 = 5,355h (유지보수·충전 제외)
+        </div>
+        <div class="source-tag">출처: BLS QCEW (NAICS 3361) + BLS ECEC (2025.03)</div>
+      </div>
+      <div class="intro-card" style="border-color:#F8B739">
+        <h3 style="color:#F8B739">자동화 끝판 OEM이 직접 휴머노이드에 베팅</h3>
+        <div class="detail">BD(HMG) captive 25,000대, Tesla Optimus 100만대 목표, Amazon Digit 배포 — 최강자들이 직접 투자.</div>
+        <!-- OEM 양산 목표 테이블 -->
+        <div class="scroll-x">
+          <table class="tco-table">
+            <thead>
+              <tr><th>기업</th><th>2026 목표</th><th>2028~30 목표</th><th>가격</th><th>배터리</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>🇺🇸 Tesla</td><td>5~10만 CAPA</td><td style="font-weight:700">100만대 목표</td><td>$20~30K</td><td>2.3kWh / 2170 원통형</td></tr>
+              <tr><td>🇺🇸 Boston Dynamics</td><td>RMCA 개소 (여름)</td><td>3만 CAPA (2028E)</td><td>—</td><td>Self-swappable</td></tr>
+              <tr><td>🇨🇳 AGIBOT</td><td>수만대</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>🇨🇳 UBTECH</td><td>1만대</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>🇨🇳 Unitree</td><td>—</td><td>—</td><td>$16K~</td><td>—</td></tr>
+              <tr><td>🇺🇸 Figure AI</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+              <tr><td>🇺🇸 Agility</td><td>1만 CAPA</td><td>3만대 (2028E)</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="source-tag">출처: BD IR, Tesla IR, Amazon IR, HMG IR (JPM 2026)</div>
+      </div>
     </section>
 
     <!-- ═══ 로드맵 배너 ═══ -->
