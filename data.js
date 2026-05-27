@@ -807,7 +807,14 @@ const DASHBOARD_DATA = {
           { label: '학습 태스크 수', value: '10+', sub: '단일 모델 Multi-Task' },
           { label: 'Action Chunk', value: '50 steps', sub: '한 번에 50스텝 행동 생성' },
         ],
-        figures: [],
+        figures: [
+          { src: 'https://arxiv.org/html/2410.24164/x1.png', cap: 'Pi0 Framework — VLM Backbone + Flow Matching Action Expert 아키텍처 전체 구조',
+            terms: [
+              { en: 'Flow Matching', ko: '노이즈에서 출발해 벡터장을 따라 흘러가며 목표 행동을 생성하는 생성 모델 기법' },
+              { en: 'Action Expert', ko: 'VLM이 이해한 장면 정보를 받아 실제 로봇 관절 행동을 출력하는 전문 디코더' },
+              { en: 'Pre-training Mixture', ko: '다양한 로봇 데이터셋을 섞어 하나의 범용 모델을 사전학습하는 전략' },
+            ]},
+        ],
         source: 'Physical Intelligence π0 (2024), Flow Matching (Lipman et al., 2023)',
       },
       /* 섹션 [3] 뇌와 몸의 역할 분담 */
@@ -878,6 +885,12 @@ const DASHBOARD_DATA = {
           { label: '예측 해상도', value: '1024px', sub: 'Cosmos Predict 2.5B' },
         ],
         figures: [
+          { src: 'https://raw.githubusercontent.com/nvidia-cosmos/cosmos-predict2/main/assets/cosmos-predict-diagram.png', cap: 'NVIDIA Cosmos Predict — 현재 상태 + 제어 신호 → 세계 모델 → 미래 상태 예측',
+            terms: [
+              { en: 'World Foundation Model', ko: '물리 법칙을 학습하여 현재 상태에서 미래 상태를 시뮬레이션하는 대형 비디오 AI 모델' },
+              { en: 'Current State', ko: '로봇이 현재 관측하는 카메라 이미지 + 센서 데이터' },
+              { en: 'Control Signal', ko: '로봇에 내리는 행동 명령 (관절 각도, 속도 등)' },
+            ]},
           { src: 'https://raw.githubusercontent.com/video-prediction-policy/video-prediction-policy.github.io/main/media/images/method.png', cap: 'VPP — Stage1: 비디오 모델 내부 Predictive Representation 추출 → Stage2: DiT Policy',
             terms: [
               { en: 'Stage 1: Predictive Representation', ko: '비디오 모델 내부에서 미래 예측에 유용한 특징 벡터를 추출하는 단계' },
@@ -967,6 +980,18 @@ const DASHBOARD_DATA = {
               { en: 'Latent Iterative Refinement', ko: '잠재 공간에서 답을 반복적으로 다듬는 과정. 반복 횟수로 "생각의 깊이" 조절' },
               { en: 'Continuous Action Output', ko: '이산 토큰이 아닌 연속적 실수값(−1.0~1.0)으로 행동을 출력. 부드러운 제어에 필수' },
               { en: 'Recurrent Depth', ko: '같은 레이어를 여러 번 반복 통과시키는 구조. 반복할수록 정교한 추론' },
+            ]},
+          { src: 'https://arxiv.org/html/2506.07530v2/x2.png', cap: 'BitVLA — Quantize-then-Distill: 32-bit → 1-bit 양자화 + 교사 모델 증류 파이프라인',
+            terms: [
+              { en: 'Quantize-then-Distill', ko: '먼저 모델을 1비트로 양자화하고, 원본(교사) 모델의 지식을 증류하여 성능을 복원하는 2단계 전략' },
+              { en: '1-bit LLM', ko: '가중치를 삼진값(−1, 0, +1)으로만 표현하는 극단적 경량 모델. GPU 메모리 30%만 사용' },
+              { en: 'OFT Head', ko: 'Orthogonal Fine-Tuning. 로봇 태스크에 맞게 경량 미세조정하는 어댑터' },
+            ]},
+          { src: 'https://arxiv.org/html/2506.07339v1/x3.png', cap: 'RTC — Soft Masking으로 Action Chunk 경계를 부드럽게 이어붙이는 실시간 청킹',
+            terms: [
+              { en: 'Execution Horizon', ko: '현재 실행 중인 행동 묶음(Chunk)의 시간 범위' },
+              { en: 'Guidance Weight', ko: '이전 Chunk와 새 Chunk를 블렌딩하는 가중치. 1→0으로 점진 감소하여 끊김 방지' },
+              { en: 'Inference Delay', ko: '새 Chunk를 계산하는 동안 이전 행동을 유지하는 구간. 실시간 제약 대응' },
             ]},
         ],
         source: 'RD-VLA (2026), bVLA (2025), PD-VLA (2025), RTC (UC Berkeley, 2024)',
