@@ -980,6 +980,7 @@ const DASHBOARD_DATA = {
       ]},
       { group: '도입', items: [
         { id: 'sec-demand', label: '수요 논거 4 Pillars' },
+        { id: 'sec-ondevice-hero', label: '핵심 질문 (히어로)' },
       ]},
       { group: 'Part 1 — 범용 OS', items: [
         { id: 'sec-paradigm', label: '패러다임 시프트 + AI 스택' },
@@ -994,7 +995,6 @@ const DASHBOARD_DATA = {
         { id: 'sec-wfmintro', label: 'WFM 개요 + 심화' },
       ]},
       { group: 'Part 5 — 실전 경량화', items: [
-        { id: 'sec-ondevice-hero', label: '핵심 질문 (히어로)' },
         { id: 'sec-ondevice', label: '온디바이스 최적화' },
       ]},
       { group: 'Part 6 — 데이터+시뮬', items: [
