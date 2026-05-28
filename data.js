@@ -581,6 +581,8 @@ const DASHBOARD_DATA = {
         { name: 'DexCap', desc: 'SLAM + 전자기장 장갑으로 사람 손 모션캡처 → 로봇 손 retargeting', pros: '사람 손 정교한 조작 데이터 수집, Portable', cons: '손끝 위주, 전신 대응 한계', color: '#6C5CE7' },
         { name: 'AirExo', desc: '저비용 양팔 외골격으로 Whole-arm manipulation 데이터 수집', pros: 'In-the-wild + Teleoperation 병용, 다중 로봇 호환', cons: '외골격-로봇 도메인 갭 존재', color: '#F8B739' },
         { name: 'AirExo-2', desc: '$600 외골격으로 수집 → Visual Adaptor로 Pseudo-robot Demonstration 변환', pros: '시각·깊이·행동 모두 로봇 도메인 변환, Zero-shot 배포', cons: '생성 이미지 품질에 의존', color: '#00B894' },
+        { name: 'UMI / Dex UMI', desc: '로봇 액추에이터를 사람 손에 직접 장착(외골격)하여 데이터 수집. Teleop 없이 정책 학습 가능', pros: '수집 속도 최고, 성공률 높음, 로봇 본체 불필요', cons: '하드웨어별 커스텀 외골격 필요', color: '#E17055' },
+        { name: 'Ego Scale', desc: '21,000시간 인간 1인칭(Egocentric) 비디오로 사전학습. 로봇 데이터 0%, Teleop 0.1% 미만으로 덱스터리티 달성', pros: '10M시간+ 확장 가능, FSD 수준 데이터 플라이휠', cons: '로봇 하드웨어 정렬도 낮음, 파인튜닝 필수', color: '#F8B739' },
       ],
       pipeline: [
         { step: 1, name: 'In-the-Wild 수집', desc: '사람이 외골격/장갑 착용 후 실제 환경에서 작업', icon: '🧤' },
@@ -604,6 +606,7 @@ const DASHBOARD_DATA = {
         { name: 'Real→Sim', desc: '실제 환경 스캔 → 시뮬레이터 이전', examples: 'GRS, SplatSim', color: '#6C5CE7' },
         { name: 'Generative Sim', desc: '생성형 AI로 3D 에셋·태스크·리워드 자동 생성', examples: 'Gen2Sim, RoboTwin', color: '#FF6B6B' },
         { name: 'Real-Sim 협업', desc: '디지털 트윈을 RL 탐색·정책 평가에 실시간 활용', examples: 'SyncTwin, TwinRL', color: '#00B894' },
+        { name: 'Dream Dojo (Neural Sim)', desc: '비디오 월드 모델을 신경망 시뮬레이터로 전환. 물리 엔진·그래픽스 엔진 불필요. 액션 입력 → RGB + 센서 상태 실시간 출력', examples: 'NVIDIA Dream Dojo', color: '#E17055' },
       ],
       papers: [
         { name: 'GRS', full: 'Generating Robotic Simulation Tasks from Real-World Images', method: 'RGBD 1장 → SAM2 세그먼트 → VLM 장면 설명 → 에셋 매칭 → 태스크 코드 자동생성', highlight: 'LLM Router가 시뮬레이션·테스트 코드 반복 수정' },
@@ -652,6 +655,7 @@ const DASHBOARD_DATA = {
         { gen: '2세대', name: 'π0 / OpenVLA', desc: 'VLM + Diffusion/Flow Action Head', year: '2024' },
         { gen: '3세대', name: 'π0.5 / GR00T N1', desc: 'Dual System (System1 빠른 행동 + System2 느린 추론)', year: '2025' },
         { gen: '4세대', name: 'π0.6 / RD-VLA / MeM', desc: 'RL 자기개선 + Latent Reasoning + Embodied Memory', year: '2025-26' },
+        { gen: '5세대', name: 'Dream Zero / WAM', desc: 'World + Action 동시 디코딩. 물리적 세계 자체를 모델링', year: '2026' },
       ],
     },
 
@@ -748,6 +752,9 @@ const DASHBOARD_DATA = {
       { term: 'Domain Randomization', full: 'Domain Randomization', def: '시뮬레이션 파라미터를 무작위 변경하여 Sim-to-Real 일반화 향상', category: 'sim' },
       { term: 'Inverse Dynamics', full: 'Inverse Dynamics Model', def: '현재→목표 상태로 가기 위한 행동을 추정하는 모델', category: 'method' },
       { term: 'MPC', full: 'Model Predictive Control', def: '여러 행동 후보를 시뮬레이션하여 최적 행동을 선택하는 제어 방식', category: 'method' },
+      { term: 'WAM', full: 'World Action Model', def: 'VLA의 후속 패러다임. 세계 상태(픽셀)와 행동(액션)을 동시에 디코딩하는 모델 (NVIDIA Dream Zero)', category: 'model' },
+      { term: 'Dream Zero', full: 'Dream Zero', def: '미래를 꿈꾸며(Dream) 행동하는 정책 모델. 비디오 예측 + 액션을 jointly decode. Zero-shot 일반화', category: 'model' },
+      { term: 'Ego Scale', full: 'Egocentric Scale', def: '인간 1인칭 비디오 21K시간으로 사전학습. 로봇 데이터 없이 덱스터리티 달성. Neuroscaling Law 발견', category: 'data' },
     ],
 
     /* ── 초보자용 기술 개요 5 섹션 ── */
@@ -1038,6 +1045,19 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-05-28',
+      title: 'Jim Fan "The Great Parallel" 로보틱스 프레임워크 반영',
+      source: 'NVIDIA Jim Fan (AI Infrastructure Network 2026)',
+      changes: [
+        'Part 2: VLA→WAM 패러다임 전환 (Dream Zero, Joint Decoding) 섹션 추가',
+        'Part 6: Ego Scale (21K시간 1인칭 비디오) + Dream Dojo (신경망 시뮬레이터) 추가',
+        'Physical AI: The End Game 3대 업적 + 2040 타임라인 섹션 신설',
+        'VLA 진화 타임라인 5세대 WAM 항목 추가',
+        '용어 사전: WAM, Dream Zero, Ego Scale 3개 항목 추가',
+        'Great Parallel 프레임워크 + 데이터 확장성 비교를 CSS 다이어그램으로 시각화',
+      ],
+    },
     {
       date: '2026-05-25',
       title: '초보자용 기술 개요 5섹션 추가 + 수요 논거 프레임워크 이전',
