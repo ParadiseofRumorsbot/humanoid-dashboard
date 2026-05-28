@@ -80,12 +80,46 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
   </section>
 
 
+  <section class="card section-gap">
+    <div class="card-title">📡 Production Tracker (2024~2026) <span class="badge" style="background:#00B894;color:#fff">각사 IR · Omdia</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">Agibot 누적</div><div class="num-value">10,000대</div><div class="num-sub">2026.03 기준 · Source: Agibot</div></div>
+      <div class="num-box" style="border-left:3px solid #3498db"><div class="num-label">Figure AI 생산</div><div class="num-value">160대/월</div><div class="num-sub">Source: Figure AI</div></div>
+      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">중국 데이터 팩토리</div><div class="num-value">50+개소</div><div class="num-sub">Source: 휴머노이드로봇상하이유한공사</div></div>
+    </div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">Ukraine 1Q26 로봇 미션</div><div class="num-value">22,000건</div><div class="num-sub">Source: The Sun</div></div>
+      <div class="num-box" style="border-left:3px solid #E17055"><div class="num-label">Uforce 누적 미션</div><div class="num-value">150,000+건</div><div class="num-sub">Source: 각사</div></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">글로벌 휴머노이드 생산량 2024~2025 추적 기반 (Omdia). 중국 제조사 중심 빠른 스케일업 진행 중.</div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">💰 글로벌 로보틱스 VC 투자 <span class="badge" style="background:#6C5CE7;color:#fff">CBInsights</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border:2px solid #6C5CE7"><div class="num-label">2025 VC 투자 총액</div><div class="num-value">$40.7B</div><div class="num-sub">Source: CBInsights</div></div>
+    </div>
+  </section>
+
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
     <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-28</span>
+          <span style="font-size:12px;font-weight:600">2H26 리서치 리포트 데이터 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">Agibot / Figure AI / CBInsights / Omdia / The Sun</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Production Tracker 신설: Agibot 누적 10,000대, Figure AI 160대/월</li>
+          <li>중국 데이터 팩토리 50+개소, Ukraine 1Q26 로봇 미션 22,000건</li>
+          <li>Uforce 누적 150,000+ 미션</li>
+          <li>글로벌 로보틱스 VC 투자: 2025년 $40.7B (CBInsights)</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>

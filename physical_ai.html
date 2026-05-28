@@ -211,12 +211,86 @@ window.addEventListener('DOMContentLoaded', render);
     </div>
   </section>
 
+  <section class="card section-gap">
+    <div class="card-title">📊 Robot Action Data 수집 비용 <span class="badge" style="background:#e74c3c;color:#fff">Silicon Valley Robotics Center</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">Real-World 데이터</div><div class="num-value">$136/hr</div><div class="num-sub">물리적 환경 수집 · Source: SVRC</div></div>
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">Online/Sim 데이터</div><div class="num-value">$0.001/hr</div><div class="num-sub">시뮬레이션 기반 · Source: SVRC</div></div>
+      <div class="num-box" style="border:2px solid var(--ink)"><div class="num-label">비용 격차</div><div class="num-value">136,000x</div><div class="num-sub">Sim-to-Real 전이가 핵심 과제</div></div>
+    </div>
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px;margin-top:8px">
+      <strong>시사점:</strong> 실제 환경 데이터 수집은 시뮬레이션 대비 13만배 비용. World Foundation Model 기반 합성 데이터로 전환하면 데이터 수집 비용 구조가 근본적으로 변화. 시뮬레이션 정확도 향상이 핵심 경쟁력.
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">🏗️ RMAC — Robot Metaplant Application Center <span class="badge" style="background:#4ecdc4;color:#fff">Hyundai Motor</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #4ecdc4"><div class="num-label">운영 주체</div><div class="num-value">현대차그룹</div><div class="num-sub">로봇 훈련 전용 시설</div></div>
+      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">개소 예정</div><div class="num-value">2026.08</div><div class="num-sub">Source: Hyundai Motor</div></div>
+    </div>
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px;margin-top:8px">
+      <strong>역할:</strong> 실제 제조 환경에서 로봇 학습 데이터 대량 수집. Boston Dynamics Atlas의 공장 투입 전 사전 훈련·검증 센터. 현대차 울산·아산 공장 공정 데이터를 시뮬레이션과 연동하여 Sim-to-Real 전이 가속.
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">🧠 World Foundation Models <span class="badge" style="background:#6C5CE7;color:#fff">Google · NVIDIA · Meta</span></div>
+    <div class="scroll-x">
+      <div style="display:grid;grid-template-columns:130px 100px 1fr;gap:0;font-family:var(--mono);font-size:11px">
+        <div class="th" style="text-align:left">모델</div><div class="th">개발사</div><div class="th" style="text-align:left">설명</div>
+        <div class="td" style="text-align:left;font-weight:600;border-left:3px solid #6C5CE7;padding-left:10px">Genie</div><div class="td">Google DeepMind</div><div class="td" style="text-align:left;color:var(--ink-2);white-space:normal">영상·이미지 기반 인터랙티브 월드 생성. 로봇이 행동할 가상 환경을 자동 합성.</div>
+        <div class="td" style="text-align:left;font-weight:600;border-left:3px solid #00B894;padding-left:10px">Cosmos</div><div class="td">NVIDIA</div><div class="td" style="text-align:left;color:var(--ink-2);white-space:normal">물리 시뮬레이션 기반 월드 모델. Isaac Sim과 연동하여 로봇 훈련용 합성 데이터 대량 생성.</div>
+        <div class="td" style="text-align:left;font-weight:600;border-left:3px solid #FF6B6B;padding-left:10px">V-JEPA</div><div class="td">Meta</div><div class="td" style="text-align:left;color:var(--ink-2);white-space:normal">비디오 예측 기반 자기지도 학습. 물리 세계의 인과관계를 영상에서 추출하는 표현 학습.</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">World Foundation Model은 로봇이 물리 세계를 이해하는 '내부 시뮬레이터' 역할. 합성 데이터 생성 비용을 극적으로 절감.</div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">🎯 VLA (Vision-Language-Action) 모델 <span class="badge" style="background:var(--ink);color:var(--bg)">New Paradigm</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">
+      기존 로봇 제어: 비전 → 언어 이해 → 동작 계획 → 모터 제어가 분리된 파이프라인.<br>
+      <strong>VLA 모델</strong>: 비전(V) + 언어(L) + 행동(A)을 단일 트랜스포머에서 end-to-end로 처리하는 새로운 패러다임.
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">Vision (V)</div>
+        <div style="font-size:11px;color:var(--ink-2)">카메라·LiDAR 입력을 토큰화. 공간·물체·장애물 인식을 단일 인코더로 처리.</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">Language (L)</div>
+        <div style="font-size:11px;color:var(--ink-2)">자연어 명령 이해. "저 상자를 선반 위에 올려줘" 같은 고수준 지시를 행동 컨텍스트로 변환.</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">Action (A)</div>
+        <div style="font-size:11px;color:var(--ink-2)">관절 토크·궤적을 직접 출력. 별도 모션 플래너 없이 end-to-end 제어 실현.</div>
+      </div>
+    </div>
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px;margin-top:10px">
+      <strong>의의:</strong> VLA는 로봇의 '범용 지능'을 가능하게 하는 핵심 아키텍처. 새 작업을 프로그래밍이 아닌 자연어 지시만으로 수행 가능. Google RT-2, OpenVLA 등이 대표 사례. 두뇌(Brain) 계층의 장기 부가가치 핵심.
+    </div>
+  </section>
+
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
     <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-28</span>
+          <span style="font-size:12px;font-weight:600">2H26 리서치 리포트 데이터 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">Silicon Valley Robotics Center / Hyundai Motor / Google DeepMind / NVIDIA / Meta</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Robot action data 수집 비용: 실제 $136/hr vs 시뮬레이션 $0.001/hr (136,000배 격차)</li>
+          <li>RMAC (Robot Metaplant Application Center): 현대차 로봇 훈련 시설, 2026.08 개소</li>
+          <li>World Foundation Models: Genie (Google DeepMind), Cosmos (NVIDIA), V-JEPA (Meta)</li>
+          <li>VLA (Vision-Language-Action) 모델 — 로봇 제어 새 패러다임 섹션 신설</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>
