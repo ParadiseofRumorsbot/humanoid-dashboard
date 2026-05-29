@@ -755,6 +755,8 @@ const DASHBOARD_DATA = {
       { term: 'WAM', full: 'World Action Model', def: 'VLA의 후속 패러다임. 세계 상태(픽셀)와 행동(액션)을 동시에 디코딩하는 모델 (NVIDIA Dream Zero)', category: 'model' },
       { term: 'Dream Zero', full: 'Dream Zero', def: '미래를 꿈꾸며(Dream) 행동하는 정책 모델. 비디오 예측 + 액션을 jointly decode. Zero-shot 일반화', category: 'model' },
       { term: 'Ego Scale', full: 'Egocentric Scale', def: '인간 1인칭 비디오 21K시간으로 사전학습. 로봇 데이터 없이 덱스터리티 달성. Neuroscaling Law 발견', category: 'data' },
+      { term: 'PSR', full: 'Price-to-Sales Ratio', def: '시가총액 ÷ 매출액. 적자·초기 성장기업 밸류에이션에 활용. BD 추정 시 Peer 평균 21.9배 적용', category: 'valuation' },
+      { term: '풋옵션', full: 'Put Option', def: '정해진 가격에 지분을 되팔 권리. 소프트뱅크가 보유한 BD 잔여지분 9.9%에 대한 풋옵션 만기 2026.6.21', category: 'valuation' },
     ],
 
     /* ── 초보자용 기술 개요 5 섹션 ── */
@@ -1045,6 +1047,18 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-05-29',
+      title: 'Boston Dynamics 지배구조·밸류에이션 + 공장 ROI 시나리오 반영',
+      source: '보스턴다이내믹스 · 현대차 공시 / 일부 자체추정',
+      changes: [
+        'KR 밸류체인: BD 지배구조 CSS 도식 신설 (HMG Global 56.3%, 정의선 22.5%, 글로비스 11.25%, 소프트뱅크 9.9%)',
+        'KR 밸류체인: BD 밸류에이션(자체추정) 현재가치 123.4조원 / 2030년 180.7조원 / 매출 55억$ / Peer PSR 21.9배',
+        'Physical AI: 휴머노이드 도입 공장 누적 ROI 시나리오(자체추정) 7년차 $281K~$521K 추가',
+        'Physical AI: 현대차 기술·생산·정비직 인력 추이(66.4K→61.9K) 추가',
+        '용어 사전: PSR, 풋옵션 2개 항목 추가',
+      ],
+    },
     {
       date: '2026-05-28',
       title: 'Jim Fan "The Great Parallel" 로보틱스 프레임워크 반영',

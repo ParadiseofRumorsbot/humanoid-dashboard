@@ -166,12 +166,70 @@ window.addEventListener('DOMContentLoaded', render);
     </div>
   </section>
 
+  <!-- ═══ BD 지배구조 ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">🏛️ Boston Dynamics 지배구조 <span class="badge" style="background:var(--ink);color:var(--bg)">보스턴다이내믹스·현대차 공시</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px;line-height:1.6">현대차그룹이 합작법인 <strong>HMG Global LLC</strong>를 통해 BD를 지배. 소프트뱅크는 풋옵션(만기 2026.6.21)을 보유한 잔여 지분 9.9% 보유.</p>
+
+    <!-- Tier 1: HMG Global 구성 -->
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px">① HMG Global LLC 출자 구조</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:6px">
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:12px">현대차</div><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#0984E3">49.5%</div></div>
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:12px">기아</div><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#0984E3">30.5%</div></div>
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:12px">현대모비스</div><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#0984E3">20.0%</div></div>
+    </div>
+    <div style="text-align:center;color:var(--ink-3);font-size:16px;margin:2px 0">↓</div>
+    <div style="background:var(--ink);color:var(--bg);border-radius:8px;padding:10px 14px;text-align:center;margin-bottom:18px"><span style="font-weight:700;font-size:13px">HMG Global LLC</span></div>
+
+    <!-- Tier 2: BD 주주 구성 -->
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px">② Boston Dynamics 주주 구성</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:6px">
+      <div style="background:var(--bg-soft);border:2px solid var(--ink);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">HMG Global LLC</div><div style="font-family:var(--mono);font-size:18px;font-weight:700">56.3%</div></div>
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">정의선 회장</div><div style="font-family:var(--mono);font-size:18px;font-weight:700">22.5%</div></div>
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">현대글로비스</div><div style="font-family:var(--mono);font-size:18px;font-weight:700">11.25%</div></div>
+      <div style="background:var(--bg-soft);border:2px solid #F8B739;border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">소프트뱅크</div><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#F8B739">9.9%</div></div>
+    </div>
+    <div style="text-align:center;color:var(--ink-3);font-size:16px;margin:2px 0">↓</div>
+    <div style="background:linear-gradient(135deg,#0A0A08,#2d2d28);color:var(--bg);border-radius:8px;padding:12px 14px;text-align:center"><span style="font-weight:700;font-size:14px">🤖 Boston Dynamics</span></div>
+  </section>
+
+  <!-- ═══ BD 밸류에이션 (자체추정) ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">💰 Boston Dynamics 밸류에이션 <span class="badge" style="background:#F8B739;color:#000">자체추정</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border:2px solid #F8B739"><div class="num-label">현재가치 (10% 할인)</div><div class="num-value" style="color:#F8B739">123.4조원</div><div class="num-sub">현재 추정 기업가치</div></div>
+      <div class="num-box"><div class="num-label">2030년 기업가치</div><div class="num-value">180.7조원</div><div class="num-sub">PSR 적용 추정</div></div>
+      <div class="num-box"><div class="num-label">2030년 예상 매출</div><div class="num-value">55억$</div><div class="num-sub">약 8.25조원</div></div>
+      <div class="num-box"><div class="num-label">적용 PSR</div><div class="num-value">21.9배</div><div class="num-sub">Peer 평균</div></div>
+    </div>
+    <div class="guide-desc" style="font-family:var(--sans);letter-spacing:0">
+      <strong>주요 가정 (자체추정):</strong><br>
+      • 2030년 아틀라스 2.5만 대 양산 → 휴머노이드 ASP 20만$/대, 모바일 로봇(Spot·Stretch) ASP 10만$/대<br>
+      • 휴머노이드 매출 50억$ + 모바일 매출 5억$ = 총 매출 55억$<br>
+      • Peer(피규어AI·유비테크·유니트리) 평균 PSR 21.9배 적용 → 2030년 180.7조원<br>
+      • 할인율 10% 적용 → 현재가치 123.4조원<br>
+      <span style="color:var(--ink-3);font-size:11px">* 본 밸류에이션 수치는 증권사 자체추정이며 원데이터가 아님</span>
+    </div>
+  </section>
+
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
     <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-29</span>
+          <span style="font-size:12px;font-weight:600">Boston Dynamics 지배구조 · 밸류에이션 신설</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">보스턴다이내믹스·현대차 공시 / 일부 자체추정</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>BD 지배구조 CSS 도식: HMG Global LLC 56.3%(현대차 49.5·기아 30.5·모비스 20.0), 정의선 22.5%, 글로비스 11.25%, 소프트뱅크 9.9%</li>
+          <li>소프트뱅크 풋옵션 만기 2026.6.21 명시</li>
+          <li>BD 밸류에이션(자체추정): 현재가치 123.4조원 / 2030년 180.7조원 / 매출 55억$ / Peer PSR 21.9배</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>

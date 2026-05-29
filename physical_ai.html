@@ -234,6 +234,42 @@ window.addEventListener('DOMContentLoaded', render);
     </div>
   </section>
 
+  <!-- ═══ 휴머노이드 도입 공장 ROI 시나리오 (자체추정) ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">📈 휴머노이드 도입 공장 누적 ROI 시나리오 <span class="badge" style="background:#F8B739;color:#000">자체추정</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:14px;line-height:1.6">휴머노이드 로봇 도입에 따른 복미(북미) 공장의 누적 손익 추정. 초기 1~2년차는 투자비로 마이너스(-3천$/대 수준)이나 이후 누적 흑자 전환, <strong>7년차 시나리오별 누적 효익</strong>은 아래와 같음.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:grid;grid-template-columns:90px 1fr 70px;align-items:center;gap:10px">
+        <div style="font-size:11px;font-weight:600;color:#4ecdc4">긍정적</div>
+        <div style="background:var(--bg-soft);border-radius:6px;height:22px;position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;height:100%;width:100%;background:linear-gradient(90deg,#4ecdc4,#00B894);border-radius:6px"></div></div>
+        <div style="font-family:var(--mono);font-size:13px;font-weight:700;text-align:right">$521K</div>
+      </div>
+      <div style="display:grid;grid-template-columns:90px 1fr 70px;align-items:center;gap:10px">
+        <div style="font-size:11px;font-weight:600;color:#0984E3">중립적</div>
+        <div style="background:var(--bg-soft);border-radius:6px;height:22px;position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;height:100%;width:77%;background:linear-gradient(90deg,#74b9ff,#0984E3);border-radius:6px"></div></div>
+        <div style="font-family:var(--mono);font-size:13px;font-weight:700;text-align:right">$401K</div>
+      </div>
+      <div style="display:grid;grid-template-columns:90px 1fr 70px;align-items:center;gap:10px">
+        <div style="font-size:11px;font-weight:600;color:#8B8B82">보수적</div>
+        <div style="background:var(--bg-soft);border-radius:6px;height:22px;position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;height:100%;width:54%;background:linear-gradient(90deg,#b2bec3,#636E72);border-radius:6px"></div></div>
+        <div style="font-family:var(--mono);font-size:13px;font-weight:700;text-align:right">$281K</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:10px">7년차 누적 효익(천$/대 기준). 본 ROI 추정치는 증권사 자체추정이며 원데이터가 아님.</div>
+  </section>
+
+  <!-- ═══ 현대차 생산직 인력 추이 (자동화 배경) ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">👷 현대차 기술·생산·정비직 인력 추이 <span class="badge" style="background:#4ecdc4;color:#fff">현대차</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;line-height:1.6">생산직 인력은 3년 연속 감소 추세 — 공장 자동화·휴머노이드 도입의 구조적 배경.</p>
+    <div class="num-row">
+      <div class="num-box"><div class="num-label">2022</div><div class="num-value">66,384명</div></div>
+      <div class="num-box"><div class="num-label">2023</div><div class="num-value">64,381명</div></div>
+      <div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">2024</div><div class="num-value" style="color:#e74c3c">61,856명</div><div class="num-sub">2년간 -4,528명</div></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">출처: 현대차 (글로벌 직군별 인력 현황, 기술·생산·정비직 기준)</div>
+  </section>
+
   <section class="card section-gap">
     <div class="card-title">🧠 World Foundation Models <span class="badge" style="background:#6C5CE7;color:#fff">Google · NVIDIA · Meta</span></div>
     <div class="scroll-x">
@@ -342,6 +378,17 @@ window.addEventListener('DOMContentLoaded', render);
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-29</span>
+          <span style="font-size:12px;font-weight:600">공장 ROI 시나리오 · 생산직 인력 추이 반영</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">현대차 / 일부 자체추정</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>휴머노이드 도입 공장 누적 ROI 시나리오(자체추정): 7년차 보수 $281K / 중립 $401K / 긍정 $521K</li>
+          <li>현대차 기술·생산·정비직 인력 추이: 66,384('22)→64,381('23)→61,856('24), 자동화 배경</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-28</span>
