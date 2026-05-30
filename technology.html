@@ -1293,6 +1293,163 @@ window.addEventListener('DOMContentLoaded', render);
       <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: DexCap, AirExo, GRS, Gen2Sim, RoboTwin, SplatSim 논문 원문</div>
     </section>
 
+<!-- ══════════════════════════════════════════
+         Part 6.5  BD Atlas — 행동 학습 & 데이터 (1차 자료)
+         ══════════════════════════════════════════ -->
+    <section id="sec-bd-learning" class="card section-gap">
+      <div class="card-title">🦾 Part 6.5  BD Atlas — 데이터를 어떻게 쌓는가
+        <span class="badge" style="background:#0984E3;color:#fff">Boston Dynamics 1차 자료</span>
+      </div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px">
+        보스턴 다이내믹스가 공식 기술 블로그에서 직접 서술한 행동 학습 파이프라인.
+        <b>"카메라로 보고 손으로 드는" 것이 아니라, 몸 전체의 감각(자기수용감각)으로 적응</b>하도록 학습한다는 것이 핵심.
+      </p>
+
+      <!-- ── 반전 후크: 무게 일반화 실증 ── -->
+      <div style="background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);border-radius:14px;padding:22px 26px;color:#f0f0f0;margin-bottom:18px">
+        <div style="font-family:var(--mono);font-size:9px;color:rgba(78,205,196,.8);letter-spacing:.15em;margin-bottom:10px">KEY INSIGHT — DOMAIN RANDOMIZATION</div>
+        <div style="font-size:15px;font-weight:700;line-height:1.7;margin-bottom:14px">
+          <span style="color:#4ecdc4">50~70 lb</span> 하중으로 학습 →
+          실제로는 <span style="color:#F8B739">100 lb 초과</span> 적재 냉장고를 들어 옮김.<br>
+          <span style="font-weight:400;font-size:12.5px;color:rgba(255,255,255,.7)">학습한 적 없는 무게를, 엔지니어가 아니라 Atlas의 몸이 스스로 적응.</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div style="background:rgba(78,205,196,.12);border-radius:8px;padding:12px;border-top:3px solid #4ecdc4">
+            <div style="font-family:var(--mono);font-size:9px;color:#4ecdc4;font-weight:700;margin-bottom:4px">학습 하중</div>
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#4ecdc4">50–70 lb</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">정책 학습 시 설정 범위</div>
+          </div>
+          <div style="background:rgba(248,183,57,.12);border-radius:8px;padding:12px;border-top:3px solid #F8B739">
+            <div style="font-family:var(--mono);font-size:9px;color:#F8B739;font-weight:700;margin-bottom:4px">실제 성공 하중</div>
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#F8B739">100+ lb</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">잡다한 물건 불균등·이동 적재</div>
+          </div>
+          <div style="background:rgba(108,92,231,.15);border-radius:8px;padding:12px;border-top:3px solid #A29BFE">
+            <div style="font-family:var(--mono);font-size:9px;color:#A29BFE;font-weight:700;margin-bottom:4px">로봇 자중</div>
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#A29BFE">90 kg</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.5);margin-top:2px">198 lb · 핸드스탠드 가능</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── 학습 5단계 플로우 ── -->
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">
+        TRAINING MONTAGE — 행동 학습 5단계
+      </div>
+      <div style="margin-bottom:18px">
+        <div class="flywheel-step">
+          <div class="flywheel-num" style="color:#6C5CE7">1</div>
+          <div class="flywheel-content">
+            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reference · 참조 궤적</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">목표 동작을 던져줌 — 텔레오퍼레이션 시연, 애니메이션, 또는 추상적 목표 서술. 냉장고 동작은 단순 애니메이션에서 출발해 Atlas의 초인적 가동범위를 활용.</div>
+          </div>
+        </div>
+        <div class="flywheel-step">
+          <div class="flywheel-num" style="color:#FF6B6B">2</div>
+          <div class="flywheel-content">
+            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reward · 보상 설계</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">그리퍼 안 물체의 위치·방향 유지를 보상. 동시에 로봇·냉장고를 밀고 당기는 외란을 가해, 방해받는 중에도 본 과제를 유지하도록 학습.</div>
+          </div>
+        </div>
+        <div class="flywheel-step">
+          <div class="flywheel-num" style="color:#F8B739">3</div>
+          <div class="flywheel-content">
+            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Simulation · 시뮬레이션</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">GPU 병렬로 <b>수백만 시간</b> 연습. 냉장고의 무게·바닥 마찰·모터 출력을 무작위로 변동(Domain Randomization)시켜 수많은 변형에 적응.</div>
+          </div>
+        </div>
+        <div class="flywheel-step">
+          <div class="flywheel-num" style="color:#00B894">4</div>
+          <div class="flywheel-content">
+            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Real Robot · 실기 검증</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">"build it, break it, fix it" 철학. 시뮬레이션은 한계가 있으므로 실제 하드웨어에서 테스트해 개선. 오늘 학습한 정책을 다음 날 실기로 검증.</div>
+          </div>
+        </div>
+        <div class="flywheel-step">
+          <div class="flywheel-num" style="color:#0984E3">5</div>
+          <div class="flywheel-content">
+            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Iteration · 반복 강건화</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">실기 성능 데이터를 다시 학습에 반영해 행동을 강건화(harden). 목표는 신규 행동을 <b>하루 단위</b>로 학습·배포하는 것.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Sim-to-Real Gap 축소 3대 요인 ── -->
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">
+        WHY IT TRANSFERS — Sim-to-Real Gap 축소 3대 요인
+      </div>
+      <div class="spec-grid" style="margin-bottom:18px">
+        <div class="spec-item" style="text-align:left;border-left:3px solid #6C5CE7">
+          <div style="font-size:12px;font-weight:700;margin-bottom:4px">① 고정밀 하드웨어</div>
+          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">액추에이터 <b>2종</b>·전부 회전형(rotary)·완전 대칭 구조 → 시뮬레이션에서 로봇을 정확히 모델링. "sim에서 본 것이 현실 그대로".</div>
+        </div>
+        <div class="spec-item" style="text-align:left;border-left:3px solid #00B894">
+          <div style="font-size:12px;font-weight:700;margin-bottom:4px">② Domain Randomization</div>
+          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">무게·마찰·모터 출력을 학습 내내 조금씩 무작위 변동 → 현실 변동성에 강건. 완벽하지 않은 조건에서 학습·테스트.</div>
+        </div>
+        <div class="spec-item" style="text-align:left;border-left:3px solid #F8B739">
+          <div style="font-size:12px;font-weight:700;margin-bottom:4px">③ People &amp; Process</div>
+          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">HW 설계팀·수리 기술자·robot captain이 받치는 엄격한 파이프라인. 학습→실기→데이터 수집→다음 반복의 루프.</div>
+        </div>
+      </div>
+
+      <!-- ── 3자 스택 도식 (직접 작도 SVG, 캡처·외부이미지 미사용) ── -->
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:4px">
+        WHO DOES WHAT — 휴머노이드 AI 스택 3층 구분
+      </div>
+      <p style="font-size:11px;color:var(--ink-3);margin-bottom:10px">"엔비디아와 구글이 뭐가 다른가?" — 경쟁이 아니라 스택의 서로 다른 층.</p>
+      <div style="background:var(--bg-soft);border-radius:12px;padding:8px 4px">
+        <svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block" font-family="'JetBrains Mono',monospace">
+          <!-- 층 3개 -->
+          <!-- 두뇌 -->
+          <rect x="20" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#6C5CE7" stroke-width="2"/>
+          <text x="125" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#6C5CE7">두뇌 · 추론 (모델)</text>
+          <text x="125" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">Google DeepMind</text>
+          <text x="125" y="98" text-anchor="middle" font-size="11" fill="#4A4A45">Gemini Robotics</text>
+          <line x1="45" y1="112" x2="205" y2="112" stroke="#E2E1D8" stroke-width="1"/>
+          <text x="125" y="134" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">고수준 추론 · 멀티모달 인지</text>
+          <text x="125" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">물체 식별 · 동작 계획 · VLA</text>
+          <text x="125" y="180" text-anchor="middle" font-size="9.5" fill="#6C5CE7" font-family="'Pretendard',sans-serif">"무엇을 / 왜 하는가"</text>
+          <text x="125" y="202" text-anchor="middle" font-size="20">🧠</text>
+
+          <!-- 몸 -->
+          <rect x="255" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#F8B739" stroke-width="2"/>
+          <text x="360" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#d39e00">몸 · 물리지능 (HW+행동)</text>
+          <text x="360" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">Boston Dynamics</text>
+          <text x="360" y="98" text-anchor="middle" font-size="11" fill="#4A4A45">Atlas</text>
+          <line x1="280" y1="112" x2="440" y2="112" stroke="#E2E1D8" stroke-width="1"/>
+          <text x="360" y="134" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">RL 행동 학습 · 자기수용감각</text>
+          <text x="360" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">액추에이터 2종 · 전신 제어</text>
+          <text x="360" y="180" text-anchor="middle" font-size="9.5" fill="#d39e00" font-family="'Pretendard',sans-serif">"어떻게 움직이는가"</text>
+          <text x="360" y="202" text-anchor="middle" font-size="20">🦾</text>
+
+          <!-- 인프라 -->
+          <rect x="490" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#00B894" stroke-width="2"/>
+          <text x="595" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#00997b">인프라 · 엔진</text>
+          <text x="595" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">NVIDIA</text>
+          <text x="595" y="98" text-anchor="middle" font-size="10.5" fill="#4A4A45">Omniverse · Isaac · Jetson</text>
+          <line x1="515" y1="112" x2="675" y2="112" stroke="#E2E1D8" stroke-width="1"/>
+          <text x="595" y="134" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">시뮬레이션 · 강화학습 환경</text>
+          <text x="595" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">합성 데이터 · 온보드 추론칩</text>
+          <text x="595" y="180" text-anchor="middle" font-size="9.5" fill="#00997b" font-family="'Pretendard',sans-serif">"어디서 돌리는가"</text>
+          <text x="595" y="202" text-anchor="middle" font-size="20">⚙️</text>
+
+          <!-- 연결 화살표 -->
+          <text x="242" y="128" text-anchor="middle" font-size="14" fill="#C5C3B7">+</text>
+          <text x="477" y="128" text-anchor="middle" font-size="14" fill="#C5C3B7">×</text>
+        </svg>
+      </div>
+      <p style="font-size:10px;color:var(--ink-3);margin-top:10px;line-height:1.6">
+        비유: NVIDIA = 발전소·반도체(인프라), Gemini Robotics = 그 위에서 돌아가는 두뇌(모델), Atlas = 그 두뇌가 깃드는 몸(물리지능).
+        세 층이 맞물려야 냉장고를 든다. <b>BD–DeepMind 파트너십은 양측 모두 비독점</b>(BD는 과거 TRI와도 협업)이라는 점 유의.
+      </p>
+
+      <div style="font-size:10px;color:var(--ink-3);margin-top:14px;border-top:1px solid var(--line);padding-top:8px">
+        출처: Boston Dynamics 공식 기술 블로그 "Training a Humanoid Robot for Hard Work" · Boston Dynamics 보도자료 (2026.01 CES, Google DeepMind 파트너십 발표). 모두 1차 자료.
+      </div>
+    </section>
+
+
     <!-- ══════════════════════════════════════════
          Part 7. HW + 인프라 + 투자
          ══════════════════════════════════════════ -->
@@ -1358,7 +1515,7 @@ window.addEventListener('DOMContentLoaded', render);
 
     <!-- ═══ 부록. Glossary ═══ -->
     <section id="sec-glossary" class="card section-gap">
-      <div class="card-title">📖 핵심 기술 용어 사전 <span class="badge" style="background:var(--ink);color:var(--bg)">20 Terms</span></div>
+      <div class="card-title">📖 핵심 기술 용어 사전 <span class="badge" style="background:var(--ink);color:var(--bg)">28 Terms</span></div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">색상: <span style="color:#6C5CE7">모델</span> · <span style="color:#FF6B6B">방법론</span> · <span style="color:#F8B739">아키텍처</span> · <span style="color:#00B894">데이터</span> · <span style="color:#0984E3">시뮬레이션</span></p>
       <div id="glossaryGrid" class="glossary-grid cat-colors"></div>
     </section>
