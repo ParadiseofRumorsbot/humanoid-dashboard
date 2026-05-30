@@ -757,6 +757,9 @@ const DASHBOARD_DATA = {
       { term: 'Ego Scale', full: 'Egocentric Scale', def: '인간 1인칭 비디오 21K시간으로 사전학습. 로봇 데이터 없이 덱스터리티 달성. Neuroscaling Law 발견', category: 'data' },
       { term: 'PSR', full: 'Price-to-Sales Ratio', def: '시가총액 ÷ 매출액. 적자·초기 성장기업 밸류에이션에 활용. BD 추정 시 Peer 평균 21.9배 적용', category: 'valuation' },
       { term: '풋옵션', full: 'Put Option', def: '정해진 가격에 지분을 되팔 권리. 소프트뱅크가 보유한 BD 잔여지분 9.9%에 대한 풋옵션 만기 2026.6.21', category: 'valuation' },
+      { term: 'Proprioception', full: 'Proprioception · 자기수용감각', def: '카메라 없이 관절 위치·속도·힘 등 몸 내부 감각으로 외부 물체에 적응하는 인지 방식. BD Atlas가 냉장고 무게·안착 형태에 적응하는 핵심 메커니즘', category: 'method' },
+      { term: 'Reinforcement Learning', full: 'Reinforcement Learning · 강화학습', def: '보상을 최대화하는 방향으로 시행착오를 통해 정책을 학습. BD Atlas는 시뮬레이션에서 수백만 시간 RL로 냉장고 들기를 학습', category: 'method' },
+      { term: 'Reference Trajectory', full: 'Reference Trajectory · 참조 궤적', def: '새 행동 학습의 출발점이 되는 목표 동작 데이터. 텔레오퍼레이션 시연·애니메이션·추상적 목표 서술 형태. BD는 냉장고 동작을 애니메이션 참조로 시작', category: 'data' },
     ],
 
     /* ── 초보자용 기술 개요 5 섹션 ── */
