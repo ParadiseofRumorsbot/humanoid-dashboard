@@ -474,8 +474,10 @@ function renderOnDeviceHero() {
 
       <div class="hero-question">"${h.question}"</div>
 
-      <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:8px">아래에서 해답을 확인하세요 — bVLA + PD-VLA + RTC</div>
-      <div style="font-size:22px;margin-top:8px;opacity:.4">↓</div>
+      <a href="#sec-ondevice" style="display:block;text-decoration:none;margin-top:8px;cursor:pointer">
+        <div style="font-size:11px;color:rgba(255,107,107,.8);font-weight:600">아래에서 해답을 확인하세요 — bVLA + PD-VLA + RTC</div>
+        <div style="font-size:22px;margin-top:4px;color:rgba(255,107,107,.6)">↓</div>
+      </a>
     </div>
   `;
 }
@@ -908,6 +910,11 @@ window.addEventListener('DOMContentLoaded', render);
         · <strong>진짜 해자</strong>: lock-in이 아니라, 우즈벡 인건비(한국의 1/10) 기반 가격 경쟁력과 다이나믹셀 유저 네트워크에 있음.
       </div>
       <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 로보티즈 그룹미팅 IR (2026.05.18) / Octo (UC Berkeley) / OpenVLA (Stanford/TRI) / GR00T N1 (NVIDIA) / CogACT (THU/BIGAI) [개인 의견]</div>
+      <!-- ROBOTIS AI Sapiens + NVIDIA Kimodo 영상 (자동재생·무음·반복) -->
+      <div style="margin:16px 0 0;text-align:center">
+        <iframe src="https://www.youtube.com/embed/2xAJzQ8V9p8?autoplay=1&mute=1&loop=1&playlist=2xAJzQ8V9p8&controls=0&modestbranding=1&rel=0&playsinline=1" title="ROBOTIS AI Sapiens — Text-Generated Motion with NVIDIA Kimodo" allow="autoplay; encrypted-media" allowfullscreen loading="lazy" style="width:100%;max-width:640px;aspect-ratio:16/9;border:none;border-radius:12px;display:block;margin:0 auto"></iframe>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px">ROBOTIS AI Sapiens #2 — 텍스트 한 줄로 휴머노이드 전신 동작 생성 (NVIDIA Kimodo) · 출처: 로보티즈</div>
+      </div>
     </section>
 
     <!-- ═══ Update Log (top) ═══ -->
@@ -959,10 +966,75 @@ window.addEventListener('DOMContentLoaded', render);
           <div style="font-size:10px;color:var(--ink-3)">2029E · CAGR 93.6% (Omdia)</div>
         </div>
       </div>
+      <!-- 부품 수 비교 테이블 (ICE→EV 스타일) -->
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin:16px 0 10px">부품 구성 비교 — 산업용 로봇 → 기본 휴머노이드 → 풀스택 휴머노이드</div>
+      <div style="overflow-x:auto;margin-bottom:14px">
+        <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px"></th>
+              <th style="text-align:center;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px;color:var(--ink-3)">산업용 로봇<br><span style="font-size:8px;font-weight:400">UR5e 기준</span></th>
+              <th style="text-align:center;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px;background:rgba(248,183,57,0.08)">기본 휴머노이드<br><span style="font-size:8px;font-weight:400">Unitree G1</span></th>
+              <th style="text-align:center;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px;background:rgba(255,107,107,0.08)">풀스택 휴머노이드<br><span style="font-size:8px;font-weight:400">Atlas / Optimus</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#FF6B6B">관절 (DoF)</td>
+              <td style="text-align:center;padding:8px 10px">6</td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">23</td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">28~56 <span style="font-size:9px;color:var(--ink-3)">▲ 9배</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#FF6B6B">감속기 (개)</td>
+              <td style="text-align:center;padding:8px 10px">6</td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">23 <span style="font-size:9px;color:var(--ink-3)">유성</span></td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">24 <span style="font-size:9px;color:var(--ink-3)">하모닉20+RV4</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#6C5CE7">감속기 단가</td>
+              <td style="text-align:center;padding:8px 10px">~$100</td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">~$200 <span style="font-size:9px;color:var(--ink-3)">유성</span></td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">$350~800 <span style="font-size:9px;color:#FF6B6B">▲ 4~8배</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#00B894">센서</td>
+              <td style="text-align:center;padding:8px 10px">힘/토크 1개</td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">IMU + 카메라</td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">LiDAR+토크+IMU+촉각+360°</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#0984E3">AI 칩</td>
+              <td style="text-align:center;padding:8px 10px">PLC <span style="font-size:9px;color:var(--ink-3)">$6K</span></td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">NPU 1개 <span style="font-size:9px;color:var(--ink-3)">$500</span></td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">Jetson Thor + VLM</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#F8B739">배터리</td>
+              <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">없음 (전원)</td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">2.3kWh <span style="font-size:9px;color:var(--ink-3)">$299</span></td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">4h 가동 · Self-swap</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#E17055">1대 BOM</td>
+              <td style="text-align:center;padding:8px 10px">$35K <span style="font-size:9px;color:var(--ink-3)">(셀 단위)</span></td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">~$17K</td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">$90K+ <span style="font-size:9px;color:var(--ink-3)">초기</span></td>
+            </tr>
+            <tr>
+              <td style="padding:8px 10px;font-weight:700">작업 자유도</td>
+              <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">고정 반복</td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">이동 + 반복</td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;color:#FF6B6B;background:rgba(255,107,107,0.04)">비정형 적응</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:10px;color:var(--ink-3);margin-bottom:14px">📌 <b>감속기 단가가 4~8배, 개수가 4배</b> → 전체 BOM에서 감속기가 <b>60%</b>를 차지. 자동차에서 반도체·MLCC가 늘었듯, 휴머노이드에서는 <b>감속기·액추에이터가 폭증</b>하는 구간.</div>
       <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;padding:10px 14px;background:rgba(255,107,107,0.06);border-radius:8px">
         <b>이 변화 속도가 왜 중요한가?</b> 6년 전에는 연구실 프로토타입이었던 것이 지금은 공장 라인에 투입되고 있음. 다음 2년(2026~2028)이 부품 공급망 선점의 결판. 이 기술 변화가 한국에 어떤 기회를 만드는지 — 이 페이지가 다루는 내용.
       </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: McKinsey · Omdia · Octo/OpenVLA · Pi0 · Boston Dynamics · 각사 IR</div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: McKinsey · Omdia · Octo/OpenVLA · Pi0 · Boston Dynamics · 각사 IR · components.html BOM 데이터</div>
     </section>
 
     <!-- ═══ 수요 논거 4 Pillars ═══ -->
@@ -1092,11 +1164,6 @@ window.addEventListener('DOMContentLoaded', render);
         NVIDIA 키모도처럼 텍스트 한 줄("상자를 들고 오른쪽으로 옮겨라")만으로 전신 동작 데이터를 생성하는 단계까지 진화.
         <span style="font-size:10px;color:var(--ink-3)">[NVIDIA GTC]</span>
       </p>
-      <!-- ROBOTIS AI Sapiens + NVIDIA Kimodo 영상 (자동재생·무음·반복) -->
-      <div style="margin:0 0 16px;text-align:center">
-        <iframe src="https://www.youtube.com/embed/2xAJzQ8V9p8?autoplay=1&mute=1&loop=1&playlist=2xAJzQ8V9p8&controls=0&modestbranding=1&rel=0&playsinline=1" title="ROBOTIS AI Sapiens — Text-Generated Motion with NVIDIA Kimodo" allow="autoplay; encrypted-media" allowfullscreen loading="lazy" style="width:100%;max-width:640px;aspect-ratio:16/9;border:none;border-radius:12px;display:block;margin:0 auto"></iframe>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px">ROBOTIS AI Sapiens #2 — 텍스트 한 줄로 휴머노이드 전신 동작 생성 (NVIDIA Kimodo) · 출처: 로보티즈</div>
-      </div>
       <!-- 초보자 블록 -->
       <div id="paradigmContent"></div>
       <!-- 심화: AI 기술 스택 -->

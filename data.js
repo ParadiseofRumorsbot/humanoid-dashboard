@@ -1018,8 +1018,8 @@ const DASHBOARD_DATA = {
       { group: '도입', items: [
         { id: 'sec-snapshot', label: '⚡ Before → After' },
         { id: 'sec-demand', label: '수요 논거 4 Pillars' },
-        { id: 'sec-ondevice-hero', label: '핵심 질문 (히어로)' },
-        { id: 'conclusion-callout', label: '📌 소결 (투자 착지)' },
+        { id: 'sec-ondevice-hero', label: '핵심 질문' },
+        { id: 'conclusion-callout', label: '📌 소결' },
       ]},
       { group: 'Part 1 — 범용 OS', items: [
         { id: 'sec-paradigm', label: '패러다임 시프트 + AI 스택' },
