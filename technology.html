@@ -1025,27 +1025,39 @@ window.addEventListener('DOMContentLoaded', render);
         </table>
       </div>
       <div style="font-size:10px;color:var(--ink-3);margin-bottom:14px">📌 <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">감속기 단가가 4~8배, 개수가 4배</span> → 전체 BOM에서 감속기가 <b>60%</b>를 차지. 자동차에서 반도체·MLCC가 늘었듯, 휴머노이드에서는 <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">감속기·액추에이터가 폭증</span>하는 구간.</div>
-      <!-- 기술 진화 Before→After (부품 테이블 연장) -->
+      <!-- 기술 진화 Before→After (테이블 형식) -->
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin:16px 0 10px">기술 진화 Before → After</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #6C5CE7">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">반응 지연 (Dual System)</div>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">500ms+ (클라우드)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#6C5CE7">10ms</div>
-          <div style="font-size:10px;color:var(--ink-3)">온디바이스 System 1 (BD)</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #F8B739">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">WFM 학습 데이터</div>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">100조 토큰 (GPT-5)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#F8B739">9,000조</div>
-          <div style="font-size:10px;color:var(--ink-3)">Cosmos · 물리세계 90배 (NVIDIA)</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">모델 압축 (온디바이스)</div>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">7B 파라미터 / 100ms</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#E17055">0.5B / 10ms</div>
-          <div style="font-size:10px;color:var(--ink-3)">14배 압축 (bVLA/PD-VLA)</div>
-        </div>
+      <div style="overflow-x:auto;margin-bottom:14px">
+        <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:480px">
+          <thead>
+            <tr>
+              <th style="text-align:left;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px">항목</th>
+              <th style="text-align:center;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px;color:var(--ink-3)">Before</th>
+              <th style="text-align:center;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px;background:rgba(255,107,107,0.08)">After</th>
+              <th style="text-align:center;padding:8px 10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:10px;color:var(--ink-3)">출처</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#6C5CE7">반응 지연 (Dual System)</td>
+              <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">500ms+ <span style="font-size:9px">(클라우드)</span></td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)"><span style="color:#6C5CE7;font-size:16px">10ms</span> <span style="font-size:9px;color:var(--ink-3)">▼ 50배</span></td>
+              <td style="text-align:center;padding:8px 10px;font-size:10px;color:var(--ink-3)">BD 블로그</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#F8B739">WFM 학습 데이터</td>
+              <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">100조 토큰 <span style="font-size:9px">(GPT-5)</span></td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)"><span style="color:#F8B739;font-size:16px">9,000조</span> <span style="font-size:9px;color:#FF6B6B">▲ 90배</span></td>
+              <td style="text-align:center;padding:8px 10px;font-size:10px;color:var(--ink-3)">NVIDIA Cosmos</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 10px;font-weight:700;color:#E17055">모델 압축 (온디바이스)</td>
+              <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">7B / 100ms</td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)"><span style="color:#E17055;font-size:16px">0.5B / 10ms</span> <span style="font-size:9px;color:var(--ink-3)">▼ 14배</span></td>
+              <td style="text-align:center;padding:8px 10px;font-size:10px;color:var(--ink-3)">bVLA/PD-VLA</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;padding:10px 14px;background:rgba(255,107,107,0.06);border-radius:8px">
         <b>이 변화 속도가 왜 중요한가?</b> 6년 전에는 연구실 프로토타입이었던 것이 지금은 공장 라인에 투입되고 있음. 다음 2년(2026~2028)이 부품 공급망 선점의 결판. 이 기술 변화가 한국에 어떤 기회를 만드는지 — 이 페이지가 다루는 내용.
