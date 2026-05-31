@@ -986,6 +986,28 @@ window.addEventListener('DOMContentLoaded', render);
         </div>
         <div class="source-tag">출처: BD IR, Tesla IR, Amazon IR, HMG IR (JPM 2026)</div>
       </div>
+      <!-- AI 침투율 수치 박스 -->
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-top:16px">
+        <div style="font-family:var(--mono);font-size:9px;color:#E17055;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:8px">AI 침투율 — 아직 1%도 안 됨</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #0984E3;text-align:center">
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#0984E3">13.5억</div>
+            <div style="font-size:10px;color:var(--ink-3)">생성형 AI 사용자</div>
+            <div style="font-size:9px;color:var(--ink-3)">전 세계 인구의 16%</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #F8B739;text-align:center">
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#F8B739">~1억</div>
+            <div style="font-size:10px;color:var(--ink-3)">유료 AI 사용자</div>
+            <div style="font-size:9px;color:var(--ink-3)">전 세계 인구의 <b>1%</b></div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #FF6B6B;text-align:center">
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#FF6B6B">0.1~0.2%</div>
+            <div style="font-size:10px;color:var(--ink-3)">코드/API 헤비유저</div>
+            <div style="font-size:9px;color:var(--ink-3)">1,000~2,000만 명</div>
+          </div>
+        </div>
+        <p style="font-size:10px;color:var(--ink-3);margin-top:8px">피지컬 AI·킬러앱 확산 전 수치. 1%가 10%만 돼도 인프라 수요 10배. 수요 상단은 크게 열려 있음. 출처: Microsoft, OpenAI, Alphabet, SlashData, Stack Overflow</p>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════════════
@@ -993,6 +1015,16 @@ window.addEventListener('DOMContentLoaded', render);
          ══════════════════════════════════════════ -->
     <section id="sec-ondevice-hero" class="card section-gap">
       <div id="onDeviceHero"></div>
+      <!-- 📌 소결 콜아웃 -->
+      <div id="conclusion-callout" style="background:rgba(255,107,107,0.08);border-left:4px solid #FF6B6B;border-radius:0 12px 12px 0;padding:20px 24px;margin:20px 0">
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.15em;font-weight:700;margin-bottom:12px">📌 소결</div>
+        <ol style="margin:0;padding-left:20px;font-size:12px;color:var(--ink);line-height:1.8">
+          <li>로봇의 뇌(파운데이션 모델)가 빠르게 진화 중. <b>이제 승부는 그 뇌를 로봇 몸 안 작은 칩에 실시간으로 압축하는 온디바이스 추론으로 내려옴.</b> 클라우드 왕복으론 냉장고도 못 든다.</li>
+          <li>추론칩(Jetson, Tesla AI5 등)은 NVIDIA·Tesla가 만들지만, <b>①칩에 붙는 주변 반도체(FC-BGA 기판·MLCC·전력관리)와 ②감속기·액추에이터는 한국에서 구성될 확률이 높음.</b></li>
+          <li>자동차 ECU가 HPC로 통합될 때, 칩(SoC)은 Infineon·NXP 등이 과점했지만 FC-BGA·MLCC·전력관리는 삼성전기·대덕전자 등 한국이 공급했음. <b>온디바이스 추론칩에서도 같은 구조가 반복될 가능성이 높음.</b></li>
+          <li>피지컬 AI의 핵심 병목은 하드웨어가 아니라 <b>학습 데이터</b>. 로봇 HW는 이미 중국에서도 양산 경쟁 중이라 병목이 아님. 물리 세계 데이터를 먼저 모으는 자가 해자를 가짐 — <b>현대차</b>(fleet 수백만 대 + RMAC), <b>로보티즈</b>(데이터 팩토리 + 오픈소스 생태계).</li>
+        </ol>
+      </div>
     </section>
 
     <!-- ═══ 로드맵 배너 ═══ -->
@@ -1007,6 +1039,12 @@ window.addEventListener('DOMContentLoaded', render);
          ══════════════════════════════════════════ -->
     <section id="sec-paradigm" class="card section-gap">
       <div class="card-title">🔄 Part 1. 범용 OS — 패러다임 시프트 <span class="badge" style="background:#6C5CE7;color:#fff">Octo · OpenVLA</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        로봇 기종 바뀌면 처음부터 다시 코딩하던 시대.
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">VLA가 "로봇용 안드로이드"를 만들었음. 한 번 학습하면 어떤 로봇이든 즉시 이식 가능.</span>
+        NVIDIA 키모도처럼 텍스트 한 줄("상자를 들고 오른쪽으로 옮겨라")만으로 전신 동작 데이터를 생성하는 단계까지 진화.
+        <span style="font-size:10px;color:var(--ink-3)">[NVIDIA GTC]</span>
+      </p>
       <!-- 초보자 블록 -->
       <div id="paradigmContent"></div>
       <!-- 심화: AI 기술 스택 -->
@@ -1025,11 +1063,20 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
     </section>
 
+    <!-- 브릿지 1→2 -->
+    <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
+      ▼ 말은 알아듣게 됐음. 근데 움직임이 각짐. 부드러워야 함.
+    </div>
+
     <!-- ══════════════════════════════════════════
          Part 2. 부드러운 제어 — VLA 진화
          ══════════════════════════════════════════ -->
     <section id="sec-flowmatch" class="card section-gap">
       <div class="card-title">🌊 Part 2. 부드러운 제어 — VLA 진화 <span class="badge" style="background:#00B894;color:#fff">Pi0 · Flow Matching</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        범용 OS로 "뭘 해라"는 알아듣게 됐는데 동작이 뻣뻣함.
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">플로우 매칭 도입으로 사람처럼 끊김 없이 움직이게 됨. 정밀 조작 성공률 92%.</span>
+      </p>
       <!-- 초보자 블록 -->
       <div id="flowMatchContent"></div>
       <!-- ── WAM 패러다임 전환 (Jim Fan) ── -->
@@ -1125,11 +1172,22 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
     </section>
 
+    <!-- 브릿지 2→3 -->
+    <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
+      ▼ 부드럽게 움직임. 근데 빠른 반사와 깊은 생각을 동시에 못 함.
+    </div>
+
     <!-- ══════════════════════════════════════════
          Part 3. 뇌·몸 분리 — Dual System
          ══════════════════════════════════════════ -->
     <section id="sec-cogact" class="card section-gap">
       <div class="card-title">🧠 Part 3. 뇌·몸 분리 — Dual System <span class="badge" style="background:#6C5CE7;color:#fff">CogACT · GR00T N1</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        부드럽게 움직이는 건 됐는데, 냉장고를 안으면서(빠른 반사) 동시에 어디로 옮길지(깊은 생각)를 한꺼번에 못 함.
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">인간처럼 System 1(반사) + System 2(추론)로 나눠서 해결.</span>
+        Atlas가 실증 사례 — BD 자체 피지컬AI(빠른 반사·역동적 제어)가 System 1, 구글 딥마인드 Gemini(시계열 추론·롱 템포럴 리즈닝)가 System 2를 담당.
+        <span style="font-size:10px;color:var(--ink-3)">[BD 보도자료 2026.01]</span>
+      </p>
       <!-- 초보자 블록 -->
       <div id="cogActContent"></div>
       <!-- 심화: VLA 3대장 비교 -->
@@ -1147,11 +1205,49 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
     </section>
 
+    <!-- 브릿지 3→4 -->
+    <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
+      ▼ 반사+생각 동시에 함. 근데 한 번도 안 본 상황에선 멈춤. 상상력이 필요함.
+    </div>
+
     <!-- ══════════════════════════════════════════
          Part 4. 물리적 상상력 — WFM
          ══════════════════════════════════════════ -->
     <section id="sec-wfmintro" class="card section-gap">
       <div class="card-title">🔮 Part 4. 물리적 상상력 — World Foundation Model <span class="badge" style="background:#F8B739;color:#fff">WFM</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        반사+생각 동시에 하게 됐는데, 한 번도 안 본 상황에선 여전히 멈춤.
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">WFM = 로봇의 "물리적 상상력". 밀면 깨질 것이라는 미래를 머릿속으로 시뮬레이션해서 행동 결정.</span>
+        다만 WFM은 아직 완성 단계가 아님. 완성됐다면 로봇이 스스로 데이터를 생성하고 학습할 수 있어야 하는데, 지금은 여전히 데이터 수집과 현장 튜닝 중. 트랜스퍼 러닝 조짐은 보이기 시작 — 냉장고 문 여는 법을 가르쳤더니 다른 문도 열게 됨.
+        <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+      </p>
+      <!-- Cosmos 학습 데이터 규모 비교 -->
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:16px">
+        <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:8px">WFM에 필요한 데이터 규모 — 텍스트 LLM과 차원이 다름</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #6C5CE7;text-align:center">
+            <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#6C5CE7">9,000조</div>
+            <div style="font-size:10px;color:var(--ink-3)">Cosmos (WFM)</div>
+            <div style="font-size:9px;color:var(--ink-3)">NVIDIA 2025.01</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid var(--ink-3);text-align:center">
+            <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--ink-2)">100조</div>
+            <div style="font-size:10px;color:var(--ink-3)">GPT-5</div>
+            <div style="font-size:9px;color:var(--ink-3)">업계 추정</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid var(--ink-3);text-align:center">
+            <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--ink-2)">40조</div>
+            <div style="font-size:10px;color:var(--ink-3)">Llama 4</div>
+            <div style="font-size:9px;color:var(--ink-3)">업계 추정</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #FF6B6B;text-align:center">
+            <div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#FF6B6B">90배</div>
+            <div style="font-size:10px;color:var(--ink-3)">Cosmos vs GPT-5</div>
+            <div style="font-size:9px;color:var(--ink-3)">물리 세계 학습 격차</div>
+          </div>
+        </div>
+        <p style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA. 물리 세계를 학습시키려면 텍스트 LLM 대비 90배 데이터가 필요함. WFM이 왜 어려운지 이 숫자가 보여줌. ※ GPT-5·Llama 4 토큰 수는 공식 미공개, 업계 추정치</p>
+      </div>
       <!-- 초보자 블록 -->
       <div id="wfmIntroContent"></div>
       <!-- 심화: WFM Deep -->
@@ -1193,13 +1289,28 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
     </section>
 
+    <!-- 브릿지 4→5 (강조 최대) -->
+    <div style="background:rgba(255,107,107,0.18);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);line-height:1.6">
+      ▼ Part 1~4에서 뇌는 거의 완성 단계까지 왔음. 이제 진짜 문제 — 이 거대한 뇌를 로봇 몸 안 작은 칩에 어떻게 넣느냐?
+    </div>
+
     <!-- ══════════════════════════════════════════
          Part 5. 실전 경량화 — 온디바이스
          ══════════════════════════════════════════ -->
     <section id="sec-ondevice" class="card section-gap">
       <div class="card-title">🚀 Part 5. 실전 경량화 — 온디바이스 최적화 <span class="badge" style="background:#FF6B6B;color:#fff">bVLA · PD-VLA · RTC</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">짧은 데모가 아니라 장시간 안정 가동 + ROI 증명이 진짜 기준.</span>
+        데모 잘 만드는 기업이 아니라 현장에서 돈 버는 기업만 살아남음.
+        <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+      </p>
       <div id="onDeviceContent"></div>
     </section>
+
+    <!-- 브릿지 5→6 -->
+    <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
+      ▼ 작은 칩에 압축했음. 그럼 그 칩에 뭘 학습시키나? 데이터를 어떻게 쌓느냐가 다음 문제.
+    </div>
 
     <!-- ══════════════════════════════════════════
          Part 6. 데이터 + 시뮬레이션
@@ -1277,6 +1388,22 @@ window.addEventListener('DOMContentLoaded', render);
         </div>
       </div>
       <div style="font-size:10px;color:var(--ink-3);margin-bottom:16px">출처: NVIDIA Jim Fan (AI Infrastructure Network 2026)</div>
+      <!-- Jensen Huang 인용 + 데이터 팩토리 -->
+      <div style="background:rgba(255,107,107,0.08);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:16px">
+        <div style="font-size:12px;font-weight:700;margin-bottom:6px;color:var(--ink)">핵심 병목 = 하드웨어가 아니라 학습 데이터</div>
+        <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
+          로봇 HW는 중국에서도 수많은 기업이 양산 경쟁 중이라 병목이 아님. 진짜 병목은 피지컬 AI S/W와 거기에 들어가는 데이터.
+          Jensen Huang: <i>"합성 데이터는 실제 데이터를 대체하지 않음. 실제 데이터를 최대한 모아야 함(You should collect as much real-data as you can)."</i>
+          <span style="font-size:10px;color:var(--ink-3)">[NVIDIA CEO, Bloomberg 인터뷰]</span><br>
+          <b>물리 세계 데이터를 모아줄 디바이스가 다음 병목 투자 아이디어.</b>
+          <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+        </div>
+      </div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        데이터 팩토리 경쟁 이미 시작됨. 현대차 RMAC(Robot Metaplant Application Center) 2026년 여름 가동 → 자체 공장에서 행동 데이터 생산 시작.
+        로보티즈는 우즈베키스탄에 2만평 데이터 팩토리 + 액추에이터 양산 공장 건설 중, 2026 4Q 가동 예정.
+        <span style="font-size:10px;color:var(--ink-3)">[현대차 IR / 로보티즈 IR]</span>
+      </p>
       <div id="pipelineMethods" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:16px"></div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">DATA COLLECTION → POLICY LEARNING PIPELINE</div>
       <div id="pipelineFlow" class="pipeline-flow"></div>
@@ -1293,7 +1420,12 @@ window.addEventListener('DOMContentLoaded', render);
       <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: DexCap, AirExo, GRS, Gen2Sim, RoboTwin, SplatSim 논문 원문</div>
     </section>
 
-<!-- ══════════════════════════════════════════
+    <!-- 브릿지 6→6.5 -->
+    <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
+      ▼ 데이터 전략을 봤음. 실제로 가장 앞서가는 BD Atlas는 현실에서 이걸 어떻게 하고 있나?
+    </div>
+
+    <!-- ══════════════════════════════════════════
          Part 6.5  BD Atlas — 행동 학습 & 데이터 (1차 자료)
          ══════════════════════════════════════════ -->
     <section id="sec-bd-learning" class="card section-gap">
@@ -1304,8 +1436,6 @@ window.addEventListener('DOMContentLoaded', render);
         보스턴 다이내믹스가 공식 기술 블로그에서 직접 서술한 행동 학습 파이프라인.
         <b>"카메라로 보고 손으로 드는" 것이 아니라, 몸 전체의 감각(자기수용감각)으로 적응</b>하도록 학습한다는 것이 핵심.
       </p>
-
-      <!-- ── 반전 후크: 무게 일반화 실증 ── -->
       <div style="background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);border-radius:14px;padding:22px 26px;color:#f0f0f0;margin-bottom:18px">
         <div style="font-family:var(--mono);font-size:9px;color:rgba(78,205,196,.8);letter-spacing:.15em;margin-bottom:10px">KEY INSIGHT — DOMAIN RANDOMIZATION</div>
         <div style="font-size:15px;font-weight:700;line-height:1.7;margin-bottom:14px">
@@ -1331,130 +1461,71 @@ window.addEventListener('DOMContentLoaded', render);
           </div>
         </div>
       </div>
-
-      <!-- ── 학습 5단계 플로우 ── -->
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">
-        TRAINING MONTAGE — 행동 학습 5단계
-      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">TRAINING MONTAGE — 행동 학습 5단계</div>
       <div style="margin-bottom:18px">
-        <div class="flywheel-step">
-          <div class="flywheel-num" style="color:#6C5CE7">1</div>
-          <div class="flywheel-content">
-            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reference · 참조 궤적</div>
-            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">목표 동작을 던져줌 — 텔레오퍼레이션 시연, 애니메이션, 또는 추상적 목표 서술. 냉장고 동작은 단순 애니메이션에서 출발해 Atlas의 초인적 가동범위를 활용.</div>
-          </div>
-        </div>
-        <div class="flywheel-step">
-          <div class="flywheel-num" style="color:#FF6B6B">2</div>
-          <div class="flywheel-content">
-            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reward · 보상 설계</div>
-            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">그리퍼 안 물체의 위치·방향 유지를 보상. 동시에 로봇·냉장고를 밀고 당기는 외란을 가해, 방해받는 중에도 본 과제를 유지하도록 학습.</div>
-          </div>
-        </div>
-        <div class="flywheel-step">
-          <div class="flywheel-num" style="color:#F8B739">3</div>
-          <div class="flywheel-content">
-            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Simulation · 시뮬레이션</div>
-            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">GPU 병렬로 <b>수백만 시간</b> 연습. 냉장고의 무게·바닥 마찰·모터 출력을 무작위로 변동(Domain Randomization)시켜 수많은 변형에 적응.</div>
-          </div>
-        </div>
-        <div class="flywheel-step">
-          <div class="flywheel-num" style="color:#00B894">4</div>
-          <div class="flywheel-content">
-            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Real Robot · 실기 검증</div>
-            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">"build it, break it, fix it" 철학. 시뮬레이션은 한계가 있으므로 실제 하드웨어에서 테스트해 개선. 오늘 학습한 정책을 다음 날 실기로 검증.</div>
-          </div>
-        </div>
-        <div class="flywheel-step">
-          <div class="flywheel-num" style="color:#0984E3">5</div>
-          <div class="flywheel-content">
-            <div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Iteration · 반복 강건화</div>
-            <div style="font-size:11px;color:var(--ink-2);line-height:1.6">실기 성능 데이터를 다시 학습에 반영해 행동을 강건화(harden). 목표는 신규 행동을 <b>하루 단위</b>로 학습·배포하는 것.</div>
-          </div>
-        </div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#6C5CE7">1</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reference · 참조 궤적</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">목표 동작을 던져줌 — 텔레오퍼레이션 시연, 애니메이션, 또는 추상적 목표 서술. 냉장고 동작은 단순 애니메이션에서 출발해 Atlas의 초인적 가동범위를 활용.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#FF6B6B">2</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reward · 보상 설계</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">그리퍼 안 물체의 위치·방향 유지를 보상. 동시에 로봇·냉장고를 밀고 당기는 외란을 가해, 방해받는 중에도 본 과제를 유지하도록 학습.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#F8B739">3</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Simulation · 시뮬레이션</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">GPU 병렬로 <b>수백만 시간</b> 연습. 냉장고의 무게·바닥 마찰·모터 출력을 무작위로 변동(Domain Randomization)시켜 수많은 변형에 적응.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#00B894">4</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Real Robot · 실기 검증</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">"build it, break it, fix it" 철학. 시뮬레이션은 한계가 있으므로 실제 하드웨어에서 테스트해 개선. 오늘 학습한 정책을 다음 날 실기로 검증.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#0984E3">5</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Iteration · 반복 강건화</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">실기 성능 데이터를 다시 학습에 반영해 행동을 강건화(harden). 목표는 신규 행동을 <b>하루 단위</b>로 학습·배포하는 것.</div></div></div>
       </div>
-
-      <!-- ── Sim-to-Real Gap 축소 3대 요인 ── -->
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">
-        WHY IT TRANSFERS — Sim-to-Real Gap 축소 3대 요인
-      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">WHY IT TRANSFERS — Sim-to-Real Gap 축소 3대 요인</div>
       <div class="spec-grid" style="margin-bottom:18px">
-        <div class="spec-item" style="text-align:left;border-left:3px solid #6C5CE7">
-          <div style="font-size:12px;font-weight:700;margin-bottom:4px">① 고정밀 하드웨어</div>
-          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">액추에이터 <b>2종</b>·전부 회전형(rotary)·완전 대칭 구조 → 시뮬레이션에서 로봇을 정확히 모델링. "sim에서 본 것이 현실 그대로".</div>
-        </div>
-        <div class="spec-item" style="text-align:left;border-left:3px solid #00B894">
-          <div style="font-size:12px;font-weight:700;margin-bottom:4px">② Domain Randomization</div>
-          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">무게·마찰·모터 출력을 학습 내내 조금씩 무작위 변동 → 현실 변동성에 강건. 완벽하지 않은 조건에서 학습·테스트.</div>
-        </div>
-        <div class="spec-item" style="text-align:left;border-left:3px solid #F8B739">
-          <div style="font-size:12px;font-weight:700;margin-bottom:4px">③ People &amp; Process</div>
-          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">HW 설계팀·수리 기술자·robot captain이 받치는 엄격한 파이프라인. 학습→실기→데이터 수집→다음 반복의 루프.</div>
-        </div>
+        <div class="spec-item" style="text-align:left;border-left:3px solid #6C5CE7"><div style="font-size:12px;font-weight:700;margin-bottom:4px">① 고정밀 하드웨어</div><div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">액추에이터 <b>2종</b>·전부 회전형(rotary)·완전 대칭 구조 → 시뮬레이션에서 로봇을 정확히 모델링.</div></div>
+        <div class="spec-item" style="text-align:left;border-left:3px solid #00B894"><div style="font-size:12px;font-weight:700;margin-bottom:4px">② Domain Randomization</div><div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">무게·마찰·모터 출력을 학습 내내 조금씩 무작위 변동 → 현실 변동성에 강건.</div></div>
+        <div class="spec-item" style="text-align:left;border-left:3px solid #F8B739"><div style="font-size:12px;font-weight:700;margin-bottom:4px">③ People &amp; Process</div><div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">HW 설계팀·수리 기술자·robot captain이 받치는 엄격한 파이프라인.</div></div>
       </div>
-
-      <!-- ── 3자 스택 도식 (직접 작도 SVG, 캡처·외부이미지 미사용) ── -->
-      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:4px">
-        WHO DOES WHAT — 휴머노이드 AI 스택 3층 구분
-      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:4px">WHO DOES WHAT — 휴머노이드 AI 스택 3층 구분</div>
       <p style="font-size:11px;color:var(--ink-3);margin-bottom:10px">"엔비디아와 구글이 뭐가 다른가?" — 경쟁이 아니라 스택의 서로 다른 층.</p>
       <div style="background:var(--bg-soft);border-radius:12px;padding:8px 4px">
         <svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block" font-family="'JetBrains Mono',monospace">
-          <!-- 층 3개 -->
-          <!-- 두뇌 -->
           <rect x="20" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#6C5CE7" stroke-width="2"/>
           <text x="125" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#6C5CE7">두뇌 · 추론 (모델)</text>
           <text x="125" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">Google DeepMind</text>
           <text x="125" y="98" text-anchor="middle" font-size="11" fill="#4A4A45">Gemini Robotics</text>
           <line x1="45" y1="112" x2="205" y2="112" stroke="#E2E1D8" stroke-width="1"/>
-          <text x="125" y="134" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">고수준 추론 · 멀티모달 인지</text>
-          <text x="125" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">물체 식별 · 동작 계획 · VLA</text>
-          <text x="125" y="180" text-anchor="middle" font-size="9.5" fill="#6C5CE7" font-family="'Pretendard',sans-serif">"무엇을 / 왜 하는가"</text>
+          <text x="125" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82">"무엇을 / 왜 하는가"</text>
           <text x="125" y="202" text-anchor="middle" font-size="20">🧠</text>
-
-          <!-- 몸 -->
           <rect x="255" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#F8B739" stroke-width="2"/>
-          <text x="360" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#d39e00">몸 · 물리지능 (HW+행동)</text>
+          <text x="360" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#d39e00">몸 · 물리지능</text>
           <text x="360" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">Boston Dynamics</text>
           <text x="360" y="98" text-anchor="middle" font-size="11" fill="#4A4A45">Atlas</text>
           <line x1="280" y1="112" x2="440" y2="112" stroke="#E2E1D8" stroke-width="1"/>
-          <text x="360" y="134" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">RL 행동 학습 · 자기수용감각</text>
-          <text x="360" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">액추에이터 2종 · 전신 제어</text>
-          <text x="360" y="180" text-anchor="middle" font-size="9.5" fill="#d39e00" font-family="'Pretendard',sans-serif">"어떻게 움직이는가"</text>
+          <text x="360" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82">"어떻게 움직이는가"</text>
           <text x="360" y="202" text-anchor="middle" font-size="20">🦾</text>
-
-          <!-- 인프라 -->
           <rect x="490" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#00B894" stroke-width="2"/>
           <text x="595" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#00997b">인프라 · 엔진</text>
           <text x="595" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">NVIDIA</text>
           <text x="595" y="98" text-anchor="middle" font-size="10.5" fill="#4A4A45">Omniverse · Isaac · Jetson</text>
           <line x1="515" y1="112" x2="675" y2="112" stroke="#E2E1D8" stroke-width="1"/>
-          <text x="595" y="134" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">시뮬레이션 · 강화학습 환경</text>
-          <text x="595" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82" font-family="'Pretendard',sans-serif">합성 데이터 · 온보드 추론칩</text>
-          <text x="595" y="180" text-anchor="middle" font-size="9.5" fill="#00997b" font-family="'Pretendard',sans-serif">"어디서 돌리는가"</text>
+          <text x="595" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82">"어디서 돌리는가"</text>
           <text x="595" y="202" text-anchor="middle" font-size="20">⚙️</text>
-
-          <!-- 연결 화살표 -->
           <text x="242" y="128" text-anchor="middle" font-size="14" fill="#C5C3B7">+</text>
           <text x="477" y="128" text-anchor="middle" font-size="14" fill="#C5C3B7">×</text>
         </svg>
       </div>
       <p style="font-size:10px;color:var(--ink-3);margin-top:10px;line-height:1.6">
-        비유: NVIDIA = 발전소·반도체(인프라), Gemini Robotics = 그 위에서 돌아가는 두뇌(모델), Atlas = 그 두뇌가 깃드는 몸(물리지능).
-        세 층이 맞물려야 냉장고를 든다. <b>BD–DeepMind 파트너십은 양측 모두 비독점</b>(BD는 과거 TRI와도 협업)이라는 점 유의.
+        비유: NVIDIA = 발전소(인프라), Gemini Robotics = 두뇌(모델), Atlas = 몸(물리지능). 세 층이 맞물려야 냉장고를 든다. <b>BD–DeepMind 파트너십은 양측 모두 비독점.</b>
       </p>
-
       <div style="font-size:10px;color:var(--ink-3);margin-top:14px;border-top:1px solid var(--line);padding-top:8px">
-        출처: Boston Dynamics 공식 기술 블로그 "Training a Humanoid Robot for Hard Work" · Boston Dynamics 보도자료 (2026.01 CES, Google DeepMind 파트너십 발표). 모두 1차 자료.
+        출처: Boston Dynamics 공식 기술 블로그 "Training a Humanoid Robot for Hard Work" · BD 보도자료 (2026.01 CES, Google DeepMind 파트너십). 모두 1차 자료.
       </div>
     </section>
 
+    <!-- 브릿지 6.5→7 -->
+    <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
+      ▼ BD가 학습시키는 현실을 봤음. 마지막 — 이게 실제로 박히는 하드웨어와 공급망.
+    </div>
 
     <!-- ══════════════════════════════════════════
          Part 7. HW + 인프라 + 투자
          ══════════════════════════════════════════ -->
     <section id="sec-atlas" class="card section-gap">
       <div class="card-title">🤖 Part 7. HW + 인프라 + 투자 <span class="badge" style="background:var(--ink);color:var(--bg)">Atlas · NVIDIA · HMG</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        뇌 만들고(Part 1~4), 칩에 압축하고(Part 5), 데이터로 학습시켰음(Part 6).
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">마지막 — 이게 실제로 박히는 하드웨어, 돌리는 인프라, 그리고 누가 만드는가.</span>
+      </p>
       <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">"Blank-sheet design focused on simplicity" — Zack Jackowski, BD Chief Product Technology Officer</p>
       <figure style="margin:0 0 16px;display:flex;flex-direction:column;align-items:center">
         <img src="assets/atlas_electric.jpg" alt="신형 전기 아틀라스(Electric Atlas)" loading="lazy" style="width:100%;max-width:340px;border-radius:12px;border:1px solid var(--line-s);display:block">
@@ -1504,6 +1575,99 @@ window.addEventListener('DOMContentLoaded', render);
         </div>
         <div style="font-size:11px;color:var(--ink-2);padding:10px 12px;background:var(--bg-soft);border-radius:7px"><strong>상업화 전략:</strong> B2B Industrial First → Service → Consumer. Spot 기반 500+ 고객 레퍼런스로 ROI 검증 (평균 2년 내 회수) 후 확장.</div>
       </div>
+      <!-- 양산 타임라인 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">양산 타임라인 — 2028 빅뱅</div>
+        <div class="spec-grid" style="margin-bottom:12px">
+          <div class="spec-item" style="text-align:left;border-left:3px solid #F8B739">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">BD / 현대차</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">2028 대량생산 원년. 연간 CAPA 3만대, 캡티브 25,000대. 액추에이터 연간 35만개(현대모비스). <span style="font-size:9px;color:var(--ink-3)">[현대차 JP모건 컨퍼런스]</span></div>
+          </div>
+          <div class="spec-item" style="text-align:left;border-left:3px solid #FF6B6B">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">Tesla</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">2027말~2028 소량 → 100만~1,000만대 목표. 서반구 최대 로봇 공장 추진. <span style="font-size:9px;color:var(--ink-3)">[테슬라 공식]</span></div>
+          </div>
+          <div class="spec-item" style="text-align:left;border-left:3px solid #0984E3">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">중국</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">엔진AI 등 연간 1만대급 기업 10개+. 대량생산 라인 공개 시작.</div>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">
+          <b>로봇 손의 현실:</b> 5손가락이 반드시 필요하지 않음. 공장 반복 작업에서는 집게·주먹이 내구성·복잡도·가격 면에서 유리. 텍타일(촉각) 센서로 압력·미끄러짐·진동 읽어 계란 깨지 않고 쥐는 수준까지 진화 중. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+        </p>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">
+          <b>진입장벽:</b> 휴머노이드는 HW 사업이 아니라 피지컬AI 사업. 기계와 피지컬AI를 동시에 할 줄 알아야 함. AI를 이해하는 CEO 리더십 + 거대 자본 동시 필요. 자동차 기업 중 실제 로봇에 뛰어든 곳은 현대차·테슬라 정도뿐. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+        </p>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.6">
+          <b>현대차 HPVC 로드맵:</b> 3Q26 Pace Car → 4Q27 AD Lv2+ SW → 2028 Full Stack → 2029 실질 데이터 확보. 양산 2030년 3.05백만대, HPVC 750 TOPS. 현대차는 단순 자동차 기업이 아니라, 수백만 대 fleet으로 물리 데이터를 모으는 피지컬AI 데이터 디바이스 기업이 됨. <span style="font-size:10px;color:var(--ink-3)">[현대차그룹 IR + 자체추정]</span>
+        </p>
+      </div>
+      <!-- 한국 노출 매핑 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#00B894;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">한국 노출 매핑 — ECU HPC 구조의 반복</div>
+        <div style="overflow-x:auto;margin-bottom:14px">
+          <table style="width:100%;border-collapse:collapse;font-size:11px">
+            <thead>
+              <tr style="border-bottom:2px solid var(--ink)">
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">계층</th>
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">영역</th>
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">만드는 곳</th>
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">한국 노출</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">두뇌·추론칩</td>
+                <td style="padding:8px 10px">파운데이션모델·추론 SoC</td>
+                <td style="padding:8px 10px">NVIDIA·Tesla</td>
+                <td style="padding:8px 10px;color:var(--ink-3)">직접 노출 없음</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">칩 주변 반도체</td>
+                <td style="padding:8px 10px">FC-BGA·MLCC·전력관리</td>
+                <td style="padding:8px 10px">ECU와 동일 공급망</td>
+                <td style="padding:8px 10px;font-weight:600">삼성전기·대덕전자·이수페타시스</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line);background:rgba(0,184,148,0.06)">
+                <td style="padding:8px 10px">몸-핵심</td>
+                <td style="padding:8px 10px">감속기·액추에이터</td>
+                <td style="padding:8px 10px">BD Atlas = 모비스 100%</td>
+                <td style="padding:8px 10px;font-weight:700;color:#00B894">★ 현대모비스·로보티즈·에스피지</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">몸-부품</td>
+                <td style="padding:8px 10px">모터·센서·구조체</td>
+                <td style="padding:8px 10px"></td>
+                <td style="padding:8px 10px">HL만도·계양전기</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line);background:rgba(0,184,148,0.06)">
+                <td style="padding:8px 10px">데이터 디바이스</td>
+                <td style="padding:8px 10px">fleet·RMAC·데이터팩토리</td>
+                <td style="padding:8px 10px">HMG 수백만대 fleet</td>
+                <td style="padding:8px 10px;font-weight:700;color:#00B894">★ 현대차·로보티즈(우즈벡 팩토리+오픈소스)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">소재</td>
+                <td style="padding:8px 10px">배터리·NdFeB</td>
+                <td style="padding:8px 10px"></td>
+                <td style="padding:8px 10px">LG에너지솔루션·엘앤에프</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:rgba(255,107,107,0.08);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:14px 18px">
+          <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:8px">📌 착지 소결</div>
+          <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
+            <li>추론칩 자체는 NVIDIA·Tesla → 한국 직접 노출 없음</li>
+            <li>칩 주변 반도체는 ECU HPC 때와 동일한 한국 공급망이 받칠 가능성 높음</li>
+            <li>몸(감속기·액추에이터)은 현대모비스 BD 100% 캡티브로 가시성 가장 높음</li>
+            <li><b>피지컬AI 핵심 병목 = 학습 데이터.</b> 현대차는 수백만 대 fleet + RMAC, 로보티즈는 우즈벡 데이터 팩토리 + 오픈소스 생태계로 물리 데이터를 모으는 디바이스 기업이 됨 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li>2028년 빅뱅. BD 3만대·테슬라 100만대 목표 동시 → 부품 공급망 선점 결판 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li>미중 갈등으로 순수 중국 밸류체인 구성 어려움 → 한국·일본·독일 반사이익 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li>과거 기술 사이클(철도·전기·PC·인터넷)에서 가장 늦게까지 랠리가 이어진 게 '제조'. 지금 한국 제조업 랠리는 초기 국면 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+          </ul>
+        </div>
+      </div>
       <!-- 원가 로드맵 -->
       <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
         <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">휴머노이드 원가 로드맵</div>
@@ -1515,7 +1679,7 @@ window.addEventListener('DOMContentLoaded', render);
 
     <!-- ═══ 부록. Glossary ═══ -->
     <section id="sec-glossary" class="card section-gap">
-      <div class="card-title">📖 핵심 기술 용어 사전 <span class="badge" style="background:var(--ink);color:var(--bg)">28 Terms</span></div>
+      <div class="card-title">📖 핵심 기술 용어 사전 <span class="badge" style="background:var(--ink);color:var(--bg)">25 Terms</span></div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">색상: <span style="color:#6C5CE7">모델</span> · <span style="color:#FF6B6B">방법론</span> · <span style="color:#F8B739">아키텍처</span> · <span style="color:#00B894">데이터</span> · <span style="color:#0984E3">시뮬레이션</span></p>
       <div id="glossaryGrid" class="glossary-grid cat-colors"></div>
     </section>
