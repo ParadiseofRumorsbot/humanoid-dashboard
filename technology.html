@@ -1035,6 +1035,65 @@ window.addEventListener('DOMContentLoaded', render);
         <b>이 변화 속도가 왜 중요한가?</b> 6년 전에는 연구실 프로토타입이었던 것이 지금은 공장 라인에 투입되고 있음. 다음 2년(2026~2028)이 부품 공급망 선점의 결판. 이 기술 변화가 한국에 어떤 기회를 만드는지 — 이 페이지가 다루는 내용.
       </div>
       <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: McKinsey · Omdia · Octo/OpenVLA · Pi0 · Boston Dynamics · 각사 IR · components.html BOM 데이터</div>
+      <!-- 용어 해설 토글 -->
+      <div style="margin-top:14px;border-top:1px dashed var(--line-s);padding-top:10px">
+        <div style="cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px" onclick="const t=this.nextElementSibling;const b=this.querySelector('.tgl-btn');if(t.style.maxHeight==='0px'){t.style.maxHeight='2000px';b.textContent='▲ 접기'}else{t.style.maxHeight='0px';b.textContent='▼ 펼치기'}">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;letter-spacing:.08em">📖 용어 해설</span>
+          <span class="tgl-btn" style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg-soft);padding:2px 8px;border-radius:4px">▼ 펼치기</span>
+        </div>
+        <div style="max-height:0px;overflow:hidden;transition:max-height .3s ease">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px;font-size:10.5px">
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #FF6B6B">
+              <b style="color:#FF6B6B">BOM</b> <span style="color:var(--ink-3)">(Bill of Materials)</span><br>
+              <span style="color:var(--ink-2)">로봇 1대를 만드는 데 필요한 모든 부품의 원가 합계. "$17,117" = 양산 기준 부품 원가.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #6C5CE7">
+              <b style="color:#6C5CE7">Cross-Embodiment</b><br>
+              <span style="color:var(--ink-2)">한 번 학습한 AI를 다른 몸(로봇)에 그대로 이식하는 기술. 로봇 기종마다 처음부터 다시 학습할 필요가 없어짐.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #00B894">
+              <b style="color:#00B894">DoF</b> <span style="color:var(--ink-3)">(Degrees of Freedom)</span><br>
+              <span style="color:var(--ink-2)">관절 자유도. 사람 팔은 7 DoF. 산업용 로봇 6 DoF → Atlas 56 DoF. 숫자가 클수록 사람처럼 복잡한 동작 가능.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #F8B739">
+              <b style="color:#F8B739">감속기</b> <span style="color:var(--ink-3)">(Reducer/Gearbox)</span><br>
+              <span style="color:var(--ink-2)">모터의 빠른 회전을 느리고 강한 힘으로 바꾸는 부품. 관절마다 1개씩 필요. 로봇 BOM의 60%를 차지하는 핵심 부품.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #F8B739">
+              <b style="color:#F8B739">하모닉 감속기</b><br>
+              <span style="color:var(--ink-2)">파동 원리로 작동하는 정밀 감속기. 백래시(유격) 거의 없어 정밀 작업에 적합. HDS(일본)가 글로벌 60~70% 독과점.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #F8B739">
+              <b style="color:#F8B739">RV 감속기</b> <span style="color:var(--ink-3)">(Cycloidal)</span><br>
+              <span style="color:var(--ink-2)">사이클로이드 기어 방식 감속기. 하모닉보다 큰 토크 전달 가능. 고관절·무릎 등 고하중 관절에 사용. 나브테스코(일본) 독점.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #0984E3">
+              <b style="color:#0984E3">NPU</b> <span style="color:var(--ink-3)">(Neural Processing Unit)</span><br>
+              <span style="color:var(--ink-2)">AI 연산 전용 칩. GPU보다 전력 효율이 높아 로봇 몸 안에 넣을 수 있음. "온디바이스 추론"의 핵심 하드웨어.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #0984E3">
+              <b style="color:#0984E3">Jetson Thor</b><br>
+              <span style="color:var(--ink-2)">NVIDIA가 만든 로봇 전용 AI 컴퓨터. GPU+CPU+DLA를 한 칩에 통합. Atlas·GR00T 등 차세대 휴머노이드의 두뇌 역할.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #00B894">
+              <b style="color:#00B894">IMU</b> <span style="color:var(--ink-3)">(Inertial Measurement Unit)</span><br>
+              <span style="color:var(--ink-2)">가속도·각속도를 측정하는 센서. 로봇이 기울어졌는지, 어떤 방향으로 움직이는지 감지. 스마트폰에도 들어있는 부품.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #E17055">
+              <b style="color:#E17055">Flow Matching</b><br>
+              <span style="color:var(--ink-2)">확산 모델(Diffusion)의 경량 버전. 노이즈→깨끗한 동작으로 가는 "직선 경로"를 학습해 부드럽고 빠른 로봇 동작 생성.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #00B894">
+              <b style="color:#00B894">PLC</b> <span style="color:var(--ink-3)">(Programmable Logic Controller)</span><br>
+              <span style="color:var(--ink-2)">공장 자동화용 컴퓨터. 정해진 순서대로 동작을 반복하는 제어기. AI 없이 "프로그래밍한 대로만" 움직임.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #00B894">
+              <b style="color:#00B894">LiDAR</b><br>
+              <span style="color:var(--ink-2)">레이저로 주변 3D 지형을 측정하는 센서. 자율주행차에도 사용. 로봇이 공간을 인식하고 장애물을 피하는 데 핵심.</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ═══ 수요 논거 4 Pillars ═══ -->
