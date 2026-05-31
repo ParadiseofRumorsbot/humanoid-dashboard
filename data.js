@@ -1016,8 +1016,10 @@ const DASHBOARD_DATA = {
         { id: 'sec-factcheck', label: '액추에이터 데이터 Lock-in' },
       ]},
       { group: '도입', items: [
+        { id: 'sec-snapshot', label: '⚡ Before → After' },
         { id: 'sec-demand', label: '수요 논거 4 Pillars' },
         { id: 'sec-ondevice-hero', label: '핵심 질문 (히어로)' },
+        { id: 'conclusion-callout', label: '📌 소결 (투자 착지)' },
       ]},
       { group: 'Part 1 — 범용 OS', items: [
         { id: 'sec-paradigm', label: '패러다임 시프트 + AI 스택' },
@@ -1036,6 +1038,7 @@ const DASHBOARD_DATA = {
       ]},
       { group: 'Part 6 — 데이터+시뮬', items: [
         { id: 'sec-pipeline', label: '데이터 + 디지털 트윈' },
+        { id: 'sec-bd-learning', label: '🦾 Part 6.5 BD Atlas 학습' },
       ]},
       { group: 'Part 7 — HW+인프라', items: [
         { id: 'sec-atlas', label: 'Atlas + NVIDIA + HMG + 원가' },
