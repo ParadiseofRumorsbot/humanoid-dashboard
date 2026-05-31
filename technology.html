@@ -959,30 +959,6 @@ window.addEventListener('DOMContentLoaded', render);
           <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#E17055">92%</div>
           <div style="font-size:10px;color:var(--ink-3)">Pi0 Flow Matching</div>
         </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #0984E3">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">중국 시장 규모</div>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">27.6억위안 (2024)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#0984E3">750억위안</div>
-          <div style="font-size:10px;color:var(--ink-3)">2029E · CAGR 93.6% (Omdia)</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #6C5CE7">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">반응 지연 (Dual System)</div>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">500ms+ (클라우드)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#6C5CE7">10ms</div>
-          <div style="font-size:10px;color:var(--ink-3)">온디바이스 System 1 (BD)</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #F8B739">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">WFM 학습 데이터</div>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">100조 토큰 (GPT-5)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#F8B739">9,000조</div>
-          <div style="font-size:10px;color:var(--ink-3)">Cosmos · 물리세계 90배 (NVIDIA)</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
-          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">모델 압축 (온디바이스)</div>
-          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">7B 파라미터 / 100ms</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#E17055">0.5B / 10ms</div>
-          <div style="font-size:10px;color:var(--ink-3)">14배 압축 (bVLA/PD-VLA)</div>
-        </div>
       </div>
       <!-- 부품 수 비교 테이블 (ICE→EV 스타일) -->
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin:16px 0 10px">부품 구성 비교 — 산업용 로봇 → 기본 휴머노이드 → 풀스택 휴머노이드</div>
@@ -1048,7 +1024,29 @@ window.addEventListener('DOMContentLoaded', render);
           </tbody>
         </table>
       </div>
-      <div style="font-size:10px;color:var(--ink-3);margin-bottom:14px">📌 <b>감속기 단가가 4~8배, 개수가 4배</b> → 전체 BOM에서 감속기가 <b>60%</b>를 차지. 자동차에서 반도체·MLCC가 늘었듯, 휴머노이드에서는 <b>감속기·액추에이터가 폭증</b>하는 구간.</div>
+      <div style="font-size:10px;color:var(--ink-3);margin-bottom:14px">📌 <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">감속기 단가가 4~8배, 개수가 4배</span> → 전체 BOM에서 감속기가 <b>60%</b>를 차지. 자동차에서 반도체·MLCC가 늘었듯, 휴머노이드에서는 <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">감속기·액추에이터가 폭증</span>하는 구간.</div>
+      <!-- 기술 진화 Before→After (부품 테이블 연장) -->
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin:16px 0 10px">기술 진화 Before → After</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #6C5CE7">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">반응 지연 (Dual System)</div>
+          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">500ms+ (클라우드)</div>
+          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#6C5CE7">10ms</div>
+          <div style="font-size:10px;color:var(--ink-3)">온디바이스 System 1 (BD)</div>
+        </div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #F8B739">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">WFM 학습 데이터</div>
+          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">100조 토큰 (GPT-5)</div>
+          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#F8B739">9,000조</div>
+          <div style="font-size:10px;color:var(--ink-3)">Cosmos · 물리세계 90배 (NVIDIA)</div>
+        </div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">모델 압축 (온디바이스)</div>
+          <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">7B 파라미터 / 100ms</div>
+          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#E17055">0.5B / 10ms</div>
+          <div style="font-size:10px;color:var(--ink-3)">14배 압축 (bVLA/PD-VLA)</div>
+        </div>
+      </div>
       <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;padding:10px 14px;background:rgba(255,107,107,0.06);border-radius:8px">
         <b>이 변화 속도가 왜 중요한가?</b> 6년 전에는 연구실 프로토타입이었던 것이 지금은 공장 라인에 투입되고 있음. 다음 2년(2026~2028)이 부품 공급망 선점의 결판. 이 기술 변화가 한국에 어떤 기회를 만드는지 — 이 페이지가 다루는 내용.
       </div>
@@ -1218,7 +1216,7 @@ window.addEventListener('DOMContentLoaded', render);
           <li>로봇의 뇌(파운데이션 모델)가 빠르게 진화 중. <b>이제 승부는 그 뇌를 로봇 몸 안 작은 칩에 실시간으로 압축하는 온디바이스 추론으로 내려옴.</b> 클라우드 왕복으론 냉장고도 못 든다.</li>
           <li>추론칩(Jetson, Tesla AI5 등)은 NVIDIA·Tesla가 만들지만, <b>①칩에 붙는 주변 반도체(FC-BGA 기판·MLCC·전력관리)와 ②감속기·액추에이터는 한국에서 구성될 확률이 높음.</b></li>
           <li>자동차 ECU가 HPC로 통합될 때, 칩(SoC)은 Infineon·NXP 등이 과점했지만 FC-BGA·MLCC·전력관리는 삼성전기·대덕전자 등 한국이 공급했음. <b>온디바이스 추론칩에서도 같은 구조가 반복될 가능성이 높음.</b></li>
-          <li>피지컬 AI의 핵심 병목은 하드웨어가 아니라 <b>학습 데이터</b>. 로봇 HW는 이미 중국에서도 양산 경쟁 중이라 병목이 아님. 물리 세계 데이터를 먼저 모으는 자가 해자를 가짐 — <b>현대차</b>(fleet 수백만 대 + RMAC), <b>로보티즈</b>(데이터 팩토리 + 오픈소스 생태계).</li>
+          <li>피지컬 AI의 핵심 병목은 하드웨어가 아니라 <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">학습 데이터</span>. 로봇 HW는 이미 중국에서도 양산 경쟁 중이라 병목이 아님. 물리 세계 데이터를 먼저 모으는 자가 해자를 가짐 — <b>현대차</b>(fleet 수백만 대 + RMAC), <b>로보티즈</b>(데이터 팩토리 + 오픈소스 생태계).</li>
         </ol>
       </div>
     </section>
@@ -1488,7 +1486,7 @@ window.addEventListener('DOMContentLoaded', render);
 
     <!-- 브릿지 4→5 (강조 최대) -->
     <div style="background:rgba(255,107,107,0.18);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:12px;font-weight:700;color:var(--ink);line-height:1.6">
-      ▼ Part 1~4에서 뇌는 거의 완성 단계까지 왔음. 이제 진짜 문제 — 이 거대한 뇌를 로봇 몸 안 작은 칩에 어떻게 넣느냐?
+      ▼ Part 1~4에서 뇌는 거의 완성 단계까지 왔음. 이제 진짜 문제 — <span style="background:rgba(255,107,107,0.25);padding:2px 6px;border-radius:4px;font-weight:700">이 거대한 뇌를 로봇 몸 안 작은 칩에 어떻게 넣느냐?</span>
     </div>
 
     <!-- ══════════════════════════════════════════
@@ -1592,7 +1590,7 @@ window.addEventListener('DOMContentLoaded', render);
           로봇 HW는 중국에서도 수많은 기업이 양산 경쟁 중이라 병목이 아님. 진짜 병목은 피지컬 AI S/W와 거기에 들어가는 데이터.
           Jensen Huang: <i>"합성 데이터는 실제 데이터를 대체하지 않음. 실제 데이터를 최대한 모아야 함(You should collect as much real-data as you can)."</i>
           <span style="font-size:10px;color:var(--ink-3)">[NVIDIA CEO, Bloomberg 인터뷰]</span><br>
-          <b>물리 세계 데이터를 모아줄 디바이스가 다음 병목 투자 아이디어.</b>
+          <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">물리 세계 데이터를 모아줄 디바이스가 다음 병목 투자 아이디어.</span>
           <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
         </div>
       </div>
@@ -1868,8 +1866,8 @@ window.addEventListener('DOMContentLoaded', render);
             <li>추론칩 자체는 NVIDIA·Tesla → 한국 직접 노출 없음</li>
             <li>칩 주변 반도체는 ECU HPC 때와 동일한 한국 공급망이 받칠 가능성 높음</li>
             <li>몸(감속기·액추에이터)은 현대모비스 BD 100% 캡티브로 가시성 가장 높음</li>
-            <li><b>피지컬AI 핵심 병목 = 학습 데이터.</b> 현대차는 수백만 대 fleet + RMAC, 로보티즈는 우즈벡 데이터 팩토리 + 오픈소스 생태계로 물리 데이터를 모으는 디바이스 기업이 됨 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
-            <li>2028년 빅뱅. BD 3만대·테슬라 100만대 목표 동시 → 부품 공급망 선점 결판 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li><span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">피지컬AI 핵심 병목 = 학습 데이터.</span> 현대차는 수백만 대 fleet + RMAC, 로보티즈는 우즈벡 데이터 팩토리 + 오픈소스 생태계로 물리 데이터를 모으는 디바이스 기업이 됨 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li><span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">2028년 빅뱅.</span> BD 3만대·테슬라 100만대 목표 동시 → 부품 공급망 선점 결판 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
             <li>미중 갈등으로 순수 중국 밸류체인 구성 어려움 → 한국·일본·독일 반사이익 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
             <li>과거 기술 사이클(철도·전기·PC·인터넷)에서 가장 늦게까지 랠리가 이어진 게 '제조'. 지금 한국 제조업 랠리는 초기 국면 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
           </ul>
