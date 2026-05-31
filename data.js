@@ -1054,6 +1054,25 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   updateLog: [
     {
+      date: '2026-05-31',
+      title: 'technology.html 발표용 대규모 개편 — 스토리 라인·수치·영상·디자인 전면 업데이트',
+      source: 'McKinsey · Omdia · Octo/OpenVLA · Pi0 · BD 공식 · NVIDIA · 현대차IR · 로보티즈IR / 일부 자체추정',
+      changes: [
+        '⚡ Before→After 스냅샷 카드 신설 (원가·학습시간·출하량·액추에이터·조작성공률 5개 수치)',
+        '부품비교 테이블 (산업용→기본→풀스택 10행, 인버터/PMIC·MLCC 포함) + 기술진화 Before→After 테이블',
+        '📌 소결 콜아웃 (온디바이스·칩주변반도체·감속기·학습데이터 투자 착지) + Part 1~7 맥락텍스트·브릿지 7개',
+        'Part 7: 양산 타임라인 2028 빅뱅 + 한국 노출 매핑 6행 + 착지 소결 7줄',
+        'Part 7: Atlas FRU 다이어그램 교체 + Handstand 영상 자동재생',
+        'Part 6.5: BD Workhorse Grippers 영상 자동재생',
+        'Part 6: Jensen Huang "실제 데이터를 모아야" 블록 + RMAC/로보티즈 팩토리',
+        '팩트체크: 결론 상단 배치 (로보티즈 경쟁력 ①다이나믹셀 ②우즈벡 ③NVIDIA ④수직통합)',
+        '팩트체크 하단: ROBOTIS Kimodo 영상 자동재생',
+        'AI 침투율 수치 박스 (유료 AI 사용자 전 세계 1%)',
+        '디자인: 히어로·WAM·Jim Fan 밝은톤 통일, 초보자 블록 6문장 빨간 강조, 용어해설 토글 12개',
+        '사이드바: ⚡Before→After, 📌소결, 🦾Part 6.5 탭 추가',
+      ],
+    },
+    {
       date: '2026-05-29',
       title: 'Boston Dynamics 지배구조·밸류에이션 + 공장 ROI 시나리오 반영',
       source: '보스턴다이내믹스 · 현대차 공시 / 일부 자체추정',
