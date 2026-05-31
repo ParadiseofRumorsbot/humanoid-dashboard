@@ -1219,9 +1219,9 @@ window.addEventListener('DOMContentLoaded', render);
       <div class="card-title">🔄 Part 1. 범용 OS — 패러다임 시프트 <span class="badge" style="background:#6C5CE7;color:#fff">Octo · OpenVLA</span></div>
       <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
         로봇 기종 바뀌면 처음부터 다시 코딩하던 시대.
-        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">VLA가 "로봇용 안드로이드"를 만들었음. 한 번 학습하면 어떤 로봇이든 즉시 이식 가능.</span>
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">VLA가 "로봇용 안드로이드"를 만들었음. 1종 전용 학습 6개월 → 25종+ 동시 학습, 새 로봇 fine-tuning 수 시간.</span>
         NVIDIA 키모도처럼 텍스트 한 줄("상자를 들고 오른쪽으로 옮겨라")만으로 전신 동작 데이터를 생성하는 단계까지 진화.
-        <span style="font-size:10px;color:var(--ink-3)">[NVIDIA GTC]</span>
+        <span style="font-size:10px;color:var(--ink-3)">[Octo/OpenVLA · NVIDIA GTC]</span>
       </p>
       <!-- 초보자 블록 -->
       <div id="paradigmContent"></div>
@@ -1253,7 +1253,8 @@ window.addEventListener('DOMContentLoaded', render);
       <div class="card-title">🌊 Part 2. 부드러운 제어 — VLA 진화 <span class="badge" style="background:#00B894;color:#fff">Pi0 · Flow Matching</span></div>
       <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
         범용 OS로 "뭘 해라"는 알아듣게 됐는데 동작이 뻣뻣함.
-        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">플로우 매칭 도입으로 사람처럼 끊김 없이 움직이게 됨. 정밀 조작 성공률 92%.</span>
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">플로우 매칭 도입으로 사람처럼 끊김 없이 움직이게 됨. 정밀 조작 성공률 ~60% → 92%.</span>
+        <span style="font-size:10px;color:var(--ink-3)">[Pi0 논문]</span>
       </p>
       <!-- 초보자 블록 -->
       <div id="flowMatchContent"></div>
@@ -1362,7 +1363,7 @@ window.addEventListener('DOMContentLoaded', render);
       <div class="card-title">🧠 Part 3. 뇌·몸 분리 — Dual System <span class="badge" style="background:#6C5CE7;color:#fff">CogACT · GR00T N1</span></div>
       <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
         부드럽게 움직이는 건 됐는데, 냉장고를 안으면서(빠른 반사) 동시에 어디로 옮길지(깊은 생각)를 한꺼번에 못 함.
-        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">인간처럼 System 1(반사) + System 2(추론)로 나눠서 해결.</span>
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">인간처럼 System 1(반사) + System 2(추론)로 나눠서 해결. 반응 지연 500ms+(클라우드) → 10ms(온디바이스 System 1).</span>
         Atlas가 실증 사례 — BD 자체 피지컬AI(빠른 반사·역동적 제어)가 System 1, 구글 딥마인드 Gemini(시계열 추론·롱 템포럴 리즈닝)가 System 2를 담당.
         <span style="font-size:10px;color:var(--ink-3)">[BD 보도자료 2026.01]</span>
       </p>
@@ -1478,9 +1479,9 @@ window.addEventListener('DOMContentLoaded', render);
     <section id="sec-ondevice" class="card section-gap">
       <div class="card-title">🚀 Part 5. 실전 경량화 — 온디바이스 최적화 <span class="badge" style="background:#FF6B6B;color:#fff">bVLA · PD-VLA · RTC</span></div>
       <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
-        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">짧은 데모가 아니라 장시간 안정 가동 + ROI 증명이 진짜 기준.</span>
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">모델 크기 7B → 0.5B(14배 압축), 추론 100ms → 10ms. 짧은 데모가 아니라 장시간 안정 가동 + ROI 증명이 진짜 기준.</span>
         데모 잘 만드는 기업이 아니라 현장에서 돈 버는 기업만 살아남음.
-        <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+        <span style="font-size:10px;color:var(--ink-3)">[bVLA/PD-VLA 논문 · 자체추정]</span>
       </p>
       <div id="onDeviceContent"></div>
     </section>
