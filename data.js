@@ -784,7 +784,7 @@ const DASHBOARD_DATA = {
         explanation: [
           '기존에는 로봇 기종이나 센서 위치가 조금만 바뀌어도 처음부터 다시 코딩해야 했음.',
           '이 기술은 마치 스마트폰의 범용 OS(안드로이드/iOS)처럼, 수십 종의 이질적인 로봇 데이터를 통째로 학습시켜 어떤 로봇이든 즉시 움직이게 만드는 \'기초 체력 모델\'임.',
-          '로봇의 관절 움직임이나 행동을 문장의 단어처럼 \'토큰(Token)\'으로 쪼개어 AI가 다음 행동을 단어 뱉듯이 자연스럽게 예측하도록 만듦.',
+          '<span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">로봇의 관절 움직임이나 행동을 문장의 단어처럼 \'토큰(Token)\'으로 쪼개어 AI가 다음 행동을 단어 뱉듯이 자연스럽게 예측하도록 만듦.</span>',
         ],
         stats: [
           { label: '학습 로봇 종류', value: '25+', sub: 'Open X-Embodiment 데이터셋' },
@@ -811,7 +811,7 @@ const DASHBOARD_DATA = {
         },
         explanation: [
           '행동을 글자처럼 뚝뚝 끊어서 예측하던 기존 방식은 정밀하고 빠른 물리 제어에 한계가 있었음.',
-          'Pi0 모델에 도입된 \'플로우 매칭(Flow Matching)\'은 노이즈 속에서 확률적으로 행동을 찾는 디퓨전 방식과 달리, 시작점부터 목표 행동까지 움직여야 할 \'속도와 방향의 흐름(벡터장)\'을 통째로 설계함.',
+          'Pi0 모델에 도입된 \'플로우 매칭(Flow Matching)\'은 노이즈 속에서 확률적으로 행동을 찾는 디퓨전 방식과 달리, <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">시작점부터 목표 행동까지 움직여야 할 \'속도와 방향의 흐름(벡터장)\'을 통째로 설계함.</span>',
           '그 결과, 로봇이 계란을 쥐거나 문을 여는 연속적인 조작을 사람처럼 끊김 없이 부드럽고 안정적으로 수행할 수 있게 됨.',
         ],
         stats: [
@@ -846,7 +846,7 @@ const DASHBOARD_DATA = {
         },
         explanation: [
           '복잡한 시각 정보 이해, 언어 명령 해석, 실제 관절 모터 제어를 하나의 AI 네트워크에 다 집어넣으면 과부하가 걸려 실패함.',
-          'CogAct는 인간의 사고 구조처럼 거시적인 계획을 짜는 \'인지(Cognition)\' 영역과 모터를 꺾는 \'행동(Action)\' 영역을 철저히 분리함.',
+          '<span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">CogAct는 인간의 사고 구조처럼 거시적인 계획을 짜는 \'인지(Cognition)\' 영역과 모터를 꺾는 \'행동(Action)\' 영역을 철저히 분리함.</span>',
           '역할 분담 덕분에 로봇이 긴 시간 동안 여러 단계를 거쳐야 하는 복잡한 임무(Long-Horizon Task)를 수행할 때 성공률이 극대화됨.',
         ],
         stats: [
@@ -889,7 +889,7 @@ const DASHBOARD_DATA = {
         explanation: [
           '엔비디아 코스모스 플랫폼이나 구글 제미나이 로보틱스가 집중하는 핵심 기술임.',
           '단순히 카메라로 사물을 식별하는 단계를 넘어, 로봇에게 \'물리적 법칙에 대한 상상력\'을 부여함.',
-          '내가 이 물건을 밀면 바닥으로 떨어져 깨질 것이라는 미래의 결과를, 실제로 행동하기 전에 머릿속으로 시뮬레이션(비디오 생성)하여 위험을 스스로 회피하고 최적의 경로를 찾아냄.',
+          '<span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">내가 이 물건을 밀면 바닥으로 떨어져 깨질 것이라는 미래의 결과를, 실제로 행동하기 전에 머릿속으로 시뮬레이션(비디오 생성)하여 위험을 스스로 회피하고 최적의 경로를 찾아냄.</span>',
         ],
         stats: [
           { label: 'Cosmos Policy', value: '98.5%', sub: 'LIBERO 벤치마크 성공률' },
@@ -972,7 +972,7 @@ const DASHBOARD_DATA = {
         ],
         explanation: [
           '거대한 AI 모델은 데이터 센터의 슈퍼컴퓨터에서나 돌아가므로, 실제 공장이나 가정의 로봇 칩에 넣으려면 극단적인 다이어트가 필요함.',
-          'bVLA(1비트 양자화) → PD-VLA(병렬 디코딩) → RTC(실시간 청킹) 세 기술을 순차 적용하면, 수십억 파라미터 모델도 Jetson 급 엣지 칩에서 실시간 구동 가능.',
+          'bVLA(1비트 양자화) → PD-VLA(병렬 디코딩) → RTC(실시간 청킹) 세 기술을 순차 적용하면, <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">수십억 파라미터 모델도 Jetson 급 엣지 칩에서 실시간 구동 가능.</span>',
         ],
         stats: [
           { label: 'RD-VLA 속도', value: '80×', sub: '0.5B ≥ 7B 성능, 80배 빠름' },
