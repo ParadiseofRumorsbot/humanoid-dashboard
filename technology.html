@@ -1174,7 +1174,7 @@ window.addEventListener('DOMContentLoaded', render);
 
     <!-- ═══ 수요 논거 4 Pillars ═══ -->
     <section id="sec-demand" class="card section-gap">
-      <div class="card-title">🎯 단편적인 내용만 보지 말자 — 테슬라와 HMGMA 공장이 표준이 아니다 <span class="badge" style="background:#FF6B6B;color:#fff">4 Pillars</span></div>
+      <div class="card-title">🎯 단편적인 내용만 보지 말자 — 테슬라와 HMGMA 공장이 표준이 아니다 <span class="badge" style="background:#FF6B6B;color:#fff">5 Pillars</span></div>
       <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px">"자동차 공장 자동화 90% 됐는데 휴머노이드가 왜 필요하냐" — Tesla Austin, HMG HMGMA는 전 세계 제조업의 극히 일부. 나머지 98%의 현실에서 답을 찾는다.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
         <div class="intro-card" style="border-color:#FF6B6B"><h3 style="color:#FF6B6B">자동화 90%는 미국 제조업의 1.7% 이야기</h3><div class="detail">미국 제조업 사업체 중 98.3%는 중소기업(종업원 500인 미만). 이들의 자동화 침투율은 한 자릿수.</div><div class="num-row"><div class="num-box"><div class="num-label">중소기업 비중</div><div class="num-value">98.3%</div><div class="num-sub">미국 전체 제조업체</div></div><div class="num-box"><div class="num-label">산업용 로봇 설치</div><div class="num-value">542,100</div><div class="num-sub">2024년 글로벌 연간</div></div></div><div class="source-tag">출처: US Census Bureau SUSB</div></div>
@@ -1239,6 +1239,16 @@ window.addEventListener('DOMContentLoaded', render);
           </table>
         </div>
         <div class="source-tag">출처: BD IR, Tesla IR, Amazon IR, HMG IR (JPM 2026)</div>
+      </div>
+      <!-- 5th Pillar: 군사용 로봇 -->
+      <div class="intro-card" style="border-color:#0984E3">
+        <h3 style="color:#0984E3">군사용 로봇 — 산업용보다 도입이 빠를 수 있다</h3>
+        <div class="detail"><span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">산업용 로봇은 노동자가 반대하지만, 군사용 로봇은 병사들이 먼저 원함.</span> 전장에서 로봇은 일자리를 빼앗는 존재가 아니라 목숨을 대신 걸어주는 존재.</div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;margin:10px 0;font-size:11px;color:var(--ink-2);line-height:1.7">
+          <b>우크라이나 전쟁 (2026.05):</b> 무인 드론·로봇이 전쟁 양상을 바꾸는 중. 우크라이나의 전쟁 수행은 상당 부분 무인화 — 로봇, 드론, 원격 조종 탱크가 러시아군 대비 갑작스러운 우위를 제공. 수개월간 인력난에 시달리던 우크라이나가 무인화로 돌파.
+          <span style="font-size:10px;color:var(--ink-3)">[CNN 2026.05.30]</span>
+        </div>
+        <div class="source-tag">출처: CNN · 자체추정</div>
       </div>
       <!-- AI 침투율 수치 박스 -->
       <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-top:16px">
@@ -1559,6 +1569,22 @@ window.addEventListener('DOMContentLoaded', render);
         데모 잘 만드는 기업이 아니라 현장에서 돈 버는 기업만 살아남음.
         <span style="font-size:10px;color:var(--ink-3)">[bVLA/PD-VLA 논문 · 자체추정]</span>
       </p>
+      <!-- 칩 아키텍처 제약 + 3계층 분산 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+        <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-left:4px solid #E17055">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:6px">왜 Jetson(ARM RISC)인가?</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">AI는 전력 소비가 극심하고 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">전력-발열은 정비례</span>. 데이터센터는 열관리 솔루션이 있지만 로봇 몸 안에는 쿨러 수준이 전부. CISC(x86)는 고성능이지만 전력 소비가 심함 → <b>ARM RISC가 필연적 선택</b>. NVIDIA Jetson Thor가 ARM 기반인 이유.</div>
+          <div style="font-size:10px;color:var(--ink-3);margin-top:4px">RISC = 저전력·저발열, CISC = 고성능·고전력</div>
+        </div>
+        <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-left:4px solid #0984E3">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3;margin-bottom:6px">3계층 분산 처리 구조</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">모든 걸 디바이스에서 처리할 필요 없음:<br>
+            <b>① 디바이스</b> — 관절 반사·안전 제어 (10ms, System 1)<br>
+            <b>② 엣지/5G</b> — 시각 추론·상황 판단 (100ms)<br>
+            <b>③ 클라우드</b> — 학습·시뮬레이션 (비실시간)<br>
+            <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">6G 시대에는 ②의 역할이 커지면서 온디바이스 부담이 줄어들 가능성.</span></div>
+        </div>
+      </div>
       <div id="onDeviceContent"></div>
     </section>
 
