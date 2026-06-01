@@ -1042,6 +1042,7 @@ const DASHBOARD_DATA = {
       ]},
       { group: 'Part 7 — HW+인프라', items: [
         { id: 'sec-atlas', label: 'Atlas + NVIDIA + HMG + 원가' },
+        { id: 'sec-stock-picks', label: '🎯 종목별 투자 포인트' },
       ]},
       { group: '부록', items: [
         { id: 'sec-glossary', label: '용어 사전' },
