@@ -184,7 +184,7 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   oemTargets: [
     { name: 'Tesla', flag: '🇺🇸', target2026: '5~10만 CAPA', target2030: '100만대 목표', price: '$20~30K', battery: '2.3kWh / 2170 원통형' },
-    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMCA 개소 (2026 여름)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
+    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026 여름)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
     { name: 'AGIBOT', flag: '🇨🇳', target2026: '수만대', target2030: '-', price: '-', battery: '-' },
     { name: 'UBTECH', flag: '🇨🇳', target2026: '1만대', target2030: '-', price: '-', battery: '-' },
     { name: 'Unitree', flag: '🇨🇳', target2026: '-', target2030: '-', price: '$16K~', battery: '-' },
@@ -475,7 +475,7 @@ const DASHBOARD_DATA = {
   radarOEM: {
     optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'V3 26H2 양산 예정' },
     figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'OpenAI World Model' },
-    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '사이클로이드', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMCA 2026 여름 개소, 30K CAPA (28E)' },
+    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '사이클로이드', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026 여름 개소, 30K CAPA (28E)' },
     digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
     g1: { name: 'Unitree G1', color: '#E17055', h: 132, w: 35, dof: 23, payload: 2, battery: 1.5, asp: 13.5, gear: '유성', customer: '범용', pos: '중국 저가형', note: '26년 8월 IPO, BOM 790만원' },
     neo: { name: '1X Neo', color: '#0984E3', h: 168, w: 30, dof: 75, payload: 25, battery: 2, asp: 20, gear: '유성', customer: '일반 소비자', pos: '서비스·가정용', note: '26H2 소비자 배송 시작' },
@@ -558,7 +558,7 @@ const DASHBOARD_DATA = {
         { step: 2, name: '데이터 수집', desc: '실세계 환경에서 Physical Data 자동 수집', metric: '수백 개 고객 사이트' },
         { step: 3, name: 'AI 학습', desc: 'Physical AI + Google DeepMind Reasoning AI 듀얼 브레인', metric: 'Sim-to-Real 전이' },
         { step: 4, name: '성능 향상', desc: '3,000시간 무인 운영 달성', metric: 'ROI 2년 내 회수' },
-        { step: 5, name: '확장 배포', desc: 'RMCA → HMG 2.5만대 → 외부 고객 확장', metric: '30K units/yr CAPA' },
+        { step: 5, name: '확장 배포', desc: 'RMAC → HMG 2.5만대 → 외부 고객 확장', metric: '30K units/yr CAPA' },
       ],
     },
     costRoadmap: {
@@ -566,7 +566,7 @@ const DASHBOARD_DATA = {
       milestones: [
         { year: 2025, asp: 150000, volume: 13400, note: '초기 양산 단계' },
         { year: 2026, asp: 120000, volume: 50000, note: '중국 가격 경쟁 시작' },
-        { year: 2028, asp: 80000, volume: 200000, note: 'RMCA 본격 가동' },
+        { year: 2028, asp: 80000, volume: 200000, note: 'RMAC 본격 가동' },
         { year: 2030, asp: 50000, volume: 690000, note: 'ROI 검증 완료 구간' },
         { year: 2035, asp: 25000, volume: 6790000, note: 'Tesla $20-30K 목표' },
         { year: 2040, asp: 15000, volume: 53300000, note: '가전 수준 가격대' },
@@ -1132,7 +1132,7 @@ const DASHBOARD_DATA = {
         '액추에이터 8종 → 2종 통합 설계 반영',
         '현대모비스 BD 모든 액추에이터 부품 100% 공급 공식 발표',
         'HMG 역할 분담: 모비스(부품) / 오토에버(SI) / 글로비스(물류)',
-        'RMCA(Robot Metaplant Application Center) 2026 여름 개소',
+        'RMAC(Robot Metaplant Application Center) 2026 여름 개소',
         'HMG 내부 배포 2.5만대 captive demand',
         'Robotics in America (양산공장) 2028 개소, 초기 CAPA 30,000 units/yr',
         'Actuator Manufacturing Facility 2028 개소, CAPA 350,000+ units/yr',

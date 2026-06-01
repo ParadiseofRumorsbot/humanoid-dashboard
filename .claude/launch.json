@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "humanoid-dashboard",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-m", "http.server"],
+      "port": 8765,
+      "autoPort": true
+    }
+  ]
+}

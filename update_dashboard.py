@@ -163,7 +163,7 @@ class ReportParser:
         patterns = {
             "target2026": [
                 r'2026[년\s]*[목표:]*\s*([^,\n]+(?:CAPA|대|만|개소)[^,\n]*)',
-                r'(RMCA[^,\n]*2026[^,\n]*)',
+                r'(RMAC[^,\n]*2026[^,\n]*)',
             ],
             "target2030": [
                 r'2028[~\-]?30[년\s]*[목표:]*\s*([^,\n]+)',
@@ -271,7 +271,7 @@ class ReportParser:
             val = captive_m.group(1).replace(",", "")
             strategy["captiveDemand"] = int(float(val))
 
-        rmca_m = re.search(r'RMCA[^.]*?(\d{4})\s*(?:년\s*)?(\w+)', relevant)
+        rmca_m = re.search(r'RMAC[^.]*?(\d{4})\s*(?:년\s*)?(\w+)', relevant)
         if rmca_m:
             strategy["rmcaLaunch"] = f"{rmca_m.group(1)} {rmca_m.group(2)}"
 
