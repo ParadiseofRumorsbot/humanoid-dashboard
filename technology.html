@@ -1033,6 +1033,12 @@ window.addEventListener('DOMContentLoaded', render);
               <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">28개+ <span style="font-size:9px;color:#FF6B6B">▲ 관절당 1개</span></td>
             </tr>
             <tr style="border-bottom:1px solid var(--line)">
+              <td style="padding:8px 10px;font-weight:700;color:#6C5CE7">MLCC</td>
+              <td style="text-align:center;padding:8px 10px">3,000~5,000개 <span style="font-size:9px;color:var(--ink-3)">가솔린차</span></td>
+              <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">15,000~17,000개 <span style="font-size:9px;color:var(--ink-3)">테슬라</span></td>
+              <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)">~10,000개 <span style="font-size:9px;color:#FF6B6B">▲ 3배(vs 가솔린)</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--line)">
               <td style="padding:8px 10px;font-weight:700;color:#0984E3">AI 칩</td>
               <td style="text-align:center;padding:8px 10px">PLC <span style="font-size:9px;color:var(--ink-3)">$6K</span></td>
               <td style="text-align:center;padding:8px 10px;background:rgba(248,183,57,0.04)">NPU 1개 <span style="font-size:9px;color:var(--ink-3)">$500</span></td>
@@ -1062,7 +1068,7 @@ window.addEventListener('DOMContentLoaded', render);
       <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:14px">
         <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:8px">📌 늘어나는 것이 3개 있음</div>
         <div style="font-size:11.5px;color:var(--ink-2);line-height:1.8">
-          <b>① 감속기·액추에이터</b> — 단가 4~8배, 개수 4배 → <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">BOM의 60%</span>. 자동차에서 MLCC가 폭증했듯, 휴머노이드에서는 감속기가 같은 위치.<br>
+          <b>① 감속기·액추에이터</b> — 단가 4~8배, 개수 4배 → <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">BOM의 56%</span>. 자동차에서 MLCC가 폭증했듯, 휴머노이드에서는 감속기가 같은 위치.<br>
           <b>② 칩 주변 반도체</b> — 관절 56개 = 인버터/PMIC 28개 + AI SoC. DoF가 늘수록 <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">FC-BGA·MLCC·전력관리칩이 비례 증가</span>. 자동차 ECU→HPC 때 한국이 공급한 것과 같은 구조.<br>
           <b>③ 학습 데이터</b> — 물리 세계 학습에 텍스트 LLM 대비 <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">90배 데이터 필요</span>(9,000조 토큰). HW는 중국이 이미 양산 경쟁 중이라 병목이 아님. 데이터를 먼저 모으는 자가 해자.
         </div>
@@ -1127,7 +1133,7 @@ window.addEventListener('DOMContentLoaded', render);
             </div>
             <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #F8B739">
               <b style="color:#F8B739">감속기</b> <span style="color:var(--ink-3)">(Reducer/Gearbox)</span><br>
-              <span style="color:var(--ink-2)">모터의 빠른 회전을 느리고 강한 힘으로 바꾸는 부품. 관절마다 1개씩 필요. 로봇 BOM의 60%를 차지하는 핵심 부품.</span>
+              <span style="color:var(--ink-2)">모터의 빠른 회전을 느리고 강한 힘으로 바꾸는 부품. 관절마다 1개씩 필요. 로봇 BOM의 56%를 차지하는 핵심 부품.</span>
             </div>
             <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #F8B739">
               <b style="color:#F8B739">하모닉 감속기</b><br>
@@ -1160,6 +1166,14 @@ window.addEventListener('DOMContentLoaded', render);
             <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #00B894">
               <b style="color:#00B894">LiDAR</b><br>
               <span style="color:var(--ink-2)">레이저로 주변 3D 지형을 측정하는 센서. 자율주행차에도 사용. 로봇이 공간을 인식하고 장애물을 피하는 데 핵심.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #FF6B6B">
+              <b style="color:#FF6B6B">토크밀도</b> <span style="color:var(--ink-3)">(Torque Density)</span><br>
+              <span style="color:var(--ink-2)">무게(부피)당 낼 수 있는 힘. 로봇은 제 무게를 스스로 들고 움직이므로 <b>가벼우면서 힘센 관절</b>이 결정적. 부품사 차별화의 핵심 지표.</span>
+            </div>
+            <div style="background:var(--bg-soft);border-radius:6px;padding:8px 10px;border-left:3px solid #6C5CE7">
+              <b style="color:#6C5CE7">백드라이버빌리티</b> <span style="color:var(--ink-3)">(Backdrivability)</span><br>
+              <span style="color:var(--ink-2)">손으로 밀면 관절이 부드럽게 밀려나는 성질. 사람과 부딪혀도 안전 + 충돌 감지. 감속비 낮춘 <b>준직접구동(QDD)</b> 방식이 이를 구현. 로보티즈 다이나믹셀이 대표적.</span>
             </div>
           </div>
         </div>

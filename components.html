@@ -507,6 +507,46 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
   </section>
 
+  <!-- ═══ 1.5 전력·신호 흐름도 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">⚡ 전력·신호 흐름도 — 관절 하나가 움직이려면 <span class="badge" style="background:#F8B739;color:#fff">폐루프</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">감속기(근육)만으로는 안 됨 — 전력을 분배하고, 판단하고, 제어하는 <b>반도체·전자부품</b>이 관절마다 붙는다. 이 흐름이 밀리초 단위로 무한 반복(폐루프).</p>
+    <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;margin-bottom:14px">
+      <div style="background:var(--bg-soft);border:2px solid #F8B739;border-radius:10px;padding:10px 12px;text-align:center;min-width:90px"><div style="font-size:18px">🔋</div><div style="font-size:11px;font-weight:700">배터리</div><div style="font-size:9px;color:var(--ink-3)">48V 고전압</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #E17055;border-radius:10px;padding:10px 12px;text-align:center;min-width:90px"><div style="font-size:18px">⚡</div><div style="font-size:11px;font-weight:700">PMIC</div><div style="font-size:9px;color:var(--ink-3)">전압 분배</div><div style="font-size:8px;color:#E17055">DB하이텍·LX세미콘</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #6C5CE7;border-radius:10px;padding:10px 12px;text-align:center;min-width:90px"><div style="font-size:18px">🧠</div><div style="font-size:11px;font-weight:700">AI SoC</div><div style="font-size:9px;color:var(--ink-3)">뇌 · 판단</div><div style="font-size:8px;color:#6C5CE7">NVIDIA Jetson</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #0984E3;border-radius:10px;padding:10px 12px;text-align:center;min-width:90px"><div style="font-size:18px">⚙️</div><div style="font-size:11px;font-weight:700">MCU</div><div style="font-size:9px;color:var(--ink-3)">척수 · 실시간</div><div style="font-size:8px;color:#0984E3">어보브·텔레칩스</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #FF6B6B;border-radius:10px;padding:10px 12px;text-align:center;min-width:90px"><div style="font-size:18px">🔌</div><div style="font-size:11px;font-weight:700">드라이버</div><div style="font-size:9px;color:var(--ink-3)">신경 · 인버터</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #FF6B6B;border-radius:10px;padding:10px 12px;text-align:center;min-width:90px"><div style="font-size:18px">💪</div><div style="font-size:11px;font-weight:700">모터+감속기</div><div style="font-size:9px;color:var(--ink-3)">근육 · 행동</div><div style="font-size:8px;color:#FF6B6B">모비스·에스피지</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #00B894;border-radius:10px;padding:10px 12px;text-align:center;min-width:90px"><div style="font-size:18px">👁️</div><div style="font-size:11px;font-weight:700">센서</div><div style="font-size:9px;color:var(--ink-3)">감각 → 피드백</div><div style="font-size:8px;color:#00B894">LG이노텍</div></div>
+    </div>
+    <p style="font-size:10px;color:var(--ink-3);text-align:center;margin-bottom:12px">▲ 센서 결과가 다시 AI SoC로 돌아가는 <b>폐루프</b>가 밀리초 단위로 무한 반복. 모든 칩 옆엔 <b>MLCC(전압 안정)</b>가 수천~1만 개, 아래엔 <b>FC-BGA·PCB(도로)</b>가 깔림.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #6C5CE7">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">MLCC ~1만 개/대</div>
+        <div style="font-size:10px;color:var(--ink-2)">칩·드라이버마다 전압 안정화용 디커플링. 가솔린차 3~5천 → 테슬라 1.5~1.7만 → 휴머노이드 ~1만</div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:2px">삼성전기 · 무라타</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #00B894">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">FC-BGA 기판</div>
+        <div style="font-size:10px;color:var(--ink-2)">AI칩의 빽빽한 단자를 넓은 간격으로 재배선. AI서버에서 검증된 기술이 로봇으로 확장</div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:2px">삼성전기 · 대덕전자 · LG이노텍 · 이수페타시스</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #E17055">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:4px">PMIC 전압 분배</div>
+        <div style="font-size:10px;color:var(--ink-2)">48V 배터리를 0.8V(AI)·1.8V(센서)·3.3V(MCU)·48V(모터)로 쪼개 분배. 관절마다 필요</div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:2px">DB하이텍 · LX세미콘 · 어보브반도체</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체추정 · 언론 종합</div>
+  </section>
+
   <!-- ═══ 2. Actuator Exploded View ═══ -->
   <section class="card section-gap">
     <div class="card-title">🔩 액추에이터 원가 분해 <span class="badge" style="background:var(--ink);color:var(--bg)">Unitree G1 기준</span></div>
@@ -530,6 +570,39 @@ window.addEventListener('DOMContentLoaded', () => {
         <div style="font-size:10px;color:var(--ink-3);margin-top:6px">출처: China Post Securities, Unitree</div>
       </div>
     </div>
+  </section>
+
+  <!-- ═══ 2.5 원가 하락 트렌드 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #00B894">
+    <div class="card-title">💰 원가 하락 트렌드 — 연 ~40% 하락, 중국 부품 침투 <span class="badge" style="background:#00B894;color:#fff">자체추정 · 언론 종합</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid var(--ink-3)">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">프로토타입 (1대)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700">$150K+</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #F8B739">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">소량 (100대)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#F8B739">$80~100K</div>
+        <div style="font-size:9px;color:var(--ink-3)">-40%</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #E17055">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">중량 (1,000대)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#E17055">$40~60K</div>
+        <div style="font-size:9px;color:var(--ink-3)">-65%</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #00B894">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">양산 (10,000대+)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#00B894">$20~30K</div>
+        <div style="font-size:9px;color:var(--ink-3)">-80%</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px">
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
+        <b>원가 절감의 이면:</b> 부품가가 연 ~40% 하락하는 주된 원인은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">중국 부품 침투</span>. 중국 Green Harmonic 등이 일·한 대비 <b>30~40% 저가</b>로 공급 → "원가 절감 = 중국화" 구도.<br>
+        한국 부품사(에스피지·로보티즈·하이젠알앤엠)는 <b>기술 차별화(토크밀도·백드라이버빌리티) + 글로벌 OEM 직접 수주</b>로 가격 경쟁을 회피해야 함.
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3)">출처: 자체추정 · 언론 종합</div>
   </section>
 
   <!-- ═══ 3. Joint Map ═══ -->
