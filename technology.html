@@ -1080,20 +1080,20 @@ window.addEventListener('DOMContentLoaded', render);
             </tr>
           </thead>
           <tbody>
-            <tr style="border-bottom:1px solid var(--line)">
-              <td style="padding:8px 10px;font-weight:700;color:#6C5CE7">반응 지연 (Dual System)</td>
+            <tr style="border-bottom:1px solid var(--line);cursor:pointer" onclick="document.getElementById('sec-cogact').scrollIntoView({behavior:'smooth'})">
+              <td style="padding:8px 10px;font-weight:700;color:#6C5CE7"><a href="#sec-cogact" style="text-decoration:none;color:#6C5CE7;border-bottom:1px dotted #6C5CE7">반응 지연 (Dual System) →</a></td>
               <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">500ms+ <span style="font-size:9px">(클라우드)</span></td>
               <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)"><span style="color:#6C5CE7;font-size:16px">10ms</span> <span style="font-size:9px;color:var(--ink-3)">▼ 50배</span></td>
               <td style="text-align:center;padding:8px 10px;font-size:10px;color:var(--ink-3)">BD 블로그</td>
             </tr>
-            <tr style="border-bottom:1px solid var(--line)">
-              <td style="padding:8px 10px;font-weight:700;color:#F8B739">WFM 학습 데이터</td>
+            <tr style="border-bottom:1px solid var(--line);cursor:pointer" onclick="document.getElementById('why-90x').scrollIntoView({behavior:'smooth'});setTimeout(()=>{const el=document.getElementById('why-90x');const t=el.nextElementSibling;if(t.style.maxHeight==='0px'){el.click()}},400)">
+              <td style="padding:8px 10px;font-weight:700;color:#F8B739"><a href="#why-90x" style="text-decoration:none;color:#F8B739;border-bottom:1px dotted #F8B739" onclick="event.preventDefault()">WFM 학습 데이터 →</a></td>
               <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">100조 토큰 <span style="font-size:9px">(GPT-5)</span></td>
               <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)"><span style="color:#F8B739;font-size:16px">9,000조</span> <span style="font-size:9px;color:#FF6B6B">▲ 90배</span></td>
               <td style="text-align:center;padding:8px 10px;font-size:10px;color:var(--ink-3)">NVIDIA Cosmos</td>
             </tr>
-            <tr>
-              <td style="padding:8px 10px;font-weight:700;color:#E17055">모델 압축 (온디바이스)</td>
+            <tr style="cursor:pointer" onclick="document.getElementById('sec-ondevice').scrollIntoView({behavior:'smooth'})">
+              <td style="padding:8px 10px;font-weight:700;color:#E17055"><a href="#sec-ondevice" style="text-decoration:none;color:#E17055;border-bottom:1px dotted #E17055">모델 압축 (온디바이스) →</a></td>
               <td style="text-align:center;padding:8px 10px;color:var(--ink-3)">7B / 100ms</td>
               <td style="text-align:center;padding:8px 10px;font-weight:700;background:rgba(255,107,107,0.04)"><span style="color:#E17055;font-size:16px">0.5B / 10ms</span> <span style="font-size:9px;color:var(--ink-3)">▼ 14배</span></td>
               <td style="text-align:center;padding:8px 10px;font-size:10px;color:var(--ink-3)">bVLA/PD-VLA</td>
@@ -1507,7 +1507,7 @@ window.addEventListener('DOMContentLoaded', render);
         </div>
         <p style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA Cosmos (2025.01). ※ GPT-5·Llama 4 토큰 수는 공식 미공개, 업계 추정치</p>
         <!-- 왜 90배인가 -->
-        <div style="cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px;margin-top:8px" onclick="const t=this.nextElementSibling;const b=this.querySelector('.tgl-btn');if(t.style.maxHeight==='0px'){t.style.maxHeight='600px';b.textContent='▲ 접기'}else{t.style.maxHeight='0px';b.textContent='▼ 펼치기'}">
+        <div id="why-90x" style="cursor:pointer;user-select:none;display:flex;align-items:center;gap:6px;margin-top:8px" onclick="const t=this.nextElementSibling;const b=this.querySelector('.tgl-btn');if(t.style.maxHeight==='0px'){t.style.maxHeight='600px';b.textContent='▲ 접기'}else{t.style.maxHeight='0px';b.textContent='▼ 펼치기'}">
           <span style="font-family:var(--mono);font-size:10px;color:#6C5CE7;font-weight:600">왜 물리 세계는 90배 더 많은 데이터가 필요한가?</span>
           <span class="tgl-btn" style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg-soft);padding:2px 8px;border-radius:4px">▼ 펼치기</span>
         </div>
