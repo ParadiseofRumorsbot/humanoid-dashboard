@@ -1055,6 +1055,19 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   updateLog: [
     {
+      date: '2026-06-02',
+      title: 'NVIDIA GR00T 레퍼런스 휴머노이드 · Jetson Thor 풀스펙 · DreamGen 반영',
+      source: 'NVIDIA GTC Taipei 2026 (Computex)',
+      changes: [
+        'Part 7 양산 타임라인: GR00T Reference Humanoid(2026.10) 카드 — Unitree H2 Plus 31-DOF + Sharpa Hands 22-DOF + GR00T 1.7',
+        'Part 7: Jetson Thor 풀스펙(2,070 FP4 TFLOPS · 14-Core ARM · 128GB · 전세대 대비 AI 7.5배) 박스 추가',
+        'Part 6: DreamGen 데이터 생성 파이프라인(영상생성→역동역학→합성학습) + 잠재액션 박스 — 데이터 병목 thesis 실증',
+        'components.html: 전력 흐름도에 Jetson Thor 풀스펙 보강',
+        'competition.html: Unitree H2 Plus = NVIDIA GR00T 레퍼런스 채택 노트',
+        'physical_ai.html: WFM 카드에 GR00T 진화·DreamGen 박스',
+      ],
+    },
+    {
       date: '2026-05-31',
       title: 'technology.html 발표용 대규모 개편 — 스토리 라인·수치·영상·디자인 전면 업데이트',
       source: 'McKinsey · Omdia · Octo/OpenVLA · Pi0 · BD 공식 · NVIDIA · 현대차IR · 로보티즈IR / 일부 자체추정',

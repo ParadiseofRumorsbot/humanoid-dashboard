@@ -1706,6 +1706,25 @@ window.addEventListener('DOMContentLoaded', render);
         로보티즈는 우즈베키스탄에 2만평 데이터 팩토리 + 액추에이터 양산 공장 건설 중, 2026 4Q 가동 예정.
         <span style="font-size:10px;color:var(--ink-3)">[현대차 IR / 로보티즈 IR]</span>
       </p>
+      <!-- DreamGen — 실데이터 부족을 합성으로 푸는 NVIDIA 방식 -->
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:16px;border-left:4px solid #76B900">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#76B900;letter-spacing:.08em;margin-bottom:8px">DREAMGEN — 실데이터 병목을 합성 데이터로 우회 (NVIDIA GR00T)</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">
+          텔레오퍼레이션(사람이 로봇을 직접 조작)은 비싸고 느림. NVIDIA는 이 병목을 영상 생성으로 우회:
+        </div>
+        <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:8px">
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#76B900">① 실영상 수집</div><div style="font-size:9px;color:var(--ink-3)">로봇 영상으로 비디오 모델 fine-tune</div></div>
+          <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#6C5CE7">② 새 동작 생성</div><div style="font-size:9px;color:var(--ink-3)">안 본 환경·태스크 영상 대량 생성</div></div>
+          <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#E17055">③ 역동역학</div><div style="font-size:9px;color:var(--ink-3)">영상→액션 역추산(Inverse Dynamics)</div></div>
+          <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#00B894">④ 학습 데이터</div><div style="font-size:9px;color:var(--ink-3)">합성 영상+액션으로 VLA 학습</div></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">
+          + <b>인간 1인칭(Egocentric) 영상</b>도 잠재 액션(Latent Actions)으로 변환해 학습 — 사람 영상을 "또 다른 로봇 데이터"로 취급. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">"실데이터가 병목 → 합성으로 푼다"는 Cosmos 9,000조 thesis의 실증.</span> <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GR00T / DreamGen]</span>
+        </div>
+      </div>
       <div id="pipelineMethods" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:16px"></div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">DATA COLLECTION → POLICY LEARNING PIPELINE</div>
       <div id="pipelineFlow" class="pipeline-flow"></div>
@@ -1903,6 +1922,20 @@ window.addEventListener('DOMContentLoaded', render);
             <div style="font-size:12px;font-weight:700;margin-bottom:4px">중국</div>
             <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">엔진AI 등 연간 1만대급 기업 10개+. 대량생산 라인 공개 시작.</div>
           </div>
+          <div class="spec-item" style="text-align:left;border-left:3px solid #76B900">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">NVIDIA <span style="font-size:9px;color:#76B900">GR00T 레퍼런스</span></div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2026.10 GR00T Reference Humanoid 출시</span> — Unitree H2 Plus(31-DOF) + Sharpa Hands(22-DOF 5손가락) + Jetson Thor + GR00T 1.7. NVIDIA가 두뇌·손·SW를 묶어 표준 레퍼런스 제공. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GTC Taipei 2026]</span></div>
+          </div>
+        </div>
+        <!-- Jetson Thor 풀스펙 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-bottom:12px;border-left:3px solid #76B900">
+          <div style="font-family:var(--mono);font-size:9px;color:#76B900;font-weight:700;letter-spacing:.08em;margin-bottom:6px">JETSON THOR — 로봇 온보드 추론칩 (GR00T 레퍼런스 탑재)</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">2,070</div><div style="font-size:9px;color:var(--ink-3)">FP4 TFLOPS</div></div>
+            <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">14-Core</div><div style="font-size:9px;color:var(--ink-3)">ARM CPU (RISC)</div></div>
+            <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">128GB</div><div style="font-size:9px;color:var(--ink-3)">메모리</div></div>
+          </div>
+          <div style="font-size:10px;color:var(--ink-3);margin-top:6px">전세대 대비 AI 7.5배. ARM RISC 기반(저전력·저발열) — 로봇 몸 안 실시간 추론의 표준 칩. <span style="color:#76B900">[NVIDIA 공식]</span></div>
         </div>
         <p style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">
           <b>로봇 손의 현실:</b> 5손가락이 반드시 필요하지 않음. 공장 반복 작업에서는 집게·주먹이 내구성·복잡도·가격 면에서 유리. 텍타일(촉각) 센서로 압력·미끄러짐·진동 읽어 계란 깨지 않고 쥐는 수준까지 진화 중. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>

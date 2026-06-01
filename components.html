@@ -586,7 +586,18 @@ window.addEventListener('DOMContentLoaded', () => {
         <div style="font-size:9px;color:var(--ink-3);margin-top:2px">DB하이텍 · LX세미콘 · 어보브반도체</div>
       </div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체추정 · 언론 종합</div>
+    <!-- Jetson Thor 풀스펙 -->
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-top:10px;border-left:3px solid #76B900">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#76B900;letter-spacing:.06em;margin-bottom:6px">AI SoC 표준 = NVIDIA Jetson Thor (GR00T 레퍼런스 탑재 · 2026.10)</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#76B900">2,070</div><div style="font-size:9px;color:var(--ink-3)">FP4 TFLOPS</div></div>
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#76B900">14-Core</div><div style="font-size:9px;color:var(--ink-3)">ARM CPU (RISC)</div></div>
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#76B900">128GB</div><div style="font-size:9px;color:var(--ink-3)">메모리</div></div>
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#76B900">7.5배</div><div style="font-size:9px;color:var(--ink-3)">전세대 대비 AI</div></div>
+      </div>
+      <div style="font-size:10px;color:var(--ink-2);margin-top:6px">ARM RISC 기반(저전력·저발열) → 로봇 몸 안 실시간 추론의 표준 칩. GPU+CPU+DLA 통합. <span style="color:#76B900">[NVIDIA GTC Taipei 2026]</span></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체추정 · 언론 종합 · NVIDIA 공식</div>
   </section>
 
   <!-- ═══ 2. Actuator Exploded View ═══ -->
@@ -713,6 +724,16 @@ window.addEventListener('DOMContentLoaded', () => {
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-06-02</span>
+          <span style="font-size:12px;font-weight:600">Jetson Thor 풀스펙 보강 (GR00T 레퍼런스)</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">NVIDIA GTC Taipei 2026</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>전력 흐름도에 Jetson Thor 풀스펙: 2,070 FP4 TFLOPS · 14-Core ARM · 128GB · 전세대 대비 AI 7.5배</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-06-01</span>
