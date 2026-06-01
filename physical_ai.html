@@ -276,13 +276,14 @@ window.addEventListener('DOMContentLoaded', render);
       <div style="display:grid;grid-template-columns:130px 100px 1fr;gap:0;font-family:var(--mono);font-size:11px">
         <div class="th" style="text-align:left">모델</div><div class="th">개발사</div><div class="th" style="text-align:left">설명</div>
         <div class="td" style="text-align:left;font-weight:600;border-left:3px solid #6C5CE7;padding-left:10px">Genie</div><div class="td">Google DeepMind</div><div class="td" style="text-align:left;color:var(--ink-2);white-space:normal">영상·이미지 기반 인터랙티브 월드 생성. 로봇이 행동할 가상 환경을 자동 합성.</div>
-        <div class="td" style="text-align:left;font-weight:600;border-left:3px solid #00B894;padding-left:10px">Cosmos</div><div class="td">NVIDIA</div><div class="td" style="text-align:left;color:var(--ink-2);white-space:normal">물리 시뮬레이션 기반 월드 모델. Isaac Sim과 연동하여 로봇 훈련용 합성 데이터 대량 생성.</div>
+        <div class="td" style="text-align:left;font-weight:600;border-left:3px solid #00B894;padding-left:10px">Cosmos 3.0</div><div class="td">NVIDIA</div><div class="td" style="text-align:left;color:var(--ink-2);white-space:normal">2026.06 발표. Mixture of Transformers 옴니 모델 — VLM·월드모델·시뮬레이터·정책(World Action Model)을 하나로. OmniDreams로 미래를 프레임 단위 예측. "물리 AI의 최전선".</div>
         <div class="td" style="text-align:left;font-weight:600;border-left:3px solid #FF6B6B;padding-left:10px">V-JEPA</div><div class="td">Meta</div><div class="td" style="text-align:left;color:var(--ink-2);white-space:normal">비디오 예측 기반 자기지도 학습. 물리 세계의 인과관계를 영상에서 추출하는 표현 학습.</div>
       </div>
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:6px">World Foundation Model은 로봇이 물리 세계를 이해하는 '내부 시뮬레이터' 역할. 합성 데이터 생성 비용을 극적으로 절감.</div>
     <div style="background:rgba(118,185,0,0.06);border-left:3px solid #76B900;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.6">
-      <b style="color:#76B900">NVIDIA GR00T — Cosmos를 실제 정책으로 전개:</b> GR00T VLA가 N1 → 1.5 → 1.6 → <b>1.7</b>로 빠르게 진화. <b>DreamGen</b>(비디오 생성 + 역동역학으로 합성 학습 데이터 생성) + 인간 1인칭 영상 잠재액션 학습으로 실데이터 병목을 우회. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2026.10 GR00T Reference Humanoid 출시</span>(Unitree H2 Plus 31-DOF + Jetson Thor)로 표준 레퍼런스 제공. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GTC Taipei 2026]</span>
+      <b style="color:#76B900">NVIDIA GR00T — Cosmos를 실제 정책으로 전개:</b> GR00T VLA가 N1 → 1.5 → 1.6 → <b>1.7</b>로 빠르게 진화. <b>DreamGen</b>(비디오 생성 + 역동역학으로 합성 학습 데이터 생성) + 인간 1인칭 영상 잠재액션 학습으로 실데이터 병목을 우회. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2026.10 GR00T Reference Humanoid 출시</span>(Unitree H2 Plus 31-DOF + Sharpa 손 22-DOF + Jetson Thor)로 표준 레퍼런스 제공.<br>
+      <b style="color:#76B900">하나의 스택, 세 갈래:</b> <b>Cosmos 3.0</b>(공통 WFM) 위에 <b>GR00T</b>(휴머노이드) · <b>Alpamayo 2</b>(자율주행 — "세계 최초 추론형 AV", NVIDIA Hyperion 글로벌 차량 ~80% 채택) · 에이전틱 AI가 모두 같은 패턴(모델→하네스→도구→런타임)으로 작동. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GTC Taipei 2026]</span>
     </div>
   </section>
 
