@@ -127,7 +127,109 @@ function render() {
   });
   $('#grid').innerHTML = html;
 }
-window.addEventListener('DOMContentLoaded', render);
+function renderBDVal(){
+  const units=+document.getElementById('bdUnitsSlider').value;
+  const asp=+document.getElementById('bdAspSlider').value;
+  const mobile=+document.getElementById('bdMobileSlider').value;
+  const psr=+document.getElementById('bdPsrSlider').value;
+  const disc=+document.getElementById('bdDiscSlider').value;
+  document.getElementById('bdUnitsVal').textContent=units.toFixed(1)+'만대';
+  document.getElementById('bdAspVal').textContent='$'+asp+'만';
+  document.getElementById('bdMobileVal').textContent=mobile+'억$';
+  document.getElementById('bdPsrVal').textContent=psr.toFixed(1)+'배';
+  document.getElementById('bdDiscVal').textContent=disc+'%';
+  const humRev=units*asp;
+  const totalRev=humRev+mobile;
+  const totalRevB=totalRev/10;
+  const ev2030B=totalRevB*psr;
+  const ev2030T=ev2030B*1.45;
+  const pvT=ev2030T/Math.pow(1+disc/100,4);
+  const hmgValT=pvT*0.901;
+  document.getElementById('bdTotalRev').textContent=totalRev.toFixed(0)+'억$';
+  document.getElementById('bdTotalRevKRW').textContent='≈ '+(totalRevB*1.45).toFixed(1)+'조원';
+  document.getElementById('bdEV2030').textContent=ev2030T.toFixed(1)+'조원';
+  document.getElementById('bdPV').textContent=pvT.toFixed(1)+'조원';
+  document.getElementById('bdHMG').textContent=hmgValT.toFixed(1)+'조원';
+}
+// ═══ 한국 노출 매핑 ═══
+const EXPO={
+  hmg:{name:'HMG Captive',desc:'현대차그룹 내부 공급망. BD Atlas·Spot·MobED 직접 수혜.',color:'#FF6B6B',
+    cos:[
+      {n:'현대모비스',t:'012330',exp:4,role:'BD 액추에이터 100% 공급 · 미국 양산거점',when:'2027~'},
+      {n:'현대오토에버',t:'307950',exp:3,role:'SI·관제·Robot OS',when:'2027~'},
+      {n:'HL만도',t:'204320',exp:3,role:'BD Spot 액추에이터 · 중국 2사 표준모듈',when:'2028~'},
+      {n:'현대글로비스',t:'086280',exp:2,role:'생산·판매 물류 SCM 백본',when:'2027~'},
+      {n:'에스엘',t:'005765',exp:2,role:'레그모듈·MobED 위탁생산',when:'2027~'},
+      {n:'계양전기',t:'012200',exp:2,role:'MobED 액추에이터 12개/대',when:'2026~'},
+    ]},
+  indep:{name:'독립 부품사',desc:'글로벌 휴머노이드 OEM 대상 감속기·배터리 핵심 부품 공급.',color:'#6C5CE7',
+    cos:[
+      {n:'에스피지',t:'058610',exp:3,role:'사이클로이드 감속기 QDD · LG 협력',when:'2026~'},
+      {n:'로보티즈',t:'108490',exp:3,role:'유성감속기 QDD·로봇손 · 우즈벡 신공장',when:'2026~'},
+      {n:'LG에너지솔루션',t:'373220',exp:3,role:'원통형 배터리 2170 · Optimus+6곳',when:'2025~'},
+      {n:'에스비비테크',t:'389500',exp:2,role:'하모닉 감속기 · 26년 200대',when:'2026~'},
+      {n:'삼성SDI',t:'006400',exp:2,role:'원통형 배터리 · 헝가리 2028',when:'2028~'},
+      {n:'엘앤에프',t:'066970',exp:1,role:'하이니켈 NCMA 양극재',when:'2027~'},
+    ]},
+  plat:{name:'로봇 플랫폼·방산',desc:'자체 로봇 개발 또는 방산용 로봇 사업 추진.',color:'#00B894',
+    cos:[
+      {n:'두산로보틱스',t:'454910',exp:3,role:'NVIDIA 공동 플랫폼 · 2028 산업용',when:'2028~'},
+      {n:'로보스타',t:'090360',exp:2,role:'LG그룹 로봇 거점 · 코스닥150',when:'2026~'},
+      {n:'현대로템',t:'064350',exp:2,role:'군사용 로봇 · 고스트로보틱스 인수',when:'2027~'},
+      {n:'LIG넥스원',t:'079550',exp:2,role:'군사용 로봇 · FCT 통과',when:'2027~'},
+    ]},
+};
+const EXP_LABELS=['','소','중','대','극대'];
+let selExpo='hmg';
+function renderExpo(){
+  document.getElementById('expoTabs').innerHTML=Object.entries(EXPO).map(([k,v])=>
+    '<button class="st-btn '+(selExpo===k?'on':'')+'" onclick="selExpo=\''+k+'\';renderExpo()" style="border-left:3px solid '+v.color+'">'+v.name+' ('+v.cos.length+')</button>'
+  ).join('');
+  const area=EXPO[selExpo];
+  document.getElementById('expoDesc').innerHTML='<span style="color:'+area.color+';font-weight:700">'+area.name+'</span> — '+area.desc;
+  let html='';
+  area.cos.forEach(c=>{
+    const barW=c.exp/4*100;
+    html+='<div style="display:grid;grid-template-columns:100px 60px 1fr 60px;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)">'
+    +'<div style="font-weight:600;font-size:12px">'+c.n+'<div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">'+c.t+'</div></div>'
+    +'<div><div style="background:var(--bg-soft);border-radius:4px;height:16px;overflow:hidden"><div style="height:100%;width:'+barW+'%;background:'+area.color+';border-radius:4px;opacity:.8"></div></div><div style="font-family:var(--mono);font-size:8px;color:'+area.color+';text-align:center;margin-top:1px">'+EXP_LABELS[c.exp]+'</div></div>'
+    +'<div style="font-size:11px;color:var(--ink-2)">'+c.role+'</div>'
+    +'<div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-align:center;background:var(--bg-soft);border-radius:4px;padding:2px 6px">'+c.when+'</div>'
+    +'</div>';
+  });
+  document.getElementById('expoGrid').innerHTML=html;
+}
+
+// ═══ 양산 타임라인 ═══
+const TL_DATA=[
+  {y:2024,label:'시제품',events:['BD Atlas 전기식 시제품 공개','Tesla Optimus Gen2 시연','Unitree G1 출시 ($16K~)'],tag:'초기'},
+  {y:2025,label:'소량생산',events:['AGIBOT 5,168대 출하 (1위)','Unitree 4,200대','총 13,368대 (Omdia)','LG에너지솔루션 로봇 배터리 공급 시작'],tag:'중국 주도'},
+  {y:2026,label:'RMAC 개소',events:['RMAC 2026 여름 개소','에스비비테크 200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 만기 6/21','로보스타 코스닥150 편입'],tag:'BD 준비'},
+  {y:2027,label:'매출 인식',events:['현대모비스 BD 매출 인식 시작','HL만도 Spot 2세대 공급','현대오토에버 Robot OS','현대글로비스 물류 테스트베드'],tag:'KR 매출 시작'},
+  {y:2028,label:'양산 원년',events:['BD 양산공장 30K CAPA 개소','모비스 액추에이터 35만개','삼성SDI 헝가리 양산','HL만도 휴머노이드 공급 원년','두산로보틱스 산업용 상용화'],tag:'본격 양산'},
+  {y:2029,label:'확산',events:['BD 외부 고객 확장','원가 하락 가속 ($40~60K대)','수직 통합 진행'],tag:'확산'},
+  {y:2030,label:'대량 양산',events:['BD 3만대+ 양산','HMG 2.5만대 captive demand','글로벌 69~120만대 (시나리오별)','ASP $25~50K 구간 진입'],tag:'대량 양산'},
+];
+function renderTL(){
+  const yr=+document.getElementById('tlSlider').value;
+  document.getElementById('tlYear').textContent=yr;
+  const d=TL_DATA.find(t=>t.y===yr);
+  if(!d) return;
+  document.getElementById('tlLabel').textContent=d.label;
+  document.getElementById('tlTag').textContent=d.tag;
+  document.getElementById('tlEvents').innerHTML=d.events.map(e=>'<div style="padding:5px 0;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--ink-2)">• '+e+'</div>').join('');
+  let dots='';
+  TL_DATA.forEach(t=>{
+    const pct=((t.y-2024)/(2030-2024)*100).toFixed(1);
+    const on=t.y===yr;
+    dots+='<div style="position:absolute;left:'+pct+'%;transform:translateX(-50%);text-align:center;cursor:pointer" onclick="document.getElementById(\'tlSlider\').value='+t.y+';renderTL()">'
+    +'<div style="width:'+(on?16:10)+'px;height:'+(on?16:10)+'px;border-radius:50%;background:'+(on?'var(--ink)':'var(--line-s)')+';margin:0 auto '+(on?'2':'5')+'px;transition:all .2s;border:'+(on?'3px solid var(--bg-card)':'none')+';box-shadow:'+(on?'0 1px 4px rgba(0,0,0,.2)':'none')+'"></div>'
+    +'<div style="font-family:var(--mono);font-size:'+(on?'11':'9')+'px;font-weight:'+(on?'700':'400')+';color:'+(on?'var(--ink)':'var(--ink-3)')+'">'+t.y+'</div>'
+    +'</div>';
+  });
+  document.getElementById('tlDots').innerHTML=dots;
+}
+window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExpo();renderTL();});
 </script>
 <body>
 <main>
@@ -193,23 +295,92 @@ window.addEventListener('DOMContentLoaded', render);
     <div style="background:linear-gradient(135deg,#0A0A08,#2d2d28);color:var(--bg);border-radius:8px;padding:12px 14px;text-align:center"><span style="font-weight:700;font-size:14px">🤖 Boston Dynamics</span></div>
   </section>
 
-  <!-- ═══ BD 밸류에이션 (자체추정) ═══ -->
-  <section class="card section-gap">
-    <div class="card-title">💰 Boston Dynamics 밸류에이션 <span class="badge" style="background:#F8B739;color:#000">자체추정</span></div>
+  <!-- ═══ BD 밸류에이션 시뮬레이터 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">💰 Boston Dynamics 밸류에이션 시뮬레이터 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:14px">가정을 조절하면 2030년 기업가치와 현재가치가 실시간으로 재계산됩니다.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">Atlas 양산 대수</span>
+          <span id="bdUnitsVal" style="font-family:var(--mono);font-size:13px;font-weight:700">2.5만대</span>
+        </div>
+        <input id="bdUnitsSlider" class="year-slider" type="range" min="0.5" max="10" step="0.5" value="2.5" oninput="renderBDVal()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>0.5만</span><span>10만</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">휴머노이드 ASP</span>
+          <span id="bdAspVal" style="font-family:var(--mono);font-size:13px;font-weight:700">$20만</span>
+        </div>
+        <input id="bdAspSlider" class="year-slider" type="range" min="10" max="30" step="1" value="20" oninput="renderBDVal()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$10만</span><span>$30만</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">모바일 로봇 매출</span>
+          <span id="bdMobileVal" style="font-family:var(--mono);font-size:13px;font-weight:700">5억$</span>
+        </div>
+        <input id="bdMobileSlider" class="year-slider" type="range" min="2" max="15" step="1" value="5" oninput="renderBDVal()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>2억$</span><span>15억$</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">Peer PSR</span>
+          <span id="bdPsrVal" style="font-family:var(--mono);font-size:13px;font-weight:700">21.9배</span>
+        </div>
+        <input id="bdPsrSlider" class="year-slider" type="range" min="10" max="40" step="0.5" value="21.9" oninput="renderBDVal()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>10배</span><span>40배</span></div>
+      </div>
+    </div>
+    <div style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">할인율 (4년 PV)</span>
+        <span id="bdDiscVal" style="font-family:var(--mono);font-size:13px;font-weight:700">10%</span>
+      </div>
+      <input id="bdDiscSlider" class="year-slider" type="range" min="5" max="20" step="1" value="10" oninput="renderBDVal()" style="width:100%">
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>5%</span><span>20%</span></div>
+    </div>
     <div class="num-row">
-      <div class="num-box" style="border:2px solid #F8B739"><div class="num-label">현재가치 (10% 할인)</div><div class="num-value" style="color:#F8B739">123.4조원</div><div class="num-sub">현재 추정 기업가치</div></div>
-      <div class="num-box"><div class="num-label">2030년 기업가치</div><div class="num-value">180.7조원</div><div class="num-sub">PSR 적용 추정</div></div>
-      <div class="num-box"><div class="num-label">2030년 예상 매출</div><div class="num-value">55억$</div><div class="num-sub">약 8.25조원</div></div>
-      <div class="num-box"><div class="num-label">적용 PSR</div><div class="num-value">21.9배</div><div class="num-sub">Peer 평균</div></div>
+      <div class="num-box"><div class="num-label">2030년 총 매출</div><div class="num-value" id="bdTotalRev">-</div><div class="num-sub" id="bdTotalRevKRW">-</div></div>
+      <div class="num-box"><div class="num-label">2030년 기업가치</div><div class="num-value" id="bdEV2030">-</div><div class="num-sub">PSR 적용</div></div>
+      <div class="num-box" style="border:2px solid #F8B739"><div class="num-label">현재가치 (PV)</div><div class="num-value" id="bdPV" style="color:#F8B739">-</div><div class="num-sub">할인율 적용</div></div>
+      <div class="num-box"><div class="num-label">HMG 귀속 (90.1%)</div><div class="num-value" id="bdHMG">-</div><div class="num-sub">HMG Global+정의선+글로비스</div></div>
     </div>
-    <div class="guide-desc" style="font-family:var(--sans);letter-spacing:0">
-      <strong>주요 가정 (자체추정):</strong><br>
-      • 2030년 아틀라스 2.5만 대 양산 → 휴머노이드 ASP 20만$/대, 모바일 로봇(Spot·Stretch) ASP 10만$/대<br>
-      • 휴머노이드 매출 50억$ + 모바일 매출 5억$ = 총 매출 55억$<br>
-      • Peer(피규어AI·유비테크·유니트리) 평균 PSR 21.9배 적용 → 2030년 180.7조원<br>
-      • 할인율 10% 적용 → 현재가치 123.4조원<br>
-      <span style="color:var(--ink-3);font-size:11px">* 본 밸류에이션 수치는 증권사 자체추정이며 원데이터가 아님</span>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">* 자체추정. 환율 1,450원/$. 2030→2026 PV 할인. HMG 귀속: HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% = 90.1%</div>
+  </section>
+
+  <!-- ═══ 한국 노출 매핑 3영역 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #6C5CE7">
+    <div class="card-title">🗺️ 한국 노출 매핑 — 3영역 <span class="badge" style="background:#6C5CE7;color:#fff">인터랙티브</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">한국 휴머노이드 밸류체인을 3가지 노출 영역으로 분류. 탭을 클릭하면 해당 영역의 기업·노출 강도·역할·매출 시점이 표시됩니다.</p>
+    <div class="st-tabs" id="expoTabs" style="margin-bottom:10px"></div>
+    <div id="expoDesc" style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;padding:8px 12px;background:var(--bg-soft);border-radius:7px"></div>
+    <div class="scroll-x">
+      <div style="min-width:500px">
+        <div style="display:grid;grid-template-columns:100px 60px 1fr 60px;gap:10px;padding:4px 0;font-family:var(--mono);font-size:9px;color:var(--ink-3);border-bottom:1px solid var(--line-s)">
+          <div>기업</div><div>노출</div><div>역할</div><div style="text-align:center">시점</div>
+        </div>
+        <div id="expoGrid"></div>
+      </div>
     </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">노출 강도: 극대 > 대 > 중 > 소. 각 사 IR 기반 자체 분류.</div>
+  </section>
+
+  <!-- ═══ 양산 타임라인 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">📅 양산 타임라인 — 연도별 마일스톤 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
+      <div id="tlYear" style="font-family:var(--mono);font-size:32px;font-weight:700;min-width:60px">2026</div>
+      <div>
+        <div id="tlLabel" style="font-size:14px;font-weight:700">-</div>
+        <div id="tlTag" style="font-family:var(--mono);font-size:10px;color:var(--ink-3);background:var(--bg-soft);display:inline-block;padding:2px 8px;border-radius:4px;margin-top:2px">-</div>
+      </div>
+    </div>
+    <input id="tlSlider" class="year-slider" type="range" min="2024" max="2030" step="1" value="2026" oninput="renderTL()" style="width:100%;margin-bottom:8px">
+    <div style="position:relative;height:50px;margin-bottom:16px" id="tlDots"></div>
+    <div id="tlEvents" style="margin-bottom:8px"></div>
+    <div style="font-size:10px;color:var(--ink-3)">출처: 각 사 IR, JPM Conference 2026, BD IR, HMG IR</div>
   </section>
 
   <!-- ═══ 🎯 종목별 투자 포인트 상세 ═══ -->

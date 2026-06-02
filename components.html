@@ -28,6 +28,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 .ctrl-row button{font-family:var(--mono);font-size:10px;padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);cursor:pointer}
 .ctrl-row button.on{background:var(--ink);color:var(--bg)}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
+.sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
 <script>
 // ═══════════════════════════════════════
@@ -460,6 +461,48 @@ function toggleRadar(k) {
 }
 
 // ═══════════════════════════════════════
+// 6. ASP × VOLUME SIMULATOR
+// ═══════════════════════════════════════
+const SIM_BOM=[
+  {name:'액추에이터',pct:34.5,color:'#FF6B6B'},
+  {name:'센서&비전',pct:21.0,color:'#00B894'},
+  {name:'배터리&BMS',pct:13.5,color:'#4ecdc4'},
+  {name:'열관리',pct:9.5,color:'#0984E3'},
+  {name:'프레임',pct:8.5,color:'#636E72'},
+  {name:'추론 컴퓨팅',pct:6.5,color:'#6C5CE7'},
+  {name:'배선·커넥터',pct:4.0,color:'#E17055'},
+  {name:'조립',pct:2.5,color:'#A29BFE'},
+];
+let simOEM='optimus';
+function pickSim(k){simOEM=k;document.getElementById('simAspSlider').value=RADAR_OEM[k].asp;renderSim();}
+function renderSim(){
+  const asp=+document.getElementById('simAspSlider').value;
+  const vol=+document.getElementById('simVolSlider').value;
+  document.getElementById('simAspVal').textContent='$'+asp+'K';
+  document.getElementById('simVolVal').textContent=vol.toLocaleString()+'만대';
+  const totalB=asp*vol/100;
+  document.getElementById('simTotal').textContent='$'+totalB.toFixed(1)+'B';
+  document.getElementById('simTotalKRW').textContent='≈ '+(totalB*1.45).toFixed(1)+'조원';
+  let bHtml='';
+  const maxPct=SIM_BOM[0].pct;
+  SIM_BOM.forEach(b=>{
+    const val=totalB*b.pct/100;
+    bHtml+='<div style="display:grid;grid-template-columns:90px 1fr 80px;align-items:center;gap:10px;margin:4px 0">'
+    +'<div style="font-size:11px;font-weight:600;color:'+b.color+';text-align:right">'+b.name+'</div>'
+    +'<div style="background:var(--bg-soft);border-radius:6px;height:22px;position:relative;overflow:hidden">'
+    +'<div style="position:absolute;left:0;top:0;height:100%;width:'+(b.pct/maxPct*100).toFixed(0)+'%;background:'+b.color+';border-radius:6px;opacity:.85;transition:width .3s"></div>'
+    +'<span style="position:absolute;left:6px;top:3px;font-family:var(--mono);font-size:9px;color:#fff;font-weight:600">'+b.pct+'%</span>'
+    +'</div>'
+    +'<div style="font-family:var(--mono);font-size:12px;font-weight:700;text-align:right">$'+val.toFixed(1)+'B</div>'
+    +'</div>';
+  });
+  document.getElementById('simBars').innerHTML=bHtml;
+  document.getElementById('simOemTabs').innerHTML=Object.entries(RADAR_OEM).map(([k,v])=>
+    '<button class="st-btn '+(simOEM===k?'on':'')+'" onclick="pickSim(\''+k+'\')">'+v.name+'</button>'
+  ).join('');
+}
+
+// ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
@@ -468,6 +511,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderExplodedView();
   renderJointMap();
   renderRadar();
+  renderSim();
 });
 </script>
 </head>
@@ -757,6 +801,36 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각 사 IR, Unitree IPO 자료, Counterpoint. ASP는 목표가 또는 추정가. Optimus는 Gen2 기준 (V3 26H2 양산 예정).</div>
   </section>
 
+
+  <!-- ═══ 6. ASP × Volume Simulator ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">📈 ASP × 물량 시뮬레이터 — 부품별 시장규모 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">OEM을 선택하면 ASP가 자동 설정됩니다. ASP와 연간 출하량을 조절해 전체 시장규모와 부품별 배분을 확인하세요.</p>
+    <div class="st-tabs" id="simOemTabs" style="margin-bottom:14px"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">ASP (대당 가격)</span>
+          <span id="simAspVal" style="font-family:var(--mono);font-size:14px;font-weight:700">$25K</span>
+        </div>
+        <input id="simAspSlider" class="sim-slider" type="range" min="10" max="200" step="5" value="25" oninput="renderSim()">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$10K</span><span>$200K</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">연간 출하량</span>
+          <span id="simVolVal" style="font-family:var(--mono);font-size:14px;font-weight:700">100만대</span>
+        </div>
+        <input id="simVolSlider" class="sim-slider" type="range" min="1" max="500" step="1" value="100" oninput="renderSim()">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>1만대</span><span>500만대</span></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div class="num-box" style="border:2px solid #F8B739;flex:1"><div class="num-label">전체 시장규모</div><div class="num-value" id="simTotal" style="color:#F8B739">-</div><div class="num-sub" id="simTotalKRW">-</div></div>
+    </div>
+    <div id="simBars"></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">풀스택 BOM 비중 기준 (자체추정). 저가형(G1)은 액추에이터 비중 66%로 상이.</div>
+  </section>
 
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
