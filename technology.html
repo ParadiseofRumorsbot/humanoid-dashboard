@@ -7,9 +7,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Fraunces:wght@400;600;900&display=swap">
 <style>
-:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--num:'Fraunces','Georgia',serif}
+.fadein{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.fadein.in{opacity:1;transform:none}
+.num-hero{font-family:var(--num);font-weight:900}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}
 a{color:inherit}
@@ -961,7 +963,7 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #FF6B6B">
           <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">로봇 1대 원가</div>
           <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">$150,000</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#FF6B6B">$17,117</div>
+          <div class="num-hero" style="font-size:22px;color:#FF6B6B" data-countup="17117" data-pre="$" data-dec="0">$0</div>
           <div style="font-size:10px;color:var(--ink-3)">−89% (양산 BOM 기준)</div>
         </div>
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #6C5CE7">
@@ -973,19 +975,19 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #00B894">
           <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">글로벌 출하량</div>
           <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">~0대 (2020)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#00B894">13,368대</div>
+          <div class="num-hero" style="font-size:22px;color:#00B894" data-countup="13368" data-suf="대" data-dec="0">0대</div>
           <div style="font-size:10px;color:var(--ink-3)">2025 실적 (Omdia)</div>
         </div>
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #F8B739">
           <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">Atlas 액추에이터</div>
           <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">8종 (구형)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#F8B739">2종</div>
+          <div class="num-hero" style="font-size:22px;color:#F8B739" data-countup="2" data-suf="종" data-dec="0">0종</div>
           <div style="font-size:10px;color:var(--ink-3)">양산 설계 단순화 (BD)</div>
         </div>
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
           <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">정밀 조작 성공률</div>
           <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">~60% (2023)</div>
-          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:#E17055">92%</div>
+          <div class="num-hero" style="font-size:22px;color:#E17055" data-countup="92" data-suf="%" data-dec="0">0%</div>
           <div style="font-size:10px;color:var(--ink-3)">Pi0 Flow Matching</div>
         </div>
       </div>
@@ -2214,5 +2216,19 @@ window.addEventListener('DOMContentLoaded', render);
 
   </main>
 </div>
+<script>
+// fade-in on scroll
+const fio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.08});
+document.querySelectorAll('.card,.guide-card,.spec-grid,.ev-panel,.qa-q').forEach(el=>{el.classList.add('fadein');fio.observe(el)});
+// countup animation for Before→After snapshot numbers
+document.querySelectorAll('[data-countup]').forEach(el=>{
+  const end=parseFloat(el.dataset.countup),pre=el.dataset.pre||'',suf=el.dataset.suf||'',dec=parseInt(el.dataset.dec||'0');
+  let started=false;
+  new IntersectionObserver(([e])=>{if(e.isIntersecting&&!started){started=true;
+    const dur=1200,st=performance.now();
+    (function tick(now){const p=Math.min((now-st)/dur,1),v=p*end;
+      el.textContent=pre+(dec?v.toFixed(dec):Math.round(v).toLocaleString())+suf;
+      if(p<1)requestAnimationFrame(tick)})(st)}},{threshold:.5}).observe(el)});
+</script>
 </body>
 </html>
