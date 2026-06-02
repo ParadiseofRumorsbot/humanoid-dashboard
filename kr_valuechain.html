@@ -76,6 +76,15 @@ a{color:inherit}
 }
 </style>
 <script>
+// ═══════════════════════════════════════
+// 시가총액 (주간 업데이트) — 단위: 조원
+// 매주 이 값만 갱신하면 전체 페이지 자동 반영
+// ═══════════════════════════════════════
+const MARKET_CAP = {
+  _updated: '2026-06-02',
+  '012330': 67,    // 현대모비스
+  // 추가 종목은 주간 업데이트 시 입력 (예: '005380': 201)
+};
 const DATA = [
   // ── 현대차그룹 Captive ──
   { company: '현대모비스', ticker: '012330', parts: '액추에이터·헤드모듈·그리퍼·배터리팩', customer: 'BD Atlas', note: 'BD 모든 액추에이터 부품 100% 공급 공식 발표 (JPM 2026)', cat: 'act' },
@@ -257,10 +266,11 @@ function renderMobis(){
   const mobisSharePct=0.1126;
   const mobisShareT=bdPV*mobisSharePct;
   // 현 시총 대비
-  const curMcap=27; // 약 27조원 (2026.06 기준)
-  const robotValT=robotRevKRW/10000*15; // 로봇 매출에 PSR 15배
+  const curMcap=MARKET_CAP['012330']; // 주간 업데이트 (MARKET_CAP)
+  const robotValT=robotRevKRW/10000*9; // 로봇 매출에 PSR 9배 (보수화)
   const totalValT=baseOp*8+robotValT+mobisShareT; // 기존 OP×8배 + 로봇 매출 밸류 + BD 지분
   const upside=((totalValT/curMcap-1)*100).toFixed(0);
+  const mc=document.getElementById('mbCurMcap'); if(mc) mc.textContent=curMcap;
   document.getElementById('mbRobotRev').textContent=Math.round(robotRevKRW).toLocaleString()+'억원';
   document.getElementById('mbRobotPct').textContent=robotPct.toFixed(2)+'%';
   document.getElementById('mbShareVal').textContent=mobisShareT.toFixed(1)+'조원';
@@ -450,8 +460,8 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
       <div class="num-box"><div class="num-label">로봇향 신규 매출</div><div class="num-value" id="mbRobotRev" style="color:#FF6B6B">-</div><div class="num-sub">Atlas × 액추에이터</div></div>
       <div class="num-box"><div class="num-label">기존 매출 대비</div><div class="num-value" id="mbRobotPct">-</div><div class="num-sub">60조원 기준</div></div>
       <div class="num-box"><div class="num-label">BD 지분 귀속</div><div class="num-value" id="mbShareVal">-</div><div class="num-sub">HMG Global 20% → BD PV의 11.3%</div></div>
-      <div class="num-box" style="border:2px solid #FF6B6B"><div class="num-label">적정 시총 추정</div><div class="num-value" id="mbTotalVal" style="color:#FF6B6B">-</div><div class="num-sub">기존OP×8 + 로봇PSR15 + 지분</div></div>
-      <div class="num-box" style="background:rgba(255,107,107,0.06)"><div class="num-label">vs 현 시총 27조</div><div class="num-value" id="mbUpside">-</div><div class="num-sub">업사이드</div></div>
+      <div class="num-box" style="border:2px solid #FF6B6B"><div class="num-label">적정 시총 추정</div><div class="num-value" id="mbTotalVal" style="color:#FF6B6B">-</div><div class="num-sub">기존OP×8 + 로봇PSR9 + 지분</div></div>
+      <div class="num-box" style="background:rgba(255,107,107,0.06)"><div class="num-label">vs 현 시총 <span id="mbCurMcap">67</span>조</div><div class="num-value" id="mbUpside">-</div><div class="num-sub">업사이드</div></div>
     </div>
     <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin:14px 0 6px">카탈리스트 타임라인</div>
     <div style="position:relative;height:8px;background:linear-gradient(90deg,#FF6B6B,#F8B739,#6C5CE7,#00B894,#0984E3);border-radius:4px;margin-bottom:40px">
@@ -460,7 +470,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
     <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
       <b style="color:#FF6B6B">탑픽 근거:</b> ① BD 액추에이터 100% 독점 공급 (JPM 2026) ② Body→Hand 순차 이관 확정 ③ 미국 양산거점 설립 → 2028 35만개 ④ BD 지분가치 귀속(HMG Global 20%) ⑤ 소프트뱅크 풋옵션 만기 6/21 → 지배구조 재편 트리거
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">* 자체추정. 현 시총 약 27조원(2026.06). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배·로봇 PSR 15배 적용.</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">* 자체추정. 현 시총 67조원(2026.06.02, 주간 업데이트). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배·로봇 PSR 9배(보수화) 적용.</div>
   </section>
 
   <!-- ═══ 한국 노출 매핑 3영역 ═══ -->
