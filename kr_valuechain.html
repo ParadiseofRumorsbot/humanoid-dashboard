@@ -307,7 +307,10 @@ function renderMobis(){
   });
   document.getElementById('mbCatDots').innerHTML=catHtml;
 }
-window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExpo();renderTL();renderMobis();});
+window.addEventListener('DOMContentLoaded',()=>{
+  render();renderBDVal();renderExpo();renderTL();renderMobis();
+  const rb=document.getElementById('rbMcap'); if(rb&&MARKET_CAP['108490']) rb.textContent=MARKET_CAP['108490'].toFixed(1);
+});
 </script>
 <body>
 <main>
@@ -492,6 +495,62 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">* 자체추정. 현 시총은 MARKET_CAP(2026.06.02 KRX 종가) 기준. BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배·로봇 PSR 9배(보수화) 적용.</div>
   </section>
 
+  <!-- ═══ 로보티즈 데이터 플라이휠 (Top Pick 2) ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #00B894;border-top:3px solid #00B894">
+    <div class="card-title">🔄 로보티즈 (108490) — 데이터 플라이휠 <span class="badge" style="background:#00B894;color:#fff">Top Pick · 데이터</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:6px">피지컬 AI의 진짜 병목은 하드웨어가 아니라 <b>데이터</b> (실제 환경 수집이 시뮬 대비 13.6만배 비쌈). 로보티즈는 단순 부품사가 아니라 <b>HW 표준 → 데이터 축적 → 휴머노이드 고도화</b>로 자가 순환하는 수직계열 구조.</p>
+
+    <!-- 플라이휠 5단계 -->
+    <div style="display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:14px 0">
+      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894;position:relative;margin-right:8px">
+        <div style="font-size:18px;margin-bottom:4px">🔧</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700">① HW 공급</div>
+        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">다이나믹셀 (모터+감속기+제어기+통신 All-in-one)</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #6C5CE7;margin-right:8px">
+        <div style="font-size:18px;margin-bottom:4px">🏛️</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700">② 글로벌 표준 채택</div>
+        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">스탠포드 ALOHA 등 톱티어 연구소의 사실상 표준 HW</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #F8B739;margin-right:8px">
+        <div style="font-size:18px;margin-bottom:4px">📊</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700">③ 데이터 축적</div>
+        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">전 세계 연구 행동 데이터가 자사 HW 위에 쌓임</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #FF6B6B;margin-right:8px">
+        <div style="font-size:18px;margin-bottom:4px">🤖</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700">④ 휴머노이드 고도화</div>
+        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">AI Worker·AI Sapiens로 데이터 자가 수집·강화학습</div>
+      </div>
+      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894">
+        <div style="font-size:18px;margin-bottom:4px">↩️</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700">⑤ 재투자</div>
+        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">개방형 플랫폼 → 생태계 확장 → ①로 순환</div>
+      </div>
+    </div>
+
+    <!-- 핵심 강점 3박스 -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #00B894">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">다이나믹셀 = 표준</div>
+        <div style="font-size:10px;color:var(--ink-2);line-height:1.5">ROS SW 함께 제공 → 글로벌 연구·산업계 사실상 표준 부품. ALOHA(스탠포드 VLA 데이터 수집)가 핵심 HW로 채택</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #6C5CE7">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">자가 데이터 수집</div>
+        <div style="font-size:10px;color:var(--ink-2);line-height:1.5">AI Worker: 리더-팔로워로 행동 데이터 실시간 수집 → 시뮬 강화학습 병행. AI Sapiens: 오픈소스 개방형 플랫폼</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #F8B739">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#F8B739;margin-bottom:4px">양산 + 신제품</div>
+        <div style="font-size:10px;color:var(--ink-2);line-height:1.5">Dynamixel-Q(QDD, 휴머노이드 보행용) 2026 하반기 출시 → 2027 우즈베키스탄 양산. 핸드 IP 보유</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(0,184,148,0.06);border-left:4px solid #00B894;border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#00B894">탑픽 근거:</b> 모비스가 ④몸(액추에이터)을 쥔다면, 로보티즈는 ①데이터를 쥔다. 현대차 RMAC(폐쇄형 자사 데이터)과 달리 <b>개방형 플랫폼으로 글로벌 연구 데이터가 자사 HW 위에 축적</b>되는 구조 — 데이터 플라이휠 관점의 유일한 국내 플레이어. 현 시총 <span id="rbMcap">5.9</span>조로 BofA 시장전망(2025-35 CAGR 88%) 절반만 실현돼도 액추에이터·핸드 IP 가치 레버리지 큼.
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 로보티즈 분기보고서(2026.05.15) · 현 시총 MARKET_CAP(2026.06.02 KRX) 기준</div>
+  </section>
+
   <!-- ═══ 한국 노출 매핑 3영역 ═══ -->
   <section class="card section-gap" style="border-left:4px solid #6C5CE7">
     <div class="card-title">🗺️ 한국 노출 매핑 — 3영역 <span class="badge" style="background:#6C5CE7;color:#fff">인터랙티브</span></div>
@@ -538,7 +597,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
         <li>강력한 본업 위에 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">모빌리티 테크 기업으로 체질 개선</span> 진행 중 → 프리미엄 요인</li>
         <li>휴머노이드 로봇 밸류체인 내재화가 시장에서 긍정적 평가</li>
         <li>산업용 특화 휴머노이드 경쟁력은 <b>보스턴 다이내믹스가 단연 압도적</b></li>
-        <li>본업 + 미래 경쟁력 확보에도 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">시총 201조원 → 도요타 441조원 정조준</span></li>
+        <li>본업 + 미래 경쟁력 확보에도 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">시총 149조원 → 도요타 441조원 정조준</span></li>
       </ul>
     </div>
 
