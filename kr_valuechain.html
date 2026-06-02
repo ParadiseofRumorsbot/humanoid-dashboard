@@ -81,9 +81,15 @@ a{color:inherit}
 // 매주 이 값만 갱신하면 전체 페이지 자동 반영
 // ═══════════════════════════════════════
 const MARKET_CAP = {
-  _updated: '2026-06-02',
-  '012330': 67,    // 현대모비스
-  // 추가 종목은 주간 업데이트 시 입력 (예: '005380': 201)
+  _updated: '2026-06-02',  // KRX 종가 기준
+  '012330': 68.87,   // 현대모비스
+  '005380': 149.27,  // 현대차
+  '204320': 2.82,    // HL만도
+  '307950': 24.63,   // 현대오토에버
+  '086280': 16.61,   // 현대글로비스
+  '058610': 2.74,    // 에스피지
+  '108490': 5.94,    // 로보티즈
+  '090360': 1.55,    // 로보스타
 };
 const DATA = [
   // ── 현대차그룹 Captive ──
@@ -274,7 +280,7 @@ function renderMobis(){
   const robotValT=robotRevKRW/10000*9; // 로봇 매출에 PSR 9배 (보수화)
   const totalValT=baseOp*8+robotValT+mobisShareT; // 기존 OP×8배 + 로봇 매출 밸류 + BD 지분
   const upside=((totalValT/curMcap-1)*100).toFixed(0);
-  const mc=document.getElementById('mbCurMcap'); if(mc) mc.textContent=curMcap;
+  const mc=document.getElementById('mbCurMcap'); if(mc) mc.textContent=curMcap.toFixed(1);
   document.getElementById('mbRobotRev').textContent=Math.round(robotRevKRW).toLocaleString()+'억원';
   document.getElementById('mbRobotPct').textContent=robotPct.toFixed(2)+'%';
   document.getElementById('mbShareVal').textContent=mobisShareT.toFixed(1)+'조원';
@@ -476,10 +482,6 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
       <div class="num-box" style="border:2px solid #FF6B6B"><div class="num-label">적정 시총 추정</div><div class="num-value" id="mbTotalVal" style="color:#FF6B6B">-</div><div class="num-sub">기존OP×8 + 로봇PSR9 + 지분</div></div>
       <div class="num-box" style="background:rgba(255,107,107,0.06)"><div class="num-label">vs 현 시총 <span id="mbCurMcap">67</span>조</div><div class="num-value" id="mbUpside">-</div><div class="num-sub">업사이드</div></div>
     </div>
-    <div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 12px;background:var(--bg-soft);border-radius:7px;border-left:3px solid #0984E3">
-      <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3">📑 KB증권 강성진</span>
-      <span style="font-size:11px;color:var(--ink-2)">목표가 120만원(+57.7%) · <b>적정 시총 111조</b> = 기존사업 44조 + BD지분 14.7조 + 액추에이터·물량효과 52.7조 (DCF, 2035년 아틀라스 150만대·점유율 60% 가정)</span>
-    </div>
     <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin:14px 0 6px">카탈리스트 타임라인</div>
     <div style="position:relative;height:8px;background:linear-gradient(90deg,#FF6B6B,#F8B739,#6C5CE7,#00B894,#0984E3);border-radius:4px;margin-bottom:40px">
       <div id="mbCatDots" style="position:relative;top:-8px"></div>
@@ -487,7 +489,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
     <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
       <b style="color:#FF6B6B">탑픽 근거:</b> ① BD 액추에이터 100% 독점 공급 (JPM 2026) ② Body→Hand 순차 이관 확정 ③ 미국 양산거점 설립 → 2028 35만개 ④ BD 지분가치 귀속(HMG Global 20%) ⑤ 소프트뱅크 풋옵션 만기 6/21 → 지배구조 재편 트리거
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">* 자체추정. 현 시총 67조원(2026.06.02, 주간 업데이트). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배·로봇 PSR 9배(보수화) 적용.</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">* 자체추정. 현 시총은 MARKET_CAP(2026.06.02 KRX 종가) 기준. BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배·로봇 PSR 9배(보수화) 적용.</div>
   </section>
 
   <!-- ═══ 한국 노출 매핑 3영역 ═══ -->
