@@ -229,7 +229,58 @@ function renderTL(){
   });
   document.getElementById('tlDots').innerHTML=dots;
 }
-window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExpo();renderTL();});
+// ═══ 현대모비스 밸류에이션 ═══
+function renderMobis(){
+  const atlasUnits=+document.getElementById('mbUnitsSlider').value;
+  const actPrice=+document.getElementById('mbActSlider').value;
+  const actPerUnit=+document.getElementById('mbActCountSlider').value;
+  const baseOp=+document.getElementById('mbBaseOpSlider').value;
+  document.getElementById('mbUnitsVal').textContent=atlasUnits.toLocaleString()+'대';
+  document.getElementById('mbActVal').textContent='$'+actPrice.toLocaleString();
+  document.getElementById('mbActCountVal').textContent=actPerUnit+'개';
+  document.getElementById('mbBaseOpVal').textContent=baseOp.toFixed(1)+'조원';
+  // 로봇향 신규 매출
+  const robotRevUSD=atlasUnits*actPerUnit*actPrice;
+  const robotRevKRW=robotRevUSD*1450/1e8; // 억원
+  // 기존 매출 대비 비중 (모비스 2025E 매출 약 60조원)
+  const baseSales=60;
+  const robotPct=robotRevKRW/10000/baseSales*100;
+  // BD 지분 귀속: HMG Global 중 모비스 20% → BD PV의 56.3%×20%=11.26%
+  const bdPV=+document.getElementById('bdPV').textContent.replace(/[^0-9.]/g,'')||119.8;
+  const mobisSharePct=0.1126;
+  const mobisShareT=bdPV*mobisSharePct;
+  // 현 시총 대비
+  const curMcap=27; // 약 27조원 (2026.06 기준)
+  const robotValT=robotRevKRW/10000*15; // 로봇 매출에 PSR 15배
+  const totalValT=baseOp*8+robotValT+mobisShareT; // 기존 OP×8배 + 로봇 매출 밸류 + BD 지분
+  const upside=((totalValT/curMcap-1)*100).toFixed(0);
+  document.getElementById('mbRobotRev').textContent=Math.round(robotRevKRW).toLocaleString()+'억원';
+  document.getElementById('mbRobotPct').textContent=robotPct.toFixed(2)+'%';
+  document.getElementById('mbShareVal').textContent=mobisShareT.toFixed(1)+'조원';
+  document.getElementById('mbTotalVal').textContent=totalValT.toFixed(1)+'조원';
+  document.getElementById('mbUpside').textContent=(upside>0?'+':'')+upside+'%';
+  document.getElementById('mbUpside').style.color=upside>0?'#FF6B6B':'#e74c3c';
+  // 카탈리스트 타임라인 바
+  const events=[
+    {label:'기술 무상이관',time:'2026.05',pct:10,color:'#FF6B6B'},
+    {label:'풋옵션 만기',time:'2026.06',pct:15,color:'#F8B739'},
+    {label:'RMAC 개소',time:'2026.08',pct:22,color:'#6C5CE7'},
+    {label:'세일즈 로드쇼',time:'2026 2H',pct:35,color:'#00B894'},
+    {label:'매출 인식',time:'2027',pct:55,color:'#0984E3'},
+    {label:'양산 35만개',time:'2028',pct:78,color:'#FF6B6B'},
+    {label:'Hand 이관',time:'2028+',pct:95,color:'#E17055'},
+  ];
+  let catHtml='';
+  events.forEach(e=>{
+    catHtml+='<div style="position:absolute;left:'+e.pct+'%;transform:translateX(-50%);text-align:center">'
+    +'<div style="width:10px;height:10px;border-radius:50%;background:'+e.color+';margin:0 auto 2px;border:2px solid var(--bg-card)"></div>'
+    +'<div style="font-family:var(--mono);font-size:8px;color:var(--ink);font-weight:600;white-space:nowrap">'+e.label+'</div>'
+    +'<div style="font-family:var(--mono);font-size:7px;color:var(--ink-3)">'+e.time+'</div>'
+    +'</div>';
+  });
+  document.getElementById('mbCatDots').innerHTML=catHtml;
+}
+window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExpo();renderTL();renderMobis();});
 </script>
 <body>
 <main>
@@ -348,6 +399,61 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
       <div class="num-box"><div class="num-label">HMG 귀속 (90.1%)</div><div class="num-value" id="bdHMG">-</div><div class="num-sub">HMG Global+정의선+글로비스</div></div>
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:6px">* 자체추정. 환율 1,450원/$. 2030→2026 PV 할인. HMG 귀속: HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% = 90.1%</div>
+  </section>
+
+  <!-- ═══ 현대모비스 탑픽 밸류에이션 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #FF6B6B;border-top:3px solid #FF6B6B">
+    <div class="card-title">🏆 현대모비스 (012330) — Top Pick 밸류에이션 <span class="badge" style="background:#FF6B6B;color:#fff">인터랙티브</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:14px">BD 액추에이터 100% 캡티브 공급 + 기술 무상이관 + 지배구조 재편. 양산 가정을 조절하면 모비스 귀속가치가 실시간 계산됩니다.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">Atlas 연간 양산</span>
+          <span id="mbUnitsVal" style="font-family:var(--mono);font-size:13px;font-weight:700">30,000대</span>
+        </div>
+        <input id="mbUnitsSlider" class="year-slider" type="range" min="5000" max="100000" step="5000" value="30000" oninput="renderMobis()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>5천대</span><span>10만대</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">액추에이터 단가</span>
+          <span id="mbActVal" style="font-family:var(--mono);font-size:13px;font-weight:700">$5,000</span>
+        </div>
+        <input id="mbActSlider" class="year-slider" type="range" min="2000" max="10000" step="500" value="5000" oninput="renderMobis()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$2,000</span><span>$10,000</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">대당 액추에이터 수</span>
+          <span id="mbActCountVal" style="font-family:var(--mono);font-size:13px;font-weight:700">28개</span>
+        </div>
+        <input id="mbActCountSlider" class="year-slider" type="range" min="20" max="56" step="2" value="28" oninput="renderMobis()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>20개</span><span>56개</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">기존 영업이익 (E)</span>
+          <span id="mbBaseOpVal" style="font-family:var(--mono);font-size:13px;font-weight:700">3.5조원</span>
+        </div>
+        <input id="mbBaseOpSlider" class="year-slider" type="range" min="2" max="5" step="0.1" value="3.5" oninput="renderMobis()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>2조</span><span>5조</span></div>
+      </div>
+    </div>
+    <div class="num-row">
+      <div class="num-box"><div class="num-label">로봇향 신규 매출</div><div class="num-value" id="mbRobotRev" style="color:#FF6B6B">-</div><div class="num-sub">Atlas × 액추에이터</div></div>
+      <div class="num-box"><div class="num-label">기존 매출 대비</div><div class="num-value" id="mbRobotPct">-</div><div class="num-sub">60조원 기준</div></div>
+      <div class="num-box"><div class="num-label">BD 지분 귀속</div><div class="num-value" id="mbShareVal">-</div><div class="num-sub">HMG Global 20% → BD PV의 11.3%</div></div>
+      <div class="num-box" style="border:2px solid #FF6B6B"><div class="num-label">적정 시총 추정</div><div class="num-value" id="mbTotalVal" style="color:#FF6B6B">-</div><div class="num-sub">기존OP×8 + 로봇PSR15 + 지분</div></div>
+      <div class="num-box" style="background:rgba(255,107,107,0.06)"><div class="num-label">vs 현 시총 27조</div><div class="num-value" id="mbUpside">-</div><div class="num-sub">업사이드</div></div>
+    </div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin:14px 0 6px">카탈리스트 타임라인</div>
+    <div style="position:relative;height:8px;background:linear-gradient(90deg,#FF6B6B,#F8B739,#6C5CE7,#00B894,#0984E3);border-radius:4px;margin-bottom:40px">
+      <div id="mbCatDots" style="position:relative;top:-8px"></div>
+    </div>
+    <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#FF6B6B">탑픽 근거:</b> ① BD 액추에이터 100% 독점 공급 (JPM 2026) ② Body→Hand 순차 이관 확정 ③ 미국 양산거점 설립 → 2028 35만개 ④ BD 지분가치 귀속(HMG Global 20%) ⑤ 소프트뱅크 풋옵션 만기 6/21 → 지배구조 재편 트리거
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">* 자체추정. 현 시총 약 27조원(2026.06). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배·로봇 PSR 15배 적용.</div>
   </section>
 
   <!-- ═══ 한국 노출 매핑 3영역 ═══ -->
