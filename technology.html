@@ -1982,6 +1982,38 @@ window.addEventListener('DOMContentLoaded', render);
           <b>현대차 HPVC 로드맵:</b> 3Q26 Pace Car → 4Q27 AD Lv2+ SW → 2028 Full Stack → 2029 실질 데이터 확보. 양산 2030년 3.05백만대, HPVC 750 TOPS. 현대차는 단순 자동차 기업이 아니라, 수백만 대 fleet으로 물리 데이터를 모으는 피지컬AI 데이터 디바이스 기업이 됨. <span style="font-size:10px;color:var(--ink-3)">[현대차그룹 IR + 자체추정]</span>
         </p>
       </div>
+      <!-- 📅 하반기 이벤트 캘린더 (인터랙티브) -->
+      <div id="sec-event-calendar" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#F8B739;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">📅 하반기 이벤트 캘린더 — 월별 촉매 클릭</div>
+        <div style="display:flex;gap:0;margin-bottom:12px;border-radius:8px;overflow:hidden;border:1px solid var(--line)">
+          <style>
+            .ev-tab{flex:1;padding:10px 6px;text-align:center;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:600;background:var(--bg-soft);color:var(--ink-3);border-right:1px solid var(--line);transition:.15s;position:relative}
+            .ev-tab:last-child{border-right:none}
+            .ev-tab:hover{background:rgba(248,183,57,0.12);color:var(--ink)}
+            .ev-tab.ev-active{background:#F8B739;color:#fff}
+            .ev-tab .ev-stars{font-size:7px;display:block;margin-top:2px;letter-spacing:1px}
+            .ev-panel{display:none;padding:12px 14px;background:var(--bg-soft);border-radius:8px;margin-bottom:12px;font-size:11px;color:var(--ink-2);line-height:1.7}
+            .ev-panel.ev-show{display:block}
+          </style>
+          <div class="ev-tab ev-active" onclick="evSwitch(0,this)">6월 초<div class="ev-stars">★★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(1,this)">6월 중<div class="ev-stars">★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(2,this)">3Q26<div class="ev-stars">★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(3,this)">7~8월<div class="ev-stars">★★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(4,this)">4Q26<div class="ev-stars">★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(5,this)">미정<div class="ev-stars">★★★</div></div>
+        </div>
+        <div class="ev-panel ev-show" id="evp0"><b style="color:#F8B739">젠슨 황 방한 (6/1~4 Computex 후)</b><br>LG·네이버 등 국내 주요 기업과 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">Physical AI 협업 구체화 논의</span>. 2025년 1차 '깐부회동' 때 GPU 26만장이 구체화됐듯, 이번에도 협업 계약 여부가 핵심. + Computex에서 <b>GR00T 레퍼런스·Cosmos 3.0·Alpamayo 2</b> 발표 완료.<br><span style="font-size:10px;color:var(--ink-3)">[NVIDIA·각사 공시]</span></div>
+        <div class="ev-panel" id="evp1"><b style="color:#FF6B6B">BD 풋옵션 만기 (6/21)</b> + <b>유니트리 상장 심사</b><br>소프트뱅크 풋옵션 만기 → 현대차 BD 100% 인수 수순. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">BD 상장·지배구조 개편 트리거</span>. 유니트리 2H26 상장 예정(심천). + Figure AI 외부 판매 시작, 휴머노이드 상업 계약 확산.<br><span style="font-size:10px;color:var(--ink-3)">[현대차·BD 공시 / Unitree IPO]</span></div>
+        <div class="ev-panel" id="evp2"><b style="color:#00B894">BD RMAC 개소 (3Q26)</b><br>현대차 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로봇 훈련센터 가동 → Atlas 공장 투입 시작</span>. 물리 데이터 생산 원년. RMAC에서 학습된 Atlas가 2028년 HMGMA에 투입되는 첫 단추. + BD+Google DeepMind 미국 세일즈 로드쇼 진행 중.<br><span style="font-size:10px;color:var(--ink-3)">[현대차 IR]</span></div>
+        <div class="ev-panel" id="evp3"><b style="color:#6C5CE7">테슬라 옵티머스 V3 출시 (7월말~8월)</b><br><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">연내 최대 이벤트</span>. 프리몬트에서 생산 시작 후 텍사스 2공장 본격 양산. V3 양산 규모 + 머스크 언급 차세대 V4 로드맵 여부에 따라 <b>글로벌 휴머노이드 산업 전개 속도 결정</b>. + 2026 북중미 월드컵 기간 로보틱스 쇼케이스 기대.<br><span style="font-size:10px;color:var(--ink-3)">[Tesla 공식 · 자체추정]</span></div>
+        <div class="ev-panel" id="evp4"><b style="color:#E17055">테슬라 V3 대량 양산 (4Q26)</b> + <b>유니트리 상장 (2H26)</b><br>휴머노이드 산업 양산단계 진입 확인. 글로벌 2번째 휴머노이드 IPO(유니트리). <b>NVIDIA GR00T 레퍼런스 로봇 출시(10월)</b> — Unitree H2 Plus+Jetson Thor.<br><span style="font-size:10px;color:var(--ink-3)">[Tesla·NVIDIA·Unitree]</span></div>
+        <div class="ev-panel" id="evp5"><b style="color:var(--ink-3)">미정 — 추가 촉매</b><br>• 글로벌 휴머노이드 OEM 추가 참여(상·or 추가 투자) → 밸류체인 확장<br>• 미국 로봇 위원회 법안 상정 — 법적 이정표 확인 시 제도적 수혜 가능<br><span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
+        <script>function evSwitch(i,el){document.querySelectorAll('.ev-tab').forEach(t=>t.classList.remove('ev-active'));document.querySelectorAll('.ev-panel').forEach(p=>p.classList.remove('ev-show'));el.classList.add('ev-active');document.getElementById('evp'+i).classList.add('ev-show')}</script>
+        <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px">
+          <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:6px">📌 이벤트 그 다음을 봐야</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">이벤트 자체보다 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">이후 구체화 여부</span>가 주가를 결정. 젠슨 방한 → Physical AI 협업 계약? RMAC → Atlas 실투입 데이터? 옵티머스 V3 → 양산 수량·V4 로드맵? 이벤트 발생 시 "그래서 뭐가 구체화됐냐"를 확인해야 함. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
+        </div>
+      </div>
       <!-- 한국 노출 매핑 -->
       <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
         <div style="font-family:var(--mono);font-size:10px;color:#00B894;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">한국 노출 매핑 — ECU HPC 구조의 반복</div>
