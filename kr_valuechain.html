@@ -251,12 +251,16 @@ function renderMobis(){
   const actPrice=+document.getElementById('mbActSlider').value;
   const actPerUnit=+document.getElementById('mbActCountSlider').value;
   const baseOp=+document.getElementById('mbBaseOpSlider').value;
+  const scope=+document.getElementById('mbScopeSlider').value;
   document.getElementById('mbUnitsVal').textContent=atlasUnits.toLocaleString()+'대';
   document.getElementById('mbActVal').textContent='$'+actPrice.toLocaleString();
   document.getElementById('mbActCountVal').textContent=actPerUnit+'개';
   document.getElementById('mbBaseOpVal').textContent=baseOp.toFixed(1)+'조원';
-  // 로봇향 신규 매출
-  const robotRevUSD=atlasUnits*actPerUnit*actPrice;
+  const scopeLabel=scope<=1.05?'1.0× 액추에이터만':scope>=1.95?'2.0× 풀패키지':scope.toFixed(1)+'× +헤드·그리퍼·배터리';
+  document.getElementById('mbScopeVal').textContent=scopeLabel;
+  document.getElementById('mbRobotRevSub').textContent=scope<=1.05?'Atlas × 액추에이터':'Atlas × 풀패키지';
+  // 로봇향 신규 매출 (공급 품목 범위 배수 반영)
+  const robotRevUSD=atlasUnits*actPerUnit*actPrice*scope;
   const robotRevKRW=robotRevUSD*1450/1e8; // 억원
   // 기존 매출 대비 비중 (모비스 2025E 매출 약 60조원)
   const baseSales=60;
@@ -428,8 +432,8 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
           <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">Atlas 연간 양산</span>
           <span id="mbUnitsVal" style="font-family:var(--mono);font-size:13px;font-weight:700">30,000대</span>
         </div>
-        <input id="mbUnitsSlider" class="year-slider" type="range" min="5000" max="100000" step="5000" value="30000" oninput="renderMobis()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>5천대</span><span>10만대</span></div>
+        <input id="mbUnitsSlider" class="year-slider" type="range" min="20000" max="100000" step="5000" value="30000" oninput="renderMobis()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>2만대(베이스)</span><span>10만대</span></div>
       </div>
       <div>
         <div style="display:flex;justify-content:space-between;margin-bottom:4px">
@@ -456,12 +460,25 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderBDVal();renderExp
         <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>2조</span><span>5조</span></div>
       </div>
     </div>
+    <div style="background:rgba(255,107,107,0.04);border-radius:8px;padding:12px 14px;margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-family:var(--mono);font-size:10px;color:#FF6B6B;font-weight:700">공급 품목 범위 (대당 매출 배수)</span>
+        <span id="mbScopeVal" style="font-family:var(--mono);font-size:13px;font-weight:700;color:#FF6B6B">1.0× 액추에이터만</span>
+      </div>
+      <input id="mbScopeSlider" class="year-slider" type="range" min="1.0" max="2.0" step="0.1" value="1.0" oninput="renderMobis()" style="width:100%">
+      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>1.0× 액추에이터만</span><span>2.0× +헤드모듈·그리퍼·배터리팩</span></div>
+      <div style="font-size:9.5px;color:var(--ink-3);margin-top:4px">모비스는 BD에 액추에이터 외 헤드모듈·그리퍼·배터리팩도 공급 → 대당 매출이 액추에이터 단독 대비 1.5~2배</div>
+    </div>
     <div class="num-row">
-      <div class="num-box"><div class="num-label">로봇향 신규 매출</div><div class="num-value" id="mbRobotRev" style="color:#FF6B6B">-</div><div class="num-sub">Atlas × 액추에이터</div></div>
+      <div class="num-box"><div class="num-label">로봇향 신규 매출</div><div class="num-value" id="mbRobotRev" style="color:#FF6B6B">-</div><div class="num-sub" id="mbRobotRevSub">Atlas × 풀패키지</div></div>
       <div class="num-box"><div class="num-label">기존 매출 대비</div><div class="num-value" id="mbRobotPct">-</div><div class="num-sub">60조원 기준</div></div>
       <div class="num-box"><div class="num-label">BD 지분 귀속</div><div class="num-value" id="mbShareVal">-</div><div class="num-sub">HMG Global 20% → BD PV의 11.3%</div></div>
       <div class="num-box" style="border:2px solid #FF6B6B"><div class="num-label">적정 시총 추정</div><div class="num-value" id="mbTotalVal" style="color:#FF6B6B">-</div><div class="num-sub">기존OP×8 + 로봇PSR9 + 지분</div></div>
       <div class="num-box" style="background:rgba(255,107,107,0.06)"><div class="num-label">vs 현 시총 <span id="mbCurMcap">67</span>조</div><div class="num-value" id="mbUpside">-</div><div class="num-sub">업사이드</div></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:10px;padding:8px 12px;background:var(--bg-soft);border-radius:7px;border-left:3px solid #0984E3">
+      <span style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3">📑 KB증권 강성진</span>
+      <span style="font-size:11px;color:var(--ink-2)">목표가 120만원(+57.7%) · <b>적정 시총 111조</b> = 기존사업 44조 + BD지분 14.7조 + 액추에이터·물량효과 52.7조 (DCF, 2035년 아틀라스 150만대·점유율 60% 가정)</span>
     </div>
     <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin:14px 0 6px">카탈리스트 타임라인</div>
     <div style="position:relative;height:8px;background:linear-gradient(90deg,#FF6B6B,#F8B739,#6C5CE7,#00B894,#0984E3);border-radius:4px;margin-bottom:40px">
