@@ -178,6 +178,13 @@ const EXPO={
       {n:'현대로템',t:'064350',exp:2,role:'군사용 로봇 · 고스트로보틱스 인수',when:'2027~'},
       {n:'LIG넥스원',t:'079550',exp:2,role:'군사용 로봇 · FCT 통과',when:'2027~'},
     ]},
+  swos:{name:'SW/OS 플랫폼',desc:'NVIDIA가 안 만드는 레이어 — 플릿 오케스트레이션 OS · 디지털 트윈 · GPU 클라우딩. 가정용 휴머노이드 상용화 핵심.',color:'#F8B739',
+    cos:[
+      {n:'네이버',t:'035420',exp:3,role:'ARC 플릿 OS · ALIKE 디지털 트윈 · 브레인리스 GPU 클라우딩',when:'2027~'},
+      {n:'LG전자',t:'066570',exp:2,role:'가정용 휴머노이드 HW · NAVER-NVIDIA 동맹',when:'2028~'},
+      {n:'현대오토에버',t:'307950',exp:3,role:'HMG Robot OS · BD SI 통합',when:'2027~'},
+      {n:'네이버클라우드',t:'NCloud',exp:2,role:'로봇 GPU 클라우드 인프라 · 엣지-클라우드 분산',when:'2027~'},
+    ]},
 };
 const EXP_LABELS=['','소','중','대','극대'];
 let selExpo='hmg';
@@ -205,10 +212,10 @@ const TL_DATA=[
   {y:2024,label:'시제품',events:['BD Atlas 전기식 시제품 공개','Tesla Optimus Gen2 시연','Unitree G1 출시 ($16K~)'],tag:'초기'},
   {y:2025,label:'소량생산',events:['AGIBOT 5,168대 출하 (1위)','Unitree 4,200대','총 13,368대 (Omdia)','LG에너지솔루션 로봇 배터리 공급 시작'],tag:'중국 주도'},
   {y:2026,label:'RMAC 개소',events:['RMAC 2026 여름 개소','에스비비테크 200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 만기 6/21','로보스타 코스닥150 편입'],tag:'BD 준비'},
-  {y:2027,label:'매출 인식',events:['현대모비스 BD 매출 인식 시작','HL만도 Spot 2세대 공급','현대오토에버 Robot OS','현대글로비스 물류 테스트베드'],tag:'KR 매출 시작'},
-  {y:2028,label:'양산 원년',events:['BD 양산공장 30K CAPA 개소','모비스 액추에이터 35만개','삼성SDI 헝가리 양산','HL만도 휴머노이드 공급 원년','두산로보틱스 산업용 상용화'],tag:'본격 양산'},
-  {y:2029,label:'확산',events:['BD 외부 고객 확장','원가 하락 가속 ($40~60K대)','수직 통합 진행'],tag:'확산'},
-  {y:2030,label:'대량 양산',events:['BD 3만대+ 양산','HMG 2.5만대 captive demand','글로벌 69~120만대 (시나리오별)','ASP $25~50K 구간 진입'],tag:'대량 양산'},
+  {y:2027,label:'매출 인식',events:['현대모비스 BD 매출 인식 시작','HL만도 Spot 2세대 공급','현대오토에버 Robot OS','현대글로비스 물류 테스트베드','네이버 ARC 플릿 OS 상용화 착수'],tag:'KR 매출 시작'},
+  {y:2028,label:'양산 원년',events:['BD 양산공장 30K CAPA 개소','모비스 액추에이터 35만개','삼성SDI 헝가리 양산','HL만도 휴머노이드 공급 원년','두산로보틱스 산업용 상용화','NAVER-NVIDIA-LG 가정용 로봇 본격화'],tag:'본격 양산'},
+  {y:2029,label:'확산',events:['BD 외부 고객 확장','원가 하락 가속 ($40~60K대)','수직 통합 진행','네이버 브레인리스 GPU 클라우딩 확대'],tag:'확산'},
+  {y:2030,label:'대량 양산',events:['BD 3만대+ 양산','HMG 2.5만대 captive demand','글로벌 69~120만대 (시나리오별)','ASP $25~50K 구간 진입','가정용 휴머노이드 시장 본격 개화'],tag:'대량 양산'},
 ];
 function renderTL(){
   const yr=+document.getElementById('tlSlider').value;
