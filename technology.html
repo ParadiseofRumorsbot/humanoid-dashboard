@@ -165,7 +165,7 @@ main{flex:1;min-width:0;max-width:1100px;padding:24px 0 100px 32px}
   .glossary-grid{grid-template-columns:1fr}
 }
 </style>
-<script src="data.js?v=20260602"></script>
+<script src="data.js?v=20260602b"></script>
 <script>
 const D = DASHBOARD_DATA;
 const $ = s => document.querySelector(s);
@@ -2038,6 +2038,27 @@ window.addEventListener('DOMContentLoaded', render);
           </ul>
         </div>
       </div>
+      <!-- ⚠️ 리스크 & 반론 대비 (Bear Case) -->
+      <div id="sec-bearcase" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">⚠️ 리스크 & 반론 대비 (Bear Case) — 균형 잡기</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #FF6B6B">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:5px">① 밸류에이션 극단</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 424배·EV/EBITDA 297배</span>, 에스피지 90.5배. 액추에이터 peer 평균 137배. 적자·이익 미미한 곳도 많아 기대가 선반영된 구간.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:5px">② 중국 저가 침투</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">쑤저우 Green Harmonic 등 중국 부품이 일·한 대비 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">30~40% 저가</span>. "원가절감=중국화" 구도 → 한국 부품사 마진 압박.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #F8B739">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#d39e00;margin-bottom:5px">③ 양산·매출 시차</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">실매출은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2027~2030년</span>. 액추에이터 신뢰성(내구성) 과제 잔존. 테마-실적 시차 = 변동성.</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;padding:10px 14px;background:rgba(255,107,107,0.06);border-radius:8px">
+          📌 <b>그래서 접근법:</b> <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">코어(감속기·모터) 바스켓 + 실적 베이스 종목(삼성전기·DB하이텍)으로 변동성 완충 + 분할 매수.</span> "피지컬 AI를 한다"는 기대가 아니라 "부품을 양산해 글로벌 공급망에 들어가는가"가 잣대. <span style="font-size:10px;color:var(--ink-3)">[밸류에이션: Bloomberg / 그 외 자체추정·언론 종합]</span>
+        </div>
+      </div>
       <!-- 🎯 종목별 투자 포인트 -->
       <div id="sec-stock-picks" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
         <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🎯 종목별 투자 포인트 — 8종목</div>
@@ -2098,6 +2119,48 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="margin-top:8px;display:flex;gap:12px;font-family:var(--mono);font-size:10px;color:var(--ink-3)"><span style="color:#FF6B6B">● ASP ($)</span><span style="color:#4ecdc4">● Volume (대)</span></div>
       </div>
       <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: JPM 2026, BD IR, HMG IR, NVIDIA GTC 2025, McKinsey, Goldman Sachs, Tesla IR</div>
+    </section>
+
+    <!-- ═══ 부록. 예상 질문 Q&A ═══ -->
+    <section id="sec-faq" class="card section-gap">
+      <div class="card-title">❓ 예상 질문 & 핵심 답변 (Q&A) <span class="badge" style="background:#FF6B6B;color:#fff">16문항</span></div>
+      <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">질문을 클릭하면 답변이 펼쳐집니다. 발표 Q&A 시 즉답용 · 🔵개념 · 🟢수치 · 🟣논리 · 🔴반론</p>
+      <style>
+        .qa-q{cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:11.5px;font-weight:600;color:var(--ink)}
+        .qa-q:hover{color:#FF6B6B}
+        .qa-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+        .qa-a-inner{padding:8px 0 12px;font-size:11px;color:var(--ink-2);line-height:1.75}
+        .qa-grp{font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:700;margin:16px 0 4px}
+        .qa-grp:first-of-type{margin-top:0}
+      </style>
+
+      <div class="qa-grp" style="color:#6C5CE7">🔵 개념 (정의)</div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. VLA가 뭐죠?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">카메라로 <b>보고</b>(Vision), 명령을 <b>알아듣고</b>(Language), 실제로 <b>움직이는</b>(Action) 걸 한 AI 모델이 통째로 처리. 인터넷 규모 사전학습 모델을 소량 로봇 데이터로 fine-tune만 하면 됨 → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">기종 바뀌어도 처음부터 다시 코딩 불필요</span>. "로봇용 안드로이드 OS".</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. WFM·Cosmos가 뭐죠?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">World Foundation Model — 로봇의 <b>물리적 상상력</b>. "밀면 깨지겠다"를 행동 전에 머릿속 시뮬레이션. 어제 발표된 <b>Cosmos 3.0</b>이 이 분야 최전선. 합성 데이터를 대량 생성해 실제 로봇 없이도 학습.</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 왜 하필 NVIDIA Jetson(ARM)이냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">AI는 전력 소비가 극심하고 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">전력-발열이 정비례</span>. 데이터센터는 열관리가 있지만 로봇 몸엔 쿨러가 전부 → 고성능·고전력 CISC(x86) 대신 <b>저전력 ARM RISC가 필연</b>. Jetson Thor가 ARM 기반인 이유(2,070 TFLOPS·128GB).</div></div></div>
+
+      <div class="qa-grp" style="color:#00B894">🟢 Before→After · 수치</div>
+      <div style="border:1px solid rgba(255,107,107,0.3);border-radius:8px;padding:0 12px;margin:4px 0;background:rgba(255,107,107,0.03)"><div class="qa-q" style="border-bottom:none" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='700px';r.textContent='▲'}"><span style="color:#FF6B6B">★ Q. 학습 데이터가 90배 더 필요? 거짓말 아니냐?</span><span class="ar" style="color:#FF6B6B">▲</span></div><div class="qa-a" style="max-height:700px"><div class="qa-a-inner"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">거짓말 아닙니다. NVIDIA Cosmos 공식 수치(9,000조 토큰)</span>입니다. 왜 90배냐:<br>
+        <b>① 차원이 다름</b> — 텍스트 1초는 토큰 3~4개, 비디오 1초는 30프레임×약 256토큰 = <b>~7,680토큰</b>. 같은 1초 현실을 표현하는 데 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">토큰이 ~2,000배</span> 더 듦.<br>
+        <b>② 물리법칙 직접 학습</b> — 텍스트는 언어 패턴, WFM은 중력·마찰·충돌을 연속적 물리법칙 자체로 학습.<br>
+        <b>③ 변형 다양성</b> — '사과' 토큰은 항상 같지만, 영상 속 사과는 조명·각도·재질이 다 다름 → 수만 변형 필요.<br>
+        한마디로 <b>"세상을 글로 설명"과 "세상을 직접 시뮬레이션"의 차이</b>. 데이터 모으는 자가 해자를 갖는 이유.</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 원가 $150K→$17K, 89% 진짜 떨어졌냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">비교 기준이 다름 — $150K는 <b>프로토타입 1대</b>, $17K는 <b>양산 BOM</b>. 자동차처럼 물량↑ = 단가↓: 1대 $150K → 100대 $80~100K → 1,000대 $40~60K → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">1만대 $20~30K(−80%)</span>. 단, 하락 상당분이 중국 부품 침투 영향(리스크).</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 출하량 0→13,368대, 정말 0이었냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">2020년엔 <b>상업적 양산 휴머노이드가 사실상 없었음</b>(연구실 프로토타입뿐). 2025년 13,368대는 Omdia 실적 — AGIBOT 5,168·Unitree 4,200·UBTECH 1,000 등 중국이 90%+. 5년 만에 0→만대.</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 액추에이터 8종→2종, 줄어드는 게 왜 좋냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">개수가 아니라 '종류'가 2종</span>(개수는 28~56개로 폭증). 종류↓ = ①양산성↑ ②현장 정비(교체)↑ ③단가↓. BD "blank-sheet design focused on simplicity"가 이 얘기.</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. MLCC 한 대에 1만 개? 그렇게 많냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">추정이지만 근거 있음. MLCC는 칩·드라이버마다 전압안정용으로 수~수십 개씩. 가솔린차 3~5천, 테슬라 1.5~1.7만 → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">관절 56개+AI칩 휴머노이드는 ~1만 개</span>. 대중화 = MLCC 슈퍼사이클(삼성전기).</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. BOM 56%랬다 34.5%? 어느 게 맞냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">둘 다 맞음 — <b>총원가 기준이 다름</b>. 저가형 G1은 총원가가 낮아 액추에이터 66%, 풀스택($55~78K)은 센서·열관리·컴퓨팅이 더해져 34.5%. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">어느 기준이든 액추에이터가 단일 최대 부품</span> → 현대모비스가 핵심.</div></div></div>
+
+      <div class="qa-grp" style="color:#6C5CE7">🟣 소결 · 투자 논리</div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 결국 왜 한국이 수혜냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">두뇌(추론칩·모델)는 NVIDIA·구글 → 한국 직접 노출 없음. 한국이 버는 3개: <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">①감속기·액추에이터(모비스·에스피지) ②칩주변 반도체(삼성전기·대덕전자) ③학습 데이터(현대차·로보티즈)</span>. 두뇌는 양보, 몸·부품·데이터에서 글로벌 공급망 침투.</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 칩 주변 반도체가 한국이란 근거? ECU 비유 맞냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">실제 선례 있음. 자동차 분산 ECU→중앙 HPC 통합 때 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">칩(SoC)은 Infineon·NXP, FC-BGA·MLCC·전력관리는 삼성전기·대덕전자가 공급</span>. 로봇 추론칩도 칩은 NVIDIA지만 주변 기판·수동소자는 같은 한국 공급망. "구조의 반복".</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 데이터가 병목이면 NVIDIA가 다 먹나?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">아님. NVIDIA가 만드는 건 <b>인프라</b>(Cosmos·DreamGen). Jensen Huang도 "합성 데이터는 실데이터를 대체 못 한다"고 함. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">실제 물리 데이터는 fleet 가진 자가 모음</span> — 현대차 수백만대+RMAC, 로보티즈 우즈벡 팩토리. 인프라=NVIDIA, 데이터 해자=현대차·로보티즈.</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. BD 가치 123~180조, 근거가 뭐냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">자체추정 — 2030년 매출 ~55억$ × Peer PSR 21.9배. 숫자보다 중요한 건 <b>트리거</b>: <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">소프트뱅크 풋옵션 만기 2026.6.21</span>이 BD 상장·지배구조 개편의 도화선. 현대차는 결국 BD 100% 인수 수순.</div></div></div>
+
+      <div class="qa-grp" style="color:#FF6B6B">🔴 반론 (Bear) — 위 ⚠️ 리스크 카드 참고</div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 밸류에이션 너무 비싼 거 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">맞음, 인정. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 424배·EV/EBITDA 297배</span>, 적자·이익 미미한 곳도 많음. 기대 선반영. 그래서 <b>분할 + 실적 베이스(삼성전기·DB하이텍) 병행</b>으로 변동성 완충. (Bloomberg)</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 중국이 저가로 다 먹는 거 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">실재 리스크 — Green Harmonic 등 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">일·한 대비 30~40% 저가</span>. 한국은 가격 대신 기술 차별화(토크밀도·백드라이버빌리티)+OEM 직납으로 회피. 단, 미중 갈등으로 순수 중국 밸류체인 어려워 한국·일본·독일 반사이익도.</div></div></div>
+      <div style="margin-bottom:4px"><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 2028 빅뱅 진짜 오냐? 매출 언제냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">실매출은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2027~2030년</span>, 신뢰성 과제 잔존(테마-실적 시차=변동성). 단 BD 3만대·테슬라 100만대 목표가 2028에 동시 떨어지는 건 각사 공시. 타이밍 리스크는 <b>분할 대응</b>.</div></div></div>
     </section>
 
     <!-- ═══ 부록. Glossary ═══ -->
