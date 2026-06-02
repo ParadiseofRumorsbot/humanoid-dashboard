@@ -1056,6 +1056,17 @@ const DASHBOARD_DATA = {
   updateLog: [
     {
       date: '2026-06-02',
+      title: 'Atlas 버전 진화 타임라인 · 휴머노이드 풀 BOM · 현대모비스 BD Actuator 무상이관',
+      source: 'Boston Dynamics · 현대모비스·BD 공시 / 일부 자체추정',
+      changes: [
+        'Part 7: Atlas 버전 진화 타임라인 추가 (1.0~New Electric, 유압→전기·28→56 DoF) — 출처 Boston Dynamics',
+        'components: 풀스택 휴머노이드 풀 BOM($55~78K, 8개 카테고리, 액추에이터 34.5%) — G1 66%와 병기, 자체추정',
+        'components: Body vs Hand Actuator 구분(65~70% vs 30~35%) 추가',
+        'KR 밸류체인: 현대모비스 BD Body Actuator 무상이관(2026.5)·2028 35만개·Hand 이관·미국 세일즈 로드쇼 카탈리스트 반영',
+      ],
+    },
+    {
+      date: '2026-06-02',
       title: 'NVIDIA GR00T 레퍼런스 휴머노이드 · Jetson Thor 풀스펙 · DreamGen 반영',
       source: 'NVIDIA GTC Taipei 2026 (Computex)',
       changes: [
