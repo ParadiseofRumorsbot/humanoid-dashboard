@@ -2016,6 +2016,65 @@ window.addEventListener('DOMContentLoaded', render);
           <div style="font-size:11px;color:var(--ink-2);line-height:1.7">이벤트 자체보다 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">이후 구체화 여부</span>가 주가를 결정. 젠슨 방한 → Physical AI 협업 계약? RMAC → Atlas 실투입 데이터? 옵티머스 V3 → 양산 수량·V4 로드맵? 이벤트 발생 시 "그래서 뭐가 구체화됐냐"를 확인해야 함. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
         </div>
       </div>
+      <!-- 상용화 3조건과 운영 OS 레이어 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#0a9c96;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">🧩 피지컬 AI 상용화 3조건과 '운영 OS' 레이어 — 모델은 글로벌, 운영은 누가?</div>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">AI 1.0(생성형)은 입출력이 가상이라 무한·즉시 반복 학습이 가능했지만, 피지컬 AI는 입출력이 <b>현실에 실재</b>한다 — 한 동작에 물리적 시간이 걸리고, 일어난 현실은 되돌릴 수 없다. 그래서 모델(두뇌) 외에 <b>세 가지 운영 조건</b>이 더 풀려야 상용화된다: ① 병렬 학습용 <b>디지털 트윈</b>, ② 두뇌 연산을 나누는 <b>GPU 클라우딩</b>, ③ 다수 로봇을 동시에 굴리는 <b>플릿 운영 OS</b>. 각 조건에서 한국(네이버)이 어디 서 있는지를 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">반론까지 포함해</span> 정리한다.</p>
+
+        <!-- 조건 1 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px;border-left:3px solid #00B894">
+          <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:5px">① 디지털 트윈 — 왜 '학습'에 필요한가 <span style="font-size:9px;color:var(--ink-3)">[검증: 강함]</span></div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">현실 학습은 느리고 위험하고 비싸다 — 실제 데이터 수집은 시간당 <b>$136</b> vs 시뮬 <b>$0.001</b>, <b>13.6만 배</b> 격차(본 대시보드 Physical AI 페이지). 그래서 가상환경 수천 개를 병렬로 띄워 학습 후 현실로 옮기는 <b>Sim-to-Real</b>이 전제. <b>디지털 트윈은 두 종류로 나뉜다 →</b><br>
+          • <b>(A) 시뮬레이션형</b>: 물리엔진으로 합성 데이터·정책 생성 = <b>NVIDIA Omniverse·Isaac·Cosmos</b>·Google Genie (글로벌 장악)<br>
+          • <b>(B) 매핑형</b>: 현실 공간을 거울 복제해 측위·운영 = <b>네이버 ALIKE→ARC</b> (1784 빌딩 전체를 피지컬 AI로 운영, 세계 최초 · 사우디 수출)<br>
+          둘은 경쟁이 아니라 <b>상호보완</b> — NVIDIA는 '학습용 가상세계', 네이버는 '운영용 현실 복제본'.<br>
+          <span style="color:#FF6B6B;font-weight:600">[디베이트]</span> 매핑형 트윈의 해자는 <b>'그 공간'에 한정</b>(1784·각 세종). 범용 휴머노이드의 <b>조작 학습 데이터</b>는 시뮬형+텔레오퍼레이션이 주력이지 매핑형이 아님 → 네이버 자산은 '조작 데이터원'이 아니라 <b>'실내 측위·멀티로봇 운영 인프라'</b>로 보는 게 정확.</div>
+        </div>
+
+        <!-- 조건 2 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px;border-left:3px solid #6C5CE7">
+          <div style="font-size:12px;font-weight:700;color:#6C5CE7;margin-bottom:5px">② GPU 클라우딩 — '브레인리스'는 어디까지 <span style="font-size:9px;color:var(--ink-3)">[검증: 조건부]</span></div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">데이터센터 GPU는 100% 가동되지만 <b>로봇은 항상 일하지 않는다</b>. 가구마다 GPU 전용은 낭비 → 쉴 때 두뇌를 클라우드로 올려 공유하면 경제성이 생긴다. 이를 위해 <b>로봇+클라우드 사업부를 동시에</b> 가져야 하며, 네이버 ARC의 <b>'브레인리스'</b>(두뇌·몸체 통신 분리)가 이 발상 — <b>CES 2019 퀄컴과 세계 최초 5G 브레인리스 로봇</b> 시연.<br>
+          <span style="color:#FF6B6B;font-weight:600">[디베이트]</span> 단 "두뇌를 통째로 클라우드"는 부정확. 제어는 2계층 — <b>System 2(인지·계획)</b>: 수백 ms 허용·비안전크리티컬 → <b>클라우드 오프로드 가능</b>. <b>System 1(모터 제어)</b>: 실시간 &lt;수 ms·안전크리티컬·끊기면 위험 → <b>온디바이스(Jetson Thor) 필수</b>. 즉 브레인리스는 두뇌(S2)에만 적용, 척수(S1)는 몸에 남음 → <b>'완전 무뇌'가 아니라 '부분 오프로드'</b>.</div>
+        </div>
+
+        <!-- 조건 3 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px;border-left:3px solid #0a9c96">
+          <div style="font-size:12px;font-weight:700;color:#0a9c96;margin-bottom:5px">③ 플릿 운영 OS — '관제탑'은 비어 있나 <span style="font-size:9px;color:var(--ink-3)">[검증: 레이어 존재 O / '경쟁사 없음' X]</span></div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">NVIDIA가 주는 건 <b>모델(GR00T)·시뮬(Omniverse/Isaac)·월드모델(Cosmos)</b>. 그러나 현장은 로봇 한 대가 아니라 여러 대가 협업·충돌회피·작업분배 → <b>플릿 오케스트레이션 OS(관제탑)</b>가 필요 = 네이버 ARC(멀티로봇 인텔리전스). 실제로 본 매핑표에서도 이 운영 OS 레이어는 그동안 <b>빈 칸</b>이었다.<br>
+          <span style="color:#FF6B6B;font-weight:600">[디베이트 — '경쟁사 없음'은 과한 명제]</span> 레이어가 빈 건 맞지만 절대명제로 쓰면 반박당함:<br>
+          • NVIDIA도 이 층으로 <b>진입 中</b> — <b>Isaac Mega</b>(디지털트윈 내 로봇 플릿 시뮬·오케스트레이션) + <b>OSMO</b>(로보틱스 워크로드 오케스트레이션). "안 한다"가 아니라 "지금 만든다".<br>
+          • 순수 플릿관리 SW도 존재 — InOrbit·Formant·Foxglove 등(창고·AMR 중심, 풀스택·소버린은 아님).<br>
+          → 네이버 차별점은 '빈 레이어 독점'이 아니라 <b>소버린 풀스택 번들</b>: 자체 LLM(하이퍼클로바X)+자국 클라우드(각 세종)+매핑 트윈(ALIKE)+플릿 OS(ARC)+국방 B2G(2026.6 'Defense Frontier')를 한국 안에서 단독 결합. <b>"글로벌 OS 독점"이 아니라 "한국 데이터 주권 운영자"로 좁혀야 견고.</b></div>
+        </div>
+
+        <!-- 심화: 자동차 스택 (QNX) -->
+        <div style="background:rgba(9,156,150,0.06);border:1px solid rgba(9,156,150,0.25);border-radius:8px;padding:12px 14px;margin-bottom:8px">
+          <div style="font-size:12px;font-weight:700;color:#0a9c96;margin-bottom:5px">🚗 심화 — 자동차 스택에 빗대면 (NVIDIA DRIVE OS vs 블랙베리 QNX)</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">NVIDIA 자율주행 DRIVE AGX의 공식 OS는 <b>DRIVE OS</b>지만, 실시간 안전 커널은 <b>직접 만들지 않고 블랙베리 QNX</b>(ISO 26262 ASIL-D)를 쓴다. 최신 칩 DRIVE AGX Thor에도 QNX OS for Safety가 통합되고, 그 위에 하이퍼바이저로 Linux/Android를, 다시 위에 CUDA·DriveWorks·모델이 얹힌다. <b>NVIDIA조차 인증·안전 해자가 있는 레이어는 파트너에 의존</b>한다. 그럼 "네이버가 휴머노이드의 블랙베리냐?" — <b>전략 직관은 맞지만 레이어는 한 칸 다르다.</b>
+          <div style="overflow-x:auto;margin:8px 0">
+            <table style="width:100%;border-collapse:collapse;font-size:10.5px">
+              <thead><tr style="border-bottom:1px solid var(--line-s)"><th style="text-align:left;padding:4px 6px"></th><th style="text-align:left;padding:4px 6px">블랙베리 QNX</th><th style="text-align:left;padding:4px 6px">네이버 ARC</th></tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;color:var(--ink-3)">층위</td><td style="padding:4px 6px">온디바이스 <b>실시간 안전 커널</b></td><td style="padding:4px 6px">클라우드 <b>플릿 오케스트레이션</b></td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;color:var(--ink-3)">제어 계층</td><td style="padding:4px 6px"><b>System 1</b> (모터·&lt;ms)</td><td style="padding:4px 6px"><b>System 2</b> (인지·조율)</td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;color:var(--ink-3)">위치</td><td style="padding:4px 6px">디바이스 안 (멈추면 안 됨)</td><td style="padding:4px 6px">클라우드 (두뇌를 올림)</td></tr>
+                <tr><td style="padding:4px 6px;color:var(--ink-3)">해자</td><td style="padding:4px 6px">ASIL-D <b>안전 인증</b></td><td style="padding:4px 6px"><b>소버린 데이터·운영</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">QNX와 ARC는 <b>스택의 정반대 끝</b> — QNX는 '발밑의 실시간 커널', ARC는 '머리 위 관제탑'. 둘 다 'OS'로 불리지만 같은 OS가 아니다. 휴머노이드의 <b>QNX 자리(온디바이스 실시간 커널, S1)는 네이버가 아니라</b> Jetson Thor 안전스택·실시간 리눅스·또는 <b>로보틱스로 확장 중인 QNX 본체</b>가 가져간다. 네이버 ARC는 그 <b>한 층 위 '플릿 클라우드 OS'</b>(자동차엔 직접 대응물이 거의 없고, 굳이 비유하면 로보택시 '운영 관제 스택'). 게다가 NVIDIA는 차에선 QNX를 라이선스했어도 <b>플릿 층은 직접(Mega/OSMO) 만들어</b> '파트너에 넘긴다'는 보장이 약함.<br>
+          <span style="background:rgba(9,156,150,0.12);padding:1px 4px;border-radius:3px;font-weight:600">교정 한 줄:</span> "네이버=휴머노이드의 블랙베리"는 층이 틀렸고, 정확히는 <b>"네이버=휴머노이드 플릿의 운영 관제 OS"</b> — QNX보다 한 층 위, 인증 해자가 아니라 <b>소버린 해자</b>.</div>
+        </div>
+
+        <!-- 첫 걸음 + 핵심 메시지 -->
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>첫 걸음 = 네이버·NVIDIA·LG전자 동맹</b> (가정용 휴머노이드): LG전자(HW)+NVIDIA(모델)+네이버랩스(운영 OS, 타 SI 협업). <b>GTC Taipei 2026(6/1~2)</b> 젠슨 황이 네이버클라우드를 '글로벌 AI 팩토리' 파트너로 발표, 하이퍼클로바X를 Nemotron 3 Ultra로 고도화 + Cosmos 기반 <b>Seoul World Model</b>(서울 120만 파노라마) 구축 中.</div>
+        <div style="background:rgba(9,156,150,0.08);border-left:4px solid #0a9c96;border-radius:0 8px 8px 0;padding:11px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
+          <b style="color:#0a9c96">핵심 메시지:</b> 상용화 3조건(병렬학습 디지털트윈·두뇌 GPU 오프로드·멀티로봇 플릿 OS) 중 <b>모델·시뮬·칩은 NVIDIA·구글이 장악</b>, 그러나 <b>'애플리케이션단 운영 OS'는 상대적으로 빈 레이어</b>. 한국에선 <b>네이버 ARC</b>가 자체 LLM·자국 클라우드·매핑 트윈·국방 B2G와 묶인 <b>소버린 운영 번들</b>로 진입 — 단 NVIDIA Isaac Mega·OSMO가 같은 층에 진입 중이라 '글로벌 독점'이 아니라 <b>'한국 데이터 주권' 포지션</b>으로 봐야 함.
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체정리 · 각사 IR · 언론 종합 · Physical AI 페이지 데이터</div>
+      </div>
+
       <!-- 한국 노출 매핑 -->
       <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
         <div style="font-family:var(--mono);font-size:10px;color:#00B894;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">한국 노출 매핑 — ECU HPC 구조의 반복</div>
@@ -2031,10 +2090,16 @@ window.addEventListener('DOMContentLoaded', render);
             </thead>
             <tbody>
               <tr style="border-bottom:1px solid var(--line)">
-                <td style="padding:8px 10px">두뇌·추론칩</td>
-                <td style="padding:8px 10px">파운데이션모델·추론 SoC</td>
-                <td style="padding:8px 10px">NVIDIA·Tesla</td>
-                <td style="padding:8px 10px;color:var(--ink-3)">직접 노출 없음</td>
+                <td style="padding:8px 10px">두뇌·모델</td>
+                <td style="padding:8px 10px">파운데이션모델·VLA·WFM·추론 SoC</td>
+                <td style="padding:8px 10px">NVIDIA·구글·Tesla</td>
+                <td style="padding:8px 10px;color:var(--ink-3)">직접 노출 없음 (글로벌 장악)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line);background:rgba(0,206,201,0.07)">
+                <td style="padding:8px 10px">운영·플릿 OS (SW)</td>
+                <td style="padding:8px 10px">멀티로봇 오케스트레이션·매핑 디지털트윈·GPU 클라우딩</td>
+                <td style="padding:8px 10px">NVIDIA Isaac Mega·OSMO 진입 中 (빈 레이어)</td>
+                <td style="padding:8px 10px;font-weight:700;color:#0a9c96">★ 네이버 ARC <span style="font-weight:400;color:var(--ink-3);font-size:10px">(한국 소버린: 하이퍼클로바X+각 세종+ALIKE)</span></td>
               </tr>
               <tr style="border-bottom:1px solid var(--line)">
                 <td style="padding:8px 10px">칩 주변 반도체</td>
