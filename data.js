@@ -1066,6 +1066,16 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   updateLog: [
     {
+      date: '2026-06-04',
+      title: '현대차·NVIDIA AI 기술센터 새만금 · 젠슨 황 방한 일정 확정 · 빅테크 RMAC 지분 투자 가능성',
+      source: '한국경제(2026.6.4) · 각사 공시 · 자체정리',
+      changes: [
+        'technology: 이벤트 캘린더 6월 초 업데이트 — 6/4 방한→6/5 성수동 제2의 깐부회동(정의선·최태원·구광모·이해진)→6/8 양재·LG·네이버',
+        'technology: HMG 전략에 새만금 AI 거점(9조원 · L1+L3+L5a 물리 통합) + 빅테크 RMAC 지분 투자 가능성 [미확인]',
+        'kr_valuechain: BD 밸류에이션 시뮬레이터에 빅테크 지분 투자 촉매 주석',
+      ],
+    },
+    {
       date: '2026-06-03',
       title: 'π0.7 데이터 전략 · L5 운영OS 분리(L5a/L5b) · VLA 한계·Demo Gap · 네오오토 종목등재',
       source: 'Physical Intelligence π0.7 논문 · 젠슨 황 스탠포드 강연 · NVIDIA · 네이버 IR / 자체정리',
