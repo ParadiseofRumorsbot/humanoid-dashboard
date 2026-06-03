@@ -2126,23 +2126,35 @@ window.addEventListener('DOMContentLoaded', render);
           → 네이버 차별점은 '빈 레이어 독점'이 아니라 <b>소버린 풀스택 번들</b>: 자체 LLM(하이퍼클로바X)+자국 클라우드(각 세종)+매핑 트윈(ALIKE)+플릿 OS(ARC)+국방 B2G(2026.6 'Defense Frontier')를 한국 안에서 단독 결합할 수 있다는 점. <b>"글로벌 OS 독점"이 아니라 "한국 데이터 주권 운영자"로 좁혀야 견고.</b></div>
         </div>
 
-        <!-- 심화: 자동차 스택 (QNX) -->
+        <!-- 심화: 자동차 스택 비유 — 4개 역할 구분 -->
         <div style="background:rgba(9,156,150,0.06);border:1px solid rgba(9,156,150,0.25);border-radius:8px;padding:12px 14px;margin-bottom:8px">
-          <div style="font-size:12px;font-weight:700;color:#0a9c96;margin-bottom:5px">🚗 심화 — 자동차 스택에 빗대면 (NVIDIA DRIVE OS vs 블랙베리 QNX)</div>
-          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">NVIDIA 자율주행 DRIVE AGX의 공식 OS는 <b>DRIVE OS</b>지만, 실시간 안전 커널은 <b>직접 만들지 않고 블랙베리 QNX</b>(ISO 26262 ASIL-D)를 쓴다. 최신 칩 DRIVE AGX Thor에도 QNX OS for Safety가 통합되고, 그 위에 하이퍼바이저로 Linux/Android를, 다시 위에 CUDA·DriveWorks·모델이 얹힌다. <b>NVIDIA조차 인증·안전 해자가 있는 레이어는 파트너에 의존</b>한다. 그럼 "네이버가 휴머노이드의 블랙베리냐?" — <b>전략 직관은 맞지만 레이어는 한 칸 다르다.</b>
+          <div style="font-size:12px;font-weight:700;color:#0a9c96;margin-bottom:5px">🚗 심화 — 자동차 스택에 빗대면: NVIDIA가 모든 층을 직접 하지 않는다</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">NVIDIA 자율주행 DRIVE AGX의 공식 OS는 <b>DRIVE OS</b>지만, 실시간 안전 커널은 직접 만들지 않고 <b>블랙베리 QNX</b>(ISO 26262 ASIL-D)를 쓴다. <b>NVIDIA조차 인증·안전 해자가 있는 레이어는 파트너에 의존.</b> 그런데 현대차(BD)는 단순 OEM이 아니라 <b>자체 제어 IP(System 1) + HW + 데이터를 직접 쥔 수직통합 플레이어</b>다. 자율주행에서도 HPVC(750 TOPS, 2030 양산)를 자체 개발하면서 NVIDIA 인프라를 동시에 활용하는 하이브리드 구조.</div>
           <div style="overflow-x:auto;margin:8px 0">
             <table style="width:100%;border-collapse:collapse;font-size:10.5px">
-              <thead><tr style="border-bottom:1px solid var(--line-s)"><th style="text-align:left;padding:4px 6px"></th><th style="text-align:left;padding:4px 6px">블랙베리 QNX</th><th style="text-align:left;padding:4px 6px">네이버 ARC</th></tr></thead>
+              <thead><tr style="border-bottom:2px solid var(--ink)">
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px">역할</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#76B900">NVIDIA</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#636E72">블랙베리 QNX</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#FF6B6B">BD / 현대차</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#0a9c96">네이버 ARC</th>
+              </tr></thead>
               <tbody>
-                <tr style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;color:var(--ink-3)">층위</td><td style="padding:4px 6px">온디바이스 <b>실시간 안전 커널</b></td><td style="padding:4px 6px">클라우드 <b>플릿 오케스트레이션</b></td></tr>
-                <tr style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;color:var(--ink-3)">제어 계층</td><td style="padding:4px 6px"><b>System 1</b> (모터·&lt;ms)</td><td style="padding:4px 6px"><b>System 2</b> (인지·조율)</td></tr>
-                <tr style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;color:var(--ink-3)">위치</td><td style="padding:4px 6px">디바이스 안 (멈추면 안 됨)</td><td style="padding:4px 6px">클라우드 (두뇌를 올림)</td></tr>
-                <tr><td style="padding:4px 6px;color:var(--ink-3)">해자</td><td style="padding:4px 6px">ASIL-D <b>안전 인증</b></td><td style="padding:4px 6px"><b>소버린 데이터·운영</b></td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">스택 위치</td><td style="padding:5px 6px">AI 칩·플랫폼 (L4~L5a)</td><td style="padding:5px 6px">온디바이스 안전 커널</td><td style="padding:5px 6px"><b>수직통합</b> — 제어IP+HW+데이터+공장</td><td style="padding:5px 6px">클라우드 플릿 OS (L5b)</td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">제어 계층</td><td style="padding:5px 6px">학습·추론 인프라</td><td style="padding:5px 6px"><b>System 1</b> (&lt;ms, 안전)</td><td style="padding:5px 6px"><b>System 1 자체 개발</b>(30년 동적제어 IP) + System 2는 구글 파트너</td><td style="padding:5px 6px"><b>System 2</b> (인지·관제)</td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">자동차 비유</td><td style="padding:5px 6px">NVIDIA DRIVE</td><td style="padding:5px 6px">QNX 안전 커널</td><td style="padding:5px 6px"><b>도요타+테슬라 하이브리드</b> (OEM이면서 자체 AD 스택 HPVC 개발)</td><td style="padding:5px 6px">로보택시 관제 플랫폼 (자동차엔 직접 대응물 거의 없음)</td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">해자</td><td style="padding:5px 6px">GPU·에코시스템 독점</td><td style="padding:5px 6px">ASIL-D 안전 인증</td><td style="padding:5px 6px"><b>제조 100개 공장 데이터 + RMAC + 부품 캡티브</b></td><td style="padding:5px 6px">소버린 데이터·운영</td></tr>
+                <tr><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">관계</td><td style="padding:5px 6px">인프라 제공자</td><td style="padding:5px 6px">NVIDIA에 라이선스</td><td style="padding:5px 6px">NVIDIA·구글 <b>인프라를 사서 자기 스택 위에 올림</b></td><td style="padding:5px 6px">L5a 출력을 받아 현장 운영</td></tr>
               </tbody>
             </table>
           </div>
-          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">QNX와 ARC는 <b>스택의 정반대 끝</b> — QNX는 '발밑의 실시간 커널', ARC는 '머리 위 관제탑'. 둘 다 'OS'로 불리지만 같은 OS가 아니다. 휴머노이드의 <b>QNX 자리(온디바이스 실시간 커널, S1)는 네이버가 아니라</b> Jetson Thor 안전스택·실시간 리눅스·또는 <b>로보틱스로 확장 중인 QNX 본체</b>가 가져간다. 네이버 ARC는 그 <b>한 층 위 '플릿 클라우드 OS'</b>(자동차엔 직접 대응물이 거의 없고, 굳이 비유하면 로보택시 '운영 관제 스택'). 게다가 NVIDIA는 차에선 QNX를 라이선스했어도 <b>플릿 층은 직접(Mega/OSMO) 만들어</b> '파트너에 넘긴다'는 보장이 약함.<br>
-          <span style="background:rgba(9,156,150,0.12);padding:1px 4px;border-radius:3px;font-weight:600">교정 한 줄:</span> "네이버=휴머노이드의 블랙베리"는 층이 틀렸고, 정확히는 <b>"네이버=휴머노이드 플릿의 운영 관제 OS"</b> — QNX보다 한 층 위, 인증 해자가 아니라 <b>소버린 해자</b>.</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">
+            <b>이 비유의 포인트는 "NVIDIA가 모든 층을 직접 안 한다 → 빈 칸에 파트너가 들어간다"</b>는 것이지, 특정 기업 하나를 QNX에 대입하는 것이 아님.<br>
+            • <b>QNX 층(온디바이스 안전 커널)</b>: 휴머노이드에서는 BD가 자체 제어 IP를 Jetson Thor 위에 올리는 구조. BD는 QNX를 '사서 쓰는' OEM이 아니라 <b>System 1을 직접 개발</b>하는 수직통합 플레이어.<br>
+            • <b>ARC 층(플릿 관제 OS)</b>: QNX보다 한 층 위. 자동차엔 직접 대응물이 거의 없고, 굳이 비유하면 로보택시 '운영 관제 스택'.<br>
+            • NVIDIA는 차에선 QNX를 라이선스했어도 <b>플릿 층은 직접(Mega/OSMO) 만들어</b> '파트너에 넘긴다'는 보장이 약함.<br>
+            <span style="background:rgba(9,156,150,0.12);padding:1px 4px;border-radius:3px;font-weight:600">한 줄:</span> NVIDIA(인프라) → BD/현대차(수직통합 OEM+자체 제어IP+데이터) → 네이버 ARC(현장 플릿 OS). <b>세 역할이 서로 다른 층에 있고, 한국은 BD·네이버·부품사로 복수 층에 매핑됨.</b>
+          </div>
         </div>
 
         <!-- 첫 걸음 + 핵심 메시지 -->
