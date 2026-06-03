@@ -1068,7 +1068,7 @@ const DASHBOARD_DATA = {
     {
       date: '2026-06-03',
       title: 'π0.7 데이터 전략 · L5 운영OS 분리(L5a/L5b) · VLA 한계·Demo Gap · 네오오토 종목등재',
-      source: 'Physical Intelligence π0.7 논문 · 젠슨 황 스탠포드 강연 · 현업 로봇개발자 해설 · NVIDIA · 네이버 IR / 자체정리',
+      source: 'Physical Intelligence π0.7 논문 · 젠슨 황 스탠포드 강연 · NVIDIA · 네이버 IR / 자체정리',
       changes: [
         'technology: NVIDIA AI Factory 레이어를 L5a(시뮬·학습·배포=OSMO) / L5b(현장 운영OS=★네이버 ARC)로 분리 + 레이어별 한국 대응 기업 매핑 컬럼',
         'technology: VLA 구조적 한계 카드(카메라 비관측 물리량 7종) + Demo vs Reality Gap(데모 1회≠현장 매일, L5a→L5b 전환이 갭의 구조적 원인)',

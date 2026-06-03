@@ -1356,7 +1356,7 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 8px 8px 0;padding:11px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
           <b style="color:#FF6B6B">왜 텍스트 AI보다 어려운가 (비가역성):</b> 텍스트 생성은 틀리면 수정하면 된다(가역). 로봇이 잘못 움직이면 <b>물건 파손·장비 손상·인명 위험</b>(비가역). 그래서 상용화에 시간이 걸린다. <b>이 Demo Gap의 구조적 위치 = L5a(모델 배포)에서 L5b(현장 운영)로 넘어가는 전환</b> — 시뮬에서 잘되던 정책이 좌표계 불일치·센서 지연·모터 응답차로 현장에서 실패. <span style="font-size:10px;color:var(--ink-3)">(아래 AI Factory 레이어 도표 L5a→L5b 참조)</span> 기대가 한 번 조정되는 시기가 와도 그건 기술 실패가 아니라 <b>실제 구현 문제가 선명해지는 시기</b>이고, 그 갭을 메우는 시스템 통합 역량 보유 기업이 수혜.
         </div>
-        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 현업 로봇개발자 해설 · 젠슨 황 스탠포드 강연 · 자체정리</div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 젠슨 황 스탠포드 강연 · 자체정리</div>
       </div>
     </section>
 
@@ -1496,7 +1496,7 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="background:rgba(225,112,85,0.06);border-left:4px solid #E17055;border-radius:0 8px 8px 0;padding:11px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
           <b style="color:#E17055">투자 시사점 — 'Demo Gap'을 메우는 데이터 전략:</b> ① 데이터 규모가 커지면 평균 품질은 낮아지지만(실패·잡음 증가) 메타데이터를 붙이면 <b>규모가 클수록 성능이 계속 향상</b> → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">현장 배치가 많을수록(실패 데이터 포함) 데이터 우위</span> = BD·현대차 RMAC·로보티즈 <b>데이터 플라이휠 강화</b>. ② 언어 코칭이 텔레오퍼레이션($136/hr)을 일부 대체 → 신규 작업 학습비용 하락. ③ <b>월드모델이 실제 조작 가이드(서브골 이미지)로 기여</b> → WFM의 실용 가치 입증 = Cosmos·네이버 서울 월드모델 의미 강화.
         </div>
-        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Physical Intelligence π0.7 논문(Steerable Generalist Robotic Foundation Model with Emergent Capabilities) · 현업 로봇개발자 해설 · 자체정리</div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Physical Intelligence π0.7 논문(Steerable Generalist Robotic Foundation Model with Emergent Capabilities) · 자체정리</div>
       </div>
     </section>
 
@@ -2310,7 +2310,7 @@ window.addEventListener('DOMContentLoaded', render);
 
     <!-- ═══ 부록. 예상 질문 Q&A ═══ -->
     <section id="sec-faq" class="card section-gap">
-      <div class="card-title">❓ 예상 질문 & 핵심 답변 (Q&A) <span class="badge" style="background:#FF6B6B;color:#fff">18문항</span></div>
+      <div class="card-title">❓ 예상 질문 & 핵심 답변 (Q&A) <span class="badge" style="background:#FF6B6B;color:#fff">19문항</span></div>
       <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">질문을 클릭하면 답변이 펼쳐집니다. 발표 Q&A 시 즉답용 · 🔵개념 · 🟢수치 · 🟣논리 · 🔴반론</p>
       <style>
         .qa-q{cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:11.5px;font-weight:600;color:var(--ink)}
@@ -2357,7 +2357,7 @@ window.addEventListener('DOMContentLoaded', render);
         NYT가 머스크 SNS+IR 콜에서 기한 명시 공개 약속 <b>602건</b>을 집계: 달성 ~19% · 지연·실패 ~35% · 검증불가·모호 ~33% · 마감 미도래 ~13%. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">기한 약속은 평균 19%만 그대로 지켜짐</span> → 100만 대 야망에 'NYT 19% rule'을 적용하면 BD 3만 대와의 자릿수 격차가 좁혀짐.<br><br>
         <b>② 휴머노이드 데이터는 '판매 대수'가 아니라 '배치+텔레오퍼레이션'에서 나옴.</b> 차 운전 데이터 ≠ 휴머노이드 조작 데이터. 흥미롭게 <b>테슬라조차</b> 자사 프리몬트 공장에 옵티머스 1,000대+를 배치하고 인간 작업 영상으로 학습 → "많이 팔면 데이터가 쌓인다"는 논리 자체가 휴머노이드엔 안 맞음.<br><br>
         <b>③ BD 데이터 기반은 base case.</b> 30년 동적제어 IP + Spot 산업현장 배치 + 현대차 HMGMA 캡티브(RMAC 26 여름) + Google DeepMind Gemini ER로 작업성공률 상승. 대시보드 양산 타임라인이 BD 3만·테슬라 100만을 <b>동시</b> 표기하는 이유 — 둘 다 base case이고, "BD가 데이터 못 쌓는다"는 전제는 틀린 가설.<br><br>
-        <b>④ 단, 대표님 지적의 진짜 칼날 = 테슬라 수직계열화.</b> 테슬라가 액추에이터·손·칩까지 사내+삼성 파운드리로 내재화하면 모비스·에스피지·에스비비테크 등 한국 부품사는 우산 밖 → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">"테슬라가 이기면 한국 부품 논리가 깨진다"는 리스크는 사실</span>이고 Bear case에 명시 유지.<br><br>
+        <b>④ 단, 진짜 칼날 = 테슬라 수직계열화.</b> 테슬라가 액추에이터·손·칩까지 사내+삼성 파운드리로 내재화하면 모비스·에스피지·에스비비테크 등 한국 부품사는 우산 밖 → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">"테슬라가 이기면 한국 부품 논리가 깨진다"는 리스크는 사실</span>이고 Bear case에 명시 유지.<br><br>
         <b>⑤ 정답: 두뇌·캐파는 양보, 한국은 픽앤셔블.</b> 두뇌(추론칩·VLA·WFM)는 NVIDIA·테슬라 양보. 한국 노출 = ①감속기·액추에이터(모비스·에스피지·에스비비테크) ②칩주변 반도체(삼성전기·대덕) ③데이터 디바이스(현대차·로보티즈) ④운영 OS(네이버). 테슬라가 두뇌·캐파에서 이겨도 BD·중국·연구소 생태계가 굴러가는 한 한국 부품·운영 레이어엔 매출이 들어옴.<br><br>
         <b>한 줄:</b> 100만 대는 캐파·야망(NYT 19% rule), 데이터는 판매가 아니라 공장 배치(테슬라도 1,000대), BD 2028은 base case. 단 테슬라 수직계열화가 한국 부품 논리의 진짜 리스크인 건 인정.<br>
         <span style="font-size:10px;color:var(--ink-3)">출처: NYT(2026.6.2) · Omdia · Trendforce · 자체추정 · 언론 종합</span></div></div></div>
@@ -2366,7 +2366,24 @@ window.addEventListener('DOMContentLoaded', render);
         • <b>Tesla</b>: 프리몬트 자사 공장 옵티머스 1,000대+ 배치(외부 판매 아직 없음 · NYT 19% rule)<br>
         • <b>AGIBOT</b>: 10,000대 누적(중국 제조업 · 단순 작업 중심)<br>
         • <b>Figure</b>: BMW 라인 160대/월(초기 파일럿)<br><br>
-        컵 하나 짚는 것도 무게·마찰·접촉력·센서노이즈 등 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">7+ 물리 변수</span>가 필요. 텍스트 AI 오류는 수정하면 되지만(가역) 로봇 오동작은 파손·인명 위험(비가역). 구조적으로 <b>L5a(모델 배포)→L5b(현장 운영)</b> 전환 병목. 가트너식 기대 조정기가 올 수 있으나 기술 방향 자체는 유효하고, 그 시기가 오히려 <b>실제 현장 문제를 푸는 시스템 통합 역량 보유 기업의 기회</b>. <span style="font-size:10px;color:var(--ink-3)">출처: 각사 IR · Omdia · 현업 로봇개발자 해설 · 자체추정</span></div></div></div>
+        컵 하나 짚는 것도 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">빈 컵인지 가득 찬 컵인지(필요한 힘)·표면 마찰·손잡이 유무·그리퍼가 닿는 각도·옆 장애물·잡는 순간 미끄러짐과 회전·실패 시 복구</span> 등 여러 물리 변수를 동시에 처리해야 함. 텍스트 AI 오류는 수정하면 되지만(가역) 로봇 오동작은 파손·인명 위험(비가역). 구조적으로 <b>L5a(모델 배포)→L5b(현장 운영)</b> 전환 병목. 가트너식 기대 조정기가 올 수 있으나 기술 방향 자체는 유효하고, 그 시기가 오히려 <b>실제 현장 문제를 푸는 시스템 통합 역량 보유 기업의 기회</b>. <span style="font-size:10px;color:var(--ink-3)">출처: 각사 IR · Omdia · 자체추정</span></div></div></div>
+      <div style="border:1px solid rgba(10,156,150,0.3);border-radius:8px;padding:0 12px;margin:6px 0;background:rgba(10,156,150,0.03)"><div class="qa-q" style="border-bottom:none" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='1900px';r.textContent='▲'}"><span style="color:#0a9c96">★ Q. NVIDIA가 휴머노이드 풀스택을 다 가져가는 것 아닌가? 한국이 낄 자리가 있나?</span><span class="ar" style="color:#0a9c96">▼</span></div><div class="qa-a"><div class="qa-a-inner">
+        <b>요지:</b> NVIDIA가 주는 건 "로봇을 학습시켜 배포하는 파이프라인"(L5a)까지임. 배포된 다수 로봇을 현장에서 매일 운영·관제·작업분배하는 "Field Operations OS"(L5b)는 NVIDIA 스택의 빈 칸이고, 네이버 ARC가 1784 빌딩 실배치로 이미 그 자리를 채우고 있음.<br><br>
+        <b>■ L5a vs L5b — 모델과 OS는 다름</b><br>
+        • <b>L5a(학습·배포 파이프라인)</b>: 로봇 한 대의 '뇌'에 들어갈 정책 모델을 학습·시뮬·배포. NVIDIA Omniverse·Isaac·OSMO·GR00T가 여기 해당.<br>
+        • <b>L5b(Field Operations OS)</b>: 배포된 로봇 군집을 실제 현장에서 실시간 제어·연결·작업분배하는 운영 계층. 모델이 아니라 '관제탑'.<br>
+        • OSMO·Isaac Mega는 '시뮬레이션 안의 오케스트레이션'이지 현실 현장 운영이 아님 ← 이 구분이 핵심.<br><br>
+        <b>■ 네이버 ARC가 L5b라는 근거</b><br>
+        • ARC(AI·Robot·Cloud)는 로봇과 공간·서비스·사용자를 실시간 제어·연결하는 멀티로봇 인텔리전스 시스템. '한 대의 뇌'가 아니라 '여러 대를 묶는 운영 계층'이 설계 목적임.<br>
+        • 엘리베이터 호출·자동문 제어·장애물 회피를 실시간 처리하고, 5G 특화망으로 수백 대 동시 운영을 가능케 함. 시뮬이 아닌 1784 빌딩 실가동.<br>
+        • 아키텍처가 2개 층으로 분리됨 — <b>측위·디지털트윈 모듈</b>(L5a 성격, 네이버클라우드 측위 API로 상품화) + <b>제어·관제 모듈</b>(L5b).<br>
+        • <b>브레인리스 구조</b>: 로봇 내부에 뇌가 없으니 운영·판단·작업분배가 전부 ARC라는 OS 층에서 일어남 → L5b가 빈 칸이 아니라 ARC로 채워져 있다는 가장 강한 근거.<br><br>
+        <b>■ 한계(균형)</b><br>
+        • ARC는 네이버 자체 로봇(루키 등) + 1784/각 세종이라는 통제 환경 기준으로 검증된 OS임. 임의 벤더 휴머노이드 다수를 이기종 혼합 운영하는 범용 Field OS로 일반화된 단계는 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">[미확인]</span>.<br>
+        • NVIDIA L5a와 ARC는 직접 경쟁이라기보다, L5a 출력(학습된 정책·디지털트윈)을 L5b(ARC)가 받아 현장에서 운영하는 <b>보완 관계</b>로 보는 게 스택 논리에 맞음.<br><br>
+        <b>■ 그래서 한국이 낄 자리</b><br>
+        L5b(네이버 ARC)만이 아님. <b>L2 칩주변 반도체</b>(삼성전기·대덕전자) + <b>감속기·액추에이터</b>(모비스·에스피지·에스비비테크·네오오토)에도 한국 노출이 실재함. 두뇌·칩(L4·L2 코어)은 글로벌이 쥐어도, 그 위아래 레이어에 한국이 매핑됨.<br>
+        <span style="font-size:10px;color:var(--ink-3)">출처: 네이버랩스 공개자료·1784 사례 · 자체정리</span></div></div></div>
     </section>
 
     <!-- ═══ 부록. Glossary ═══ -->

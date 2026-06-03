@@ -271,7 +271,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderROI();});
         <div style="background:var(--bg-soft);border-radius:7px;padding:9px 11px;font-size:10.5px;color:var(--ink-2);line-height:1.5">④ <b>모터 응답차</b> — 실제 하드웨어의 응답 지연·마찰 차이</div>
         <div style="background:var(--bg-soft);border-radius:7px;padding:9px 11px;font-size:10.5px;color:var(--ink-2);line-height:1.5">⑤ <b>인식 흔들림</b> — 조명·먼지·진동·센서 노이즈로 인식 자체가 흔들림</div>
       </div>
-      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 7px 7px 0"><b>→ 이것이 Domain Randomization이 필요한 이유</b> — 시뮬에서 무게·마찰·모터출력·조명을 무작위 변동시켜 학습하면 현장 변동성에 강건. (기술설명 탭 BD Atlas Domain Randomization 카드 참조) <span style="font-size:9px;color:var(--ink-3)">출처: 현업 로봇개발자 해설 · 자체정리</span></div>
+      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 7px 7px 0"><b>→ 이것이 Domain Randomization이 필요한 이유</b> — 시뮬에서 무게·마찰·모터출력·조명을 무작위 변동시켜 학습하면 현장 변동성에 강건. (기술설명 탭 BD Atlas Domain Randomization 카드 참조) <span style="font-size:9px;color:var(--ink-3)">출처: 자체정리</span></div>
     </div>
   </section>
 
@@ -357,7 +357,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderROI();});
       <b style="color:#76B900">하나의 스택, 세 갈래:</b> <b>Cosmos 3.0</b>(공통 WFM) 위에 <b>GR00T</b>(휴머노이드) · <b>Alpamayo 2</b>(자율주행 — "세계 최초 추론형 AV", NVIDIA Hyperion 글로벌 차량 ~80% 채택) · 에이전틱 AI가 모두 같은 패턴(모델→하네스→도구→런타임)으로 작동. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GTC Taipei 2026]</span>
     </div>
     <div style="background:rgba(225,112,85,0.06);border-left:3px solid #E17055;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.65">
-      <b style="color:#E17055">월드모델이 '데이터 생성'을 넘어 '실제 조작 가이드'로 — π0.7 사례:</b> 그동안 WFM은 주로 학습용 합성 데이터를 만드는 도구였다. 최근 <b>Physical Intelligence π0.7</b>은 월드모델을 <b>런타임 조작 가이드</b>로 활용 — 사람이 "에어프라이어를 열어라" 말하면 월드모델이 <b>'열린 상태'의 목표 장면(서브골 이미지)을 생성</b>해 VLA에게 시각적 중간목표로 제시한다. "문 옆으로 가세요"보다 "이 사진처럼 보이는 곳까지"가 명확한 것과 같다. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">WFM의 실용 가치가 학습→런타임으로 확장</span> → Cosmos·네이버 서울 월드모델의 의미 강화. <span style="font-size:9px;color:var(--ink-3)">출처: Physical Intelligence π0.7 논문 · 현업 로봇개발자 해설 · 자체정리</span>
+      <b style="color:#E17055">월드모델이 '데이터 생성'을 넘어 '실제 조작 가이드'로 — π0.7 사례:</b> 그동안 WFM은 주로 학습용 합성 데이터를 만드는 도구였다. 최근 <b>Physical Intelligence π0.7</b>은 월드모델을 <b>런타임 조작 가이드</b>로 활용 — 사람이 "에어프라이어를 열어라" 말하면 월드모델이 <b>'열린 상태'의 목표 장면(서브골 이미지)을 생성</b>해 VLA에게 시각적 중간목표로 제시한다. "문 옆으로 가세요"보다 "이 사진처럼 보이는 곳까지"가 명확한 것과 같다. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">WFM의 실용 가치가 학습→런타임으로 확장</span> → Cosmos·네이버 서울 월드모델의 의미 강화. <span style="font-size:9px;color:var(--ink-3)">출처: Physical Intelligence π0.7 논문 · 자체정리</span>
     </div>
   </section>
 
@@ -402,7 +402,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderROI();});
           <tr><td style="padding:6px 8px;font-weight:600">액션 청크</td><td style="padding:6px 8px">여러 타임스텝 묶음(π0)</td><td style="padding:6px 8px">연속 동작</td><td style="padding:6px 8px;color:var(--ink-3)">실시간 보정 어려움</td></tr>
         </tbody>
       </table></div>
-      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(9,132,227,0.06);border-left:3px solid #0984E3;border-radius:0 7px 7px 0;margin-top:8px"><b>투자 시사점:</b> 표준 액션 표현·데이터 형식이 없다 = <b>플랫폼 파편화</b> → 모델 출력을 실제 로봇 제어로 연결·일반화하는 <b>시스템 통합(SI) 수요 증가</b> → 현대오토에버 Robot OS·네이버 ARC. <span style="font-size:9px;color:var(--ink-3)">출처: 현업 로봇개발자 해설 · 자체정리</span></div>
+      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(9,132,227,0.06);border-left:3px solid #0984E3;border-radius:0 7px 7px 0;margin-top:8px"><b>투자 시사점:</b> 표준 액션 표현·데이터 형식이 없다 = <b>플랫폼 파편화</b> → 모델 출력을 실제 로봇 제어로 연결·일반화하는 <b>시스템 통합(SI) 수요 증가</b> → 현대오토에버 Robot OS·네이버 ARC. <span style="font-size:9px;color:var(--ink-3)">출처: 자체정리</span></div>
     </div>
   </section>
 
