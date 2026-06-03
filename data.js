@@ -1049,7 +1049,7 @@ const DASHBOARD_DATA = {
         { id: 'sec-bd-learning', label: '🦾 Part 6.5 BD Atlas 학습' },
       ]},
       { group: 'Part 7 — HW+인프라', items: [
-        { id: 'sec-atlas', label: 'Atlas + NVIDIA + HMG + 원가' },
+        { id: 'sec-atlas', label: 'HW + 인프라 + 투자' },
         { id: 'sec-event-calendar', label: '📅 하반기 이벤트 캘린더' },
         { id: 'sec-bearcase', label: '⚠️ 리스크 & 반론' },
         { id: 'sec-stock-picks', label: '🎯 종목별 투자 포인트' },
