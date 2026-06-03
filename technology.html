@@ -1781,6 +1781,15 @@ window.addEventListener('DOMContentLoaded', render);
           실제로는 <span style="color:#F8B739">100 lb 초과</span> 적재 냉장고를 들어 옮김.<br>
           <span style="font-weight:400;font-size:12.5px;color:rgba(255,255,255,.7)">학습한 적 없는 무게를, 엔지니어가 아니라 Atlas의 몸이 스스로 적응.</span>
         </div>
+        <!-- 일반화 스케일 바 -->
+        <div style="margin:0 0 16px">
+          <div style="position:relative;height:30px;background:rgba(255,255,255,.07);border-radius:6px;overflow:hidden">
+            <div style="position:absolute;left:41.7%;width:16.7%;top:0;height:100%;background:rgba(78,205,196,.55);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#fff;font-weight:700">학습 50–70</div>
+            <div style="position:absolute;left:83.3%;right:0;top:0;height:100%;background:rgba(248,183,57,.7);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#1a1a1a;font-weight:700">실제 100+</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.45);margin-top:3px"><span>0</span><span>60 lb</span><span>120 lb</span></div>
+          <div style="text-align:center;font-family:var(--mono);font-size:9px;color:#F8B739;margin-top:5px">↑ 학습 구간 밖(extrapolation)에서도 성공 — 이것이 Domain Randomization의 힘</div>
+        </div>
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
           <div style="background:rgba(78,205,196,.12);border-radius:8px;padding:12px;border-top:3px solid #4ecdc4">
             <div style="font-family:var(--mono);font-size:9px;color:#4ecdc4;font-weight:700;margin-bottom:4px">학습 하중</div>
@@ -1798,6 +1807,7 @@ window.addEventListener('DOMContentLoaded', render);
             <div style="font-size:10px;color:var(--ink-3);margin-top:2px">198 lb · 핸드스탠드 가능</div>
           </div>
         </div>
+        <div style="font-size:10.5px;color:rgba(255,255,255,.62);line-height:1.65;margin-top:12px;border-top:1px solid rgba(255,255,255,.12);padding-top:10px"><b style="color:#4ecdc4">왜 되는가:</b> 시뮬레이션에서 냉장고 무게·바닥 마찰·모터 출력을 무작위로 변동(Domain Randomization)시켜 학습 → 특정 무게값이 아니라 '무게가 변한다'는 사실 자체에 강건해짐. 그래서 학습 분포(50–70 lb)를 벗어난 100 lb+에서도 일반화.</div>
       </div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">TRAINING MONTAGE — 행동 학습 5단계</div>
       <div style="margin-bottom:18px">
@@ -2153,7 +2163,7 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
           <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #FF6B6B">
             <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:5px">① 밸류에이션 극단</div>
-            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 424배·EV/EBITDA 297배</span>, 에스피지 90.5배. 액추에이터 peer 평균 137배. 적자·이익 미미한 곳도 많아 기대가 선반영된 구간.</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 424배·EV/EBITDA 297배</span>, 에스피지 90.5배. 액추에이터 peer 평균 137배. <b>에스비비테크 PSR 25E/26E 약 31.3/42.2배</b>(Bloomberg) — 글로벌 감속기 peer(HDS 17.8/14.4·Nidec 1.1) 대비 큰 프리미엄. 적자·이익 미미한 곳도 많아 기대가 선반영된 구간.</div>
           </div>
           <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
             <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:5px">② 중국 저가 침투</div>
@@ -2170,7 +2180,7 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
       <!-- 🎯 종목별 투자 포인트 -->
       <div id="sec-stock-picks" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
-        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🎯 종목별 투자 포인트 — 8종목</div>
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🎯 종목별 투자 포인트 — 9종목</div>
         <!-- HMG 그룹 -->
         <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px;font-weight:600">HMG 그룹</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
@@ -2218,8 +2228,13 @@ window.addEventListener('DOMContentLoaded', render);
             <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">NVIDIA 공동 로봇 플랫폼 공식화 기대. 에이전틱 AI 기반 지능형 로봇. 2028 산업용 휴머노이드 상용화</div>
             <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2H26 · 2028</div>
           </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #0984E3">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3;margin-bottom:4px">에스비비테크</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">국내 하모닉 감속기 1위</span>(日 HDS 독점 깬 국산화). 26.3 천안 액추에이터 전용공장 이전 → 감속기-액추에이터 수직계열화. 현대차 로보틱스랩 모베드 구동기 26년 양산 전환. 가동률 ~10% → 신공장 풀가동 시 CAPA 10배 여력(IR)</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2026.3 천안 · 2027+ 레버리지</div>
+          </div>
         </div>
-        <div style="font-size:10px;color:var(--ink-3)">출처: 각사 IR · 증권사 리서치 종합 / 투자의견·목표주가는 자체추정 아님 · <a href="kr_valuechain.html#sec-stock-detail" style="color:#FF6B6B">상세 → KR 밸류체인</a></div>
+        <div style="font-size:10px;color:var(--ink-3)">출처: 각사 IR · 언론 종합 / 투자의견·목표주가는 자체추정 아님 · <a href="kr_valuechain.html#sec-stock-detail" style="color:#FF6B6B">상세 → KR 밸류체인</a></div>
       </div>
       <!-- 원가 로드맵 -->
       <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
@@ -2232,7 +2247,7 @@ window.addEventListener('DOMContentLoaded', render);
 
     <!-- ═══ 부록. 예상 질문 Q&A ═══ -->
     <section id="sec-faq" class="card section-gap">
-      <div class="card-title">❓ 예상 질문 & 핵심 답변 (Q&A) <span class="badge" style="background:#FF6B6B;color:#fff">16문항</span></div>
+      <div class="card-title">❓ 예상 질문 & 핵심 답변 (Q&A) <span class="badge" style="background:#FF6B6B;color:#fff">17문항</span></div>
       <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">질문을 클릭하면 답변이 펼쳐집니다. 발표 Q&A 시 즉답용 · 🔵개념 · 🟢수치 · 🟣논리 · 🔴반론</p>
       <style>
         .qa-q{cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:11.5px;font-weight:600;color:var(--ink)}
@@ -2270,6 +2285,21 @@ window.addEventListener('DOMContentLoaded', render);
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 밸류에이션 너무 비싼 거 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">맞음, 인정. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 424배·EV/EBITDA 297배</span>, 적자·이익 미미한 곳도 많음. 기대 선반영. 그래서 <b>분할 + 실적 베이스(삼성전기·DB하이텍) 병행</b>으로 변동성 완충. (Bloomberg)</div></div></div>
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 중국이 저가로 다 먹는 거 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">실재 리스크 — Green Harmonic 등 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">일·한 대비 30~40% 저가</span>. 한국은 가격 대신 기술 차별화(토크밀도·백드라이버빌리티)+OEM 직납으로 회피. 단, 미중 갈등으로 순수 중국 밸류체인 어려워 한국·일본·독일 반사이익도.</div></div></div>
       <div style="margin-bottom:4px"><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 2028 빅뱅 진짜 오냐? 매출 언제냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">실매출은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2027~2030년</span>, 신뢰성 과제 잔존(테마-실적 시차=변동성). 단 BD 3만대·테슬라 100만대 목표가 2028에 동시 떨어지는 건 각사 공시. 타이밍 리스크는 <b>분할 대응</b>.</div></div></div>
+      <div style="border:1px solid rgba(255,107,107,0.3);border-radius:8px;padding:0 12px;margin:6px 0;background:rgba(255,107,107,0.03)"><div class="qa-q" style="border-bottom:none" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='1700px';r.textContent='▲'}"><span style="color:#FF6B6B">★ Q. "테슬라가 100만 대 만드는데 BD·로보티즈가 데이터로 이기겠냐"는 반론에 어떻게 답하나?</span><span class="ar" style="color:#FF6B6B">▼</span></div><div class="qa-a"><div class="qa-a-inner">세 가지를 모두 짚어야 함.<br><br>
+        <b>① 100만 대는 캐파·야망이지 실제 생산이 아님.</b> 프리몬트 1세대 라인 설계 100만/년, 기가텍사스 목표 1,000만. 그러나 2025년 머스크는 1만 대를 약속했지만 실제 수백 대, 2026년 자체 가이던스도 5~10만 대. 2025 글로벌 휴머노이드 출하 1.3만 대 중 테슬라는 1%대(Omdia).
+        <svg viewBox="0 0 400 78" style="width:100%;height:auto;margin:10px 0">
+          <rect x="0" y="22" width="76" height="34" fill="#00B894"/><rect x="76" y="22" width="140" height="34" fill="#F8B739"/><rect x="216" y="22" width="132" height="34" fill="#888780"/><rect x="348" y="22" width="52" height="34" fill="#4ecdc4"/>
+          <text x="38" y="44" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">19%</text><text x="146" y="44" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">35%</text><text x="282" y="44" text-anchor="middle" font-size="12" fill="#fff" font-weight="700">33%</text><text x="374" y="44" text-anchor="middle" font-size="10" fill="#1a1a1a" font-weight="700">13%</text>
+          <text x="38" y="16" text-anchor="middle" font-size="8" fill="#00B894">달성</text><text x="146" y="16" text-anchor="middle" font-size="8" fill="#c98a00">지연·실패</text><text x="282" y="16" text-anchor="middle" font-size="8" fill="#888780">모호·검증불가</text><text x="374" y="72" text-anchor="middle" font-size="8" fill="#33b5ac">미래</text>
+        </svg>
+        <span style="font-size:10px;color:var(--ink-3)">머스크의 기한 약속 602건 분석 (2011~2026.1, NYT)</span><br>
+        NYT가 머스크 SNS+IR 콜에서 기한 명시 공개 약속 <b>602건</b>을 집계: 달성 ~19% · 지연·실패 ~35% · 검증불가·모호 ~33% · 마감 미도래 ~13%. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">기한 약속은 평균 19%만 그대로 지켜짐</span> → 100만 대 야망에 'NYT 19% rule'을 적용하면 BD 3만 대와의 자릿수 격차가 좁혀짐.<br><br>
+        <b>② 휴머노이드 데이터는 '판매 대수'가 아니라 '배치+텔레오퍼레이션'에서 나옴.</b> 차 운전 데이터 ≠ 휴머노이드 조작 데이터. 흥미롭게 <b>테슬라조차</b> 자사 프리몬트 공장에 옵티머스 1,000대+를 배치하고 인간 작업 영상으로 학습 → "많이 팔면 데이터가 쌓인다"는 논리 자체가 휴머노이드엔 안 맞음.<br><br>
+        <b>③ BD 데이터 기반은 base case.</b> 30년 동적제어 IP + Spot 산업현장 배치 + 현대차 HMGMA 캡티브(RMAC 26 여름) + Google DeepMind Gemini ER로 작업성공률 상승. 대시보드 양산 타임라인이 BD 3만·테슬라 100만을 <b>동시</b> 표기하는 이유 — 둘 다 base case이고, "BD가 데이터 못 쌓는다"는 전제는 틀린 가설.<br><br>
+        <b>④ 단, 대표님 지적의 진짜 칼날 = 테슬라 수직계열화.</b> 테슬라가 액추에이터·손·칩까지 사내+삼성 파운드리로 내재화하면 모비스·에스피지·에스비비테크 등 한국 부품사는 우산 밖 → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">"테슬라가 이기면 한국 부품 논리가 깨진다"는 리스크는 사실</span>이고 Bear case에 명시 유지.<br><br>
+        <b>⑤ 정답: 두뇌·캐파는 양보, 한국은 픽앤셔블.</b> 두뇌(추론칩·VLA·WFM)는 NVIDIA·테슬라 양보. 한국 노출 = ①감속기·액추에이터(모비스·에스피지·에스비비테크) ②칩주변 반도체(삼성전기·대덕) ③데이터 디바이스(현대차·로보티즈) ④운영 OS(네이버). 테슬라가 두뇌·캐파에서 이겨도 BD·중국·연구소 생태계가 굴러가는 한 한국 부품·운영 레이어엔 매출이 들어옴.<br><br>
+        <b>한 줄:</b> 100만 대는 캐파·야망(NYT 19% rule), 데이터는 판매가 아니라 공장 배치(테슬라도 1,000대), BD 2028은 base case. 단 테슬라 수직계열화가 한국 부품 논리의 진짜 리스크인 건 인정.<br>
+        <span style="font-size:10px;color:var(--ink-3)">출처: NYT(2026.6.2) · Omdia · Trendforce · 자체추정 · 언론 종합</span></div></div></div>
     </section>
 
     <!-- ═══ 부록. Glossary ═══ -->

@@ -1066,6 +1066,22 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   updateLog: [
     {
+      date: '2026-06-03',
+      title: '네이버 운영 OS 레이어 · 상용화 6조건 · 네오오토 등재 · 테슬라 100만대 반론',
+      source: 'NVIDIA(Isaac Mega·OSMO) · 네이버 IR · NYT(2026.6.2) · 공시 · 언론 종합 / 자체정리',
+      changes: [
+        'framework: 상용화 5조건 → 6조건 (⑥ 운영·플릿 OS = 네이버 ARC, 한국 소버린)',
+        'technology: "상용화 3조건과 운영 OS 레이어" 기술 섹션 신설(디지털트윈 2종·System1/2 브레인리스·플릿OS 디베이트·QNX 자동차 스택 심화)',
+        'technology: 한국 노출 매핑 표를 두뇌·모델 / 운영·플릿 OS(★네이버 ARC) 2행으로 분리',
+        'technology: Domain Randomization 카드에 일반화 스케일바 + 메커니즘 설명 보강',
+        'technology: 에스비비테크 종목카드(9종목) + Bear case PSR 25E/26E 31.3/42.2(Bloomberg) + 테슬라 100만대 반론 Q&A(NYT 19% rule 와플)',
+        'kr_valuechain: 네이버 소버린 풀스택 상세화 + 네오오토(212560) 등재(EV감속기·우주로버 국책)',
+        'competition: 한국 소버린 운영 OS 포지션 카드(네이버 vs Mega/OSMO vs InOrbit)',
+        'components: 부위별 감속기 × 국내 벤더 매핑 표 신설(에스비비테크·에스피지·로보티즈·네오오토)',
+        'physical_ai·company_tam: 액추에이터 % 출처·범위(40~60/66/34.5) 병기 주석',
+      ],
+    },
+    {
       date: '2026-06-02',
       title: 'Atlas 버전 진화 타임라인 · 휴머노이드 풀 BOM · 현대모비스 BD Actuator 무상이관',
       source: 'Boston Dynamics · 현대모비스·BD 공시 / 일부 자체추정',
