@@ -678,6 +678,33 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체추정 · 언론 종합 · NVIDIA 공식</div>
   </section>
 
+  <!-- ═══ 1.6 AI 추론·제어 풀스택 파이프라인 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #6C5CE7">
+    <div class="card-title">🧠 AI 추론·제어 풀스택 파이프라인 — 모델만으론 안 움직인다 <span class="badge" style="background:#6C5CE7;color:#fff">센서→모터</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">위 흐름도가 <b>전력·신호(HW)</b>라면, 이건 <b>AI 추론·제어(SW)</b> 파이프라인. VLA 모델이 아무리 좋아도 카메라에서 모터까지 전 구간이 맞물려야 로봇이 실제로 움직인다. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">실제 문제는 모델 내부가 아니라 좌표계·지연·통신·하드웨어 접점에서 발생</span>한다.</p>
+    <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;margin-bottom:14px">
+      <div style="background:var(--bg-soft);border:2px solid #00B894;border-radius:10px;padding:10px 12px;text-align:center;min-width:88px"><div style="font-size:18px">👁️</div><div style="font-size:11px;font-weight:700">센서 입력</div><div style="font-size:8px;color:var(--ink-3)">카메라·IMU·F-T센서</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #0984E3;border-radius:10px;padding:10px 12px;text-align:center;min-width:88px"><div style="font-size:18px">🔧</div><div style="font-size:11px;font-weight:700">전처리</div><div style="font-size:8px;color:var(--ink-3)">정렬·동기화</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #6C5CE7;border-radius:10px;padding:10px 12px;text-align:center;min-width:88px"><div style="font-size:18px">🧠</div><div style="font-size:11px;font-weight:700">VLA 모델</div><div style="font-size:8px;color:var(--ink-3)">액션 청크 출력</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #F8B739;border-radius:10px;padding:10px 12px;text-align:center;min-width:88px"><div style="font-size:18px">🔀</div><div style="font-size:11px;font-weight:700">제어명령 변환</div><div style="font-size:8px;color:var(--ink-3)">IK·궤적</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #E17055;border-radius:10px;padding:10px 12px;text-align:center;min-width:88px"><div style="font-size:18px">🕸️</div><div style="font-size:11px;font-weight:700">미들웨어</div><div style="font-size:8px;color:var(--ink-3)">ROS · 드라이버</div></div>
+      <div style="font-size:18px;color:var(--ink-3);padding:0 4px">→</div>
+      <div style="background:var(--bg-soft);border:2px solid #FF6B6B;border-radius:10px;padding:10px 12px;text-align:center;min-width:88px"><div style="font-size:18px">💪</div><div style="font-size:11px;font-weight:700">모터·액추에이터</div><div style="font-size:8px;color:var(--ink-3)">실행</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-bottom:10px">
+      <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 6px 6px 0;padding:8px 10px;font-size:10px;color:var(--ink-2);line-height:1.5"><b>좌표계 불일치</b> — 카메라↔로봇 좌표 어긋나면 엉뚱한 위치로</div>
+      <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 6px 6px 0;padding:8px 10px;font-size:10px;color:var(--ink-2);line-height:1.5"><b>센서 지연</b> — 늦게 들어오면 제어 타이밍이 밀림</div>
+      <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 6px 6px 0;padding:8px 10px;font-size:10px;color:var(--ink-2);line-height:1.5"><b>ROS 통신 지연</b> — 명령이 원하는 주기로 전달 안 됨</div>
+      <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 6px 6px 0;padding:8px 10px;font-size:10px;color:var(--ink-2);line-height:1.5"><b>모터 응답차</b> — 시뮬과 실제 하드웨어의 마찰·지연 차이</div>
+    </div>
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 7px 7px 0"><b>투자 시사점:</b> 부품(HW)만이 아니라 <b>센서-모델-제어를 잇는 SW·미들웨어 통합</b>이 현장 안정화의 핵심 → 현대오토에버 Robot OS · 네이버 ARC의 가치. (기술설명 탭 L5a→L5b 전환, Physical AI 탭 Sim-to-Real 5원인 참조)</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 현업 로봇개발자 해설 · 자체정리</div>
+  </section>
+
   <!-- ═══ 2. Actuator Exploded View ═══ -->
   <section class="card section-gap">
     <div class="card-title">🔩 액추에이터 원가 분해 <span class="badge" style="background:var(--ink);color:var(--bg)">Unitree G1 기준</span></div>

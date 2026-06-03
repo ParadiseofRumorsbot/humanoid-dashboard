@@ -219,7 +219,6 @@ const DASHBOARD_DATA = {
     { company: '로보티즈', ticker: '108490', parts: '유성감속기 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀. 우즈베키스탄 신공장', cat: 'gear' },
     { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
     { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
-    { company: 'SHG', ticker: '024410', parts: '감속기', customer: '-', note: '-', cat: 'gear' },
     { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
     { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
     { company: '한국피아이엠', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
@@ -707,11 +706,12 @@ const DASHBOARD_DATA = {
     aiFactory: {
       source: 'NVIDIA GTC 2025, Jensen Huang Keynote, NVIDIA IR',
       fiveLayerCake: [
-        { layer: 1, name: 'Energy', desc: '전력 공급 인프라 (원전·데이터센터 전력)', color: '#636E72', icon: '⚡' },
-        { layer: 2, name: 'Chips', desc: 'GPU/DPU/NIC (Blackwell, Vera Rubin, Dynamo)', color: '#6C5CE7', icon: '🔲' },
-        { layer: 3, name: 'Infrastructure', desc: 'AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD)', color: '#0984E3', icon: '🏗️' },
-        { layer: 4, name: 'Foundation Models', desc: 'Cosmos (World Model), NeMo, Llama 학습 인프라', color: '#F8B739', icon: '🧠' },
-        { layer: 5, name: 'Applications', desc: 'Omniverse, Isaac Sim, GR00T, OSMO 오케스트레이션', color: '#00B894', icon: '🤖' },
+        { layer: 1, name: 'Energy', desc: '전력 공급 인프라 (원전·데이터센터 전력)', color: '#636E72', icon: '⚡', kr: '—' },
+        { layer: 2, name: 'Chips', desc: 'GPU/DPU/NIC (Blackwell, Vera Rubin, Dynamo)', color: '#6C5CE7', icon: '🔲', kr: '삼성전기·대덕전자 (칩 주변 수동소자·기판)' },
+        { layer: 3, name: 'Infrastructure', desc: 'AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD)', color: '#0984E3', icon: '🏗️', kr: '네이버클라우드 · 각 세종 (자국 클라우드)' },
+        { layer: 4, name: 'Foundation Models', desc: 'Cosmos(WFM)·GR00T·NeMo — 두뇌·모델 (글로벌 장악)', color: '#F8B739', icon: '🧠', kr: '직접 노출 없음' },
+        { layer: '5a', name: 'Applications — 시뮬·학습·배포', desc: 'Omniverse·Isaac Sim·OSMO — 로봇을 학습시켜 배포하는 파이프라인 오케스트레이션', color: '#00B894', icon: '🤖', kr: '직접 노출 없음' },
+        { layer: '5b', name: 'Field Operations OS — 현장 운영', desc: '배포된 다수 로봇을 현장에서 실시간 운영·관제·작업분배·충돌회피. NVIDIA 스택의 빈 레이어 (Mega/OSMO는 시뮬 내 오케스트레이션, 현실 배치 아님)', color: '#0a9c96', icon: '🛰️', kr: '★ 네이버 ARC (1784 실배치 가동) · 현대오토에버 Robot OS' },
       ],
       nvidiaRoboticsStack: [
         { name: 'Omniverse', role: '디지털 트윈 / 시뮬레이션 플랫폼', desc: 'USD 기반 물리 정확 시뮬레이션. 공장·도시·로봇 학습 환경 구축' },
@@ -1065,6 +1065,22 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-06-03',
+      title: 'π0.7 데이터 전략 · L5 운영OS 분리(L5a/L5b) · VLA 한계·Demo Gap · 네오오토 종목등재',
+      source: 'Physical Intelligence π0.7 논문 · 젠슨 황 스탠포드 강연 · 현업 로봇개발자 해설 · NVIDIA · 네이버 IR / 자체정리',
+      changes: [
+        'technology: NVIDIA AI Factory 레이어를 L5a(시뮬·학습·배포=OSMO) / L5b(현장 운영OS=★네이버 ARC)로 분리 + 레이어별 한국 대응 기업 매핑 컬럼',
+        'technology: VLA 구조적 한계 카드(카메라 비관측 물리량 7종) + Demo vs Reality Gap(데모 1회≠현장 매일, L5a→L5b 전환이 갭의 구조적 원인)',
+        'technology: π0.7 카드 신설(π0→π0.6→π0.7) — 에피소드 메타데이터(실패도 라벨링)·계층형(하이레벨+월드모델 서브골+VLA)·언어 코칭으로 텔레오퍼레이션 대체',
+        'technology: Q&A 18문항 — "데모 보면 곧 상용화 아니냐"(BD·Tesla·AGIBOT·Figure 현장 배치 실적 vs 데모)',
+        'technology·kr_valuechain: 네오오토(212560) 종목카드 등재 — 현대차그룹 EV감속기 납품 트랙레코드 기반 BD 액추에이터 벤더 후보',
+        'physical_ai: Action Representation 5유형 비교 + Sim-to-Real 실패 5대 원인 + π0.7 월드모델 실용 사례',
+        'competition: 월드 모델 글로벌 6진영 비교(NVIDIA·Google·Meta·xAI·NC AI·네이버 서울WM)',
+        'kr_valuechain: SHG(024410) 빈 항목 삭제 + 에스비비테크 상세카드 정합(8→10종목)',
+        'components: AI 레이어 포함 풀스택 파이프라인(센서→VLA→제어→ROS→모터) 흐름도',
+      ],
+    },
     {
       date: '2026-06-03',
       title: '네이버 운영 OS 레이어 · 상용화 6조건 · 네오오토 등재 · 테슬라 100만대 반론',

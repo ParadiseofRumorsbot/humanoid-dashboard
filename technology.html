@@ -759,10 +759,11 @@ function renderAIFactory() {
   cEl.innerHTML = d.fiveLayerCake.slice().reverse().map(l =>
     `<div class="cake-layer" style="background:${l.color}">
       <div class="layer-num">${l.icon}</div>
-      <div class="layer-info">
+      <div class="layer-info" style="flex:1">
         <div class="layer-name">L${l.layer}. ${l.name}</div>
         <div class="layer-desc">${l.desc}</div>
       </div>
+      <div style="min-width:150px;max-width:200px;text-align:right;font-family:var(--mono);font-size:9px;line-height:1.4;color:rgba(255,255,255,.92)"><span style="opacity:.6;font-size:8px">🇰🇷 한국</span><br>${l.kr}</div>
     </div>`
   ).join('');
   const sEl = $('#roboticsStack');
@@ -1335,6 +1336,27 @@ window.addEventListener('DOMContentLoaded', render);
         <div class="scroll-x"><div id="cmpGrid" class="cmp-grid"></div></div>
         <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: BD IR, Tesla IR, IFR</div>
       </div>
+      <!-- 심화: VLA의 한계와 Demo vs Reality Gap -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">⚠️ VLA가 못 보는 것 — Demo vs Reality Gap</div>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">VLA는 강력하지만 입력이 <b>이미지+언어</b>다. 카메라에는 물체의 모양·위치가 보이지만 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">무게·마찰·미끄러짐·접촉력·관절 토크·충돌 시 발생하는 힘</span>은 직접 관측되지 않는다. 모델이 "물병이 가득 차 보이면 무겁겠다"처럼 추론은 하지만, 환경·물체 상태·센서 품질에 따라 쉽게 흔들린다. <b>데모 1회 성공과 현장 매일 안정 가동은 완전히 다른 문제</b>다.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #00B894">
+            <div style="font-family:var(--mono);font-size:9px;color:#00B894;font-weight:700;margin-bottom:6px">데모에서 보이는 것 — 컵 짚기 3단계</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.7">① 카메라로 컵을 본다 → ② 팔을 움직인다 → ③ 그리퍼로 잡는다. <span style="color:var(--ink-3)">간단해 보임.</span></div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #FF6B6B">
+            <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;font-weight:700;margin-bottom:6px">실제 필요한 것 — 숨은 7+ 변수</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.7">빈 컵/가득 찬 컵 힘 조절 · 표면 마찰 · 손잡이 유무 · 그리퍼 접촉 각도 · 옆 장애물 · 잡는 순간 미끄러짐·회전 감지 · 실패 시 복구. <span style="color:#FF6B6B">사람은 무의식적으로 처리, 로봇엔 전부 센서·제어·판단 문제.</span></div>
+          </div>
+        </div>
+
+        <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 8px 8px 0;padding:11px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
+          <b style="color:#FF6B6B">왜 텍스트 AI보다 어려운가 (비가역성):</b> 텍스트 생성은 틀리면 수정하면 된다(가역). 로봇이 잘못 움직이면 <b>물건 파손·장비 손상·인명 위험</b>(비가역). 그래서 상용화에 시간이 걸린다. <b>이 Demo Gap의 구조적 위치 = L5a(모델 배포)에서 L5b(현장 운영)로 넘어가는 전환</b> — 시뮬에서 잘되던 정책이 좌표계 불일치·센서 지연·모터 응답차로 현장에서 실패. <span style="font-size:10px;color:var(--ink-3)">(아래 AI Factory 레이어 도표 L5a→L5b 참조)</span> 기대가 한 번 조정되는 시기가 와도 그건 기술 실패가 아니라 <b>실제 구현 문제가 선명해지는 시기</b>이고, 그 갭을 메우는 시스템 통합 역량 보유 기업이 수혜.
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 현업 로봇개발자 해설 · 젠슨 황 스탠포드 강연 · 자체정리</div>
+      </div>
     </section>
 
     <!-- 브릿지 1→2 -->
@@ -1444,6 +1466,36 @@ window.addEventListener('DOMContentLoaded', render);
           <div style="text-align:center;font-size:9px;color:var(--ink-3);margin-top:6px">성공 Trajectory에 높은 Advantage → 반복 자기개선 루프</div>
         </div>
         <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: π0.6 RECAP, RD-VLA, MeM 논문 원문</div>
+      </div>
+
+      <!-- π0.7 — 데이터에 맥락을 붙여 학습 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#E17055;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">🧩 π0.7 — Steerable Generalist · "좋은 데이터만 골라 쓰지 않는다"</div>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">π0 → π0.6(자기개선) 다음 진화. 핵심 질문은 "모델·데이터를 키우면 범용성이 생기나?"가 아니라 <b>"로봇이 어떤 데이터를 어떻게 배워야 범용성이 생기나?"</b>. 기존 VLA는 <b>깨끗한 성공 시연만</b> 골라 학습 → 같은 '문 열기'에도 잘 연 것·느리게 연 것·헛손질·실패가 섞이면 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">애매한 평균 행동</span>을 배움. π0.7은 반대로 <b>실패·느림·실수 데이터까지</b> 쓰되, 각 데이터에 <b>맥락(메타데이터)을 라벨로 붙여</b> "이건 실수 있는 행동", "이건 느린 행동"으로 구분하게 만든다.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:11px 13px;border-top:3px solid #E17055">
+            <div style="font-family:var(--mono);font-size:9px;color:#E17055;font-weight:700;margin-bottom:4px">① 에피소드 메타데이터</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">퀄리티·스피드·실수(mistake)·제어모드를 프롬프트에 명시 → <b>실패 데이터를 버리지 않고 '실패'라는 이름표를 붙여 학습</b>. 현장에선 성공보다 실패·사람개입 데이터가 더 많이 나오므로 결정적.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:11px 13px;border-top:3px solid #6C5CE7">
+            <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700;margin-bottom:4px">② 계층형 구조</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><b>하이레벨 폴리시</b>(긴 작업→서브태스크 분해) + <b>월드모델</b>(다음 목표 장면을 서브골 이미지로 생성) + <b>VLA</b>(액션 청크 출력). 언어로 계획, 이미지로 중간목표, VLA로 실행.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:11px 13px;border-top:3px solid #00B894">
+            <div style="font-family:var(--mono);font-size:9px;color:#00B894;font-weight:700;margin-bottom:4px">③ 언어 코칭</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">학습에 없던 장기작업(에어프라이어에 고구마 넣기)을 사람이 <b>단계별 말로 안내</b>해 수행 → <span style="background:rgba(0,184,148,0.12);padding:1px 4px;border-radius:3px;font-weight:600">텔레오퍼레이션 시연 없이</span> 새 작업 학습. 코칭 데이터로 하이레벨 폴리시까지 학습.</div>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-bottom:12px;border-left:3px solid #F8B739">
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#d39e00">이머전트 능력(emergent):</b> 소스 로봇 동작을 그대로 베끼는 게 아니라, 월드모델이 타겟 로봇 몸에 맞는 <b>새로운 조작 전략을 스스로 생성</b>(작은 양팔→긴 팔 UR5는 한 팔로 집어 넣기). 명시적으로 안 가르쳤는데 크로스 임바디먼트 전이가 일어남. VLM 백본 = Gemma 3 기반 4B.</div>
+        </div>
+
+        <div style="background:rgba(225,112,85,0.06);border-left:4px solid #E17055;border-radius:0 8px 8px 0;padding:11px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
+          <b style="color:#E17055">투자 시사점 — 'Demo Gap'을 메우는 데이터 전략:</b> ① 데이터 규모가 커지면 평균 품질은 낮아지지만(실패·잡음 증가) 메타데이터를 붙이면 <b>규모가 클수록 성능이 계속 향상</b> → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">현장 배치가 많을수록(실패 데이터 포함) 데이터 우위</span> = BD·현대차 RMAC·로보티즈 <b>데이터 플라이휠 강화</b>. ② 언어 코칭이 텔레오퍼레이션($136/hr)을 일부 대체 → 신규 작업 학습비용 하락. ③ <b>월드모델이 실제 조작 가이드(서브골 이미지)로 기여</b> → WFM의 실용 가치 입증 = Cosmos·네이버 서울 월드모델 의미 강화.
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Physical Intelligence π0.7 논문(Steerable Generalist Robotic Foundation Model with Emergent Capabilities) · 현업 로봇개발자 해설 · 자체정리</div>
       </div>
     </section>
 
@@ -1927,7 +1979,8 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
       <!-- NVIDIA -->
       <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">NVIDIA AI Factory 인프라</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:6px">NVIDIA AI Factory 레이어 — 한국은 어느 층에 있나</div>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">젠슨 황이 제시한 AI 팩토리 스택. 핵심은 <b>L5의 분리</b> — NVIDIA가 제공하는 건 <span style="background:rgba(0,184,148,0.12);padding:1px 4px;border-radius:3px;font-weight:600">L5a(로봇을 학습시켜 배포하는 파이프라인: Omniverse·Isaac·OSMO)</span>까지다. 그러나 배포된 <b>다수 로봇을 현장에서 매일 운영·관제·작업분배</b>하는 <span style="background:rgba(10,156,150,0.14);padding:1px 4px;border-radius:3px;font-weight:600">L5b(Field Operations OS)</span>는 NVIDIA 스택에서 빈 칸이고, 이 자리를 <b>네이버 ARC가 1784 빌딩 실배치로 이미 채우고 있다</b>. OSMO·Isaac Mega는 '시뮬레이션 안의 오케스트레이션'이지 현실 현장 운영이 아니다. <span style="font-size:10px;color:var(--ink-3)">(각 레이어 우측 = 한국 대응 기업)</span></p>
         <div id="cakeLayers" style="margin-bottom:16px"></div>
         <div id="roboticsStack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin-bottom:16px"></div>
         <div id="trainingLoop" class="pipeline-flow"></div>
@@ -2180,7 +2233,7 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
       <!-- 🎯 종목별 투자 포인트 -->
       <div id="sec-stock-picks" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
-        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🎯 종목별 투자 포인트 — 9종목</div>
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🎯 종목별 투자 포인트 — 10종목</div>
         <!-- HMG 그룹 -->
         <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px;font-weight:600">HMG 그룹</div>
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
@@ -2233,6 +2286,11 @@ window.addEventListener('DOMContentLoaded', render);
             <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">국내 하모닉 감속기 1위</span>(日 HDS 독점 깬 국산화). 26.3 천안 액추에이터 전용공장 이전 → 감속기-액추에이터 수직계열화. 현대차 로보틱스랩 모베드 구동기 26년 양산 전환. 가동률 ~10% → 신공장 풀가동 시 CAPA 10배 여력(IR)</div>
             <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2026.3 천안 · 2027+ 레버리지</div>
           </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #A29BFE">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#8577e6;margin-bottom:4px">네오오토</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">EV용 감속기 국내 선도</span> — 현대트랜시스 76.6%·현대차 8.8%·기아 4.5% 납품(현대차그룹 캡티브 트랙레코드). 산업부 행성로버 구동부품 국책과제 핵심기업 · 정밀 소형 감속기·우주로봇 액추에이터 특허. 정밀 감속기 기술력 기반 <b>BD 액추에이터 벤더 후보</b>. 휴머노이드 양산·고객사 미확정</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">시제품 · BD 벤더 후보</div>
+          </div>
         </div>
         <div style="font-size:10px;color:var(--ink-3)">출처: 각사 IR · 언론 종합 / 투자의견·목표주가는 자체추정 아님 · <a href="kr_valuechain.html#sec-stock-detail" style="color:#FF6B6B">상세 → KR 밸류체인</a></div>
       </div>
@@ -2247,7 +2305,7 @@ window.addEventListener('DOMContentLoaded', render);
 
     <!-- ═══ 부록. 예상 질문 Q&A ═══ -->
     <section id="sec-faq" class="card section-gap">
-      <div class="card-title">❓ 예상 질문 & 핵심 답변 (Q&A) <span class="badge" style="background:#FF6B6B;color:#fff">17문항</span></div>
+      <div class="card-title">❓ 예상 질문 & 핵심 답변 (Q&A) <span class="badge" style="background:#FF6B6B;color:#fff">18문항</span></div>
       <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">질문을 클릭하면 답변이 펼쳐집니다. 발표 Q&A 시 즉답용 · 🔵개념 · 🟢수치 · 🟣논리 · 🔴반론</p>
       <style>
         .qa-q{cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid var(--line);font-size:11.5px;font-weight:600;color:var(--ink)}
@@ -2298,6 +2356,12 @@ window.addEventListener('DOMContentLoaded', render);
         <b>⑤ 정답: 두뇌·캐파는 양보, 한국은 픽앤셔블.</b> 두뇌(추론칩·VLA·WFM)는 NVIDIA·테슬라 양보. 한국 노출 = ①감속기·액추에이터(모비스·에스피지·에스비비테크) ②칩주변 반도체(삼성전기·대덕) ③데이터 디바이스(현대차·로보티즈) ④운영 OS(네이버). 테슬라가 두뇌·캐파에서 이겨도 BD·중국·연구소 생태계가 굴러가는 한 한국 부품·운영 레이어엔 매출이 들어옴.<br><br>
         <b>한 줄:</b> 100만 대는 캐파·야망(NYT 19% rule), 데이터는 판매가 아니라 공장 배치(테슬라도 1,000대), BD 2028은 base case. 단 테슬라 수직계열화가 한국 부품 논리의 진짜 리스크인 건 인정.<br>
         <span style="font-size:10px;color:var(--ink-3)">출처: NYT(2026.6.2) · Omdia · Trendforce · 자체추정 · 언론 종합</span></div></div></div>
+      <div style="margin-top:4px"><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='900px';r.textContent='▲'}"><span>Q. BD Atlas·옵티머스·Unitree 데모 보면 곧 상용화 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner"><b>데모 1회 성공 ≠ 현장 매일 안정 가동.</b> 냉장고를 드는 Atlas, 셔츠 접는 옵티머스, 계단 오르는 G1 영상을 보면 "내년이면 공장 투입"처럼 느껴지지만, 실제 <b>현장 배치 실적</b>은 데모와 다름:<br><br>
+        • <b>BD</b>: RMAC 2026 여름 개소 → 현대차 HMGMA 파일럿(수십 대 수준)<br>
+        • <b>Tesla</b>: 프리몬트 자사 공장 옵티머스 1,000대+ 배치(외부 판매 아직 없음 · NYT 19% rule)<br>
+        • <b>AGIBOT</b>: 10,000대 누적(중국 제조업 · 단순 작업 중심)<br>
+        • <b>Figure</b>: BMW 라인 160대/월(초기 파일럿)<br><br>
+        컵 하나 짚는 것도 무게·마찰·접촉력·센서노이즈 등 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">7+ 물리 변수</span>가 필요. 텍스트 AI 오류는 수정하면 되지만(가역) 로봇 오동작은 파손·인명 위험(비가역). 구조적으로 <b>L5a(모델 배포)→L5b(현장 운영)</b> 전환 병목. 가트너식 기대 조정기가 올 수 있으나 기술 방향 자체는 유효하고, 그 시기가 오히려 <b>실제 현장 문제를 푸는 시스템 통합 역량 보유 기업의 기회</b>. <span style="font-size:10px;color:var(--ink-3)">출처: 각사 IR · Omdia · 현업 로봇개발자 해설 · 자체추정</span></div></div></div>
     </section>
 
     <!-- ═══ 부록. Glossary ═══ -->

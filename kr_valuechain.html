@@ -104,7 +104,6 @@ const DATA = [
   { company: '로보티즈', ticker: '108490', parts: '유성감속기 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀. 우즈베키스탄 신공장', cat: 'gear' },
   { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
   { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
-  { company: 'SHG', ticker: '024410', parts: '감속기', customer: '-', note: '-', cat: 'gear' },
   // ── 구조·외장 ──
   { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
   { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
@@ -194,7 +193,7 @@ const EXPO={
       {n:'현대로템',t:'064350',exp:2,role:'군사용 로봇 · 고스트로보틱스 인수',when:'2027~'},
       {n:'LIG넥스원',t:'079550',exp:2,role:'군사용 로봇 · FCT 통과',when:'2027~'},
     ]},
-  swos:{name:'SW/OS 플랫폼',desc:'애플리케이션단 운영 레이어 — 플릿 오케스트레이션 OS · 매핑 디지털트윈 · GPU 클라우딩. NVIDIA Mega/OSMO도 진입 中이라 빈 레이어 독점이 아니라 한국 소버린 번들이 차별점.',color:'#F8B739',
+  swos:{name:'SW/OS 플랫폼',desc:'애플리케이션단 운영 레이어 — 플릿 오케스트레이션 OS · 매핑 디지털트윈 · GPU 클라우딩. NVIDIA AI Factory 기준 L5b(현장 운영OS) — OSMO·Mega는 시뮬·학습 오케스트레이션이고, ARC는 1784 빌딩 현장 실배치. NVIDIA Mega/OSMO도 진입 中이라 빈 레이어 독점이 아니라 한국 소버린 번들이 차별점.',color:'#F8B739',
     cos:[
       {n:'네이버',t:'035420',exp:3,role:'한국 피지컬 AI 소버린 풀스택 — 하이퍼클로바X(Seoul World Model 구축中) + 1784·ALIKE 매핑 디지털트윈 + 네이버랩스 ARC 플릿 OS(브레인리스 GPU 클라우딩) + 각 세종 자국 클라우드 + 국방 AX(B2G). 운영 OS는 NVIDIA Mega/OSMO와 경쟁',when:'2027~'},
       {n:'LG전자',t:'066570',exp:2,role:'가정용 휴머노이드 HW · NAVER-NVIDIA 동맹',when:'2028~'},
@@ -587,7 +586,7 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   <!-- ═══ 🎯 종목별 투자 포인트 상세 ═══ -->
   <section id="sec-stock-detail" class="card section-gap" style="border-left:4px solid #FF6B6B">
-    <div class="card-title">🎯 종목별 투자 포인트 — 상세 <span class="badge" style="background:#FF6B6B;color:#fff">8종목</span></div>
+    <div class="card-title">🎯 종목별 투자 포인트 — 상세 <span class="badge" style="background:#FF6B6B;color:#fff">10종목</span></div>
 
     <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:4px solid #FF6B6B">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
@@ -673,13 +672,39 @@ window.addEventListener('DOMContentLoaded',()=>{
       </ul>
     </div>
 
-    <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:0;border-left:4px solid #F8B739">
+    <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:4px solid #F8B739">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
         <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#F8B739">현대글로비스 (086280)</div>
         <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">2H26</div>
       </div>
       <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
         <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">정의선 지분 가치 부각</span> — BD 상장 → 지배구조 개편 자금 확보</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:4px solid #0984E3">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#0984E3">에스비비테크 (389500)</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">2026.3 천안 · 2027+ 레버리지</div>
+      </div>
+      <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
+        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">국내 하모닉 감속기 1위</span> — 日 HDS 독점을 깬 국산화</li>
+        <li>26.3 천안 액추에이터 전용공장 이전 → <b>감속기-액추에이터 수직계열화</b></li>
+        <li>현대차 로보틱스랩 MobED 구동기 26년 양산 전환 · K9 자주포 레퍼런스</li>
+        <li>가동률 ~10% → 신공장 풀가동 시 <b>CAPA 10배 여력</b>(IR) · 26년 200대 초기 ramp</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:0;border-left:4px solid #A29BFE">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#8577e6">네오오토 (212560)</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">시제품 · BD 벤더 후보</div>
+      </div>
+      <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
+        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">EV용 감속기 국내 선도</span> — 현대트랜시스 76.6%·현대차 8.8%·기아 4.5% 납품(현대차그룹 캡티브 트랙레코드)</li>
+        <li>산업부 행성로버 구동부품 국책과제 핵심기업 — 정밀 소형 감속기·우주로봇 액추에이터 개발(특허)</li>
+        <li>AMR/AGV 정밀 감속기 시제품 보유 · 정밀 감속기 기술력 기반 <b>BD 액추에이터 벤더 진입 가능성</b></li>
+        <li>휴머노이드용 양산·고객사는 미확정</li>
       </ul>
     </div>
 
