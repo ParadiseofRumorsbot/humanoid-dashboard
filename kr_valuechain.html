@@ -75,7 +75,6 @@ a{color:inherit}
   .num-value{font-size:16px}
 }
 /* ═══ 밸류에이션 시뮬레이터 v2 전용 ═══ */
-.v2-title{font-family:var(--mono);font-size:11px;color:#fff;text-transform:uppercase;letter-spacing:.1em;padding:10px 16px;border-radius:8px;margin:0 0 14px}
 .v2-desc{font-size:11px;color:var(--ink-2);margin-bottom:14px;line-height:1.6}
 .v2-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .v2-slider-group{margin-bottom:10px}
@@ -492,15 +491,14 @@ window.addEventListener('DOMContentLoaded',()=>{
   </section>
 
   <!-- ═══ 밸류에이션 시뮬레이터 v2 — 3단 워터폴 (BD → 모비스 → 감속기사) ═══ -->
-  <section class="card section-gap">
-    <h1>💰 밸류에이션 시뮬레이터 v2 — 3단 워터폴 (BD → 모비스 → 감속기사)</h1>
-<p style="font-size:11px;color:var(--ink-2);margin-bottom:20px">BD ASP에서 출발 → 제조원가 → 액추에이터 → 감속기까지 한 줄로 연동. 슬라이더를 조절하면 전 구간이 실시간 재계산됩니다.</p>
+  <section class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">💰 밸류에이션 시뮬레이터 — 3단 워터폴 <span class="badge" style="background:#F8B739;color:#1a1a1a">BD → 모비스 → 감속기사</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:16px">BD ASP에서 출발 → 제조원가 → 액추에이터 → 감속기까지 한 줄로 연동. 슬라이더를 조절하면 전 구간이 실시간 재계산됩니다.</p>
 
-<!-- ═══ ① BD 밸류에이션 ═══ -->
-<div class="card">
-  <h2 style="background:#F8B739;color:#1a1a1a">① Boston Dynamics 밸류에이션 (마스터)</h2>
-  <div class="card-body">
-    <div class="v2-desc">Atlas ASP(판매가)에서 출발. 원가율을 곱하면 제조원가가 나오고, 여기서 모비스·감속기사 매출이 파생됩니다.</div>
+    <!-- ① BD -->
+    <div style="border-top:2px solid var(--line);padding-top:14px;margin-top:4px">
+      <div style="font-family:var(--mono);font-size:10px;color:#d39e00;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">① Boston Dynamics 밸류에이션 (마스터)</div>
+      <div style="font-size:11px;color:var(--ink-2);margin-bottom:12px">Atlas ASP(판매가)에서 출발. 원가율을 곱하면 제조원가가 나오고, 여기서 모비스·감속기사 매출이 파생됩니다.</div>
     <div class="v2-grid2">
       <div class="v2-slider-group">
         <div class="v2-slider-label"><span>Atlas 양산 대수</span><span class="v2-val" id="v2_v_units">3.0만대</span></div>
@@ -545,16 +543,13 @@ window.addEventListener('DOMContentLoaded',()=>{
       <div class="v2-result-box"><div class="v2-label">HMG 귀속 (90.1%)</div><div class="v2-value" id="v2_r_hmg">-</div><div class="v2-sub">HMG Global+정의선+글로비스</div></div>
     </div>
     <div class="v2-note">* 환율 1,450원/$. 2030→2026 PV 할인. HMG 귀속: HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% = 90.1%</div>
-  </div>
-</div>
+    </div>
 
-<div class="v2-arrow">▼ 제조원가 연동</div>
-
-<!-- ═══ ② 현대모비스 밸류에이션 ═══ -->
-<div class="card">
-  <h2 style="background:#FF6B6B">② 현대모비스 — Top Pick 밸류에이션 (BD 연동)</h2>
-  <div class="card-body">
-    <div class="v2-desc">BD 제조원가에서 액추에이터 BOM 비중을 곱하면 모비스 로봇 매출이 자동 산출. 기존사업 PER + 로봇 PSR + BD 지분 = 적정 시총.</div>
+    <!-- ② 모비스 -->
+    <div style="border-top:2px solid var(--line);padding-top:14px;margin-top:20px">
+      <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:4px">▼ 제조원가 연동</div>
+      <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">② 현대모비스 — Top Pick 밸류에이션 (BD 연동)</div>
+      <div style="font-size:11px;color:var(--ink-2);margin-bottom:12px">BD 제조원가에서 액추에이터 BOM 비중을 곱하면 모비스 로봇 매출이 자동 산출. 기존사업 PER + 로봇 PSR + BD 지분 = 적정 시총.</div>
     <div class="v2-grid2">
       <div class="v2-slider-group">
         <div class="v2-slider-label"><span>액추에이터 BOM 비중</span><span class="v2-val" id="v2_v_actBom">34.5%</span></div>
@@ -600,16 +595,13 @@ window.addEventListener('DOMContentLoaded',()=>{
       <div class="v2-result-box"><div class="v2-label">vs 현 시총 <span id="v2_r_mobisCur">63.24</span>조</div><div class="v2-value" id="v2_r_mobisUp">-</div><div class="v2-sub">업사이드</div></div>
     </div>
     <div class="v2-note">* 현 시총: 현대모비스 63.24조원 (2026.06.02 KRX). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배 · 로봇 PSR 9배(보수화). [자체추정]</div>
-  </div>
-</div>
+    </div>
 
-<div class="v2-arrow">▼ 액추에이터 원가 연동</div>
-
-<!-- ═══ ③ 감속기사 밸류에이션 ═══ -->
-<div class="card">
-  <h2 style="background:#6C5CE7">③ 감속기사 밸류에이션 (모비스 연동)</h2>
-  <div class="card-body">
-    <div class="v2-desc">액추에이터 내 감속기가 ~72%. 감속기 유형별(하모닉 68.6% / 사이클로이드 31.4%) BOM 가중치로 각 한국 감속기사에 귀속 매출을 산출합니다.</div>
+    <!-- ③ 감속기사 -->
+    <div style="border-top:2px solid var(--line);padding-top:14px;margin-top:20px">
+      <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:4px">▼ 액추에이터 원가 연동</div>
+      <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">③ 감속기사 밸류에이션 (모비스 연동)</div>
+      <div style="font-size:11px;color:var(--ink-2);margin-bottom:12px">액추에이터 내 감속기가 ~72%. 감속기 유형별(하모닉 68.6% / 사이클로이드 31.4%) BOM 가중치로 각 한국 감속기사에 귀속 매출을 산출합니다.</div>
     <div class="v2-grid2">
       <div class="v2-slider-group">
         <div class="v2-slider-label"><span>감속기 BOM 비중 (액추에이터 내)</span><span class="v2-val" id="v2_v_gearBom">72%</span></div>
@@ -661,8 +653,8 @@ window.addEventListener('DOMContentLoaded',()=>{
       <div style="font-size:9px;color:var(--ink-3);margin-top:2px">하모닉 한계 극복 자체구조 특허 · 시제품 단계 · BOM 가중: 에스비비 하모닉의 일부 대체</div>
       <div class="v2-slider-group" style="margin-top:8px;margin-bottom:0">
         <div class="v2-slider-label"><span style="font-size:9px">↳ 하모닉 내 네오오토 대체 비중</span><span class="v2-val" id="v2_v_neoShare" style="font-size:11px">20%</span></div>
-        <input type="range" id="v2_s_neoShare" min="0" max="50" step="5" value="50" oninput="calcV2()" style="width:100%">
-        <div class="v2-slider-range"><span>0% (에스비비 독점)</span><span>50% (반반)</span></div>
+        <input type="range" id="v2_s_neoShare" min="0" max="100" step="5" value="50" oninput="calcV2()" style="width:100%">
+        <div class="v2-slider-range"><span>0% (에스비비 독점)</span><span>50% (반반)</span><span>100% (네오오토 독점)</span></div>
       </div>
     </div>
 
@@ -717,9 +709,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       </table>
     </div>
     <div class="v2-note">* 감속기 BOM: 하모닉 20개×$350=$7,000(68.6%) + RV(사이클로이드) 4개×$800=$3,200(31.4%). 네오오토는 에스비비 하모닉 M/S의 일부를 대체하는 구조. 현 시총: 에스비비테크 4,011억·에스피지 2.30조·네오오토 1,265억 (2026.06.02 KRX). [자체추정 · 언론 종합]</div>
-  </div>
-</div>
-
+    </div>
   </section>
   <!-- ═══ 🎯 종목별 투자 포인트 상세 ═══ -->
   <section id="sec-stock-detail" class="card section-gap" style="border-left:4px solid #FF6B6B">
