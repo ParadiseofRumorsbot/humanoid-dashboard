@@ -104,7 +104,7 @@ const DATA = [
   { company: '로보티즈', ticker: '108490', parts: '유성감속기 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀. 우즈베키스탄 신공장', cat: 'gear' },
   { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
   { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
-  { company: '네오오토', ticker: '212560', parts: '정밀 감속기 (EV·로버)', customer: 'BD 벤더 후보', note: '현대차그룹 EV감속기 납품 트랙레코드 · 우주로봇 액추에이터 특허 · 휴머노이드 양산 미확정', cat: 'gear' },
+  { company: '네오오토', ticker: '212560', parts: '유성기어 감속기 (EV) · 하모닉 한계 극복 자체 구조 (로봇)', customer: 'BD 벤더 후보', note: '현대차그룹 EV 유성기어 감속기 주력 · 로봇용은 기존 하모닉의 토크·저온 한계 개선한 자체 구조 특허 개발 중 · 휴머노이드 양산 미확정', cat: 'gear' },
   // ── 구조·외장 ──
   { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
   { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
@@ -183,7 +183,7 @@ const EXPO={
       {n:'로보티즈',t:'108490',exp:3,role:'유성감속기 QDD·로봇손 · 우즈벡 신공장',when:'2026~'},
       {n:'LG에너지솔루션',t:'373220',exp:3,role:'원통형 배터리 2170 · Optimus+6곳',when:'2025~'},
       {n:'에스비비테크',t:'389500',exp:2,role:'국내 하모닉 감속기 1위 · 26.3 천안 액추에이터 전용공장 이전(수직계열화) · 가동률 ~10%→풀가동 시 CAPA 10배 여력(IR) · 현대차 MobED 구동기 26년 양산 · K9 자주포 레퍼런스 · 26년 200대 초기 ramp',when:'2026~'},
-      {n:'네오오토',t:'212560',exp:2,role:'EV용 감속기 국내 선도(현대트랜시스 76.6%·현대차 8.8%·기아 4.5%) · 산업부 행성로버 구동부품 국책과제 핵심기업 · AMR/AGV 정밀 감속기 시제품 + 우주로봇 액추에이터 특허 · 휴머노이드 양산/고객사 미확정',when:'시제품'},
+      {n:'네오오토',t:'212560',exp:2,role:'EV용 유성기어 감속기 국내 선도(현대트랜시스 76.6%·현대차 8.8%·기아 4.5%) · 로봇용은 기존 하모닉 감속기의 토크·저온 한계를 개선한 자체 구조 특허 개발 중(시제품 테스트 단계) · 산업부 행성로버 국책과제 핵심기업 · 휴머노이드 양산/고객사 미확정',when:'시제품'},
       {n:'삼성SDI',t:'006400',exp:2,role:'원통형 배터리 · 헝가리 2028',when:'2028~'},
       {n:'엘앤에프',t:'066970',exp:1,role:'하이니켈 NCMA 양극재',when:'2027~'},
     ]},
@@ -703,10 +703,10 @@ window.addEventListener('DOMContentLoaded',()=>{
         <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">시제품 · BD 벤더 후보</div>
       </div>
       <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
-        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">EV용 감속기 국내 선도</span> — 현대트랜시스 76.6%·현대차 8.8%·기아 4.5% 납품(현대차그룹 캡티브 트랙레코드)</li>
-        <li>산업부 행성로버 구동부품 국책과제 핵심기업 — 정밀 소형 감속기·우주로봇 액추에이터 개발(특허)</li>
-        <li>AMR/AGV 정밀 감속기 시제품 보유 · 정밀 감속기 기술력 기반 <b>BD 액추에이터 벤더 진입 가능성</b></li>
-        <li>휴머노이드용 양산·고객사는 미확정</li>
+        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">EV용 유성기어 감속기 국내 선도</span> — 현대트랜시스 76.6%·현대차 8.8%·기아 4.5% 납품(현대차그룹 캡티브 트랙레코드)</li>
+        <li>로봇용: 기존 <b>하모닉 감속기의 한계(낮은 토크·저온 수명 단축)</b>를 개선한 자체 구조 감속기 특허 출원 · 시제품 테스트 돌입</li>
+        <li>산업부 행성로버 구동부품 국책과제 핵심기업 — 정밀 소형 감속기·우주로봇 액추에이터 개발</li>
+        <li>EV 유성기어 기술력 + 하모닉 개선 특허 기반 <b>BD 액추에이터 벤더 진입 가능성</b> · 휴머노이드 양산 미확정</li>
       </ul>
     </div>
 
