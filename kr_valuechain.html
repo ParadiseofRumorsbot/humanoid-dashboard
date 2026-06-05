@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -142,30 +142,125 @@ function render() {
   });
   $('#grid').innerHTML = html;
 }
-function renderBDVal(){
-  const units=+document.getElementById('bdUnitsSlider').value;
-  const asp=+document.getElementById('bdAspSlider').value;
-  const mobile=+document.getElementById('bdMobileSlider').value;
-  const psr=+document.getElementById('bdPsrSlider').value;
-  const disc=+document.getElementById('bdDiscSlider').value;
-  document.getElementById('bdUnitsVal').textContent=units.toFixed(1)+'만대';
-  document.getElementById('bdAspVal').textContent='$'+asp+'만';
-  document.getElementById('bdMobileVal').textContent=mobile+'억$';
-  document.getElementById('bdPsrVal').textContent=psr.toFixed(1)+'배';
-  document.getElementById('bdDiscVal').textContent=disc+'%';
+// ═══ 밸류에이션 시뮬레이터 v2 — 3단 워터폴 ═══
+const V2_FX=1450,V2_HARMONIC=0.686,V2_CYCLO=0.314,V2_MOBIS_MCAP=63.24,V2_MOBIS_BD=0.1126;
+const V2_MCAP={sbb:0.4011,spg:2.2998,neo:0.1265};
+function calcV2(){
+  // ① BD
+  const units=+document.getElementById('v2_s_units').value;
+  const asp=+document.getElementById('v2_s_asp').value;
+  const costR=+document.getElementById('v2_s_cost').value;
+  const mobile=+document.getElementById('v2_s_mobile').value;
+  const psr=+document.getElementById('v2_s_psr').value;
+  const disc=+document.getElementById('v2_s_disc').value;
+  document.getElementById('v2_v_units').textContent=units.toFixed(1)+'만대';
+  document.getElementById('v2_v_asp').textContent='$'+asp+'만';
+  document.getElementById('v2_v_cost').textContent=costR+'%';
+  document.getElementById('v2_v_mobile').textContent=mobile+'억$';
+  document.getElementById('v2_v_psr').textContent=psr.toFixed(1)+'배';
+  document.getElementById('v2_v_disc').textContent=disc+'%';
+  const mfg=asp*costR/100;
   const humRev=units*asp;
   const totalRev=humRev+mobile;
-  const totalRevB=totalRev/10;
-  const ev2030B=totalRevB*psr;
-  const ev2030T=ev2030B*1.45;
+  const revT=totalRev*V2_FX/10000;
+  const ev2030T=revT*psr;
   const pvT=ev2030T/Math.pow(1+disc/100,4);
-  const hmgValT=pvT*0.901;
-  document.getElementById('bdTotalRev').textContent=totalRev.toFixed(0)+'억$';
-  document.getElementById('bdTotalRevKRW').textContent='≈ '+(totalRevB*1.45).toFixed(1)+'조원';
-  document.getElementById('bdEV2030').textContent=ev2030T.toFixed(1)+'조원';
-  document.getElementById('bdPV').textContent=pvT.toFixed(1)+'조원';
-  document.getElementById('bdHMG').textContent=hmgValT.toFixed(1)+'조원';
+  const hmgT=pvT*0.901;
+  document.getElementById('v2_d_asp2').textContent='$'+asp+'만';
+  document.getElementById('v2_d_cost2').textContent=costR+'%';
+  document.getElementById('v2_d_mfg').textContent='$'+mfg.toFixed(2)+'만';
+  document.getElementById('v2_r_rev').textContent=totalRev.toFixed(0)+'억$';
+  document.getElementById('v2_r_revKRW').textContent='≈ '+revT.toFixed(1)+'조원';
+  document.getElementById('v2_r_ev').textContent=ev2030T.toFixed(1)+'조원';
+  document.getElementById('v2_r_pv').textContent=pvT.toFixed(1)+'조원';
+  document.getElementById('v2_r_hmg').textContent=hmgT.toFixed(1)+'조원';
+  // ② 모비스
+  const actBom=+document.getElementById('v2_s_actBom').value;
+  const actN=+document.getElementById('v2_s_actN').value;
+  const scope=+document.getElementById('v2_s_scope').value;
+  const baseOp=+document.getElementById('v2_s_baseOp').value;
+  const per=+document.getElementById('v2_s_per').value;
+  const robotPsr=+document.getElementById('v2_s_robotPsr').value;
+  document.getElementById('v2_v_actBom').textContent=actBom+'%';
+  document.getElementById('v2_v_actN').textContent=actN+'개';
+  const sL=scope<=1.05?'1.0× 액추에이터만':scope>=1.95?'2.0× 풀패키지':scope.toFixed(1)+'× +헤드·그리퍼·배터리';
+  document.getElementById('v2_v_scope').textContent=sL;
+  document.getElementById('v2_v_baseOp').textContent=baseOp.toFixed(1)+'조원';
+  document.getElementById('v2_v_per').textContent=per+'배';
+  document.getElementById('v2_v_robotPsr').textContent=robotPsr+'배';
+  const actTotal=mfg*actBom/100;
+  const actUnit=actTotal/actN*10000;
+  document.getElementById('v2_d_mfg2').textContent='$'+mfg.toFixed(2)+'만';
+  document.getElementById('v2_d_actBom2').textContent=actBom+'%';
+  document.getElementById('v2_d_actTotal').textContent='$'+actTotal.toFixed(2)+'만';
+  document.getElementById('v2_d_actUnit').textContent='$'+Math.round(actUnit).toLocaleString();
+  document.getElementById('v2_d_actNLabel').textContent=actN;
+  const mRevUSD=units*10000*actN*actUnit*scope;
+  const mRevKRW=mRevUSD*V2_FX/1e8;
+  const mRevT=mRevKRW/10000;
+  const mPct=mRevT/60*100;
+  const mShareT=pvT*V2_MOBIS_BD;
+  const rValT=mRevT*robotPsr;
+  const mTotalT=baseOp*per+rValT+mShareT;
+  const mUp=((mTotalT/V2_MOBIS_MCAP-1)*100).toFixed(0);
+  document.getElementById('v2_r_mobisRev').textContent=Math.round(mRevKRW).toLocaleString()+'억원';
+  document.getElementById('v2_r_mobisRevSub').textContent=scope<=1.05?'Atlas × 액추에이터':'Atlas × 풀패키지';
+  document.getElementById('v2_r_mobisPct').textContent=mPct.toFixed(2)+'%';
+  document.getElementById('v2_r_mobisShare').textContent=mShareT.toFixed(1)+'조원';
+  document.getElementById('v2_r_mobisTotal').textContent=mTotalT.toFixed(1)+'조원';
+  document.getElementById('v2_r_mobisUp').textContent=(mUp>0?'+':'')+mUp+'%';
+  document.getElementById('v2_r_mobisUp').style.color=mUp>0?'#FF6B6B':'#636E72';
+  // ③ 감속기사
+  const gBom=+document.getElementById('v2_s_gearBom').value;
+  const gPsr=+document.getElementById('v2_s_gearPsr').value;
+  const sbbPen=+document.getElementById('v2_s_sbbPen').value;
+  const spgPen=+document.getElementById('v2_s_spgPen').value;
+  const neoPen=+document.getElementById('v2_s_neoPen').value;
+  const neoSh=+document.getElementById('v2_s_neoShare').value;
+  document.getElementById('v2_v_gearBom').textContent=gBom+'%';
+  document.getElementById('v2_v_gearPsr').textContent=gPsr+'배';
+  document.getElementById('v2_v_sbbPen').textContent=sbbPen+'%';
+  document.getElementById('v2_v_spgPen').textContent=spgPen+'%';
+  document.getElementById('v2_v_neoPen').textContent=neoPen+'%';
+  document.getElementById('v2_v_neoShare').textContent=neoSh+'%';
+  const gTotal=actTotal*gBom/100;
+  const gMktKRW=units*10000*gTotal*10000*V2_FX/1e8;
+  const gMktT=gMktKRW/10000;
+  document.getElementById('v2_d_actTotal2').textContent='$'+actTotal.toFixed(2)+'만';
+  document.getElementById('v2_d_gearBom2').textContent=gBom+'%';
+  document.getElementById('v2_d_gearTotal').textContent='$'+gTotal.toFixed(2)+'만';
+  document.getElementById('v2_d_units2').textContent=units.toFixed(1)+'만대';
+  document.getElementById('v2_d_gearTotal2').textContent='$'+gTotal.toFixed(2)+'만';
+  document.getElementById('v2_d_gearMkt').textContent=Math.round(gMktKRW).toLocaleString()+'억원';
+  const sbbMs=V2_HARMONIC*(1-neoSh/100)*sbbPen/100;
+  const spgMs=V2_CYCLO*spgPen/100;
+  const neoMs=V2_HARMONIC*(neoSh/100)*neoPen/100;
+  const sbbRevT=gMktT*sbbMs,sbbValT=sbbRevT*gPsr;
+  const spgRevT=gMktT*spgMs,spgValT=spgRevT*gPsr;
+  const neoRevT=gMktT*neoMs,neoValT=neoRevT*gPsr;
+  function fmtV(v){return v>=1?v.toFixed(1)+'조':Math.round(v*10000).toLocaleString()+'억'}
+  function fmtU(val,mc){var u=((val/mc-1)*100).toFixed(0);return(u>0?'+':'')+u+'%'}
+  document.getElementById('v2_t_sbbMs').textContent=(sbbMs*100).toFixed(1)+'%';
+  document.getElementById('v2_t_sbbRev').textContent=fmtV(sbbRevT);
+  document.getElementById('v2_t_sbbVal').textContent=fmtV(sbbValT);
+  document.getElementById('v2_t_sbbUp').textContent=fmtU(sbbValT,V2_MCAP.sbb);
+  document.getElementById('v2_t_sbbUp').style.color=sbbValT>V2_MCAP.sbb?'#FF6B6B':'#636E72';
+  document.getElementById('v2_t_spgMs').textContent=(spgMs*100).toFixed(1)+'%';
+  document.getElementById('v2_t_spgRev').textContent=fmtV(spgRevT);
+  document.getElementById('v2_t_spgVal').textContent=fmtV(spgValT);
+  document.getElementById('v2_t_spgUp').textContent=fmtU(spgValT,V2_MCAP.spg);
+  document.getElementById('v2_t_spgUp').style.color=spgValT>V2_MCAP.spg?'#FF6B6B':'#636E72';
+  document.getElementById('v2_t_neoMs').textContent=(neoMs*100).toFixed(1)+'%';
+  document.getElementById('v2_t_neoRev').textContent=fmtV(neoRevT);
+  document.getElementById('v2_t_neoVal').textContent=fmtV(neoValT);
+  document.getElementById('v2_t_neoUp').textContent=fmtU(neoValT,V2_MCAP.neo);
+  document.getElementById('v2_t_neoUp').style.color=neoValT>V2_MCAP.neo?'#FF6B6B':'#636E72';
+  document.getElementById('v2_t_totalMs').textContent=((sbbMs+spgMs+neoMs)*100).toFixed(1)+'%';
+  document.getElementById('v2_t_totalRev').textContent=fmtV(sbbRevT+spgRevT+neoRevT);
+  document.getElementById('v2_t_totalVal').textContent=fmtV(sbbValT+spgValT+neoValT);
 }
+function renderBDVal(){calcV2()}
+function renderMobis(){calcV2()}
 // ═══ 한국 노출 매핑 ═══
 const EXPO={
   hmg:{name:'HMG Captive',desc:'현대차그룹 내부 공급망. BD Atlas·Spot·MobED 직접 수혜.',color:'#FF6B6B',
@@ -377,215 +472,236 @@ window.addEventListener('DOMContentLoaded',()=>{
     <div style="background:linear-gradient(135deg,#0A0A08,#2d2d28);color:var(--bg);border-radius:8px;padding:12px 14px;text-align:center"><span style="font-weight:700;font-size:14px">🤖 Boston Dynamics</span></div>
   </section>
 
-  <!-- ═══ BD 밸류에이션 시뮬레이터 ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #F8B739">
-    <div class="card-title">💰 Boston Dynamics 밸류에이션 시뮬레이터 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
-    <p style="font-size:11px;color:var(--ink-2);margin-bottom:14px">가정을 조절하면 2030년 기업가치와 현재가치가 실시간으로 재계산됩니다.</p>
-    <div style="background:rgba(248,183,57,0.08);border-left:3px solid #F8B739;border-radius:0 7px 7px 0;padding:9px 13px;margin-bottom:12px;font-size:10.5px;color:var(--ink-2);line-height:1.6"><b style="color:#d39e00">밸류에이션 촉매 (2026.6.4 보도):</b> NVIDIA·구글이 RMAC·로보틱스아메리카(3Q 가동)에 <b>지분 투자 가능성</b> 거론 ↔ 현대차가 글로벌 100개 공장의 대규모 제조 데이터 제공. 실현 시 BD 기업가치 리레이팅 → <b>모비스·글로비스 지분 가치 직접 부각</b>. + 새만금 9조원 AI 거점(데이터센터+로봇공장+수소에너지). <span style="font-size:9px;color:var(--ink-3)">[지분 투자는 미확인 · 언론 종합]</span></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">Atlas 양산 대수</span>
-          <span id="bdUnitsVal" style="font-family:var(--mono);font-size:13px;font-weight:700">2.5만대</span>
-        </div>
-        <input id="bdUnitsSlider" class="year-slider" type="range" min="0.5" max="10" step="0.5" value="2.5" oninput="renderBDVal()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>0.5만</span><span>10만</span></div>
+  <!-- ═══ 밸류에이션 시뮬레이터 v2 — 3단 워터폴 (BD → 모비스 → 감속기사) ═══ -->
+  <section class="card section-gap">
+    <h1>💰 밸류에이션 시뮬레이터 v2 — 3단 워터폴 (BD → 모비스 → 감속기사)</h1>
+<p style="font-size:11px;color:var(--ink-2);margin-bottom:20px">BD ASP에서 출발 → 제조원가 → 액추에이터 → 감속기까지 한 줄로 연동. 슬라이더를 조절하면 전 구간이 실시간 재계산됩니다.</p>
+
+<!-- ═══ ① BD 밸류에이션 ═══ -->
+<div class="card">
+  <h2 style="background:#F8B739;color:#1a1a1a">① Boston Dynamics 밸류에이션 (마스터)</h2>
+  <div class="card-body">
+    <div class="desc">Atlas ASP(판매가)에서 출발. 원가율을 곱하면 제조원가가 나오고, 여기서 모비스·감속기사 매출이 파생됩니다.</div>
+    <div class="grid2">
+      <div class="slider-group">
+        <div class="slider-label"><span>Atlas 양산 대수</span><span class="val" id="v2_v_units">3.0만대</span></div>
+        <input type="range" id="v2_s_units" min="0.5" max="10" step="0.5" value="3" oninput="calcV2()">
+        <div class="slider-range"><span>0.5만</span><span>10만</span></div>
       </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">휴머노이드 ASP</span>
-          <span id="bdAspVal" style="font-family:var(--mono);font-size:13px;font-weight:700">$20만</span>
-        </div>
-        <input id="bdAspSlider" class="year-slider" type="range" min="10" max="30" step="1" value="20" oninput="renderBDVal()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$10만</span><span>$30만</span></div>
+      <div class="slider-group">
+        <div class="slider-label"><span>Atlas ASP (판매가)</span><span class="val" id="v2_v_asp">$15만</span></div>
+        <input type="range" id="v2_s_asp" min="5" max="30" step="1" value="15" oninput="calcV2()">
+        <div class="slider-range"><span>$5만</span><span>$30만</span></div>
       </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">모바일 로봇 매출</span>
-          <span id="bdMobileVal" style="font-family:var(--mono);font-size:13px;font-weight:700">5억$</span>
-        </div>
-        <input id="bdMobileSlider" class="year-slider" type="range" min="2" max="15" step="1" value="5" oninput="renderBDVal()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>2억$</span><span>15억$</span></div>
+      <div class="slider-group">
+        <div class="slider-label"><span>원가율 (제조원가/ASP)</span><span class="val" id="v2_v_cost">65%</span></div>
+        <input type="range" id="v2_s_cost" min="50" max="80" step="1" value="65" oninput="calcV2()">
+        <div class="slider-range"><span>50%</span><span>80%</span></div>
       </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">Peer PSR</span>
-          <span id="bdPsrVal" style="font-family:var(--mono);font-size:13px;font-weight:700">21.9배</span>
-        </div>
-        <input id="bdPsrSlider" class="year-slider" type="range" min="10" max="40" step="0.5" value="21.9" oninput="renderBDVal()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>10배</span><span>40배</span></div>
+      <div class="slider-group">
+        <div class="slider-label"><span>Spot·Stretch 등 비-휴머노이드 매출</span><span class="val" id="v2_v_mobile">5억$</span></div>
+        <input type="range" id="v2_s_mobile" min="2" max="15" step="1" value="5" oninput="calcV2()">
+        <div class="slider-range"><span>2억$</span><span>15억$</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-label"><span>Peer PSR</span><span class="val" id="v2_v_psr">22.0배</span></div>
+        <input type="range" id="v2_s_psr" min="10" max="40" step="0.5" value="22" oninput="calcV2()">
+        <div class="slider-range"><span>10배</span><span>40배</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-label"><span>할인율 (4년 PV)</span><span class="val" id="v2_v_disc">10%</span></div>
+        <input type="range" id="v2_s_disc" min="5" max="20" step="1" value="10" oninput="calcV2()">
+        <div class="slider-range"><span>5%</span><span>20%</span></div>
       </div>
     </div>
-    <div style="margin-bottom:16px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-        <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">할인율 (4년 PV)</span>
-        <span id="bdDiscVal" style="font-family:var(--mono);font-size:13px;font-weight:700">10%</span>
+
+    <div class="derived">
+      <b>자동 산출 — 제조원가:</b> ASP <span id="v2_d_asp2">$15만</span> × 원가율 <span id="v2_d_cost2">65%</span> = <b>대당 제조원가 <span id="v2_d_mfg">$9.75만</span></b> → 이 숫자가 ②③으로 흘러감
+    </div>
+
+    <div class="result-row">
+      <div class="result-box"><div class="label">2030 총 매출</div><div class="value" id="v2_r_rev">-</div><div class="sub" id="v2_r_revKRW">-</div></div>
+      <div class="result-box"><div class="label">2030 기업가치</div><div class="value" id="v2_r_ev">-</div><div class="sub">PSR 적용</div></div>
+      <div class="result-box highlight"><div class="label">현재가치 (PV)</div><div class="value" id="v2_r_pv" style="color:#F8B739">-</div><div class="sub">할인율 적용</div></div>
+      <div class="result-box"><div class="label">HMG 귀속 (90.1%)</div><div class="value" id="v2_r_hmg">-</div><div class="sub">HMG Global+정의선+글로비스</div></div>
+    </div>
+    <div class="note">* 환율 1,450원/$. 2030→2026 PV 할인. HMG 귀속: HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% = 90.1%</div>
+  </div>
+</div>
+
+<div class="arrow-bridge">▼ 제조원가 연동</div>
+
+<!-- ═══ ② 현대모비스 밸류에이션 ═══ -->
+<div class="card">
+  <h2 style="background:#FF6B6B">② 현대모비스 — Top Pick 밸류에이션 (BD 연동)</h2>
+  <div class="card-body">
+    <div class="desc">BD 제조원가에서 액추에이터 BOM 비중을 곱하면 모비스 로봇 매출이 자동 산출. 기존사업 PER + 로봇 PSR + BD 지분 = 적정 시총.</div>
+    <div class="grid2">
+      <div class="slider-group">
+        <div class="slider-label"><span>액추에이터 BOM 비중</span><span class="val" id="v2_v_actBom">34.5%</span></div>
+        <input type="range" id="v2_s_actBom" min="30" max="60" step="0.5" value="34.5" oninput="calcV2()">
+        <div class="slider-range"><span>30%</span><span>60%</span></div>
       </div>
-      <input id="bdDiscSlider" class="year-slider" type="range" min="5" max="20" step="1" value="10" oninput="renderBDVal()" style="width:100%">
-      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>5%</span><span>20%</span></div>
+      <div class="slider-group">
+        <div class="slider-label"><span>대당 액추에이터 수</span><span class="val" id="v2_v_actN">28개</span></div>
+        <input type="range" id="v2_s_actN" min="20" max="56" step="1" value="28" oninput="calcV2()">
+        <div class="slider-range"><span>20개</span><span>56개</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-label"><span>공급 품목 범위</span><span class="val" id="v2_v_scope" style="color:#FF6B6B">1.0× 액추에이터만</span></div>
+        <input type="range" id="v2_s_scope" min="1.0" max="2.0" step="0.1" value="1.0" oninput="calcV2()">
+        <div class="slider-range"><span>1.0× 액추에이터만</span><span>2.0× +헤드·그리퍼·배터리팩</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-label"><span>기존 영업이익 (E)</span><span class="val" id="v2_v_baseOp">3.5조원</span></div>
+        <input type="range" id="v2_s_baseOp" min="2" max="5" step="0.1" value="3.5" oninput="calcV2()">
+        <div class="slider-range"><span>2조</span><span>5조</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-label"><span>기존사업 PER</span><span class="val" id="v2_v_per">8배</span></div>
+        <input type="range" id="v2_s_per" min="6" max="12" step="0.5" value="8" oninput="calcV2()">
+        <div class="slider-range"><span>6배</span><span>12배</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-label"><span>로봇사업 PSR</span><span class="val" id="v2_v_robotPsr">9배</span></div>
+        <input type="range" id="v2_s_robotPsr" min="5" max="40" step="0.5" value="9" oninput="calcV2()">
+        <div class="slider-range"><span>5배</span><span>40배</span></div>
+      </div>
     </div>
-    <div class="num-row">
-      <div class="num-box"><div class="num-label">2030년 총 매출</div><div class="num-value" id="bdTotalRev">-</div><div class="num-sub" id="bdTotalRevKRW">-</div></div>
-      <div class="num-box"><div class="num-label">2030년 기업가치</div><div class="num-value" id="bdEV2030">-</div><div class="num-sub">PSR 적용</div></div>
-      <div class="num-box" style="border:2px solid #F8B739"><div class="num-label">현재가치 (PV)</div><div class="num-value" id="bdPV" style="color:#F8B739">-</div><div class="num-sub">할인율 적용</div></div>
-      <div class="num-box"><div class="num-label">HMG 귀속 (90.1%)</div><div class="num-value" id="bdHMG">-</div><div class="num-sub">HMG Global+정의선+글로비스</div></div>
+
+    <div class="derived">
+      <b>자동 산출 — 액추에이터:</b> 제조원가 <span id="v2_d_mfg2">$9.75만</span> × BOM비중 <span id="v2_d_actBom2">34.5%</span> = 대당 총원가 <b><span id="v2_d_actTotal">$3.36만</span></b> → 개당 <b><span id="v2_d_actUnit">$1,201</span></b> (<span id="v2_d_actNLabel">28</span>개 기준) → 이 숫자가 ③으로 흘러감
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">* 자체추정. 환율 1,450원/$. 2030→2026 PV 할인. HMG 귀속: HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% = 90.1%</div>
+
+    <div class="result-row">
+      <div class="result-box"><div class="label">로봇향 신규 매출</div><div class="value" id="v2_r_mobisRev">-</div><div class="sub" id="v2_r_mobisRevSub">Atlas × 액추에이터</div></div>
+      <div class="result-box"><div class="label">기존 매출 대비</div><div class="value" id="v2_r_mobisPct">-</div><div class="sub">60조원 기준</div></div>
+      <div class="result-box"><div class="label">BD 지분 귀속</div><div class="value" id="v2_r_mobisShare">-</div><div class="sub">HMG Global 20% → BD PV의 11.3%</div></div>
+      <div class="result-box highlight"><div class="label">적정 시총 추정</div><div class="value" id="v2_r_mobisTotal" style="color:#FF6B6B">-</div><div class="sub">기존OP×PER + 로봇PSR + 지분</div></div>
+      <div class="result-box"><div class="label">vs 현 시총 <span id="v2_r_mobisCur">63.24</span>조</div><div class="value" id="v2_r_mobisUp">-</div><div class="sub">업사이드</div></div>
+    </div>
+    <div class="note">* 현 시총: 현대모비스 63.24조원 (2026.06.02 KRX). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배 · 로봇 PSR 9배(보수화). [자체추정]</div>
+  </div>
+</div>
+
+<div class="arrow-bridge">▼ 액추에이터 원가 연동</div>
+
+<!-- ═══ ③ 감속기사 밸류에이션 ═══ -->
+<div class="card">
+  <h2 style="background:#6C5CE7">③ 감속기사 밸류에이션 (모비스 연동)</h2>
+  <div class="card-body">
+    <div class="desc">액추에이터 내 감속기가 ~72%. 감속기 유형별(하모닉 68.6% / 사이클로이드 31.4%) BOM 가중치로 각 한국 감속기사에 귀속 매출을 산출합니다.</div>
+    <div class="grid2">
+      <div class="slider-group">
+        <div class="slider-label"><span>감속기 BOM 비중 (액추에이터 내)</span><span class="val" id="v2_v_gearBom">72%</span></div>
+        <input type="range" id="v2_s_gearBom" min="50" max="85" step="1" value="72" oninput="calcV2()">
+        <div class="slider-range"><span>50%</span><span>85%</span></div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-label"><span>감속기사 PSR</span><span class="val" id="v2_v_gearPsr">15배</span></div>
+        <input type="range" id="v2_s_gearPsr" min="5" max="50" step="0.5" value="30" oninput="calcV2()">
+        <div class="slider-range"><span>5배</span><span>50배</span></div>
+      </div>
+    </div>
+
+    <div class="derived">
+      <b>자동 산출 — 감속기:</b> 액추에이터 총원가 <span id="v2_d_actTotal2">$3.36만</span> × 감속기 비중 <span id="v2_d_gearBom2">72%</span> = 대당 감속기 총원가 <b><span id="v2_d_gearTotal">$2.42만</span></b><br>
+      글로벌 감속기 시장(Atlas) = <span id="v2_d_units2">3만대</span> × <span id="v2_d_gearTotal2">$2.42만</span> = <b><span id="v2_d_gearMkt">10,539억원</span></b>
+    </div>
+
+    <!-- 유형별 BOM 가중치 표시 -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0">
+      <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 12px">
+        <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;font-weight:700;margin-bottom:3px">하모닉 (손목·손가락)</div>
+        <div style="font-family:var(--mono);font-size:14px;font-weight:700">BOM 68.6%</div>
+        <div style="font-size:9px;color:var(--ink-3)">20개 × $350 = $7,000</div>
+      </div>
+      <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 12px">
+        <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700;margin-bottom:3px">사이클로이드 (허리·고하중)</div>
+        <div style="font-family:var(--mono);font-size:14px;font-weight:700">BOM 31.4%</div>
+        <div style="font-size:9px;color:var(--ink-3)">4개 × $800 = $3,200</div>
+      </div>
+    </div>
+
+    <!-- 회사별 침투율 슬라이더 -->
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:14px 0 8px;font-weight:600">한국 감속기사별 침투율 (유형별 BOM 가중치 자동 반영)</div>
+
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
+      <div class="slider-label"><span>🔴 에스비비테크 — 하모닉 침투율</span><span class="val" id="v2_v_sbbPen">100%</span></div>
+      <input type="range" id="v2_s_sbbPen" min="0" max="100" step="5" value="100" oninput="calcV2()" style="width:100%">
+      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">국내 하모닉 1위 · 천안 공장 CAPA 10배 · BOM 가중 68.6%</div>
+    </div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
+      <div class="slider-label"><span>🟣 에스피지 — 사이클로이드 침투율</span><span class="val" id="v2_v_spgPen">100%</span></div>
+      <input type="range" id="v2_s_spgPen" min="0" max="100" step="5" value="100" oninput="calcV2()" style="width:100%">
+      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">사이클로이드 국산화 · LG 협력 · BOM 가중 31.4%</div>
+    </div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
+      <div class="slider-label"><span>🟤 네오오토 — 하모닉 개선 침투율 (에스비비 하모닉 내 대체분)</span><span class="val" id="v2_v_neoPen">100%</span></div>
+      <input type="range" id="v2_s_neoPen" min="0" max="100" step="5" value="100" oninput="calcV2()" style="width:100%">
+      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">하모닉 한계 극복 자체구조 특허 · 시제품 단계 · BOM 가중: 에스비비 하모닉의 일부 대체</div>
+      <div class="slider-group" style="margin-top:8px;margin-bottom:0">
+        <div class="slider-label"><span style="font-size:9px">↳ 하모닉 내 네오오토 대체 비중</span><span class="val" id="v2_v_neoShare" style="font-size:11px">20%</span></div>
+        <input type="range" id="v2_s_neoShare" min="0" max="50" step="5" value="50" oninput="calcV2()" style="width:100%">
+        <div class="slider-range"><span>0% (에스비비 독점)</span><span>50% (반반)</span></div>
+      </div>
+    </div>
+
+    <!-- 회사별 결과 테이블 -->
+    <div style="overflow-x:auto;margin-top:14px">
+      <table style="width:100%;border-collapse:collapse;font-size:11px">
+        <thead><tr style="border-bottom:2px solid var(--ink)">
+          <th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">감속기사</th>
+          <th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">주력</th>
+          <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">유효 M/S</th>
+          <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">귀속 매출</th>
+          <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">밸류 (PSR)</th>
+          <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">현 시총</th>
+          <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">비교</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line)">
+            <td style="padding:6px 8px;font-weight:700;color:#FF6B6B">에스비비테크</td>
+            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">하모닉</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono)" id="v2_t_sbbMs">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_sbbRev">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700;color:#6C5CE7" id="v2_t_sbbVal">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);color:var(--ink-3)">4,011억</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_sbbUp">-</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--line)">
+            <td style="padding:6px 8px;font-weight:700;color:#6C5CE7">에스피지</td>
+            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">사이클로이드</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono)" id="v2_t_spgMs">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_spgRev">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700;color:#6C5CE7" id="v2_t_spgVal">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);color:var(--ink-3)">2.30조</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_spgUp">-</td>
+          </tr>
+          <tr>
+            <td style="padding:6px 8px;font-weight:700;color:#8577e6">네오오토</td>
+            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">하모닉 개선</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono)" id="v2_t_neoMs">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_neoRev">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700;color:#6C5CE7" id="v2_t_neoVal">-</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);color:var(--ink-3)">1,265억</td>
+            <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_neoUp">-</td>
+          </tr>
+        </tbody>
+        <tfoot><tr style="border-top:2px solid var(--ink)">
+          <td colspan="2" style="padding:6px 8px;font-weight:700">한국 합계</td>
+          <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_totalMs">-</td>
+          <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_totalRev">-</td>
+          <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700;color:#6C5CE7" id="v2_t_totalVal">-</td>
+          <td colspan="2"></td>
+        </tr></tfoot>
+      </table>
+    </div>
+    <div class="note">* 감속기 BOM: 하모닉 20개×$350=$7,000(68.6%) + RV(사이클로이드) 4개×$800=$3,200(31.4%). 네오오토는 에스비비 하모닉 M/S의 일부를 대체하는 구조. 현 시총: 에스비비테크 4,011억·에스피지 2.30조·네오오토 1,265억 (2026.06.02 KRX). [자체추정 · 언론 종합]</div>
+  </div>
+</div>
+
   </section>
-
-  <!-- ═══ 현대모비스 탑픽 밸류에이션 ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #FF6B6B;border-top:3px solid #FF6B6B">
-    <div class="card-title">🏆 현대모비스 (012330) — Top Pick 밸류에이션 <span class="badge" style="background:#FF6B6B;color:#fff">인터랙티브</span></div>
-    <p style="font-size:11px;color:var(--ink-2);margin-bottom:14px">BD 액추에이터 100% 캡티브 공급 + 기술 무상이관 + 지배구조 재편. 양산 가정을 조절하면 모비스 귀속가치가 실시간 계산됩니다.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">Atlas 연간 양산</span>
-          <span id="mbUnitsVal" style="font-family:var(--mono);font-size:13px;font-weight:700">30,000대</span>
-        </div>
-        <input id="mbUnitsSlider" class="year-slider" type="range" min="20000" max="100000" step="5000" value="30000" oninput="renderMobis()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>2만대(베이스)</span><span>10만대</span></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">액추에이터 단가</span>
-          <span id="mbActVal" style="font-family:var(--mono);font-size:13px;font-weight:700">$5,000</span>
-        </div>
-        <input id="mbActSlider" class="year-slider" type="range" min="2000" max="10000" step="500" value="5000" oninput="renderMobis()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$2,000</span><span>$10,000</span></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">대당 액추에이터 수</span>
-          <span id="mbActCountVal" style="font-family:var(--mono);font-size:13px;font-weight:700">28개</span>
-        </div>
-        <input id="mbActCountSlider" class="year-slider" type="range" min="20" max="56" step="2" value="28" oninput="renderMobis()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>20개</span><span>56개</span></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">기존 영업이익 (E)</span>
-          <span id="mbBaseOpVal" style="font-family:var(--mono);font-size:13px;font-weight:700">3.5조원</span>
-        </div>
-        <input id="mbBaseOpSlider" class="year-slider" type="range" min="2" max="5" step="0.1" value="3.5" oninput="renderMobis()" style="width:100%">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>2조</span><span>5조</span></div>
-      </div>
-    </div>
-    <div style="background:rgba(255,107,107,0.04);border-radius:8px;padding:12px 14px;margin-bottom:14px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-        <span style="font-family:var(--mono);font-size:10px;color:#FF6B6B;font-weight:700">공급 품목 범위 (대당 매출 배수)</span>
-        <span id="mbScopeVal" style="font-family:var(--mono);font-size:13px;font-weight:700;color:#FF6B6B">1.0× 액추에이터만</span>
-      </div>
-      <input id="mbScopeSlider" class="year-slider" type="range" min="1.0" max="2.0" step="0.1" value="1.0" oninput="renderMobis()" style="width:100%">
-      <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>1.0× 액추에이터만</span><span>2.0× +헤드모듈·그리퍼·배터리팩</span></div>
-      <div style="font-size:9.5px;color:var(--ink-3);margin-top:4px">모비스는 BD에 액추에이터 외 헤드모듈·그리퍼·배터리팩도 공급 → 대당 매출이 액추에이터 단독 대비 1.5~2배</div>
-    </div>
-    <div class="num-row">
-      <div class="num-box"><div class="num-label">로봇향 신규 매출</div><div class="num-value" id="mbRobotRev" style="color:#FF6B6B">-</div><div class="num-sub" id="mbRobotRevSub">Atlas × 풀패키지</div></div>
-      <div class="num-box"><div class="num-label">기존 매출 대비</div><div class="num-value" id="mbRobotPct">-</div><div class="num-sub">60조원 기준</div></div>
-      <div class="num-box"><div class="num-label">BD 지분 귀속</div><div class="num-value" id="mbShareVal">-</div><div class="num-sub">HMG Global 20% → BD PV의 11.3%</div></div>
-      <div class="num-box" style="border:2px solid #FF6B6B"><div class="num-label">적정 시총 추정</div><div class="num-value" id="mbTotalVal" style="color:#FF6B6B">-</div><div class="num-sub">기존OP×8 + 로봇PSR9 + 지분</div></div>
-      <div class="num-box" style="background:rgba(255,107,107,0.06)"><div class="num-label">vs 현 시총 <span id="mbCurMcap">67</span>조</div><div class="num-value" id="mbUpside">-</div><div class="num-sub">업사이드</div></div>
-    </div>
-    <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin:14px 0 6px">카탈리스트 타임라인</div>
-    <div style="position:relative;height:8px;background:linear-gradient(90deg,#FF6B6B,#F8B739,#6C5CE7,#00B894,#0984E3);border-radius:4px;margin-bottom:40px">
-      <div id="mbCatDots" style="position:relative;top:-8px"></div>
-    </div>
-    <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
-      <b style="color:#FF6B6B">탑픽 근거:</b> ① BD 액추에이터 100% 독점 공급 (JPM 2026) ② Body→Hand 순차 이관 확정 ③ 미국 양산거점 설립 → 2028 35만개 ④ BD 지분가치 귀속(HMG Global 20%) ⑤ 소프트뱅크 풋옵션 만기 6/21 → 지배구조 재편 트리거
-    </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">* 자체추정. 현 시총은 MARKET_CAP(2026.06.02 KRX 종가) 기준. BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배·로봇 PSR 9배(보수화) 적용.</div>
-  </section>
-
-  <!-- ═══ 로보티즈 데이터 플라이휠 (Top Pick 2) ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #00B894;border-top:3px solid #00B894">
-    <div class="card-title">🔄 로보티즈 (108490) — 데이터 플라이휠 <span class="badge" style="background:#00B894;color:#fff">Top Pick · 데이터</span></div>
-    <p style="font-size:11px;color:var(--ink-2);margin-bottom:6px">피지컬 AI의 진짜 병목은 하드웨어가 아니라 <b>데이터</b> (실제 환경 수집이 시뮬 대비 13.6만배 비쌈). 로보티즈는 단순 부품사가 아니라 <b>HW 표준 → 데이터 축적 → 휴머노이드 고도화</b>로 자가 순환하는 수직계열 구조.</p>
-
-    <!-- 플라이휠 5단계 -->
-    <div style="display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:14px 0">
-      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894;position:relative;margin-right:8px">
-        <div style="font-size:18px;margin-bottom:4px">🔧</div>
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700">① HW 공급</div>
-        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">다이나믹셀 (모터+감속기+제어기+통신 All-in-one)</div>
-      </div>
-      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #6C5CE7;margin-right:8px">
-        <div style="font-size:18px;margin-bottom:4px">🏛️</div>
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700">② 글로벌 표준 채택</div>
-        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">스탠포드 ALOHA 등 톱티어 연구소의 사실상 표준 HW</div>
-      </div>
-      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #F8B739;margin-right:8px">
-        <div style="font-size:18px;margin-bottom:4px">📊</div>
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700">③ 데이터 축적</div>
-        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">전 세계 연구 행동 데이터가 자사 HW 위에 쌓임</div>
-      </div>
-      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #FF6B6B;margin-right:8px">
-        <div style="font-size:18px;margin-bottom:4px">🤖</div>
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700">④ 휴머노이드 고도화</div>
-        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">AI Worker·AI Sapiens로 데이터 자가 수집·강화학습</div>
-      </div>
-      <div style="flex:1;min-width:120px;background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894">
-        <div style="font-size:18px;margin-bottom:4px">↩️</div>
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700">⑤ 재투자</div>
-        <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">개방형 플랫폼 → 생태계 확장 → ①로 순환</div>
-      </div>
-    </div>
-
-    <!-- 핵심 강점 3박스 -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:10px">
-      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #00B894">
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">다이나믹셀 = 표준</div>
-        <div style="font-size:10px;color:var(--ink-2);line-height:1.5">ROS SW 함께 제공 → 글로벌 연구·산업계 사실상 표준 부품. ALOHA(스탠포드 VLA 데이터 수집)가 핵심 HW로 채택</div>
-      </div>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #6C5CE7">
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">자가 데이터 수집</div>
-        <div style="font-size:10px;color:var(--ink-2);line-height:1.5">AI Worker: 리더-팔로워로 행동 데이터 실시간 수집 → 시뮬 강화학습 병행. AI Sapiens: 오픈소스 개방형 플랫폼</div>
-      </div>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #F8B739">
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#F8B739;margin-bottom:4px">양산 + 신제품</div>
-        <div style="font-size:10px;color:var(--ink-2);line-height:1.5">Dynamixel-Q(QDD, 휴머노이드 보행용) 2026 하반기 출시 → 2027 우즈베키스탄 양산. 핸드 IP 보유</div>
-      </div>
-    </div>
-
-    <div style="background:rgba(0,184,148,0.06);border-left:4px solid #00B894;border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
-      <b style="color:#00B894">탑픽 근거:</b> 모비스가 ④몸(액추에이터)을 쥔다면, 로보티즈는 ①데이터를 쥔다. 현대차 RMAC(폐쇄형 자사 데이터)과 달리 <b>개방형 플랫폼으로 글로벌 연구 데이터가 자사 HW 위에 축적</b>되는 구조 — 데이터 플라이휠 관점의 유일한 국내 플레이어. 현 시총 <span id="rbMcap">5.9</span>조로 BofA 시장전망(2025-35 CAGR 88%) 절반만 실현돼도 액추에이터·핸드 IP 가치 레버리지 큼.
-    </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 로보티즈 분기보고서(2026.05.15) · 현 시총 MARKET_CAP(2026.06.02 KRX) 기준</div>
-  </section>
-
-  <!-- ═══ 한국 노출 매핑 3영역 ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #6C5CE7">
-    <div class="card-title">🗺️ 한국 노출 매핑 — 3영역 <span class="badge" style="background:#6C5CE7;color:#fff">인터랙티브</span></div>
-    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">한국 휴머노이드 밸류체인을 3가지 노출 영역으로 분류. 탭을 클릭하면 해당 영역의 기업·노출 강도·역할·매출 시점이 표시됩니다.</p>
-    <div class="st-tabs" id="expoTabs" style="margin-bottom:10px"></div>
-    <div id="expoDesc" style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;padding:8px 12px;background:var(--bg-soft);border-radius:7px"></div>
-    <div class="scroll-x">
-      <div style="min-width:500px">
-        <div style="display:grid;grid-template-columns:100px 60px 1fr 60px;gap:10px;padding:4px 0;font-family:var(--mono);font-size:9px;color:var(--ink-3);border-bottom:1px solid var(--line-s)">
-          <div>기업</div><div>노출</div><div>역할</div><div style="text-align:center">시점</div>
-        </div>
-        <div id="expoGrid"></div>
-      </div>
-    </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">노출 강도: 극대 > 대 > 중 > 소. 각 사 IR 기반 자체 분류.</div>
-  </section>
-
-  <!-- ═══ 양산 타임라인 ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #F8B739">
-    <div class="card-title">📅 양산 타임라인 — 연도별 마일스톤 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">
-      <div id="tlYear" style="font-family:var(--mono);font-size:32px;font-weight:700;min-width:60px">2026</div>
-      <div>
-        <div id="tlLabel" style="font-size:14px;font-weight:700">-</div>
-        <div id="tlTag" style="font-family:var(--mono);font-size:10px;color:var(--ink-3);background:var(--bg-soft);display:inline-block;padding:2px 8px;border-radius:4px;margin-top:2px">-</div>
-      </div>
-    </div>
-    <input id="tlSlider" class="year-slider" type="range" min="2024" max="2030" step="1" value="2026" oninput="renderTL()" style="width:100%;margin-bottom:8px">
-    <div style="position:relative;height:50px;margin-bottom:16px" id="tlDots"></div>
-    <div id="tlEvents" style="margin-bottom:8px"></div>
-    <div style="font-size:10px;color:var(--ink-3)">출처: 각 사 IR, JPM Conference 2026, BD IR, HMG IR</div>
-  </section>
-
   <!-- ═══ 🎯 종목별 투자 포인트 상세 ═══ -->
   <section id="sec-stock-detail" class="card section-gap" style="border-left:4px solid #FF6B6B">
     <div class="card-title">🎯 종목별 투자 포인트 — 상세 <span class="badge" style="background:#FF6B6B;color:#fff">10종목</span></div>
