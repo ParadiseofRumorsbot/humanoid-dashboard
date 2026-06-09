@@ -185,8 +185,8 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
         <div class="v2-slider-range"><span>30%</span><span>60%</span></div>
       </div>
       <div class="v2-slider-group">
-        <div class="v2-slider-label"><span>대당 액추에이터 수</span><span class="v2-val" id="v2_v_actN">28개</span></div>
-        <input type="range" id="v2_s_actN" min="20" max="56" step="1" value="28" oninput="calcV2()">
+        <div class="v2-slider-label"><span>대당 액추에이터 수 (손가락 제외)</span><span class="v2-val" id="v2_v_actN">31개</span></div>
+        <input type="range" id="v2_s_actN" min="20" max="56" step="1" value="31" oninput="calcV2()">
         <div class="v2-slider-range"><span>20개</span><span>56개</span></div>
       </div>
       <div class="v2-slider-group">
@@ -222,14 +222,14 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
       <div class="v2-result-box v2-hl"><div class="v2-label">적정 시총 추정</div><div class="v2-value" id="v2_r_mobisTotal" style="color:#FF6B6B">-</div><div class="v2-sub">기존OP×PER + 로봇PSR + 지분</div></div>
       <div class="v2-result-box"><div class="v2-label">vs 현 시총 <span id="v2_r_mobisCur">63.24</span>조</div><div class="v2-value" id="v2_r_mobisUp">-</div><div class="v2-sub">업사이드</div></div>
     </div>
-    <div class="v2-note">* 현 시총: 현대모비스 63.24조원 (2026.06.02 KRX). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배 · 로봇 PSR 9배(보수화). [자체추정]</div>
+    <div class="v2-note">* 현 시총: 현대모비스 63.24조원 (2026.06.02 KRX). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배 · 로봇 PSR 9배(보수화). [자체추정]<br>※ Corp Day(2026.05.28): 액추에이터 31개(손가락 제외) = Atlas 원가의 <b>~60%</b>, 모비스 HW원가 70%+ 공급 목표. BD $15~20만은 <b>서비스·유지보수 포함가</b> → 본 시뮬의 ASP×원가율 "제조원가"는 서비스분 포함이라 액추에이터 BOM 34.5%가 실질 HW원가 기준 ~60%로 보정됨.</div>
     </div>
 
     <!-- ③ 감속기사 -->
     <div style="border-top:2px solid var(--line);padding-top:14px;margin-top:20px">
       <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:4px">▼ 액추에이터 원가 연동</div>
       <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">③ 감속기사 밸류에이션 (모비스 연동)</div>
-      <div style="font-size:11px;color:var(--ink-2);margin-bottom:12px">액추에이터 내 감속기가 ~72%. 감속기 유형별(하모닉 68.6% / 사이클로이드 31.4%) BOM 가중치로 각 한국 감속기사에 귀속 매출을 산출합니다.</div>
+      <div style="font-size:11px;color:var(--ink-2);margin-bottom:12px">Atlas 바디 감속기는 <b>유성(planetary) 2종</b>(토크 차이)이며 <b>모비스가 내재화</b>(부분품만 외주). 손/그리퍼는 하모닉(미공개·별도). 한국 외부 감속기사는 ①네오오토(유성 부분품·모비스 외주) ②에스비비(손/그리퍼 하모닉, 미공개)로 보수적으로 산출. <span style="color:var(--ink-3)">출처: 현대모비스 Corp Day(2026.05.28)·네오오토 사업보고서(2026.03.19)</span></div>
     <div class="v2-grid2">
       <div class="v2-slider-group">
         <div class="v2-slider-label"><span>감속기 BOM 비중 (액추에이터 내)</span><span class="v2-val" id="v2_v_gearBom">72%</span></div>
@@ -245,43 +245,46 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
 
     <div class="v2-derived">
       <b>자동 산출 — 감속기:</b> 액추에이터 총원가 <span id="v2_d_actTotal2">$3.36만</span> × 감속기 비중 <span id="v2_d_gearBom2">72%</span> = 대당 감속기 총원가 <b><span id="v2_d_gearTotal">$2.42만</span></b><br>
-      글로벌 감속기 시장(Atlas) = <span id="v2_d_units2">3만대</span> × <span id="v2_d_gearTotal2">$2.42만</span> = <b><span id="v2_d_gearMkt">10,539억원</span></b>
+      Atlas 감속기 시장 = <span id="v2_d_units2">3만대</span> × <span id="v2_d_gearTotal2">$2.42만</span> = <b><span id="v2_d_gearMkt">10,539억원</span></b> → 이 중 바디 유성 <b><span id="v2_d_mobisGear">-</span></b>은 모비스 내재화(②에 반영)
     </div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0">
+      <div style="background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 8px 8px 0;padding:10px 12px">
+        <div style="font-family:var(--mono);font-size:9px;color:#00B894;font-weight:700;margin-bottom:3px">바디 = 유성 2종 (대형 고토크+소형 저토크)</div>
+        <div style="font-family:var(--mono);font-size:14px;font-weight:700">모비스 내재화</div>
+        <div style="font-size:9px;color:var(--ink-3)">Corp Day(2026.05.28): "둘 다 유성, 토크 차이"</div>
+      </div>
       <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 12px">
-        <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;font-weight:700;margin-bottom:3px">하모닉 (손목·손가락)</div>
-        <div style="font-family:var(--mono);font-size:14px;font-weight:700">BOM 68.6%</div>
-        <div style="font-size:9px;color:var(--ink-3)">20개 × $350 = $7,000</div>
-      </div>
-      <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 12px">
-        <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700;margin-bottom:3px">사이클로이드 (허리·고하중)</div>
-        <div style="font-family:var(--mono);font-size:14px;font-weight:700">BOM 31.4%</div>
-        <div style="font-size:9px;color:var(--ink-3)">4개 × $800 = $3,200</div>
+        <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;font-weight:700;margin-bottom:3px">손/그리퍼 = 하모닉 (미공개·별도)</div>
+        <div style="font-family:var(--mono);font-size:14px;font-weight:700">개발중</div>
+        <div style="font-size:9px;color:var(--ink-3)">3지→4지 · 바디 31개 액추에이터에서 제외</div>
       </div>
     </div>
 
-    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:14px 0 8px;font-weight:600">한국 감속기사별 침투율 (유형별 BOM 가중치 자동 반영)</div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:14px 0 8px;font-weight:600">한국 외부 감속기사 노출 (모비스 내재화·기어타입 반영)</div>
 
-    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
-      <div class="v2-slider-label"><span>🔴 에스비비테크 — 하모닉 침투율</span><span class="v2-val" id="v2_v_sbbPen">100%</span></div>
-      <input type="range" id="v2_s_sbbPen" min="0" max="100" step="5" value="100" oninput="calcV2()" style="width:100%">
-      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">국내 하모닉 1위 · 천안 공장 CAPA 10배 · BOM 가중 68.6%</div>
-    </div>
-    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
-      <div class="v2-slider-label"><span>🟣 에스피지 — 사이클로이드 침투율</span><span class="v2-val" id="v2_v_spgPen">100%</span></div>
-      <input type="range" id="v2_s_spgPen" min="0" max="100" step="5" value="100" oninput="calcV2()" style="width:100%">
-      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">사이클로이드 국산화 · LG 협력 · BOM 가중 31.4%</div>
-    </div>
-    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
-      <div class="v2-slider-label"><span>🟤 네오오토 — 하모닉 개선 침투율 (에스비비 하모닉 내 대체분)</span><span class="v2-val" id="v2_v_neoPen">100%</span></div>
-      <input type="range" id="v2_s_neoPen" min="0" max="100" step="5" value="100" oninput="calcV2()" style="width:100%">
-      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">하모닉 한계 극복 자체구조 특허 · 시제품 단계 · BOM 가중: 에스비비 하모닉의 일부 대체</div>
-      <div class="v2-slider-group" style="margin-top:8px;margin-bottom:0">
-        <div class="v2-slider-label"><span style="font-size:9px">↳ 하모닉 내 네오오토 대체 비중</span><span class="v2-val" id="v2_v_neoShare" style="font-size:11px">20%</span></div>
-        <input type="range" id="v2_s_neoShare" min="0" max="100" step="5" value="50" oninput="calcV2()" style="width:100%">
-        <div class="v2-slider-range"><span>0% (에스비비 독점)</span><span>50% (반반)</span><span>100% (네오오토 독점)</span></div>
+    <div class="v2-grid2">
+      <div class="v2-slider-group">
+        <div class="v2-slider-label"><span>손/그리퍼 하모닉 비중 (감속기 중)</span><span class="v2-val" id="v2_v_handRate">15%</span></div>
+        <input type="range" id="v2_s_handRate" min="0" max="30" step="1" value="15" oninput="calcV2()">
+        <div class="v2-slider-range"><span>0%</span><span>30%</span></div>
       </div>
+      <div class="v2-slider-group">
+        <div class="v2-slider-label"><span>모비스 바디유성 내재화율</span><span class="v2-val" id="v2_v_mobisInt">85%</span></div>
+        <input type="range" id="v2_s_mobisInt" min="70" max="100" step="1" value="85" oninput="calcV2()">
+        <div class="v2-slider-range"><span>70%</span><span>100%</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin:8px 0">
+      <div class="v2-slider-label"><span>🟤 네오오토 — 유성 부분품 침투율 (모비스 외주분 내)</span><span class="v2-val" id="v2_v_neoPen">35%</span></div>
+      <input type="range" id="v2_s_neoPen" min="0" max="100" step="5" value="35" oninput="calcV2()" style="width:100%">
+      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">유성기어 EV 2단변속기·디퍼런셜 정밀가공 · 모비스 인휠감속기 협업 · 로봇팔 관절 소형감속기 (사업보고서 2026.03.19)</div>
+    </div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
+      <div class="v2-slider-label"><span>🔴 에스비비테크 — 손/그리퍼 하모닉 침투율 (미공개)</span><span class="v2-val" id="v2_v_sbbPen">50%</span></div>
+      <input type="range" id="v2_s_sbbPen" min="0" max="100" step="5" value="50" oninput="calcV2()" style="width:100%">
+      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">국내 하모닉 1위 · Atlas 손 기어 미공개라 옵션 · 글로벌 코봇·타 휴머노이드 노출</div>
     </div>
 
     <div style="overflow-x:auto;margin-top:14px">
@@ -298,7 +301,7 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
         <tbody>
           <tr style="border-bottom:1px solid var(--line)">
             <td style="padding:6px 8px;font-weight:700;color:#FF6B6B">에스비비테크</td>
-            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">하모닉</td>
+            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">손/그리퍼 하모닉</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono)" id="v2_t_sbbMs">-</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_sbbRev">-</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700;color:#6C5CE7" id="v2_t_sbbVal">-</td>
@@ -307,7 +310,7 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
           </tr>
           <tr style="border-bottom:1px solid var(--line)">
             <td style="padding:6px 8px;font-weight:700;color:#6C5CE7">에스피지</td>
-            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">사이클로이드</td>
+            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">Atlas 미채택·타로봇</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono)" id="v2_t_spgMs">-</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_spgRev">-</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700;color:#6C5CE7" id="v2_t_spgVal">-</td>
@@ -316,7 +319,7 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
           </tr>
           <tr>
             <td style="padding:6px 8px;font-weight:700;color:#8577e6">네오오토</td>
-            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">하모닉 개선</td>
+            <td style="padding:6px 8px;font-family:var(--mono);font-size:9px;color:var(--ink-3)">유성 부분품</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono)" id="v2_t_neoMs">-</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700" id="v2_t_neoRev">-</td>
             <td style="text-align:right;padding:6px 8px;font-family:var(--mono);font-weight:700;color:#6C5CE7" id="v2_t_neoVal">-</td>
@@ -333,7 +336,7 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
         </tr></tfoot>
       </table>
     </div>
-    <div class="v2-note">* 감속기 BOM: 하모닉 20개×$350=$7,000(68.6%) + RV(사이클로이드) 4개×$800=$3,200(31.4%). 네오오토는 에스비비 하모닉 M/S의 일부를 대체하는 구조. 현 시총: 에스비비테크 4,011억·에스피지 2.30조·네오오토 1,265억 (2026.06.02 KRX). [자체추정 · 언론 종합]</div>
+    <div class="v2-note">* Atlas 바디 액추에이터 = 유성 2종(토크 차이), 모비스 기어 내재화(부분품만 SCM) — 현대모비스 Corp Day(2026.05.28). 한국 외부 감속기사 노출: 네오오토=유성 부분품(모비스 외주, 사업보고서 2026.03.19) · 에스비비=손/그리퍼 하모닉(미공개) · 에스피지=Atlas 미채택(타 로봇). 현 시총: 에스비비 4,011억·에스피지 2.30조·네오오토 1,265억(2026.06.02 KRX). [자체추정]</div>
     </div>
   </section>
   </div>
@@ -625,7 +628,7 @@ function showTab(id, btn){
 }
 
 // ═══════════ 3단 워터폴 calcV2 ═══════════
-const V2_FX=1450,V2_HARMONIC=0.686,V2_CYCLO=0.314,V2_MOBIS_MCAP=63.24,V2_MOBIS_BD=0.1126;
+const V2_FX=1450,V2_MOBIS_MCAP=63.24,V2_MOBIS_BD=0.1126;
 const V2_MCAP={sbb:0.4011,spg:2.2998,neo:0.1265};
 function calcV2(){
   const units=+document.getElementById('v2_s_units').value;
@@ -692,16 +695,16 @@ function calcV2(){
   document.getElementById('v2_r_mobisUp').style.color=mUp>0?'#FF6B6B':'#636E72';
   const gBom=+document.getElementById('v2_s_gearBom').value;
   const gPsr=+document.getElementById('v2_s_gearPsr').value;
-  const sbbPen=+document.getElementById('v2_s_sbbPen').value;
-  const spgPen=+document.getElementById('v2_s_spgPen').value;
-  const neoPen=+document.getElementById('v2_s_neoPen').value;
-  const neoSh=+document.getElementById('v2_s_neoShare').value;
+  const handRate=+document.getElementById('v2_s_handRate').value/100;
+  const mobisInt=+document.getElementById('v2_s_mobisInt').value/100;
+  const neoPen=+document.getElementById('v2_s_neoPen').value/100;
+  const sbbPen=+document.getElementById('v2_s_sbbPen').value/100;
   document.getElementById('v2_v_gearBom').textContent=gBom+'%';
   document.getElementById('v2_v_gearPsr').textContent=gPsr+'배';
-  document.getElementById('v2_v_sbbPen').textContent=sbbPen+'%';
-  document.getElementById('v2_v_spgPen').textContent=spgPen+'%';
-  document.getElementById('v2_v_neoPen').textContent=neoPen+'%';
-  document.getElementById('v2_v_neoShare').textContent=neoSh+'%';
+  document.getElementById('v2_v_handRate').textContent=(handRate*100).toFixed(0)+'%';
+  document.getElementById('v2_v_mobisInt').textContent=(mobisInt*100).toFixed(0)+'%';
+  document.getElementById('v2_v_neoPen').textContent=(neoPen*100).toFixed(0)+'%';
+  document.getElementById('v2_v_sbbPen').textContent=(sbbPen*100).toFixed(0)+'%';
   const gTotal=actTotal*gBom/100;
   const gMktKRW=units*10000*gTotal*10000*V2_FX/1e8;
   const gMktT=gMktKRW/10000;
@@ -711,32 +714,36 @@ function calcV2(){
   document.getElementById('v2_d_units2').textContent=units.toFixed(1)+'만대';
   document.getElementById('v2_d_gearTotal2').textContent='$'+gTotal.toFixed(2)+'만';
   document.getElementById('v2_d_gearMkt').textContent=Math.round(gMktKRW).toLocaleString()+'억원';
-  const sbbMs=V2_HARMONIC*(1-neoSh/100)*sbbPen/100;
-  const spgMs=V2_CYCLO*spgPen/100;
-  const neoMs=V2_HARMONIC*(neoSh/100)*neoPen/100;
-  const sbbRevT=gMktT*sbbMs,sbbValT=sbbRevT*gPsr;
-  const spgRevT=gMktT*spgMs,spgValT=spgRevT*gPsr;
-  const neoRevT=gMktT*neoMs,neoValT=neoRevT*gPsr;
   function fmtV(v){return v>=1?v.toFixed(1)+'조':Math.round(v*10000).toLocaleString()+'억'}
   function fmtU(val,mc){var u=((val/mc-1)*100).toFixed(0);return(u>0?'+':'')+u+'%'}
+  // 2층 구조: 바디 유성(모비스 내재화) + 손/그리퍼 하모닉
+  const bodyT=gMktT*(1-handRate);          // 바디 유성 감속기 시장
+  const handT=gMktT*handRate;              // 손/그리퍼 하모닉 시장
+  const mobisGearT=bodyT*mobisInt;         // 모비스 내재화 (②에 반영)
+  const outsourceT=bodyT*(1-mobisInt);     // 외주 유성 풀
+  const neoMs=(1-handRate)*(1-mobisInt)*neoPen;  // 네오오토 유효 M/S
+  const sbbMs=handRate*sbbPen;                   // 에스비비 유효 M/S
+  const neoRevT=outsourceT*neoPen, neoValT=neoRevT*gPsr;
+  const sbbRevT=handT*sbbPen, sbbValT=sbbRevT*gPsr;
+  document.getElementById('v2_d_mobisGear').textContent=fmtV(mobisGearT);
   document.getElementById('v2_t_sbbMs').textContent=(sbbMs*100).toFixed(1)+'%';
   document.getElementById('v2_t_sbbRev').textContent=fmtV(sbbRevT);
   document.getElementById('v2_t_sbbVal').textContent=fmtV(sbbValT);
   document.getElementById('v2_t_sbbUp').textContent=fmtU(sbbValT,V2_MCAP.sbb);
   document.getElementById('v2_t_sbbUp').style.color=sbbValT>V2_MCAP.sbb?'#FF6B6B':'#636E72';
-  document.getElementById('v2_t_spgMs').textContent=(spgMs*100).toFixed(1)+'%';
-  document.getElementById('v2_t_spgRev').textContent=fmtV(spgRevT);
-  document.getElementById('v2_t_spgVal').textContent=fmtV(spgValT);
-  document.getElementById('v2_t_spgUp').textContent=fmtU(spgValT,V2_MCAP.spg);
-  document.getElementById('v2_t_spgUp').style.color=spgValT>V2_MCAP.spg?'#FF6B6B':'#636E72';
+  document.getElementById('v2_t_spgMs').textContent='—';
+  document.getElementById('v2_t_spgRev').textContent='—';
+  document.getElementById('v2_t_spgVal').textContent='—';
+  document.getElementById('v2_t_spgUp').textContent='타로봇';
+  document.getElementById('v2_t_spgUp').style.color='#636E72';
   document.getElementById('v2_t_neoMs').textContent=(neoMs*100).toFixed(1)+'%';
   document.getElementById('v2_t_neoRev').textContent=fmtV(neoRevT);
   document.getElementById('v2_t_neoVal').textContent=fmtV(neoValT);
   document.getElementById('v2_t_neoUp').textContent=fmtU(neoValT,V2_MCAP.neo);
   document.getElementById('v2_t_neoUp').style.color=neoValT>V2_MCAP.neo?'#FF6B6B':'#636E72';
-  document.getElementById('v2_t_totalMs').textContent=((sbbMs+spgMs+neoMs)*100).toFixed(1)+'%';
-  document.getElementById('v2_t_totalRev').textContent=fmtV(sbbRevT+spgRevT+neoRevT);
-  document.getElementById('v2_t_totalVal').textContent=fmtV(sbbValT+spgValT+neoValT);
+  document.getElementById('v2_t_totalMs').textContent=((sbbMs+neoMs)*100).toFixed(1)+'%';
+  document.getElementById('v2_t_totalRev').textContent=fmtV(sbbRevT+neoRevT);
+  document.getElementById('v2_t_totalVal').textContent=fmtV(sbbValT+neoValT);
 }
 
 // ═══════════ 네이버 SOTP calc ═══════════
