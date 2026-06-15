@@ -627,6 +627,42 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 언론 종합 · China Post Securities · 각사 IR</div>
   </section>
 
+  <!-- ═══ 1.3 Dexterous Hand 원가·부위별 액추에이터 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #00B894">
+    <div class="card-title">🖐️ Dexterous Hand 원가·내구 + 부위별 액추에이터 방식 <span class="badge" style="background:#00B894;color:#fff">로보티즈 IR · 자체추정</span></div>
+    <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">거대 OEM이 AI·몸체를 자체화해도 <b>저원가·고내구 dexterous 손</b>은 외부 조달 유인이 큰 '부품 니치'. 로보티즈는 핸드 원가 우위 + BD 뉴아틀라스 손 공급 레퍼런스로 이 니치를 파고듦.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #00B894">
+        <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:4px">로보티즈 핸드 (전류제어 교체형)</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">액추에이터 20개·20DoF · 한 손 <b>800만원(~$5.5k)</b> · 핑거 <b>18만원만 교체</b> → 수명 사실상 무제한(1만 시간 테스트) · 감속기 없이 전류제어 <b>20kg 가반</b> · 손목 액추에이터를 팔 안에 통합.</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #E17055">
+        <div style="font-size:12px;font-weight:700;color:#E17055;margin-bottom:4px">텐던·링크 방식 (회사 측 주장)</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">테슬라 핸드(회사 측 설명)는 링크 방식 → 부분수리 불가, <b>통째 교체(880만원, 2개 1,700만원)</b>·수명 5~6주 주장. <span style="color:var(--ink-3)">단 옵티머스 Gen3은 텐던(22DoF) — 세대별 상이, 미검증.</span></div>
+      </div>
+    </div>
+    <div class="scroll-x"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;min-width:360px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #636E72"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">유럽 핸드</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">~$65k</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">한국 타메이커</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">~$16.5k</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">로보티즈(20DoF)</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">~$5.5k</div></div>
+    </div></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin:6px 0 8px">부위별 액추에이터 방식 — 옵티머스 vs 아틀라스 vs 로보티즈 강점</div>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:10px">부위</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:10px">옵티머스(자체설계)</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:10px">아틀라스(BD·모비스 양산)</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:10px">로보티즈 접점</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">목·허리·어깨</td><td style="padding:7px 9px">회전 하모닉+토크센서</td><td style="padding:7px 9px">360° 회전형</td><td style="padding:7px 9px;color:var(--ink-3)">—(고감속 영역)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">무릎·발목</td><td style="padding:7px 9px">직선 롤러스크류+힘센서</td><td style="padding:7px 9px">회전형</td><td style="padding:7px 9px;color:var(--ink-3)">—</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">손·손가락</td><td style="padding:7px 9px">텐던(Gen3 22DoF·전완 배치)</td><td style="padding:7px 9px">4지·촉각</td><td style="padding:7px 9px;font-weight:600;color:#00B894">★ 전류제어 QDD·센서리스(BD 뉴아틀라스 손 공급)</td></tr>
+      </tbody>
+    </table></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">핸드 가격대·수명은 회사 측 설명·업계추정(독립 검증 전). 옵티머스 부위별은 공개 분해 기준(출처마다 상이). 로보티즈 강점은 '좁은 공간 = 토크센서 자리 없음 → 전류제어'. 출처: 로보티즈 260612 탐방 · 언론종합 · 자체정리</div>
+  </section>
+
   <!-- ═══ 1.5 전력·신호 흐름도 ═══ -->
   <section class="card section-gap" style="border-left:4px solid #F8B739">
     <div class="card-title">⚡ 전력·신호 흐름도 — 관절 하나가 움직이려면 <span class="badge" style="background:#F8B739;color:#fff">폐루프</span></div>
