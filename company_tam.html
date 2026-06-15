@@ -110,12 +110,46 @@ window.addEventListener('DOMContentLoaded',render);
     <div style="font-size:10px;color:var(--ink-3);margin-top:6px">Linkerbot 가격 대비 Shadow Hand는 ~50배. 양산형 핸드 시장에서 중국 업체 압도적 원가 우위.</div>
   </section>
 
+  <section class="card section-gap">
+    <div class="card-title">🤖 로보티즈 (108490) 실적·2030E TAM <span class="badge" style="background:#00B894;color:#fff">자체추정</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">2025 매출</div><div class="num-value">389억</div><div class="num-sub">+30% YoY</div></div>
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">2025 영업이익</div><div class="num-value">+34억</div><div class="num-sub">흑전 · OPM 8.6%</div></div>
+      <div class="num-box" style="border-left:3px solid #636E72"><div class="num-label">순현금</div><div class="num-value">2,284억</div><div class="num-sub">부채비율 1.8%</div></div>
+      <div class="num-box" style="border:2px solid var(--ink)"><div class="num-label">시가총액</div><div class="num-value">4.8조</div><div class="num-sub">PER~900x · PBR 15.4</div></div>
+    </div>
+    <div style="margin:8px 0;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">2030E 매출 시나리오 — 하드웨어 + 데이터 [자체추정]</div>
+    <div class="scroll-x">
+      <div style="display:grid;grid-template-columns:150px repeat(3,1fr);gap:0;font-family:var(--mono);font-size:11px;min-width:480px">
+        <div class="th" style="text-align:left">항목 (2030E)</div><div class="th">보수</div><div class="th">기본</div><div class="th">낙관</div>
+        <div class="td" style="text-align:left;font-weight:600">액추에이터 물량</div><div class="td" style="text-align:right">2.0백만대</div><div class="td" style="text-align:right">3.5백만대</div><div class="td" style="text-align:right">5.0백만대</div>
+        <div class="td" style="text-align:left;font-weight:600">ASP (원/대)</div><div class="td" style="text-align:right">150,000</div><div class="td" style="text-align:right">200,000</div><div class="td" style="text-align:right">220,000</div>
+        <div class="td" style="text-align:left;font-weight:600">→ 하드웨어 매출</div><div class="td" style="text-align:right">3,000억</div><div class="td" style="text-align:right">7,000억</div><div class="td" style="text-align:right">11,000억</div>
+        <div class="td" style="text-align:left;font-weight:600">데이터 작업자</div><div class="td" style="text-align:right">800명</div><div class="td" style="text-align:right">1,300명</div><div class="td" style="text-align:right">2,000명</div>
+        <div class="td" style="text-align:left;font-weight:600">실현단가 ($/h)</div><div class="td" style="text-align:right">70</div><div class="td" style="text-align:right">150</div><div class="td" style="text-align:right">250</div>
+        <div class="td" style="text-align:left;font-weight:600">→ 데이터 매출</div><div class="td" style="text-align:right">1,400억</div><div class="td" style="text-align:right">5,460억</div><div class="td" style="text-align:right">15,400억</div>
+        <div class="td td-sum" style="text-align:left">합계 매출</div><div class="td td-sum" style="text-align:right">0.44조</div><div class="td td-sum" style="text-align:right">1.25조</div><div class="td td-sum" style="text-align:right">2.64조</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">자체추정(FX 1,400원 · 데이터=작업자×2,000h/년×실현단가). 2025 실적·재무는 회사 공시(한경에이셀 집계). 회사 목표 1.5조는 기본~낙관 사이. 우즈벡 2026 4Q 가동 · 올해 51만대/수주잔고 40만대.</div>
+  </section>
+
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
     <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-06-15</span>
+          <span style="font-size:12px;font-weight:600">로보티즈 실적·2030E TAM 카드 신규</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">로보티즈 260612 탐방 · 자체추정</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>2025 실적(매출 389억·흑전)·밸류·2030E 보수/기본/낙관(0.44/1.25/2.64조) 카드 추가</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-06-03</span>

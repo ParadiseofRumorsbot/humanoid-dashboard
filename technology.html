@@ -949,6 +949,26 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
     </section>
 
+    <section class="card section-gap" style="border-left:4px solid #F8B739">
+      <div class="card-title">⚠️ 로보티즈 Sim2Real 해자 — STM×NVIDIA 옐로플래그 <span class="badge" style="background:#F8B739;color:#1a1a1a">리스크 점검</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">로보티즈의 핵심 해자 중 하나는 "액추에이터별 Sim2Real 내재화는 희소하다"는 서사임. 2026.3.16 STM×NVIDIA 발표는 이 희소성을 구조적으로 약화시킬 수 있는 옐로플래그임 — 즉각적 매출 타격보다 '해자의 깊이'를 깎는 성격임.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #0984E3">
+          <div style="font-size:12px;font-weight:700;color:#0984E3;margin-bottom:4px">무엇을 발표했나 (사실)</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">STM(세계 최대급 모터제어 칩·성숙한 FOC SDK 보유)이 센서·STM32 MCU·모터제어를 NVIDIA Isaac Sim·Holoscan에 통합. 핵심은 '실물 보정(real→sim) 고정밀 디지털 모델'을 Isaac Sim에 제공 — 첫 모델은 IMU, 이어 ToF·<b>액추에이터 모델</b>을 실물 벤치 데이터 기반으로 추가 예정(로드맵).</div>
+        </div>
+        <div style="background:#FFF8E1;border-radius:8px;padding:12px 14px;border-left:3px solid #F8B739">
+          <div style="font-size:12px;font-weight:700;color:#E17055;margin-bottom:4px">왜 위협인가 / 단서</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">'FOC+Sim2Real을 소수만 한다'는 서사를 정면 침식 → 만도·모비스 등 누구나 Sim2Real-ready 액추에이터 조립 가능해지면 차별성 희석. 단서①: 현재 출시는 센서(IMU·카메라), <b>액추에이터 모델은 로드맵(미출시)</b>. 단서②(양날): 경쟁사도 쉬워지지만 로보티즈도 같은 도구 사용 가능.</div>
+        </div>
+      </div>
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;padding:10px 12px;background:var(--bg-soft);border-radius:7px">
+        · <strong>투자 함의</strong>: Sim2Real '가능 여부'는 빠르게 상용 toolchain화(=table stakes)되는 중. 'Sim2Real 자체가 희소 해자'라는 레그는 디스카운트하고, 진짜 해자는 <b>설치기반·축적 데이터·생태계·손(dexterity)·ex-China</b>로 좁혀 봐야 함.<br>
+        · <strong>모니터링</strong>: ① STM 액추에이터 Isaac 모델 출시 시점·채택도 ② 로보티즈가 toolchain 상용화 '이전에' 데이터·생태계 네트워크 효과로 전환하는 속도.
+      </div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: STM×NVIDIA 발표(2026.03.16) · 로보티즈 260612 탐방 · 자체정리 [개인 의견]</div>
+    </section>
+
     <!-- ═══ Update Log (top) ═══ -->
     <section id="sec-updatelog" class="card">
       <div class="card-title log-toggle" onclick="toggleLog()">
