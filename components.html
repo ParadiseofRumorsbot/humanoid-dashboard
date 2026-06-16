@@ -211,15 +211,15 @@ const OEM_SPECS = {
     {x:110,y:370,name:'발목R',type:'하모닉',torque:'40Nm'},{x:190,y:370,name:'발목L',type:'하모닉',torque:'40Nm'},
   ]},
   atlas: {name:'BD Atlas',dof:56,joints:[
-    {x:150,y:50,name:'목(3DoF)',type:'사이클로이드',torque:'15Nm'},
-    {x:100,y:90,name:'어깨R(3DoF)',type:'사이클로이드',torque:'80Nm'},{x:200,y:90,name:'어깨L',type:'사이클로이드',torque:'80Nm'},
-    {x:80,y:130,name:'팔R(2DoF)',type:'사이클로이드',torque:'40Nm'},{x:220,y:130,name:'팔L',type:'사이클로이드',torque:'40Nm'},
+    {x:150,y:50,name:'목(3DoF)',type:'유성',torque:'15Nm'},
+    {x:100,y:90,name:'어깨R(3DoF)',type:'유성',torque:'80Nm'},{x:200,y:90,name:'어깨L',type:'유성',torque:'80Nm'},
+    {x:80,y:130,name:'팔R(2DoF)',type:'유성',torque:'40Nm'},{x:220,y:130,name:'팔L',type:'유성',torque:'40Nm'},
     {x:70,y:170,name:'손목R(3DoF)',type:'하모닉',torque:'10Nm'},{x:230,y:170,name:'손목L',type:'하모닉',torque:'10Nm'},
     {x:60,y:195,name:'손R(12DoF)',type:'하모닉',torque:'2Nm'},{x:240,y:195,name:'손L',type:'하모닉',torque:'2Nm'},
-    {x:150,y:200,name:'허리(3DoF)',type:'사이클로이드',torque:'120Nm'},
-    {x:120,y:250,name:'엉덩이R(3DoF)',type:'사이클로이드',torque:'150Nm'},{x:180,y:250,name:'엉덩이L',type:'사이클로이드',torque:'150Nm'},
-    {x:115,y:310,name:'무릎R',type:'사이클로이드',torque:'100Nm'},{x:185,y:310,name:'무릎L',type:'사이클로이드',torque:'100Nm'},
-    {x:110,y:370,name:'발목R(2DoF)',type:'하모닉',torque:'60Nm'},{x:190,y:370,name:'발목L',type:'하모닉',torque:'60Nm'},
+    {x:150,y:200,name:'허리(3DoF)',type:'유성',torque:'120Nm'},
+    {x:120,y:250,name:'엉덩이R(3DoF)',type:'유성',torque:'150Nm'},{x:180,y:250,name:'엉덩이L',type:'유성',torque:'150Nm'},
+    {x:115,y:310,name:'무릎R',type:'유성',torque:'100Nm'},{x:185,y:310,name:'무릎L',type:'유성',torque:'100Nm'},
+    {x:110,y:370,name:'발목R(2DoF)',type:'유성',torque:'60Nm'},{x:190,y:370,name:'발목L',type:'유성',torque:'60Nm'},
   ]},
   g1: {name:'Unitree G1',dof:23,joints:[
     {x:150,y:55,name:'목',type:'유성',torque:'3Nm'},
@@ -590,17 +590,17 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="gear-box">
         <canvas id="cvPlanetary" width="200" height="200"></canvas>
         <h3 style="color:#F8B739">유성 감속기</h3>
-        <div class="specs">정밀도: ★★☆ / 내구성: ★★☆<br>가격: <strong>최저</strong> / 양산성: <strong>최고</strong><br>채택: Unitree G1, 중국 업체<br>감속비: 1:3~1:10</div>
+        <div class="specs">정밀도: ★★☆ / 내구성: ★★☆<br>가격: <strong>최저</strong> / 양산성: <strong>최고</strong><br>채택: Unitree G1·중국 업체 · BD Atlas 바디(유성 2종·모비스 내재화)<br>감속비: 1:3~1:10</div>
       </div>
       <div class="gear-box">
         <canvas id="cvHarmonic" width="200" height="200"></canvas>
         <h3 style="color:#6C5CE7">하모닉 감속기</h3>
-        <div class="specs">정밀도: <strong>★★★ 최고</strong> / 내구성: ★☆☆<br>가격: 최고 / 양산성: 제한적<br>채택: Tesla Optimus Gen2<br>감속비: 1:30~1:160<br>M/S: HDS 40.4%, Nidec 14.7%</div>
+        <div class="specs">정밀도: <strong>★★★ 최고</strong> / 내구성: ★☆☆<br>가격: 최고 / 양산성: 제한적<br>채택: Tesla Optimus Gen2 · Atlas 손/그리퍼(미공개·시나리오 A)<br>감속비: 1:30~1:160<br>M/S: HDS 40.4%, Nidec 14.7%</div>
       </div>
       <div class="gear-box">
         <canvas id="cvCycloidal" width="200" height="200"></canvas>
         <h3 style="color:#FF6B6B">사이클로이드 감속기</h3>
-        <div class="specs">정밀도: ★★★ / 내구성: <strong>★★★ 최고</strong><br>가격: 높음 / 양산성: 제한적<br>채택: BD Atlas, 제조업용<br>감속비: 1:6~1:119<br>M/S: Nabtesco 60%+</div>
+        <div class="specs">정밀도: ★★★ / 내구성: <strong>★★★ 최고</strong><br>가격: 높음 / 양산성: 제한적<br>채택: 제조업용 로봇(나브테스코) · Atlas 바디는 유성으로 정정<br>감속비: 1:6~1:119<br>M/S: Nabtesco 60%+</div>
       </div>
     </div>
   </section>
@@ -616,7 +616,7 @@ window.addEventListener('DOMContentLoaded', () => {
         <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">국내 양산·진입</th>
       </tr></thead>
       <tbody>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">손목·손가락</td><td style="padding:8px 10px">하모닉</td><td style="padding:8px 10px">HDS(日 70~80%)·Nidec-Shimpo·Leader Drive</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스비비테크 (국내 1위 · 26.3 천안 이전)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">손목·손가락</td><td style="padding:8px 10px">하모닉(A) / 볼·리드 스크루(B)</td><td style="padding:8px 10px">HDS(日 70~80%)·Nidec-Shimpo·Leader Drive</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스비비테크 (A 가정·하모닉 1위) / B면 스크루·리니어류</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">허리·고하중</td><td style="padding:8px 10px">사이클로이드</td><td style="padding:8px 10px">나브테스코(日)·스미토모</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스피지</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">다리·고토크</td><td style="padding:8px 10px">유성</td><td style="padding:8px 10px">Bosch·SEW</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스비비테크 양산 돌입 · 로보티즈 QDD</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">단순 구동</td><td style="padding:8px 10px">스퍼</td><td style="padding:8px 10px">범용</td><td style="padding:8px 10px">다수</td></tr>
@@ -624,6 +624,7 @@ window.addEventListener('DOMContentLoaded', () => {
     </table></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px;line-height:1.6">네오오토(212560) — 현대기아 <b>EV 동력전달계 정밀기어</b> 선도(피니언·디퍼런셜·EV감속기 / 현대트랜시스 76.6%·현대차 8.8%·기아 4.5%). <b>유성기어 EV 2단변속기 IP·美특허</b> 보유 · <b>모비스 인휠감속기 시제품 협업</b> · 로봇팔 관절 소형감속기·물류로봇(AMR/AGV) 구동모듈 자체개발 · 로봇부품 제조 정관 추가(26.3). 유성 정밀가공이 <b>Atlas 바디 유성 2종 방향과 부합</b>(부분품 후보)이나 모비스 내재화·휴머노이드 직접 진출 미확정. <span style="color:var(--ink-3)">[네오오토 사업보고서 2026.03.19]</span></div>
     <div style="background:rgba(0,184,148,0.06);border-left:4px solid #00B894;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#00B894">※ Atlas 바디 액추에이터는 유성 2종(토크 차이)·모비스 내재화</b>(현대모비스 Corp Day 2026.05.28) — 위 부위별 표는 일반 휴머노이드 관절 기준. 아래는 별도 로봇: 현대차 로보틱스랩 이동형 양팔 로봇 시제품에 HDS(日)·나브테스코(日)·에스비비테크(韓)·에스피지(韓)를 동시 접목 中. 양산품엔 국산 비중 최대화 목표. 원가 구조는 <b>액추에이터 ≈ 66%</b>(대형 32%+소형 34%, China Post Securities·Unitree G1 기준), 액추에이터 안 감속기 비중 ≈ 30%, 휴머노이드 전체 대비 감속기 단품 ≈ 18~22%.</div>
+    <div style="background:rgba(248,183,57,0.07);border-left:4px solid #F8B739;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#B8860B">⚖️ 손/그리퍼 감속기 = 미공개 · 2개 시나리오 병기</b> — Atlas 손/그리퍼 감속 방식은 공개되지 않음. 둘 다 추정이라 한쪽으로 단정하지 않고 병기함.<br><b>시나리오 A) 하모닉</b> — 손가락처럼 백래시 최소·고정밀이 필요한 관절에 하모닉 채택 가정 → 국내 노출 <b>에스비비테크</b>(하모닉 국내 1위). valuation ③ 손/그리퍼 침투율 슬라이더의 전제.<br><b>시나리오 B) 볼·리드 스크루</b> — 초소형 선형 구동(볼스크루/리드스크루)으로 파지한다고 가정 → 정밀 스크루·리니어 부품군 노출, <b>하모닉(에스비비) 노출은 0</b>에 수렴. <span style="font-size:9px;color:var(--ink-3)">[자체추정·언론종합]</span></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 언론 종합 · China Post Securities · 각사 IR</div>
   </section>
 
@@ -915,6 +916,45 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
     <div id="simBars"></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">풀스택 BOM 비중 기준 (자체추정). 저가형(G1)은 액추에이터 비중 66%로 상이.</div>
+  </section>
+
+  <!-- ═══ 1.4 로봇 열 관리 (공냉식) ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #FF6B6B">
+    <div class="card-title">🌡️ 로봇 열 관리 — 공냉식 기반 · 액추에이터 = 사실상 열관리 부품사 <span class="badge" style="background:#FF6B6B;color:#fff">자체추정</span></div>
+    <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">휴머노이드는 실내·충전 환경에서 작동해 <b>배터리 용량보다 열이 작업시간을 좌우</b>. 주 열원은 관절마다 있는 <b>액추에이터</b>이고, 관절이 움직여 냉각수 배관을 두를 수 없어 <b>패시브 공냉식이 기본</b>(고발열부에만 수냉 선택 추가). 별도 냉각 시스템 역할이 작아지는 대신 <b>발열 억제·열전도·방열이 액추에이터 부품 자체에 내재화</b> → 액추에이터사가 단순 구동부품사가 아니라 열관리 부품사가 됨.</p>
+
+    <div class="scroll-x" style="margin-bottom:12px"><table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">구분</th>
+        <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">전기차 (수냉 중심)</th>
+        <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">휴머노이드 로봇 (공냉 기본)</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 10px;font-weight:600">주 열원</td><td style="padding:7px 10px">배터리·구동 모터 (집중형)</td><td style="padding:7px 10px">관절 액추에이터·추론 칩 (분산형, 한 관절에 3~4개 열원)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 10px;font-weight:600">냉각 방식</td><td style="padding:7px 10px">수냉(워터재킷)·오일 냉각</td><td style="padding:7px 10px">자연 대류(팬 없음)·간접 전도, 고발열부만 수냉 선택</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 10px;font-weight:600">공간·무게</td><td style="padding:7px 10px">상대적 여유</td><td style="padding:7px 10px">관절 하우징 내 통합 필수 · 1g 단위 경량화</td></tr>
+        <tr><td style="padding:7px 10px;font-weight:600">냉각재 순환</td><td style="padding:7px 10px">외부 펌프·라디에이터 루프</td><td style="padding:7px 10px">외부 루프 연결 불가 → 패시브 방열 우선</td></tr>
+      </tbody>
+    </table></div>
+
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin:6px 0;font-weight:600">아키텍처 비교 — 아틀라스(공냉) vs 옵티머스(수냉 통합)</div>
+    <div class="scroll-x" style="margin-bottom:12px"><table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">항목</th>
+        <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">BD 아틀라스</th>
+        <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">테슬라 옵티머스</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 10px;font-weight:600">목표 시장</td><td style="padding:7px 10px">제조 공장·간헐 고부하</td><td style="padding:7px 10px">범용·연속 동작</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 10px;font-weight:600">열 아키텍처</td><td style="padding:7px 10px">패시브 공냉(수냉 레이어 없음)·하우징 냉각핀 일체·PCM 피크 흡수</td><td style="padding:7px 10px">공냉 기저 + 수냉(스테이터 코어 일체 2~3mm 미세유로)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 10px;font-weight:600">SW 열 제어</td><td style="padding:7px 10px">임계 전 출력 자동 제한(보호 방향)</td><td style="padding:7px 10px">냉각수 유량 동적 확대(성능 유지 방향)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 10px;font-weight:600">강점</td><td style="padding:7px 10px">경량·내구·A/S 용이·누수 리스크 0</td><td style="padding:7px 10px">연속 고부하 대응·냉각 상한 높음</td></tr>
+        <tr><td style="padding:7px 10px;font-weight:600">리스크</td><td style="padding:7px 10px">연속 고부하 시 열 누적 한계</td><td style="padding:7px 10px">회전 관절 배관 밀봉·누수·중량·정비 복잡</td></tr>
+      </tbody>
+    </table></div>
+
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.75"><b>액추에이터사의 열관리 역할 (공냉형에서 부가가치 흡수)</b><br>① <b>기어 열·모터 열 분리</b> — 유성·사이클로이드 기어 마찰열이 모터 전기열과 합쳐지면 자석 감자(힘 상실) → 기어 표면 <b>DLC(다이아몬드 라이크 카본) 코팅</b> 등 저마찰·특수 윤활로 마찰열 축소<br>② <b>TIM(서멀 인터페이스 물질) 내재화</b> — 모터 코일 열을 외부 냉각핀으로 빠르게 전달하도록 고열전도 방열패드·젤을 조립 단계에서 일체화<br>③ <b>전력소자 GaN 전환</b> — 모터 드라이버 IC를 실리콘 MOSFET → GaN으로 바꿔 스위칭 속도 10~100배·발열 감소(부수적으로 커패시터 소형화 → 관절 공간 확보)<br>④ <b>PCM(상변화물질)</b> — 순간 고부하 시 고체→액체 잠열로 피크 온도 상승 지연</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 언론 종합 · BD 공식 · 자체추정</div>
   </section>
 
   <!-- ═══ Update Log ═══ -->

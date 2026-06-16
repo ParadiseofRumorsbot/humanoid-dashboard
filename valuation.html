@@ -228,6 +228,47 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
       <div class="v2-result-box"><div class="v2-label">vs 현 시총 <span id="v2_r_mobisCur">63.24</span>조</div><div class="v2-value" id="v2_r_mobisUp">-</div><div class="v2-sub">업사이드</div></div>
     </div>
     <div class="v2-note">* 현 시총: 현대모비스 63.24조원 (2026.06.02 KRX). BD PV는 상단 시뮬레이터 연동. 기존사업 PER 8배 · 로봇 PSR 9배(보수화). [자체추정]<br>※ Corp Day(2026.05.28): 액추에이터 31개(손가락 제외) = Atlas 원가의 <b>~60%</b>, 모비스 HW원가 70%+ 공급 목표. BD $15~20만은 <b>서비스·유지보수 포함가</b> → 본 시뮬의 ASP×원가율 "제조원가"는 서비스분 포함이라 액추에이터 BOM 34.5%가 실질 HW원가 기준 ~60%로 보정됨.</div>
+
+    <div style="margin-top:14px;border-top:1px dashed var(--line);padding-top:12px">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin-bottom:8px">참고 ⓐ Atlas 원가 BOM — 1만대 양산 가정 <span style="font-weight:400">[자체추정]</span></div>
+      <div style="overflow-x:auto;margin-bottom:6px"><table style="width:100%;border-collapse:collapse;font-size:10.5px">
+        <thead><tr style="border-bottom:2px solid var(--ink)">
+          <th style="text-align:left;padding:5px 8px;font-family:var(--mono);font-size:9px">품목</th>
+          <th style="text-align:right;padding:5px 8px;font-family:var(--mono);font-size:9px">단가</th>
+          <th style="text-align:right;padding:5px 8px;font-family:var(--mono);font-size:9px">개수</th>
+          <th style="text-align:right;padding:5px 8px;font-family:var(--mono);font-size:9px">금액</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px;font-weight:600;color:#FF6B6B">회전형 액추에이터</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$561</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">31</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);font-weight:700">$17,391</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">비전센서</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$41</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">3</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$123</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">엔비디아 Thor 칩</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$800</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">1</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$800</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">그리퍼</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$800</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">2</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$1,600</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">배터리팩·바디 외</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">-</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">-</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$2,200</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px;font-weight:700">HW 소계</td><td></td><td></td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);font-weight:700">$22,114</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px;color:var(--ink-3)">데이터센터 감가상각*</td><td></td><td></td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);color:var(--ink-3)">$26,666</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px;color:var(--ink-3)">공장 감가상각·운영비</td><td></td><td></td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);color:var(--ink-3)">$2,211</td></tr>
+          <tr><td style="padding:5px 8px;font-weight:700">총계</td><td></td><td></td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);font-weight:700;color:#FF6B6B">$50,991</td></tr>
+        </tbody>
+      </table></div>
+      <div style="font-size:9px;color:var(--ink-3);margin:0 0 12px">* 데이터센터 감가상각 = 블랙웰 5만장 중 1/3 사용 가정. 회전형 액추에이터 단가 $561은 BD 전용 추정(중국산 모듈 $140~210 대비 고가). HW 소계 기준 액추에이터 ≈ 78.6%, 데이터센터 포함 총계 기준 ≈ 34%. [자체추정]</div>
+
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin-bottom:8px">참고 ⓑ 현대모비스 아틀라스向 매출추정 — 납품비중 60%·환율 1,450원 <span style="font-weight:400">[자체추정]</span></div>
+      <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:10.5px">
+        <thead><tr style="border-bottom:2px solid var(--ink)">
+          <th style="text-align:left;padding:5px 8px;font-family:var(--mono);font-size:9px">년도</th>
+          <th style="text-align:right;padding:5px 8px;font-family:var(--mono);font-size:9px">생산 대수</th>
+          <th style="text-align:right;padding:5px 8px;font-family:var(--mono);font-size:9px">대당 생산원가</th>
+          <th style="text-align:right;padding:5px 8px;font-family:var(--mono);font-size:9px">모비스 매출</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">2027</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">5,000</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$13.0만</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);font-weight:700">6,170억</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">2028</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">1만~2만</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$5.1만~3.8만</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);font-weight:700">4,660~6,880억</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">2029</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">3만~4만</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$3.3만~3.1만</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);font-weight:700">9,100억~1.13조</td></tr>
+          <tr><td style="padding:5px 8px">2030</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">5만</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono)">$2.97만</td><td style="text-align:right;padding:5px 8px;font-family:var(--mono);font-weight:700;color:#FF6B6B">1.36조</td></tr>
+        </tbody>
+      </table></div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">A/S 액추에이터 포함해 매출 5% 가산 추정. 규모의 경제로 대당 원가는 하락하나 물량 증가로 매출은 우상향. [자체추정]</div>
+    </div>
     </div>
 
     <!-- ③ 감속기사 -->
@@ -289,7 +330,7 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
     <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px">
       <div class="v2-slider-label"><span>🔴 에스비비테크 — 손/그리퍼 하모닉 침투율 (미공개)</span><span class="v2-val" id="v2_v_sbbPen">50%</span></div>
       <input type="range" id="v2_s_sbbPen" min="0" max="100" step="5" value="50" oninput="calcV2()" style="width:100%">
-      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">국내 하모닉 1위 · Atlas 손 기어 미공개라 옵션 · 글로벌 코봇·타 휴머노이드 노출</div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:2px">국내 하모닉 1위 · Atlas 손/그리퍼 감속 미공개 → 시나리오 A(하모닉)면 노출, B(볼·리드 스크루)면 노출 0 · 글로벌 코봇·타 휴머노이드 노출</div>
     </div>
 
     <div style="overflow-x:auto;margin-top:14px">
