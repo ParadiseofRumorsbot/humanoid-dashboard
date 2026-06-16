@@ -764,7 +764,8 @@ const DASHBOARD_DATA = {
       { term: 'Jetson Thor', full: 'NVIDIA Jetson Thor', def: '로봇 온보드 AI 컴퓨터. 2,070 FP4 TFLOPS·14코어 ARM·128GB. ARM RISC 기반(저전력·저발열). GPU+CPU+DLA 통합. Atlas·GR00T의 두뇌', category: 'architecture' },
       { term: 'bVLA·PD-VLA·RTC', full: 'On-device 경량화 3종', def: 'bVLA=1비트 양자화, PD-VLA=병렬 디코딩, RTC=실시간 청킹(Inpainting). 수십억 파라미터 모델을 Jetson급 엣지칩에서 실시간 구동(7B→0.5B, 100→10ms)', category: 'method' },
       { term: 'PSR', full: 'Price-to-Sales Ratio', def: '시가총액 ÷ 매출액. 적자·초기 성장기업 밸류에이션에 활용. BD 추정 시 Peer 평균 21.9배 적용', category: 'valuation' },
-      { term: '풋옵션', full: 'Put Option', def: '정해진 가격에 지분을 되팔 권리. 소프트뱅크가 보유한 BD 잔여지분 9.9%에 대한 풋옵션 만기 2026.6.21', category: 'valuation' },
+      { term: '풋옵션', full: 'Put Option (매도청구권)', def: '정해진 가격에 지분을 되팔 권리. 소프트뱅크 BD 잔여지분 9.9% 대상. 2021.6.21 발행, 행사기간 2026.6.21~7.21(5년 경과 후 30일). 채무불이행 부담금 2.8억$(~4천억원). 규모 고려 시 행사 가능성 낮음', category: 'valuation' },
+      { term: '콜옵션', full: 'Call Option (매수청구권)', def: '정해진 가격에 지분을 매수할 권리. 2025.8.6 신규 주주간 약정으로 체결. 풋옵션 행사기간 만료 후 30일 내(7~8월) 현대차그룹이 행사 가능. 행사 시 HMG 100% 확보 또는 외부 SI 투자 유치 가능', category: 'valuation' },
       { term: 'Proprioception', full: 'Proprioception · 자기수용감각', def: '카메라 없이 관절 위치·속도·힘 등 몸 내부 감각으로 외부 물체에 적응하는 인지 방식. BD Atlas가 냉장고 무게·안착 형태에 적응하는 핵심 메커니즘', category: 'method' },
       { term: 'Reinforcement Learning', full: 'Reinforcement Learning · 강화학습', def: '보상을 최대화하는 방향으로 시행착오를 통해 정책을 학습. BD Atlas는 시뮬레이션에서 수백만 시간 RL로 냉장고 들기를 학습', category: 'method' },
       { term: 'Reference Trajectory', full: 'Reference Trajectory · 참조 궤적', def: '새 행동 학습의 출발점이 되는 목표 동작 데이터. 텔레오퍼레이션 시연·애니메이션·추상적 목표 서술 형태. BD는 냉장고 동작을 애니메이션 참조로 시작', category: 'data' },
@@ -1065,6 +1066,20 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-06-16',
+      title: '삼성전자·구글 BD 지분 투자 동향 · 풋/콜옵션 타임라인 상세화 · BD 유증밸류 추이',
+      source: '언론 종합(2026.06.16) · BD·현대글로비스 공시 · 채널체크 / [자체추정]',
+      changes: [
+        'kr_valuechain: 빅테크 BD 지분 투자 동향 신규 섹션 — 구글(2025년 말 타진→현대차 거절) · 삼성전자(M&A 조직 검토 중)',
+        'kr_valuechain: 풋/콜옵션 2단 타임라인 상세화 — 풋옵션(2021.6.21 발행, 행사 6~7월) + 콜옵션(2025.8.6 신규 체결, 행사 7~8월)',
+        'kr_valuechain: BD 유증밸류 추이 바차트 — 2Q21 1.42조 → 3Q22 1.82조 → 2Q23 1.89조 → 1H24 2.70조 → 3Q25 3.57조',
+        'kr_valuechain: 진입 시나리오 3가지(소뱅 매입·3자배정 유증·정의선 지분 매입) + 2027~2028 HMG-삼성-구글 동맹 시나리오',
+        'valuation: HMG 귀속 비율 시나리오 토글 추가 — 현행 90.1% / 콜옵션 행사 100% / SI 투자 유치 ~90%',
+        'technology: 2Q26 이벤트 패널 — 풋/콜 2단 구조·삼성전자·구글 SI 투자 가능성 반영',
+        'data.js: 콜옵션 용어사전 추가 · 풋옵션 설명 상세화(행사기간·채무불이행 부담금)',
+      ],
+    },
     {
       date: '2026-06-15',
       title: '로보티즈 260612 탐방 반영 — 실적·밸류·2030E 시나리오 + Sim2Real 리스크',
