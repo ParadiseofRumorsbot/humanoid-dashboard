@@ -107,7 +107,7 @@ const DASHBOARD_DATA = {
     { id: 'copper', name: '구리 (모터 권선)', unit: 'kg', qty: 5.0, price: 9.5, priceUnit: '$/kg',
       note: 'LME 기준. 10억대×5kg = 500만톤 (세계 채굴량 24%)', color: '#E17055' },
     { id: 'sensor', name: '센서 (LiDAR·토크·IMU)', unit: '세트', qty: 1, price: 1500, priceUnit: '$/세트',
-      note: '제조원가 비중 약 15%. 촉각센서 원가 11%', color: '#00B894' },
+      note: '제조원가 비중 약 15%. 위치·전류센서=ALGM, 토크·촉각=VPG. 촉각센서 원가 11%', color: '#00B894' },
     { id: 'compute', name: 'AI SoC / 엣지칩', unit: '개', qty: 1, price: 500, priceUnit: '$/개',
       note: 'DEEPX DX-M1 NPU 30FPS/5W. SW 비중 6%', color: '#0984E3' },
     { id: 'structure', name: '구조체 (프레임·케이블)', unit: '세트', qty: 1, price: 800, priceUnit: '$/세트',
@@ -155,6 +155,13 @@ const DASHBOARD_DATA = {
       { name: 'CATL', ms: 0.25, ticker: '300750.SZ', flag: '🇨🇳' },
       { name: 'Panasonic', ms: 0.10, ticker: '6752.JP', flag: '🇯🇵' },
       { name: '기타', ms: 0.20, ticker: '-', flag: '🌐' },
+    ],
+    sensor: [
+      { name: 'Cognex', ms: 0.15, ticker: 'CGNX', flag: '🇺🇸' },
+      { name: 'Novanta (ATI)', ms: 0.10, ticker: 'NOVT', flag: '🇺🇸' },
+      { name: 'Allegro', ms: 0.08, ticker: 'ALGM', flag: '🇺🇸' },
+      { name: 'VPG', ms: 0.05, ticker: 'VPG', flag: '🇺🇸' },
+      { name: '기타', ms: 0.62, ticker: '-', flag: '🌐' },
     ],
   },
 

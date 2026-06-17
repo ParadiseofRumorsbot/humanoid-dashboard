@@ -204,12 +204,45 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">등급은 공개정보 기반 정성 평가(공식 지표 아님). 자동차 부품사는 '하드웨어·양산' 진입이 쉬우나 공통 부족분은 로봇특화 Sim2Real·AI·데이터·생태계. 출처: 언론종합 · 자체정리</div>
   </section>
 
+  <section class="card section-gap" style="border-left:4px solid #FF6B6B">
+    <div class="card-title">🔌 모터 제어 레이어 장악도 + sensorless 대체 리스크 <span class="badge" style="background:#FF6B6B;color:#fff">자체정리</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px">위 'NVIDIA vs Google'가 <b>AI 밸류체인 레이어</b>(에너지→칩→모델→앱) 전쟁이라면, 관절 하나 안에도 <b>모터 제어 레이어</b> 전쟁이 있다. 브레인→MCU/FOC→게이트드라이버→FET→모터, 센서 피드백까지 층마다 다른 회사가 장악한다.</p>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">제어 레이어</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">역할</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">장악 기업</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;color:#6C5CE7">브레인</td><td style="padding:7px 9px;white-space:normal">전신 동역학·RL 정책(GR00T)</td><td style="padding:7px 9px;white-space:normal">NVIDIA</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;color:#0984E3">MCU + FOC</td><td style="padding:7px 9px;white-space:normal">실시간 관절 제어·정류·전류루프</td><td style="padding:7px 9px;white-space:normal">STM·TI·ADI·Infineon <span style="color:var(--ink-3)">(ALGM 부재)</span></td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;color:#6C5CE7">게이트드라이버·전류센서</td><td style="padding:7px 9px;white-space:normal">BLDC 구동·상전류·과전류 보호</td><td style="padding:7px 9px;white-space:normal;font-weight:600">ALGM·Infineon·TI·ST</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;color:#00B894">각도/위치센서</td><td style="padding:7px 9px;white-space:normal">로터·관절 절대각(TMR·인덕티브)</td><td style="padding:7px 9px;white-space:normal;font-weight:600">ALGM·ams-OSRAM·MPS·Melexis</td></tr>
+        <tr style="background:rgba(225,112,85,0.06)"><td style="padding:7px 9px;font-weight:600;color:#E17055">관절토크·촉각센서</td><td style="padding:7px 9px;white-space:normal">실제 출력토크·힘·촉각(외측 루프)</td><td style="padding:7px 9px;white-space:normal;font-weight:600">VPG·ATI(Novanta)·Bota·FUTEK / 中 蓝点·坤维</td></tr>
+      </tbody>
+    </table></div>
+    <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#FF6B6B">⚠️ sensorless 대체 리스크:</b> 저가 설계는 관절 토크를 <b>물리 토크센서 없이 모터 전류로 추정</b>(ALGM 전류센서 몇 센트 + 동역학·마찰모델·RL). 비용 압박 시 <b>VPG의 대당 $400~500 토크센서 콘텐츠가 통째로 증발</b> 가능(중간 루프 직격). STM-NVIDIA(STM32+Holoscan↔Jetson Thor)가 이 sensorless 추정을 산업화 중. <span style="font-size:9px;color:var(--ink-3)">[자체정리]</span></div>
+    <div style="background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:8px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#00936f">↔ 반론 — 층위별로 다르다:</b> ① <b>ALGM 전류센서</b>는 FOC뿐 아니라 <b>1μs 하드웨어 과전류 차단(안전 반사)</b>용 → 소프트웨어 추정으로 대체 불가(물리 측정 필수). ② VPG <b>토크센서(중간 루프)</b>는 대체 위험 ↑↑. ③ VPG <b>촉각(상위 루프)</b>은 모델로 복원 불가 → 대체 불가·오히려 보완. "sensorless가 다 잡아먹는다"는 단순화는 틀림. <span style="font-size:9px;color:var(--ink-3)">[자체정리]</span></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">ALGM=Allegro MicroSystems(미국)·VPG=Vishay Precision Group(미국). 부품 상세는 부품기술 탭, 기업은 US 밸류체인 탭. 출처: ALGM/VPG 트랜스크립트·자체정리</div>
+  </section>
+
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
     <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-06-17</span>
+          <span style="font-size:12px;font-weight:600">모터 제어 레이어 장악도 + sensorless 대체 리스크 카드 신설</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">ALGM/VPG 트랜스크립트 · 자체정리</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>제어 레이어별(브레인/MCU·FOC/게이트드라이버·전류/각도/토크·촉각) 장악 기업 매핑</li>
+          <li>sensorless 추정이 VPG 토크센서($400~500) 대체 위험 + 반론(ALGM 전류센서 1μs 안전반사는 대체 불가, 층위별 차등)</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-06-08</span>

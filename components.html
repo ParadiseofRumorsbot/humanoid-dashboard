@@ -715,6 +715,202 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체추정 · 언론 종합 · NVIDIA 공식</div>
   </section>
 
+  <!-- ═══ 1.5b 실시간 제어 시뮬레이터 (FOC + 하드웨어 보호) ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #0984E3">
+    <div class="card-title">🔄 관절 1개 실시간 제어 시뮬레이터 — FOC + 하드웨어 보호 <span class="badge" style="background:#0984E3;color:#fff">인터랙티브</span></div>
+    <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">위 흐름도의 <b>내부 루프(~10kHz)</b>를 직접 돌려보는 시뮬레이터. MCU(FOC)→Gate Driver(증폭)→FET(3상 스위칭)→모터 회전, 그리고 <b style="color:#00936f">ALGM 각도·전류센서</b>가 되먹임. 오른쪽 버튼으로 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">충돌/과전류</span>를 발생시키면, MCU 연산(ms)을 안 기다리고 <b>전류센서→게이트드라이버 직결(1μs)</b>로 FET를 강제 차단하는 '무조건 반사(하드웨어 보호)'가 작동한다.</p>
+
+    <style>
+    #s2m_sim .signal-path{fill:none;stroke-width:3;stroke-dasharray:10,10;animation:s2m_flow 1s linear infinite}
+    #s2m_sim .signal-path.pwm{stroke:#0984E3}
+    #s2m_sim .signal-path.power{stroke:#F8B739;stroke-width:5}
+    #s2m_sim .signal-path.feedback{stroke:#00B894}
+    #s2m_sim .signal-path.protect{stroke:#FF6B6B;stroke-width:4;stroke-dasharray:5,5}
+    @keyframes s2m_flow{from{stroke-dashoffset:20}to{stroke-dashoffset:0}}
+    #s2m_sim .anim-speed-control{animation-duration:var(--anim-speed,1s)}
+    #s2m_sim .spin{animation:s2m_spin var(--anim-speed,1s) linear infinite}
+    #s2m_sim #s2m_rotor{transform-origin:60px 80px}
+    @keyframes s2m_spin{100%{transform:rotate(360deg)}}
+    #s2m_sim .alert-pulse{animation:s2m_pulse 1s cubic-bezier(.4,0,.6,1) infinite}
+    @keyframes s2m_pulse{0%,100%{opacity:1}50%{opacity:.45}}
+    #s2m_sim .shake{animation:s2m_shake .5s infinite}
+    @keyframes s2m_shake{0%,100%{transform:translate(1px,1px) rotate(0)}25%{transform:translate(-2px,1px) rotate(1deg)}50%{transform:translate(2px,-1px) rotate(-1deg)}75%{transform:translate(-1px,2px) rotate(1deg)}}
+    #s2m_sim .cut-mark{stroke:#FF6B6B;stroke-width:6;stroke-linecap:round;opacity:0;transition:opacity .2s}
+    #s2m_sim .cut-mark.show-cut{opacity:1}
+    #s2m_sim .hide-flow{opacity:.12;animation:none!important}
+    #s2m_sim .s2m-hidden{display:none}
+    #s2m_toggleBtn{font-family:var(--mono);font-size:11px;font-weight:700;padding:7px 16px;border-radius:6px;border:1px solid #00B894;background:#00B894;color:#fff;cursor:pointer;transition:background .15s}
+    </style>
+
+    <div id="s2m_sim">
+      <div class="ctrl-row" style="justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:180px;max-width:300px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3);white-space:nowrap">부하 / 속도</span>
+          <input type="range" id="s2m_speedSlider" class="sim-slider" min="10" max="100" value="50">
+        </div>
+        <button id="s2m_toggleBtn">정상 작동 중</button>
+      </div>
+
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:10px;padding:8px;margin:10px 0;overflow-x:auto">
+        <svg viewBox="0 0 1000 600" style="width:100%;min-width:680px;max-width:940px;display:block;margin:0 auto">
+          <defs>
+            <filter id="s2m_glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter>
+            <marker id="s2m_arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0984E3"/></marker>
+            <marker id="s2m_arrowYellow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#F8B739"/></marker>
+            <marker id="s2m_arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#00B894"/></marker>
+            <marker id="s2m_arrowRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#FF6B6B"/></marker>
+          </defs>
+          <path id="s2m_pathPwm" d="M 220 200 C 300 200, 350 150, 420 150" class="signal-path pwm anim-speed-control" marker-end="url(#s2m_arrowBlue)"/>
+          <text x="300" y="170" fill="#0984E3" font-size="12" font-weight="700">PWM 제어 신호</text>
+          <path id="s2m_pathGate" d="M 490 190 L 490 320" class="signal-path pwm anim-speed-control" marker-end="url(#s2m_arrowBlue)"/>
+          <text x="500" y="260" fill="#0984E3" font-size="12" font-weight="700">게이트 증폭 전압</text>
+          <path id="s2m_pathPower" d="M 560 360 C 650 360, 700 360, 760 360" class="signal-path power anim-speed-control" marker-end="url(#s2m_arrowYellow)"/>
+          <text x="624" y="345" fill="#B8860B" font-size="12" font-weight="700">3상 교류 전력 (U,V,W)</text>
+          <path id="s2m_pathCurrFb" d="M 680 380 C 680 480, 200 480, 160 310" class="signal-path feedback anim-speed-control" marker-end="url(#s2m_arrowGreen)"/>
+          <text x="330" y="470" fill="#00936f" font-size="12" font-weight="700">전류 센싱 데이터 (FOC 연산용)</text>
+          <path id="s2m_pathAngFb" d="M 880 330 C 880 50, 160 50, 160 110" class="signal-path feedback anim-speed-control" marker-end="url(#s2m_arrowGreen)"/>
+          <text x="440" y="40" fill="#00936f" font-size="12" font-weight="700">축 회전 각도 (On-Axis)</text>
+          <path id="s2m_pathProtect" d="M 680 340 C 680 250, 580 150, 560 150" stroke="#FF6B6B" stroke-width="2" fill="none" stroke-dasharray="4,4" marker-end="url(#s2m_arrowRed)"/>
+          <text x="596" y="220" fill="#FF6B6B" font-size="12" font-weight="700" id="s2m_textProtect">하드웨어 차단 라인 (대기중)</text>
+          <g id="s2m_cutMarker" class="cut-mark" transform="translate(490,260)">
+            <line x1="-15" y1="-15" x2="15" y2="15"/><line x1="15" y1="-15" x2="-15" y2="15"/>
+            <text x="25" y="5" fill="#FF6B6B" font-size="14" font-weight="bold" stroke="none">강제 차단!</text>
+          </g>
+          <g transform="translate(60,110)">
+            <rect width="160" height="200" rx="10" fill="var(--bg-card)" stroke="#0984E3" stroke-width="3" filter="url(#s2m_glow)"/>
+            <rect x="10" y="10" width="140" height="180" rx="5" fill="var(--bg-soft)" stroke="var(--line)" stroke-width="1"/>
+            <text x="80" y="40" fill="var(--ink)" font-size="18" font-weight="bold" text-anchor="middle">MCU</text>
+            <text x="80" y="64" fill="var(--ink-3)" font-size="12" text-anchor="middle">상위 모션 제어기</text>
+            <line x1="20" y1="80" x2="140" y2="80" stroke="var(--line-s)" stroke-width="2"/>
+            <rect x="20" y="100" width="120" height="40" rx="5" fill="rgba(9,132,227,0.12)" stroke="#0984E3"/>
+            <text x="80" y="125" fill="#0984E3" font-size="14" font-weight="bold" text-anchor="middle">FOC 알고리즘</text>
+            <circle cx="80" cy="170" r="15" fill="var(--bg-card)" stroke="#00B894" stroke-width="2"/>
+            <text x="80" y="174" fill="#00936f" font-size="10" text-anchor="middle">ADC</text>
+          </g>
+          <g transform="translate(420,110)" id="s2m_gateDriverNode">
+            <rect width="140" height="80" rx="8" fill="var(--bg-card)" stroke="#6C5CE7" stroke-width="3" filter="url(#s2m_glow)"/>
+            <text x="70" y="34" fill="var(--ink)" font-size="16" font-weight="bold" text-anchor="middle">Gate Driver</text>
+            <text x="70" y="58" fill="#6C5CE7" font-size="11" text-anchor="middle">신호 증폭 / 보호</text>
+            <rect x="10" y="45" width="40" height="20" rx="3" fill="#FF6B6B" fill-opacity="0" stroke="#FF6B6B" stroke-width="1" id="s2m_desatLogic"/>
+            <text x="30" y="59" fill="#FF6B6B" font-size="9" text-anchor="middle" id="s2m_desatText" opacity="0.5">OCP</text>
+          </g>
+          <g transform="translate(420,320)" id="s2m_fetNode">
+            <rect width="140" height="80" rx="8" fill="var(--bg-card)" stroke="#F8B739" stroke-width="3"/>
+            <text x="70" y="34" fill="var(--ink)" font-size="16" font-weight="bold" text-anchor="middle">FET Inverter</text>
+            <text x="70" y="58" fill="#B8860B" font-size="11" text-anchor="middle">전력 스위칭 (DC→AC)</text>
+            <path d="M 20 40 L 40 40 M 30 20 L 30 60" stroke="#B8860B" stroke-width="2" opacity="0.4"/>
+          </g>
+          <g transform="translate(760,280)" id="s2m_motorNode">
+            <circle cx="60" cy="80" r="70" fill="var(--bg-soft)" stroke="var(--ink-3)" stroke-width="4"/>
+            <g class="spin anim-speed-control" id="s2m_rotor">
+              <circle cx="60" cy="80" r="50" fill="#C5C3B7"/>
+              <rect x="50" y="35" width="20" height="20" fill="#FF6B6B" rx="2"/>
+              <rect x="50" y="105" width="20" height="20" fill="#0984E3" rx="2"/>
+              <rect x="15" y="70" width="20" height="20" fill="#FF6B6B" rx="2"/>
+              <rect x="85" y="70" width="20" height="20" fill="#0984E3" rx="2"/>
+              <circle cx="60" cy="80" r="10" fill="var(--ink-3)"/>
+            </g>
+            <text x="60" y="180" fill="var(--ink)" font-size="15" font-weight="bold" text-anchor="middle">휴머노이드 관절 모터</text>
+            <text x="60" y="86" fill="#FF6B6B" font-size="20" font-weight="bold" text-anchor="middle" id="s2m_stallWarnText" class="s2m-hidden">STALL!</text>
+          </g>
+          <g transform="translate(860,340)">
+            <rect width="40" height="40" rx="5" fill="var(--bg-card)" stroke="#00B894" stroke-width="2"/>
+            <circle cx="20" cy="20" r="10" fill="none" stroke="#00B894" stroke-width="1" stroke-dasharray="2,2"/>
+            <text x="20" y="-8" fill="#00936f" font-size="11" font-weight="bold" text-anchor="middle">ALGM</text>
+            <text x="20" y="56" fill="#00936f" font-size="10" text-anchor="middle">각도 센서</text>
+          </g>
+          <g transform="translate(660,340)" id="s2m_currSensorNode">
+            <rect width="40" height="40" rx="5" fill="var(--bg-card)" stroke="#00B894" stroke-width="2"/>
+            <path d="M 10 20 C 10 10, 30 10, 30 20 C 30 30, 10 30, 10 20" fill="none" stroke="#00B894" stroke-width="1"/>
+            <text x="20" y="-8" fill="#00936f" font-size="11" font-weight="bold" text-anchor="middle">ALGM</text>
+            <text x="20" y="56" fill="#00936f" font-size="10" text-anchor="middle">전류 센서</text>
+          </g>
+        </svg>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">시스템 상태 모니터</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:11px">
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-2)">MCU 제어 루프</span><span id="s2m_stMcu" style="color:#0984E3;font-weight:700">10 kHz 정상</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-2)">파워단 인버터</span><span id="s2m_stFet" style="color:#B8860B;font-weight:700">스위칭 중</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-2)">위치 피드백</span><span style="color:#00936f">On-Axis 수신중</span></div>
+            <div style="display:flex;justify-content:space-between"><span style="color:var(--ink-2)">상전류 감지</span><span id="s2m_stCurr" style="color:#00936f">정상 (&lt;20A)</span></div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:6px"><span style="color:var(--ink-2)">보호 회로(게이트)</span><span id="s2m_stProtect" style="color:var(--ink-3)">대기 중</span></div>
+          </div>
+        </div>
+        <div id="s2m_stallAlertInfo" class="s2m-hidden" style="background:rgba(255,107,107,0.07);border:2px solid #FF6B6B;border-radius:8px;padding:12px 14px">
+          <div style="font-size:12px;font-weight:700;color:#FF6B6B;margin-bottom:6px">⚠️ 무조건 반사 (하드웨어 보호) 발동!</div>
+          <div style="font-size:10.5px;color:#c62828;font-weight:700;margin-bottom:6px">발생 원인: 관절 충돌 / 모터 구속 (Stall)</div>
+          <ol style="font-size:10px;color:var(--ink-2);line-height:1.65;padding-left:15px;margin:0">
+            <li><b>ALGM 전류 센서</b>가 과전류 스파이크(&gt;100A) 감지</li>
+            <li>MCU 소프트웨어 연산(ms)을 기다리지 않음</li>
+            <li>센서 신호 → <b>Gate Driver 직접 전달</b>(하드웨어 라인)</li>
+            <li>Gate Driver가 <b>1μs 이내 FET 강제 차단</b> → 화재·파손 방지</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">위젯이 안 보여주는 바깥 2개 루프 (VPG 영역)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+      <div style="background:rgba(225,112,85,0.06);border-left:3px solid #E17055;border-radius:0 8px 8px 0;padding:10px 13px">
+        <div style="font-size:11px;font-weight:700;color:#E17055;margin-bottom:3px">중간 루프 — 관절 토크센서 (VPG)</div>
+        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">감속기 後단 <b>실제 출력토크 직접측정</b>. 내부루프의 전류추정값(모터축)을 교정. 컴플라이언스·충돌 감지.</div>
+      </div>
+      <div style="background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 8px 8px 0;padding:10px 13px">
+        <div style="font-size:11px;font-weight:700;color:#00936f;margin-bottom:3px">상위 루프 — 6축 F/T·촉각 (VPG)</div>
+        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">손목·발목 <b>6축 힘/토크</b>(ZMP 균형)·손끝 <b>촉각 e-skin</b>(파지력·미끄럼) → 브레인 직결.</div>
+      </div>
+    </div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+      <b>누가 만드나:</b> <span style="color:#00936f;font-weight:600">ALGM</span> = 게이트드라이버 + 각도/전류센서 <span style="color:var(--ink-3)">(⚠️ MCU·FET·모터는 미생산)</span> · <span style="color:#E17055;font-weight:600">VPG</span> = 관절 토크센서·촉각(additive) · <b>STM/TI/ADI</b> = MCU+FOC · <b>NVIDIA</b> = 브레인. <span style="color:var(--ink-3)">각도센서 경쟁=ams·MPS·Melexis / 전류=Infineon.</span>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">위젯은 ALGM 관점 예시(내부 루프 + 하드웨어 보호). 출처: 자체정리 · ALGM/VPG 트랜스크립트</div>
+
+    <script>
+    (function(){
+      var $=function(id){return document.getElementById(id)};
+      var tg=$('s2m_toggleBtn'),sl=$('s2m_speedSlider'),sim=$('s2m_sim');
+      var pathGate=$('s2m_pathGate'),pathPower=$('s2m_pathPower'),cutMarker=$('s2m_cutMarker'),pathProtect=$('s2m_pathProtect'),textProtect=$('s2m_textProtect');
+      var rotor=$('s2m_rotor'),motorNode=$('s2m_motorNode'),currNode=$('s2m_currSensorNode'),gateNode=$('s2m_gateDriverNode'),stallWarn=$('s2m_stallWarnText'),desatLogic=$('s2m_desatLogic'),desatText=$('s2m_desatText');
+      var stFet=$('s2m_stFet'),stCurr=$('s2m_stCurr'),stProtect=$('s2m_stProtect'),stallInfo=$('s2m_stallAlertInfo');
+      if(!tg)return;
+      var isStall=false;
+      function updateSpeed(){if(isStall)return;var d=2.2-(+sl.value*0.02);sim.style.setProperty('--anim-speed',d+'s')}
+      sl.addEventListener('input',updateSpeed);updateSpeed();
+      tg.addEventListener('click',function(){
+        isStall=!isStall;
+        if(isStall){
+          tg.textContent='충돌/과전류 발생 (Stall)';tg.style.background='#FF6B6B';tg.style.borderColor='#FF6B6B';tg.classList.add('alert-pulse');
+          sl.disabled=true;sl.style.opacity=.5;
+          rotor.style.animationPlayState='paused';motorNode.classList.add('shake');stallWarn.classList.remove('s2m-hidden');
+          pathGate.classList.add('hide-flow');pathPower.classList.add('hide-flow');cutMarker.classList.add('show-cut');
+          pathProtect.classList.add('signal-path','protect');textProtect.textContent='과전류 감지! 즉각 차단 (1μs)';textProtect.classList.add('alert-pulse');
+          currNode.classList.add('alert-pulse');currNode.querySelector('rect').setAttribute('stroke','#FF6B6B');
+          gateNode.querySelector('rect').setAttribute('stroke','#FF6B6B');desatLogic.setAttribute('fill-opacity','0.5');desatText.setAttribute('opacity','1');desatText.setAttribute('fill','#c62828');
+          stFet.textContent='강제 차단 (0V)';stFet.style.color='#FF6B6B';
+          stCurr.textContent='과전류 (>100A)';stCurr.style.color='#FF6B6B';stCurr.classList.add('alert-pulse');
+          stProtect.textContent='개입 완료 (반사 작동)';stProtect.style.color='#FF6B6B';stProtect.style.fontWeight='700';
+          stallInfo.classList.remove('s2m-hidden');
+        }else{
+          tg.textContent='정상 작동 중';tg.style.background='#00B894';tg.style.borderColor='#00B894';tg.classList.remove('alert-pulse');
+          sl.disabled=false;sl.style.opacity=1;
+          rotor.style.animationPlayState='running';motorNode.classList.remove('shake');stallWarn.classList.add('s2m-hidden');
+          pathGate.classList.remove('hide-flow');pathPower.classList.remove('hide-flow');cutMarker.classList.remove('show-cut');
+          pathProtect.classList.remove('signal-path','protect');textProtect.textContent='하드웨어 차단 라인 (대기중)';textProtect.classList.remove('alert-pulse');
+          currNode.classList.remove('alert-pulse');currNode.querySelector('rect').setAttribute('stroke','#00B894');
+          gateNode.querySelector('rect').setAttribute('stroke','#6C5CE7');desatLogic.setAttribute('fill-opacity','0');desatText.setAttribute('opacity','0.5');desatText.setAttribute('fill','#FF6B6B');
+          stFet.textContent='스위칭 중';stFet.style.color='#B8860B';
+          stCurr.textContent='정상 (<20A)';stCurr.style.color='#00936f';stCurr.classList.remove('alert-pulse');
+          stProtect.textContent='대기 중';stProtect.style.color='var(--ink-3)';stProtect.style.fontWeight='400';
+          stallInfo.classList.add('s2m-hidden');updateSpeed();
+        }
+      });
+    })();
+    </script>
+  </section>
+
   <!-- ═══ 1.6 AI 추론·제어 풀스택 파이프라인 ═══ -->
   <section class="card section-gap" style="border-left:4px solid #6C5CE7">
     <div class="card-title">🧠 AI 추론·제어 풀스택 파이프라인 — 모델만으론 안 움직인다 <span class="badge" style="background:#6C5CE7;color:#fff">센서→모터</span></div>
@@ -963,6 +1159,17 @@ window.addEventListener('DOMContentLoaded', () => {
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-06-17</span>
+          <span style="font-size:12px;font-weight:600">실시간 제어 시뮬레이터(FOC+하드웨어 보호) + ALGM/VPG 센서</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">자체정리 · ALGM/VPG 트랜스크립트</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>🔄 관절 1개 실시간 제어 시뮬레이터: MCU(FOC)→Gate Driver→FET→모터 + ALGM 각도·전류센서 피드백 + 과전류 1μs 하드웨어 차단(무조건 반사) 인터랙티브</li>
+          <li>VPG 중간 루프(관절 토크센서)·상위 루프(6축 F/T·촉각) 보완 + "누가 만드나" 범례(ALGM=드라이버+센서 / VPG=토크·촉각 / STM·TI=MCU+FOC / NVIDIA=브레인)</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-06-03</span>

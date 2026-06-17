@@ -19,7 +19,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 <script>
 const SC={sne_base:{name:'SNE Base',s:{2025:[13.4],2026:[50],2027:[100],2028:[200],2029:[400],2030:[690],2032:[1800],2035:[6790],2040:[53300]}},gs_bull:{name:'GS Bull',s:{2025:[13.4],2026:[50],2027:[80],2028:[130],2029:[190],2030:[250],2032:[550],2035:[1400],2040:[23000]}},oecd_replace:{name:'OECD 대체율',s:{2025:[15],2026:[70],2027:[189],2028:[361],2029:[667],2030:[1167],2032:[2986],2035:[10000],2040:[21609]}},tesla_acc:{name:'Tesla 가속',s:{2025:[13.4],2026:[80],2027:[200],2028:[500],2029:[800],2030:[1200],2032:[3500],2035:[12000],2040:[100000]}}};
 const BOM=[{id:'battery',n:'배터리 팩',qty:2.3,p:130,c:'#4ecdc4'},{id:'harmonic',n:'하모닉 감속기',qty:20,p:350,c:'#FF6B6B'},{id:'rv_gear',n:'RV 감속기',qty:4,p:800,c:'#C44569'},{id:'servo',n:'서보모터',qty:28,p:120,c:'#F8B739'},{id:'inverter',n:'인버터',qty:28,p:15,c:'#6C5CE7'},{id:'ndfeb',n:'NdFeB 자석',qty:2,p:95,c:'#A29BFE'},{id:'copper',n:'구리',qty:5,p:9.5,c:'#E17055'},{id:'sensor',n:'센서',qty:1,p:1500,c:'#00B894'},{id:'compute',n:'AI SoC',qty:1,p:500,c:'#0984E3'},{id:'structure',n:'구조체',qty:1,p:800,c:'#636E72'}];
-const CO={harmonic:[{n:'HDS',ms:.65,t:'6324.JP',f:'🇯🇵'},{n:'중국 업체',ms:.25,f:'🇨🇳'},{n:'기타',ms:.10,f:'🌐'}],rv_gear:[{n:'Nabtesco',ms:.60,t:'6268.JP',f:'🇯🇵'},{n:'기타',ms:.40,f:'🌐'}],servo:[{n:'Yaskawa',ms:.20,t:'6506.JP',f:'🇯🇵'},{n:'Regal Rexnord',ms:.15,t:'RRX',f:'🇺🇸'},{n:'Nidec',ms:.12,t:'6594.JP',f:'🇯🇵'},{n:'현대모비스',ms:.10,t:'012330',f:'🇰🇷'},{n:'HL만도',ms:.08,t:'204320',f:'🇰🇷'},{n:'중국',ms:.20,f:'🇨🇳'},{n:'기타',ms:.15,f:'🌐'}],inverter:[{n:'Infineon',ms:.25,t:'IFNNY',f:'🇩🇪'},{n:'Onsemi',ms:.20,t:'ON',f:'🇺🇸'},{n:'STMicro',ms:.18,t:'STM',f:'🇪🇺'},{n:'ROHM',ms:.12,f:'🇯🇵'},{n:'Wolfspeed',ms:.08,t:'WOLF',f:'🇺🇸'},{n:'기타',ms:.17,f:'🌐'}],ndfeb:[{n:'중국',ms:.85,f:'🇨🇳'},{n:'MP Materials',ms:.05,t:'MP',f:'🇺🇸'},{n:'Lynas',ms:.05,t:'LYC',f:'🇦🇺'},{n:'기타',ms:.05,f:'🌐'}],battery:[{n:'LGES',ms:.30,t:'373220',f:'🇰🇷'},{n:'CATL',ms:.25,f:'🇨🇳'},{n:'삼성SDI',ms:.15,t:'006400',f:'🇰🇷'},{n:'Panasonic',ms:.10,f:'🇯🇵'},{n:'기타',ms:.20,f:'🌐'}],copper:[{n:'Freeport',ms:.08,t:'FCX',f:'🇺🇸'},{n:'S.Copper',ms:.05,t:'SCCO',f:'🇲🇽'},{n:'기타',ms:.87,f:'🌐'}],sensor:[{n:'Cognex',ms:.15,t:'CGNX',f:'🇺🇸'},{n:'Novanta',ms:.10,t:'NOVT',f:'🇺🇸'},{n:'기타',ms:.75,f:'🌐'}]};
+const CO={harmonic:[{n:'HDS',ms:.65,t:'6324.JP',f:'🇯🇵'},{n:'중국 업체',ms:.25,f:'🇨🇳'},{n:'기타',ms:.10,f:'🌐'}],rv_gear:[{n:'Nabtesco',ms:.60,t:'6268.JP',f:'🇯🇵'},{n:'기타',ms:.40,f:'🌐'}],servo:[{n:'Yaskawa',ms:.20,t:'6506.JP',f:'🇯🇵'},{n:'Regal Rexnord',ms:.15,t:'RRX',f:'🇺🇸'},{n:'Nidec',ms:.12,t:'6594.JP',f:'🇯🇵'},{n:'현대모비스',ms:.10,t:'012330',f:'🇰🇷'},{n:'HL만도',ms:.08,t:'204320',f:'🇰🇷'},{n:'중국',ms:.20,f:'🇨🇳'},{n:'기타',ms:.15,f:'🌐'}],inverter:[{n:'Infineon',ms:.25,t:'IFNNY',f:'🇩🇪'},{n:'Onsemi',ms:.20,t:'ON',f:'🇺🇸'},{n:'STMicro',ms:.18,t:'STM',f:'🇪🇺'},{n:'ROHM',ms:.12,f:'🇯🇵'},{n:'Wolfspeed',ms:.08,t:'WOLF',f:'🇺🇸'},{n:'기타',ms:.17,f:'🌐'}],ndfeb:[{n:'중국',ms:.85,f:'🇨🇳'},{n:'MP Materials',ms:.05,t:'MP',f:'🇺🇸'},{n:'Lynas',ms:.05,t:'LYC',f:'🇦🇺'},{n:'기타',ms:.05,f:'🌐'}],battery:[{n:'LGES',ms:.30,t:'373220',f:'🇰🇷'},{n:'CATL',ms:.25,f:'🇨🇳'},{n:'삼성SDI',ms:.15,t:'006400',f:'🇰🇷'},{n:'Panasonic',ms:.10,f:'🇯🇵'},{n:'기타',ms:.20,f:'🌐'}],copper:[{n:'Freeport',ms:.08,t:'FCX',f:'🇺🇸'},{n:'S.Copper',ms:.05,t:'SCCO',f:'🇲🇽'},{n:'기타',ms:.87,f:'🌐'}],sensor:[{n:'Cognex',ms:.15,t:'CGNX',f:'🇺🇸'},{n:'Novanta(ATI)',ms:.10,t:'NOVT',f:'🇺🇸'},{n:'Allegro',ms:.08,t:'ALGM',f:'🇺🇸'},{n:'VPG',ms:.05,t:'VPG',f:'🇺🇸'},{n:'기타',ms:.62,f:'🌐'}]};
 const CAP={harmonic:{n:'하모닉 감속기',u:'만개',c:100},ndfeb:{n:'NdFeB 자석',u:'만톤',c:20},copper:{n:'구리',u:'만톤',c:2100}};
 const FX=1450;
 let sc='sne_base',yr=2030;
@@ -62,6 +62,7 @@ window.addEventListener('DOMContentLoaded',render);
   <section class="card section-gap">
     <div class="card-title">💰 기업별 TAM <span class="badge" style="background:var(--ink);color:var(--bg)">M/S 기반 배분</span></div>
     <div class="scroll-x"><div id="cg" style="display:grid;grid-template-columns:110px 140px 55px 90px 70px;gap:0;font-family:var(--mono);font-size:11px"></div></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">센서 M/S는 자체추정 — ALGM(위치·전류센서·게이트드라이버)·VPG(관절 토크·촉각센서) 포함. 인버터(제어칩)=Infineon·STMicro·Onsemi. ALGM/VPG 기업 상세는 US 밸류체인·부품기술 탭 참조.</div>
   </section>
   <section class="card section-gap">
     <div class="card-title">🔥 공급 병목 히트맵 <span class="badge" style="background:#c62828;color:#fff">수요/CAPA</span></div>
@@ -140,6 +141,16 @@ window.addEventListener('DOMContentLoaded',render);
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-06-17</span>
+          <span style="font-size:12px;font-weight:600">센서 M/S에 ALGM·VPG 배분 추가</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">ALGM/VPG 트랜스크립트 · 자체추정</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>기업별 TAM 센서 항목에 Allegro(위치·전류)·VPG(토크·촉각) M/S 추가 → 센서 TAM 자동 배분</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-06-15</span>
