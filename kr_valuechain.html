@@ -483,6 +483,62 @@ window.addEventListener('DOMContentLoaded',()=>{
     <div style="font-size:10px;color:var(--ink-3)">출처: 언론 종합 / 채널체크 / [자체추정]</div>
   </section>
 
+  <!-- ═══ 딜 파급효과 & 기업별 밸류 임팩트 (토글) ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #FF6B6B">
+    <div style="cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;gap:8px" onclick="var t=this.nextElementSibling;var b=this.querySelector('.tgl-btn');if(t.style.maxHeight==='0px'){t.style.maxHeight='5200px';b.textContent='▲ 접기'}else{t.style.maxHeight='0px';b.textContent='▼ 펼치기'}">
+      <span style="font-weight:700;font-size:14px">📊 이번 딜 파급효과 &amp; 기업별 밸류 임팩트 <span class="badge" style="background:#FF6B6B;color:#fff">소뱅 9.65% 인수</span></span>
+      <span class="tgl-btn" style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg-soft);padding:3px 10px;border-radius:4px;white-space:nowrap">▼ 펼치기</span>
+    </div>
+    <div style="max-height:0px;overflow:hidden;transition:max-height .35s ease">
+      <div style="padding-top:16px">
+
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px">① 딜 파급효과</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;font-size:10.5px;color:var(--ink-2);line-height:1.6"><b style="color:#00B894">오버행 해소</b><br>소뱅 풋옵션 불확실성(시점·인수주체) 제거 + 잔여 외부지분 정리 → 지배구조 단순화·의사결정 속도↑</div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;font-size:10.5px;color:var(--ink-2);line-height:1.6"><b style="color:#0984E3">IPO 가속</b><br>100% 단독 보유 → Pre-IPO서 fair price 형성 후 나스닥 상장. 묻혀 있던 BD 가치가 시장에서 표면화</div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;font-size:10.5px;color:var(--ink-2);line-height:1.6"><b style="color:#FF6B6B">저가 인수 = 그룹 이익</b><br>풋옵션가 환산 ~5조 vs 시장평가 ~30조·자체추정 123조. 단 BD 공정가치·손상 회계 이슈 소지 [자체추정]</div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;font-size:10.5px;color:var(--ink-2);line-height:1.6"><b style="color:#6C5CE7">RAI 매각 교통정리</b><br>4.24억$ 출자 → 1억$ 매각(매각손 가능). 선행연구=소뱅 / 상용화=현대차, 역할 분리</div>
+        </div>
+
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px">② BD 지분 귀속가치 — 밸류 시나리오별 [자체추정]</div>
+        <div style="overflow-x:auto;margin-bottom:6px">
+          <table style="width:100%;border-collapse:collapse;font-size:11px">
+            <thead><tr style="border-bottom:2px solid var(--ink)">
+              <th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">주체</th>
+              <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">BD 지분</th>
+              <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">풋옵션가 ~5조</th>
+              <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">시장평가 ~30조</th>
+              <th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">자체추정 123조</th>
+            </tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--line-s)"><td style="padding:6px 8px;font-weight:700">정의선 회장</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">22.6%</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">1.1조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">6.8조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">27.8조</td></tr>
+              <tr style="border-bottom:1px solid var(--line-s)"><td style="padding:6px 8px;font-weight:700">현대차</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">28.0%</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">1.4조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">8.4조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">34.4조</td></tr>
+              <tr style="border-bottom:1px solid var(--line-s)"><td style="padding:6px 8px;font-weight:700">기아</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">17.2%</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">0.9조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">5.2조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">21.2조</td></tr>
+              <tr style="border-bottom:1px solid var(--line-s)"><td style="padding:6px 8px;font-weight:700;color:#6C5CE7">현대모비스</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">11.3%</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">0.6조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">3.4조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">13.9조</td></tr>
+              <tr><td style="padding:6px 8px;font-weight:700">현대글로비스</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">11.25%</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">0.6조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">3.4조</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">13.8조</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:9px;color:var(--ink-3);margin-bottom:20px">* 작년 말 지분율 기준. 소뱅 9.65%의 그룹사 안분은 6/22 이사회 결정 [미확인]. 밸류 "변경"의 본질은 숫자 자체가 아니라 IPO 경로 확보로 귀속가치가 SOTP에 현실화되기 시작한 점.</div>
+
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px">③ 종목별 임팩트</div>
+        <ul style="margin:0 0 18px;padding-left:16px;font-size:10.5px;color:var(--ink-2);line-height:1.85">
+          <li><b style="color:#6C5CE7">현대모비스 — 최대 수혜.</b> BD 11.3% + <b>액추에이터 100% 독점공급</b>(바디 무상이관·2028 35만개) 이중 노출. 아틀라스 상용화 = 부품 매출 직결(자체추정 2027 6,170억→2030 1.36조). 지배구조 정점이라 지분가치 레버리지도 최대.</li>
+          <li><b style="color:#FF6B6B">정의선 회장 — 개인 최대 수혜.</b> BD 22.6% 직접 보유. IPO 시 지분가치 극대화 → exit·지배구조 개편 재원.</li>
+          <li><b>현대글로비스</b> — BD 11.25% + 정의선 지분가치 부각의 핵심 연결고리. BD 상장 = 지배구조 개편 자금 경로. 생산·판매 물류 수혜.</li>
+          <li><b>현대차 · 기아</b> — 본업 + BD 지분(28%/17.2%) SOTP 재평가. 소뱅 9.65% 인수주체로 추가 지분 귀속 가능 [미확인]. RAI 매각손 일부 인식.</li>
+          <li><b>BD 부품·로봇 밸류체인</b>(에스비비테크·네오오토·로보티즈·삼현) — 아틀라스 상용화 2차 수혜(수주 가시성↑). 단 핵심 액추에이터는 모비스 내재화로 외부 노출 선별적.</li>
+        </ul>
+
+        <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 14px;font-size:10px;color:var(--ink-2);line-height:1.7">
+          <b style="color:#FF6B6B">리스크 / 체크포인트:</b> ① 인수가 저평가(~5조)로 BD 공정가치·손상 회계 이슈 ② RAI 매각손(4.24억$→1억$) 그룹사 분담 ③ 소뱅 9.65% 안분구조 미확정(6/22 이사회) ④ IPO 밸류는 Pre-IPO SI(삼성·구글) 유치 여부에 좌우
+        </div>
+
+        <div style="font-size:9px;color:var(--ink-3);margin-top:10px">출처: 언론 종합 2026.06.19 / 일부 [자체추정] · 귀속가치는 지분율 × 밸류 시나리오 단순 환산</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ 밸류에이션 → Valuation 탭 이동 ═══ -->
   <section class="card section-gap" style="border-left:4px solid #F8B739">
     <div class="card-title">💰 밸류에이션 시뮬레이터 <span class="badge" style="background:#F8B739;color:#1a1a1a">Valuation 탭으로 이동</span></div>
