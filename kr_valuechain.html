@@ -330,7 +330,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   <!-- ═══ BD 지배구조 ═══ -->
   <section class="card section-gap">
     <div class="card-title">🏛️ Boston Dynamics 지배구조 <span class="badge" style="background:var(--ink);color:var(--bg)">보스턴다이내믹스·현대차 공시</span></div>
-    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px;line-height:1.6">현대차그룹이 합작법인 <strong>HMG Global LLC</strong>를 통해 BD를 지배. 소프트뱅크는 잔여 지분 9.9% 보유(21년 80% 인수 후 수차례 유증으로 희석). 풋옵션 행사기간 6~7월, 이후 콜옵션 행사 가능(7~8월).</p>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px;line-height:1.6">현대차그룹이 합작법인 <strong>HMG Global LLC</strong>를 통해 BD를 지배. <strong style="color:#FF6B6B">2026.6 소프트뱅크가 잔여지분 9.65% 풋옵션 행사 → 현대차그룹이 3.25억$(약 5천억원)에 전량 인수 → 100% 완전 자회사화(6/22 임시이사회 의결).</strong> 콜옵션 발동 없이 풋옵션 경로로 직접 100% 도달. <span style="font-size:9px;color:var(--ink-3)">[언론 종합 2026.06.19]</span></p>
 
     <!-- Tier 1: HMG Global 구성 -->
     <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px">① HMG Global LLC 출자 구조</div>
@@ -348,7 +348,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       <div style="background:var(--bg-soft);border:2px solid var(--ink);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">HMG Global LLC</div><div style="font-family:var(--mono);font-size:18px;font-weight:700">56.3%</div></div>
       <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">정의선 회장</div><div style="font-family:var(--mono);font-size:18px;font-weight:700">22.5%</div></div>
       <div style="background:var(--bg-soft);border:1px solid var(--line);border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">현대글로비스</div><div style="font-family:var(--mono);font-size:18px;font-weight:700">11.25%</div></div>
-      <div style="background:var(--bg-soft);border:2px solid #F8B739;border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">소프트뱅크</div><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#F8B739">9.9%</div></div>
+      <div style="background:rgba(255,107,107,0.06);border:2px solid #FF6B6B;border-radius:8px;padding:10px 12px;text-align:center"><div style="font-weight:700;font-size:11px">소프트뱅크</div><div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#FF6B6B"><s>9.65%</s></div><div style="font-size:8px;color:#FF6B6B;font-weight:700;line-height:1.3">→ 현대차그룹 인수<br>(100% 완전자회사)</div></div>
     </div>
     <div style="text-align:center;color:var(--ink-3);font-size:16px;margin:2px 0">↓</div>
     <div style="background:linear-gradient(135deg,#0A0A08,#2d2d28);color:var(--bg);border-radius:8px;padding:12px 14px;text-align:center"><span style="font-weight:700;font-size:14px">🤖 Boston Dynamics</span></div>
@@ -357,30 +357,29 @@ window.addEventListener('DOMContentLoaded',()=>{
     <div style="margin-top:20px;border-top:2px solid var(--line);padding-top:16px">
       <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:10px">③ 풋옵션 / 콜옵션 타임라인</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-        <div style="background:rgba(248,183,57,0.06);border:1px solid #F8B739;border-radius:8px;padding:12px 14px">
-          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#F8B739;margin-bottom:6px">풋옵션 (매도청구권)</div>
+        <div style="background:rgba(255,107,107,0.08);border:2px solid #FF6B6B;border-radius:8px;padding:12px 14px">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:6px">풋옵션 (매도청구권) · ✔ 행사</div>
           <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
             <li>발행: 2021.6.21 (BD 지분 80% 인수 시)</li>
-            <li>대상: 소프트뱅크 보유 BD 보통주</li>
-            <li>행사기간: <b>2026.6.21 ~ 7.21</b> (5년 경과 후 30일)</li>
-            <li>채무불이행 부담금: <b>2.8억$</b> (~4천억원)</li>
-            <li style="color:#F8B739;font-weight:600">→ 규모 고려 시 행사 가능성 낮음 [자체추정]</li>
+            <li>대상: 소프트뱅크 보유 BD 지분 <b>9.65%</b></li>
+            <li>행사 시한: <b>2026.6.20</b> → 소뱅 행사 의사 전달</li>
+            <li>인수가: <b>3.25억$</b> (약 5천억원·계약 당시 가격)</li>
+            <li style="color:#FF6B6B;font-weight:600">→ 소뱅 풋옵션 행사 확정 [언론 2026.06.19]</li>
           </ul>
         </div>
-        <div style="background:rgba(0,184,148,0.06);border:1px solid #00B894;border-radius:8px;padding:12px 14px">
-          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:6px">콜옵션 (매수청구권)</div>
+        <div style="background:var(--bg-soft);border:1px dashed var(--line);border-radius:8px;padding:12px 14px;opacity:.72">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink-3);margin-bottom:6px">콜옵션 (매수청구권) · 행사 불요</div>
           <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
             <li>발행: <b>2025.8.6</b> (신규 주주간 약정)</li>
             <li>대상: 현대차그룹(기존 주주들)</li>
-            <li>행사기간: 풋옵션 만료 후 30일 내 (<b>7~8월</b>)</li>
-            <li>행사 시: HMG <b>100%</b> 확보 또는 외부 SI 투자 유치</li>
-            <li style="color:#00B894;font-weight:600">→ 콜옵션 행사 가능성 높음 [자체추정]</li>
+            <li>구조: 풋옵션 만료 후 30일 내 행사 가능했던 안전장치</li>
+            <li style="color:var(--ink-3);font-weight:600">→ 소뱅이 풋옵션을 먼저 행사 → 콜옵션 발동 없이 100% 도달</li>
           </ul>
         </div>
       </div>
       <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;font-size:10px;color:var(--ink-2);line-height:1.7">
-        <b>타임라인:</b> 6~7월 소프트뱅크 풋옵션 행사기간 → 미행사 시 7~8월 현대차그룹 콜옵션 행사 가능 → HMG 100% 확보 또는 빅테크 SI 투자 유치
-        <span style="font-size:9px;color:var(--ink-3);display:block;margin-top:4px">출처: BD·현대글로비스 공시 / [자체추정]</span>
+        <b>타임라인(확정):</b> 풋옵션 행사 시한 6/20 → <b>소프트뱅크 풋옵션 행사(9.65%)</b> → 현대차그룹 <b>6/22 임시이사회</b>서 3.25억$ 전량 인수 의결 → <b>BD 100% 완전 자회사</b> → 아틀라스 상용화·나스닥 IPO 속도전
+        <span style="font-size:9px;color:var(--ink-3);display:block;margin-top:4px">출처: 언론 종합 2026.06.19 / 일부 [자체추정]</span>
       </div>
     </div>
 
@@ -414,7 +413,21 @@ window.addEventListener('DOMContentLoaded',()=>{
           <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:3px">3Q25</div>
         </div>
       </div>
-      <div style="font-size:10px;color:var(--ink-3);line-height:1.6">21년 1.42조 매입 → 현재 3.57조 추정 (약 2.5배 상승). 21년 소뱅으로부터 BD 지분 80% 인수 후 수차례 유상증자 → 25년 8월 유증 후 소뱅 지분율 9.9% (2차 납입 시 9% 초반). <span style="color:var(--ink-3)">[BD 공시 / 자체추정]</span></div>
+      <div style="font-size:10px;color:var(--ink-3);line-height:1.6">21년 1.42조 매입 → 25년 3.57조 추정 (약 2.5배 상승). 21년 소뱅으로부터 BD 지분 80% 인수 후 수차례 유상증자 → 25년 8월 유증 후 소뱅 지분율 9%대. <b style="color:var(--ink-2)">26.6 풋옵션 인수가 3.25억$/9.65% → BD 환산 ~5조원</b> — 계약 당시 가격이라 현재가치(24년 시장 평가 ~30조·자체추정 123조)比 크게 낮음. <span style="color:var(--ink-3)">[BD 공시 / 언론 종합 / 자체추정]</span></div>
+    </div>
+
+    <!-- ⑤ RAI 인스티튜트 매각 -->
+    <div style="margin-top:18px;border-top:1px dashed var(--line-s);padding-top:14px">
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-bottom:8px">⑤ RAI 인스티튜트 → 소프트뱅크 매각 (딜 패키지)</div>
+      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.7">
+        BD 지분 정리와 동시에 현대차그룹은 BD와 공동 설립한 로봇·AI 선행연구소 <b>RAI Institute</b>를 소프트뱅크에 <b>약 1억$</b>에 매각 — BD 100% 인수의 사실상 패키지 딜.
+        <ul style="margin:6px 0 0;padding-left:16px">
+          <li>RAI: BD 창업자 <b>마크 레이버트</b>가 2022년 설립 — 범용 AI·로봇 지능 선행 연구</li>
+          <li>출자: 현대차·기아·현대모비스 총 <b>4.24억$</b>(당시 약 5,500억원) + BD 지분투자 참여</li>
+          <li>역할 재편: 현대차그룹 = BD(상용화·하드웨어) 100% 확보 / 소뱅 = RAI(선행 AI 연구) 확보</li>
+        </ul>
+        <span style="font-size:9px;color:var(--ink-3);display:block;margin-top:4px">출처: 언론 종합 2026.06.19</span>
+      </div>
     </div>
   </section>
 
@@ -446,12 +459,17 @@ window.addEventListener('DOMContentLoaded',()=>{
       </div>
     </div>
 
-    <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:10px">
-      <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700;margin-bottom:4px">진입 시나리오</div>
+    <div style="background:rgba(255,107,107,0.06);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:10px">
+      <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;font-weight:700;margin-bottom:4px">⚠ 전제 변경 (2026.6)</div>
       <div style="font-size:11px;color:var(--ink-2);line-height:1.7">
-        <b>① 소프트뱅크 지분 매입:</b> 소프트뱅크가 AI 데이터센터 투자 확대를 위해 자금 조달 중 → 풋옵션 미행사 후 현대차그룹 콜옵션 행사 → 확보한 지분을 빅테크에 재매각하는 방안 가능<br>
-        <b>② 3자배정 유상증자:</b> 삼성전자가 BD에 신주 인수 방식으로 진입<br>
-        <b>③ 정의선 회장 지분 직접 매입:</b> 정의선 회장 exit 시작 → 지배구조 개편 자금 마련 + BD fair price 형성 → IPO 흥행 토대 마련
+        소프트뱅크가 풋옵션을 행사해 BD 9.65%를 현대차그룹에 매각 → <b>현대차그룹 100% 완전 자회사</b>. 기존 "소뱅 잔여지분을 빅테크에 재매각" 경로는 소멸 → 빅테크 진입은 이제 <b>신주 발행 또는 정의선 회장 지분 매각</b>을 통해서만 가능.
+      </div>
+    </div>
+    <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:10px">
+      <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700;margin-bottom:4px">빅테크 진입 시나리오</div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.7">
+        <b>① 3자배정 유상증자:</b> 삼성전자가 BD 신주 인수 방식으로 진입<br>
+        <b>② 정의선 회장 지분 직접 매입:</b> 삼성전자 등이 정의선 회장 지분 일부를 직접 매입 — 3자배정과 더불어 윈윈 구조. 정의선 회장은 exit를 시작하며 지배구조 개편 자금을 마련하고, BD는 fair price를 형성해 IPO 흥행 토대를 마련할 것으로 전망
       </div>
     </div>
 

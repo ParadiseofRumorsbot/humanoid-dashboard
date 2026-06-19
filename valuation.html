@@ -168,14 +168,13 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
       <div class="v2-result-box"><div class="v2-label">2030 총 매출</div><div class="v2-value" id="v2_r_rev">-</div><div class="v2-sub" id="v2_r_revKRW">-</div></div>
       <div class="v2-result-box"><div class="v2-label">2030 기업가치</div><div class="v2-value" id="v2_r_ev">-</div><div class="v2-sub">PSR 적용</div></div>
       <div class="v2-result-box v2-hl"><div class="v2-label">현재가치 (PV)</div><div class="v2-value" id="v2_r_pv" style="color:#F8B739">-</div><div class="v2-sub">할인율 적용</div></div>
-      <div class="v2-result-box"><div class="v2-label">HMG 귀속 (<span id="v2_r_hmgPctLabel">90.1%</span>)</div><div class="v2-value" id="v2_r_hmg">-</div><div class="v2-sub" id="v2_r_hmgSub">HMG Global+정의선+글로비스</div></div>
+      <div class="v2-result-box"><div class="v2-label">HMG 귀속 (<span id="v2_r_hmgPctLabel">100%</span>)</div><div class="v2-value" id="v2_r_hmg">-</div><div class="v2-sub" id="v2_r_hmgSub">BD 완전 자회사(소뱅 인수 완료)</div></div>
     </div>
     <div style="display:flex;gap:6px;margin-top:10px;margin-bottom:6px;flex-wrap:wrap">
-      <button class="scenario-btn on" id="hmg_btn_curr" onclick="setHmgScenario('current',this)">현행 90.1%</button>
-      <button class="scenario-btn" id="hmg_btn_call" onclick="setHmgScenario('call',this)">콜옵션 행사 100%</button>
-      <button class="scenario-btn" id="hmg_btn_si" onclick="setHmgScenario('si',this)">SI 투자 유치 ~90%</button>
+      <button class="scenario-btn on" id="hmg_btn_curr" onclick="setHmgScenario('current',this)">완전자회사 100%</button>
+      <button class="scenario-btn" id="hmg_btn_si" onclick="setHmgScenario('si',this)">Pre-IPO SI 유치 ~90%</button>
     </div>
-    <div class="v2-note" id="v2_hmg_note">* 환율 1,450원/$. 2030→2026 PV 할인. HMG 귀속: HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% = 90.1%</div>
+    <div class="v2-note" id="v2_hmg_note">* 환율 1,450원/$. 2026.6 소뱅 풋옵션 9.65% 인수 완료 → 현대차그룹 100%. HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% + 소뱅 인수분 9.65% = 100%</div>
     </div>
 
     <!-- ② 모비스 -->
@@ -713,18 +712,14 @@ function setHmgScenario(s,btn){
   const lbl=document.getElementById('v2_r_hmgPctLabel');
   const sub=document.getElementById('v2_r_hmgSub');
   const note=document.getElementById('v2_hmg_note');
-  if(s==='call'){
-    lbl.textContent='100%';
-    sub.textContent='콜옵션 행사 → HMG 100%';
-    note.textContent='* 환율 1,450원/$. 콜옵션 행사(7~8월) 시 소프트뱅크 9.9% 흡수 → HMG 100% 확보. 채무불이행 부담금 2.8억$(~4천억원)';
-  }else if(s==='si'){
+  if(s==='si'){
     lbl.textContent='~90%';
-    sub.textContent='소뱅 지분 → 빅테크 SI 이전';
-    note.textContent='* 환율 1,450원/$. 소프트뱅크 9.9%가 삼성전자·구글 등 빅테크 SI로 이전 시 HMG 귀속 ~90.1% 유지. 외부 투자자 진입으로 BD fair price 형성';
+    sub.textContent='신주/정의선 지분 → 빅테크 SI';
+    note.textContent='* 환율 1,450원/$. Pre-IPO 라운드에서 삼성전자·구글 등 빅테크가 BD 신주 인수 또는 정의선 회장 지분 매입 시 HMG 귀속 ~90%로 희석 → 외부 투자자 진입으로 BD fair price 형성 [자체추정]';
   }else{
-    lbl.textContent='90.1%';
-    sub.textContent='HMG Global+정의선+글로비스';
-    note.textContent='* 환율 1,450원/$. 2030→2026 PV 할인. HMG 귀속: HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% = 90.1%';
+    lbl.textContent='100%';
+    sub.textContent='BD 완전 자회사(소뱅 인수 완료)';
+    note.textContent='* 환율 1,450원/$. 2026.6 소뱅 풋옵션 9.65% 인수 완료 → 현대차그룹 100%. HMG Global 56.3% + 정의선 22.5% + 글로비스 11.25% + 소뱅 인수분 9.65% = 100%';
   }
   calcV2();
 }
@@ -751,7 +746,7 @@ function calcV2(){
   const revT=totalRev*V2_FX/10000;
   const ev2030T=revT*psr;
   const pvT=ev2030T/Math.pow(1+disc/100,4);
-  const hmgPct=window._hmgScenario==='call'?1.0:window._hmgScenario==='si'?0.901:0.901;
+  const hmgPct=window._hmgScenario==='si'?0.901:1.0;
   const hmgT=pvT*hmgPct;
   document.getElementById('v2_d_asp2').textContent='$'+asp+'만';
   document.getElementById('v2_d_cost2').textContent=costR+'%';

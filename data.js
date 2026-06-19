@@ -771,8 +771,8 @@ const DASHBOARD_DATA = {
       { term: 'Jetson Thor', full: 'NVIDIA Jetson Thor', def: '로봇 온보드 AI 컴퓨터. 2,070 FP4 TFLOPS·14코어 ARM·128GB. ARM RISC 기반(저전력·저발열). GPU+CPU+DLA 통합. Atlas·GR00T의 두뇌', category: 'architecture' },
       { term: 'bVLA·PD-VLA·RTC', full: 'On-device 경량화 3종', def: 'bVLA=1비트 양자화, PD-VLA=병렬 디코딩, RTC=실시간 청킹(Inpainting). 수십억 파라미터 모델을 Jetson급 엣지칩에서 실시간 구동(7B→0.5B, 100→10ms)', category: 'method' },
       { term: 'PSR', full: 'Price-to-Sales Ratio', def: '시가총액 ÷ 매출액. 적자·초기 성장기업 밸류에이션에 활용. BD 추정 시 Peer 평균 21.9배 적용', category: 'valuation' },
-      { term: '풋옵션', full: 'Put Option (매도청구권)', def: '정해진 가격에 지분을 되팔 권리. 소프트뱅크 BD 잔여지분 9.9% 대상. 2021.6.21 발행, 행사기간 2026.6.21~7.21(5년 경과 후 30일). 채무불이행 부담금 2.8억$(~4천억원). 규모 고려 시 행사 가능성 낮음', category: 'valuation' },
-      { term: '콜옵션', full: 'Call Option (매수청구권)', def: '정해진 가격에 지분을 매수할 권리. 2025.8.6 신규 주주간 약정으로 체결. 풋옵션 행사기간 만료 후 30일 내(7~8월) 현대차그룹이 행사 가능. 행사 시 HMG 100% 확보 또는 외부 SI 투자 유치 가능', category: 'valuation' },
+      { term: '풋옵션', full: 'Put Option (매도청구권)', def: '정해진 가격에 지분을 되팔 권리. 소프트뱅크 BD 잔여지분 9.65% 대상. 2021.6.21 발행, 행사 시한 2026.6.20. 2026.6 소뱅이 풋옵션 행사 → 현대차그룹이 3.25억$(약 5천억원·계약 당시 가격)에 전량 인수, BD 100% 완전자회사화(6/22 임시이사회 의결)', category: 'valuation' },
+      { term: '콜옵션', full: 'Call Option (매수청구권)', def: '정해진 가격에 지분을 매수할 권리. 2025.8.6 신규 주주간 약정으로 체결. 현대차그룹이 풋옵션 만료 후 행사 가능했던 안전장치였으나, 2026.6 소뱅이 풋옵션을 먼저 행사 → 콜옵션 발동 없이 현대차그룹 100% 도달', category: 'valuation' },
       { term: 'Proprioception', full: 'Proprioception · 자기수용감각', def: '카메라 없이 관절 위치·속도·힘 등 몸 내부 감각으로 외부 물체에 적응하는 인지 방식. BD Atlas가 냉장고 무게·안착 형태에 적응하는 핵심 메커니즘', category: 'method' },
       { term: 'Reinforcement Learning', full: 'Reinforcement Learning · 강화학습', def: '보상을 최대화하는 방향으로 시행착오를 통해 정책을 학습. BD Atlas는 시뮬레이션에서 수백만 시간 RL로 냉장고 들기를 학습', category: 'method' },
       { term: 'Reference Trajectory', full: 'Reference Trajectory · 참조 궤적', def: '새 행동 학습의 출발점이 되는 목표 동작 데이터. 텔레오퍼레이션 시연·애니메이션·추상적 목표 서술 형태. BD는 냉장고 동작을 애니메이션 참조로 시작', category: 'data' },
@@ -1073,6 +1073,20 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-06-19',
+      title: '보스턴다이내믹스 100% 완전 자회사화 — 소뱅 풋옵션 행사·현대차 9.65% 인수 · RAI 인스티튜트 소뱅 매각',
+      source: '언론 종합(2026.06.19) / 일부 자체추정 [자체추정]',
+      changes: [
+        'kr_valuechain: BD 지배구조 정정 — 소뱅 풋옵션 행사(시한 6/20)→현대차그룹 3.25억$(약 5천억) 전량 인수→100% 완전자회사(6/22 임시이사회 의결). 기존 "풋옵션 행사 가능성 낮음·콜옵션 행사 예상"[자체추정] → 사실 정정',
+        'kr_valuechain: 풋/콜 타임라인 갱신 — 풋옵션 ✔행사 / 콜옵션 행사 불요(풋옵션 경로로 직접 100% 도달) · 소뱅 9.9%→9.65% 인수 표기',
+        'kr_valuechain: RAI Institute 소뱅 매각(~1억$) 신규 — 마크 레이버트 2022 설립·현대/기아/모비스 4.24억$ 출자, BD↔RAI 역할 재편(패키지 딜)',
+        'kr_valuechain: 빅테크 진입 시나리오 재구성 — 소뱅 재매각 경로 소멸 → 삼성 3자배정 유증 / 정의선 회장 지분 직접 매입(윈윈) → IPO fair price, 2027~28 현대차-삼성-구글 동맹',
+        'kr_valuechain: BD 환산밸류 ~5조(풋옵션가 3.25억$/9.65%) — 현재가치比 낮음 주석',
+        'valuation: HMG 귀속 토글 갱신 — 소뱅 인수 완료로 디폴트 100%(완전자회사), 콜옵션 시나리오 → Pre-IPO SI 유치(희석) 재정의',
+        'data.js·technology: 풋/콜옵션 용어사전·모비스 타임라인 카드 동기화',
+      ],
+    },
     {
       date: '2026-06-16',
       title: 'components 조인트맵 유성 정정(06-09 누락분) · 손/그리퍼 2시나리오 병기 · 로봇 열관리 공냉식 · 액추에이터 정량/수주단계/삼현 보강',
