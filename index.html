@@ -45,7 +45,7 @@ const DATA = {
     },
     gs_bull: {
       name: 'GS Bull',
-      source: 'Goldman Sachs (2025)',
+      source: '업계 추정 (2025)',
       desc: 'GS 낙관 전망. 2030년 25만대, 2035년 140만대, 2040년 2,300만대.',
       shipments: {
         2024: [2.3, 4500, 800],
@@ -147,12 +147,14 @@ const DATA = {
       note: '중국 처리 85% 통제. 무어의 법칙 없음 → 선형 증가', color: '#A29BFE' },
     { id: 'copper',    name: '구리 (모터 권선)',     unit: 'kg',  qty: 5.0,  price: 9.5,  priceUnit: '$/kg',
       note: 'LME 기준. 10억대×5kg = 500만톤 (세계 채굴량 24%)', color: '#E17055' },
-    { id: 'sensor',    name: '센서 (LiDAR·토크·IMU)', unit: '세트', qty: 1, price: 1500, priceUnit: '$/세트',
-      note: '제조원가 비중 약 15%. 촉각센서 원가 11%', color: '#00B894' },
-    { id: 'compute',   name: 'AI SoC / 엣지칩',     unit: '개',  qty: 1,    price: 500,  priceUnit: '$/개',
-      note: 'DEEPX DX-M1 NPU 30FPS/5W. SW 비중 6%', color: '#0984E3' },
-    { id: 'structure', name: '구조체 (프레임·케이블)', unit: '세트', qty: 1, price: 800, priceUnit: '$/세트',
-      note: '탄소섬유 뼈대·전력케이블. 제조원가 비중 10%', color: '#636E72' },
+    { id: 'sensor',    name: '센서 (LiDAR·토크·IMU)', unit: '세트', qty: 1, price: 3750, priceUnit: '$/세트',
+      note: '제조원가 비중 약 15% (양산 BOM ~$25k 기준 ≈$3,750). 촉각센서 원가 11%', color: '#00B894' },
+    { id: 'compute',   name: 'AI SoC / 엣지칩',     unit: '개',  qty: 1,    price: 2250, priceUnit: '$/개',
+      note: '컴퓨트·반도체 ~9% (양산 BOM ~$25k 기준 ≈$2,250). DEEPX DX-M1 NPU 30FPS/5W. SW 비중 6%', color: '#0984E3' },
+    { id: 'structure', name: '구조체 (프레임·케이블)', unit: '세트', qty: 1, price: 2500, priceUnit: '$/세트',
+      note: '탄소섬유 뼈대·전력케이블. 제조원가 비중 ~10% (양산 BOM ~$25k 기준 ≈$2,500)', color: '#636E72' },
+    { id: 'integ',     name: '조립·통합·기타',        unit: '세트', qty: 1, price: 1985, priceUnit: '$/세트',
+      note: '최종 조립·시스템 통합·검사 등. 부품 합산과 양산 시스템 BOM ~$25k(액추 56%≈$14k 앵커) 간 차이 [자체추정]', color: '#95A5A6' },
   ],
 
   /* ── 부품사 M/S 매핑 (TAM 배분용) ── */
@@ -717,7 +719,7 @@ a{color:inherit}
     <div class="card-title">📘 사용법 <span class="badge" style="background:#4ecdc4;color:#fff">v1.0</span></div>
     <div class="guide-desc">
       <strong>3-Layer 구조:</strong> ❶ 시나리오 프리셋 선택 → ❷ 연도 슬라이더로 타겟 연도 설정 → ❸ BOM 원단위 에디터에서 수량·단가 직접 수정 → 부품별 TAM·배터리 수요·전력 수요가 즉시 재계산됩니다.<br>
-      <strong>데이터 출처:</strong> SNE Research, Goldman Sachs, Trendforce, Omdia, Omdia, SNE Research, Goldman Sachs, Trendforce, McKinsey, IFR, NVIDIA, Tesla IR, 각 사 IR
+      <strong>데이터 출처:</strong> SNE Research, Trendforce, Omdia, IFR, NVIDIA, Tesla IR, 각 사 IR
     </div>
   </section>
 
