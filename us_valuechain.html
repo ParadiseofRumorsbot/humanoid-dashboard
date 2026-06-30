@@ -139,12 +139,106 @@ window.addEventListener('DOMContentLoaded', render);
     </div>
   </section>
 
+  <!-- ═══ 카테고리 적합성 + 대당 잠재 콘텐츠 가치 (자체추정) ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">💵 카테고리 적합성 · 대당 잠재 콘텐츠 가치 <span class="badge" style="background:#FF6B6B;color:#fff">[자체추정]</span></div>
+
+    <div class="bom-row" style="background:#FFF4E6;border:1px solid #F8B739;margin-bottom:12px">
+      <div class="bom-name" style="color:#B45309">⚠ 풀(Pool) 중복합산 금지 — 반드시 먼저 읽기</div>
+      <div class="bom-note" style="color:var(--ink-2)">
+        아래 대당 ASP는 <b>같은 풀 안에서 절대 단순 합산하지 말 것</b>. 휴머노이드 BOM에서 액추에이터 풀은 전체의 약 56%를 차지하며,
+        이 풀 안에 이미 <b>모터·감속기·볼/유성롤러 스크류·영구자석·관절 센서</b>가 모두 포함됨.
+        따라서 모터+감속기+스크류+자석+센서 개별 추정치를 더하면 동일 콘텐츠를 여러 번 세는 이중계상이 발생함.
+        칩(컴퓨팅·전력반도체)·상류 소재(희토류·자석 원소재)는 별개 풀이나, 풀 간에도 일부 기능 중복(예: 전력반도체 vs 게이트드라이버)이 존재할 수 있음.
+      </div>
+    </div>
+
+    <div class="bom-note" style="margin-bottom:12px">
+      기준: 휴머노이드 <b>1대 양산 정착 시 BOM ~US$25,000(약 3,400만원, 1,360원/$ 가정)</b>.
+      모든 수치는 <b>BOM 역산 기반 자체추정([자체추정])</b>이며 <b>각 사 미공시</b>임.
+      현 시점 휴머노이드향 실매출은 대부분 0(설계 채택 전 단계)이라는 점을 캐비엇으로 명기함. 통화 병기(USD).
+      판정: <b style="color:#00B894">적합</b> = 온로봇 BOM에 직접 들어갈 개연성 높음 / <b style="color:#F8B739">부분</b> = 조건부·옵션·간접 / <b style="color:#FF6B6B">의문</b> = 온로봇 BOM 근거 약함.
+    </div>
+
+    <div class="scroll-x">
+      <div style="min-width:720px">
+        <div style="display:grid;grid-template-columns:170px 70px 130px 1fr;gap:0">
+          <div class="capa-th">기업 (티커)</div>
+          <div class="capa-th">판정</div>
+          <div class="capa-th">대당 ASP(USD) [자체추정]</div>
+          <div class="capa-th">근거 · 캐비엇</div>
+        </div>
+        <div id="fitGrid"></div>
+      </div>
+    </div>
+
+    <div class="bom-note" style="margin-top:12px;color:var(--ink-3)">
+      ※ 상류 희토류·완성자석은 <b>대당이 아닌 톤(ton) 단위</b>가 본질이며, 참고로 영구자석 환산 시 대당 ~US$150–300 수준(자체추정).
+      USA Rare Earth·Energy Fuels(UUUU)는 pre-revenue/초기 단계이고, 특히 Energy Fuels의 우라늄 사업은 휴머노이드와 무관함.
+      Wolfspeed의 SiC는 고전압 EV·그리드용으로 ~48V 저전압 휴머노이드엔 불필요하며 재무 부실 캐비엇 동반.
+      Cognex 머신비전은 공장 고정형으로 온로봇 BOM이 아님(의문, ~$0).
+    </div>
+  </section>
+
+  <script>
+  const FIT_DATA = [
+    { c:'NVIDIA', t:'NVDA', v:'적합', asp:'$500–1,500', note:'온로봇 컴퓨팅(Jetson 계열). 오프로봇 학습/시뮬은 별도 인프라 비용(대당 ASP 제외).' },
+    { c:'Qualcomm', t:'QCOM', v:'적합', asp:'$100–400', note:'온디바이스 SoC·저전력 추론. 엣지 컴퓨팅 풀.' },
+    { c:'Ouster', t:'OUST', v:'부분', asp:'$0–500', note:'옵션 센서(LiDAR). 비전중심 기종은 미탑재 → 하한 $0.' },
+    { c:'Cognex', t:'CGNX', v:'의문', asp:'~$0', note:'공장 고정형 머신비전. 온로봇 BOM 아님.' },
+    { c:'Allegro Micro', t:'ALGM', v:'적합', asp:'$30–120', note:'액추에이터 풀(각도/전류센서·게이트드라이버). ※액추 풀 내 — 합산 주의.' },
+    { c:'Vishay Precision', t:'VPG', v:'적합', asp:'$50–200', note:'F/T 로드셀·관절 토크센서. ※센서, 일부 액추 풀과 인접.' },
+    { c:'Ambarella', t:'AMBA', v:'적합', asp:'$20–100', note:'비전 SoC·영상 추론 칩.' },
+    { c:'CEVA', t:'CEVA', v:'적합', asp:'$1–10', note:'IP 로열티 모델(DSP/센서퓨전 IP). 단가 자체는 소액.' },
+    { c:'Lattice', t:'LSCC', v:'적합', asp:'$10–50', note:'저전력 FPGA·센서 브리지.' },
+    { c:'Texas Instruments', t:'TXN', v:'적합', asp:'$100–400', note:'아날로그·전력관리·모터드라이버 광범위. ※일부 액추 풀과 중복.' },
+    { c:'Infineon', t:'IFX', v:'적합', asp:'$80–350', note:'전력반도체·게이트드라이버·MCU. ※게이트드라이버는 ALGM과 기능 인접.' },
+    { c:'STMicroelectronics', t:'STM', v:'적합', asp:'$80–300', note:'MCU·전력·센서. ※액추/제어 풀과 중복 주의.' },
+    { c:'onsemi', t:'ON', v:'적합', asp:'$50–250', note:'전력 디스크리트·이미지센서.' },
+    { c:'Monolithic Power', t:'MPWR', v:'적합', asp:'$50–250', note:'전력관리 IC.' },
+    { c:'Renesas', t:'RNECY', v:'적합', asp:'$50–250', note:'MCU·아날로그·전력.' },
+    { c:'Navitas', t:'NVTS', v:'부분', asp:'$5–50', note:'GaN. 저전압(~48V) 휴머노이드선 이점 제한적.' },
+    { c:'Wolfspeed', t:'WOLF', v:'의문', asp:'$0–20', note:'SiC는 고전압 EV·그리드용. ~48V 휴머노이드엔 불필요 + 재무 부실 캐비엇.' },
+    { c:'EnerSys', t:'ENS', v:'부분', asp:'$0–200', note:'산업용 배터리. 온로봇 직접연결 약함.' },
+    { c:'MP Materials', t:'MP', v:'적합', asp:'상류(톤단위)', note:'희토류·완성자석 상류. 완성자석 환산 대당 ~$150–300.' },
+    { c:'Lynas', t:'LYSCF', v:'적합', asp:'상류(톤단위)', note:'희토류 산화물(톤단위) 공급.' },
+    { c:'USA Rare Earth', t:'USAR', v:'부분', asp:'상류(pre-rev)', note:'희토류 자석 초기·pre-revenue 단계.' },
+    { c:'Energy Fuels', t:'UUUU', v:'부분', asp:'상류(초기)', note:'우라늄=휴머노이드 무관 + 희토류 초기 단계.' },
+  ];
+  (function renderFit(){
+    const vc = {'적합':'#00B894','부분':'#F8B739','의문':'#FF6B6B'};
+    let html='';
+    FIT_DATA.forEach(r=>{
+      const col = vc[r.v] || '#8B8B82';
+      html += `<div style="display:grid;grid-template-columns:170px 70px 130px 1fr;gap:0;border-left:3px solid ${col}">
+        <div class="capa-td" style="font-weight:600">${r.c}<span class="vc-ticker">${r.t}</span></div>
+        <div class="capa-td"><span style="font-family:var(--mono);font-size:9px;font-weight:700;background:${col}1A;color:${col};padding:1px 6px;border-radius:3px">${r.v}</span></div>
+        <div class="capa-td" style="font-family:var(--mono);white-space:normal">${r.asp}</div>
+        <div class="capa-td" style="white-space:normal;color:var(--ink-2)">${r.note}</div>
+      </div>`;
+    });
+    const t=document.getElementById('fitGrid'); if(t) t.innerHTML=html;
+  })();
+  </script>
+
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
     <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-06-30</span>
+          <span style="font-size:12px;font-weight:600">카테고리 적합성·대당 잠재 콘텐츠 가치 박스 추가</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">BOM 역산 자체추정 · 자체정리</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>BOM ~$25k 기준 풀 내 대당 잠재 콘텐츠 가치·적합/부분/의문 판정 표 추가(NVDA·QCOM·OUST·CGNX·ALGM·VPG·AMBA·CEVA·LSCC·TXN·IFX·STM·ON·MPWR·RNECY·NVTS·WOLF·ENS·MP·LYNAS·USAR·UUUU)</li>
+          <li>모두 [자체추정]·각 사 미공시·현 휴머노이드 실매출 대부분 0 캐비엇 명기</li>
+          <li>풀 중복합산 금지 경고 박스(액추 풀 56%에 모터·감속기·스크류·자석·센서 포함) 추가</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-06-17</span>

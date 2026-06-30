@@ -57,6 +57,12 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     <div class="st-tabs" id="yrTabs" style="margin-bottom:12px"></div>
     <div class="num-row"><div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">🇨🇳 중국</div><div class="num-value" id="cs">-</div></div><div class="num-box" style="border-left:3px solid #3498db"><div class="num-label">🇺🇸 미국</div><div class="num-value" id="us">-</div></div><div class="num-box"><div class="num-label">합계</div><div class="num-value" id="tu">-</div></div></div>
     <div class="scroll-x"><div id="og" style="display:grid;grid-template-columns:130px 80px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div></div>
+    <!-- ── 가산: 2025 출하량 별도 추정치 병기 (규칙2: 위 JS표 값과 다르므로 덮어쓰지 않고 병기) ── -->
+    <div style="background:rgba(231,76,60,0.05);border-left:3px solid #e74c3c;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#e74c3c">2025 글로벌 출하량 — 별도 추정 (병기):</b> 위 연도탭 표는 기존 집계값(AGIBOT 5,168 · Unitree 4,200 등). <b>아래는 별도 원데이터(IDC/OMDIA) 기준 2025 추정으로 일부 수치가 달라 병기함.</b><br>
+      상위값(대): <b>~5,500</b>(Unitree, <span style="color:var(--ink-3)">자체발표</span>) · 5,168 · 1,350 · 1,000 · 500 · 400 · 300 · 150·150·150 등 — 대부분 중국(Unitree·AgiBot·UBTECH)이 상위 점유. <b>전세계 ~1.8만대 수준</b>.<br>
+      <span style="font-size:9px;color:var(--ink-3)">※ Unitree ~5,500은 자체발표값(기존 표의 4,200과 차이) · 5,168은 AgiBot 추정과 동일 · 원데이터: IDC/OMDIA. 위 JS표는 별도 집계 기준이라 미수정·병기 처리. [기준연도 2025]</span>
+    </div>
   </section>
   <section class="card section-gap">
     <div class="card-title">🇨🇳 중국 시장 규모 <span class="badge" style="background:#e74c3c;color:#fff">CAGR 93.6%</span></div>
@@ -72,6 +78,12 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
   <section class="card section-gap">
     <div class="card-title">⚙️ 글로벌 하모닉 감속기 M/S (2024) <span class="badge" style="background:#6C5CE7;color:#fff">GGII</span></div>
     <div id="hmGrid" style="display:grid;grid-template-columns:140px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
+    <!-- ── 가산: 하모닉/HDS 생산능력 비교 ── -->
+    <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#6C5CE7">하모닉/HDS 생산능력 (M/S 보완):</b> <b>하모닉드라이브시스템스(6324.T) 연 230만대</b> vs 경쟁사 <b>리더드라이브(Leaderdrive) 60만대 → 2027년 160만대</b>. HDS는 다국적 거점(일본·독일·미국)으로 중국의존을 낮춰 서구권 메이저의 핵심 대체공급선 역할. 미국 capa 월 8–9천대 → FY26 월 1–1.5만대로 확대.<br>
+      <b style="color:#E17055">※ 테슬라 옵티머스向 하모닉 감속기 벤더는 현재 미정 [미확인]</b>.<br>
+      <span style="font-size:9px;color:var(--ink-3)">출처: 각사(원데이터). 위 GGII M/S(2024)와 별개 지표(생산능력)로 병기.</span>
+    </div>
   </section>
   <section class="card section-gap">
     <div class="card-title">🏭 중국 2026E 생산 M/S <span class="badge" style="background:#e74c3c;color:#fff">Trendforce</span></div>
@@ -95,6 +107,24 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       <div class="num-box" style="border-left:3px solid #E17055"><div class="num-label">Uforce 누적 미션</div><div class="num-value">150,000+건</div><div class="num-sub">Source: 각사</div></div>
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:6px">글로벌 휴머노이드 생산량 2024~2025 추적 기반 (Omdia). 중국 제조사 중심 빠른 스케일업 진행 중.</div>
+    <!-- ── 가산: 실증 정량 (각사 발표 원데이터) ── -->
+    <div style="margin:16px 0 8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">실증 정량 — 양산 라인·실증 (각사 발표)</div>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:620px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">기업·모델</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">생산능력·라인</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">실증 정량</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Figure AI (BotQ)</td><td style="padding:7px 9px;white-space:normal">캘리 BotQ 연 1.2만대(향후 4년 10만대 선언) · 월 생산 4월 ~150대→5월 ~250대 · 9,000+ 액추에이터·10종+ SKU</td><td style="padding:7px 9px;white-space:normal">양품률 최종라인 80%+·배터리라인 99.3% · 라이브스트리밍으로 원격조작(teleop) 미개입 입증</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 1X Technologies (NEO)</td><td style="padding:7px 9px;white-space:normal">캘리 5.8만 sqft 연 1만대 → 2027년 10만대 목표</td><td style="padding:7px 9px;white-space:normal">사전예약 1만대 완판 · 가격 ~$20,000 / 구독 $499/월 (2026.06 기준)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Agility (Digit v5)</td><td style="padding:7px 9px;white-space:normal">오레곤 RoboFab 연 1만대 · 엔비디아 Halos 안전시스템 업계 최초 탑재</td><td style="padding:7px 9px;white-space:normal">$3억 수주 = Digit v5 1,000대·3년 RaaS·마일스톤 달성 시 인식(즉시 매출 아님) · 누적 실증 65,000시간(Amazon·Toyota·GXO·BMW)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Leju (KUAVO, 화웨이 모델/OS)</td><td style="padding:7px 9px;white-space:normal">선전 30분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">화웨이 모델/OS 연계</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Engine AI (T800)</td><td style="padding:7px 9px;white-space:normal">선전 15분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">18만위안 (가격)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 AgiBot</td><td style="padding:7px 9px;white-space:normal">Loncheer 공장 대량생산 라인</td><td style="padding:7px 9px;white-space:normal">6/23–28 양산 라인 라이브스트리밍</td></tr>
+      </tbody>
+    </table></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사 발표(원데이터). 통화·시점 병기.</div>
   </section>
 
   <section class="card section-gap">
@@ -102,6 +132,24 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     <div class="num-row">
       <div class="num-box" style="border:2px solid #6C5CE7"><div class="num-label">2025 VC 투자 총액</div><div class="num-value">$40.7B</div><div class="num-sub">Source: CBInsights</div></div>
     </div>
+    <!-- ── 가산: 주요 휴머노이드 기업가치 비교 (통화·시점 병기) ── -->
+    <div style="margin:16px 0 8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">주요 기업가치 비교 (통화·시점 병기)</div>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">기업</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">밸류에이션</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">시점·비고</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Figure AI</td><td style="padding:7px 9px;white-space:normal">$39B (390억달러)</td><td style="padding:7px 9px;white-space:normal">2025.9 시리즈C</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 1X Technologies</td><td style="padding:7px 9px;white-space:normal">$10B (100억달러)</td><td style="padding:7px 9px;white-space:normal">—</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Agility</td><td style="padding:7px 9px;white-space:normal">post-money $3.1B (31억달러)</td><td style="padding:7px 9px;white-space:normal">pre-money $2.5B · CCXI와 SPAC 합병 · 2026.4Q 상장예정</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 DEEP Robotics</td><td style="padding:7px 9px;white-space:normal">110억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Engine AI</td><td style="padding:7px 9px;white-space:normal">100억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Leju</td><td style="padding:7px 9px;white-space:normal">95억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
+      </tbody>
+    </table></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">밸류 자체는 각사/언론(원데이터) · 환산·해석은 [자체추정]. 통화·시점 병기.</div>
   </section>
 
   <section class="card section-gap">
@@ -152,6 +200,20 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       <b style="color:#F8B739">투자 시사점 — 레이어 간 부가가치 이동:</b> 한 레이어 독점 시 pricing power 강화 → 다른 레이어 수익 축소. 지금 칩 레이어(NVIDIA)가 최대 부가가치를 내고 있으나, Google이 인프라·칩으로 내려올수록 이 구도가 바뀔 수 있다. <b>BD/현대차가 HW+제어IP+데이터를 직접 쥔 수직통합 플레이어인 이유</b>도 같은 논리 — 한 레이어에 종속되면 pricing power를 빼앗긴다.
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Naver IR (2026.06.08) · 자체정리</div>
+  </section>
+
+  <!-- ── 가산: NVIDIA GR00T 레퍼런스 휴머노이드 + 자체엣지 사례 ── -->
+  <section class="card section-gap" style="border-left:4px solid #76B900">
+    <div class="card-title">🤖 NVIDIA GR00T 레퍼런스 휴머노이드 + 자체엣지 사례 <span class="badge" style="background:#76B900;color:#fff">각사 · NVIDIA</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px"><b>Isaac GR00T 레퍼런스 휴머노이드</b>(GTC 공개, 2026.10 Unitree 통해 출시): 6피트(~180cm)/68kg, 총 <b>75 DoF</b>(Body 31 + Hand 22×2). Body=<b>Unitree H2 Plus</b>, Hand=싱가포르 <b>Sharpa 5지</b>, <b>엔비디아 Jetson Thor + 풀스택 SW</b>. 구글 넥서스(레퍼런스폰) 전략과 유사한 '로봇계 안드로이드' 플랫폼 락인.</p>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #76B900"><div class="num-label">GR00T 레퍼런스 총 DoF</div><div class="num-value">75 DoF</div><div class="num-sub">Body 31 + Hand 22×2 · Source: NVIDIA</div></div>
+      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">출시 시점</div><div class="num-value">2026.10</div><div class="num-sub">Unitree 통해 출시 · Source: NVIDIA</div></div>
+      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">Galbot 밸류(中 비상장)</div><div class="num-value">260억위안</div><div class="num-sub">~5조원 · 비상장 최고 밸류 · Source: 각사·언론</div></div>
+    </div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-top:4px">보수적인 <b>Fanuc도 엔비디아 채택</b>(ROBOGUIDE + Isaac Sim 디지털트윈). <b>Galbot</b>(中 비상장 최고 밸류 260억위안~5조원): 자체 Grasp/Grocery VLA로 약국·편의점 실증.</div>
+    <div style="background:rgba(118,185,0,0.06);border-left:3px solid #76B900;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#76B900">핵심 톤:</b> 엔비디아 동맹은 이제 기본 전제이고, 차별화는 <b>독점데이터·양산신뢰성·실증·라이브스트리밍</b>에서 온다. <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사·NVIDIA(원데이터). 위 '중국 2026E 생산 M/S' 카드의 Unitree H2 Plus 채택 박스와 동일 사건의 사양 보완.</div>
   </section>
 
   <section class="card section-gap">

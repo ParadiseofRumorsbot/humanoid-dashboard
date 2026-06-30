@@ -713,7 +713,7 @@ const DASHBOARD_DATA = {
     aiFactory: {
       source: 'NVIDIA GTC 2025, Jensen Huang Keynote, NVIDIA IR',
       fiveLayerCake: [
-        { layer: 1, name: 'Energy', desc: '전력 공급 인프라 (원전·데이터센터 전력)', color: '#636E72', icon: '⚡', kr: '—' },
+        { layer: 1, name: 'Energy', desc: '전력 공급 인프라 (원전·데이터센터 전력). 반도체·DC 메가투자 가속 시 2031년경 전력 부족이 최대 병목 [자체추정]', color: '#636E72', icon: '⚡', kr: '—' },
         { layer: 2, name: 'Chips', desc: 'GPU/DPU/NIC (Blackwell, Vera Rubin, Dynamo)', color: '#6C5CE7', icon: '🔲', kr: '삼성전기·대덕전자 (칩 주변 수동소자·기판)' },
         { layer: 3, name: 'Infrastructure', desc: 'AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD)', color: '#0984E3', icon: '🏗️', kr: '네이버클라우드 (아시아 AI 팩토리 · 200MW→1GW 확장)' },
         { layer: 4, name: 'Foundation Models', desc: 'Cosmos(WFM)·GR00T·NeMo — 두뇌·모델 (글로벌 장악)', color: '#F8B739', icon: '🧠', kr: '네이버 (하이퍼클로바X · Nemotron LLM 연합)' },
@@ -776,6 +776,11 @@ const DASHBOARD_DATA = {
       { term: 'Proprioception', full: 'Proprioception · 자기수용감각', def: '카메라 없이 관절 위치·속도·힘 등 몸 내부 감각으로 외부 물체에 적응하는 인지 방식. BD Atlas가 냉장고 무게·안착 형태에 적응하는 핵심 메커니즘', category: 'method' },
       { term: 'Reinforcement Learning', full: 'Reinforcement Learning · 강화학습', def: '보상을 최대화하는 방향으로 시행착오를 통해 정책을 학습. BD Atlas는 시뮬레이션에서 수백만 시간 RL로 냉장고 들기를 학습', category: 'method' },
       { term: 'Reference Trajectory', full: 'Reference Trajectory · 참조 궤적', def: '새 행동 학습의 출발점이 되는 목표 동작 데이터. 텔레오퍼레이션 시연·애니메이션·추상적 목표 서술 형태. BD는 냉장고 동작을 애니메이션 참조로 시작', category: 'data' },
+      { term: 'RT-1', full: 'Robotics Transformer 1 (Google, 2022.12)', def: '시각+언어 명령 → 실시간 모터 관절값(액션 토큰)을 출력한 단일 트랜스포머. 로봇 행동을 언어처럼 토큰화해 "다음 토큰 예측"으로 치환. 13만 데이터셋으로 로봇에서 Scaling Law를 처음 입증', category: 'model' },
+      { term: 'RT-2', full: 'Robotics Transformer 2 (Google, 2023.7)', def: 'RT-1의 액션 토큰 기술을 VLM(PaLM-E)에 이식. 웹 지식+로봇 경험을 결합해 안 해본 태스크도 zero/few-shot 수행 → 실질적 VLA의 시작. 인지·제어를 단일모델로 처리해 제어주기 1–5Hz로 굼뜬 한계', category: 'model' },
+      { term: 'T/CIE 298', full: '휴머노이드 지능 등급 (중국전자학회, 2025)', def: '세계 최초 휴머노이드 지능 등급 표준. 지각(P)·의사결정/학습(D)·실행(E)·협력(C) 기준으로 L1(보조제어)~L5(완전자율) 5단계. 업계 현재 L3(조건부 자율)→L4(고도 자율) 진입 구간', category: 'model' },
+      { term: '3M 전략', full: 'M.AX · Master · Mass production (산업부, 2026)', def: '정부 AI로봇 압축성장 전략. M.AX=제조업 AI전환(연 1천대+ 보급), Master=3대 취약부품(액추에이터·로봇손·센서)+데이터+파운데이션모델 확보·인력 1만명·30개사 육성, Mass=새만금 로봇 파운드리·정부 선제구매(교육·국방). 韓 휴머노이드 점유율 1%→20% 목표', category: 'valuation' },
+      { term: 'JEPA', full: 'Joint-Embedding Predictive Architecture', def: '미래를 명시적 영상으로 생성하지 않고 잠재공간(latent)에서만 예측·행동해 월드모델 연산부담을 줄이는 접근. 1X World Model 등이 연산비용 절감을 위해 채택', category: 'architecture' },
     ],
 
     /* ── 초보자용 기술 개요 5 섹션 ── */
@@ -1073,6 +1078,24 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-06-30',
+      title: '로봇 두뇌 SW 계보(RT-1/RT-2·Dual System·World Model)·NVIDIA GR00T 레퍼런스 휴머노이드·정부 3M 전략·기업 정량·ASP 풀 중복합산 경고',
+      source: '자체정리 [자체추정] · 산업부 3대 메가프로젝트 국민보고회(2026.06.29) · 중국전자학회 T/CIE 298 · Google RT 논문 · IDC/OMDIA · SMM · 각사 IR(원데이터)',
+      changes: [
+        'data.js: 용어사전 신규 5종(RT-1·RT-2·T/CIE 298 지능등급·3M 전략·JEPA) · AI Factory Energy 레이어에 2031~ 전력 병목 주석 [자체추정]',
+        'technology: 두뇌 진화 계보(룰베이스→SayCan→RT-1→RT-2→Dual System) · Figure Helix 02 주파수 3계층(S2 7-9Hz/S1 200Hz/S0 1kHz) · World Model 심화(1X WM 5초동작에 12초연산·Agibot GE-Sim=Cosmos backbone·VLA 한계+왕싱싱·美中 분기표)',
+        'physical_ai: 로봇 학습데이터 3유형 피라미드(실제/합성/웹·Sim2real gap)+정부 합성데이터 국책투자 연결 · 中 휴머노이드 지능등급 L1-L5(T/CIE 298, 현재 L3→L4)+로봇 3계층',
+        'components: ⚠ 풀 중복합산 경고(액추 56%≈$14k 단일풀, 수직합산 금지) · BOM 앵커 $25k@scale(현 $80-120k)·카테고리 배분 · Sharpa 5지 핸드 44DoF · NdFeB 자석 대당 $150-300 [자체추정]',
+        'competition: 2025 글로벌 출하량 병기(Unitree ~5,500 자체발표 vs 기존 JS값 4,200) · HDS 230만 vs Leaderdrive 60만→160만(27)·옵티머스向 벤더 미정[미확인] · 실증 트래커 6사 · GR00T 레퍼런스+Fanuc·Galbot · 기업가치표(Figure $39B/1X $10B/Agility $3.1B/中 비상장)',
+        'company_tam: 롤러스크류 병목(100만대↔1,500-2,000만개) · BOM 앵커 정합 주석 · GR00T 레퍼런스 핸드 75DoF',
+        'framework: 정부 3M 전략 카드(점유율 1%→20%·새만금·선제구매) · 5대 물리병목↔3대 취약부품 매핑 · 메가투자 3,550조·2031~ 전력 병목',
+        'us_valuechain: 카테고리 적합성·대당 ASP 추정표 22사(적합/부분/의문)+풀 중복합산 경고+캐비엇 [자체추정]',
+        'kr_valuechain: 정부 3M 수혜 구조 맥락 박스(개별 종목 판단은 사용자 위임·목표가 미기재)',
+        'valuation: 로보티즈 정책 모멘텀 정성 코멘트(목표주가·투자의견 미기재, 투자판단 사용자 위임)',
+        'index: Per-Robot BOM Editor에 $25k 앵커 캡션(값 미변경) — 기존 디폴트 총합 $17,316이 앵커와 불일치(플래그, 수정 보류)',
+      ],
+    },
     {
       date: '2026-06-19',
       title: '보스턴다이내믹스 100% 완전 자회사화 — 소뱅 풋옵션 행사·현대차 9.65% 인수 · RAI 인스티튜트 소뱅 매각',

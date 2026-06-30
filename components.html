@@ -662,6 +662,17 @@ window.addEventListener('DOMContentLoaded', () => {
       </tbody>
     </table></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">핸드 가격대·수명은 회사 측 설명·업계추정(독립 검증 전). 옵티머스 부위별은 공개 분해 기준(출처마다 상이). 로보티즈 강점은 '좁은 공간 = 토크센서 자리 없음 → 전류제어'. 출처: 로보티즈 260612 탐방 · 언론종합 · 자체정리</div>
+    <!-- (C) Dexterous Hand 보강 — GR00T 레퍼런스 핸드 -->
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-top:10px;border-left:3px solid #76B900">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#76B900;letter-spacing:.06em;margin-bottom:6px">🤖 NVIDIA Isaac GR00T 레퍼런스 휴머노이드 핸드 = 싱가포르 Sharpa 5지형</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">44</div><div style="font-size:9px;color:var(--ink-3)">Hand DoF (22×2 양손)</div></div>
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">31</div><div style="font-size:9px;color:var(--ink-3)">Body DoF</div></div>
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">75</div><div style="font-size:9px;color:var(--ink-3)">전체 DoF</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.7">로봇손에는 <b>현존 최소형 하모닉(파동) 감속기</b>가 탑재되며, 초소형화에 따른 <b>마찰제어·초정밀 가공</b>으로 기술 진입장벽이 매우 높음.</div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: NVIDIA · 각사(원데이터)</div>
+    </div>
   </section>
 
   <!-- ═══ 1.5 전력·신호 흐름도 ═══ -->
@@ -961,6 +972,12 @@ window.addEventListener('DOMContentLoaded', () => {
         <div style="font-size:10px;color:var(--ink-3);margin-top:6px">출처: China Post Securities, Unitree</div>
       </div>
     </div>
+    <!-- (D) 자석 콘텐츠 주석 -->
+    <div style="background:var(--bg-soft);border-left:3px solid #E17055;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;letter-spacing:.06em;margin-bottom:6px">🧲 NdFeB 영구자석 — 액추에이터 풀 내 소재가치 <span style="font-weight:600;color:var(--ink-3)">[자체추정 · 역산]</span></div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.75">대당 <b>2–3.5kg</b> 사용 × 완성 소결자석 <b>~$60–90/kg</b> ≈ 대당 <b>~$150–300</b>의 자석 소재가치(액추에이터 풀 내). NdPr 합금 벤치마크 <b>~$110/kg</b>(SMM, 2026.6). 휴머노이드 모터는 EV 대비 <b>저온·간헐부하</b>라 중희토류(Dy/Tb) 의존이 낮고 <b>경희토류(Nd/Pr) 중심</b>. 소재사는 대당이 아니라 <span style="background:rgba(225,112,85,0.14);padding:1px 4px;border-radius:3px;font-weight:600">톤 단위 판매</span>이므로 '대당 ASP'는 작다.</div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: SMM(원데이터) + 역산 [자체추정]</div>
+    </div>
   </section>
 
   <!-- ═══ 2.5 원가 하락 트렌드 ═══ -->
@@ -1000,6 +1017,11 @@ window.addEventListener('DOMContentLoaded', () => {
   <section class="card section-gap" style="border-left:4px solid #6C5CE7">
     <div class="card-title">📊 풀스택 휴머노이드 원가 구조 — 8개 카테고리 <span class="badge" style="background:#6C5CE7;color:#fff">자체추정</span></div>
     <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">총 제조원가 <b>$55,000~78,000</b> 기준 분해. 저가형 G1(액추에이터 66%)과 달리 풀스택은 센서·열관리·컴퓨팅이 더해져 <b>액추에이터 비중 34.5%</b>로 낮아지지만 여전히 <b>단일 최대 부품</b>.</p>
+    <!-- (A) 풀 중복합산 경고 콜아웃 -->
+    <div style="background:rgba(255,107,107,0.10);border:2px solid #FF6B6B;border-radius:10px;padding:14px 18px;margin-bottom:14px">
+      <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#FF6B6B;letter-spacing:.04em;margin-bottom:6px">⚠ 중복계산 주의 — 풀(pool) 단위로 읽어라 <span style="font-weight:600;color:var(--ink-3)">[자체추정]</span></div>
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.75">액추에이터가 BOM의 약 <b>56%</b>(양산정착 BOM ~$25k 기준 <b>~$14,000</b>)이며, 이 한 풀 안에 <b>모터·감속기·롤러스크류·베어링·NdFeB자석·인코더·내장 F/T센서</b>가 모두 포함된다. 따라서 모터사·감속기사·스크류사·자석사의 개별 대당 ASP를 <span style="background:rgba(255,107,107,0.14);padding:1px 4px;border-radius:3px;font-weight:600">수직 합산하면 동일 부품을 2~3중 계산</span>하게 된다. <b>'풀 내 누가 더 가져가나'(점유 경쟁)</b> 관점으로 읽어야 한다.</div>
+    </div>
     <div style="overflow-x:auto;margin-bottom:12px">
       <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:520px">
         <thead><tr style="border-bottom:2px solid var(--ink)">
@@ -1020,6 +1042,18 @@ window.addEventListener('DOMContentLoaded', () => {
           <tr style="border-top:2px solid var(--ink)"><td style="padding:6px 8px;font-weight:700;font-size:12px">총 제조원가</td><td style="text-align:center;padding:6px 8px;font-weight:700">100%</td><td style="text-align:center;padding:6px 8px;font-weight:700;font-size:12px;color:#FF6B6B">$55~78K</td><td style="padding:6px 8px"></td></tr>
         </tbody>
       </table>
+    </div>
+    <!-- (B) BOM 앵커 명시 -->
+    <div style="background:var(--bg-soft);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:10px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;letter-spacing:.06em;margin-bottom:6px">📐 BOM 기준선(앵커) <span style="font-weight:600;color:var(--ink-3)">[자체추정 · BOM 역산]</span></div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">양산 정착 시 BOM <b>~$25,000</b>(@per-platform 1만대+), 현재는 <b>~$80,000–120,000</b> 수준.</div>
+      <div class="scroll-x"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;min-width:480px">
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">액추에이터</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#FF6B6B">56%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">외부센서</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">~15%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">배터리·전원</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#F8B739">~13%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">컴퓨트·반도체</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#6C5CE7">~9%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #636E72"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">구조·외장</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">~7%</div></div>
+      </div></div>
     </div>
     <div style="font-size:10px;color:var(--ink-3)">📌 G1(저가, 액추에이터 66%) vs 풀스택($55~78K, 액추에이터 34.5%) — 총원가 기준 차이. 두 관점 병기. 출처: 자체추정</div>
   </section>

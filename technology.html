@@ -1489,6 +1489,39 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: π0.6 RECAP, RD-VLA, MeM 논문 원문</div>
       </div>
 
+      <!-- 추가: 두뇌 진화 계보 (룰베이스 → RT-2) -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🧬 두뇌 진화 계보 — 룰베이스 제어에서 VLA까지</div>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">로봇 두뇌 SW는 <b>제어 규칙을 사람이 다 짜주던 방식</b>에서 <b>로봇 행동을 언어처럼 토큰화해 "다음 토큰 예측"으로 치환</b>하는 VLA로 진화. 핵심 변곡점은 RT-1(로봇에서 Scaling Law 첫 입증)과 RT-2(웹지식+로봇경험 결합 → 실질적 VLA의 시작).</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div style="background:var(--bg-soft);border-radius:10px;padding:12px 14px;border-left:4px solid #B2BEC3">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#636E72;margin-bottom:4px">① 룰베이스 제어</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.65">사람이 제어 규칙을 명시적으로 전부 작성. 정해진 환경·동작에만 작동, 일반화 불가.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:10px;padding:12px 14px;border-left:4px solid #74B9FF">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3;margin-bottom:4px">② 딥러닝</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.65">데이터로 패턴을 학습. 인식(비전) 성능은 도약했으나 "무엇을 할지" 계획·언어 이해는 별개 문제로 남음.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:10px;padding:12px 14px;border-left:4px solid #F8B739">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#d39e00;margin-bottom:4px">③ LLM 계획기 <span style="font-weight:400;color:var(--ink-3)">— Google SayCan(2022.4) · MS "ChatGPT for Robotics"</span></div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.65"><b>LLM이 API를 조합해 "계획"만 수립</b>. 실제 모터 제어는 여전히 전통적 PID 등 기존 제어기가 담당 → 뇌(계획)와 몸(제어)이 분리된 단계.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:10px;padding:12px 14px;border-left:4px solid #00B894">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00997b;margin-bottom:4px">④ RT-1 <span style="font-weight:400;color:var(--ink-3)">— Google(2022.12)</span></div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.65">시각+언어를 입력받아 <b>실시간 모터 관절값을 액션토큰으로 출력하는 단일 트랜스포머</b>. 로봇 행동을 언어처럼 토큰화해 "다음 토큰 예측" 문제로 치환. <span style="background:rgba(0,184,148,0.12);padding:1px 4px;border-radius:3px;font-weight:600">13만 데이터셋으로 로봇에서 Scaling Law를 처음 입증.</span></div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:10px;padding:12px 14px;border-left:4px solid #E17055">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:4px">⑤ RT-2 <span style="font-weight:400;color:var(--ink-3)">— Google(2023.7)</span></div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.65"><b>RT-1의 액션토큰을 VLM(PaLM-E)에 이식</b>. 웹지식 + 로봇경험을 결합해 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">한 번도 안 해본 태스크를 zero/few-shot으로 수행</span>. 실질적 VLA의 시작.</div>
+          </div>
+          <div style="background:rgba(108,92,231,0.06);border-radius:10px;padding:12px 14px;border-left:4px solid #6C5CE7">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">⑥ Dual System →</div>
+            <div style="font-size:11px;color:var(--ink-2);line-height:1.65">VLA 이후 빠른 반사(System 1)와 깊은 추론(System 2)을 분리하는 단계로 진화 (아래 Part 3 참조).</div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Google SayCan · RT-1 · RT-2 논문, Microsoft "ChatGPT for Robotics" 논문(원데이터)</div>
+      </div>
+
       <!-- π0.7 — 데이터에 맥락을 붙여 학습 -->
       <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
         <div style="font-family:var(--mono);font-size:10px;color:#E17055;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">🧩 π0.7 — Steerable Generalist · "좋은 데이터만 골라 쓰지 않는다"</div>
@@ -1550,6 +1583,32 @@ window.addEventListener('DOMContentLoaded', render);
           <div class="fig-wrap"><img src="https://lh3.googleusercontent.com/I7a1f6DPm4Qs4JuiieahA4ki0Dc5IQDU8PxfsMRy3UCf3HF7Td_zZfXg35_M-Td1EELJUY2dJLEkdyjt7IVah658uuqvwAQFtarOukXs44MHGMiSd64=w1440-h810-n-nu" alt="Gemini Robotics" loading="lazy" onerror="this.style.display='none'"><div class="fig-cap">Gemini Robotics — Gemini 2.0 기반 범용 로봇 조작</div></div>
         </div>
         <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA Isaac-GR00T, Google DeepMind, Physical Intelligence</div>
+      </div>
+
+      <!-- 추가: Dual System 주파수 계층 (Figure Helix / GR00T N) -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">⚡ Dual System 주파수 계층 — Figure AI Helix 02</div>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">Figure AI Helix 02는 dual system을 넘어 <b>3계층</b>으로 구성. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">각 계층의 요구 반응속도(주파수)가 근본적으로 달라 물리적으로 분리</span> — 고차 판단은 느려도 되지만 균형 제어는 1kHz로 돌아야 넘어지지 않음. 엔비디아 GR00T N(2025.3)도 같은 dual-system 구조를 채택. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></p>
+        <div class="scroll-x">
+          <div style="display:grid;grid-template-columns:120px 110px 1fr;gap:0;font-size:11px;min-width:520px;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">계층</div>
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">주파수</div>
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">역할</div>
+
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);border-left:4px solid #6C5CE7;font-weight:700;color:#6C5CE7">System 2</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);font-family:var(--mono);font-weight:700">7–9Hz</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6">VLM 기반 <b>고차원 의사결정</b> — 무엇을 어떻게 할지 추론.</div>
+
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);border-left:4px solid #00B894;font-weight:700;color:#00997b">System 1</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);font-family:var(--mono);font-weight:700">200Hz</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6">구체적 <b>궤적(trajectory) 생성</b> — 의사결정을 실제 동작 경로로 변환.</div>
+
+            <div style="padding:9px 10px;border-left:4px solid #E17055;font-weight:700;color:#E17055">System 0</div>
+            <div style="padding:9px 10px;font-family:var(--mono);font-weight:700">1kHz</div>
+            <div style="padding:9px 10px;color:var(--ink-2);line-height:1.6"><b>전신 균형 제어</b> — 넘어지지 않도록 실시간 자세 보정.</div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Figure AI(Helix 02) · NVIDIA(GR00T N) 발표(원데이터). 계층 분리 해석 [자체추정]</div>
       </div>
     </section>
 
@@ -1647,6 +1706,53 @@ window.addEventListener('DOMContentLoaded', render);
         </div>
         <div class="fig-wrap"><img src="https://raw.githubusercontent.com/video-prediction-policy/video-prediction-policy.github.io/main/media/images/method.png" alt="VPP" loading="lazy" onerror="this.style.display='none'" style="max-width:800px"><div class="fig-cap">VPP — Stage1: Predictive Representation 추출 → Stage2: DiT Policy</div></div>
         <div style="font-size:10px;color:var(--ink-3);margin-top:4px">출처: Cosmos Policy, VPP, DreamVLA, V-JEPA 2, Generators=Policies 논문 원문</div>
+      </div>
+
+      <!-- 추가: World Model 심화 (1X · Agibot · VLA 한계 · 美中 분기) -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#F8B739;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🔮 World Model 심화 — 상용화 장벽과 美·中 분기</div>
+
+        <!-- 1X World Model -->
+        <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-left:4px solid #6C5CE7;margin-bottom:12px">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:6px">1X World Model <span style="font-weight:400;color:var(--ink-3)">— 2026.1</span></div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7"><b>text-conditioned video</b> 방식. 백본 = 웹규모(14B) 비디오생성모델, <b>1인칭 900시간 mid-training + 로봇데이터 70시간 fine-tune</b>. IDM(Inverse Dynamics Model)으로 생성한 픽셀(영상)을 모터값으로 역변환. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">GPU 서버로도 5초 영상생성 11초 + IDM 1초 = 총 12초 연산</span> — 즉 5초 움직이려 12초를 계산해야 함 → 당장 상용화는 난항. 연산을 줄이려 <b>잠재공간(JEPA)에서만 예측</b>하는 시도가 늘어나는 배경.</div>
+        </div>
+
+        <!-- Agibot GE-Sim 2.0 -->
+        <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-left:4px solid #00B894;margin-bottom:12px">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00997b;margin-bottom:6px">Agibot GE-Sim 2.0</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">자체 월드모델. 백본 = <b>NVIDIA Cosmos Predict 2.5</b>. <span style="background:rgba(0,184,148,0.12);padding:1px 4px;border-radius:3px;font-weight:600">합성데이터 공장</span>으로 VLA 강화학습(RL)을 고도화하는 데 활용.</div>
+        </div>
+
+        <!-- VLA 한계 박스 -->
+        <div style="background:rgba(255,107,107,0.06);border-radius:10px;padding:14px;border-left:4px solid #FF6B6B;margin-bottom:12px">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:6px">VLA의 구조적 한계 — "물리법칙 이해가 아니라 통계패턴 조합"</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">VLA는 물리법칙을 이해하는 게 아니라 <b>학습데이터의 통계패턴을 조합</b>할 뿐.<br>
+            <b>① mid-task recovery 실패</b> — 성공 영상만 학습하므로 작업 중 한 번 실패하면 회복하지 못함.<br>
+            <b>② long-horizon 오차누적</b> — 긴 작업에서 미세 오차가 누적 → 행동 체인 전체가 붕괴.<br>
+            <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">왕싱싱(유니트리 CEO):</span> "VLA는 데이터를 행동으로 잇는 매핑에 불과하며, 물리법칙을 이해하지 못하는 로봇은 똑똑해질 수 없다"며 <b>UnifoLM-WMA</b>를 출시.</div>
+          <div style="font-size:10px;color:var(--ink-3);margin-top:6px">출처: 각사 발표 · BAAI(원데이터) + 해석 [자체추정]</div>
+        </div>
+
+        <!-- 美 vs 中 World Model 분기표 -->
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">美 vs 中 — WORLD MODEL 방향 분기</div>
+        <div class="scroll-x">
+          <div style="display:grid;grid-template-columns:90px 1fr 1fr;gap:0;font-size:11px;min-width:560px;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">구분</div>
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:#0984E3;text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">美 — 인지·생성형</div>
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:#E17055;text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">中 — 인지·실행형</div>
+
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:9px;color:var(--ink-3);font-weight:600">개념</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6"><b>World Model for decision</b> — 행동 이후 세계가 어떻게 전개될지 시뮬레이션 → 선택을 최적화.</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6"><b>World Model for execution</b> — 현재 조건에서 목표를 안정적으로 달성하기 위한 단기 시뮬레이션.</div>
+
+            <div style="padding:9px 10px;border-left:4px solid #0984E3;font-family:var(--mono);font-size:9px;color:var(--ink-3);font-weight:600">주요 진영</div>
+            <div style="padding:9px 10px;color:var(--ink-2);line-height:1.6;border-left:4px solid #0984E3">OpenAI · DeepMind · Meta · Google · Tesla · Figure</div>
+            <div style="padding:9px 10px;color:var(--ink-2);line-height:1.6">화웨이 · 바이두 · 샤오펑 · 리오토 · 바이트댄스 · 유니트리 · 유비텍 · 푸리에 · 샤오미</div>
+          </div>
+        </div>
+        <div style="background:rgba(248,183,57,0.08);border-left:3px solid #F8B739;border-radius:0 8px 8px 0;padding:9px 13px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.65">장기적으로는 <b>의사결정형(美)과 실행형(中)이 상호보완하며 수렴</b>할 가능성.</div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사 발표(원데이터)</div>
       </div>
     </section>
 
