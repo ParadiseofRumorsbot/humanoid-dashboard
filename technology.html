@@ -996,8 +996,8 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #00B894">
           <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">글로벌 출하량</div>
           <div style="font-family:var(--mono);font-size:13px;color:var(--ink-3);text-decoration:line-through">~0대 (2020)</div>
-          <div class="num-hero" style="font-size:22px;color:#00B894" data-countup="13368" data-suf="대" data-dec="0">0대</div>
-          <div style="font-size:10px;color:var(--ink-3)">2025 실적 (Omdia)</div>
+          <div class="num-hero" style="font-size:22px;color:#00B894" data-countup="14768" data-suf="대" data-dec="0">0대</div>
+          <div style="font-size:10px;color:var(--ink-3)">2025 실적 (각사 발표·언론종합)</div>
         </div>
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #F8B739">
           <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">Atlas 액추에이터</div>
@@ -1610,6 +1610,33 @@ window.addEventListener('DOMContentLoaded', render);
         </div>
         <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Figure AI(Helix 02) · NVIDIA(GR00T N) 발표(원데이터). 계층 분리 해석 [자체추정]</div>
       </div>
+
+      <!-- 추가: VLA 3세대 구조론 (외란 대응 기준) -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#F8B739;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🔀 VLA 3세대 구조론 — 외란(外亂) 대응 기준 분류</div>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">위 계보(RT 시리즈→GR00T→π 시리즈)와는 다른 축 — 여기서는 "물체가 미끄러지는 등 예기치 못한 외란에 얼마나 빨리 재판단하는가"를 기준으로 구조를 3세대로 나눈다.</span> 계보 분류와 구조 분류는 서로 대체 관계가 아니라 상호보완 관계다.</p>
+        <div class="scroll-x">
+          <div style="display:grid;grid-template-columns:80px 130px 1fr;gap:0;font-size:11px;min-width:560px;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">세대</div>
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">구조</div>
+            <div style="padding:8px 10px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em;font-weight:600;background:var(--bg-soft);border-bottom:1px solid var(--line)">외란 대응</div>
+
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);border-left:4px solid var(--ink-3);font-weight:700;color:var(--ink-3)">1세대</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6">자가회귀 (RT-2 · OpenVLA)</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6">단일 모델이 추론+제어를 토큰 단위 순차 생성 → 반응 느림</div>
+
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);border-left:4px solid #F8B739;font-weight:700;color:#F8B739">2세대</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6">VLM+액션헤드 (π0 · SmolVLA)</div>
+            <div style="padding:9px 10px;border-bottom:1px solid var(--line);color:var(--ink-2);line-height:1.6">추론·제어 분리했으나 1~2초 동작 청크 실행 중엔 재판단 불가 — 그 사이 눈 감고 움직이는 구간 존재</div>
+
+            <div style="padding:9px 10px;border-left:4px solid #6C5CE7;font-weight:700;color:#6C5CE7">3세대</div>
+            <div style="padding:9px 10px;color:var(--ink-2);line-height:1.6">듀얼 (Helix · GR00T N1 · Gemini Robotics)</div>
+            <div style="padding:9px 10px;color:var(--ink-2);line-height:1.6">추론 7~9Hz + 제어 200Hz — 청크 실행 중에도 매 순간 재판단, 외란 잦은 산업 노동의 표준</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-top:12px"><b>업체별 스택</b> — Figure=Helix(자체) · Tesla=FSD(자체) · 현대차·BD=Gemini Robotics(임대)+자체 LBM · Unitree=UnifoLM(오픈소스, Qwen2.5-VL-7B 백본+자체 액션헤드 결합 = 구조상 2세대)</div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:6px">출처: 각 모델 논문·각사 발표 [언론종합]</div>
+      </div>
     </section>
 
     <!-- 브릿지 3→4 -->
@@ -1893,7 +1920,7 @@ window.addEventListener('DOMContentLoaded', render);
         </div>
       </div>
       <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
-        데이터 팩토리 경쟁 이미 시작됨. 현대차 RMAC(Robot Metaplant Application Center) 2026년 여름 가동 → 자체 공장에서 행동 데이터 생산 시작.
+        데이터 팩토리 경쟁 이미 시작됨. 현대차 RMAC(Robot Metaplant Application Center) 2026년 8월 가동 → 자체 공장에서 행동 데이터 생산 시작.
         로보티즈는 우즈베키스탄에 2만평 데이터 팩토리 + 액추에이터 양산 공장 건설 중, 2026 4Q 가동 예정.
         <span style="font-size:10px;color:var(--ink-3)">[현대차 IR / 로보티즈 IR]</span>
       </p>
@@ -1915,6 +1942,29 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">
           + <b>인간 1인칭(Egocentric) 영상</b>도 잠재 액션(Latent Actions)으로 변환해 학습 — 사람 영상을 "또 다른 로봇 데이터"로 취급. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">"실데이터가 병목 → 합성으로 푼다"는 Cosmos 9,000조 thesis의 실증.</span> <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GR00T / DreamGen]</span>
         </div>
+      </div>
+      <!-- 스마트글래스·1인칭 데이터 -->
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:16px;border-left:4px solid #0984E3">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3;letter-spacing:.08em;margin-bottom:8px">스마트글래스 · 1인칭 데이터 — 사전학습의 남은 한 칸</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">사전학습 데이터는 3층으로 나뉜다 — <b>①영상</b>(주행기록·인터넷 영상, 흔함) <b>②시뮬레이션</b>(힘·접촉이 방정식으로 존재) <b>③현장 실증</b>(실측 토크·촉각). 그런데 <span style="background:rgba(9,132,227,0.12);padding:1px 4px;border-radius:3px;font-weight:600">사람이 손으로 물건을 다루는 1인칭 영상만은 예외</span> — 시뮬레이션이 못 만들고, 아무 데서나 대량으로 못 얻는다. 기존 Ego Scale(21,000시간)에 이어 Meta Ego4D(3,670시간, arXiv:2110.07058)가 이 로봇 학습용 1인칭 데이터셋의 표준으로 쓰인다.</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px">
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #FF6B6B">
+            <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;font-weight:700;margin-bottom:4px">1인칭 혼합 시</div>
+            <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#FF6B6B">+12.5~29.7%p</div>
+            <div style="font-size:9px;color:var(--ink-3);margin-top:2px">성능 향상 (arXiv:2606.06627)</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #00B894">
+            <div style="font-family:var(--mono);font-size:9px;color:#00B894;font-weight:700;margin-bottom:4px">현장 배치 데이터 유무</div>
+            <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#00B894">+39.4%p</div>
+            <div style="font-size:9px;color:var(--ink-3);margin-top:2px">32.4→71.8% (arXiv:2511.19647)</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border-top:3px solid #F8B739">
+            <div style="font-family:var(--mono);font-size:9px;color:#F8B739;font-weight:700;margin-bottom:4px">수집 경제성</div>
+            <div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#F8B739">$50~200/h → ~$0</div>
+            <div style="font-size:9px;color:var(--ink-3);margin-top:2px">텔레오퍼레이션 vs 소비자 글래스 한계비용</div>
+          </div>
+        </div>
+        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">잠재 수집량(사용자당 하루 10분 가정, <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span>): 글래스 1만대 연 ~61만h · Meta 650만대 연 ~4억h · 구글 1억대 목표 연 ~61억h. <span style="background:rgba(255,193,7,0.15);padding:1px 4px;border-radius:3px;font-weight:600">단, 출시 원년 글래스는 음성 기능이 먼저이고 영상 수집은 아직 미본격화 — 현재는 가설 단계.</span> <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span></div>
       </div>
       <div id="pipelineMethods" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;margin-bottom:16px"></div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">DATA COLLECTION → POLICY LEARNING PIPELINE</div>
@@ -2214,10 +2264,10 @@ window.addEventListener('DOMContentLoaded', render);
           • Computex에서 <b>GR00T 레퍼런스·Cosmos 3.0·Alpamayo 2</b> 발표 완료<br>
           <span style="font-size:10px;color:var(--ink-3)">[언론 종합 · NVIDIA · 각사 공시]</span></div>
         <div class="ev-panel" id="evp1"><b style="color:#FF6B6B">BD 풋옵션 행사기간(6~7월) → 콜옵션(7~8월)</b> + <b>유니트리 상장 심사</b><br>소프트뱅크 풋옵션 행사 가능성 낮음(채무불이행 부담금 2.8억$) → 현대차그룹 콜옵션 행사로 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">BD 100% 확보 또는 빅테크 SI 투자 유치</span>. 삼성전자 BD 지분 투자 검토 중(2026.06.16 언론), 구글도 2025년 말 타진 이력. Pre-IPO 라운드로 fair price 구체화 전망. 유니트리 2H26 상장 예정(심천). + Figure AI 외부 판매 시작, 휴머노이드 상업 계약 확산.<br><span style="font-size:10px;color:var(--ink-3)">[현대차·BD·현대글로비스 공시 · 언론 종합 / Unitree IPO]</span></div>
-        <div class="ev-panel" id="evp2"><b style="color:#00B894">BD RMAC 개소 (3Q26)</b><br>현대차 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로봇 훈련센터 가동 → Atlas 공장 투입 시작</span>. 물리 데이터 생산 원년. RMAC에서 학습된 Atlas가 2028년 HMGMA에 투입되는 첫 단추. + BD+Google DeepMind 미국 세일즈 로드쇼 진행 중.<br><span style="font-size:10px;color:var(--ink-3)">[현대차 IR]</span></div>
-        <div class="ev-panel" id="evp3"><b style="color:#6C5CE7">테슬라 옵티머스 V3 출시 (7월말~8월)</b><br><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">연내 최대 이벤트</span>. 프리몬트에서 생산 시작 후 텍사스 2공장 본격 양산. V3 양산 규모 + 머스크 언급 차세대 V4 로드맵 여부에 따라 <b>글로벌 휴머노이드 산업 전개 속도 결정</b>. + 2026 북중미 월드컵 기간 로보틱스 쇼케이스 기대.<br><span style="font-size:10px;color:var(--ink-3)">[Tesla 공식 · 자체추정]</span></div>
-        <div class="ev-panel" id="evp4"><b style="color:#E17055">테슬라 V3 대량 양산 (4Q26)</b> + <b>유니트리 상장 (2H26)</b><br>휴머노이드 산업 양산단계 진입 확인. 글로벌 2번째 휴머노이드 IPO(유니트리). <b>NVIDIA GR00T 레퍼런스 로봇 출시(10월)</b> — Unitree H2 Plus+Jetson Thor.<br><span style="font-size:10px;color:var(--ink-3)">[Tesla·NVIDIA·Unitree]</span></div>
-        <div class="ev-panel" id="evp5"><b style="color:var(--ink-3)">미정 — 추가 촉매</b><br>• 글로벌 휴머노이드 OEM 추가 참여(상·or 추가 투자) → 밸류체인 확장<br>• 미국 로봇 위원회 법안 상정 — 법적 이정표 확인 시 제도적 수혜 가능<br><span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
+        <div class="ev-panel" id="evp2"><b style="color:#00B894">BD RMAC 개소 (2026년 8월)</b><br>현대차 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로봇 훈련센터 가동 → Atlas 공장 투입 시작</span>. 물리 데이터 생산 원년. RMAC에서 학습된 Atlas가 2028년 HMGMA에 투입되는 첫 단추. + BD+Google DeepMind 미국 세일즈 로드쇼 진행 중.<br><span style="font-size:10px;color:var(--ink-3)">[현대차 IR]</span></div>
+        <div class="ev-panel" id="evp3"><b style="color:#6C5CE7">테슬라 옵티머스 V3 출시 (7월말~8월)</b><br><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">연내 최대 이벤트</span>. 프리몬트에서 생산 시작 후 텍사스 2공장 본격 양산. V3 양산 규모 + 머스크 언급 차세대 V4 로드맵 여부에 따라 <b>글로벌 휴머노이드 산업 전개 속도 결정</b>. + 2026 북중미 월드컵 기간 로보틱스 쇼케이스 기대.<br>• <b>7/8 삼현 Communication Day</b> — 휴머노이드용 액추에이터 'AXLON' 공개<br><span style="font-size:10px;color:var(--ink-3)">[Tesla 공식 · 삼현 IR · 자체추정]</span></div>
+        <div class="ev-panel" id="evp4"><b style="color:#E17055">테슬라 V3 대량 양산 (4Q26)</b> + <b>유니트리 상장 (2H26)</b><br>휴머노이드 산업 양산단계 진입 확인. 글로벌 2번째 휴머노이드 IPO(유니트리). <b>NVIDIA GR00T 레퍼런스 로봇 출시(10월)</b> — Unitree H2 Plus+Jetson Thor.<br>• <b>11월 미국 중간선거</b> — Physical AI, 정당 리스크에서 중립적 테마로 부각될 전망 <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span><br><span style="font-size:10px;color:var(--ink-3)">[Tesla·NVIDIA·Unitree]</span></div>
+        <div class="ev-panel" id="evp5"><b style="color:var(--ink-3)">미정 — 추가 촉매</b><br>• 글로벌 휴머노이드 OEM 추가 참여(상·or 추가 투자) → 밸류체인 확장<br>• <b>하반기 현대차 CID</b> 예고 <span style="font-size:9px;color:var(--ink-3)">[현대차 IR·언론종합]</span><br>• <b>Humanoid ROBOT Act</b> — 연방정부의 중·러·이란·북한산 AI 휴머노이드 구매 금지, 2025.11 발의. 연내 통과는 기대 시나리오 <span style="font-size:9px;color:var(--ink-3)">[법안·언론종합]</span><br>• <b>Section 232 로보틱스·산업기계 조사</b> — 상무부 BIS 2025.09 개시, 2026년 관세/쿼터 결정 가능성 <span style="font-size:9px;color:var(--ink-3)">[연방관보]</span><br>• <b>2026년 로보틱스 행정명령 준비</b> — 상무장관 주도, 업계 CEO와 전략 수립 중 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span><br><span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
         <script>function evSwitch(i,el){document.querySelectorAll('.ev-tab').forEach(t=>t.classList.remove('ev-active'));document.querySelectorAll('.ev-panel').forEach(p=>p.classList.remove('ev-show'));el.classList.add('ev-active');document.getElementById('evp'+i).classList.add('ev-show')}</script>
         <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px">
           <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:6px">📌 이벤트 그 다음을 봐야</div>
@@ -2232,7 +2282,7 @@ window.addEventListener('DOMContentLoaded', render);
         <!-- 조건 1 -->
         <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px;border-left:3px solid #00B894">
           <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:5px">① 디지털 트윈 — 왜 '학습'에 필요한가</div>
-          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">현실 학습은 느리고 위험하고 비싸다 — 실제 데이터 수집은 시간당 <b>$136</b> vs 시뮬 <b>$0.001</b>, <b>13.6만 배</b> 격차(본 대시보드 Physical AI 페이지). 그래서 가상환경 수천 개를 병렬로 띄워 학습 후 현실로 옮기는 <b>Sim-to-Real</b>이 전제. <b>디지털 트윈은 두 종류로 나뉜다 →</b><br>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">현실 학습은 느리고 위험하고 비싸다 — 실제 데이터 수집은 시간당 <b>$118</b>(1Q26, 1Q24 $340에서 하락 추세) vs 시뮬 <b>$0.001</b>, <b>11.8만 배</b> 격차(본 대시보드 Physical AI 페이지). 그래서 가상환경 수천 개를 병렬로 띄워 학습 후 현실로 옮기는 <b>Sim-to-Real</b>이 전제. <b>디지털 트윈은 두 종류로 나뉜다 →</b><br>
           • <b>(A) 시뮬레이션형</b>: 물리엔진으로 합성 데이터·정책 생성 = <b>NVIDIA Omniverse·Isaac·Cosmos</b>·Google Genie (글로벌 장악)<br>
           • <b>(B) 매핑형</b>: 현실 공간을 거울 복제해 측위·운영 = <b>네이버 ALIKE→ARC</b> (1784 빌딩 전체를 피지컬 AI로 운영, 세계 최초 · 사우디 수출)<br>
           둘은 경쟁이 아니라 <b>상호보완</b> — NVIDIA는 '학습용 가상세계', 네이버는 '운영용 현실 복제본'.<br>
@@ -2373,7 +2423,7 @@ window.addEventListener('DOMContentLoaded', render);
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
           <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #FF6B6B">
             <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:5px">① 밸류에이션 극단</div>
-            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 424배·EV/EBITDA 297배</span>, 에스피지 90.5배. 액추에이터 peer 평균 137배. <b>에스비비테크 PSR 25E/26E 약 31.3/42.2배</b>(Bloomberg) — 글로벌 감속기 peer(HDS 17.8/14.4·Nidec 1.1) 대비 큰 프리미엄. 적자·이익 미미한 곳도 많아 기대가 선반영된 구간.</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 250배·EV/EBITDA 175배</span>, 에스피지 58배. 액추에이터 peer 평균 137배. <b>에스비비테크 PSR 25E/26E 약 17.3/23.4배</b>(Bloomberg) — 글로벌 감속기 peer(HDS 17.8/14.4·Nidec 1.1) 대비 큰 프리미엄. 적자·이익 미미한 곳도 많아 기대가 선반영된 구간. <span style="font-size:9px;color:var(--ink-3)">(배수는 26.07.08 종가 시총 기준 환산)</span></div>
           </div>
           <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
             <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:5px">② 중국 저가 침투</div>
@@ -2490,7 +2540,7 @@ window.addEventListener('DOMContentLoaded', render);
         <b>③ 변형 다양성</b> — '사과' 토큰은 항상 같지만, 영상 속 사과는 조명·각도·재질이 다 다름 → 수만 변형 필요.<br>
         한마디로 <b>"세상을 글로 설명"과 "세상을 직접 시뮬레이션"의 차이</b>. 데이터 모으는 자가 해자를 갖는 이유.</div></div></div>
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 원가 $150K→$17K, 89% 진짜 떨어졌냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">비교 기준이 다름 — $150K는 <b>프로토타입 1대</b>, $17K는 <b>양산 BOM</b>. 자동차처럼 물량↑ = 단가↓: 1대 $150K → 100대 $80~100K → 1,000대 $40~60K → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">1만대 $20~30K(−80%)</span>. 단, 하락 상당분이 중국 부품 침투 영향(리스크).</div></div></div>
-      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 출하량 0→13,368대, 정말 0이었냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">2020년엔 <b>상업적 양산 휴머노이드가 사실상 없었음</b>(연구실 프로토타입뿐). 2025년 13,368대는 Omdia 실적 — AGIBOT 5,168·Unitree 4,200·UBTECH 1,000 등 중국이 90%+. 5년 만에 0→만대.</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 출하량 0→14,768대, 정말 0이었냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">2020년엔 <b>상업적 양산 휴머노이드가 사실상 없었음</b>(연구실 프로토타입뿐). 2025년 14,768대는 각사 발표·언론종합 — AGIBOT 5,168·Unitree 5,500·UBTECH 1,000 등 중국이 90%+. 5년 만에 0→만대.</div></div></div>
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 액추에이터 8종→2종, 줄어드는 게 왜 좋냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">개수가 아니라 '종류'가 2종</span>(개수는 28~56개로 폭증). 종류↓ = ①양산성↑ ②현장 정비(교체)↑ ③단가↓. BD "blank-sheet design focused on simplicity"가 이 얘기.</div></div></div>
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. MLCC 한 대에 1만 개? 그렇게 많냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">추정이지만 근거 있음. MLCC는 칩·드라이버마다 전압안정용으로 수~수십 개씩. 가솔린차 3~5천, 테슬라 1.5~1.7만 → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">관절 56개+AI칩 휴머노이드는 ~1만 개</span>. 대중화 = MLCC 슈퍼사이클(삼성전기).</div></div></div>
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. BOM 56%랬다 34.5%? 어느 게 맞냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">둘 다 맞음 — <b>총원가 기준이 다름</b>. 저가형 G1은 총원가가 낮아 액추에이터 66%, 풀스택($55~78K)은 센서·열관리·컴퓨팅이 더해져 34.5%. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">어느 기준이든 액추에이터가 단일 최대 부품</span> → 현대모비스가 핵심.</div></div></div>
@@ -2502,7 +2552,7 @@ window.addEventListener('DOMContentLoaded', render);
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. BD 가치 123~180조, 근거가 뭐냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">자체추정 — 2030년 매출 ~55억$ × Peer PSR 21.9배. 숫자보다 중요한 건 <b>트리거</b>: <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">풋옵션 행사기간(6~7월) → 콜옵션(7~8월)</span>이 BD 지배구조 개편의 도화선. 풋옵션 행사 가능성 낮음(채무불이행 부담금 2.8억$) → 콜옵션 행사로 HMG 100% 또는 빅테크(삼성전자·구글) SI 투자 유치. 유증밸류: 2Q21 1.42조 → 3Q25 3.57조(2.5배).</div></div></div>
 
       <div class="qa-grp" style="color:#FF6B6B">🔴 반론 (Bear) — 위 ⚠️ 리스크 카드 참고</div>
-      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 밸류에이션 너무 비싼 거 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">맞음, 인정. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 424배·EV/EBITDA 297배</span>, 적자·이익 미미한 곳도 많음. 기대 선반영. 그래서 <b>분할 + 실적 베이스(삼성전기·DB하이텍) 병행</b>으로 변동성 완충. (Bloomberg)</div></div></div>
+      <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 밸류에이션 너무 비싼 거 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">맞음, 인정. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 250배·EV/EBITDA 175배</span>(26.07.08 종가 시총 기준 환산), 적자·이익 미미한 곳도 많음. 기대 선반영. 그래서 <b>분할 + 실적 베이스(삼성전기·DB하이텍) 병행</b>으로 변동성 완충. (Bloomberg)</div></div></div>
       <div><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 중국이 저가로 다 먹는 거 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">실재 리스크 — Green Harmonic 등 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">일·한 대비 30~40% 저가</span>. 한국은 가격 대신 기술 차별화(토크밀도·백드라이버빌리티)+OEM 직납으로 회피. 단, 미중 갈등으로 순수 중국 밸류체인 어려워 한국·일본·독일 반사이익도.</div></div></div>
       <div style="margin-bottom:4px"><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='500px';r.textContent='▲'}"><span>Q. 2028 빅뱅 진짜 오냐? 매출 언제냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner">실매출은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2027~2030년</span>, 신뢰성 과제 잔존(테마-실적 시차=변동성). 단 BD 3만대·테슬라 100만대 목표가 2028에 동시 떨어지는 건 각사 공시. 타이밍 리스크는 <b>분할 대응</b>.</div></div></div>
       <div style="border:1px solid rgba(255,107,107,0.3);border-radius:8px;padding:0 12px;margin:6px 0;background:rgba(255,107,107,0.03)"><div class="qa-q" style="border-bottom:none" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='1700px';r.textContent='▲'}"><span style="color:#FF6B6B">★ Q. "테슬라가 100만 대 만드는데 BD·로보티즈가 데이터로 이기겠냐"는 반론에 어떻게 답하나?</span><span class="ar" style="color:#FF6B6B">▼</span></div><div class="qa-a"><div class="qa-a-inner">세 가지를 모두 짚어야 함.<br><br>

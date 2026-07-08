@@ -73,19 +73,18 @@ const DASHBOARD_DATA = {
   },
 
   /* ══════════════════════════════════════
-     2025년 실적 업체별 출하량 (Omdia, 2025)
+     2025년 실적 업체별 출하량 (각사 발표·언론종합, 2025)
      ══════════════════════════════════════ */
   shipments2025: [
     { name: 'AGIBOT', units: 5168, country: '🇨🇳' },
-    { name: 'Unitree', units: 4200, country: '🇨🇳' },
+    { name: 'Unitree', units: 5500, country: '🇨🇳' },
     { name: 'UBTECH', units: 1000, country: '🇨🇳' },
-    { name: 'Leju Robotics', units: 500, country: '🇨🇳' },
-    { name: 'Engine AI', units: 400, country: '🇨🇳' },
-    { name: 'Fourier Intelligence', units: 300, country: '🇨🇳' },
-    { name: 'Figure AI', units: 150, country: '🇺🇸' },
-    { name: 'Agility Robotics', units: 150, country: '🇺🇸' },
-    { name: 'Tesla', units: 150, country: '🇺🇸' },
-    { name: '기타', units: 1350, country: '🌐' },
+    { name: 'Fourier Intelligence', units: 500, country: '🇨🇳' },
+    { name: 'Leju Robotics', units: 100, country: '🇨🇳' },
+    { name: 'Tesla', units: 1000, country: '🇺🇸' },
+    { name: 'Agility Robotics', units: 1000, country: '🇺🇸' },
+    { name: 'Figure AI', units: 400, country: '🇺🇸' },
+    { name: '1X Technologies', units: 100, country: '🇺🇸' },
   ],
 
   /* ══════════════════════════════════════
@@ -191,7 +190,7 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   oemTargets: [
     { name: 'Tesla', flag: '🇺🇸', target2026: '5~10만 CAPA', target2030: '100만대 목표', price: '$20~30K', battery: '2.3kWh / 2170 원통형' },
-    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026 여름)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
+    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026년 8월)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
     { name: 'AGIBOT', flag: '🇨🇳', target2026: '수만대', target2030: '-', price: '-', battery: '-' },
     { name: 'UBTECH', flag: '🇨🇳', target2026: '1만대', target2030: '-', price: '-', battery: '-' },
     { name: 'Unitree', flag: '🇨🇳', target2026: '-', target2030: '-', price: '$16K~', battery: '-' },
@@ -226,6 +225,7 @@ const DASHBOARD_DATA = {
     { company: '로보티즈', ticker: '108490', parts: '유성감속기 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀. 우즈베키스탄 신공장', cat: 'gear' },
     { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
     { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
+    { company: '한라캐스트', ticker: '125490', parts: 'Al/Mg 다이캐스팅 구조체', customer: '글로벌 휴머노이드사(개발 수주)', note: '마그네슘 다이캐스팅 국내 독보적(Optimus V2 외장소재 이력) · 수주잔고 1.2조 · 글로벌 AI 자동차사 1차 협력사 등록 (언론종합·공시)', cat: 'body' },
     { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
     { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
     { company: '한국피아이엠', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
@@ -332,26 +332,31 @@ const DASHBOARD_DATA = {
   },
 
   /* ══════════════════════════════════════
-     경쟁 구도 — 연도별 출하량 (Omdia, 각 사 IR)
+     경쟁 구도 — 연도별 출하량 (2025 각사 발표·언론종합 / 2026·2027 [자체추정])
      ══════════════════════════════════════ */
   competitionShipments: {
     2025: [
-      { n: 'AGIBOT', u: 5168, f: '🇨🇳' }, { n: 'Unitree', u: 4200, f: '🇨🇳' },
-      { n: 'UBTECH', u: 1000, f: '🇨🇳' }, { n: 'Leju', u: 500, f: '🇨🇳' },
-      { n: 'Engine AI', u: 400, f: '🇨🇳' }, { n: 'Fourier', u: 300, f: '🇨🇳' },
-      { n: 'Figure AI', u: 150, f: '🇺🇸' }, { n: 'Agility', u: 150, f: '🇺🇸' },
-      { n: 'Tesla', u: 150, f: '🇺🇸' }, { n: '기타', u: 1350, f: '🌐' },
+      { n: 'AGIBOT', u: 5168, f: '🇨🇳' }, { n: 'Unitree', u: 5500, f: '🇨🇳' },
+      { n: 'UBTECH', u: 1000, f: '🇨🇳' }, { n: 'Fourier', u: 500, f: '🇨🇳' },
+      { n: 'Leju', u: 100, f: '🇨🇳' },
+      { n: 'Tesla', u: 1000, f: '🇺🇸' }, { n: 'Agility', u: 1000, f: '🇺🇸' },
+      { n: 'Figure AI', u: 400, f: '🇺🇸' }, { n: '1X', u: 100, f: '🇺🇸' },
     ],
     2026: [
-      { n: 'AGIBOT', u: 30000, f: '🇨🇳' }, { n: 'Unitree', u: 10000, f: '🇨🇳' },
-      { n: 'UBTECH', u: 10000, f: '🇨🇳' }, { n: 'Tesla', u: 5000, f: '🇺🇸' },
-      { n: 'Figure AI', u: 1000, f: '🇺🇸' }, { n: 'Agility', u: 1000, f: '🇺🇸' },
-      { n: '기타', u: 3000, f: '🌐' },
+      { n: 'AGIBOT', u: 10000, f: '🇨🇳' }, { n: 'Unitree', u: 12000, f: '🇨🇳' },
+      { n: 'UBTECH', u: 7000, f: '🇨🇳' }, { n: 'Leju', u: 3000, f: '🇨🇳' },
+      { n: 'Fourier', u: 2000, f: '🇨🇳' },
+      { n: 'Figure AI', u: 3000, f: '🇺🇸' }, { n: 'Tesla', u: 1000, f: '🇺🇸' },
+      { n: 'Agility', u: 1500, f: '🇺🇸' }, { n: '1X', u: 500, f: '🇺🇸' },
+      { n: 'Boston Dynamics', u: 100, f: '🇺🇸' },
     ],
     2027: [
-      { n: 'Tesla', u: 30000, f: '🇺🇸' }, { n: 'AGIBOT', u: 40000, f: '🇨🇳' },
-      { n: 'Unitree', u: 15000, f: '🇨🇳' }, { n: 'UBTECH', u: 12000, f: '🇨🇳' },
-      { n: 'Figure AI', u: 3000, f: '🇺🇸' }, { n: '기타', u: 5000, f: '🌐' },
+      { n: 'Unitree', u: 25000, f: '🇨🇳' }, { n: 'AGIBOT', u: 15000, f: '🇨🇳' },
+      { n: 'UBTECH', u: 10000, f: '🇨🇳' }, { n: 'Leju', u: 5000, f: '🇨🇳' },
+      { n: 'Fourier', u: 5000, f: '🇨🇳' },
+      { n: 'Tesla', u: 10000, f: '🇺🇸' }, { n: 'Figure AI', u: 10000, f: '🇺🇸' },
+      { n: 'Agility', u: 4000, f: '🇺🇸' }, { n: '1X', u: 1500, f: '🇺🇸' },
+      { n: 'Boston Dynamics', u: 700, f: '🇺🇸' }, { n: 'Xpeng', u: 1000, f: '🇨🇳' },
     ],
   },
 
@@ -481,7 +486,7 @@ const DASHBOARD_DATA = {
   radarOEM: {
     optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'V3 26H2 양산 예정' },
     figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'OpenAI World Model' },
-    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '사이클로이드', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026 여름 개소, 30K CAPA (28E)' },
+    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '사이클로이드', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8월 개소, 30K CAPA (28E)' },
     digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
     g1: { name: 'Unitree G1', color: '#E17055', h: 132, w: 35, dof: 23, payload: 2, battery: 1.5, asp: 13.5, gear: '유성', customer: '범용', pos: '중국 저가형', note: '26년 8월 IPO, BOM 790만원' },
     neo: { name: '1X Neo', color: '#0984E3', h: 168, w: 30, dof: 75, payload: 25, battery: 2, asp: 20, gear: '유성', customer: '일반 소비자', pos: '서비스·가정용', note: '26H2 소비자 배송 시작' },
@@ -511,7 +516,7 @@ const DASHBOARD_DATA = {
   hmgRobotics: {
     source: 'JPM Conference 2026 / HMG IR',
     captiveDemand: 25000,
-    rmcaLaunch: '2026 여름',
+    rmcaLaunch: '2026년 8월',
     factoryCapacity: 30000,
     actuatorPlantCapacity: 350000,
     actuatorPlantLaunch: 2028,
@@ -1078,6 +1083,20 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-07-08',
+      title: '출하량 실적·전망 갱신(각사 발표 기준) · RMAC 시점 통일(2026년 8월) · 모비스 액추에이터 31개 수주 확정 · 오토에버 ROP/RDP 역할 확정 · 스마트글래스·VLA 3세대 구조론 신설 · 시총 5종목 갱신(26.07.08 종가) · 이벤트 캘린더 보강',
+      source: '언론종합 · 각사 IR·공시 · DART',
+      changes: [
+        'data.js·index·competition: shipments2025/competitionShipments 각사 발표 기준으로 교체(Unitree 4,200→5,500 등) · 2025 합계 13,368→14,768대',
+        'data.js·technology·kr_valuechain: RMAC "2026 여름/3Q26" 표기를 "2026년 8월"로 통일',
+        'kr_valuechain·valuation: 현대모비스 회전형 액추에이터 31개 단독 벤더 수주 확정 + 그리퍼 BD 공동개발 · 현대오토에버 ROP+RDP 역할 확정 · 에스비비테크 26.05.18 공시(12.07억원) · 에스피지 SDD 6→20기종',
+        'technology: 스마트글래스·1인칭 데이터 서브섹션 신설(가설 단계 단서 병기) · VLA 3세대 구조론(외란 대응 기준, 기존 계보 분류와 병기) · 데이터 수집비용 시계열 $136→$118/h(1Q26)',
+        'kr_valuechain·valuation: 시가총액 5종목 갱신(현대차 94.7005조·현대모비스 44.3229조·에스피지 1.4681조·에스비비테크 0.2222조·네오오토 0.1455조, 26.07.08 종가)',
+        'index(휴머노이드): 5번째 시나리오 "노동인구 침투율 Bottom-up" 추가(2035년 263.5만대, 2050년 3,248만대)',
+        'components·framework·physical_ai: BOM 대분류 5계층 프레임 병기(구동계52/감지21/구조소재12/연산9/전력6%) · Dexterous Hand 시장전망·가격표 · 열관리 정량치 · NdFeB 원재료비중 · 미중 정책 타임라인 · 난이도별 에피소드표',
+      ],
+    },
     {
       date: '2026-06-30',
       title: '로봇 두뇌 SW 계보(RT-1/RT-2·Dual System·World Model)·NVIDIA GR00T 레퍼런스 휴머노이드·정부 3M 전략·기업 정량·ASP 풀 중복합산 경고',

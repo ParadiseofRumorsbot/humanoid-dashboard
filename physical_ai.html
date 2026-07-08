@@ -255,12 +255,13 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderROI();});
   <section class="card section-gap">
     <div class="card-title">📊 Robot Action Data 수집 비용 <span class="badge" style="background:#e74c3c;color:#fff">Silicon Valley Robotics Center</span></div>
     <div class="num-row">
-      <div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">Real-World 데이터</div><div class="num-value">$136/hr</div><div class="num-sub">물리적 환경 수집 · Source: SVRC</div></div>
+      <div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">Real-World 데이터 (1Q26)</div><div class="num-value">$118/hr</div><div class="num-sub">물리적 환경 수집(원격조작) · Source: SVRC</div></div>
       <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">Online/Sim 데이터</div><div class="num-value">$0.001/hr</div><div class="num-sub">시뮬레이션 기반 · Source: SVRC</div></div>
-      <div class="num-box" style="border:2px solid var(--ink)"><div class="num-label">비용 격차</div><div class="num-value">136,000x</div><div class="num-sub">Sim-to-Real 전이가 핵심 과제</div></div>
+      <div class="num-box" style="border:2px solid var(--ink)"><div class="num-label">비용 격차</div><div class="num-value">118,000x</div><div class="num-sub">Sim-to-Real 전이가 핵심 과제</div></div>
     </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">추이(시간당, SVRC): 1Q24 $340 → 3Q24 $265 → 1Q25 $195 → 3Q25 $155 → 4Q25 $136 → <b>1Q26 $118</b></div>
     <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px;margin-top:8px">
-      <strong>시사점:</strong> 실제 환경 데이터 수집은 시뮬레이션 대비 13만배 비용. World Foundation Model 기반 합성 데이터로 전환하면 데이터 수집 비용 구조가 근본적으로 변화. 시뮬레이션 정확도 향상이 핵심 경쟁력.
+      <strong>시사점:</strong> 실제 환경 데이터 수집은 시뮬레이션 대비 10만배+ 비용이나 원격조작 효율화로 지속 하락 중. World Foundation Model 기반 합성 데이터로 전환하면 데이터 수집 비용 구조가 근본적으로 변화. 시뮬레이션 정확도 향상이 핵심 경쟁력.
     </div>
     <div style="border-top:1px dashed var(--line-s);margin-top:14px;padding-top:12px">
       <div style="font-family:var(--mono);font-size:10px;color:#e74c3c;font-weight:700;letter-spacing:.08em;margin-bottom:8px">⚠️ 시뮬에서 잘되던 정책이 현장에서 실패하는 5대 원인 (Sim-to-Real Gap)</div>
@@ -291,6 +292,20 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderROI();});
         </div>
       </div>
       <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(9,132,227,0.06);border-left:3px solid #0984E3;border-radius:0 7px 7px 0;margin-top:10px"><b>→ 한국 정부의 대응:</b> 실데이터 수집의 난점을 지적하며 <b>월드모델을 활용한 대규모 합성데이터 생산 체계에 집중 투자</b> 방침. (산업부 3대 메가프로젝트 국민보고회 2026.06.29) <span style="font-size:9px;color:var(--ink-3)">출처: NVIDIA · 산업부 보고회(원데이터)</span></div>
+    </div>
+    <div style="border-top:1px dashed var(--line-s);margin-top:14px;padding-top:12px">
+      <div style="font-family:var(--mono);font-size:10px;color:#e74c3c;font-weight:700;letter-spacing:.08em;margin-bottom:8px">📐 태스크 난이도별 필요 데모 수 (SVRC)</div>
+      <div class="scroll-x">
+        <div style="display:grid;grid-template-columns:1fr 60px 1fr;gap:0;font-size:11px;min-width:420px;border:1px solid var(--line);border-radius:10px;overflow:hidden">
+          <div style="padding:7px 9px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;background:var(--bg-soft);border-bottom:1px solid var(--line)">과제</div>
+          <div style="padding:7px 9px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;background:var(--bg-soft);border-bottom:1px solid var(--line);text-align:center">난이도</div>
+          <div style="padding:7px 9px;font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;background:var(--bg-soft);border-bottom:1px solid var(--line);text-align:right">필요 에피소드</div>
+          <div style="padding:7px 9px;border-bottom:1px solid var(--line)">단순 균일 피킹</div><div style="padding:7px 9px;border-bottom:1px solid var(--line);text-align:center;font-family:var(--mono)">L1</div><div style="padding:7px 9px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono)">200~500</div>
+          <div style="padding:7px 9px;border-bottom:1px solid var(--line)">서랍 열기+꺼내기</div><div style="padding:7px 9px;border-bottom:1px solid var(--line);text-align:center;font-family:var(--mono)">L3</div><div style="padding:7px 9px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono)">3,000~10,000</div>
+          <div style="padding:7px 9px">티셔츠 접기</div><div style="padding:7px 9px;text-align:center;font-family:var(--mono)">L5</div><div style="padding:7px 9px;text-align:right;font-family:var(--mono)">50,000+</div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">에피소드당 비용 $11~157(난이도별). Figure Helix 01 학습 = 원격조작 500시간, 구축비 $2~4M <span style="color:var(--ink-3)">[자체추정]</span>. 출처: SVRC Research</div>
     </div>
   </section>
 
@@ -555,6 +570,17 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderROI();});
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>
+          <span style="font-size:12px;font-weight:600">데이터 수집비용 시계열 연장 · 태스크 난이도별 에피소드 표 신설</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">SVRC</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Real-World 데이터 수집비용 $136/hr(4Q25) → $118/hr(1Q26), 1Q24 $340부터 추이 병기</li>
+          <li>태스크 난이도(L1~L5)별 필요 에피소드 수 표 + Figure Helix 01 구축비 추가</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-06-03</span>

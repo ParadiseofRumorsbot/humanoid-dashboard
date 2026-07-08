@@ -115,20 +115,43 @@ const DATA = {
         2040: [21609, 16500, 15500],
       }
     },
+    kb_bottomup: {
+      name: '노동인구 침투율 Bottom-up',
+      source: '자체추정 (UN·미국 통계청·유럽 통계청 노동인구 기반 재구성)',
+      desc: '미/유/중 산업별 노동인구·가구수 × 침투율로 TAM 역산. 2035년 263.5만대($870억), 2050년 3,248만대($7,530억, ASP $23.2천). 표 명시 연도(25/27/29/31/35/50) 외 보간은 로그선형 [자체추정].',
+      shipments: {
+        2024: [2.3, 4500, 800],
+        2025: [15, 4700, 1200],
+        2026: [25, 5000, 1800],
+        2027: [40, 5400, 2600],
+        2028: [59, 5900, 3500],
+        2029: [86, 6500, 4500],
+        2030: [130, 7200, 5500],
+        2031: [195, 7800, 6500],
+        2032: [374, 8500, 7500],
+        2033: [717, 9200, 8500],
+        2034: [1374, 10000, 9500],
+        2035: [2635, 11000, 10500],
+        2036: [3116, 12000, 11500],
+        2037: [3684, 13000, 12500],
+        2038: [4356, 14000, 13500],
+        2039: [5151, 15000, 14500],
+        2040: [6091, 16500, 15500],
+      }
+    },
   },
 
-  /* ── 2025년 실적 업체별 출하량 (Omdia, 2025) ── */
+  /* ── 2025년 실적 업체별 출하량 (각사 발표·언론종합, 2025) ── */
   shipments2025: [
     { name: 'AGIBOT', units: 5168, country: '🇨🇳' },
-    { name: 'Unitree', units: 4200, country: '🇨🇳' },
+    { name: 'Unitree', units: 5500, country: '🇨🇳' },
     { name: 'UBTECH', units: 1000, country: '🇨🇳' },
-    { name: 'Leju Robotics', units: 500, country: '🇨🇳' },
-    { name: 'Engine AI', units: 400, country: '🇨🇳' },
-    { name: 'Fourier Intelligence', units: 300, country: '🇨🇳' },
-    { name: 'Figure AI', units: 150, country: '🇺🇸' },
-    { name: 'Agility Robotics', units: 150, country: '🇺🇸' },
-    { name: 'Tesla', units: 150, country: '🇺🇸' },
-    { name: '기타', units: 1350, country: '🌐' },
+    { name: 'Fourier Intelligence', units: 500, country: '🇨🇳' },
+    { name: 'Leju Robotics', units: 100, country: '🇨🇳' },
+    { name: 'Tesla', units: 1000, country: '🇺🇸' },
+    { name: 'Agility Robotics', units: 1000, country: '🇺🇸' },
+    { name: 'Figure AI', units: 400, country: '🇺🇸' },
+    { name: '1X Technologies', units: 100, country: '🇺🇸' },
   ],
 
   /* ── 1대당 BOM 원단위 ── */
@@ -832,6 +855,17 @@ a{color:inherit}
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>
+          <span style="font-size:12px;font-weight:600">shipments2025 각사 발표 기준 교체 · BOM 앵커 정합(2025 출하 14,768대) · 시나리오 5번째 추가</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">언론종합 · 자체추정</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>shipments2025 배열을 각사 발표 기준으로 교체(Unitree 4,200→5,500, Tesla 150→1,000 등) — 합계 13,368→14,768대</li>
+          <li>5번째 시나리오 "노동인구 침투율 Bottom-up" 추가 — 2035년 263.5만대, 2050년 3,248만대(자체추정)</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">2026-05-20</span>

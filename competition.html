@@ -18,9 +18,9 @@ svg text{font-family:'JetBrains Mono',monospace}
 </style>
 <script>
 const SH={
-  2025:[{n:'AGIBOT',u:5168,f:'🇨🇳'},{n:'Unitree',u:4200,f:'🇨🇳'},{n:'UBTECH',u:1000,f:'🇨🇳'},{n:'Leju',u:500,f:'🇨🇳'},{n:'Engine AI',u:400,f:'🇨🇳'},{n:'Fourier',u:300,f:'🇨🇳'},{n:'Figure AI',u:150,f:'🇺🇸'},{n:'Agility',u:150,f:'🇺🇸'},{n:'Tesla',u:150,f:'🇺🇸'},{n:'기타',u:1350,f:'🌐'}],
-  2026:[{n:'AGIBOT',u:30000,f:'🇨🇳'},{n:'Unitree',u:10000,f:'🇨🇳'},{n:'UBTECH',u:10000,f:'🇨🇳'},{n:'Tesla',u:5000,f:'🇺🇸'},{n:'Figure AI',u:1000,f:'🇺🇸'},{n:'Agility',u:1000,f:'🇺🇸'},{n:'기타',u:3000,f:'🌐'}],
-  2027:[{n:'Tesla',u:30000,f:'🇺🇸'},{n:'AGIBOT',u:40000,f:'🇨🇳'},{n:'Unitree',u:15000,f:'🇨🇳'},{n:'UBTECH',u:12000,f:'🇨🇳'},{n:'Figure AI',u:3000,f:'🇺🇸'},{n:'기타',u:5000,f:'🌐'}],
+  2025:[{n:'AGIBOT',u:5168,f:'🇨🇳'},{n:'Unitree',u:5500,f:'🇨🇳'},{n:'UBTECH',u:1000,f:'🇨🇳'},{n:'Fourier',u:500,f:'🇨🇳'},{n:'Leju',u:100,f:'🇨🇳'},{n:'Tesla',u:1000,f:'🇺🇸'},{n:'Agility',u:1000,f:'🇺🇸'},{n:'Figure AI',u:400,f:'🇺🇸'},{n:'1X',u:100,f:'🇺🇸'}],
+  2026:[{n:'AGIBOT',u:10000,f:'🇨🇳'},{n:'Unitree',u:12000,f:'🇨🇳'},{n:'UBTECH',u:7000,f:'🇨🇳'},{n:'Leju',u:3000,f:'🇨🇳'},{n:'Fourier',u:2000,f:'🇨🇳'},{n:'Figure AI',u:3000,f:'🇺🇸'},{n:'Tesla',u:1000,f:'🇺🇸'},{n:'Agility',u:1500,f:'🇺🇸'},{n:'1X',u:500,f:'🇺🇸'},{n:'Boston Dynamics',u:100,f:'🇺🇸'}],
+  2027:[{n:'Unitree',u:25000,f:'🇨🇳'},{n:'AGIBOT',u:15000,f:'🇨🇳'},{n:'UBTECH',u:10000,f:'🇨🇳'},{n:'Leju',u:5000,f:'🇨🇳'},{n:'Fourier',u:5000,f:'🇨🇳'},{n:'Tesla',u:10000,f:'🇺🇸'},{n:'Figure AI',u:10000,f:'🇺🇸'},{n:'Agility',u:4000,f:'🇺🇸'},{n:'1X',u:1500,f:'🇺🇸'},{n:'Boston Dynamics',u:700,f:'🇺🇸'},{n:'Xpeng',u:1000,f:'🇨🇳'}],
 };
 let selYr=2025;
 const CM=[{y:2024,v:27.6},{y:2025,v:55},{y:2026,v:103},{y:2027,v:200},{y:2028,v:387},{y:2029,v:750}];
@@ -90,7 +90,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
 
 
   <section class="card section-gap">
-    <div class="card-title">📡 Production Tracker (2024~2026) <span class="badge" style="background:#00B894;color:#fff">각사 IR · Omdia</span></div>
+    <div class="card-title">📡 Production Tracker (2024~2026) <span class="badge" style="background:#00B894;color:#fff">각사 발표·언론종합</span></div>
     <div class="num-row">
       <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">Agibot 누적</div><div class="num-value">10,000대</div><div class="num-sub">2026.03 기준 · Source: Agibot</div></div>
       <div class="num-box" style="border-left:3px solid #3498db"><div class="num-label">Figure AI 생산</div><div class="num-value">160대/월</div><div class="num-sub">Source: Figure AI</div></div>
@@ -100,7 +100,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">Ukraine 1Q26 로봇 미션</div><div class="num-value">22,000건</div><div class="num-sub">Source: The Sun</div></div>
       <div class="num-box" style="border-left:3px solid #E17055"><div class="num-label">Uforce 누적 미션</div><div class="num-value">150,000+건</div><div class="num-sub">Source: 각사</div></div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">글로벌 휴머노이드 생산량 2024~2025 추적 기반 (Omdia). 중국 제조사 중심 빠른 스케일업 진행 중.</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">글로벌 휴머노이드 생산량 2024~2025 추적 기반 (각사 발표·언론종합). 중국 제조사 중심 빠른 스케일업 진행 중.</div>
     <!-- ── 가산: 실증 정량 (각사 발표 원데이터) ── -->
     <div style="margin:16px 0 8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">실증 정량 — 양산 라인·실증 (각사 발표)</div>
     <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:620px">
@@ -116,9 +116,13 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Leju (KUAVO, 화웨이 모델/OS)</td><td style="padding:7px 9px;white-space:normal">선전 30분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">화웨이 모델/OS 연계</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Engine AI (T800)</td><td style="padding:7px 9px;white-space:normal">선전 15분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">18만위안 (가격)</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 AgiBot</td><td style="padding:7px 9px;white-space:normal">Loncheer 공장 대량생산 라인</td><td style="padding:7px 9px;white-space:normal">6/23–28 양산 라인 라이브스트리밍</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Boston Dynamics × DHL</td><td style="padding:7px 9px;white-space:normal">Stretch 1,000대+ MOU</td><td style="padding:7px 9px;white-space:normal">시간당 700케이스 하역</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇰🇷 Boston Dynamics × 현대제철</td><td style="padding:7px 9px;white-space:normal">당진 2냉연 104개소</td><td style="padding:7px 9px;white-space:normal">Spot 자율순찰</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Figure AI × BMW</td><td style="padding:7px 9px;white-space:normal">스파르탄버그 실증 11개월</td><td style="padding:7px 9px;white-space:normal">누적 1,250시간 · X3 3만대 생산 기여</td></tr>
+        <tr><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 1X Technologies × EQT</td><td style="padding:7px 9px;white-space:normal">2030년까지 NEO 최대 1만대 공급계약(25.12)</td><td style="padding:7px 9px;white-space:normal">-</td></tr>
       </tbody>
     </table></div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사 발표(원데이터). 통화·시점 병기.</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사 발표(원데이터). 통화·시점 병기. 공개 파트너십·캡티브 채널 기준 Agility·BD·Tesla 우위 [언론종합]</div>
   </section>
 
   <section class="card section-gap">
@@ -141,6 +145,8 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 DEEP Robotics</td><td style="padding:7px 9px;white-space:normal">110억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Engine AI</td><td style="padding:7px 9px;white-space:normal">100억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Leju</td><td style="padding:7px 9px;white-space:normal">95억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 AgiBot</td><td style="padding:7px 9px;white-space:normal">IPO 목표 밸류 $51~64억</td><td style="padding:7px 9px;white-space:normal">IPO 추진 중 [언론종합]</td></tr>
+        <tr><td style="padding:7px 9px;font-weight:600">🇨🇳 UBTECH</td><td style="padding:7px 9px;white-space:normal">2025년 Walker 시리즈 주문액 14억위안+</td><td style="padding:7px 9px;white-space:normal">홍콩 상장 [언론종합]</td></tr>
       </tbody>
     </table></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">밸류 자체는 각사/언론(원데이터) · 환산·해석은 [자체추정]. 통화·시점 병기.</div>
@@ -288,6 +294,17 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>
+          <span style="font-size:12px;font-weight:600">글로벌 출하량 각사 발표 기준 교체 · Production Tracker·기업가치 표 보강</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">각사 발표·언론종합</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>SH(2025/2026/2027) 출하량 각사 발표 기준으로 교체</li>
+          <li>Production Tracker에 BD-DHL·BD-현대제철·Figure-BMW·1X-EQT 파트너십 추가, 기업가치 표에 AgiBot·UBTECH 추가</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-06-17</span>

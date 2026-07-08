@@ -635,7 +635,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
       <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #00B894">
         <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:4px">로보티즈 핸드 (전류제어 교체형)</div>
-        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">액추에이터 20개·20DoF · 한 손 <b>800만원(~$5.5k)</b> · 핑거 <b>18만원만 교체</b> → 수명 사실상 무제한(1만 시간 테스트) · 감속기 없이 전류제어 <b>20kg 가반</b> · 손목 액추에이터를 팔 안에 통합.</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">HX5-D20 액추에이터 20개·20DoF · 한 손 <b>880만원(~$6.1k)</b> · 파지력 14N·자체 무게 15kg · 핑거 <b>18만원만 교체</b> → 수명 사실상 무제한(1만 시간 테스트) · 감속기 없이 전류제어 <b>20kg 가반</b> · 손목 액추에이터를 팔 안에 통합.</div>
       </div>
       <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #E17055">
         <div style="font-size:12px;font-weight:700;color:#E17055;margin-bottom:4px">텐던·링크 방식 (회사 측 주장)</div>
@@ -645,7 +645,7 @@ window.addEventListener('DOMContentLoaded', () => {
     <div class="scroll-x"><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;min-width:360px">
       <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #636E72"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">유럽 핸드</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">~$65k</div></div>
       <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">한국 타메이커</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">~$16.5k</div></div>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">로보티즈(20DoF)</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">~$5.5k</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">로보티즈(20DoF)</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">~$6.1k</div></div>
     </div></div>
     <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin:6px 0 8px">부위별 액추에이터 방식 — 옵티머스 vs 아틀라스 vs 로보티즈 강점</div>
     <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
@@ -672,6 +672,26 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
       <div style="font-size:11px;color:var(--ink-2);line-height:1.7">로봇손에는 <b>현존 최소형 하모닉(파동) 감속기</b>가 탑재되며, 초소형화에 따른 <b>마찰제어·초정밀 가공</b>으로 기술 진입장벽이 매우 높음.</div>
       <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: NVIDIA · 각사(원데이터)</div>
+    </div>
+    <!-- (D) Dexterous Hand 시장 전망 + BOM + 가격표 -->
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-top:10px;border-left:3px solid #6C5CE7">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;letter-spacing:.06em;margin-bottom:8px">📈 Dexterous Hand 시장 전망 · 원가 구조 [자체추정]</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700">$40M</div><div style="font-size:9px;color:var(--ink-3)">2026E</div></div>
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700">$5.3억</div><div style="font-size:9px;color:var(--ink-3)">2030E</div></div>
+        <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#6C5CE7">$19.7억</div><div style="font-size:9px;color:var(--ink-3)">2035E</div></div>
+      </div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">핸드 BOM 구성: <b>구동부(액추에이터류) 50~60%</b> + <b>촉각센서 20~25%</b> + 기타(텐던·엔코더 등)</div>
+      <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:10.5px;min-width:400px">
+        <thead><tr style="border-bottom:2px solid var(--ink)"><th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">제품</th><th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">가격</th></tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Inspire RH56H1</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">$4,500</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Linkerbot L30</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">$19,999</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Unitree Dex5-1</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">1,200만원</td></tr>
+          <tr><td style="padding:6px 8px">ROBOTERA XHAND1</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">2,500만원</td></tr>
+        </tbody>
+      </table></div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">가격: 각사 공개가</div>
     </div>
   </section>
 
@@ -1056,6 +1076,19 @@ window.addEventListener('DOMContentLoaded', () => {
       </div></div>
     </div>
     <div style="font-size:10px;color:var(--ink-3)">📌 G1(저가, 액추에이터 66%) vs 풀스택($55~78K, 액추에이터 34.5%) — 총원가 기준 차이. 두 관점 병기. 출처: 자체추정</div>
+    <!-- (E) 대분류 5계층 프레임 병기 -->
+    <div style="background:var(--bg-soft);border-left:3px solid #F8B739;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:10px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#F8B739;letter-spacing:.06em;margin-bottom:6px">📐 대분류 5계층 프레임 (또 다른 병기 관점) <span style="font-weight:600;color:var(--ink-3)">[언론종합·산업자료 종합]</span></div>
+      <div class="scroll-x"><div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;min-width:480px">
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">구동계</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#FF6B6B">52%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">감지</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">21%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #636E72"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">구조·소재</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">12%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">연산</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#6C5CE7">9%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 8px;text-align:center;border-top:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">전력</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#F8B739">6%</div></div>
+      </div></div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-top:8px">구동계(52%) 내 액추에이터 원가 분해: <b>모터 29% · 유성감속기 28% · 엔코더 19% · 베어링 12% · 기타 12%</b></div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">⚠ 위 앵커·풀스택 표와 분류 경계가 상이한 별도 관점 — 수직 합산 금지</div>
+    </div>
   </section>
 
   <!-- ═══ 3. Joint Map ═══ -->
@@ -1184,6 +1217,12 @@ window.addEventListener('DOMContentLoaded', () => {
     </table></div>
 
     <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.75"><b>액추에이터사의 열관리 역할 (공냉형에서 부가가치 흡수)</b><br>① <b>기어 열·모터 열 분리</b> — 유성·사이클로이드 기어 마찰열이 모터 전기열과 합쳐지면 자석 감자(힘 상실) → 기어 표면 <b>DLC(다이아몬드 라이크 카본) 코팅</b> 등 저마찰·특수 윤활로 마찰열 축소<br>② <b>TIM(서멀 인터페이스 물질) 내재화</b> — 모터 코일 열을 외부 냉각핀으로 빠르게 전달하도록 고열전도 방열패드·젤을 조립 단계에서 일체화<br>③ <b>전력소자 GaN 전환</b> — 모터 드라이버 IC를 실리콘 MOSFET → GaN으로 바꿔 스위칭 속도 10~100배·발열 감소(부수적으로 커패시터 소형화 → 관절 공간 확보)<br>④ <b>PCM(상변화물질)</b> — 순간 고부하 시 고체→액체 잠열로 피크 온도 상승 지연</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:15px;font-weight:700">~90%</div><div style="font-size:9px;color:var(--ink-3);margin-top:2px">입력 에너지의 열 변환 비중</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:15px;font-weight:700">30%+</div><div style="font-size:9px;color:var(--ink-3);margin-top:2px">과열 시 최대 출력토크 감소</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #E17055"><div style="font-family:var(--mono);font-size:15px;font-weight:700">~2배</div><div style="font-size:9px;color:var(--ink-3);margin-top:2px">10°C 상승마다 열노화 속도</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:13px;font-weight:700">55/17.5/15%</div><div style="font-size:9px;color:var(--ink-3);margin-top:2px">발열원 분해: 모터권선/감속기/드라이버</div></div>
+    </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 언론 종합 · BD 공식 · 자체추정</div>
   </section>
 
@@ -1193,6 +1232,17 @@ window.addEventListener('DOMContentLoaded', () => {
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>
+          <span style="font-size:12px;font-weight:600">핸드 가격 880만원 갱신 · 시장전망/가격표·열관리 정량치·5계층 프레임 병기 신설</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">언론종합 · 자체추정</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>로보티즈 HX5-D20 핸드 800만원→880만원(파지력 14N·15kg) 갱신</li>
+          <li>Dexterous Hand 시장전망($40M→$19.7억, 2035E)·가격표, 열관리 정량치(90%열변환·30%토크감소 등), 대분류 5계층 BOM 프레임(구동계52% 등) 병기 추가</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-06-17</span>
