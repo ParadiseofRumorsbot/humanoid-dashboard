@@ -662,8 +662,8 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
   </section>
 
-  <!-- ═══ 1.3 Dexterous Hand 원가·부위별 액추에이터 ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #00B894">
+  <!-- ═══ 1.3 Dexterous Hand 원가·부위별 액추에이터 (손 정본) ═══ -->
+  <section id="hand" class="card section-gap" style="border-left:4px solid #00B894">
     <div class="card-title">🖐️ Dexterous Hand 원가·내구 + 부위별 액추에이터 방식 <span class="badge" style="background:#00B894;color:#fff">로보티즈 IR · 자체추정</span></div>
     <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">거대 OEM이 AI·몸체를 자체화해도 <b>저원가·고내구 dexterous 손</b>은 외부 조달 유인이 큰 '부품 니치'. 로보티즈는 핸드 원가 우위 + BD 뉴아틀라스 손 공급 레퍼런스로 이 니치를 파고듦. <a href="tech.html#anatomy" target="_top" style="color:#00B894">손 구조·원리 정본: 해부 05 ↗</a></p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
@@ -681,6 +681,12 @@ window.addEventListener('DOMContentLoaded', () => {
       <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">한국 타메이커</div><div style="font-family:var(--mono);font-size:16px;font-weight:700">~$16.5k</div></div>
       <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">로보티즈(20DoF)</div><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#00B894">~$6.1k</div></div>
     </div></div>
+    <!-- 시장 구도(M/S) — 시장·경쟁 탭에서 융합 이관 (26-07-12 v4) -->
+    <div class="num-row" style="margin-bottom:10px">
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">Linkerbot 글로벌 M/S</div><div class="num-value">80%</div><div class="num-sub">가격: $560~$14K · Source: 각사</div></div>
+      <div class="num-box" style="border-left:3px solid #636E72"><div class="num-label">Shadow Hand 가격</div><div class="num-value">$65K~$280K</div><div class="num-sub">프리미엄 연구용 · Source: 각사</div></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-bottom:10px">Linkerbot 가격 대비 Shadow Hand는 ~50배. 양산형 핸드 시장에서 중국 업체 압도적 원가 우위.</div>
     <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin:6px 0 8px">부위별 액추에이터 방식 — 옵티머스 vs 아틀라스 vs 로보티즈 강점</div>
     <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
       <thead><tr style="border-bottom:2px solid var(--ink)">
