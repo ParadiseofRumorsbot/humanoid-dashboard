@@ -1244,6 +1244,1176 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 언론 종합 · BD 공식 · Gen3 열관리 분석노트(26.07.10) · 자체추정</div>
   </section>
 
+<script src="data.js?v=20260602b"></script>
+<script>
+(function(){
+const D = DASHBOARD_DATA;
+const $ = s => document.querySelector(s);
+
+function render() {
+  renderAtlasSpecs();
+  renderDataFlywheel();
+  renderAIFactory();
+  renderCostRoadmap();
+}
+
+/* ── Sidebar ── */
+function renderSidebar() {
+  const sections = D.technology.sidebarSections;
+  let html = '';
+  let mobileHtml = '';
+  let idx = 0;
+  sections.forEach(group => {
+    const num = String(idx).padStart(2,'0');
+    html += `<div class="sidebar-group">${num}. ${group.group}</div>`;
+    group.items.forEach(item => {
+      html += `<a href="#${item.id}" class="sidebar-link" data-target="${item.id}">${item.label}</a>`;
+      mobileHtml += `<a href="#${item.id}">${item.label}</a>`;
+    });
+    idx++;
+  });
+  document.getElementById('sidebarNav').innerHTML = html;
+  const mobileEl = document.getElementById('tocMobile');
+  if (mobileEl) mobileEl.innerHTML = mobileHtml;
+}
+
+/* ── Scroll Spy ── */
+function initScrollSpy() {
+  const links = document.querySelectorAll('.sidebar-link');
+  const sections = [];
+  links.forEach(link => {
+    const id = link.dataset.target;
+    const sec = document.getElementById(id);
+    if (sec) sections.push({ el: sec, link: link });
+  });
+  if (!sections.length) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const match = sections.find(s => s.el === entry.target);
+        if (match) {
+          match.link.classList.add('active');
+          match.link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      }
+    });
+  }, { rootMargin: '-10% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s.el));
+
+  // Sidebar link smooth scroll
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.getElementById(link.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+/* ── 이미지 로드 실패 시 대체 표시 + 용어 해설 ── */
+function figHtml(figures) {
+  if (!figures || !figures.length) return '';
+  return `<div class="fig-row">${figures.map(f => {
+    const termsHtml = f.terms && f.terms.length ? `
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-top:8px;border-left:3px solid #6C5CE7">
+        <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700;letter-spacing:.08em;margin-bottom:6px;cursor:pointer;user-select:none" onclick="var el=this.nextElementSibling;el.style.display=el.style.display==='none'?'block':'none';this.textContent=el.style.display==='none'?'🔤 이미지 용어 해설 ▼':'🔤 이미지 용어 해설 ▲'">🔤 이미지 용어 해설 ▼</div>
+        <div style="display:none;font-size:10.5px;line-height:1.7">
+          ${f.terms.map(t => `<div style="display:flex;gap:8px;padding:3px 0;border-bottom:1px solid var(--line)"><span style="font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink);min-width:160px;flex-shrink:0">${t.en}</span><span style="color:var(--ink-2)">${t.ko}</span></div>`).join('')}
+        </div>
+      </div>` : '';
+    return `<div class="fig-wrap"><img src="${f.src}" alt="${f.cap}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><div style="display:none;background:var(--bg-soft);border:1px dashed var(--line-s);border-radius:8px;padding:20px;text-align:center;font-size:11px;color:var(--ink-3)">📄 이미지 로드 실패 — <a href='${f.src}' target='_blank' style='color:#6C5CE7'>원본 링크</a></div><div class="fig-cap">${f.cap}</div>${termsHtml}</div>`;
+  }).join('')}</div>`;
+}
+
+/* ── 기술 개요 로드맵 배너 ── */
+function renderRoadmapBanner() {
+  const t = D.technology.techOverview;
+  const stages = [
+    { num: '01', label: '범용 OS', id: 'sec-paradigm', color: '#6C5CE7', icon: '🔄' },
+    { num: '02', label: '부드러운 제어', id: 'sec-flowmatch', color: '#00B894', icon: '🌊' },
+    { num: '03', label: '뇌·몸 분리', id: 'sec-cogact', color: '#FF6B6B', icon: '🧠' },
+    { num: '04', label: '물리적 상상력', id: 'sec-wfmintro', color: '#F8B739', icon: '🔮' },
+    { num: '05', label: '실전 경량화', id: 'sec-ondevice', color: '#E17055', icon: '🚀' },
+  ];
+  const el = document.getElementById('roadmapBanner');
+  el.innerHTML = `
+    <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:8px 0">
+      ${stages.map((s,i) => `
+        <a href="#${s.id}" style="flex:1;min-width:120px;padding:10px 12px;background:var(--bg-soft);border-radius:8px;text-align:center;text-decoration:none;position:relative;margin-right:${i<4?'8px':'0'};border-top:3px solid ${s.color};cursor:pointer;transition:all .15s" onmouseover="this.style.background='${s.color}22'" onmouseout="this.style.background='var(--bg-soft)'">
+          <div style="font-size:16px;margin-bottom:4px">${s.icon}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:${s.color};font-weight:700">${s.num}</div>
+          <div style="font-size:11px;font-weight:600;color:var(--ink)">${s.label}</div>
+          ${i<4?`<div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--ink-3);z-index:1">→</div>`:''}
+        </a>
+      `).join('')}
+    </div>
+    <div style="text-align:center;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--ink-3)">${t.roadmapSubtitle}</div>
+  `;
+}
+
+/* ── 기술 개요 [1] 패러다임 시프트 ── */
+function renderParadigmShift() {
+  const d = D.technology.techOverview.paradigmShift;
+  const el = document.getElementById('paradigmContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:16px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-top:3px solid ${d.before.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.before.color};margin-bottom:8px">${d.before.label}</div>
+        ${d.before.steps.map(s => `<div style="font-size:11px;color:var(--ink-2);padding:3px 0;border-bottom:1px solid var(--line)">→ ${s}</div>`).join('')}
+      </div>
+      <div style="text-align:center;padding:0 4px">
+        <div style="font-size:22px;margin-bottom:4px">⚡</div>
+        <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);max-width:100px;line-height:1.4">패러다임 전환</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-top:3px solid ${d.after.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.after.color};margin-bottom:8px">${d.after.label}</div>
+        ${d.after.steps.map(s => `<div style="font-size:11px;color:var(--ink-2);padding:3px 0;border-bottom:1px solid var(--line)">✓ ${s}</div>`).join('')}
+      </div>
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="arch-diagram">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">VLA CROSS-EMBODIMENT 구조</div>
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center">
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">다양한 입력</div>
+          <div class="arch-box" style="background:#636E72;display:inline-block;margin:2px">📷 카메라 이미지</div><br>
+          <div class="arch-box" style="background:#636E72;display:inline-block;margin:2px">💬 언어 명령</div><br>
+          <div class="arch-box" style="background:#636E72;display:inline-block;margin:2px">🦾 로봇 관절 상태</div>
+        </div>
+        <div style="text-align:center">
+          <div class="arch-arrow">→</div>
+          <div class="arch-box" style="background:#6C5CE7;padding:12px 20px;font-size:11px">🧠 VLA 범용 모델<br><span style="font-size:8px;opacity:.8">하나의 두뇌로 모든 로봇 제어</span></div>
+          <div class="arch-arrow">→</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">어떤 로봇이든 즉시 제어</div>
+          <div class="arch-box" style="background:#00B894;display:inline-block;margin:2px">🤖 팔 로봇</div><br>
+          <div class="arch-box" style="background:#00B894;display:inline-block;margin:2px">🛞 바퀴 로봇</div><br>
+          <div class="arch-box" style="background:#00B894;display:inline-block;margin:2px">🦿 휴머노이드</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:9px;color:var(--ink-3);margin-top:8px">25+ 로봇 종류 × 2.1M 에피소드 학습 → Zero-Shot 제어 성공</div>
+    </div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    ${figHtml(d.figures)}
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+/* ── 기술 개요 [2] 플로우 매칭 ── */
+function renderFlowMatching() {
+  const d = D.technology.techOverview.flowMatching;
+  const el = document.getElementById('flowMatchContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#00B894;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;border-left:4px solid ${d.before.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.before.color};margin-bottom:6px">${d.before.label}</div>
+        <div style="font-size:12px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.before.desc}</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;border-left:4px solid ${d.after.color}">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${d.after.color};margin-bottom:6px">${d.after.label}</div>
+        <div style="font-size:12px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.after.desc}</div>
+      </div>
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="arch-diagram">
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">π0 ARCHITECTURE — VLM + FLOW MATCHING</div>
+      <div class="arch-flow">
+        <div class="arch-box" style="background:#6C5CE7">📷 카메라<br><span style="font-size:8px;opacity:.8">Image Input</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#636E72">💬 언어 명령<br><span style="font-size:8px;opacity:.8">Language</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#F8B739;padding:10px 16px">🧠 VLM Backbone<br><span style="font-size:8px;opacity:.8">PaliGemma 3B</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#00B894;padding:10px 16px">🌊 Flow Matching<br><span style="font-size:8px;opacity:.8">Action Expert</span></div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-box" style="background:#FF6B6B">🦾 50-step<br><span style="font-size:8px;opacity:.8">Action Chunk</span></div>
+      </div>
+      <div style="text-align:center;margin-top:8px;font-size:9px;color:var(--ink-3)">노이즈 → 벡터장 따라 흐름 → 부드러운 연속 행동 생성 (50Hz)</div>
+    </div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="fig-wrap" style="margin:14px 0">
+      <video autoplay loop muted playsinline style="width:100%;max-width:500px;border-radius:8px;display:block;margin:0 auto">
+        <source src="https://www.pi.website/videos/BimanualTrossen_60fps_hb.mp4" type="video/mp4">
+      </video>
+      <div class="fig-cap">Pi0 Demo — Flow Matching 기반 양팔 로봇의 부드러운 조작 (Physical Intelligence)</div>
+    </div>
+    ${figHtml(d.figures)}
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+/* ── 기술 개요 [3] 뇌·몸 역할 분담 ── */
+function renderCogAct() {
+  const d = D.technology.techOverview.cogAct;
+  const el = document.getElementById('cogActContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0;margin-bottom:16px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;width:100%;border-left:4px solid ${d.system2.color}">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:${d.system2.color};margin-bottom:4px">${d.system2.label}</div>
+        <div style="font-size:11.5px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.system2.desc}</div>
+      </div>
+      <div style="font-size:20px;color:var(--ink-3);padding:4px 0">⬇️</div>
+      <div style="font-size:9px;color:var(--ink-3);font-family:var(--mono);margin-bottom:4px">서브태스크 명령 하달</div>
+      <div style="font-size:20px;color:var(--ink-3);padding:0 0 4px">⬇️</div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:16px;width:100%;border-left:4px solid ${d.system1.color}">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:${d.system1.color};margin-bottom:4px">${d.system1.label}</div>
+        <div style="font-size:11.5px;white-space:pre-line;color:var(--ink-2);line-height:1.6">${d.system1.desc}</div>
+      </div>
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    ${figHtml(d.figures)}
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+/* ── 기술 개요 [4] WFM 초보자 도입부 ── */
+function renderWFMIntro() {
+  const d = D.technology.techOverview.wfmIntro;
+  const el = document.getElementById('wfmIntroContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#F8B739;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:12px 0">
+      ${d.pipeline.map((p,i) => `
+        <div style="flex:1;min-width:120px;padding:12px 14px;background:var(--bg-soft);border-radius:8px;text-align:center;position:relative;margin-right:${i<3?'8px':'0'};border-top:3px solid ${p.color}">
+          <div style="font-size:20px;margin-bottom:4px">${p.icon}</div>
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:${p.color}">${p.label}</div>
+          <div style="font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px">${p.desc}</div>
+          ${i<3?`<div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-3);z-index:1">→</div>`:''}
+        </div>
+      `).join('')}
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="fig-wrap" style="margin:14px 0">
+      <video autoplay loop muted playsinline style="width:100%;max-width:600px;border-radius:8px;display:block;margin:0 auto">
+        <source src="https://images.nvidia.com/aem-dam/Solutions/cosmos/cosmos-predict.mp4" type="video/mp4">
+      </video>
+      <div class="fig-cap">NVIDIA Cosmos Predict — 현재 프레임에서 물리 법칙 기반 미래 상태를 예측하는 세계 모델 데모</div>
+    </div>
+    ${figHtml(d.figures)}
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+/* ── Part 5 히어로 배너 렌더링 ── */
+function renderOnDeviceHero() {
+  const d = D.technology.techOverview.onDevice;
+  const h = d.hero;
+  const el = document.getElementById('onDeviceHero');
+  el.innerHTML = `
+    <div class="ondevice-hero">
+      <div style="font-family:var(--mono);font-size:10px;color:#E17055;letter-spacing:.15em;margin-bottom:12px;font-weight:600">PART 5 — THE FINAL MILE</div>
+      <div class="hero-main">${h.main.replace('조그만 칩셋 하나에 압축해', '<em>조그만 칩셋 하나에 압축해</em>')}</div>
+
+      <div class="bottleneck-box">
+        <div class="btl-label">BOTTLENECK</div>
+        <div class="btl-text">${h.bottleneck}</div>
+      </div>
+
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.1em;margin:18px 0 8px;font-weight:600">ChatGPT와 로봇 AI는 다르다</div>
+      <table class="llm-vs-vla">
+        <thead><tr><th>비교 항목</th><th>기존 LLM (ChatGPT 등)</th><th>로봇 AI (VLA)</th></tr></thead>
+        <tbody>${h.llmVsVla.map(r =>
+          `<tr><td>${r.dim}</td><td>${r.llm}</td><td class="vla-cell">${r.vla}</td></tr>`
+        ).join('')}</tbody>
+      </table>
+
+      <div class="hero-question">"${h.question}"</div>
+
+      <a href="#sec-ondevice" style="display:block;text-decoration:none;margin-top:8px;cursor:pointer">
+        <div style="font-size:11px;color:rgba(255,107,107,.8);font-weight:600">아래에서 해답을 확인하세요 — bVLA + PD-VLA + RTC</div>
+        <div style="font-size:22px;margin-top:4px;color:rgba(255,107,107,.6)">↓</div>
+      </a>
+    </div>
+  `;
+}
+
+/* ── 기술 개요 [5] 온디바이스 최적화 ── */
+function renderOnDevice() {
+  const d = D.technology.techOverview.onDevice;
+  const el = document.getElementById('onDeviceContent');
+  el.innerHTML = `
+    <div style="font-family:var(--mono);font-size:9px;color:#E17055;font-weight:600;margin-bottom:8px">${d.roadmapPosition}</div>
+    <div style="display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:12px 0">
+      ${d.techniques.map((t,i) => `
+        <div style="flex:1;min-width:200px;padding:14px 16px;background:var(--bg-soft);border-radius:10px;position:relative;margin-right:${i<2?'8px':'0'};border-top:3px solid ${t.color}">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+            <span style="font-size:18px">${t.icon}</span>
+            <div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${t.step}</div>
+              <div style="font-size:12px;font-weight:700;color:${t.color}">${t.name}</div>
+            </div>
+          </div>
+          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">${t.desc}</div>
+          <div class="tech-analogy" style="border-color:${t.color}">
+            <span style="font-weight:700;color:${t.color}">💡 직관적 비유:</span> ${t.analogy}
+          </div>
+          <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600;margin-top:8px">${t.metric}</div>
+          ${i<2?`<div style="position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-3);z-index:1">→</div>`:''}
+        </div>
+      `).join('')}
+    </div>
+    <div class="guide-desc" style="margin-bottom:12px">${d.explanation.map(e => `<p style="margin-bottom:6px">${e}</p>`).join('')}</div>
+    <div class="num-row">${d.stats.map(s =>
+      `<div class="num-box"><div class="num-label">${s.label}</div><div class="num-value">${s.value}</div><div class="num-sub">${s.sub}</div></div>`
+    ).join('')}</div>
+    <div class="validation-bar">${d.validationBadges.map(b =>
+      `<span class="validation-badge" style="border-color:${b.color};color:${b.color}">${b.icon} ${b.text}</span>`
+    ).join('')}</div>
+    <div class="fig-wrap" style="margin:14px 0">
+      <video autoplay loop muted playsinline style="width:100%;max-width:700px;border-radius:8px;display:block;margin:0 auto">
+        <source src="https://website.pi-asset.com/real_time_chunking/sbs_candle.mp4" type="video/mp4">
+      </video>
+      <div class="fig-cap">RTC Side-by-Side — 왼쪽: 기존 방식(끊김 발생) vs 오른쪽: RTC 적용(부드러운 이어붙임)</div>
+    </div>
+    ${figHtml(d.figures)}
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: ${d.source}</div>
+  `;
+}
+
+function renderAIStack() {
+  const el = $('#aiStackGrid');
+  el.innerHTML = D.technology.aiStack.layers.map(l =>
+    `<div class="layer-card" style="border-color:${l.color}">
+      <h3 style="color:${l.color}">${l.name}</h3>
+      <p>${l.desc}</p>
+      <div class="examples">${l.examples}</div>
+    </div>`
+  ).join('');
+}
+
+function renderLocomotionVsManipulation() {
+  const el = $('#cmpGrid');
+  const data = D.technology.locomotionVsManipulation.comparison;
+  let html = '<div class="th" style="text-align:left">비교 항목</div><div class="th">Locomotion (이동)</div><div class="th">Manipulation (조작)</div><div class="th">우위</div>';
+  data.forEach(r => {
+    const isManip = r.winner === 'manipulation';
+    html += `<div class="td" style="text-align:left;font-weight:600">${r.dim}</div>`;
+    html += `<div class="td" style="${!isManip?'background:#e8f5e9;font-weight:600':''}">${r.locomotion}</div>`;
+    html += `<div class="td" style="${isManip?'background:#fff3e0;font-weight:600':''}">${r.manipulation}</div>`;
+    html += `<div class="td" style="text-align:center;font-size:13px">${isManip?'🤲':'🦿'}</div>`;
+  });
+  el.innerHTML = html;
+}
+
+function renderDataFlywheel() {
+  const el = $('#flywheelGrid');
+  el.innerHTML = D.technology.dataFlywheel.stages.map(s =>
+    `<div class="flywheel-step">
+      <div class="flywheel-num">${s.step}</div>
+      <div class="flywheel-content">
+        <h4>${s.name}</h4>
+        <p>${s.desc}</p>
+        <span class="flywheel-metric">${s.metric}</span>
+      </div>
+    </div>`
+  ).join('');
+}
+
+function renderAtlasSpecs() {
+  const s = D.atlasSpecs;
+  const el = $('#atlasSpecGrid');
+  el.innerHTML = `
+    <div class="spec-item" style="border:2px solid var(--ink)"><div class="val">${s.weight.value}<span style="font-size:12px">${s.weight.unit}</span></div><div class="lbl">${s.weight.label}</div></div>
+    <div class="spec-item"><div class="val">${s.height.value}<span style="font-size:12px">${s.height.unit}</span></div><div class="lbl">${s.height.label}</div></div>
+    <div class="spec-item" style="border:2px solid #FF6B6B"><div class="val" style="color:#FF6B6B">${s.payload.value}<span style="font-size:12px">${s.payload.unit}</span></div><div class="lbl">${s.payload.label}</div></div>
+    <div class="spec-item"><div class="val">${s.reach.value}<span style="font-size:12px">${s.reach.unit}</span></div><div class="lbl">${s.reach.label}</div></div>
+    <div class="spec-item" style="border:2px solid #00B894"><div class="val" style="color:#00B894">${s.ip.value}</div><div class="lbl">${s.ip.label}</div></div>
+    <div class="spec-item"><div class="val">${s.tempRange.min}~${s.tempRange.max}<span style="font-size:12px">${s.tempRange.unit}</span></div><div class="lbl">${s.tempRange.label}</div></div>
+    <div class="spec-item"><div class="val" style="font-size:14px">${s.battery.type}</div><div class="lbl">${s.battery.label}</div></div>
+    <div class="spec-item"><div class="val" style="font-size:14px">${s.sensing.value}</div><div class="lbl">${s.sensing.label}</div></div>
+    <div class="spec-item"><div class="val" style="font-size:14px">${s.joints.value}</div><div class="lbl">${s.joints.label}</div></div>
+    <div class="spec-item" style="border:2px solid #6C5CE7"><div class="val" style="color:#6C5CE7">${s.dof}<span style="font-size:12px">DoF</span></div><div class="lbl">자유도</div></div>
+    <div class="spec-item" style="border:2px solid #F8B739"><div class="val" style="color:#F8B739">${s.actuatorTypes.before}→${s.actuatorTypes.after}</div><div class="lbl">${s.actuatorTypes.label}</div><div class="sub">양산성·원가 최적화</div></div>
+  `;
+}
+
+function renderCostRoadmap() {
+  const el = $('#costGrid');
+  const data = D.technology.costRoadmap.milestones;
+  const maxASP = Math.max(...data.map(d => d.asp));
+  const maxVol = Math.max(...data.map(d => d.volume));
+  let html = '';
+  data.forEach(d => {
+    const aspW = Math.max(8, (d.asp / maxASP) * 100);
+    const volW = Math.max(8, (d.volume / maxVol) * 100);
+    html += `<div style="display:grid;grid-template-columns:60px 1fr 1fr;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)">
+      <div style="font-family:var(--mono);font-size:13px;font-weight:700">${d.year}</div>
+      <div>
+        <div class="cost-bar" style="width:${aspW}%;background:linear-gradient(90deg,#FF6B6B,#e74c3c)">$${(d.asp/1000).toFixed(0)}K</div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:2px">ASP</div>
+      </div>
+      <div>
+        <div class="cost-bar" style="width:${volW}%;background:linear-gradient(90deg,#4ecdc4,#00B894)">${d.volume>=1e6?(d.volume/1e6).toFixed(1)+'M':d.volume>=1000?(d.volume/1000).toFixed(0)+'K':d.volume}</div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:2px">${d.note}</div>
+      </div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+/* ── 7. Robot Data Pipeline ── */
+function renderRobotDataPipeline() {
+  const d = D.technology.robotDataPipeline;
+  const el = $('#pipelineMethods');
+  el.innerHTML = d.methods.map(m =>
+    `<div class="layer-card" style="border-color:${m.color}">
+      <h3 style="color:${m.color}">${m.name}</h3>
+      <p>${m.desc}</p>
+      <div style="margin-top:6px;font-size:10px"><span style="color:#00B894;font-weight:600">+</span> ${m.pros}</div>
+      <div style="font-size:10px"><span style="color:#FF6B6B;font-weight:600">-</span> ${m.cons}</div>
+    </div>`
+  ).join('');
+  const pEl = $('#pipelineFlow');
+  pEl.innerHTML = d.pipeline.map(s =>
+    `<div class="pipeline-step">
+      <div class="pipeline-icon">${s.icon}</div>
+      <div class="pipeline-name">${s.name}</div>
+      <div class="pipeline-desc">${s.desc}</div>
+    </div>`
+  ).join('');
+  const kEl = $('#pipelineConcepts');
+  kEl.innerHTML = d.keyConcepts.map(c =>
+    `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:700;min-width:140px;color:#6C5CE7">${c.term}</span>
+      <span style="font-size:11px;color:var(--ink-2)">${c.def}</span>
+    </div>`
+  ).join('');
+}
+
+/* ── 8. Digital Twin ── */
+function renderDigitalTwin() {
+  const d = D.technology.digitalTwin;
+  const aEl = $('#dtApproaches');
+  aEl.innerHTML = d.approaches.map(a =>
+    `<div class="layer-card" style="border-color:${a.color}">
+      <h3 style="color:${a.color}">${a.name}</h3>
+      <p>${a.desc}</p>
+      <div class="examples">${a.examples}</div>
+    </div>`
+  ).join('');
+  const pEl = $('#dtPapers');
+  pEl.innerHTML = d.papers.map(p =>
+    `<div class="paper-card">
+      <h4>${p.name} <span style="font-weight:400;color:var(--ink-3)">— ${p.full}</span></h4>
+      <p>${p.method}</p>
+      <div class="highlight">${p.highlight}</div>
+    </div>`
+  ).join('');
+  const kEl = $('#dtKeyTech');
+  kEl.innerHTML = d.keyTech.map(c =>
+    `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)">
+      <span style="font-family:var(--mono);font-size:11px;font-weight:700;min-width:160px;color:#0984E3">${c.term}</span>
+      <span style="font-size:11px;color:var(--ink-2)">${c.def}</span>
+    </div>`
+  ).join('');
+}
+
+/* ── 9. WFM Deep ── */
+function renderWFMDeep() {
+  const d = D.technology.wfmDeep;
+  const el = $('#wfmTable');
+  let html = `<div class="wfm-row hdr-row"><div>Model</div><div>Organization</div><div>Method</div><div>Result</div><div>Approach</div></div>`;
+  d.comparison.forEach(m => {
+    html += `<div class="wfm-row">
+      <div style="font-weight:700">${m.model}</div>
+      <div style="font-family:var(--mono);color:var(--ink-3)">${m.org}</div>
+      <div>${m.method}</div>
+      <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600">${m.result}</div>
+      <div><span style="font-family:var(--mono);font-size:9px;padding:2px 6px;background:var(--bg-soft);border-radius:4px;font-weight:600">${m.approach}</span></div>
+    </div>`;
+  });
+  el.innerHTML = html;
+  const cEl = $('#wfmChallenges');
+  cEl.innerHTML = d.challenges.map(c =>
+    `<div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #FF6B6B">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:2px">${c.issue}</div>
+      <div style="font-size:11px;color:var(--ink-2)">${c.desc}</div>
+    </div>`
+  ).join('');
+}
+
+/* ── 10. VLA Evolution ── */
+function renderVLAEvolution() {
+  const d = D.technology.vlaEvolution;
+  const mEl = $('#vlaModels');
+  mEl.innerHTML = d.models.map(m =>
+    `<div class="card" style="border-left:4px solid ${m.color};margin-top:10px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <h3 style="font-size:14px;font-weight:700;color:${m.color}">${m.name}</h3>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${m.org}</span>
+      </div>
+      <div style="font-size:12px;font-weight:600;margin-bottom:6px">${m.keyIdea}</div>
+      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;margin-bottom:6px"><strong>Architecture:</strong> ${m.architecture}</div>
+      <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600">${m.breakthrough}</div>
+    </div>`
+  ).join('');
+  const tEl = $('#vlaTimeline');
+  tEl.innerHTML = d.evolutionPath.map(e =>
+    `<div class="vla-gen">
+      <div class="dot"></div>
+      <div class="gen-label">${e.gen}</div>
+      <div class="gen-name">${e.name}</div>
+      <div class="gen-desc">${e.desc}</div>
+      <div class="gen-year">${e.year}</div>
+    </div>`
+  ).join('');
+}
+
+/* ── 11. VLA Comparison ── */
+function renderVLAComparison() {
+  const d = D.technology.vlaComparison;
+  const mEl = $('#vlaFamilies');
+  mEl.innerHTML = d.models.map(m =>
+    `<div style="background:var(--bg-soft);border-radius:10px;padding:14px;border-top:4px solid ${m.color}">
+      <div style="font-size:14px;font-weight:700;color:${m.color};margin-bottom:2px">${m.family}</div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:8px">${m.org}</div>
+      ${m.versions.map(v => `
+        <div style="background:var(--bg-card);border-radius:6px;padding:8px 10px;margin-bottom:6px;border:1px solid var(--line)">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:var(--mono);font-size:11px;font-weight:700">${v.ver}</span>
+            <span style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${v.date}</span>
+          </div>
+          <div style="font-size:10.5px;color:var(--ink-2);margin-top:4px">${v.keyFeature}</div>
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:2px">Action: ${v.actionHead}</div>
+        </div>
+      `).join('')}
+      <div style="margin-top:8px;font-size:10px">
+        <div style="color:#00B894;font-weight:600">+ ${m.strength}</div>
+        <div style="color:#FF6B6B;font-weight:600;margin-top:2px">- ${m.weakness}</div>
+      </div>
+    </div>`
+  ).join('');
+  const dEl = $('#vlaDimensions');
+  let html = '<div class="m-th">Dimension</div><div class="m-th" style="color:#76B900">GR00T</div><div class="m-th" style="color:#4285F4">Gemini</div><div class="m-th" style="color:#E17055">π0</div>';
+  d.dimensions.forEach(r => {
+    html += `<div class="m-td" style="font-weight:600">${r.dim}</div>`;
+    html += `<div class="m-td" style="text-align:center">${r.groot}</div>`;
+    html += `<div class="m-td" style="text-align:center">${r.gemini}</div>`;
+    html += `<div class="m-td" style="text-align:center">${r.pi}</div>`;
+  });
+  dEl.innerHTML = html;
+}
+
+/* ── 12. AI Factory ── */
+function renderAIFactory() {
+  const d = D.technology.aiFactory;
+  const cEl = $('#cakeLayers');
+  cEl.innerHTML = d.fiveLayerCake.slice().reverse().map(l =>
+    `<div class="cake-layer" style="background:${l.color}">
+      <div class="layer-num">${l.icon}</div>
+      <div class="layer-info" style="flex:1">
+        <div class="layer-name">L${l.layer}. ${l.name}</div>
+        <div class="layer-desc">${l.desc}</div>
+      </div>
+      <div style="min-width:150px;max-width:200px;text-align:right;font-family:var(--mono);font-size:9px;line-height:1.4;color:rgba(255,255,255,.92)"><span style="opacity:.6;font-size:8px">🇰🇷 한국</span><br>${l.kr}</div>
+    </div>`
+  ).join('');
+  const sEl = $('#roboticsStack');
+  sEl.innerHTML = d.nvidiaRoboticsStack.map(s =>
+    `<div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-left:3px solid #76B900">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#76B900">${s.name}</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">${s.role}</span>
+      </div>
+      <div style="font-size:10.5px;color:var(--ink-2)">${s.desc}</div>
+    </div>`
+  ).join('');
+  const tEl = $('#trainingLoop');
+  tEl.innerHTML = d.trainingLoop.map(s =>
+    `<div class="pipeline-step">
+      <div class="pipeline-icon" style="font-size:14px;font-family:var(--mono);font-weight:700;color:#76B900">${s.step}</div>
+      <div class="pipeline-name">${s.name}</div>
+      <div class="pipeline-desc">${s.desc}</div>
+    </div>`
+  ).join('');
+}
+
+/* ── 13. Glossary ── */
+function renderGlossary() {
+  const d = D.technology.glossary;
+  const catColors = { model: '#6C5CE7', method: '#FF6B6B', architecture: '#F8B739', data: '#00B894', sim: '#0984E3' };
+  const el = $('#glossaryGrid');
+  el.innerHTML = d.map(g =>
+    `<div class="glossary-item" style="border-color:${catColors[g.category]||'var(--ink-3)'}">
+      <div class="glossary-term" style="color:${catColors[g.category]||'var(--ink)'}">${g.term}</div>
+      <div class="glossary-full">${g.full}</div>
+      <div class="glossary-def">${g.def}</div>
+    </div>`
+  ).join('');
+}
+
+function renderUpdateLog() {
+  const el = $('#updateLogContent');
+  let html = '';
+  D.updateLog.forEach(entry => {
+    html += `<div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:var(--ink);color:var(--bg);padding:2px 8px;border-radius:4px">${entry.date}</span>
+        <span style="font-size:12px;font-weight:600">${entry.title}</span>
+      </div>
+      <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">${entry.source}</div>
+      <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+        ${entry.changes.map(c => `<li>${c}</li>`).join('')}
+      </ul>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function toggleLog() {
+  const el = $('#updateLogContent');
+  el.classList.toggle('open');
+  const btn = $('#logToggleBtn');
+  btn.textContent = el.classList.contains('open') ? '▲ 접기' : '▼ 펼치기';
+}
+
+window.addEventListener('DOMContentLoaded', render);
+})();
+</script>
+    <section id="sec-bd-learning" class="card section-gap">
+      <div class="card-title">🦾 Part 6.5  BD Atlas — 데이터를 어떻게 쌓는가
+        <span class="badge" style="background:#0984E3;color:#fff">Boston Dynamics 1차 자료</span>
+      </div>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:16px">
+        보스턴 다이내믹스가 공식 기술 블로그에서 직접 서술한 행동 학습 파이프라인.
+        <b>"카메라로 보고 손으로 드는" 것이 아니라, 몸 전체의 감각(자기수용감각)으로 적응</b>하도록 학습한다는 것이 핵심.
+      </p>
+      <!-- Atlas Workhorse Grippers 영상 (자동재생·무음·반복) -->
+      <div style="margin:0 0 18px;text-align:center">
+        <iframe src="https://www.youtube.com/embed/gS4rOqNDTBk?autoplay=1&mute=1&loop=1&playlist=gS4rOqNDTBk&controls=0&modestbranding=1&rel=0&playsinline=1" title="Atlas Workhorse Grippers — Boston Dynamics" allow="autoplay; encrypted-media" allowfullscreen loading="lazy" style="width:100%;max-width:640px;aspect-ratio:16/9;border:none;border-radius:12px;display:block;margin:0 auto"></iframe>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px">Atlas Workhorse Grippers — 50~70lb 학습 → 100lb+ 냉장고 실제 작업 · 출처: Boston Dynamics</div>
+      </div>
+      <div style="background:var(--bg-soft);border:1px solid var(--line);border-left:4px solid #0a9c96;border-radius:14px;padding:22px 26px;margin-bottom:18px">
+        <div style="font-family:var(--mono);font-size:9px;color:#0a9c96;letter-spacing:.15em;margin-bottom:10px;font-weight:700">KEY INSIGHT — DOMAIN RANDOMIZATION</div>
+        <div style="font-size:15px;font-weight:700;line-height:1.7;margin-bottom:14px;color:var(--ink)">
+          <span style="color:#0a9c96">50~70 lb</span> 하중으로 학습 →
+          실제로는 <span style="color:#d39e00">100 lb 초과</span> 적재 냉장고를 들어 옮김.<br>
+          <span style="font-weight:400;font-size:12.5px;color:var(--ink-2)">학습한 적 없는 무게를, 엔지니어가 아니라 Atlas의 몸이 스스로 적응.</span>
+        </div>
+        <!-- 일반화 스케일 바 -->
+        <div style="margin:0 0 16px">
+          <div style="position:relative;height:30px;background:var(--bg);border:1px solid var(--line);border-radius:6px;overflow:hidden">
+            <div style="position:absolute;left:41.7%;width:16.7%;top:0;height:100%;background:rgba(10,156,150,.65);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#fff;font-weight:700">학습 50–70</div>
+            <div style="position:absolute;left:83.3%;right:0;top:0;height:100%;background:rgba(248,183,57,.85);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#1a1a1a;font-weight:700">실제 100+</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:3px"><span>0</span><span>60 lb</span><span>120 lb</span></div>
+          <div style="text-align:center;font-family:var(--mono);font-size:9px;color:#d39e00;margin-top:5px">↑ 학습 구간 밖(extrapolation)에서도 성공 — 이것이 Domain Randomization의 힘</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div style="background:var(--bg);border-radius:8px;padding:12px;border-top:3px solid #0a9c96">
+            <div style="font-family:var(--mono);font-size:9px;color:#0a9c96;font-weight:700;margin-bottom:4px">학습 하중</div>
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#0a9c96">50–70 lb</div>
+            <div style="font-size:10px;color:var(--ink-3);margin-top:2px">정책 학습 시 설정 범위</div>
+          </div>
+          <div style="background:var(--bg);border-radius:8px;padding:12px;border-top:3px solid #F8B739">
+            <div style="font-family:var(--mono);font-size:9px;color:#d39e00;font-weight:700;margin-bottom:4px">실제 성공 하중</div>
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#d39e00">100+ lb</div>
+            <div style="font-size:10px;color:var(--ink-3);margin-top:2px">잡다한 물건 불균등·이동 적재</div>
+          </div>
+          <div style="background:var(--bg);border-radius:8px;padding:12px;border-top:3px solid #6C5CE7">
+            <div style="font-family:var(--mono);font-size:9px;color:#6C5CE7;font-weight:700;margin-bottom:4px">로봇 자중</div>
+            <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#6C5CE7">90 kg</div>
+            <div style="font-size:10px;color:var(--ink-3);margin-top:2px">198 lb · 핸드스탠드 가능</div>
+          </div>
+        </div>
+        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.65;margin-top:12px;border-top:1px solid var(--line);padding-top:10px"><b style="color:#0a9c96">왜 되는가:</b> 시뮬레이션에서 냉장고 무게·바닥 마찰·모터 출력을 무작위로 변동(Domain Randomization)시켜 학습 → 특정 무게값이 아니라 '무게가 변한다'는 사실 자체에 강건해짐. 그래서 학습 분포(50–70 lb)를 벗어난 100 lb+에서도 일반화.</div>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">TRAINING MONTAGE — 행동 학습 5단계</div>
+      <div style="margin-bottom:18px">
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#6C5CE7">1</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reference · 참조 궤적</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">목표 동작을 던져줌 — 텔레오퍼레이션 시연, 애니메이션, 또는 추상적 목표 서술. 냉장고 동작은 단순 애니메이션에서 출발해 Atlas의 초인적 가동범위를 활용.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#FF6B6B">2</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Reward · 보상 설계</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">그리퍼 안 물체의 위치·방향 유지를 보상. 동시에 로봇·냉장고를 밀고 당기는 외란을 가해, 방해받는 중에도 본 과제를 유지하도록 학습.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#F8B739">3</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Simulation · 시뮬레이션</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">GPU 병렬로 <b>수백만 시간</b> 연습. 냉장고의 무게·바닥 마찰·모터 출력을 무작위로 변동(Domain Randomization)시켜 수많은 변형에 적응.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#00B894">4</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Real Robot · 실기 검증</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">"build it, break it, fix it" 철학. 시뮬레이션은 한계가 있으므로 실제 하드웨어에서 테스트해 개선. 오늘 학습한 정책을 다음 날 실기로 검증.</div></div></div>
+        <div class="flywheel-step"><div class="flywheel-num" style="color:#0984E3">5</div><div class="flywheel-content"><div style="font-size:12.5px;font-weight:700;margin-bottom:2px">Iteration · 반복 강건화</div><div style="font-size:11px;color:var(--ink-2);line-height:1.6">실기 성능 데이터를 다시 학습에 반영해 행동을 강건화(harden). 목표는 신규 행동을 <b>하루 단위</b>로 학습·배포하는 것.</div></div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">WHY IT TRANSFERS — Sim-to-Real Gap 축소 3대 요인</div>
+      <div class="spec-grid" style="margin-bottom:18px">
+        <div class="spec-item" style="text-align:left;border-left:3px solid #6C5CE7"><div style="font-size:12px;font-weight:700;margin-bottom:4px">① 고정밀 하드웨어</div><div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">액추에이터 <b>2종</b>·전부 회전형(rotary)·완전 대칭 구조 → 시뮬레이션에서 로봇을 정확히 모델링.</div></div>
+        <div class="spec-item" style="text-align:left;border-left:3px solid #00B894"><div style="font-size:12px;font-weight:700;margin-bottom:4px">② Domain Randomization</div><div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">무게·마찰·모터 출력을 학습 내내 조금씩 무작위 변동 → 현실 변동성에 강건.</div></div>
+        <div class="spec-item" style="text-align:left;border-left:3px solid #F8B739"><div style="font-size:12px;font-weight:700;margin-bottom:4px">③ People &amp; Process</div><div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">HW 설계팀·수리 기술자·robot captain이 받치는 엄격한 파이프라인.</div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:4px">WHO DOES WHAT — 휴머노이드 AI 스택 3층 구분</div>
+      <p style="font-size:11px;color:var(--ink-3);margin-bottom:10px">"엔비디아와 구글이 뭐가 다른가?" — 경쟁이 아니라 스택의 서로 다른 층.</p>
+      <div style="background:var(--bg-soft);border-radius:12px;padding:8px 4px">
+        <svg viewBox="0 0 720 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block" font-family="'JetBrains Mono',monospace">
+          <rect x="20" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#6C5CE7" stroke-width="2"/>
+          <text x="125" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#6C5CE7">두뇌 · 추론 (모델)</text>
+          <text x="125" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">Google DeepMind</text>
+          <text x="125" y="98" text-anchor="middle" font-size="11" fill="#4A4A45">Gemini Robotics</text>
+          <line x1="45" y1="112" x2="205" y2="112" stroke="#E2E1D8" stroke-width="1"/>
+          <text x="125" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82">"무엇을 / 왜 하는가"</text>
+          <text x="125" y="202" text-anchor="middle" font-size="20">🧠</text>
+          <rect x="255" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#F8B739" stroke-width="2"/>
+          <text x="360" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#d39e00">몸 · 물리지능</text>
+          <text x="360" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">Boston Dynamics</text>
+          <text x="360" y="98" text-anchor="middle" font-size="11" fill="#4A4A45">Atlas</text>
+          <line x1="280" y1="112" x2="440" y2="112" stroke="#E2E1D8" stroke-width="1"/>
+          <text x="360" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82">"어떻게 움직이는가"</text>
+          <text x="360" y="202" text-anchor="middle" font-size="20">🦾</text>
+          <rect x="490" y="30" width="210" height="190" rx="12" fill="#fff" stroke="#00B894" stroke-width="2"/>
+          <text x="595" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#00997b">인프라 · 엔진</text>
+          <text x="595" y="80" text-anchor="middle" font-size="14" font-weight="700" fill="#0A0A08" font-family="'Pretendard',sans-serif">NVIDIA</text>
+          <text x="595" y="98" text-anchor="middle" font-size="10.5" fill="#4A4A45">Omniverse · Isaac · Jetson</text>
+          <line x1="515" y1="112" x2="675" y2="112" stroke="#E2E1D8" stroke-width="1"/>
+          <text x="595" y="150" text-anchor="middle" font-size="9.5" fill="#8B8B82">"어디서 돌리는가"</text>
+          <text x="595" y="202" text-anchor="middle" font-size="20">⚙️</text>
+          <text x="242" y="128" text-anchor="middle" font-size="14" fill="#C5C3B7">+</text>
+          <text x="477" y="128" text-anchor="middle" font-size="14" fill="#C5C3B7">×</text>
+        </svg>
+      </div>
+      <p style="font-size:10px;color:var(--ink-3);margin-top:10px;line-height:1.6">
+        비유: NVIDIA = 발전소(인프라), Gemini Robotics = 두뇌(모델), Atlas = 몸(물리지능). 세 층이 맞물려야 냉장고를 든다. <b>BD–DeepMind 파트너십은 양측 모두 비독점.</b>
+      </p>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:14px;border-top:1px solid var(--line);padding-top:8px">
+        출처: Boston Dynamics 공식 기술 블로그 "Training a Humanoid Robot for Hard Work" · BD 보도자료 (2026.01 CES, Google DeepMind 파트너십). 모두 1차 자료.
+      </div>
+    </section>
+
+    <!-- 브릿지 6.5→7 -->
+    <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
+      ▼ BD가 학습시키는 현실을 봤음. 마지막 — 이게 실제로 박히는 하드웨어와 공급망.
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         Part 7. HW + 인프라 + 투자
+         ══════════════════════════════════════════ -->
+    <section id="sec-atlas" class="card section-gap">
+      <div class="card-title">🤖 Part 7. HW + 인프라 + 투자 <span class="badge" style="background:var(--ink);color:var(--bg)">Atlas · NVIDIA · HMG</span></div>
+      <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:14px">
+        뇌 만들고(Part 1~4), 칩에 압축하고(Part 5), 데이터로 학습시켰음(Part 6).
+        <span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">마지막 — 이게 실제로 박히는 하드웨어, 돌리는 인프라, 그리고 누가 만드는가.</span>
+      </p>
+      <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">"Blank-sheet design focused on simplicity" — Zack Jackowski, BD Chief Product Technology Officer</p>
+      <figure style="margin:0 0 16px;display:flex;flex-direction:column;align-items:center">
+        <img src="assets/atlas_fru.png" alt="Atlas Field Replaceable Units — 모듈별 분해도" loading="lazy" style="width:100%;max-width:640px;border-radius:12px;border:1px solid var(--line-s);display:block">
+        <figcaption style="font-size:10px;color:var(--ink-3);margin-top:6px">Atlas Field Replaceable Units — Compute Module · Actuators(2종) · Perception · Gripper · 출처: Boston Dynamics</figcaption>
+      </figure>
+      <!-- Atlas Handstand 영상 (자동재생·무음·반복) -->
+      <div style="margin:0 0 16px;text-align:center">
+        <iframe src="https://www.youtube.com/embed/UoHfGhLHRkg?autoplay=1&mute=1&loop=1&playlist=UoHfGhLHRkg&controls=0&modestbranding=1&rel=0&playsinline=1" title="Atlas Handstand — Boston Dynamics" allow="autoplay; encrypted-media" allowfullscreen loading="lazy" style="width:100%;max-width:360px;aspect-ratio:9/16;border:none;border-radius:12px;display:block;margin:0 auto"></iframe>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px">양산형 Atlas '001' 물구나무 — 90kg 전신 하중을 두 팔로 지탱 · 출처: Boston Dynamics</div>
+      </div>
+      <div id="atlasSpecGrid" class="spec-grid"></div>
+      <!-- Atlas 버전 진화 타임라인 -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:16px;padding-top:14px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">Atlas 버전 진화 — 유압 → 전기, 28 → 56 DoF</div>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+            <thead><tr style="border-bottom:2px solid var(--ink)">
+              <th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">버전</th>
+              <th style="text-align:center;padding:6px 8px;font-family:var(--mono);font-size:9px">연도</th>
+              <th style="text-align:center;padding:6px 8px;font-family:var(--mono);font-size:9px">구동</th>
+              <th style="text-align:center;padding:6px 8px;font-family:var(--mono);font-size:9px">무게</th>
+              <th style="text-align:center;padding:6px 8px;font-family:var(--mono);font-size:9px">DoF</th>
+              <th style="text-align:center;padding:6px 8px;font-family:var(--mono);font-size:9px">속도</th>
+              <th style="text-align:center;padding:6px 8px;font-family:var(--mono);font-size:9px">페이로드</th>
+            </tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px;font-weight:700">Atlas 1.0</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">2013</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">유압</td><td style="text-align:center;padding:6px 8px">150kg</td><td style="text-align:center;padding:6px 8px">28</td><td style="text-align:center;padding:6px 8px">1.5km/h</td><td style="text-align:center;padding:6px 8px">10kg</td></tr>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px;font-weight:700">Atlas 2.0</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">2016</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">유압</td><td style="text-align:center;padding:6px 8px">180kg</td><td style="text-align:center;padding:6px 8px">28</td><td style="text-align:center;padding:6px 8px">2.5</td><td style="text-align:center;padding:6px 8px">15kg</td></tr>
+              <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px;font-weight:700">Atlas 3.0</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">2020</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">유압</td><td style="text-align:center;padding:6px 8px">170kg</td><td style="text-align:center;padding:6px 8px">28</td><td style="text-align:center;padding:6px 8px">3.0</td><td style="text-align:center;padding:6px 8px">20kg</td></tr>
+              <tr style="border-bottom:1px solid var(--line);background:rgba(0,184,148,0.05)"><td style="padding:6px 8px;font-weight:700;color:#00B894">Electric Atlas</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">2024</td><td style="text-align:center;padding:6px 8px;font-weight:700;color:#00B894">전기</td><td style="text-align:center;padding:6px 8px">89kg</td><td style="text-align:center;padding:6px 8px">32</td><td style="text-align:center;padding:6px 8px">9.0</td><td style="text-align:center;padding:6px 8px">30kg</td></tr>
+              <tr style="background:rgba(255,107,107,0.06)"><td style="padding:6px 8px;font-weight:700;color:#FF6B6B">New Electric</td><td style="text-align:center;padding:6px 8px;color:var(--ink-3)">2025</td><td style="text-align:center;padding:6px 8px;font-weight:700;color:#00B894">전기</td><td style="text-align:center;padding:6px 8px;font-weight:700">82~90kg</td><td style="text-align:center;padding:6px 8px;font-weight:700;color:#FF6B6B">56</td><td style="text-align:center;padding:6px 8px;font-weight:700">11+</td><td style="text-align:center;padding:6px 8px;font-weight:700">50kg</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:6px">신형(2025)은 양산형 5세대 — E2E 신경망 + World Model 결합(Google DeepMind). ※ 현행 무게는 출처별 82~90kg 편차. 출처: Boston Dynamics</div>
+      </div>
+      <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">HMG Captive Demand</div><div style="font-family:var(--mono);font-size:22px;font-weight:700;margin:4px 0;color:#FF6B6B">25,000+</div><div style="font-size:11px;color:var(--ink-2)">현대차·기아 공장 배포 (Assembly + Sequence Work)</div></div>
+        <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em">Factory CAPA (2028E)</div><div style="font-family:var(--mono);font-size:22px;font-weight:700;margin:4px 0;color:#6C5CE7">30,000</div><div style="font-size:11px;color:var(--ink-2)">Robotics in America (units/yr)</div></div>
+      </div>
+      <!-- Data Flywheel -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">Data Flywheel — BD 핵심 경쟁력</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div id="flywheelGrid"></div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:16px">
+            <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:8px">GOOGLE DEEPMIND PARTNERSHIP</div>
+            <div style="font-size:12px;line-height:1.8;color:var(--ink-2)"><strong style="color:#6C5CE7">Reasoning AI Layer</strong> via Google DeepMind<br><strong style="color:#F8B739">Physical AI Layer</strong> via Boston Dynamics</div>
+          </div>
+        </div>
+      </div>
+      <!-- NVIDIA -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:6px">NVIDIA AI Factory 레이어 — 한국은 어느 층에 있나</div>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">젠슨 황이 제시한 AI 팩토리 스택. 핵심은 <b>L5의 분리</b> — NVIDIA가 제공하는 건 <span style="background:rgba(0,184,148,0.12);padding:1px 4px;border-radius:3px;font-weight:600">L5a(로봇을 학습시켜 배포하는 파이프라인: Omniverse·Isaac·OSMO)</span>까지다. 그러나 배포된 <b>다수 로봇을 현장에서 매일 운영·관제·작업분배</b>하는 <span style="background:rgba(10,156,150,0.14);padding:1px 4px;border-radius:3px;font-weight:600">L5b(Field Operations OS)</span>는 NVIDIA 스택에서 빈 칸이고, 이 자리를 <b>네이버 ARC가 1784 빌딩 실배치로 이미 채우고 있다</b>. OSMO·Isaac Mega는 '시뮬레이션 안의 오케스트레이션'이지 현실 현장 운영이 아니다. <span style="font-size:10px;color:var(--ink-3)">(각 레이어 우측 = 한국 대응 기업)</span></p>
+        <div style="background:rgba(248,183,57,0.06);border:1px solid rgba(248,183,57,0.25);border-radius:8px;padding:12px 14px;margin-bottom:14px">
+          <div style="font-family:var(--mono);font-size:10px;color:#F8B739;text-transform:uppercase;letter-spacing:.1em;font-weight:600;margin-bottom:6px">레이어 간 부가가치 경쟁 — 왜 수직통합이 중요한가</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">유저의 AI 지출은 한정적이다. <b>한 레이어를 장악하면 pricing power가 강해지고 다른 레이어의 수익이 감소</b>한다. 현재 NVIDIA는 칩(L2)을 장악해 최대 부가가치를 내고 있으며, 이를 기반으로 인프라(L3)→모델(L4)→앱(L5)으로 올라가려 한다. 반대로 Google은 앱·모델에서 인프라(Cloud)→칩(TPU)으로 내려오며 수직통합을 완성 중이다. <b>양측이 서로의 영역을 침투하는 구조</b>이며, NVIDIA는 각 레이어에 연합(네오클라우드·Nemotron LLM 12사·코스모스)을 세워 Google 독점을 견제한다. 로봇에서 <b>BD/현대차가 HW+제어IP(30년)+데이터를 직접 쥔 수직통합 플레이어인 이유</b>도 같은 논리 — 한 레이어에 종속되면 pricing power를 빼앗긴다. <span style="font-size:10px;color:var(--ink-3)">출처: Naver IR (2026.06.08)</span></div>
+        </div>
+        <div id="cakeLayers" style="margin-bottom:16px"></div>
+        <div style="margin:0 0 16px;text-align:center">
+          <img src="assets/naver_arc.png" alt="네이버 ARC — Multi-robot Intelligence System" loading="lazy" style="width:100%;max-width:520px;border-radius:10px;border:1px solid var(--line)">
+          <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-top:6px;line-height:1.5">▲ 네이버 ARC = L5b 'Field Operations OS' — 한 대의 뇌가 아니라 <b>여러 로봇을 묶어 현장에서 운영·관제하는 멀티로봇 인텔리전스(관제탑)</b>. 1784 빌딩 실배치. <span style="color:var(--ink-3)">출처: 네이버랩스</span></div>
+        </div>
+        <div id="roboticsStack" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin-bottom:16px"></div>
+        <div id="trainingLoop" class="pipeline-flow"></div>
+        <div class="arch-diagram" style="margin-top:16px">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:10px;text-align:center">NVIDIA PHYSICAL AI ECOSYSTEM</div>
+          <div class="arch-flow">
+            <div class="arch-box" style="background:#6C5CE7">Omniverse<br><span style="font-size:8px;opacity:.8">디지털 트윈</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#00B894">Cosmos<br><span style="font-size:8px;opacity:.8">World Model</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#F8B739">Isaac Lab<br><span style="font-size:8px;opacity:.8">RL/IL 학습</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#FF6B6B">GR00T<br><span style="font-size:8px;opacity:.8">Foundation</span></div><div class="arch-arrow">→</div>
+            <div class="arch-box" style="background:#E17055">Jetson Thor<br><span style="font-size:8px;opacity:.8">엣지 추론</span></div>
+          </div>
+          <div style="text-align:center;margin-top:8px"><div class="arch-box" style="background:#76B900;display:inline-block;padding:6px 20px">OSMO — 전체 워크플로우 오케스트레이션</div></div>
+        </div>
+      </div>
+      <!-- HMG -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">HMG 로보틱스 전략 — JPM 2026</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:4px">현대모비스</div><div style="font-size:12px;font-weight:600">BD 액추에이터 100% 공급</div></div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">현대오토에버</div><div style="font-size:12px;font-weight:600">시스템 통합 / Robot OS</div></div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:14px;border-left:3px solid #00B894"><div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">현대글로비스</div><div style="font-size:12px;font-weight:600">생산·판매 물류 / SCM</div></div>
+        </div>
+        <div style="font-size:11px;color:var(--ink-2);padding:10px 12px;background:var(--bg-soft);border-radius:7px"><strong>상업화 전략:</strong> B2B Industrial First → Service → Consumer. Spot 기반 500+ 고객 레퍼런스로 ROI 검증 (평균 2년 내 회수) 후 확장.</div>
+        <div style="background:rgba(248,183,57,0.06);border-left:3px solid #F8B739;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7">
+          <b style="color:#d39e00">🏗️ 새만금 AI 거점 (2026.6.4 보도):</b> 현대차그룹·NVIDIA AI 기술센터 설립 논의 급물살. 새만금에 총 <b>9조원</b> 투입 → 수소에너지+AI 데이터센터+로봇 제조공장 밸류체인을 한 곳에 구축. NVIDIA AI Factory 레이어 기준 <b>L1(에너지)+L3(인프라)+L5a(학습·배포)가 물리적으로 한 거점에 묶이는</b> 구조. 엔비디아 박사급 핵심 연구 인력 한국 파견, 정부·대학·기업 공동 피지컬 AI 원천기술 개발.<br>
+          <b style="color:#d39e00">빅테크 지분 투자 가능성:</b> NVIDIA·구글이 미국 내 로봇 훈련 거점 <b>RMAC + 로보틱스아메리카(3Q 가동)</b>에 지분 투자 ↔ 현대차가 대규모 제조 현장 데이터를 제공하는 구조가 거론됨. 현대차 전 세계 100개 공장 보유 → 테슬라 제외 사실상 유일한 대규모 제조 데이터 파트너. <span style="font-size:9px;color:var(--ink-3)">[지분 투자는 미확인 · 언론 종합 · 자체정리]</span>
+        </div>
+      </div>
+      <!-- 양산 타임라인 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">양산 타임라인 — 2028 빅뱅</div>
+        <div class="spec-grid" style="margin-bottom:12px">
+          <div class="spec-item" style="text-align:left;border-left:3px solid #F8B739">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">BD / 현대차</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">2028 대량생산 원년. 연간 CAPA 3만대, 캡티브 25,000대. 액추에이터 연간 35만개(현대모비스). <span style="font-size:9px;color:var(--ink-3)">[현대차 JP모건 컨퍼런스]</span></div>
+          </div>
+          <div class="spec-item" style="text-align:left;border-left:3px solid #FF6B6B">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">Tesla</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">2027말~2028 소량 → 100만~1,000만대 목표. 서반구 최대 로봇 공장 추진. <span style="font-size:9px;color:var(--ink-3)">[테슬라 공식]</span></div>
+          </div>
+          <div class="spec-item" style="text-align:left;border-left:3px solid #0984E3">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">중국</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">엔진AI 등 연간 1만대급 기업 10개+. 대량생산 라인 공개 시작.</div>
+          </div>
+          <div class="spec-item" style="text-align:left;border-left:3px solid #76B900">
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px">NVIDIA <span style="font-size:9px;color:#76B900">GR00T 레퍼런스</span></div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2026.10 GR00T Reference Humanoid 출시</span> — Unitree H2 Plus(31-DOF) + Sharpa Hands(22-DOF 5손가락) + Jetson Thor + GR00T 1.7. NVIDIA가 두뇌·손·SW를 묶어 표준 레퍼런스 제공. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GTC Taipei 2026]</span></div>
+          </div>
+        </div>
+        <!-- Jetson Thor 풀스펙 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-bottom:12px;border-left:3px solid #76B900">
+          <div style="font-family:var(--mono);font-size:9px;color:#76B900;font-weight:700;letter-spacing:.08em;margin-bottom:6px">JETSON THOR — 로봇 온보드 추론칩 (GR00T 레퍼런스 탑재)</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">
+            <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">2,070</div><div style="font-size:9px;color:var(--ink-3)">FP4 TFLOPS</div></div>
+            <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">14-Core</div><div style="font-size:9px;color:var(--ink-3)">ARM CPU (RISC)</div></div>
+            <div style="text-align:center"><div style="font-family:var(--mono);font-size:16px;font-weight:700;color:#76B900">128GB</div><div style="font-size:9px;color:var(--ink-3)">메모리</div></div>
+          </div>
+          <div style="font-size:10px;color:var(--ink-3);margin-top:6px">전세대 대비 AI 7.5배. ARM RISC 기반(저전력·저발열) — 로봇 몸 안 실시간 추론의 표준 칩. <span style="color:#76B900">[NVIDIA 공식]</span></div>
+        </div>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">
+          <b>로봇 손의 현실:</b> 5손가락이 반드시 필요하지 않음. 공장 반복 작업에서는 집게·주먹이 내구성·복잡도·가격 면에서 유리. 텍타일(촉각) 센서로 압력·미끄러짐·진동 읽어 계란 깨지 않고 쥐는 수준까지 진화 중. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+        </p>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">
+          <b>진입장벽:</b> 휴머노이드는 HW 사업이 아니라 피지컬AI 사업. 기계와 피지컬AI를 동시에 할 줄 알아야 함. AI를 이해하는 CEO 리더십 + 거대 자본 동시 필요. 자동차 기업 중 실제 로봇에 뛰어든 곳은 현대차·테슬라 정도뿐. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span>
+        </p>
+        <p style="font-size:11px;color:var(--ink-2);line-height:1.6">
+          <b>현대차 HPVC 로드맵:</b> 3Q26 Pace Car → 4Q27 AD Lv2+ SW → 2028 Full Stack → 2029 실질 데이터 확보. 양산 2030년 3.05백만대, HPVC 750 TOPS. 현대차는 단순 자동차 기업이 아니라, 수백만 대 fleet으로 물리 데이터를 모으는 피지컬AI 데이터 디바이스 기업이 됨. <span style="font-size:10px;color:var(--ink-3)">[현대차그룹 IR + 자체추정]</span>
+        </p>
+      </div>
+      <!-- 📅 하반기 이벤트 캘린더 (인터랙티브) -->
+      <div id="sec-event-calendar" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#F8B739;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">📅 하반기 이벤트 캘린더 — 월별 촉매 클릭</div>
+        <div style="display:flex;gap:0;margin-bottom:12px;border-radius:8px;overflow:hidden;border:1px solid var(--line)">
+          <style>
+            .ev-tab{flex:1;padding:10px 6px;text-align:center;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:600;background:var(--bg-soft);color:var(--ink-3);border-right:1px solid var(--line);transition:.15s;position:relative}
+            .ev-tab:last-child{border-right:none}
+            .ev-tab:hover{background:rgba(248,183,57,0.12);color:var(--ink)}
+            .ev-tab.ev-active{background:#F8B739;color:#fff}
+            .ev-tab .ev-stars{font-size:7px;display:block;margin-top:2px;letter-spacing:1px}
+            .ev-panel{display:none;padding:12px 14px;background:var(--bg-soft);border-radius:8px;margin-bottom:12px;font-size:11px;color:var(--ink-2);line-height:1.7}
+            .ev-panel.ev-show{display:block}
+          </style>
+          <div class="ev-tab ev-active" onclick="evSwitch(0,this)">6월 초<div class="ev-stars">★★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(1,this)">6월 중<div class="ev-stars">★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(2,this)">3Q26<div class="ev-stars">★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(3,this)">7~8월<div class="ev-stars">★★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(4,this)">4Q26<div class="ev-stars">★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(5,this)">미정<div class="ev-stars">★★★</div></div>
+        </div>
+        <div class="ev-panel ev-show" id="evp0"><b style="color:#F8B739">젠슨 황 방한 (6/4~8)</b><br>
+          • <b>6/4</b> 방한 → <b>6/5</b> 성수동 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">'제2의 깐부회동'(정의선·최태원·구광모·이해진)</span> → <b>6/8</b> 현대차 양재사옥·LG 트윈타워·네이버 사옥 순차 방문<br>
+          • <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">현대차그룹·NVIDIA AI 기술센터 새만금 설립 구체화</span> — 엔비디아 박사급 핵심 인력 한국 파견, 정부·대학·기업 공동 피지컬 AI 원천기술 개발. 현대차 새만금에 9조원 투입(수소에너지+AI데이터센터+로봇 제조공장)<br>
+          • <b>빅테크(NVIDIA·구글·삼성전자) 현대차 로봇법인(RMAC·로보틱스아메리카)·BD 지분 투자 가능성</b> 거론 — 구글 2025년 말 BD 지분 투자 타진(현대차 거절), 삼성전자 M&A 조직 BD 지분 투자 검토 중(2026.06.16 언론). 현대차 전 세계 100개 공장 = 테슬라 제외 유일한 대규모 제조 데이터 파트너 <span style="font-size:9px;color:var(--ink-3)">[언론 종합 · 채널체크]</span><br>
+          • 2025년 1차 회동 → GPU 26만 장+AI 기술센터 MOU가 구체화. 이번에도 협업 계약 여부가 핵심<br>
+          • Computex에서 <b>GR00T 레퍼런스·Cosmos 3.0·Alpamayo 2</b> 발표 완료<br>
+          <span style="font-size:10px;color:var(--ink-3)">[언론 종합 · NVIDIA · 각사 공시]</span></div>
+        <div class="ev-panel" id="evp1"><b style="color:#FF6B6B">BD 풋옵션 행사기간(6~7월) → 콜옵션(7~8월)</b> + <b>유니트리 상장 심사</b><br>소프트뱅크 풋옵션 행사 가능성 낮음(채무불이행 부담금 2.8억$) → 현대차그룹 콜옵션 행사로 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">BD 100% 확보 또는 빅테크 SI 투자 유치</span>. 삼성전자 BD 지분 투자 검토 중(2026.06.16 언론), 구글도 2025년 말 타진 이력. Pre-IPO 라운드로 fair price 구체화 전망. 유니트리 2H26 상장 예정(심천). + Figure AI 외부 판매 시작, 휴머노이드 상업 계약 확산.<br><span style="font-size:10px;color:var(--ink-3)">[현대차·BD·현대글로비스 공시 · 언론 종합 / Unitree IPO]</span></div>
+        <div class="ev-panel" id="evp2"><b style="color:#00B894">BD RMAC 개소 (2026년 8월)</b><br>현대차 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로봇 훈련센터 가동 → Atlas 공장 투입 시작</span>. 물리 데이터 생산 원년. RMAC에서 학습된 Atlas가 2028년 HMGMA에 투입되는 첫 단추. + BD+Google DeepMind 미국 세일즈 로드쇼 진행 중.<br><span style="font-size:10px;color:var(--ink-3)">[현대차 IR]</span></div>
+        <div class="ev-panel" id="evp3"><b style="color:#6C5CE7">테슬라 옵티머스 V3 출시 (7월말~8월)</b><br><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">연내 최대 이벤트</span>. 프리몬트에서 생산 시작 후 텍사스 2공장 본격 양산. V3 양산 규모 + 머스크 언급 차세대 V4 로드맵 여부에 따라 <b>글로벌 휴머노이드 산업 전개 속도 결정</b>. + 2026 북중미 월드컵 기간 로보틱스 쇼케이스 기대.<br>• <b>7/8 삼현 Communication Day</b> — 휴머노이드용 액추에이터 'AXLON' 공개<br><span style="font-size:10px;color:var(--ink-3)">[Tesla 공식 · 삼현 IR · 자체추정]</span></div>
+        <div class="ev-panel" id="evp4"><b style="color:#E17055">테슬라 V3 대량 양산 (4Q26)</b> + <b>유니트리 상장 (2H26)</b><br>휴머노이드 산업 양산단계 진입 확인. 글로벌 2번째 휴머노이드 IPO(유니트리). <b>NVIDIA GR00T 레퍼런스 로봇 출시(10월)</b> — Unitree H2 Plus+Jetson Thor.<br>• <b>11월 미국 중간선거</b> — Physical AI, 정당 리스크에서 중립적 테마로 부각될 전망 <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span><br><span style="font-size:10px;color:var(--ink-3)">[Tesla·NVIDIA·Unitree]</span></div>
+        <div class="ev-panel" id="evp5"><b style="color:var(--ink-3)">미정 — 추가 촉매</b><br>• 글로벌 휴머노이드 OEM 추가 참여(상·or 추가 투자) → 밸류체인 확장<br>• <b>하반기 현대차 CID</b> 예고 <span style="font-size:9px;color:var(--ink-3)">[현대차 IR·언론종합]</span><br>• <b>Humanoid ROBOT Act</b> — 연방정부의 중·러·이란·북한산 AI 휴머노이드 구매 금지, 2025.11 발의. 연내 통과는 기대 시나리오 <span style="font-size:9px;color:var(--ink-3)">[법안·언론종합]</span><br>• <b>Section 232 로보틱스·산업기계 조사</b> — 상무부 BIS 2025.09 개시, 2026년 관세/쿼터 결정 가능성 <span style="font-size:9px;color:var(--ink-3)">[연방관보]</span><br>• <b>2026년 로보틱스 행정명령 준비</b> — 상무장관 주도, 업계 CEO와 전략 수립 중 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span><br><span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
+        <script>function evSwitch(i,el){document.querySelectorAll('.ev-tab').forEach(t=>t.classList.remove('ev-active'));document.querySelectorAll('.ev-panel').forEach(p=>p.classList.remove('ev-show'));el.classList.add('ev-active');document.getElementById('evp'+i).classList.add('ev-show')}</script>
+        <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px">
+          <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:6px">📌 이벤트 그 다음을 봐야</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">이벤트 자체보다 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">이후 구체화 여부</span>가 주가를 결정. 젠슨 방한 → Physical AI 협업 계약? RMAC → Atlas 실투입 데이터? 옵티머스 V3 → 양산 수량·V4 로드맵? 이벤트 발생 시 "그래서 뭐가 구체화됐냐"를 확인해야 함. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
+        </div>
+      </div>
+      <!-- 상용화 3조건과 운영 OS 레이어 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#0a9c96;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">🧩 피지컬 AI 상용화 3조건과 '운영 OS' 레이어 — 모델은 글로벌, 운영은 누가?</div>
+        <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">AI 1.0(생성형)은 입출력이 가상이라 무한·즉시 반복 학습이 가능했지만, 피지컬 AI는 입출력이 <b>현실에 실재</b>한다 — 한 동작에 물리적 시간이 걸리고, 일어난 현실은 되돌릴 수 없다. 그래서 모델(두뇌) 외에 <b>세 가지 운영 조건</b>이 더 풀려야 상용화된다: ① 병렬 학습용 <b>디지털 트윈</b>, ② 두뇌 연산을 나누는 <b>GPU 클라우딩</b>, ③ 다수 로봇을 동시에 굴리는 <b>플릿 운영 OS</b>. 각 조건에서 한국(네이버)의 포지션과 한계를 함께 정리한다.</p>
+
+        <!-- 조건 1 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px;border-left:3px solid #00B894">
+          <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:5px">① 디지털 트윈 — 왜 '학습'에 필요한가</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">현실 학습은 느리고 위험하고 비싸다 — 실제 데이터 수집은 시간당 <b>$118</b>(1Q26, 1Q24 $340에서 하락 추세) vs 시뮬 <b>$0.001</b>, <b>11.8만 배</b> 격차(본 대시보드 Physical AI 페이지). 그래서 가상환경 수천 개를 병렬로 띄워 학습 후 현실로 옮기는 <b>Sim-to-Real</b>이 전제. <b>디지털 트윈은 두 종류로 나뉜다 →</b><br>
+          • <b>(A) 시뮬레이션형</b>: 물리엔진으로 합성 데이터·정책 생성 = <b>NVIDIA Omniverse·Isaac·Cosmos</b>·Google Genie (글로벌 장악)<br>
+          • <b>(B) 매핑형</b>: 현실 공간을 거울 복제해 측위·운영 = <b>네이버 ALIKE→ARC</b> (1784 빌딩 전체를 피지컬 AI로 운영, 세계 최초 · 사우디 수출)<br>
+          둘은 경쟁이 아니라 <b>상호보완</b> — NVIDIA는 '학습용 가상세계', 네이버는 '운영용 현실 복제본'.<br>
+          단, 매핑형 트윈의 해자는 <b>'해당 공간'에 한정</b>(1784·각 세종)됨. 범용 휴머노이드의 <b>조작 학습 데이터</b>는 시뮬형+텔레오퍼레이션이 주력이지 매핑형이 아님 → 네이버 자산의 정확한 위치는 '조작 데이터 원천'이 아니라 <b>'실내 측위·멀티로봇 운영 인프라'</b>임.</div>
+        </div>
+
+        <!-- 조건 2 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px;border-left:3px solid #6C5CE7">
+          <div style="font-size:12px;font-weight:700;color:#6C5CE7;margin-bottom:5px">② GPU 클라우딩 — '브레인리스'의 범위</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">데이터센터 GPU는 100% 가동되지만 <b>로봇은 항상 일하지 않는다</b>. 가구마다 GPU 전용은 낭비 → 쉴 때 두뇌를 클라우드로 올려 공유하면 경제성이 생긴다. 이를 위해 <b>로봇+클라우드 사업부를 동시에</b> 가져야 하며, 네이버 ARC의 <b>'브레인리스'</b>(두뇌·몸체 통신 분리)가 이 발상 — <b>CES 2019 퀄컴과 세계 최초 5G 브레인리스 로봇</b> 시연.<br>
+          단 "두뇌를 통째로 클라우드"는 정확하지 않음. 제어는 2계층으로 나뉜다 — <b>System 2(인지·계획)</b>: 수백 ms 허용·비안전크리티컬 → <b>클라우드 오프로드 가능</b>. <b>System 1(모터 제어)</b>: 실시간 &lt;수 ms·안전크리티컬·끊기면 위험 → <b>온디바이스(Jetson Thor) 필수</b>. 즉 브레인리스는 System 2에만 적용되고, System 1(척수)은 몸에 남음 → <b>'완전 무뇌'가 아니라 '부분 오프로드'</b>가 정확한 표현.</div>
+        </div>
+
+        <!-- 조건 3 -->
+        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-bottom:8px;border-left:3px solid #0a9c96">
+          <div style="font-size:12px;font-weight:700;color:#0a9c96;margin-bottom:5px">③ 플릿 운영 OS — 빈 레이어, 그러나 '독점'은 아님</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">NVIDIA가 주는 건 <b>모델(GR00T)·시뮬(Omniverse/Isaac)·월드모델(Cosmos)</b>. 그러나 현장은 로봇 한 대가 아니라 여러 대가 협업·충돌회피·작업분배 → <b>플릿 오케스트레이션 OS(관제탑)</b>가 필요 = 네이버 ARC(멀티로봇 인텔리전스). 실제로 본 매핑표에서도 이 운영 OS 레이어는 그동안 <b>빈 칸</b>이었다.<br>
+          단 '경쟁사가 전무하다'는 과한 명제임:<br>
+          • NVIDIA도 이 층으로 <b>진입 中</b> — <b>Isaac Mega</b>(디지털트윈 내 로봇 플릿 시뮬·오케스트레이션) + <b>OSMO</b>(로보틱스 워크로드 오케스트레이션). 아직 시뮬 단계이나 현실 운영으로 확장 의지가 명확함.<br>
+          • 순수 플릿관리 SW도 존재 — InOrbit·Formant·Foxglove 등(창고·AMR 중심, 풀스택·소버린은 아님).<br>
+          → 네이버 차별점은 '빈 레이어 독점'이 아니라 <b>소버린 풀스택 번들</b>: 자체 LLM(하이퍼클로바X)+자국 클라우드(각 세종)+매핑 트윈(ALIKE)+플릿 OS(ARC)+국방 B2G(2026.6 'Defense Frontier')를 한국 안에서 단독 결합할 수 있다는 점. <b>"글로벌 OS 독점"이 아니라 "한국 데이터 주권 운영자"로 좁혀야 견고.</b></div>
+        </div>
+
+        <!-- 심화: 자동차 스택 비유 — 4개 역할 구분 -->
+        <div style="background:rgba(9,156,150,0.06);border:1px solid rgba(9,156,150,0.25);border-radius:8px;padding:12px 14px;margin-bottom:8px">
+          <div style="font-size:12px;font-weight:700;color:#0a9c96;margin-bottom:5px">🚗 심화 — 자동차 스택에 빗대면: NVIDIA가 모든 층을 직접 하지 않는다</div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">NVIDIA 자율주행 DRIVE AGX의 공식 OS는 <b>DRIVE OS</b>지만, 실시간 안전 커널은 직접 만들지 않고 <b>블랙베리 QNX</b>(ISO 26262 ASIL-D)를 쓴다. <b>NVIDIA조차 인증·안전 해자가 있는 레이어는 파트너에 의존.</b> 그런데 현대차(BD)는 단순 OEM이 아니라 <b>자체 제어 IP(System 1) + HW + 데이터를 직접 쥔 수직통합 플레이어</b>다. 자율주행에서도 HPVC(750 TOPS, 2030 양산)를 자체 개발하면서 NVIDIA 인프라를 동시에 활용하는 하이브리드 구조.</div>
+          <div style="overflow-x:auto;margin:8px 0">
+            <table style="width:100%;border-collapse:collapse;font-size:10.5px">
+              <thead><tr style="border-bottom:2px solid var(--ink)">
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px">역할</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#76B900">NVIDIA</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#636E72">블랙베리 QNX</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#FF6B6B">BD / 현대차</th>
+                <th style="text-align:left;padding:5px 6px;font-family:var(--mono);font-size:9px;color:#0a9c96">네이버 ARC</th>
+              </tr></thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">스택 위치</td><td style="padding:5px 6px">AI 칩·플랫폼 (L4~L5a)</td><td style="padding:5px 6px">온디바이스 안전 커널</td><td style="padding:5px 6px"><b>수직통합</b> — 제어IP+HW+데이터+공장</td><td style="padding:5px 6px">클라우드 플릿 OS (L5b)</td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">제어 계층</td><td style="padding:5px 6px">학습·추론 인프라</td><td style="padding:5px 6px"><b>System 1</b> (&lt;ms, 안전)</td><td style="padding:5px 6px"><b>System 1 자체 개발</b>(30년 동적제어 IP) + System 2는 구글 파트너</td><td style="padding:5px 6px"><b>System 2</b> (인지·관제)</td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">자동차 비유</td><td style="padding:5px 6px">NVIDIA DRIVE</td><td style="padding:5px 6px">QNX 안전 커널</td><td style="padding:5px 6px"><b>도요타+테슬라 하이브리드</b> (OEM이면서 자체 AD 스택 HPVC 개발)</td><td style="padding:5px 6px">로보택시 관제 플랫폼 (자동차엔 직접 대응물 거의 없음)</td></tr>
+                <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">해자</td><td style="padding:5px 6px">GPU·에코시스템 독점</td><td style="padding:5px 6px">ASIL-D 안전 인증</td><td style="padding:5px 6px"><b>제조 100개 공장 데이터 + RMAC + 부품 캡티브</b></td><td style="padding:5px 6px">소버린 데이터·운영</td></tr>
+                <tr><td style="padding:5px 6px;color:var(--ink-3);font-weight:600">관계</td><td style="padding:5px 6px">인프라 제공자</td><td style="padding:5px 6px">NVIDIA에 라이선스</td><td style="padding:5px 6px">NVIDIA·구글 <b>인프라를 사서 자기 스택 위에 올림</b></td><td style="padding:5px 6px">L5a 출력을 받아 현장 운영</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">
+            <b>이 비유의 포인트는 "NVIDIA가 모든 층을 직접 안 한다 → 빈 칸에 파트너가 들어간다"</b>는 것이지, 특정 기업 하나를 QNX에 대입하는 것이 아님.<br>
+            • <b>QNX 층(온디바이스 안전 커널)</b>: 휴머노이드에서는 BD가 자체 제어 IP를 Jetson Thor 위에 올리는 구조. BD는 QNX를 '사서 쓰는' OEM이 아니라 <b>System 1을 직접 개발</b>하는 수직통합 플레이어.<br>
+            • <b>ARC 층(플릿 관제 OS)</b>: QNX보다 한 층 위. 자동차엔 직접 대응물이 거의 없고, 굳이 비유하면 로보택시 '운영 관제 스택'.<br>
+            • NVIDIA는 차에선 QNX를 라이선스했어도 <b>플릿 층은 직접(Mega/OSMO) 만들어</b> '파트너에 넘긴다'는 보장이 약함.<br>
+            <span style="background:rgba(9,156,150,0.12);padding:1px 4px;border-radius:3px;font-weight:600">한 줄:</span> NVIDIA(인프라) → BD/현대차(수직통합 OEM+자체 제어IP+데이터) → 네이버 ARC(현장 플릿 OS). <b>세 역할이 서로 다른 층에 있고, 한국은 BD·네이버·부품사로 복수 층에 매핑됨.</b>
+          </div>
+        </div>
+
+        <!-- 첫 걸음 + 핵심 메시지 -->
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>첫 걸음 = 네이버·NVIDIA·LG전자 동맹</b> (가정용 휴머노이드): LG전자(HW)+NVIDIA(모델)+네이버랩스(운영 OS, 타 SI 협업). <b>GTC Taipei 2026(6/1~2)</b> 젠슨 황이 네이버클라우드를 '글로벌 AI 팩토리' 파트너로 발표, 하이퍼클로바X를 Nemotron 3 Ultra로 고도화 + Cosmos 기반 <b>Seoul World Model</b>(서울 120만 파노라마) 구축 中.</div>
+        <div style="background:rgba(9,156,150,0.08);border-left:4px solid #0a9c96;border-radius:0 8px 8px 0;padding:11px 14px;font-size:11px;color:var(--ink-2);line-height:1.7">
+          <b style="color:#0a9c96">핵심 메시지:</b> 상용화 3조건(병렬학습 디지털트윈·두뇌 GPU 오프로드·멀티로봇 플릿 OS) 중 <b>모델·시뮬·칩은 NVIDIA·구글이 장악</b>, 그러나 <b>'애플리케이션단 운영 OS'는 상대적으로 빈 레이어</b>. 한국에선 <b>네이버 ARC</b>가 자체 LLM·자국 클라우드·매핑 트윈·국방 B2G와 묶인 <b>소버린 운영 번들</b>로 진입 — 단 NVIDIA Isaac Mega·OSMO가 같은 층에 진입 중이라 '글로벌 독점'이 아니라 <b>'한국 데이터 주권' 포지션</b>으로 봐야 함.
+        </div>
+        <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체정리 · 각사 IR · 언론 종합 · Physical AI 페이지 데이터</div>
+      </div>
+
+      <!-- 한국 노출 매핑 -->
+      <div style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#00B894;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">한국 노출 매핑 — ECU HPC 구조의 반복</div>
+        <div style="overflow-x:auto;margin-bottom:14px">
+          <table style="width:100%;border-collapse:collapse;font-size:11px">
+            <thead>
+              <tr style="border-bottom:2px solid var(--ink)">
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">계층</th>
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">영역</th>
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">만드는 곳</th>
+                <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">한국 노출</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">두뇌·모델</td>
+                <td style="padding:8px 10px">파운데이션모델·VLA·WFM·추론 SoC</td>
+                <td style="padding:8px 10px">NVIDIA·구글·Tesla</td>
+                <td style="padding:8px 10px;color:var(--ink-3)">직접 노출 없음 (글로벌 장악)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line);background:rgba(0,206,201,0.07)">
+                <td style="padding:8px 10px">운영·플릿 OS (SW)</td>
+                <td style="padding:8px 10px">멀티로봇 오케스트레이션·매핑 디지털트윈·GPU 클라우딩</td>
+                <td style="padding:8px 10px">NVIDIA Isaac Mega·OSMO 진입 中 (빈 레이어)</td>
+                <td style="padding:8px 10px;font-weight:700;color:#0a9c96">★ 네이버 ARC <span style="font-weight:400;color:var(--ink-3);font-size:10px">(한국 소버린: 하이퍼클로바X+각 세종+ALIKE)</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">칩 주변 반도체</td>
+                <td style="padding:8px 10px">FC-BGA·MLCC·전력관리</td>
+                <td style="padding:8px 10px">ECU와 동일 공급망</td>
+                <td style="padding:8px 10px;font-weight:600">삼성전기·대덕전자·이수페타시스</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line);background:rgba(0,184,148,0.06)">
+                <td style="padding:8px 10px">몸-핵심</td>
+                <td style="padding:8px 10px">감속기·액추에이터</td>
+                <td style="padding:8px 10px">BD Atlas = 모비스 100%</td>
+                <td style="padding:8px 10px;font-weight:700;color:#00B894">★ 현대모비스·로보티즈·에스피지</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">몸-부품</td>
+                <td style="padding:8px 10px">모터·센서·구조체</td>
+                <td style="padding:8px 10px"></td>
+                <td style="padding:8px 10px">HL만도·계양전기</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line);background:rgba(0,184,148,0.06)">
+                <td style="padding:8px 10px">데이터 디바이스</td>
+                <td style="padding:8px 10px">fleet·RMAC·데이터팩토리</td>
+                <td style="padding:8px 10px">HMG 수백만대 fleet</td>
+                <td style="padding:8px 10px;font-weight:700;color:#00B894">★ 현대차·로보티즈(우즈벡 팩토리+오픈소스)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--line)">
+                <td style="padding:8px 10px">소재</td>
+                <td style="padding:8px 10px">배터리·NdFeB</td>
+                <td style="padding:8px 10px"></td>
+                <td style="padding:8px 10px">LG에너지솔루션·엘앤에프</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:rgba(255,107,107,0.08);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:14px 18px">
+          <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:8px">📌 착지 소결</div>
+          <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
+            <li>추론칩 자체는 NVIDIA·Tesla → 한국 직접 노출 없음</li>
+            <li>칩 주변 반도체는 ECU HPC 때와 동일한 한국 공급망이 받칠 가능성 높음</li>
+            <li>몸(감속기·액추에이터)은 현대모비스 BD 100% 캡티브로 가시성 가장 높음</li>
+            <li><span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">피지컬AI 핵심 병목 = 학습 데이터.</span> 현대차는 수백만 대 fleet + RMAC, 로보티즈는 우즈벡 데이터 팩토리 + 오픈소스 생태계로 물리 데이터를 모으는 디바이스 기업이 됨 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li><span style="background:rgba(255,107,107,0.12);padding:2px 6px;border-radius:4px;font-weight:600">2028년 빅뱅.</span> BD 3만대·테슬라 100만대 목표 동시 → 부품 공급망 선점 결판 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li>미중 갈등으로 순수 중국 밸류체인 구성 어려움 → 한국·일본·독일 반사이익 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+            <li>과거 기술 사이클(철도·전기·PC·인터넷)에서 가장 늦게까지 랠리가 이어진 게 '제조'. 지금 한국 제조업 랠리는 초기 국면 <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></li>
+          </ul>
+        </div>
+      </div>
+      <!-- ⚠️ 리스크 & 반론 대비 (Bear Case) -->
+      <div id="sec-bearcase" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">⚠️ 리스크 & 반론 대비 (Bear Case) — 균형 잡기</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #FF6B6B">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:5px">① 밸류에이션 극단</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로보티즈 PER 250배·EV/EBITDA 175배</span>, 에스피지 58배. 액추에이터 peer 평균 137배. <b>에스비비테크 PSR 25E/26E 약 17.3/23.4배</b>(Bloomberg) — 글로벌 감속기 peer(HDS 17.8/14.4·Nidec 1.1) 대비 큰 프리미엄. 적자·이익 미미한 곳도 많아 기대가 선반영된 구간. <span style="font-size:9px;color:var(--ink-3)">(배수는 26.07.08 종가 시총 기준 환산)</span></div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:5px">② 중국 저가 침투</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">쑤저우 Green Harmonic 등 중국 부품이 일·한 대비 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">30~40% 저가</span>. "원가절감=중국화" 구도 → 한국 부품사 마진 압박.</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #F8B739">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#d39e00;margin-bottom:5px">③ 양산·매출 시차</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">실매출은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">2027~2030년</span>. 액추에이터 신뢰성(내구성) 과제 잔존. 테마-실적 시차 = 변동성.</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;padding:10px 14px;background:rgba(255,107,107,0.06);border-radius:8px">
+          📌 <b>그래서 접근법:</b> <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">코어(감속기·모터) 바스켓 + 실적 베이스 종목(삼성전기·DB하이텍)으로 변동성 완충 + 분할 매수.</span> "피지컬 AI를 한다"는 기대가 아니라 "부품을 양산해 글로벌 공급망에 들어가는가"가 잣대. <span style="font-size:10px;color:var(--ink-3)">[밸류에이션: Bloomberg / 그 외 자체추정·언론 종합]</span>
+        </div>
+      </div>
+      <!-- 🎯 종목별 투자 포인트 -->
+      <div id="sec-stock-picks" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">🎯 종목별 투자 포인트 — 10종목</div>
+        <!-- HMG 그룹 -->
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px;font-weight:600">HMG 그룹</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #FF6B6B">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;margin-bottom:4px">현대차</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">시총 149조 → 도요타 441조 정조준</span><br>본업+BD+SDV 모빌리티 테크 전환. 산업용 휴머노이드 경쟁력 BD가 압도적</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">지속</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #6C5CE7">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">현대모비스</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">BD 액추에이터 100% + 지배구조 정점</span><br>로봇 부품 독점 공급. 그룹 재편의 핵심 축</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2H26 · 소뱅 풋옵션 행사 → 현대차 100% 인수(6/22 이사회)</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #00B894">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">현대오토에버</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">SDV + Mobilgene + 로봇 관제 SI. 그룹 디지털 전환 핵심 축. 2027+ SW 매출 확대</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2027+</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #F8B739">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#F8B739;margin-bottom:4px">현대글로비스</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">정의선 지분 가치 부각. BD 상장 → 지배구조 개편 자금 확보의 핵심 경로</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2H26</div>
+          </div>
+        </div>
+        <!-- 독립 부품사/로봇사 -->
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px;font-weight:600">독립 부품사 · 로봇사</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px">
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #E17055">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:4px">HL만도</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">3Q26 북미 T사 로봇 신제품 → 새로운 주도주</span><br>BD 4족보행 액추에이터 공급 중. 중국 2사 범용 표준화 모듈 납품 협의</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">3Q26 · 2H26 수주</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #0984E3">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3;margin-bottom:4px">에스피지</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">사이클로이드 감속기 국산화. 로봇·방산 채택율↑. LG 협력 + 글로벌 휴머노이드 시장 진출</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">지속</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #6C5CE7">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">로보스타</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">LG그룹 로봇 밸류체인 핵심 거점. 산업용→지능형 로봇 진화. 코스닥150 편입(~6/11 패시브 수급)</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">6/11 · 지속</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #00B894">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">두산로보틱스</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">NVIDIA 공동 로봇 플랫폼 공식화 기대. 에이전틱 AI 기반 지능형 로봇. 2028 산업용 휴머노이드 상용화</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2H26 · 2028</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #0984E3">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#0984E3;margin-bottom:4px">에스비비테크</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">국내 하모닉 감속기 1위</span>(日 HDS 독점 깬 국산화). 26.3 천안 액추에이터 전용공장 이전 → 감속기-액추에이터 수직계열화. 현대차 로보틱스랩 모베드 구동기 26년 양산 전환. 가동률 ~10% → 신공장 풀가동 시 CAPA 10배 여력(IR)</div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">2026.3 천안 · 2027+ 레버리지</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #A29BFE">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#8577e6;margin-bottom:4px">네오오토</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">현대기아 EV 동력전달계 정밀기어 선도</span> — 피니언·디퍼런셜·EV감속기(현대트랜시스 76.6%·현대차 8.8%·기아 4.5% 캡티브). <b>유성기어 2단변속기 IP·美특허</b> · 모비스 인휠감속기 협업 · 로봇팔 관절 소형감속기·AMR 구동모듈. 유성이 <b>Atlas 바디 유성 방향과 부합</b>(부분품 후보)이나 모비스 내재화·휴머노이드 직접 진출 미확정 <span style="font-size:9px;color:var(--ink-3)">[사업보고서 26.03.19]</span></div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">시제품 · BD 벤더 후보</div>
+          </div>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;border-top:3px solid #FDCB6E">
+            <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#C99A2E;margin-bottom:4px">삼현</div>
+            <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55"><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">액추에이터 2차 협력사·감속기 (네오오토 최근접 comp)</span> 자동차→방산·로봇 확장. 글로벌 로봇기업 <b>액추에이터 Proto 개발 수주</b>(양산 품질 검증). 방산/로봇 매출 2025년 154억(+42.5%). 미국 공장 없음·R&D 비중 25% 선행투자기 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span></div>
+            <div style="font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:4px">Proto 수주 · 창원2공장 2027</div>
+          </div>
+        </div>
+        <div style="font-size:10px;color:var(--ink-3)">출처: 각사 IR · 언론 종합 / 투자의견·목표주가는 자체추정 아님 · <a href="kr_valuechain.html#sec-stock-detail" style="color:#FF6B6B">상세 → KR 밸류체인</a></div>
+      </div>
+      <!-- 원가 로드맵 -->
+      <div style="border-top:1px dashed var(--line-s);margin-top:20px;padding-top:16px">
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px">휴머노이드 원가 로드맵</div>
+        <div id="costGrid"></div>
+        <div style="margin-top:8px;display:flex;gap:12px;font-family:var(--mono);font-size:10px;color:var(--ink-3)"><span style="color:#FF6B6B">● ASP ($)</span><span style="color:#4ecdc4">● Volume (대)</span></div>
+      </div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: JPM Conference 2026, BD IR, HMG IR, NVIDIA GTC 2025, McKinsey, Tesla IR</div>
+    </section>
+
+
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">
     <div class="card-title" style="cursor:pointer;user-select:none" onclick="document.getElementById('updateLogContent').classList.toggle('open');this.querySelector('.badge').textContent=document.getElementById('updateLogContent').classList.contains('open')?'▲ 접기':'▼ 펼치기'">

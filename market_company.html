@@ -15,6 +15,8 @@
 .pw-bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}.pw-bar-label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:100px;text-align:right}.pw-bar{height:20px;border-radius:4px;min-width:16px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px}.pw-bar-val{font-family:var(--mono);font-size:9px;font-weight:700;color:rgba(255,255,255,.9)}
 svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.vc-row{grid-template-columns:1fr;gap:2px}.num-value{font-size:16px}}
+.capa-th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}
+.capa-td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
 <script>
 const SC={sne_base:{name:'SNE Base',s:{2025:[13.4],2026:[50],2027:[100],2028:[200],2029:[400],2030:[690],2032:[1800],2035:[6790],2040:[53300]}},gs_bull:{name:'GS Bull',s:{2025:[13.4],2026:[50],2027:[80],2028:[130],2029:[190],2030:[250],2032:[550],2035:[1400],2040:[23000]}},oecd_replace:{name:'OECD 대체율',s:{2025:[15],2026:[70],2027:[189],2028:[361],2029:[667],2030:[1167],2032:[2986],2035:[10000],2040:[21609]}},tesla_acc:{name:'Tesla 가속',s:{2025:[13.4],2026:[80],2027:[200],2028:[500],2029:[800],2030:[1200],2032:[3500],2035:[12000],2040:[100000]}}};
@@ -152,6 +154,242 @@ window.addEventListener('DOMContentLoaded',render);
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">자체추정(FX 1,400원 · 데이터=작업자×2,000h/년×실현단가). 2025 실적·재무는 회사 공시(한경에이셀 집계). 회사 목표 1.5조는 기본~낙관 사이. 우즈벡 2026 4Q 가동 · 올해 51만대/수주잔고 40만대. 우즈벡 초기 CAPA 연 100만 EA(26년말 국내외 합산 130만, 최대 300만 EA), ROBOTIS FE LLC에 USD 20M 출자(회사 공시·IR). 26년 4월 기준 25년 연간 수주물량(22만 EA) 초과(IR).</div>
   </section>
+<script>
+(function(){
+const DATA = {
+  physicalAILayers: {
+    automationCell: {
+      total: 90724,
+      source: 'Universal Robots / NVIDIA / Robotiq 공개가 기반 추정',
+      layers: [
+        { name: '실행 (Execution)', pct: 43.8, cost: 39725, items: '로봇 본체 $35K, 그리퍼 $4.7K', color: '#FF6B6B' },
+        { name: '통합/안전 (Integration)', pct: 34.2, cost: 31000, items: '안전장비 $8K, 지그 $5K, 설치·튜닝 $15K, 교육 $3K', color: '#636E72' },
+        { name: '인지 (Perception)', pct: 9.9, cost: 9000, items: '비전 카메라 $4K, 힘·토크센서 $5K', color: '#00B894' },
+        { name: '제어 (Control)', pct: 6.6, cost: 6000, items: 'PLC·네트워크 연계', color: '#F8B739' },
+        { name: '두뇌 (Brain)', pct: 5.5, cost: 4999, items: 'Jetson AGX Orin $2K, SW $3K', color: '#6C5CE7' },
+      ]
+    },
+    humanoid: {
+      source: 'McKinsey',
+      ranges: { low: 30000, base: 90000, high: 150000 },
+      breakdown: [
+        { name: '액추에이터', pctRange: '40~60%', color: '#FF6B6B' },
+        { name: '센싱·인지', pctRange: '10~20%', color: '#00B894' },
+        { name: '연산·제어', pctRange: '10~15%', color: '#6C5CE7' },
+        { name: '구조 부품', pctRange: '5~10%', color: '#636E72' },
+        { name: '배터리', pctRange: '5~10%', color: '#4ecdc4' },
+        { name: '기타 (냉각·배선)', pctRange: '10~15%', color: '#A29BFE' },
+      ]
+    }
+  },
+  cellBom: [
+    { item: '로봇 본체', cost: 35000, layer: '실행', note: '중소형~중형 협동로봇 (UR5e $30~45K)' },
+    { item: '그리퍼·말단 작업장치', cost: 4725, layer: '실행', note: 'Robotiq 공개 판매가 기준' },
+    { item: '비전 카메라·조명', cost: 4000, layer: '인지', note: '기본 비전 패키지' },
+    { item: '힘·토크 센서', cost: 5000, layer: '인지', note: 'Robotiq FT-300-S 6축 (€5K대)' },
+    { item: 'Jetson AGX Orin', cost: 1999, layer: '두뇌', note: 'NVIDIA 공개 판매가' },
+    { item: '현장 소프트웨어', cost: 3000, layer: '두뇌', note: '기본 운용 SW' },
+    { item: 'PLC·네트워크 연계', cost: 6000, layer: '제어', note: '기존 설비 연동' },
+    { item: '안전장비·위험성 평가', cost: 8000, layer: '통합', note: '안전펜스 $5K+, 안전 PLC $2K+' },
+    { item: '작업셀 지그·주변장치', cost: 5000, layer: '통합', note: '공작물 고정·반복정밀도 확보' },
+    { item: '설치·튜닝·시운전', cost: 15000, layer: '통합', note: '현장 통합 서비스' },
+    { item: '교육·초기 지원', cost: 3000, layer: '통합', note: '작업자 교육' },
+  ],
+  timeline: [
+    { phase: '도입 초기', focus: '실행 + 통합/안전', items: '로봇 본체·감속기·안전·설치튜닝', note: '초기 예산 78%가 실행+통합에 집중' },
+    { phase: '확산 국면', focus: '인지 + 제어', items: '머신비전·힘센서·PLC·모션제어', note: '비정형 작업·복수 장비 연동 병목' },
+    { phase: '고도화 국면', focus: '두뇌 + SW', items: 'AI 모델·디지털트윈·시뮬레이션', note: '고객 Lock-in·반복 매출 핵심' },
+    { phase: '장기 옵션', focus: '휴머노이드', items: '액추에이터 40~60% + 전신 통합', note: '범용 이동·조작 플랫폼' },
+  ]
+};
+const $ = s => document.querySelector(s);
+function render() {
+  // Cell cost bar
+  const cell = DATA.physicalAILayers.automationCell;
+  $('#cellCostBar').innerHTML = cell.layers.map(l =>
+    `<div style="width:${l.pct}%;background:${l.color};height:32px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#fff;font-weight:600;min-width:36px" title="${l.name}: $${l.cost.toLocaleString()} (${l.pct}%)">${l.pct}%</div>`
+  ).join('');
+  $('#cellTotal').textContent = '$' + cell.total.toLocaleString();
+
+  // Cell BOM table
+  let bhtml = '<div class="capa-th" style="text-align:left">항목</div><div class="capa-th">비용</div><div class="capa-th">계층</div><div class="capa-th" style="text-align:left">비고</div>';
+  const lc = {'실행':'#FF6B6B','통합':'#636E72','인지':'#00B894','제어':'#F8B739','두뇌':'#6C5CE7'};
+  DATA.cellBom.forEach(b => {
+    bhtml += `<div class="capa-td" style="text-align:left;font-weight:600">${b.item}</div>`;
+    bhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${b.cost.toLocaleString()}</div>`;
+    bhtml += `<div class="capa-td"><span style="font-size:9px;padding:1px 5px;border-radius:3px;background:${(lc[b.layer]||'#888')}15;color:${lc[b.layer]||'#888'}">${b.layer}</span></div>`;
+    bhtml += `<div class="capa-td" style="text-align:left;color:var(--ink-3);font-size:10px">${b.note}</div>`;
+  });
+  $('#cellBomGrid').innerHTML = bhtml;
+
+  // Humanoid cost table
+  const hum = DATA.physicalAILayers.humanoid;
+  let hhtml = '<div class="capa-th" style="text-align:left">구성요소</div><div class="capa-th">비중</div><div class="capa-th">저가 $30K</div><div class="capa-th">기본 $90K</div><div class="capa-th">고가 $150K</div>';
+  hum.breakdown.forEach(b => {
+    const pcts = b.pctRange.replace(/%/g,'').split('~').map(Number);
+    const lo = pcts[0]/100, hi = (pcts[1]||pcts[0])/100;
+    hhtml += `<div class="capa-td" style="text-align:left;border-left:3px solid ${b.color};padding-left:10px;font-weight:600">${b.name}</div>`;
+    hhtml += `<div class="capa-td" style="text-align:center">${b.pctRange}</div>`;
+    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(30000*lo/1000).toFixed(1)}~${(30000*hi/1000).toFixed(1)}K</div>`;
+    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(90000*lo/1000).toFixed(1)}~${(90000*hi/1000).toFixed(1)}K</div>`;
+    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(150000*lo/1000).toFixed(1)}~${(150000*hi/1000).toFixed(1)}K</div>`;
+  });
+  $('#humCostGrid').innerHTML = hhtml;
+
+  // Timeline
+  let thtml = '';
+  DATA.timeline.forEach(t => {
+    thtml += `<div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px">
+      <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">${t.phase}</div>
+      <div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:2px">${t.focus}</div>
+      <div style="font-size:11px;color:var(--ink-2);margin-bottom:2px">${t.items}</div>
+      <div style="font-size:10px;color:var(--ink-3)">${t.note}</div>
+    </div>`;
+  });
+  $('#timelineGrid').innerHTML = thtml;
+}
+function renderROI(){
+  const cost=+document.getElementById('roiCostSlider').value;
+  const save=+document.getElementById('roiSaveSlider').value;
+  const maint=+document.getElementById('roiMaintSlider').value;
+  const util=+document.getElementById('roiUtilSlider').value/100;
+  document.getElementById('roiCostVal').textContent='$'+cost.toLocaleString();
+  document.getElementById('roiSaveVal').textContent='$'+save.toLocaleString();
+  document.getElementById('roiMaintVal').textContent='$'+maint.toLocaleString();
+  document.getElementById('roiUtilVal').textContent=(util*100).toFixed(0)+'%';
+  const scenarios=[
+    {name:'긍정적',saveMult:1.3,maintMult:0.7,color:'#4ecdc4'},
+    {name:'중립적',saveMult:1.0,maintMult:1.0,color:'#0984E3'},
+    {name:'보수적',saveMult:0.7,maintMult:1.3,color:'#8B8B82'},
+  ];
+  let html='';
+  scenarios.forEach(s=>{
+    let cum=-cost;
+    let bep='-';
+    for(let y=1;y<=7;y++){
+      cum+=save*s.saveMult*util-maint*s.maintMult;
+      if(bep==='-'&&cum>0) bep=y+'년차';
+    }
+    const cumK=Math.round(cum/1000);
+    const maxK=800;
+    const barW=cum>0?Math.min(cum/(maxK*1000)*100,100):0;
+    html+='<div style="display:grid;grid-template-columns:70px 1fr 80px 65px;align-items:center;gap:10px;margin:6px 0">'
+    +'<div style="font-size:11px;font-weight:600;color:'+s.color+'">'+s.name+'</div>'
+    +'<div style="background:var(--bg-soft);border-radius:6px;height:24px;position:relative;overflow:hidden">';
+    if(cum>0){
+      html+='<div style="position:absolute;left:0;top:0;height:100%;width:'+barW.toFixed(0)+'%;background:linear-gradient(90deg,'+s.color+'80,'+s.color+');border-radius:6px;transition:width .3s"></div>';
+    } else {
+      const negW=Math.min(Math.abs(cum)/(maxK*1000)*100,50);
+      html+='<div style="position:absolute;left:0;top:0;height:100%;width:'+negW.toFixed(0)+'%;background:linear-gradient(90deg,#e74c3c80,#e74c3c);border-radius:6px;transition:width .3s"></div>';
+    }
+    html+='</div>'
+    +'<div style="font-family:var(--mono);font-size:13px;font-weight:700;text-align:right;color:'+(cum>0?s.color:'#e74c3c')+'">$'+cumK+'K</div>'
+    +'<div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-align:center">BEP '+bep+'</div>'
+    +'</div>';
+  });
+  document.getElementById('roiBars').innerHTML=html;
+}
+window.addEventListener('DOMContentLoaded',()=>{render();renderROI();});
+window.renderROI=renderROI;
+})();
+</script>
+  <section class="card">
+    <div class="card-title">🏭 협동로봇 자동화 셀 비용 구조 <span class="badge" style="background:#e74c3c;color:#fff">총 $90,724</span></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">합계: <strong id="cellTotal">-</strong> — 출처: Universal Robots / NVIDIA Jetson / Robotiq 공개가 기반 추정</div>
+    <div id="cellCostBar" style="display:flex;border-radius:6px;overflow:hidden;gap:1px"></div>
+    <div style="display:flex;gap:8px;margin:8px 0 16px;flex-wrap:wrap;font-family:var(--mono);font-size:9px">
+      <span style="color:#FF6B6B">● 실행 43.8%</span>
+      <span style="color:#636E72">● 통합/안전 34.2%</span>
+      <span style="color:#00B894">● 인지 9.9%</span>
+      <span style="color:#F8B739">● 제어 6.6%</span>
+      <span style="color:#6C5CE7">● 두뇌 5.5%</span>
+    </div>
+    <div class="scroll-x">
+      <div id="cellBomGrid" style="display:grid;grid-template-columns:180px 90px 70px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">🤖 휴머노이드 원가 구조 <span class="badge" style="background:var(--ink);color:var(--bg)">McKinsey</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">대당 제조 비용 <strong>$30K~$150K</strong> 범위. 액추에이터가 40~60%로 최대 비용 항목 <span style="color:var(--ink-3);font-size:10px">(McKinsey 전신 BOM 광의 기준 · 저가형 Unitree G1은 66%, 풀스택 $55~78K는 34.5% — 출처·범위 차이, 부품기술 탭 참조)</span>. IFR 기준 2024년 산업용 로봇 연간 설치 542,100대 (4년 연속 50만대+).</p>
+    <div class="scroll-x">
+      <div id="humCostGrid" style="display:grid;grid-template-columns:110px 80px repeat(3,1fr);gap:0;font-family:var(--mono);font-size:11px"></div>
+    </div>
+  </section>
+
+  <section class="card section-gap">
+    <div class="card-title">⏱️ 도입 시기별 수혜 영역</div>
+    <div id="timelineGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px"></div>
+    <div style="margin-top:12px;font-size:10.5px;color:var(--ink-3);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px">
+      <strong>핵심:</strong> 실행 부품은 초기 매출 규모가 크지만 경쟁 심화·가격 하락 압력. 두뇌·SW 계층은 고객별 공정 데이터·운영 노하우 기반 <strong>Lock-in 효과</strong>. Regal Rexnord는 2025년 미국 휴머노이드 OEM으로부터 <strong>$40M 수주</strong> 확보.
+    </div>
+  </section>
+  <section class="card section-gap">
+    <div class="card-title">🏗️ RMAC — Robot Metaplant Application Center <span class="badge" style="background:#4ecdc4;color:#fff">Hyundai Motor</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #4ecdc4"><div class="num-label">운영 주체</div><div class="num-value">현대차그룹</div><div class="num-sub">로봇 훈련 전용 시설</div></div>
+      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">개소 예정</div><div class="num-value">2026.08</div><div class="num-sub">Source: Hyundai Motor</div></div>
+    </div>
+    <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px;margin-top:8px">
+      <strong>역할:</strong> 실제 제조 환경에서 로봇 학습 데이터 대량 수집. Boston Dynamics Atlas의 공장 투입 전 사전 훈련·검증 센터. 현대차 울산·아산 공장 공정 데이터를 시뮬레이션과 연동하여 Sim-to-Real 전이 가속.
+    </div>
+  </section>
+
+  <!-- ═══ 휴머노이드 도입 공장 ROI 시뮬레이터 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">📈 휴머노이드 도입 ROI 시뮬레이터 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:14px">로봇 도입비·인건비 절감·유지보수·가동률을 조절하면 7년차 누적 ROI와 BEP(손익분기점)가 실시간 계산됩니다.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">로봇 도입비 (초기 투자)</span>
+          <span id="roiCostVal" style="font-family:var(--mono);font-size:13px;font-weight:700">$90,000</span>
+        </div>
+        <input id="roiCostSlider" class="year-slider" type="range" min="30000" max="200000" step="5000" value="90000" oninput="renderROI()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$30K</span><span>$200K</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">연간 인건비 절감</span>
+          <span id="roiSaveVal" style="font-family:var(--mono);font-size:13px;font-weight:700">$80,000</span>
+        </div>
+        <input id="roiSaveSlider" class="year-slider" type="range" min="30000" max="150000" step="5000" value="80000" oninput="renderROI()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$30K</span><span>$150K</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">연간 유지보수 비용</span>
+          <span id="roiMaintVal" style="font-family:var(--mono);font-size:13px;font-weight:700">$10,000</span>
+        </div>
+        <input id="roiMaintSlider" class="year-slider" type="range" min="3000" max="30000" step="1000" value="10000" oninput="renderROI()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$3K</span><span>$30K</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">가동률</span>
+          <span id="roiUtilVal" style="font-family:var(--mono);font-size:13px;font-weight:700">80%</span>
+        </div>
+        <input id="roiUtilSlider" class="year-slider" type="range" min="40" max="95" step="5" value="80" oninput="renderROI()" style="width:100%">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>40%</span><span>95%</span></div>
+      </div>
+    </div>
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:8px">7년차 누적 ROI — 긍정적(절감×1.3, 유지보수×0.7) / 중립(기본값) / 보수적(절감×0.7, 유지보수×1.3)</div>
+    <div id="roiBars"></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:10px">대당 기준. 본 ROI 추정치는 자체추정이며 원데이터가 아님.</div>
+  </section>
+
+  <!-- ═══ 현대차 생산직 인력 추이 (자동화 배경) ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">👷 현대차 기술·생산·정비직 인력 추이 <span class="badge" style="background:#4ecdc4;color:#fff">현대차</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;line-height:1.6">생산직 인력은 3년 연속 감소 추세 — 공장 자동화·휴머노이드 도입의 구조적 배경.</p>
+    <div class="num-row">
+      <div class="num-box"><div class="num-label">2022</div><div class="num-value">66,384명</div></div>
+      <div class="num-box"><div class="num-label">2023</div><div class="num-value">64,381명</div></div>
+      <div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">2024</div><div class="num-value" style="color:#e74c3c">61,856명</div><div class="num-sub">2년간 -4,528명</div></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">출처: 현대차 (글로벌 직군별 인력 현황, 기술·생산·정비직 기준)</div>
+  </section>
+
 
   <!-- ═══ Update Log ═══ -->
   <section class="card section-gap">

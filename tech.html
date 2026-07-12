@@ -54,7 +54,7 @@ a{color:inherit}
 <script>
 /* 서브탭 = 원본 페이지를 그대로 담는 iframe (콘텐츠 무수정 · 스크립트 충돌 격리) */
 var SUB = {
-  overview: 'technology.html',
+  overview: 'tech_overview.html',
   sw:       'physical_ai.html',
   anatomy:  'anatomy.html',
   parts:    'components.html'
@@ -77,6 +77,7 @@ function bindResize(){
     if (window.ResizeObserver) new ResizeObserver(function(){ fit(); }).observe(f.contentWindow.document.body);
   } catch(e) {}
 }
+var pendingAnchor = null;
 function showSub(tab, btn){
   if (!SUB[tab]) tab = 'overview';
   var btns = document.querySelectorAll('#subTabs .st-btn');
@@ -85,13 +86,27 @@ function showSub(tab, btn){
   else { var b=document.querySelector('#subTabs .st-btn[data-tab="'+tab+'"]'); if(b) b.classList.add('on'); }
   document.getElementById('subCap').textContent = CAP[tab];
   document.getElementById('frame').src = SUB[tab];
-  if (history.replaceState) history.replaceState(null,'','#'+tab);
+  if (history.replaceState) history.replaceState(null,'','#'+tab+(pendingAnchor?':'+pendingAnchor:''));
 }
-document.getElementById('frame').addEventListener('load', bindResize);
+document.getElementById('frame').addEventListener('load', function(){
+  bindResize();
+  if (pendingAnchor) {
+    var a = pendingAnchor; pendingAnchor = null;
+    setTimeout(function(){
+      try {
+        var el = document.getElementById('frame').contentWindow.document.getElementById(a);
+        if (el) el.scrollIntoView({block:'start'});
+      } catch(e) {}
+    }, 300);
+  }
+});
 window.addEventListener('resize', fit);
 window.addEventListener('DOMContentLoaded', function(){
-  var tab = (location.hash||'').replace('#','');
+  var h = (location.hash||'').replace('#','');
+  var tab = h, anchor = null;
+  if (h.indexOf(':') >= 0) { tab = h.split(':')[0]; anchor = h.split(':')[1]; }
   if (!SUB[tab]) tab = 'overview';
+  pendingAnchor = anchor;
   showSub(tab, null);
 });
 </script>
