@@ -484,13 +484,18 @@ function renderMckCost(){
 }
 
 // ═══════════════════════════════════════
-// 8. HARMONIC M/S GRID (감속기③ · 데이터 정본: data.js)
+// 8. HARMONIC SUPPLY GRID (감속기③ · 데이터 정본: data.js harmonicGGII)
 // ═══════════════════════════════════════
 function renderGearMs(){
+  const G=DASHBOARD_DATA.harmonicGGII;
   let h='';
-  DASHBOARD_DATA.harmonicMS.forEach(d=>{
-    h+=`<div class="td" style="font-weight:600">${d.n}</div><div class="td" style="text-align:right">${d.ms}%</div><div class="td"><div style="height:14px;width:${d.ms*2}px;background:${d.c};border-radius:2px"></div></div>`;
+  G.cnDomesticShare.forEach(d=>{
+    h+=`<div class="td" style="font-weight:600">中 국산 비중 ${d.y}</div><div class="td" style="text-align:right">${d.v}%</div><div class="td"><div style="height:14px;width:${d.v*2}px;background:#FF6B6B;border-radius:2px;opacity:${d.y==='2024'?1:.55}"></div></div>`;
   });
+  G.top4Share.forEach(d=>{
+    h+=`<div class="td" style="font-weight:600">TOP4 집중도 ${d.y}</div><div class="td" style="text-align:right">${d.v}%</div><div class="td"><div style="height:14px;width:${d.v*2}px;background:#6C5CE7;border-radius:2px;opacity:${d.y==='2024'?1:.55}"></div></div>`;
+  });
+  h+=`<div class="td" style="font-weight:600">TOP4 순위</div><div class="td"></div><div class="td" style="font-size:10px;color:var(--ink-2)">${G.top4Ranking}</div>`;
   document.getElementById('gearMsGrid').innerHTML=h;
 }
 
@@ -576,12 +581,12 @@ window.addEventListener('DOMContentLoaded', () => {
   <section id="gear" class="card section-gap" style="border-left:4px solid #F8B739">
     <div class="card-title">⚙️ 감속기 정본 — 관절마다 하나씩 들어가는 병목 부품 <span class="badge" style="background:#F8B739;color:#000">전 탭 감속기 기준점</span></div>
     <div style="background:rgba(248,183,57,0.08);border-left:4px solid #F8B739;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:14px">
-      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7"><b>한 줄 요약:</b> 감속기는 모터의 빠른 회전을 느리고 센 힘으로 바꾸는 부품이고 관절마다 1개씩 들어감. 하모닉(고정밀·고가) vs 유성(저가·역구동 유리) vs 사이클로이드(고내구)의 3파전에서, <b>유성 $55~230 vs 하모닉 $150~700</b>의 '원가 파괴'가 G1·Atlas의 유성 채택 이유임. 정밀 하모닉은 만들 회사가 적어(HDS 40.4%) 공급 병목이자 국산화(에스비비테크·에스피지·로보티즈 등) 투자 포인트임.</div>
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7"><b>한 줄 요약:</b> 감속기는 모터의 빠른 회전을 느리고 센 힘으로 바꾸는 부품이고 관절마다 1개씩 들어감. 하모닉(고정밀·고가) vs 유성(저가·역구동 유리) vs 사이클로이드(고내구)의 3파전에서, <b>유성 $55~230 vs 하모닉 $150~700</b>의 '원가 파괴'가 G1·Atlas의 유성 채택 이유임. 정밀 하모닉은 매출 기준 HDS ~80% 과점이지만 판매량 기준으론 중국 국산이 자국 시장 75%를 채우며 추격 중 — 공급 병목이자 국산화(에스비비테크·에스피지·로보티즈 등) 투자 포인트임.</div>
     </div>
     <div class="num-row" style="margin-bottom:12px">
       <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">단가: 유성 vs 하모닉</div><div class="num-value" style="font-size:16px">$55~230 vs $150~700</div><div class="num-sub">'원가 파괴'가 유성 채택 이유 [네오오토·우림 노트]</div></div>
       <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">Atlas 유성 QDD 액추에이터</div><div class="num-value">31개</div><div class="num-sub">손 제외 전체 56개 중 · BD</div></div>
-      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">하모닉 1위 HDS M/S</div><div class="num-value">40.4%</div><div class="num-sub">GGII 2024 · ③ 공급 구도</div></div>
+      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">中 시장 국산 하모닉 비중</div><div class="num-value">75.11%</div><div class="num-sub">GGII 2024 · 판매량 기준 · ③ 공급 구도</div></div>
     </div>
     <div style="font-size:11px;color:var(--ink-2);line-height:1.7">읽는 순서: <b>① 3종 구동 원리</b>(어떻게 도는가) → <b>② 부위별 × 국내 벤더</b>(어느 관절에 어느 종류, 국산화 지도) → <b>③ 공급 구도</b>(누가 만드나 — M/S·생산능력). 왜 유성 QDD인지 trade-off 이야기는 <a href="tech.html#anatomy:sec-gear" target="_top" style="color:#B8860B">해부 03 감속기 ↗</a>, 물량 병목 시뮬은 <a href="market.html#company" target="_top" style="color:#B8860B">공급 병목 히트맵 ↗</a>.</div>
   </section>
@@ -604,7 +609,7 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="gear-box">
         <canvas id="cvHarmonic" width="200" height="200"></canvas>
         <h3 style="color:#6C5CE7">하모닉 감속기</h3>
-        <div class="specs">정밀도: <strong>★★★ 최고</strong> / 내구성: ★☆☆<br>가격: 최고 / 양산성: 제한적<br>채택: Tesla Optimus Gen2 · Atlas 손/그리퍼(미공개·시나리오 A)<br>감속비: 1:30~1:160<br>M/S: HDS 40.4%, Nidec 14.7%</div>
+        <div class="specs">정밀도: <strong>★★★ 최고</strong> / 내구성: ★☆☆<br>가격: 최고 / 양산성: 제한적<br>채택: Tesla Optimus Gen2 · Atlas 손/그리퍼(미공개·시나리오 A)<br>감속비: 1:30~1:160<br>공급: HDS 1위 · 중국 국산화 추격 (GGII 2024, ③ 참조)</div>
       </div>
       <div class="gear-box">
         <canvas id="cvCycloidal" width="200" height="200"></canvas>
@@ -625,7 +630,7 @@ window.addEventListener('DOMContentLoaded', () => {
         <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">국내 양산·진입</th>
       </tr></thead>
       <tbody>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">손목·손가락</td><td style="padding:8px 10px">하모닉(A) / 볼·리드 스크루(B)</td><td style="padding:8px 10px">HDS(日 70~80%)·Nidec-Shimpo·Leader Drive</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스비비테크 (A 가정·하모닉 1위) / B면 스크루·리니어류</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">손목·손가락</td><td style="padding:8px 10px">하모닉(A) / 볼·리드 스크루(B)</td><td style="padding:8px 10px">HDS(日, 매출 기준 ~80%)·Nidec-Shimpo·Leader Drive</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스비비테크 (A 가정·하모닉 1위) / B면 스크루·리니어류</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">허리·고하중</td><td style="padding:8px 10px">사이클로이드</td><td style="padding:8px 10px">나브테스코(日)·스미토모</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스피지</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">다리·고토크</td><td style="padding:8px 10px">유성</td><td style="padding:8px 10px">Bosch·SEW</td><td style="padding:8px 10px;font-weight:600;color:#6C5CE7">에스비비테크 양산 돌입 · 로보티즈 QDD</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:8px 10px">단순 구동</td><td style="padding:8px 10px">스퍼</td><td style="padding:8px 10px">범용</td><td style="padding:8px 10px">다수</td></tr>
@@ -639,9 +644,16 @@ window.addEventListener('DOMContentLoaded', () => {
 
   <!-- ═══ 1.25 감속기③ 공급 구도 — 시장·경쟁 탭에서 융합 이관 (26-07-12 v4) ═══ -->
   <section class="card section-gap" style="border-left:4px solid #6C5CE7">
-    <div class="card-title">🌐 감속기③ 공급 구도 — 글로벌 하모닉 M/S·생산능력 <span class="badge" style="background:#6C5CE7;color:#fff">GGII · 각사</span></div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:8px">글로벌 하모닉 감속기 M/S (2024)</div>
+    <div class="card-title">🌐 감속기③ 공급 구도 — 하모닉 시장 구조와 중국 국산화 <span class="badge" style="background:#6C5CE7;color:#fff">GGII 2025.06 · HDS IR</span></div>
+    <div style="background:rgba(108,92,231,0.06);border-left:4px solid #6C5CE7;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:12px">
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7"><b>같은 시장, 두 개의 자:</b> <b>매출·전통 정밀 기준</b>으로는 HDS가 <b>~80%</b>를 쥔 과점 시장임 [HDS IR·언론 종합]. 그러나 <b>판매량·산업용 로봇용 기준</b>(GGII)으로는 TOP4(HDS &gt; Leaderdrive &gt; Nidec-Shimpo &gt; Laifual) 합산이 <b>64.13%</b>(2024)이고, 중국 시장은 국산이 <b>75.11%</b>까지 차오르며 2021년에 외자를 처음 역전했음. 물량은 중국이 채우고 매출은 HDS가 지키는 구도임.</div>
+    </div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:8px">중국 시장 국산 하모닉 비중 추이 · TOP4 집중도 (GGII, 판매량 기준)</div>
     <div id="gearMsGrid" style="display:grid;grid-template-columns:140px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
+    <div class="num-row" style="margin-top:12px">
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">글로벌 소비량 (산업용 로봇용)</div><div class="num-value">121.87만대</div><div class="num-sub">2024, +21.44% YoY → 2028E 약 190만대 · GGII</div></div>
+      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">글로벌 생산능력</div><div class="num-value">489.7만대</div><div class="num-sub">2024 → 2025E 600만대 · GGII</div></div>
+    </div>
     <!-- ── 가산: 하모닉/HDS 생산능력 비교 ── -->
     <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--ink-2);line-height:1.7">
       <b style="color:#6C5CE7">하모닉/HDS 생산능력 (M/S 보완):</b> <b>하모닉드라이브시스템스(6324.T) 연 230만대</b> vs 경쟁사 <b>리더드라이브(Leaderdrive) 60만대 → 2027년 160만대</b>. HDS는 다국적 거점(일본·독일·미국)으로 중국의존을 낮춰 서구권 메이저의 핵심 대체공급선 역할. 미국 capa 월 8–9천대 → FY26 월 1–1.5만대로 확대.<br>

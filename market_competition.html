@@ -41,7 +41,7 @@ function render(){
   $('#tg').innerHTML=th;
 }
 
-/* HM_DATA(하모닉 M/S) → 정본 data.js harmonicMS로 융합 이관, components 감속기③이 렌더 (26-07-12 v4) */
+/* HM_DATA(하모닉 M/S) → 정본 data.js harmonicGGII로 융합 이관(GGII 2025.06 지표로 갱신), components 감속기③이 렌더 (26-07-12 v4) */
 const CN_PROD=[{n:'Unitree',ms:49,c:'#6C5CE7'},{n:'AgiBot',ms:30,c:'#FF6B6B'},{n:'UBTech',ms:8,c:'#F8B739'},{n:'Fourier',ms:5,c:'#00B894'},{n:'Galbot',ms:3,c:'#E17055'},{n:'MagicLab',ms:2,c:'#636E72'},{n:'기타',ms:3,c:'var(--line)'}];
 function renderExtra(){
   let p='';CN_PROD.forEach(d=>{p+=`<div class="td" style="font-weight:600">${d.n}</div><div class="td" style="text-align:right">${d.ms}%</div><div class="td"><div style="height:14px;width:${d.ms*1.5}px;background:${d.c};border-radius:2px"></div></div>`;});
@@ -70,7 +70,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
   <!-- 하모닉 M/S·CAPA 상세는 감속기 정본으로 융합 이관 (26-07-12 v4) — 여기는 요약 스텁만 -->
   <section class="card section-gap" style="border-left:3px solid #6C5CE7">
     <div class="card-title">⚙️ 감속기 공급 구도 요약 <span class="badge" style="background:var(--bg-soft);color:var(--ink-2)">정본: 기술 › 하드웨어 › 부품</span></div>
-    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>한 줄 요약:</b> 글로벌 하모닉 감속기 M/S는 <b>HDS 40.4% · Nidec 14.7%</b>(GGII 2024)이고, 생산능력은 <b>HDS 연 230만대</b> vs Leaderdrive 60만대→160만대(2027)임. 테슬라 옵티머스向 하모닉 벤더는 현재 미정 [미확인]. M/S 차트·CAPA 비교·부위별 감속기 × 국내 벤더 매핑은 전부 정본에 모아뒀음.</div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>한 줄 요약:</b> 하모닉 감속기는 매출 기준 <b>HDS ~80%</b> 과점[HDS IR·언론 종합], 판매량 기준(GGII 2024)은 <b>TOP4 64.13%</b>·중국 시장 국산 <b>75.11%</b>로 국산화 진행 중임. 생산능력은 <b>HDS 연 230만대</b> vs Leaderdrive 60만대→160만대(2027)임. 테슬라 옵티머스向 하모닉 벤더는 현재 미정 [미확인]. M/S 차트·CAPA 비교·부위별 감속기 × 국내 벤더 매핑은 전부 정본에 모아뒀음.</div>
     <a href="tech.html#parts:gear" target="_top" style="font-size:11px;color:#6C5CE7;font-weight:600;text-decoration:none">감속기 정본 전체 보기 ↗</a>
   </section>
   <section class="card section-gap">

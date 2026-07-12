@@ -270,18 +270,6 @@ const DASHBOARD_DATA = {
   ],
 
   /* ══════════════════════════════════════
-     글로벌 하모닉 감속기 M/S (GGII, 2024)
-     정본 렌더: components 감속기③ (market_competition에서 융합 이관, 26-07-12 v4)
-     ══════════════════════════════════════ */
-  harmonicMS: [
-    { n: 'HDS', ms: 40.4, c: '#6C5CE7' },
-    { n: 'Nidec', ms: 14.7, c: '#636E72' },
-    { n: 'Leader Drive', ms: 12.0, c: '#F8B739' },
-    { n: 'Laifual Drive', ms: 7.4, c: '#00B894' },
-    { n: '기타', ms: 25.5, c: 'var(--line)' },
-  ],
-
-  /* ══════════════════════════════════════
      피지컬 AI 5계층 비용 구조
      ══════════════════════════════════════ */
   physicalAILayers: {
@@ -386,11 +374,16 @@ const DASHBOARD_DATA = {
     { d: '상업적 파급력', a: '★★★', b: '★★★', c: '★★★', e: '★★☆', f: '★☆☆', g: '★★☆' },
   ],
 
-  harmonicMS: [
-    { n: 'HDS', ms: 40.4, c: '#6C5CE7' }, { n: 'Nidec', ms: 14.7, c: '#636E72' },
-    { n: 'Leader Drive', ms: 12.0, c: '#F8B739' }, { n: 'Laifual Drive', ms: 7.4, c: '#00B894' },
-    { n: '기타', ms: 25.5, c: 'var(--line)' },
-  ],
+  /* 글로벌 하모닉 감속기 시장 (GGII 2025.06 발표 · 2024년 데이터 · 산업용 로봇용 · 판매량 기준)
+     구 harmonicMS(HDS 40.4% 등 업체별 %)는 GGII 공개 집중도(TOP4 64.13%)와 불일치해 교체(26-07-12).
+     업체별 %는 GGII 미공개 → 공개 지표(TOP4 집중도·중국 국산화 추이·수급)만 수록. 정본 렌더: components 감속기③ */
+  harmonicGGII: {
+    top4Ranking: 'HDS > Leaderdrive(绿的谐波) > Nidec-Shimpo > Laifual(来福谐波)',
+    top4Share: [ { y: '2023', v: 59.36 }, { y: '2024', v: 64.13 } ],
+    cnDomesticShare: [ { y: '2020', v: 48.71 }, { y: '2021', v: 55.15 }, { y: '2024', v: 75.11 } ],
+    consumption: { y2024: 121.87, yoy: 21.44, y2028E: 190 },
+    capacity: { y2024: 489.7, y2025E: 600 },
+  },
 
   chinaProduction2026: [
     { n: 'Unitree', ms: 49, c: '#6C5CE7' }, { n: 'AgiBot', ms: 30, c: '#FF6B6B' },
