@@ -40,9 +40,7 @@ a{color:inherit}
   <div class="st-tabs" id="subTabs">
     <button class="st-btn on" data-tab="overview" onclick="showSub('overview',this)">📖 기술 설명</button>
     <button class="st-btn"    data-tab="sw"       onclick="showSub('sw',this)">🧠 소프트웨어</button>
-    <span class="st-grp">하드웨어</span>
-    <button class="st-btn"    data-tab="anatomy"  onclick="showSub('anatomy',this)">🔬 해부</button>
-    <button class="st-btn"    data-tab="parts"    onclick="showSub('parts',this)">🔩 부품</button>
+    <button class="st-btn"    data-tab="hw"       onclick="showSub('hw',this)">🦾 하드웨어 (해부+부품)</button>
   </div>
   <div class="sub-cap" id="subCap"></div>
 
@@ -56,14 +54,13 @@ a{color:inherit}
 var SUB = {
   overview: 'tech_overview.html',
   sw:       'physical_ai.html',
-  anatomy:  'anatomy.html',
-  parts:    'components.html'
+  hw:       'hardware.html'
 };
+var ALIAS = { anatomy: 'hw', parts: 'hw' }; /* 구 링크 호환 */
 var CAP = {
   overview: '전체 그림 — 2020→2026 로드맵·Physical AI 로드맵·Q&A·용어 사전. 큰 흐름을 먼저 잡는다.',
   sw:       '소프트웨어(두뇌) — VLA·Dual System·월드 모델(WFM)·데이터 전쟁·온디바이스·범용 OS.',
-  anatomy:  '하드웨어 · 해부(이야기책) — 부위별로 "왜 이렇게 생겼나"를 그림과 함께 읽는다.',
-  parts:    '하드웨어 · 부품(데이터북) — 감속기·모터·센서 스펙·원가·시뮬레이터. 해부와 짝을 이룬다.'
+  hw:       '하드웨어(몸) — 해부(이야기책: 왜 이렇게 생겼나)를 먼저, 부품(데이터북: 스펙·원가·시뮬레이터)을 이어서 본다.'
 };
 
 function fit(){
@@ -79,6 +76,7 @@ function bindResize(){
 }
 var pendingAnchor = null;
 function showSub(tab, btn){
+  if (ALIAS[tab]) tab = ALIAS[tab];
   if (!SUB[tab]) tab = 'overview';
   var btns = document.querySelectorAll('#subTabs .st-btn');
   for (var i=0;i<btns.length;i++) btns[i].classList.remove('on');
@@ -94,10 +92,20 @@ document.getElementById('frame').addEventListener('load', function(){
     var a = pendingAnchor; pendingAnchor = null;
     setTimeout(function(){
       try {
-        var el = document.getElementById('frame').contentWindow.document.getElementById(a);
+        var doc = document.getElementById('frame').contentWindow.document;
+        var el = doc.getElementById(a);
+        if (!el) { /* 중첩 iframe(hardware.html) 내부 탐색 */
+          var inner = doc.querySelectorAll('iframe');
+          for (var i=0;i<inner.length;i++){
+            try {
+              var el2 = inner[i].contentWindow.document.getElementById(a);
+              if (el2) { el2.scrollIntoView({block:'start'}); return; }
+            } catch(e2) {}
+          }
+        }
         if (el) el.scrollIntoView({block:'start'});
       } catch(e) {}
-    }, 300);
+    }, 900);
   }
 });
 window.addEventListener('resize', fit);
@@ -105,6 +113,7 @@ window.addEventListener('DOMContentLoaded', function(){
   var h = (location.hash||'').replace('#','');
   var tab = h, anchor = null;
   if (h.indexOf(':') >= 0) { tab = h.split(':')[0]; anchor = h.split(':')[1]; }
+  if (ALIAS[tab]) tab = ALIAS[tab];
   if (!SUB[tab]) tab = 'overview';
   pendingAnchor = anchor;
   showSub(tab, null);
