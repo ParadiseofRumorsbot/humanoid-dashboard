@@ -458,15 +458,15 @@ const DASHBOARD_DATA = {
     },
     atlas: {
       name: 'BD Atlas', dof: 56, joints: [
-        { x: 150, y: 50, name: '목(3DoF)', type: '사이클로이드', torque: '15Nm' },
-        { x: 100, y: 90, name: '어깨R(3DoF)', type: '사이클로이드', torque: '80Nm' }, { x: 200, y: 90, name: '어깨L', type: '사이클로이드', torque: '80Nm' },
-        { x: 80, y: 130, name: '팔R(2DoF)', type: '사이클로이드', torque: '40Nm' }, { x: 220, y: 130, name: '팔L', type: '사이클로이드', torque: '40Nm' },
+        { x: 150, y: 50, name: '목(3DoF)', type: '유성', torque: '15Nm' },
+        { x: 100, y: 90, name: '어깨R(3DoF)', type: '유성', torque: '80Nm' }, { x: 200, y: 90, name: '어깨L', type: '유성', torque: '80Nm' },
+        { x: 80, y: 130, name: '팔R(2DoF)', type: '유성', torque: '40Nm' }, { x: 220, y: 130, name: '팔L', type: '유성', torque: '40Nm' },
         { x: 70, y: 170, name: '손목R(3DoF)', type: '하모닉', torque: '10Nm' }, { x: 230, y: 170, name: '손목L', type: '하모닉', torque: '10Nm' },
         { x: 60, y: 195, name: '손R(12DoF)', type: '하모닉', torque: '2Nm' }, { x: 240, y: 195, name: '손L', type: '하모닉', torque: '2Nm' },
-        { x: 150, y: 200, name: '허리(3DoF)', type: '사이클로이드', torque: '120Nm' },
-        { x: 120, y: 250, name: '엉덩이R(3DoF)', type: '사이클로이드', torque: '150Nm' }, { x: 180, y: 250, name: '엉덩이L', type: '사이클로이드', torque: '150Nm' },
-        { x: 115, y: 310, name: '무릎R', type: '사이클로이드', torque: '100Nm' }, { x: 185, y: 310, name: '무릎L', type: '사이클로이드', torque: '100Nm' },
-        { x: 110, y: 370, name: '발목R(2DoF)', type: '하모닉', torque: '60Nm' }, { x: 190, y: 370, name: '발목L', type: '하모닉', torque: '60Nm' },
+        { x: 150, y: 200, name: '허리(3DoF)', type: '유성', torque: '120Nm' },
+        { x: 120, y: 250, name: '엉덩이R(3DoF)', type: '유성', torque: '150Nm' }, { x: 180, y: 250, name: '엉덩이L', type: '유성', torque: '150Nm' },
+        { x: 115, y: 310, name: '무릎R', type: '유성', torque: '100Nm' }, { x: 185, y: 310, name: '무릎L', type: '유성', torque: '100Nm' },
+        { x: 110, y: 370, name: '발목R(2DoF)', type: '유성', torque: '60Nm' }, { x: 190, y: 370, name: '발목L', type: '유성', torque: '60Nm' },
       ],
     },
     g1: {
@@ -486,7 +486,7 @@ const DASHBOARD_DATA = {
   radarOEM: {
     optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'V3 26H2 양산 예정' },
     figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'OpenAI World Model' },
-    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '사이클로이드', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8월 개소, 30K CAPA (28E)' },
+    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '유성 QDD', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8월 개소, 30K CAPA (28E)' },
     digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
     g1: { name: 'Unitree G1', color: '#E17055', h: 132, w: 35, dof: 23, payload: 2, battery: 1.5, asp: 13.5, gear: '유성', customer: '범용', pos: '중국 저가형', note: '26년 8월 IPO, BOM 790만원' },
     neo: { name: '1X Neo', color: '#0984E3', h: 168, w: 30, dof: 75, payload: 25, battery: 2, asp: 20, gear: '유성', customer: '일반 소비자', pos: '서비스·가정용', note: '26H2 소비자 배송 시작' },
@@ -1083,6 +1083,17 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-07-12',
+      title: 'Atlas 감속기 표기 유성 QDD 통일 — 누락 사본 4곳 동기화(data.js oemSpecs·radarOEM · components.html RADAR_OEM · technology.html 비교표)',
+      source: 'JPM 2026 모비스 회전형 액추에이터 31개 · 260709 네오오토 그룹미팅 · 260625 우림피티에스 컨콜',
+      changes: [
+        'data.js: oemSpecs.atlas 관절 감속기 유형 사이클로이드(발목 하모닉) → 전 바디관절 유성(손목·손 하모닉 유지) — components.html OEM_SPECS.atlas와 완전 동기화',
+        'data.js: radarOEM.atlas gear 사이클로이드 → 유성 QDD',
+        'components: RADAR_OEM.atlas gear 사이클로이드 → 유성 QDD · note RMAC "2026 여름 개소" → "2026년 8월 개소" 통일',
+        'technology: 부품 구성 비교표 Atlas 감속기 "24 하모닉20+RV4" → "31 유성 QDD" · 감속기 단가 $350~800에 "유성 $55~230" 병기',
+      ],
+    },
     {
       date: '2026-07-10',
       title: 'Optimus Gen3 양산 전환(6월말 설계승인 · 9월 주1,000대 공급사 지침) · 열관리 아키텍처 갱신(구조체 방열·열 인지 제어) · 부위별 열병목 판단표 신설',
