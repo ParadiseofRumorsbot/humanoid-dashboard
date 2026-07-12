@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>휴머노이드 해부 · Humanoid Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}a{color:inherit}
+.hdr{margin-bottom:24px}.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}.hdr-sub{font-size:13px;color:var(--ink-2);max-width:720px}
+nav{display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap}
+.card{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin-top:20px}.card-title{font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed var(--line-s);display:flex;align-items:center;gap:8px;flex-wrap:wrap}.card-title .badge{font-size:9px;padding:2px 6px;border-radius:4px;font-weight:700}
+.section-gap{margin-top:32px}.scroll-x{overflow-x:auto}
+.p{font-size:13px;color:var(--ink-2);margin:10px 0;max-width:820px}.p b{color:var(--ink);font-weight:600}
+.quote{font-size:13.5px;color:var(--ink);border-left:3px solid var(--ink);background:var(--bg-soft);padding:10px 16px;border-radius:0 8px 8px 0;margin:14px 0;max-width:820px}
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}.st-btn{font-family:var(--mono);font-size:10px;font-weight:600;padding:6px 10px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+.num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}.num-value{font-family:var(--mono);font-size:20px;font-weight:700;line-height:1.3}.num-sub{font-size:10px;color:var(--ink-3)}
+.th{padding:5px 8px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s);text-align:left}.td{padding:7px 8px;border-bottom:1px solid var(--line);font-size:11.5px;vertical-align:top}
+svg text{font-family:'JetBrains Mono',monospace}
+.ctrl-row{display:flex;gap:12px;align-items:center;margin:12px 0;font-size:12px;flex-wrap:wrap}.ctrl-row label{font-family:var(--mono);font-size:10px;color:var(--ink-3);min-width:96px}
+.ctrl-row button{font-family:var(--mono);font-size:10px;padding:4px 10px;border:1px solid var(--line);border-radius:4px;background:var(--bg-card);cursor:pointer}.ctrl-row button.on{background:var(--ink);color:var(--bg)}
+.sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;flex:1;min-width:150px;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.tag-est{font-family:var(--mono);font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;background:#fff3cd;color:#8a6d00;border:1px solid #f0e0a0}
+/* badge row */
+.badge-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:16px;padding-top:12px;border-top:1px dashed var(--line-s)}
+.badge-row .lbl{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;margin-right:2px}
+.vc-badge{font-family:var(--mono);font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--bg-soft);color:var(--ink-2);text-decoration:none;border:1px solid var(--line);transition:all .15s}
+a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.vc-badge.vc-note{background:#eef6ff;color:#245a8d;border-color:#cfe3f5;cursor:default}
+/* image + hotspot */
+.img-grid{display:flex;gap:16px;flex-wrap:wrap;margin:14px 0}
+.img-fig{flex:1;min-width:240px}
+.img-fig figcaption{font-size:10.5px;color:var(--ink-3);margin-top:6px;line-height:1.4}
+.hotspot-img{position:relative;display:inline-block;width:100%;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.hotspot-img img{width:100%;display:block}
+.pin{position:absolute;transform:translate(-50%,-100%);min-width:20px;height:20px;padding:0 7px;border-radius:11px;background:rgba(10,10,8,.86);color:#fff;font-family:var(--mono);font-size:11px;font-weight:700;border:2px solid #fff;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 6px rgba(0,0,0,.45);pointer-events:none}
+.pin::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#fff}
+.pin.hot{background:#FF6B6B}
+.hotspot-cap{margin-top:10px;font-size:12px;color:var(--ink-2)}
+.hs-item{background:var(--bg-soft);border-radius:8px;padding:8px 12px;margin-top:6px;display:flex;gap:8px;align-items:baseline}
+.hs-item .hs-num{flex:0 0 18px;height:18px;border-radius:50%;background:var(--ink);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.hs-item b{color:var(--ink)}
+/* heatmap */
+.heat-wrap{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start}
+.heat-svg-box{flex:0 0 300px;max-width:100%}
+.heat-side{flex:1;min-width:220px}
+.heat-legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--ink-2)}
+.heat-legend span{display:inline-flex;align-items:center;gap:4px}
+.heat-legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.joint-dot{cursor:pointer}
+/* gauges */
+.gauge{margin:8px 0}
+.gauge .g-lbl{font-family:var(--mono);font-size:10px;color:var(--ink-3);display:flex;justify-content:space-between}
+.gauge .g-track{height:9px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:3px}
+.gauge .g-fill{height:100%;border-radius:5px;transition:width .12s ease}
+.marker-track{position:relative;height:34px;margin:18px 0 4px}
+.marker-track .mt-line{position:absolute;top:16px;left:0;right:0;height:2px;background:var(--line-s)}
+.marker{position:absolute;transform:translateX(-50%);text-align:center;top:0}
+.marker i{display:block;width:2px;height:14px;background:var(--ink-3);margin:0 auto}
+.marker span{font-family:var(--mono);font-size:8.5px;color:var(--ink-3);white-space:nowrap;display:block;margin-top:1px}
+/* sim result */
+.sim-out{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.warn-light{width:16px;height:16px;border-radius:50%;background:#2e7d32;box-shadow:0 0 0 3px rgba(46,125,50,.2);transition:all .2s}
+.warn-light.hot{background:#c62828;box-shadow:0 0 0 3px rgba(198,40,40,.25)}
+/* curtain */
+.curtain{position:relative;width:100%;max-width:640px;height:230px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--bg-soft);user-select:none}
+.curtain .layer{position:absolute;inset:0}
+.curtain .layer.top{clip-path:inset(0 50% 0 0)}
+.curtain .divider{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;transform:translateX(-1px);cursor:ew-resize;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.curtain .divider::after{content:'⇔';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#fff;color:var(--ink);font-size:12px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 5px rgba(0,0,0,.25)}
+.curtain .clbl{position:absolute;top:8px;font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;background:rgba(10,10,8,.8);color:#fff}
+/* temp bars */
+.tbar-wrap{display:flex;gap:24px;flex-wrap:wrap;margin:12px 0}
+.tbar{flex:1;min-width:150px}
+.tbar .tb-head{font-family:var(--mono);font-size:10px;color:var(--ink-3);display:flex;justify-content:space-between;align-items:center}
+.tbar .tb-track{height:14px;border-radius:7px;background:var(--line);overflow:hidden;margin-top:4px}
+.tbar .tb-fill{height:100%;transition:width .25s linear,background .25s}
+.tbar .tb-state{font-family:var(--mono);font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px}
+.tb-state.work{background:#e8f5e9;color:#2e7d32}.tb-state.rest{background:#fff8e1;color:#f57f17}
+@media(max-width:700px){main{padding:16px 12px 80px}.heat-svg-box{flex-basis:100%}.gear-box{min-width:100%}}
+</style>
+</head>
+<body>
+<main>
+<header class="hdr">
+  <div class="hdr-tag">Teardown · iFixit식 분해 리포트</div>
+  <h1><b>해부</b>휴머노이드 해부</h1>
+  <div class="hdr-sub">실물 분해 사진의 핫스팟 → 개념 다이어그램 → 쉬운 비유 → 밸류체인으로 잇는 4단 구성. G1 Teardown(Munro Live×Schaeffler)과 Optimus Gen3 열관리 스토리라인을 한국 부품사 실전 사례로 착지시킨다.</div>
+</header>
+
+<nav>
+  <a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="anatomy.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">휴머노이드 해부</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a><a href="valuation.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">밸류에이션</a>
+</nav>
+
+<!-- 관통 메시지 -->
+<section class="card" style="border-left:4px solid #0A0A08">
+  <div class="card-title">관통 메시지</div>
+  <div class="quote">"휴머노이드의 가장 큰 적은 열이다. 최고의 냉각은 애초에 열을 만들지 않는 것이다."</div>
+  <div class="quote">"하드웨어는 AI를 위한 데이터 수집 도구다 — 승자의 조건은 완벽함이 아니라 Learning Speed."</div>
+  <div class="quote">"자동차 공급망이 답을 알고 있다 — G1은 휴머노이드의 포드 모델 T."</div>
+  <div style="margin-top:16px;padding-top:14px;border-top:1px dashed var(--line-s)">
+    <div class="th" style="border:none;padding-left:0;margin-bottom:2px">그럼 "열을 안 만드는" 해결책은? — 냉각장치 하나가 아니라 "덜 만들고 · 잘 버리는" 4종 패키지 <span class="tag-est">Optimus 열관리 §10</span></div>
+    <p class="p" style="margin:6px 0 4px">답은 <b>부품 효율</b>이다. 열관리는 라디에이터 하나로 끝나지 않고, 아래 네 가지를 동시에 잡는 부품사가 밸류체인 프리미엄을 받는다.</p>
+    <div class="num-row">
+      <div class="num-box" style="min-width:180px"><div class="num-label">① 열을 덜 만든다</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px"><b>고효율 액추에이터</b> — 모터 구리 점적률↑·저마찰 감속기(DLC 코팅). 발열원 <b>55%(모터)+17.5%(감속기)</b> 원천 감축.</div></div>
+      <div class="num-box" style="min-width:180px"><div class="num-label">② 손실을 줄인다</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px"><b>저손실 전력반도체</b> — 저전압·고전류 MOSFET/GaN 인버터(관절은 SiC 아님). 발열원 <b>15%(드라이버)</b> 감축.</div></div>
+      <div class="num-box" style="min-width:180px"><div class="num-label">③ 잘 버린다</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px"><b>구조체 방열</b> — 하우징→TIM→프레임→히트파이프·vapor chamber로 열을 몸 전체로 분산(섹션 7).</div></div>
+      <div class="num-box" style="min-width:180px"><div class="num-label">④ 미리 피한다</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px"><b>열 인지 AI 제어</b> — 온도·전류·토크를 보고 작업 스케줄링·부하 분산(섹션 7 위젯 ⑥).</div></div>
+    </div>
+    <p class="p" style="font-size:11.5px;margin-top:6px">→ 그래서 돈은 <b>감속기·모터·전력반도체·열관리 소재·센서</b> 부품사로 흐른다. "액추에이터사가 곧 열관리 부품사"인 이유다.</p>
+  </div>
+</section>
+
+<!-- ① 인트로 — 전신 열지도 -->
+<section id="sec-intro" class="card section-gap" style="border-left:4px solid #FF6B6B">
+  <div class="card-title">01 · 인트로 — 로봇 전신 열지도 <span class="badge" style="background:#FF6B6B;color:#fff">위젯 ② 전신 열지도</span></div>
+  <p class="p">사람은 관절만 움직이면 되지만, 로봇은 관절 하나를 움직이려 <b>배터리 → 전력변환 → 인버터 → 모터 → 감속기 → 베어링 → 관절 → 센서 → AI 제어</b>가 동시에 돈다. 여기에 열·충격·진동·마찰·토크·전압·소프트웨어까지 얽혀 하나의 폐루프(Closed Loop)를 이룬다. (G1 Ch.1)</p>
+  <div class="img-grid">
+    <figure class="img-fig" style="flex:0 0 260px">
+      <span class="hotspot-img"><img src="img/anatomy/s1_schaeffler_s3am.jpg" alt="Schaeffler S3AM 데모기"></span>
+      <figcaption>부품사가 로봇 절반을 만든다 — Schaeffler 데모기 <b>S³AM("Sam")</b>. 베어링·모터·기어·스크류·센서가 자동차 부품과 본질적으로 같다. · Munro Live 분해 영상 캡처</figcaption>
+    </figure>
+    <div class="img-fig">
+      <p class="p" style="margin-top:0">아래 지도에서 OEM을 바꾸면 감속기 유형별 색으로 관절이 표시된다. <b>열병목 오버레이</b>를 켜면 Optimus Gen3 부위별 열병목 판단표가 겹쳐진다 — 가장 뜨거운 곳은 손이 아니라 <b>전완(팔뚝)에 몰린 손·손목 액추에이터</b>다. 관절/열점을 클릭하면 해당 섹션으로 이동한다.</p>
+      <div class="st-tabs" id="oemTabs" style="max-width:260px"></div>
+      <div class="ctrl-row" style="margin-bottom:0"><button id="heatToggle">🌡️ 열병목 오버레이 OFF</button><span class="tag-est">자체추정</span></div>
+    </div>
+  </div>
+  <div class="heat-wrap">
+    <div class="heat-svg-box" id="heatSvg"></div>
+    <div class="heat-side">
+      <div id="oemInfo"></div>
+      <div class="th" style="border:none;padding-left:0">감속기 유형</div>
+      <div class="heat-legend">
+        <span><i style="background:#F8B739"></i>유성/QDD</span><span><i style="background:#6C5CE7"></i>하모닉</span><span><i style="background:#FF6B6B"></i>사이클로이드</span>
+      </div>
+      <div class="th" style="border:none;padding-left:0;margin-top:14px">열병목 심각도 <span class="tag-est">자체추정</span></div>
+      <div class="heat-legend">
+        <span><i style="background:#FF3B30"></i>9 매우높음</span><span><i style="background:#FF9500"></i>8 높음</span><span><i style="background:#FFCC00"></i>7</span><span><i style="background:#F4C430"></i>6 중간</span><span><i style="background:#8E8E93"></i>4 낮음</span>
+      </div>
+      <div id="heatDetail" class="hotspot-cap" style="margin-top:14px">관절 또는 열점을 클릭하세요.</div>
+    </div>
+  </div>
+  <p class="p" style="font-size:11px;color:var(--ink-3)">※ DOF는 로봇마다 집계 기준이 달라 직접 비교에 주의 — <b>Atlas 56은 전신</b> 기준(BD 전기 Atlas, 유압 구형 28→56), Optimus·G1의 <b>22·23은 기본/부분 구성</b>. Optimus 총 DOF는 손 포함 ~50(체 28+손 11/개), G1은 Dex 손 포함 최대 43(기본 23).</p>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="kr_valuechain.html">현대모비스</a><a class="vc-badge" href="kr_valuechain.html">에스비비테크</a><a class="vc-badge" href="us_valuechain.html">Schaeffler</a></div>
+</section>
+
+<!-- ② 액추에이터 해부 -->
+<section id="sec-actuator" class="card section-gap" style="border-left:4px solid #F8B739">
+  <div class="card-title">02 · 액추에이터 해부 <span class="badge" style="background:#F8B739;color:#000">위젯 ① 이미지 핫스팟</span></div>
+  <p class="p">액추에이터는 "전기를 움직임으로 바꾸는 장치"지만, 실제로는 <b>모터·감속기·베어링·인코더·드라이버·하우징·냉각</b>이 든 작은 기계 시스템이다. 전기모터는 6,000 rpm 고속·저토크라, 사람 무릎처럼 천천히 큰 힘을 내려면 감속기가 필수다. (G1 Ch.2~3)</p>
+  <div class="num-row">
+    <div class="num-box"><div class="num-label">발열원 분해</div><div class="num-value">55<span style="font-size:11px"> / 17.5 / 15%</span></div><div class="num-sub">모터권선 / 감속기 / 드라이버 · 입력의 ~90%가 열 <span class="tag-est">자체추정</span></div></div>
+    <div class="num-box"><div class="num-label">원가 분해</div><div class="num-value">30<span style="font-size:11px">%</span></div><div class="num-sub">유성감속기 · BLDC 20 / 인코더 20 / 드라이버 15 / 하우징 15</div></div>
+  </div>
+  <div class="img-grid">
+    <figure class="img-fig" style="flex:0 0 300px">
+      <span class="hotspot-img" data-key="b2_stator"><img src="img/anatomy/b2_stator.jpg" alt="스테이터 구리권선"></span>
+      <div class="hotspot-cap" data-cap="b2_stator">핀 번호를 클릭하세요.</div>
+      <figcaption>스테이터 구리권선 + 남은 빈 공간 + 엔코더 보드 · Munro Live 분해 영상 캡처</figcaption>
+    </figure>
+    <div class="img-fig">
+      <p class="p" style="margin-top:0">권선의 구리 점적률(Copper Fill Factor)을 높이면 저항이 줄어 <b>열 자체가 덜 난다</b> — G1 모터 안에는 아직 구리가 더 들어갈 빈 공간이 있어 토크밀도 개선 여지가 남아 있다(Ch.13). "온도↑ → 구리 저항↑ → 손실·열↑"의 악순환을 끊는 가장 근본적 방법은 냉각이 아니라 <b>열을 안 만드는 것</b>이다.</p>
+    </div>
+  </div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="kr_valuechain.html">에스피지</a><a class="vc-badge" href="kr_valuechain.html">로보티즈</a><a class="vc-badge" href="us_valuechain.html">Nidec</a></div>
+</section>
+
+<!-- ③ 감속기 3종 -->
+<section id="sec-gear" class="card section-gap" style="border-left:4px solid #6C5CE7">
+  <div class="card-title">03 · 감속기 — 하모닉 vs 유성 QDD vs 사이클로이드 <span class="badge" style="background:#6C5CE7;color:#fff">위젯 ③ 감속비 슬라이더</span></div>
+  <p class="p"><b>하모닉(스트레인 웨이브)</b>은 얇은 컵(FlexSpline)을 타원으로 눌러 이 하나 차이로 도는 시계 태엽 — 100:1 초경량·백래시 0이지만 역구동이 안 되고 충격에 취약하다(Ch.4). <b>G1은 2단 유성 약 15:1</b>을 택했고(Ch.5), 감속비를 낮춰 모터 전류만으로 토크를 읽는 <b>QDD(토크 투명성)</b>를 얻어 RL·Sim-to-Real에 유리하다(Ch.6). 대가는 백래시 ↔ Preload ↔ 역구동성의 trade-off다(Ch.7).</p>
+  <div class="quote">유성 $55~230 vs 하모닉 $150~700 — <b>'원가 파괴'가 채택 이유</b>다. Atlas도 유성 QDD 액추에이터 31개(손 제외 전체 56개). <span class="tag-est">네오오토·우림 노트</span></div>
+  <div class="img-grid">
+    <figure class="img-fig"><span class="hotspot-img"><img src="img/anatomy/c1b_strainwave_diagram.jpg" alt="하모닉 단면+웨이브 제너레이터"></span><figcaption><b>하모닉</b> — 타원 웨이브 제너레이터 개념도 인셋 · Munro Live 분해 영상 캡처</figcaption></figure>
+    <figure class="img-fig"><span class="hotspot-img"><img src="img/anatomy/c2_planetary.jpg" alt="유성기어 2단 분리"></span><figcaption><b>유성기어</b> — 선기어·유성기어·캐리어 2단 분리 컷 · Munro Live 분해 영상 캡처</figcaption></figure>
+    <figure class="img-fig"><span class="hotspot-img"><img src="img/anatomy/c1_strainwave.jpg" alt="하모닉 손에 든 단면"></span><figcaption><b>하모닉 실물</b> — 이빨·베어링 단면 · Munro Live 분해 영상 캡처</figcaption></figure>
+  </div>
+  <p class="p" style="font-family:var(--mono);font-size:11px">감속비 슬라이더 <span class="tag-est">개념 시연</span> — "무거운 핸들은 노면 느낌이 죽고, 가벼운 핸들은 노면이 손에 그대로 온다."</p>
+  <div class="ctrl-row"><label>감속비 <b id="gearVal" style="color:var(--ink)">15 : 1</b></label><input type="range" min="0" max="100" value="46" class="sim-slider" id="gearSlider"></div>
+  <div class="marker-track" id="gearMarkers"><div class="mt-line"></div></div>
+  <div id="gearGauges"></div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge vc-note" href="kr_valuechain.html" style="text-decoration:none">네오오토 212560 ↗</a><a class="vc-badge vc-note" href="kr_valuechain.html" style="text-decoration:none">우림피티에스 101170 ↗</a><a class="vc-badge" href="kr_valuechain.html">에스비비테크</a><a class="vc-badge" href="kr_valuechain.html">로보티즈</a></div>
+</section>
+
+<!-- ④ 선형 액추에이터 -->
+<section id="sec-screw" class="card section-gap" style="border-left:4px solid #00B894">
+  <div class="card-title">04 · 선형 액추에이터 — 스크류 가문</div>
+  <p class="p">Rotary(회전형)는 단순·고효율이지만 팔꿈치·무릎이 두꺼워진다. <b>Linear(선형)</b>는 모터 회전을 스크류로 직선 운동으로 바꿔 모터를 팔·다리 안쪽에 길게 배치, 큰 힘과 자유로운 패키징을 얻는다(Ch.29~30).</p>
+  <div class="scroll-x"><svg viewBox="0 0 640 150" width="100%" style="max-width:640px;min-width:520px">
+    <rect x="0" y="0" width="640" height="150" fill="var(--bg-soft)" rx="8"/>
+    <!-- ball screw -->
+    <text x="90" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#0A0A08">볼스크류</text>
+    <line x1="20" y1="60" x2="160" y2="60" stroke="#6C5CE7" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="55" cy="60" r="4.5" fill="#F8B739"/><circle cx="80" cy="60" r="4.5" fill="#F8B739"/><circle cx="105" cy="60" r="4.5" fill="#F8B739"/><circle cx="130" cy="60" r="4.5" fill="#F8B739"/>
+    <text x="90" y="92" text-anchor="middle" font-size="9" fill="#8B8B82">구슬로 마찰↓ · EPS로 자동차 양산 이력</text>
+    <!-- roller screw -->
+    <text x="320" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#0A0A08">플래니터리 롤러스크류</text>
+    <line x1="250" y1="60" x2="390" y2="60" stroke="#00B894" stroke-width="8" stroke-linecap="round"/>
+    <rect x="262" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="290" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="318" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="346" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="372" y="52" width="7" height="16" fill="#FF6B6B"/>
+    <text x="320" y="92" text-anchor="middle" font-size="9" fill="#8B8B82">롤러로 하중 분산 · Tesla·Figure 관심</text>
+    <!-- inverted -->
+    <text x="545" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#0A0A08">인버티드</text>
+    <rect x="485" y="50" width="120" height="20" rx="4" fill="none" stroke="#0984E3" stroke-width="3"/>
+    <line x1="500" y1="60" x2="620" y2="60" stroke="#0984E3" stroke-width="6" stroke-linecap="round"/>
+    <text x="545" y="92" text-anchor="middle" font-size="9" fill="#8B8B82">너트가 돌고 축이 직진 · 극한 패키징</text>
+    <text x="320" y="128" text-anchor="middle" font-size="10" fill="#4A4A45">연삭 시간(부품당 수 분~20분) = 원가 · "전조 양산으로 전환하는 자가 원가를 지배" (Ch.31~33)</text>
+  </svg></div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="us_valuechain.html">Schaeffler</a><a class="vc-badge" href="kr_valuechain.html">에스비비테크</a></div>
+</section>
+
+<!-- ⑤ 손 해부 -->
+<section id="sec-hand" class="card section-gap" style="border-left:4px solid #0984E3">
+  <div class="card-title">05 · 손 해부 — 텐덤 vs 다이렉트 <span class="badge" style="background:#0984E3;color:#fff">위젯 ⑤ 비교 커튼</span></div>
+  <p class="p">사람 손가락엔 근육이 거의 없다. 손가락을 굽히는 근육은 <b>팔뚝(전완)</b>에 있고, 힘줄이 손끝까지 힘을 배달한다. Tesla Gen3·1X NEO는 이 구조를 베꼈다 — <b>낚시릴</b> 원리로 릴을 감으면 줄이 당겨진다(Ch). Optimus는 전완 하나에 선형 액추에이터 <b>25개(손 23 + 손목 2)</b>. "모터는 근육이 아니다": 여전히 모터가 줄을 감는 방식이라 사람 손과 같지 않다.</p>
+  <div class="num-row" id="neoSpec"></div>
+  <p class="p" style="font-size:11px;color:var(--ink-3)">※ NEO <b>±0.2mm</b>는 1X NEO 현행 손 반복정밀도, Optimus Gen3 목표 <b>0.08mm(80µm)</b>는 다른 로봇·다른 지표(현행 스펙 vs 목표치)다.</p>
+  <p class="p" style="font-family:var(--mono);font-size:11px">가운데 손잡이를 드래그해 비교 <span class="tag-est">개념 시연</span></p>
+  <div class="curtain" id="curtain">
+    <div class="layer bottom" id="cLayerDirect"></div>
+    <div class="layer top" id="cLayerTendon"></div>
+    <div class="clbl" style="left:8px;background:rgba(9,132,227,.85)">텐덤(힘줄) 구동</div>
+    <div class="clbl" style="right:8px;background:rgba(45,52,54,.85)">다이렉트 구동</div>
+    <div class="divider" id="cDivider" style="left:50%"></div>
+  </div>
+  <p class="p" style="font-size:10px;color:var(--ink-3);margin-top:6px">이미지(개념 예시) — 텐덤: Shadow Dexterous Hand · 다이렉트: Schunk SVH 5-finger · 출처 Wikimedia Commons (CC BY-SA). Tesla/1X·Unitree 실제 제품 아님, 구동 방식 대비용.</p>
+  <div class="scroll-x" style="margin-top:12px"><table style="width:100%;border-collapse:collapse;min-width:520px">
+    <tr><th class="th">구분</th><th class="th" style="color:#0984E3">텐덤(힘줄)</th><th class="th" style="color:#2d3436">다이렉트</th></tr>
+    <tr><td class="td">구동 원리</td><td class="td">전완 액추에이터가 케이블/텐던으로 손가락을 원격 구동</td><td class="td">손가락 안에 소형 모터를 직접 내장</td></tr>
+    <tr><td class="td">장점</td><td class="td">가벼운 손끝·빠른 속도·방수/내구·정밀 파지 공간</td><td class="td">구조 단순·손가락 독립 제어·수리 시 핑거 단품 교체</td></tr>
+    <tr><td class="td">단점</td><td class="td">전완 열섬·케이블 마찰/cross-talk·조립 난이도·파손 시 팔뚝 통째 교체</td><td class="td">손이 무겁고 느림·손끝에 열 축적</td></tr>
+    <tr><td class="td">주요 기업</td><td class="td">Tesla · Figure · Shadow · 1X</td><td class="td">원익로보틱스 · 로보티즈 · 어질리티</td></tr>
+  </table></div>
+  <p class="p" style="font-size:10.5px;color:var(--ink-3)">출처: 언론 종합</p>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="kr_valuechain.html">로보티즈</a><a class="vc-badge" href="us_valuechain.html">Tesla</a><a class="vc-badge" href="us_valuechain.html">Figure</a></div>
+</section>
+
+<!-- ⑥ 다리·발목 RSU -->
+<section id="sec-leg" class="card section-gap" style="border-left:4px solid #E17055">
+  <div class="card-title">06 · 다리·발목 — Distal Mass와 RSU</div>
+  <p class="p">같은 1kg이라도 몸통에 있는 것과 발끝에 있는 것은 관성모멘트가 극심하게 다르다 — 발목에 무거운 모터를 달면 다리를 휘두르는 데 훨씬 큰 토크가 필요하다(Ch.18). G1은 모터를 종아리에 두고 <b>타이 로드 2개</b>로 발목을 구동하는 <b>RSU(Rotary Spherical Universal)</b> 구조를 택했다 — 두 모터가 같은 방향이면 Pitch, 반대면 Roll(Ch.19~20).</p>
+  <div class="scroll-x"><svg viewBox="0 0 560 190" width="100%" style="max-width:560px;min-width:460px">
+    <rect x="0" y="0" width="560" height="190" fill="var(--bg-soft)" rx="8"/>
+    <text x="150" y="26" text-anchor="middle" font-size="11" font-weight="700">모터를 종아리로 이동</text>
+    <rect x="120" y="40" width="60" height="60" rx="6" fill="#E17055" opacity=".85"/><text x="150" y="75" text-anchor="middle" font-size="9" fill="#fff">모터×2</text>
+    <line x1="135" y1="100" x2="140" y2="160" stroke="#4A4A45" stroke-width="3"/><line x1="165" y1="100" x2="160" y2="160" stroke="#4A4A45" stroke-width="3"/>
+    <text x="150" y="150" text-anchor="middle" font-size="9" fill="#8B8B82">타이 로드 2개</text>
+    <rect x="120" y="160" width="60" height="14" rx="4" fill="#0A0A08"/><text x="150" y="186" text-anchor="middle" font-size="9" fill="#8B8B82">발목 링크</text>
+    <path d="M300 95 h60" stroke="#8B8B82" stroke-width="1.5" marker-end="url(#ar)"/>
+    <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#8B8B82"/></marker></defs>
+    <text x="450" y="26" text-anchor="middle" font-size="11" font-weight="700">Torque Sharing</text>
+    <text x="450" y="70" text-anchor="middle" font-size="10" fill="#2e7d32">↑↑ 같은 방향 = Pitch(위아래)</text>
+    <text x="450" y="95" text-anchor="middle" font-size="10" fill="#0984E3">↑↓ 반대 방향 = Roll(좌우)</text>
+    <text x="450" y="130" text-anchor="middle" font-size="9" fill="#c62828">약점: 토크 분리 어려움(투명성↓) · Open Joint 먼지 취약</text>
+  </svg></div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="kr_valuechain.html">에스피지</a><a class="vc-badge" href="kr_valuechain.html">로보티즈</a></div>
+</section>
+
+<!-- ⑦ 열관리 -->
+<section id="sec-thermal" class="card section-gap" style="border-left:4px solid #FF6B6B">
+  <div class="card-title">07 · 열관리 계통 <span class="badge" style="background:#FF6B6B;color:#fff">위젯 ① · ④ · ⑥</span></div>
+  <p class="p">G1은 부위별로 <b>3중 냉각</b>을 섞는다: 일반 관절=알루미늄 프레임 전도, 무릎=히트파이프, 엉덩이=원심팬(Ch.9~11). 히트파이프는 노트북 CPU 냉각과 같은 부품 — 액체가 뜨거운 쪽에서 <b>증발→이동→응축</b>하며 열을 나른다. 방열 경로는 <b>모터권선 → 하우징 → TIM → 프레임 → 히트파이프/vapor chamber → 외피·팬</b>. (<a href="components.html#thermal" style="color:#0984E3">components 열관리 섹션 ↗</a>)</p>
+  <div class="quote">모터의 순간 효율은 90%에 달하지만, 들고 버티고 감속하는 <b>작업 사이클 전체</b>로 보면 유용한 일로 남는 에너지는 적어 대부분이 열로 귀결된다. <span class="tag-est">자체추정</span></div>
+  <div class="img-grid">
+    <figure class="img-fig"><span class="hotspot-img" data-key="g1_heatpipe"><img src="img/anatomy/g1_heatpipe.jpg" alt="구리 히트파이프"></span><div class="hotspot-cap" data-cap="g1_heatpipe">핀 클릭</div><figcaption>무릎 히트파이프 · Munro Live 분해 영상 캡처</figcaption></figure>
+    <figure class="img-fig"><span class="hotspot-img" data-key="g2_hip_fans"><img src="img/anatomy/g2_hip_fans.jpg" alt="힙 원심팬"></span><div class="hotspot-cap" data-cap="g2_hip_fans">핀 클릭</div><figcaption>엉덩이 원심팬 ×2 · Munro Live 분해 영상 캡처</figcaption></figure>
+    <figure class="img-fig"><span class="hotspot-img" data-key="g3_air_path"><img src="img/anatomy/g3_air_path.jpg" alt="공기 배출 경로"></span><div class="hotspot-cap" data-cap="g3_air_path">핀 클릭</div><figcaption>공기 배출 경로가 뚫린 하우징 · Munro Live 분해 영상 캡처</figcaption></figure>
+  </div>
+  <div class="card" style="margin-top:16px;background:var(--bg-soft)">
+    <div class="card-title" style="border-color:var(--line)">I²R 발열 → 열팽창 시뮬레이터 <span class="tag-est">개념 시연·자체추정</span></div>
+    <p class="p" style="margin-top:0">발열 ∝ 전류² — 무거울수록 열은 제곱으로 커진다. 알루미늄 100mm는 2.3µm/°C로 늘어나고, 손끝 정밀도 목표는 80µm다.</p>
+    <div class="ctrl-row"><label>부하 <b id="loadVal">8</b> kg</label><input type="range" min="0" max="20" value="8" class="sim-slider" id="loadSlider"></div>
+    <div class="ctrl-row"><label>연속 작업 <b id="hourVal">4</b> h</label><input type="range" min="0" max="8" step="0.5" value="4" class="sim-slider" id="hourSlider"></div>
+    <div class="sim-out">
+      <div class="num-box"><div class="num-label">권선 온도Δ</div><div class="num-value" id="simTemp" style="color:#FF6B6B">—</div><div class="num-sub">주변 대비 상승</div></div>
+      <div class="num-box"><div class="num-label">열팽창</div><div class="num-value" id="simExp">—</div><div class="num-sub">한계 80µm</div></div>
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px"><span class="warn-light" id="simWarn"></span><span id="simMsg">정상</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px;background:var(--bg-soft)">
+    <div class="card-title" style="border-color:var(--line)">열 인지 제어 — 뜨거워지면 작업 교대 <span class="tag-est">개념 시연</span></div>
+    <div class="tbar-wrap">
+      <div class="tbar"><div class="tb-head"><span>왼팔</span><span class="tb-state work" id="stL">작업</span></div><div class="tb-track"><div class="tb-fill" id="tbL" style="width:20%;background:#00B894"></div></div></div>
+      <div class="tbar"><div class="tb-head"><span>오른팔</span><span class="tb-state rest" id="stR">대기</span></div><div class="tb-track"><div class="tb-fill" id="tbR" style="width:20%;background:#00B894"></div></div></div>
+    </div>
+    <div class="ctrl-row"><button id="animToggle" class="on">⏸ 일시정지</button><span style="font-size:10.5px;color:var(--ink-3)">임계 근접 시 반대 팔로 교대 — "작업 스케줄링 자체가 열관리다."</span></div>
+  </div>
+  <div class="card" style="margin-top:16px;border-left:3px solid #0984E3">
+    <div class="card-title" style="border-color:var(--line)">🇰🇷 실전 사례 — <a href="kr_valuechain.html" style="color:#0984E3;text-decoration:none">한라캐스트 (125490) ↗</a> · "구조체 방열"의 실제 밸류체인</div>
+    <div class="img-grid">
+      <figure class="img-fig" style="flex:0 0 230px"><span class="hotspot-img"><img src="img/anatomy/heatsink_diecast.jpg" alt="다이캐스트 알루미늄 방열판"></span><figcaption>다이캐스트 알루미늄 방열판(핀 구조) — 칩·전력변환부 열을 프레임으로 퍼뜨리는 '전기 변환' 케이스류의 형상 예시. 출처 Wikimedia Commons (CC0) · 한라캐스트 실제 제품 아님, 형상 참고용.</figcaption></figure>
+      <div class="img-fig">
+        <p class="p" style="margin-top:0"><b>'전기 변환'</b>(칩·배터리 전환장치의 방열·보호 케이스류) — 글로벌 AI사(테슬라)향 <b>1,000억 수주·26.2 양산 개시</b>. 로봇향은 칩은 유사하나 형상 별도 개발 중. 로봇 최대 부품 = 가슴부 800톤급(자동차 전장 최대 2,500톤). 대당 콘텐츠 약 <b>3.3만원</b> <span class="tag-est">추정</span>. "액추에이터사·캐스팅사가 곧 열관리 부품사"의 한국 증거.</p>
+        <a class="vc-badge" href="kr_valuechain.html" style="font-size:9px">자세히 → KR 밸류체인 ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge vc-note" href="kr_valuechain.html" style="text-decoration:none">한라캐스트 125490 ↗</a><a class="vc-badge" href="us_valuechain.html">Dexerials·Boyd</a><a class="vc-badge" href="components.html#thermal">열관리 섹션 ↗</a></div>
+</section>
+
+<!-- ⑧ 전력 계통 -->
+<section id="sec-power" class="card section-gap" style="border-left:4px solid #F8B739">
+  <div class="card-title">08 · 전력 계통 — 회생·DC버스·커패시터 <span class="badge" style="background:#F8B739;color:#000">위젯 ① 이미지 핫스팟</span></div>
+  <p class="p">모터는 상황에 따라 발전기가 된다 — 어떤 모터는 전력을 쓰고 어떤 모터는 역회전하며 전력을 만든다(회생, Ch.23~24). 모든 모터가 하나의 <b>DC버스</b>를 공유하는데, 소비/생산이 섞여 전압이 <b>48V → 52V → 45V</b>로 출렁인다. 같은 10Nm 명령에도 실제 출력이 달라져 보행이 흔들린다(Ch.25). <b>커패시터 = 전압 다리미</b>(Ch.26~27). 인버터는 저전압·고전류라 <b>SiC가 아니다</b>.</p>
+  <div class="img-grid">
+    <figure class="img-fig"><span class="hotspot-img" data-key="h2_dcbus_note"><img src="img/anatomy/h2_dcbus_note.jpg" alt="DC버스 손글씨 메모"></span><div class="hotspot-cap" data-cap="h2_dcbus_note">핀 클릭</div><figcaption>현장 증거: 다리 링크의 손글씨 "Capacitors to control resonance of DC Bus" · Munro Live 분해 영상 캡처</figcaption></figure>
+    <figure class="img-fig"><span class="hotspot-img" data-key="h1_capacitor"><img src="img/anatomy/h1_capacitor.jpg" alt="커패시터 6개"></span><div class="hotspot-cap" data-cap="h1_capacitor">핀 클릭</div><figcaption>커패시터 6개 + 정강이 경량화 격자 · Munro Live 분해 영상 캡처</figcaption></figure>
+    <figure class="img-fig"><span class="hotspot-img" data-key="h1b_capacitor_wired"><img src="img/anatomy/h1b_capacitor_wired.jpg" alt="커패시터 배선"></span><div class="hotspot-cap" data-cap="h1b_capacitor_wired">핀 클릭</div><figcaption>배선 연결 — "완전 통합이 아니라 추가된 설계" · Munro Live 분해 영상 캡처</figcaption></figure>
+  </div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="us_valuechain.html">Infineon·ST·MPS</a><a class="vc-badge" href="kr_valuechain.html">현대모비스</a></div>
+</section>
+
+<!-- ⑨ 센서 계통 -->
+<section id="sec-sensor" class="card section-gap" style="border-left:4px solid #00B894">
+  <div class="card-title">09 · 센서 계통</div>
+  <p class="p">관절마다 <b>4종 세트</b>가 붙는다: 위치(TMR/Hall)·전류·온도·토크. 전류센서는 모터 부하를, 온도센서는 과열 위험을, 위치센서는 정밀 제어를, 토크센서는 접촉 안정성을 담당한다 — 열 인지 제어의 눈이다. 손끝 <b>촉각은 Pressure + Location + Slip</b> 3요소(NEO). 자동차용 <b>MEMS 압력센서</b>(디젤 압력센서용 다이어프램)를 힘 측정에 전용해 연 수백만 개 라인을 그대로 쓴다(Ch.37) — 이것이 VLA(Vision-Language-Action)에 "카메라 밖 물리량"을 먹이는 통로다.</p>
+  <div class="num-row">
+    <div class="num-box"><div class="num-label">관절 센서</div><div class="num-value">4<span style="font-size:11px">종</span></div><div class="num-sub">위치·전류·온도·토크</div></div>
+    <div class="num-box"><div class="num-label">촉각 요소</div><div class="num-value">3<span style="font-size:11px">종</span></div><div class="num-sub">Pressure·Location·Slip</div></div>
+  </div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="us_valuechain.html">TDK·Melexis·Allegro</a><a class="vc-badge" href="kr_valuechain.html">에이엘티</a></div>
+</section>
+
+<!-- ⑩ 조립·양산·투자 -->
+<section id="sec-assembly" class="card section-gap" style="border-left:4px solid #0A0A08">
+  <div class="card-title">10 · 조립·양산·투자 — Time to Market과 Flywheel</div>
+  <div class="img-grid">
+    <figure class="img-fig" style="flex:0 0 280px"><span class="hotspot-img"><img src="img/anatomy/j1_cnc.jpg" alt="CNC 절삭 자국"></span><figcaption>CNC 절삭 자국 + 경량화 포켓 · Munro Live 분해 영상 캡처</figcaption></figure>
+    <div class="img-fig">
+      <p class="p" style="margin-top:0">G1은 금형(캐스팅) 대신 Billet을 <b>CNC 통깎이</b> — CAD 수정 후 다음 날 바로 깎아 설계 반복이 압도적으로 빠르다(Ch.14). 나사 남발도 생산 효율보다 <b>개발 속도(Time-to-Market)</b>의 증거(Ch.16). 액추에이터 개당 $1,000 × 24개 = 자동차 한 대 값 → 자동차식 대량생산으로 <b>$100</b>까지 낮추는 게 관건(Ch.34~35). 부품사는 이제 <b>디지털 트윈</b>을 함께 납품해야 산다(Ch.28).</p>
+    </div>
+  </div>
+  <div class="quote"><b>하드웨어는 SW의 도구</b> — 로봇 100대보다 10,000대 만들어 넘어지고 일어나는 데이터를 모은 회사의 AI가 이긴다. Tesla OTA처럼 지속 개선하고, 생태계는 수직계열화 → Tier 1/2/3 자동차 공급망으로 분화한다. G1은 휴머노이드의 <b>포드 모델 T</b>다. (Ch.42~54)</div>
+  <div class="card" style="margin-top:16px;background:var(--bg-soft)">
+    <div class="card-title" style="border-color:var(--line)">🔁 Flywheel — 다작 → 데이터 → 더 나은 AI → 더 많은 판매</div>
+    <div class="scroll-x"><svg viewBox="0 0 620 120" width="100%" style="max-width:620px;min-width:520px">
+      <g font-size="10" fill="#4A4A45">
+      <rect x="10" y="45" width="110" height="32" rx="8" fill="#fff" stroke="var(--line)"/><text x="65" y="65" text-anchor="middle">다작(多作)·저원가</text>
+      <rect x="160" y="45" width="110" height="32" rx="8" fill="#fff" stroke="var(--line)"/><text x="215" y="65" text-anchor="middle">실패 데이터 축적</text>
+      <rect x="310" y="45" width="110" height="32" rx="8" fill="#fff" stroke="var(--line)"/><text x="365" y="65" text-anchor="middle">AI·HW 동시 개선</text>
+      <rect x="460" y="45" width="110" height="32" rx="8" fill="#fff" stroke="var(--line)"/><text x="515" y="65" text-anchor="middle">판매·시장 선점</text>
+      <path d="M120 61 h40" stroke="#8B8B82" stroke-width="1.5" marker-end="url(#a2)"/><path d="M270 61 h40" stroke="#8B8B82" stroke-width="1.5" marker-end="url(#a2)"/><path d="M420 61 h40" stroke="#8B8B82" stroke-width="1.5" marker-end="url(#a2)"/>
+      <path d="M515 45 C515 15 65 15 65 45" fill="none" stroke="#0A0A08" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+      <defs><marker id="a2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#8B8B82"/></marker></defs>
+      </g>
+    </svg></div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <div class="card-title" style="border-color:var(--line)">🇰🇷 한국 실전 사례 3사 — 자동차 공급망이 답을 안다</div>
+    <div id="krCases"></div>
+  </div>
+  <div class="badge-row"><span class="lbl">🔗 밸류체인 총정리</span><a class="vc-badge vc-note" href="kr_valuechain.html" style="text-decoration:none">네오오토 212560 ↗</a><a class="vc-badge vc-note" href="kr_valuechain.html" style="text-decoration:none">한라캐스트 125490 ↗</a><a class="vc-badge vc-note" href="kr_valuechain.html" style="text-decoration:none">우림피티에스 101170 ↗</a><a class="vc-badge" href="kr_valuechain.html">현대모비스</a><a class="vc-badge" href="kr_valuechain.html">에스비비테크</a><a class="vc-badge" href="kr_valuechain.html">로보티즈</a><a class="vc-badge" href="kr_valuechain.html">에스피지</a></div>
+</section>
+
+</main>
+
+<script src="data.js?v=20260712anatomy"></script>
+<script>
+(function(){
+  var AD = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.anatomyData) || {};
+  var OEM = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.oemSpecs) || {};
+  var typeColor = {'유성':'#F8B739','하모닉':'#6C5CE7','사이클로이드':'#FF6B6B','유성 QDD':'#F8B739'};
+  var esc = function(s){return String(s).replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+
+  /* ===== 위젯 ② 전신 열지도 ===== */
+  var selOEM='optimus', heatOn=false;
+  function bodySilhouette(){
+    return '<path d="M150 20 a20 20 0 1 0 .1 0 M150 58 L150 60 M118 70 Q150 62 182 70 L188 150 Q188 165 178 168 L172 220 L128 220 L122 168 Q112 165 112 150 Z" fill="#EDECE4" stroke="#D8D6CC"/>'+
+      '<path d="M118 74 L96 92 L74 175 M182 74 L204 92 L226 175" fill="none" stroke="#EDECE4" stroke-width="14" stroke-linecap="round"/>'+
+      '<path d="M128 218 L120 300 L112 392 M172 218 L180 300 L188 392" fill="none" stroke="#EDECE4" stroke-width="18" stroke-linecap="round"/>';
+  }
+  function renderOemTabs(){
+    var t='';['optimus','atlas','g1'].forEach(function(k){ if(OEM[k]) t+='<button class="st-btn'+(k===selOEM?' on':'')+'" data-oem="'+k+'">'+esc(OEM[k].name)+'</button>'; });
+    var el=document.getElementById('oemTabs'); if(el) el.innerHTML=t;
+    Array.prototype.forEach.call(document.querySelectorAll('#oemTabs .st-btn'),function(b){ b.onclick=function(){ selOEM=b.getAttribute('data-oem'); renderOemTabs(); renderHeat(); }; });
+  }
+  function renderHeat(){
+    var box=document.getElementById('heatSvg'); if(!box) return;
+    var spec=OEM[selOEM]||{joints:[]};
+    var oi=document.getElementById('oemInfo');
+    if(oi){ var a=(AD.oemActuators&&AD.oemActuators[selOEM])||{}; var jc=(spec.joints||[]).length;
+      oi.innerHTML='<div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;font-size:11px;margin-bottom:12px">'+
+        '<div style="font-family:var(--mono);font-weight:700;font-size:12px;margin-bottom:4px">'+esc(spec.name||selOEM)+' · '+esc(a.dof||'')+'</div>'+
+        '<div style="color:var(--ink-2);line-height:1.6">회전형: <b>'+esc(a.rot||'—')+'</b><br>선형/기타: '+esc(a.lin||'—')+'<br>표시 관절 마커 '+jc+'개'+(a.note?' · '+esc(a.note):'')+'</div></div>';
+    }
+    var s='<svg viewBox="0 0 300 420" width="100%" style="max-width:300px">'+bodySilhouette();
+    (spec.joints||[]).forEach(function(j,i){
+      var c=typeColor[j.type]||'#8B8B82';
+      s+='<circle class="joint-dot" data-j="'+i+'" cx="'+j.x+'" cy="'+j.y+'" r="6" fill="'+c+'" stroke="#fff" stroke-width="1.5"><title>'+esc(j.name)+' · '+esc(j.type)+' · '+esc(j.torque)+'</title></circle>';
+    });
+    if(heatOn){
+      (AD.heatZones||[]).forEach(function(z,i){
+        var col=(AD.heatColors&&AD.heatColors[z.sev])||'#FF3B30';
+        var r=6+z.sev*1.6;
+        s+='<circle class="heat-blob" data-h="'+i+'" cx="'+z.x+'" cy="'+z.y+'" r="'+r+'" fill="'+col+'" fill-opacity="0.38" stroke="'+col+'" stroke-width="1" style="cursor:pointer"><title>'+esc(z.name)+' · 열병목 '+z.sev+'/9</title></circle>';
+        s+='<text x="'+z.x+'" y="'+(z.y+3)+'" text-anchor="middle" font-size="8" font-weight="700" fill="#0A0A08" style="pointer-events:none">'+z.sev+'</text>';
+      });
+    }
+    s+='</svg>';
+    box.innerHTML=s;
+    Array.prototype.forEach.call(box.querySelectorAll('.joint-dot'),function(d){ d.onclick=function(){ var j=spec.joints[+d.getAttribute('data-j')]; showHeatDetail(j.name+' · 감속기 '+j.type+' · '+j.torque, null); }; });
+    Array.prototype.forEach.call(box.querySelectorAll('.heat-blob'),function(d){ d.onclick=function(){ var z=AD.heatZones[+d.getAttribute('data-h')]; showHeatDetail('열병목 '+z.sev+'/9 — '+z.name+(z.reason?' · '+z.reason:''), z.section); }; });
+  }
+  function showHeatDetail(txt, section){
+    var el=document.getElementById('heatDetail'); if(!el) return;
+    el.innerHTML=esc(txt)+(section?' <a href="#'+section+'" style="color:#0984E3">→ 섹션 이동</a>':'');
+  }
+  var ht=document.getElementById('heatToggle');
+  if(ht) ht.onclick=function(){ heatOn=!heatOn; ht.textContent=heatOn?'🌡️ 열병목 오버레이 ON':'🌡️ 열병목 오버레이 OFF'; ht.className=heatOn?'on':''; renderHeat(); };
+
+  /* ===== 위젯 ① 이미지 핫스팟 — 화살표 상시 노출 + 텍스트 리스트 ===== */
+  Array.prototype.forEach.call(document.querySelectorAll('.hotspot-img[data-key]'),function(box){
+    var key=box.getAttribute('data-key'); var pts=(AD.hotspots&&AD.hotspots[key])||[];
+    var cap=document.querySelector('.hotspot-cap[data-cap="'+key+'"]');
+    pts.forEach(function(p){
+      var pin=document.createElement('span'); pin.className='pin'; pin.textContent=p.n; pin.style.left=p.x+'%'; pin.style.top=p.y+'%';
+      box.appendChild(pin);
+    });
+    if(cap) cap.innerHTML=pts.map(function(p){return '<div class="hs-item"><span class="hs-num">'+p.n+'</span><span><b>'+esc(p.t)+'</b> — '+esc(p.d)+'</span></div>';}).join('');
+  });
+
+  /* ===== 위젯 ③ 감속비 슬라이더 ===== */
+  var gearS=document.getElementById('gearSlider');
+  function ratioFromPct(p){ return Math.round(Math.pow(10, (p/100)*Math.log10(120))*10)/10; } // 1..120 log
+  function pctFromRatio(r){ return Math.log10(r)/Math.log10(120)*100; }
+  function renderGearMarkers(){
+    var mt=document.getElementById('gearMarkers'); if(!mt) return;
+    (AD.gearMarkers||[]).forEach(function(m){
+      var d=document.createElement('div'); d.className='marker'; d.style.left=pctFromRatio(m.ratio)+'%';
+      d.innerHTML='<i></i><span>'+esc(m.label)+(m.tag?' '+esc(m.tag):'')+'</span>';
+      mt.appendChild(d);
+    });
+  }
+  function gauge(lbl,val,note){ var pct=Math.max(4,Math.min(100,val)); var col=val>66?'#c62828':val>33?'#F8B739':'#00B894';
+    return '<div class="gauge"><div class="g-lbl"><span>'+lbl+'</span><span>'+note+'</span></div><div class="g-track"><div class="g-fill" style="width:'+pct+'%;background:'+col+'"></div></div></div>'; }
+  function renderGear(){
+    if(!gearS) return; var p=+gearS.value; var r=ratioFromPct(p);
+    document.getElementById('gearVal').textContent=(r>=10?Math.round(r):r)+' : 1';
+    // 토크↑ with ratio, 역구동성↓ & 토크투명성↓ with ratio
+    var torque=Math.min(100, r/1.2);
+    var back=Math.max(2,100-r/1.2);
+    var transp=Math.max(2,100-r/1.3);
+    var band=r<20?'Low(QDD 대역)':r<60?'Mid':'High(하모닉 대역)';
+    document.getElementById('gearGauges').innerHTML=
+      gauge('토크 증폭 ↑', torque, band)+
+      gauge('역구동성 (Backdrivability) ↓', back, back>60?'좋음':back>30?'보통':'낮음')+
+      gauge('토크 투명성 ↓', transp, transp>60?'전류로 토크 추정 가능':'토크센서 필요');
+  }
+  if(gearS){ gearS.oninput=renderGear; renderGearMarkers(); renderGear(); }
+
+  /* ===== 위젯 ④ I²R 발열 시뮬 ===== */
+  var loadS=document.getElementById('loadSlider'), hourS=document.getElementById('hourSlider');
+  function renderSim(){
+    if(!loadS||!hourS) return;
+    var load=+loadS.value, hours=+hourS.value;
+    document.getElementById('loadVal').textContent=load;
+    document.getElementById('hourVal').textContent=hours;
+    var iFactor=0.3+0.7*(load/20);            // 상대 전류
+    var dTss=48*iFactor*iFactor;              // 정상상태 온도상승 ∝ I²
+    var sat=1-Math.exp(-hours/2.3);           // 시간 포화곡선
+    var dT=dTss*sat;
+    var exp=(AD.thermalSim?AD.thermalSim.alExpand:2.3)*dT; // µm (100mm 기준)
+    var limit=(AD.thermalSim?AD.thermalSim.limitUm:80);
+    document.getElementById('simTemp').textContent='+'+dT.toFixed(0)+'°C';
+    var se=document.getElementById('simExp'); se.textContent=exp.toFixed(0)+' µm';
+    se.style.color=exp>limit?'#c62828':'#0A0A08';
+    var warn=document.getElementById('simWarn'), msg=document.getElementById('simMsg');
+    if(exp>limit){ warn.className='warn-light hot'; msg.textContent='한계 초과 — 정밀도 붕괴'; msg.style.color='#c62828'; }
+    else if(exp>limit*0.7){ warn.className='warn-light'; warn.style.background='#F8B739'; msg.textContent='경고 접근'; msg.style.color='#8a6d00'; }
+    else { warn.className='warn-light'; warn.style.background='#2e7d32'; msg.textContent='정상'; msg.style.color='#2e7d32'; }
+  }
+  if(loadS&&hourS){ loadS.oninput=renderSim; hourS.oninput=renderSim; renderSim(); }
+
+  /* ===== 위젯 ⑤ 텐덤 vs 다이렉트 커튼 ===== */
+  function handLayer(src,label){ return '<img src="'+src+'" alt="'+esc(label)+'" style="width:100%;height:100%;object-fit:cover;display:block">'; }
+  var cT=document.getElementById('cLayerTendon'), cD=document.getElementById('cLayerDirect');
+  if(cT&&cD){ cT.innerHTML=handLayer('img/anatomy/hand_tendon_shadow.jpg','텐덤(힘줄) 구동 예시'); cD.innerHTML=handLayer('img/anatomy/hand_direct_schunk.jpg','다이렉트 구동 예시'); }
+  var curtain=document.getElementById('curtain'), divider=document.getElementById('cDivider');
+  function setCurtain(px){ var rect=curtain.getBoundingClientRect(); var pct=Math.max(6,Math.min(94,(px-rect.left)/rect.width*100)); cT.style.clipPath='inset(0 '+(100-pct)+'% 0 0)'; divider.style.left=pct+'%'; }
+  if(curtain){ var drag=false;
+    var start=function(e){drag=true;var x=(e.touches?e.touches[0].clientX:e.clientX);setCurtain(x);};
+    var move=function(e){ if(!drag)return; var x=(e.touches?e.touches[0].clientX:e.clientX); setCurtain(x); };
+    var end=function(){drag=false;};
+    divider.addEventListener('mousedown',start); curtain.addEventListener('mousedown',start);
+    window.addEventListener('mousemove',move); window.addEventListener('mouseup',end);
+    divider.addEventListener('touchstart',start,{passive:true}); window.addEventListener('touchmove',move,{passive:true}); window.addEventListener('touchend',end);
+  }
+
+  /* ===== 위젯 ⑥ 열 인지 애니메이션 ===== */
+  var neo=AD.neoHand||{};
+  var ns=document.getElementById('neoSpec');
+  if(ns){ var order=[['DOF',neo.dof],['텐던비',neo.tendonRatio],['파지력',neo.grip],['손목토크',neo.wristTorque],['정밀도',neo.precision],['방수',neo.ingress],['내구',neo.cycles],['제조',neo.origin]];
+    ns.innerHTML=order.map(function(o){return '<div class="num-box" style="min-width:96px"><div class="num-label">'+o[0]+'</div><div class="num-value" style="font-size:14px">'+esc(o[1]||'—')+'</div></div>';}).join(''); }
+  var animOn=true, tL=20, tR=20, active='L', animTimer=null;
+  function paint(){
+    var fL=document.getElementById('tbL'), fR=document.getElementById('tbR');
+    if(!fL||!fR) return;
+    fL.style.width=tL+'%'; fR.style.width=tR+'%';
+    fL.style.background=tL>75?'#c62828':tL>50?'#F8B739':'#00B894';
+    fR.style.background=tR>75?'#c62828':tR>50?'#F8B739':'#00B894';
+    document.getElementById('stL').textContent=active==='L'?'작업':'대기'; document.getElementById('stL').className='tb-state '+(active==='L'?'work':'rest');
+    document.getElementById('stR').textContent=active==='R'?'작업':'대기'; document.getElementById('stR').className='tb-state '+(active==='R'?'work':'rest');
+  }
+  function tick(){
+    if(active==='L'){ tL=Math.min(100,tL+5); tR=Math.max(15,tR-4); if(tL>=85) active='R'; }
+    else { tR=Math.min(100,tR+5); tL=Math.max(15,tL-4); if(tR>=85) active='L'; }
+    paint();
+  }
+  function startAnim(){ if(animTimer) return; animTimer=setInterval(tick,420); }
+  function stopAnim(){ clearInterval(animTimer); animTimer=null; }
+  var at=document.getElementById('animToggle');
+  if(at){ at.onclick=function(){ animOn=!animOn; if(animOn){ at.textContent='⏸ 일시정지'; at.className='on'; startAnim(); } else { at.textContent='▶ 재생'; at.className=''; stopAnim(); } }; }
+  paint(); startAnim();
+
+  /* ===== 3사 실전 사례 카드 ===== */
+  var kc=document.getElementById('krCases');
+  if(kc&&AD.krCases){ kc.innerHTML=['neooto','hanla','woorim'].map(function(k){ var c=AD.krCases[k]; if(!c) return '';
+    var href=c.anchor||'kr_valuechain.html';
+    return '<div style="border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px">'+
+      '<div style="font-family:var(--mono);font-size:11px;font-weight:700"><a href="'+href+'" style="color:#0984E3;text-decoration:none">'+esc(c.name)+' ↗</a> <span style="color:var(--ink-3)">'+esc(c.code)+'</span> <span class="vc-badge vc-note" style="font-size:9px">'+esc(c.tag)+'</span></div>'+
+      '<ul style="margin:8px 0 6px 16px;font-size:11.5px;color:var(--ink-2);line-height:1.7">'+c.points.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul>'+
+      '<a class="vc-badge" href="'+href+'" style="font-size:9px">자세히 → KR 밸류체인 ↗</a></div>';
+  }).join(''); }
+
+  /* init heatmap */
+  renderOemTabs(); renderHeat();
+})();
+</script>
+</body>
+</html>

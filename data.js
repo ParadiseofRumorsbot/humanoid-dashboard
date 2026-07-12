@@ -1080,9 +1080,94 @@ const DASHBOARD_DATA = {
   },
 
   /* ══════════════════════════════════════
+     Anatomy 탭 데이터 (휴머노이드 해부)
+     핫스팟 좌표·위젯 파라미터·NEO 손 스펙·노션 3사 인용 수치
+     ══════════════════════════════════════ */
+  anatomyData: {
+    // ② 전신 열지도 — Optimus Gen3 부위별 열병목 판단표 [자체추정] (viewBox 300x420)
+    heatZones: [
+      { name: '전완 액추에이터', sev: 9, x: 232, y: 188, section: 'sec-hand', reason: '전완에 선형 액추에이터 25개 집중·손목 케이블 마찰·반복 파지' },
+      { name: '전완 액추에이터', sev: 9, x: 68, y: 188, section: 'sec-hand', reason: '좌우 대칭' },
+      { name: '어깨', sev: 8, x: 100, y: 92, section: 'sec-actuator', reason: '보행·운반 시 고토크·연속부하' },
+      { name: '어깨', sev: 8, x: 200, y: 92, section: 'sec-actuator', reason: '' },
+      { name: '엉덩이', sev: 8, x: 122, y: 250, section: 'sec-leg', reason: '보행·하중 지지 고토크' },
+      { name: '엉덩이', sev: 8, x: 178, y: 250, section: 'sec-leg', reason: '' },
+      { name: '무릎', sev: 8, x: 118, y: 312, section: 'sec-leg', reason: '보행·하중 고토크 연속부하' },
+      { name: '무릎', sev: 8, x: 182, y: 312, section: 'sec-leg', reason: '' },
+      { name: '인버터·PCBA', sev: 7, x: 150, y: 150, section: 'sec-power', reason: '좁은 공간 고전류 스위칭·방열면적 부족(각 관절 분산)' },
+      { name: '배터리·BMS', sev: 6, x: 150, y: 218, section: 'sec-power', reason: '8시간 작업 목표 시 에너지밀도·발열·교체성' },
+      { name: 'AI 컴퓨트', sev: 6, x: 150, y: 175, section: 'sec-sensor', reason: 'AI5급 온디바이스 추론 발열' },
+      { name: '손끝 촉각센서', sev: 4, x: 246, y: 206, section: 'sec-sensor', reason: '자체발열 낮으나 밀폐·방수·내구와 충돌' },
+      { name: '손끝 촉각센서', sev: 4, x: 54, y: 206, section: 'sec-sensor', reason: '' },
+    ],
+    heatColors: { 9: '#FF3B30', 8: '#FF9500', 7: '#FFCC00', 6: '#F4C430', 4: '#8E8E93' },
+    // OEM별 액추에이터 개수·구성 (열지도 표기용)
+    oemActuators: {
+      optimus: { dof: '~50 DOF (체 28 + 손 11/개 · Gen3 손 22/개)', rot: '체 회전형 14 + 선형 14 (하모닉)', lin: '전완 텐덤 25개 (손 23 + 손목 2)', note: '대시보드 표기 22는 Gen3 손 기준·Gen3 목표 0.08mm' },
+      atlas: { dof: '56 DOF (전신)', rot: '유성 QDD 회전형 31개 (모비스)', lin: '손 제외 액추에이터 56개 · 손 7개/손', note: 'BD 전기 Atlas·모비스 100% 공급 (JPM 2026)' },
+      g1: { dof: '23 DOF (기본) ~ 43 DOF (Dex 손 포함)', rot: '전신 유성 QDD (2단 ~15:1)', lin: '—', note: '23은 손목·덱스 손 비활성 기본 구성' },
+    },
+    // ① 이미지 핫스팟 (좌표 = 이미지 컨테이너 대비 %)
+    hotspots: {
+      b2_stator: [
+        { x: 34, y: 44, n: 1, t: '구리 권선(스테이터)', d: '전류가 흐르면 반드시 열이 나는 곳 — 발열원의 약 55%. 전기 히터·헤어드라이어와 같은 원리.' },
+        { x: 61, y: 38, n: 2, t: '남은 빈 공간', d: '구리 점적률(Fill Factor)을 더 높일 여지 — "최고의 냉각은 애초에 열을 만들지 않는 것". 아직 개선 여지가 남은 초기 플랫폼의 증거.' },
+        { x: 48, y: 78, n: 3, t: '엔코더 보드', d: '회전자 위치를 읽는 센서 — 정밀 제어(FOC)의 눈. 섹션 9 센서 계통과 연결.' },
+      ],
+      g1_heatpipe: [
+        { x: 50, y: 46, n: 1, t: '히트파이프', d: '노트북 CPU 냉각과 동일 부품. 내부 액체가 뜨거운 쪽에서 증발→찬 쪽에서 응축하며 프레임으로 열을 나른다. 무릎은 Duty Cycle이 높아 발열 극심.' },
+      ],
+      g2_hip_fans: [
+        { x: 36, y: 44, n: 1, t: '원심팬 ×2', d: '엉덩이 관절의 강제 공랭. 소음·전력 소모가 있지만 가장 강력한 열 배출. 로봇 옆에서 들리는 소리의 정체.' },
+      ],
+      g3_air_path: [
+        { x: 50, y: 50, n: 1, t: '공기 배출 슬롯', d: '핀 채널이 아니라 CNC로 깎은 하우징의 공기 배출 경로. 팬이 만든 바람이 이 슬롯으로 빠져나간다.' },
+      ],
+      h1_capacitor: [
+        { x: 40, y: 40, n: 1, t: '커패시터 ×6', d: 'DC버스 전압의 "다리미". 48V가 52V·45V로 출렁이면 같은 명령에도 토크가 달라져 보행이 흔들린다 — 이를 평탄하게.' },
+        { x: 46, y: 80, n: 2, t: '경량화 격자 프레임', d: '정강이 구조를 격자로 파내 말단 질량(Distal Mass)을 줄임.' },
+      ],
+      h1b_capacitor_wired: [
+        { x: 46, y: 44, n: 1, t: '배선 연결부', d: '완전 통합이 아니라 "나중에 추가된 설계"(Ch.27) — 빈 공간에 커패시터 보드를 우겨넣은 초기 플랫폼의 흔적.' },
+      ],
+      h2_dcbus_note: [
+        { x: 48, y: 42, n: 1, t: '손글씨: "Capacitors to control resonance of DC Bus"', d: '분해자가 다리 링크에 직접 남긴 현장 메모 — 커패시터가 DC버스 공진을 잡는다는 현장 증거.' },
+      ],
+    },
+    // ③ 감속비 체험 슬라이더 마커 [개념 시연]
+    gearMarkers: [
+      { ratio: 10, label: 'NEO 텐덤 5:1~15:1', tag: '' },
+      { ratio: 8, label: 'Atlas QDD 6~10:1(1단)', tag: '[네오오토 노트]' },
+      { ratio: 15, label: 'G1 유성 2단 ~15:1', tag: '' },
+      { ratio: 110, label: '하모닉 100:1+', tag: '' },
+    ],
+    // ⑤ 1X NEO 손 스펙 (출처: 언론 종합 — 증권사명 미표기)
+    neoHand: { dof: '25 DOF', tendonRatio: '5:1~15:1', grip: '45N', wristTorque: '17.75Nm', precision: '±0.2mm', ingress: 'IP68', cycles: '>2M cycles', origin: 'In-House' },
+    // ④ I²R 발열 시뮬 상수 [개념 시연·자체추정]
+    thermalSim: { alExpand: 2.3, alLength: 100, limitUm: 80, note: '2.3µm/°C · 알루미늄 100mm · 손끝 정밀도 목표 80µm' },
+    // 노션 3사 실전 사례 (수치 그대로 인용, [추정] 태그 승계)
+    krCases: {
+      neooto: { name: '네오오토', code: '212560', tag: '감속기·양산', anchor: 'kr_valuechain.html', points: ['Atlas 유성 QDD 액추에이터 31개 대응(손 제외 전체 56개)', '유성감속기 $55~230 vs 하모닉 $150~700 — "원가 파괴"가 채택 이유', '액추에이터 내 감속기 원가 $165(29%) · 모비스 단가목표 $500~1,000', '기어 정밀도 5µm · 백래시 3 arc-min · 가공시간 자동차(15~20초)의 3~4배', '소재 전환: 항공 특수강 2만원/kg → 자동차 합금강 1,200원/kg', '"로봇 1대 = 자동차 약 10.7대분 기어 콘텐츠" [추정]'] },
+      hanla: { name: '한라캐스트', code: '125490', tag: '열관리·캐스팅', anchor: 'kr_valuechain.html', points: ['"전기 변환"(칩 방열·보호 케이스류) 글로벌 AI사(테슬라)향 1,000억 수주·26.2 양산 개시', '로봇향은 칩은 유사하나 형상 별도 개발 중', '로봇 최대 부품 = 가슴부 800톤급(자동차 전장 최대 2,500톤)', '카메라 모듈(삼성전기·LG이노텍 경유) 로봇 동일 탑재', '대당 콘텐츠 약 3.3만원 [추정]'] },
+      woorim: { name: '우림피티에스', code: '101170', tag: '감속기·양산', anchor: 'kr_valuechain.html', points: ['BD 휴머노이드용 유성기어 감속기(관절·어깨)', '개발 시제품 200세트(약 5~6억) 납품 완료 · 양산 시제품 26.3Q 납품 예정', '"BD 공개 영상 제품에 자사 개발 시제품 포함"', '2026 액추에이터 개발 착수 · 2027 시제품 목표', '로봇 정밀라인 연 최대 2만세트(실질 1만) [추정]'] },
+    },
+  },
+
+  /* ══════════════════════════════════════
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-07-12',
+      title: '휴머노이드 해부 탭(anatomy.html) 신설 — iFixit식 분해 리포트 10개 섹션·인터랙티브 위젯 6종·밸류체인 실전사례 3사',
+      source: 'G1 Teardown Full KR · Optimus Gen3 열관리 스토리라인 · 260709 네오오토/한라캐스트 · 260625 우림 노트',
+      changes: [
+        'anatomy: 신규 탭 — 인트로 전신 열지도·액추에이터·감속기 3종·선형 스크류·손(텐덤)·다리 RSU·열관리·전력(DC버스)·센서·조립양산 10개 섹션',
+        'anatomy: 위젯 6종 — 이미지 핫스팟·전신 열지도(열병목 오버레이)·감속비 슬라이더·I²R 발열 시뮬·텐덤vs다이렉트 커튼·열 인지 애니메이션',
+        'data.js: anatomyData 블록 신설(핫스팟 좌표·위젯 파라미터·NEO 손 스펙·노션 3사 인용 수치)',
+        'nav: 전 페이지 "부품 기술" 뒤 "휴머노이드 해부" 링크 추가 · components 열관리 섹션 id=thermal 앵커 추가(상호 링크)',
+      ],
+    },
     {
       date: '2026-07-12',
       title: 'Atlas 감속기 표기 유성 QDD 통일 — 누락 사본 4곳 동기화(data.js oemSpecs·radarOEM · components.html RADAR_OEM · technology.html 비교표)',
