@@ -74,11 +74,26 @@ function showSub(tab, btn){
   document.getElementById('frame').src = SUB[tab];
   if (history.replaceState) history.replaceState(null,'','#'+tab);
 }
-document.getElementById('frame').addEventListener('load', bindResize);
+var pendingAnchor = null;
+document.getElementById('frame').addEventListener('load', function(){
+  bindResize();
+  if (pendingAnchor) {
+    var a = pendingAnchor; pendingAnchor = null;
+    setTimeout(function(){
+      try {
+        var el = document.getElementById('frame').contentWindow.document.getElementById(a);
+        if (el) el.scrollIntoView({block:'start'});
+      } catch(e) {}
+    }, 300);
+  }
+});
 window.addEventListener('resize', fit);
 window.addEventListener('DOMContentLoaded', function(){
-  var tab = (location.hash||'').replace('#','');
+  var h = (location.hash||'').replace('#','');
+  var tab = h, anchor = null;
+  if (h.indexOf(':') >= 0) { tab = h.split(':')[0]; anchor = h.split(':')[1]; }
   if (!SUB[tab]) tab = 'kr';
+  pendingAnchor = anchor;
   showSub(tab, null);
 });
 </script>
