@@ -41,11 +41,9 @@ function render(){
   $('#tg').innerHTML=th;
 }
 
-const HM_DATA=[{n:'HDS',ms:40.4,c:'#6C5CE7'},{n:'Nidec',ms:14.7,c:'#636E72'},{n:'Leader Drive',ms:12.0,c:'#F8B739'},{n:'Laifual Drive',ms:7.4,c:'#00B894'},{n:'기타',ms:25.5,c:'var(--line)'}];
+/* HM_DATA(하모닉 M/S) → 정본 data.js harmonicMS로 융합 이관, components 감속기③이 렌더 (26-07-12 v4) */
 const CN_PROD=[{n:'Unitree',ms:49,c:'#6C5CE7'},{n:'AgiBot',ms:30,c:'#FF6B6B'},{n:'UBTech',ms:8,c:'#F8B739'},{n:'Fourier',ms:5,c:'#00B894'},{n:'Galbot',ms:3,c:'#E17055'},{n:'MagicLab',ms:2,c:'#636E72'},{n:'기타',ms:3,c:'var(--line)'}];
 function renderExtra(){
-  let h='';HM_DATA.forEach(d=>{h+=`<div class="td" style="font-weight:600">${d.n}</div><div class="td" style="text-align:right">${d.ms}%</div><div class="td"><div style="height:14px;width:${d.ms*2}px;background:${d.c};border-radius:2px"></div></div>`;});
-  const el=document.getElementById('hmGrid');if(el)el.innerHTML=h;
   let p='';CN_PROD.forEach(d=>{p+=`<div class="td" style="font-weight:600">${d.n}</div><div class="td" style="text-align:right">${d.ms}%</div><div class="td"><div style="height:14px;width:${d.ms*1.5}px;background:${d.c};border-radius:2px"></div></div>`;});
   const el2=document.getElementById('cnProdGrid');if(el2)el2.innerHTML=p;
 }
@@ -69,15 +67,11 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     <div style="font-size:10px;color:var(--ink-3);margin-top:6px">★★★ Advanced / ★★☆ Broad / ★☆☆ Limited</div>
   </section>
 
-  <section class="card section-gap">
-    <div class="card-title">⚙️ 글로벌 하모닉 감속기 M/S (2024) <span class="badge" style="background:#6C5CE7;color:#fff">GGII</span></div>
-    <div id="hmGrid" style="display:grid;grid-template-columns:140px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
-    <!-- ── 가산: 하모닉/HDS 생산능력 비교 ── -->
-    <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--ink-2);line-height:1.7">
-      <b style="color:#6C5CE7">하모닉/HDS 생산능력 (M/S 보완):</b> <b>하모닉드라이브시스템스(6324.T) 연 230만대</b> vs 경쟁사 <b>리더드라이브(Leaderdrive) 60만대 → 2027년 160만대</b>. HDS는 다국적 거점(일본·독일·미국)으로 중국의존을 낮춰 서구권 메이저의 핵심 대체공급선 역할. 미국 capa 월 8–9천대 → FY26 월 1–1.5만대로 확대.<br>
-      <b style="color:#E17055">※ 테슬라 옵티머스向 하모닉 감속기 벤더는 현재 미정 [미확인]</b>.<br>
-      <span style="font-size:9px;color:var(--ink-3)">출처: 각사(원데이터). 위 GGII M/S(2024)와 별개 지표(생산능력)로 병기.</span>
-    </div>
+  <!-- 하모닉 M/S·CAPA 상세는 감속기 정본으로 융합 이관 (26-07-12 v4) — 여기는 요약 스텁만 -->
+  <section class="card section-gap" style="border-left:3px solid #6C5CE7">
+    <div class="card-title">⚙️ 감속기 공급 구도 요약 <span class="badge" style="background:var(--bg-soft);color:var(--ink-2)">정본: 기술 › 하드웨어 › 부품</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>한 줄 요약:</b> 글로벌 하모닉 감속기 M/S는 <b>HDS 40.4% · Nidec 14.7%</b>(GGII 2024)이고, 생산능력은 <b>HDS 연 230만대</b> vs Leaderdrive 60만대→160만대(2027)임. 테슬라 옵티머스向 하모닉 벤더는 현재 미정 [미확인]. M/S 차트·CAPA 비교·부위별 감속기 × 국내 벤더 매핑은 전부 정본에 모아뒀음.</div>
+    <a href="tech.html#parts:gear" target="_top" style="font-size:11px;color:#6C5CE7;font-weight:600;text-decoration:none">감속기 정본 전체 보기 ↗</a>
   </section>
   <section class="card section-gap">
     <div class="card-title">🏭 중국 2026E 생산 M/S <span class="badge" style="background:#e74c3c;color:#fff">Trendforce</span></div>

@@ -275,34 +275,7 @@ const DATA = {
     { company: 'Parker-Hannifin', ticker: 'PH', layer: '실행', parts: '액추에이터·리니어모션', note: '산업용 구동부 대형주', tp: '-', cp: '-' },
   ],
 
-  /* ── 피지컬 AI 5계층 비용 구조 ── */
-  physicalAILayers: {
-    // 협동로봇 기반 공작기계 자동화 셀 비용 추정 — 총 $90,724
-    automationCell: {
-      total: 90724,
-      source: 'Universal Robots / NVIDIA / Robotiq 공개가 기반 추정',
-      layers: [
-        { name: '실행 (Execution)', pct: 43.8, cost: 39725, items: '로봇 본체 $35K, 그리퍼 $4.7K', color: '#FF6B6B' },
-        { name: '통합/안전 (Integration)', pct: 34.2, cost: 31000, items: '안전장비 $8K, 지그 $5K, 설치·튜닝 $15K, 교육 $3K', color: '#636E72' },
-        { name: '인지 (Perception)', pct: 9.9, cost: 9000, items: '비전 카메라 $4K, 힘·토크센서 $5K', color: '#00B894' },
-        { name: '제어 (Control)', pct: 6.6, cost: 6000, items: 'PLC·네트워크 연계', color: '#F8B739' },
-        { name: '두뇌 (Brain)', pct: 5.5, cost: 4999, items: 'Jetson AGX Orin $2K, SW $3K', color: '#6C5CE7' },
-      ]
-    },
-    // 휴머노이드 원가 구조 — 맥킨지
-    humanoid: {
-      source: 'McKinsey',
-      ranges: { low: 30000, base: 90000, high: 150000 },
-      breakdown: [
-        { name: '액추에이터', pctRange: '40~60%', color: '#FF6B6B' },
-        { name: '센싱·인지', pctRange: '10~20%', color: '#00B894' },
-        { name: '연산·제어', pctRange: '10~15%', color: '#6C5CE7' },
-        { name: '구조 부품', pctRange: '5~10%', color: '#636E72' },
-        { name: '배터리', pctRange: '5~10%', color: '#4ecdc4' },
-        { name: '기타 (냉각·배선)', pctRange: '10~15%', color: '#A29BFE' },
-      ]
-    }
-  },
+  /* physicalAILayers 비용 데이터 → 정본 data.js·market_company로 이관, 미호출 사본 제거 (26-07-12 v4) */
 
   /* ── IFR 산업용 로봇 데이터 (IFR, 2024) ── */
   ifrData: {
@@ -557,30 +530,7 @@ function renderUsValueChain() {
   el.innerHTML = html;
 }
 
-function renderPhysicalAILayers() {
-  // Automation cell cost bar
-  const cell = DATA.physicalAILayers.automationCell;
-  const barEl = $('#cellCostBar');
-  barEl.innerHTML = cell.layers.map(l =>
-    `<div style="width:${l.pct}%;background:${l.color};height:28px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:#fff;font-weight:600;min-width:30px" title="${l.name}: $${l.cost.toLocaleString()} (${l.pct}%)">${l.pct}%</div>`
-  ).join('');
-  $('#cellCostTotal').textContent = '$' + cell.total.toLocaleString();
-
-  // Humanoid cost table
-  const hum = DATA.physicalAILayers.humanoid;
-  const humEl = $('#humCostGrid');
-  let html = '<div class="capa-th" style="text-align:left">구성요소</div><div class="capa-th">비중</div><div class="capa-th">저가형 $30K</div><div class="capa-th">기본형 $90K</div><div class="capa-th">고가형 $150K</div>';
-  hum.breakdown.forEach(b => {
-    const pcts = b.pctRange.replace('%','').split('~').map(Number);
-    const lo = pcts[0]/100, hi = (pcts[1]||pcts[0])/100;
-    html += `<div class="capa-td" style="text-align:left;border-left:3px solid ${b.color};padding-left:10px;font-weight:600">${b.name}</div>`;
-    html += `<div class="capa-td" style="text-align:right">${b.pctRange}</div>`;
-    html += `<div class="capa-td" style="text-align:right">$${(30000*lo/1000).toFixed(1)}~${(30000*hi/1000).toFixed(1)}K</div>`;
-    html += `<div class="capa-td" style="text-align:right">$${(90000*lo/1000).toFixed(1)}~${(90000*hi/1000).toFixed(1)}K</div>`;
-    html += `<div class="capa-td" style="text-align:right">$${(150000*lo/1000).toFixed(1)}~${(150000*hi/1000).toFixed(1)}K</div>`;
-  });
-  humEl.innerHTML = html;
-}
+/* renderPhysicalAILayers() 미호출 죽은 코드 제거 — 원가 정본은 components #cost (26-07-12 v4) */
 
 function renderOemTargets() {
   const el = $('#oemGrid');

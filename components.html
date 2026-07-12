@@ -484,6 +484,17 @@ function renderMckCost(){
 }
 
 // ═══════════════════════════════════════
+// 8. HARMONIC M/S GRID (감속기③ · 데이터 정본: data.js)
+// ═══════════════════════════════════════
+function renderGearMs(){
+  let h='';
+  DASHBOARD_DATA.harmonicMS.forEach(d=>{
+    h+=`<div class="td" style="font-weight:600">${d.n}</div><div class="td" style="text-align:right">${d.ms}%</div><div class="td"><div style="height:14px;width:${d.ms*2}px;background:${d.c};border-radius:2px"></div></div>`;
+  });
+  document.getElementById('gearMsGrid').innerHTML=h;
+}
+
+// ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
@@ -494,6 +505,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderRadar();
   renderSim();
   renderMckCost();
+  renderGearMs();
 });
 </script>
 </head>
@@ -560,9 +572,23 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체추정 · 언론 종합 · BD 공식</div>
   </section>
 
+  <!-- ═══ 1.0 감속기 정본 도입 (신규 · 융합 v4) ═══ -->
+  <section id="gear" class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">⚙️ 감속기 정본 — 관절마다 하나씩 들어가는 병목 부품 <span class="badge" style="background:#F8B739;color:#000">전 탭 감속기 기준점</span></div>
+    <div style="background:rgba(248,183,57,0.08);border-left:4px solid #F8B739;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:14px">
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7"><b>한 줄 요약:</b> 감속기는 모터의 빠른 회전을 느리고 센 힘으로 바꾸는 부품이고 관절마다 1개씩 들어감. 하모닉(고정밀·고가) vs 유성(저가·역구동 유리) vs 사이클로이드(고내구)의 3파전에서, <b>유성 $55~230 vs 하모닉 $150~700</b>의 '원가 파괴'가 G1·Atlas의 유성 채택 이유임. 정밀 하모닉은 만들 회사가 적어(HDS 40.4%) 공급 병목이자 국산화(에스비비테크·에스피지·로보티즈 등) 투자 포인트임.</div>
+    </div>
+    <div class="num-row" style="margin-bottom:12px">
+      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">단가: 유성 vs 하모닉</div><div class="num-value" style="font-size:16px">$55~230 vs $150~700</div><div class="num-sub">'원가 파괴'가 유성 채택 이유 [네오오토·우림 노트]</div></div>
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">Atlas 유성 QDD 액추에이터</div><div class="num-value">31개</div><div class="num-sub">손 제외 전체 56개 중 · BD</div></div>
+      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">하모닉 1위 HDS M/S</div><div class="num-value">40.4%</div><div class="num-sub">GGII 2024 · ③ 공급 구도</div></div>
+    </div>
+    <div style="font-size:11px;color:var(--ink-2);line-height:1.7">읽는 순서: <b>① 3종 구동 원리</b>(어떻게 도는가) → <b>② 부위별 × 국내 벤더</b>(어느 관절에 어느 종류, 국산화 지도) → <b>③ 공급 구도</b>(누가 만드나 — M/S·생산능력). 왜 유성 QDD인지 trade-off 이야기는 <a href="tech.html#anatomy:sec-gear" target="_top" style="color:#B8860B">해부 03 감속기 ↗</a>, 물량 병목 시뮬은 <a href="market.html#company" target="_top" style="color:#B8860B">공급 병목 히트맵 ↗</a>.</div>
+  </section>
+
   <!-- ═══ 1. Reducer Animations ═══ -->
   <section class="card section-gap">
-    <div class="card-title">⚙️ 감속기 3종 구동 원리 <span class="badge" style="background:#FF6B6B;color:#fff">실시간 애니메이션</span></div>
+    <div class="card-title">⚙️ 감속기① 3종 구동 원리 <span class="badge" style="background:#FF6B6B;color:#fff">실시간 애니메이션</span></div>
     <p style="font-size:11px;color:var(--ink-3);margin-bottom:10px">감속기가 왜 필요한지·종류별 이야기 정본은 <a href="tech.html#anatomy" target="_top" style="color:#6C5CE7">해부 탭 03 감속기 ↗</a> — 여기는 구동 원리 애니메이션과 스펙 데이터만 담는다.</p>
     <div class="ctrl-row">
       <button class="on" onclick="gearRunning=!gearRunning;this.classList.toggle('on')">⏯ 재생/정지</button>
@@ -590,7 +616,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   <!-- ═══ 1.2 부위별 감속기 × 국내 벤더 매핑 ═══ -->
   <section class="card section-gap" style="border-left:4px solid #6C5CE7">
-    <div class="card-title">🦿 휴머노이드 부위별 감속기 종류 × 국내 벤더 매핑 <span class="badge" style="background:#6C5CE7;color:#fff">국산화 지도</span></div>
+    <div class="card-title">🦿 감속기② 부위별 종류 × 국내 벤더 매핑 <span class="badge" style="background:#6C5CE7;color:#fff">국산화 지도</span></div>
     <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px">
       <thead><tr style="border-bottom:2px solid var(--ink)">
         <th style="text-align:left;padding:8px 10px;font-family:var(--mono);font-size:10px">부위</th>
@@ -609,6 +635,19 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="background:rgba(0,184,148,0.06);border-left:4px solid #00B894;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#00B894">※ Atlas 바디 액추에이터는 유성 2종(토크 차이)·모비스 내재화</b>(현대모비스 Corp Day 2026.05.28) — 위 부위별 표는 일반 휴머노이드 관절 기준. 아래는 별도 로봇: 현대차 로보틱스랩 이동형 양팔 로봇 시제품에 HDS(日)·나브테스코(日)·에스비비테크(韓)·에스피지(韓)를 동시 접목 中. 양산품엔 국산 비중 최대화 목표. 원가 구조는 <b>액추에이터 ≈ 66%</b>(대형 32%+소형 34%, Unitree G1 기준), 액추에이터 안 감속기 비중 ≈ 30%, 휴머노이드 전체 대비 감속기 단품 ≈ 18~22%.</div>
     <div style="background:rgba(248,183,57,0.07);border-left:4px solid #F8B739;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#B8860B">⚖️ 손/그리퍼 감속기 = 미공개 · 2개 시나리오 병기</b> — Atlas 손/그리퍼 감속 방식은 공개되지 않음. 둘 다 추정이라 한쪽으로 단정하지 않고 병기함.<br><b>시나리오 A) 하모닉</b> — 손가락처럼 백래시 최소·고정밀이 필요한 관절에 하모닉 채택 가정 → 국내 노출 <b>에스비비테크</b>(하모닉 국내 1위). valuation ③ 손/그리퍼 침투율 슬라이더의 전제.<br><b>시나리오 B) 볼·리드 스크루</b> — 초소형 선형 구동(볼스크루/리드스크루)으로 파지한다고 가정 → 정밀 스크루·리니어 부품군 노출, <b>하모닉(에스비비) 노출은 0</b>에 수렴. <span style="font-size:9px;color:var(--ink-3)">[자체추정·언론종합]</span></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 언론 종합 · 각사 IR</div>
+  </section>
+
+  <!-- ═══ 1.25 감속기③ 공급 구도 — 시장·경쟁 탭에서 융합 이관 (26-07-12 v4) ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #6C5CE7">
+    <div class="card-title">🌐 감속기③ 공급 구도 — 글로벌 하모닉 M/S·생산능력 <span class="badge" style="background:#6C5CE7;color:#fff">GGII · 각사</span></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:8px">글로벌 하모닉 감속기 M/S (2024)</div>
+    <div id="gearMsGrid" style="display:grid;grid-template-columns:140px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
+    <!-- ── 가산: 하모닉/HDS 생산능력 비교 ── -->
+    <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#6C5CE7">하모닉/HDS 생산능력 (M/S 보완):</b> <b>하모닉드라이브시스템스(6324.T) 연 230만대</b> vs 경쟁사 <b>리더드라이브(Leaderdrive) 60만대 → 2027년 160만대</b>. HDS는 다국적 거점(일본·독일·미국)으로 중국의존을 낮춰 서구권 메이저의 핵심 대체공급선 역할. 미국 capa 월 8–9천대 → FY26 월 1–1.5만대로 확대.<br>
+      <b style="color:#E17055">※ 테슬라 옵티머스向 하모닉 감속기 벤더는 현재 미정 [미확인]</b>.<br>
+      <span style="font-size:9px;color:var(--ink-3)">출처: 각사(원데이터). 위 GGII M/S(2024)와 별개 지표(생산능력)로 병기.</span>
+    </div>
   </section>
 
   <!-- ═══ 1.3 Dexterous Hand 원가·부위별 액추에이터 ═══ -->
