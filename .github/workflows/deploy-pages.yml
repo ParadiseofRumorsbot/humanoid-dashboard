@@ -15,7 +15,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # 배포 전 data.js 출처 검증 — 증권사(2차 가공) 출처 감지 시 배포 차단
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Validate sources
+        run: |
+          python update_dashboard.py --validate | tee validate_out.txt
+          if grep -q "차단된 2차 출처" validate_out.txt; then
+            echo "::error::증권사(2차 가공) 출처가 data.js에 감지되었습니다. 1차 출처만 사용하세요."
+            exit 1
+          fi
+
   deploy:
+    needs: validate
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
