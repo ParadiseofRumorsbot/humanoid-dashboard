@@ -56,11 +56,13 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .gauge .g-lbl{font-family:var(--mono);font-size:10px;color:var(--ink-3);display:flex;justify-content:space-between}
 .gauge .g-track{height:9px;border-radius:5px;background:var(--line);overflow:hidden;margin-top:3px}
 .gauge .g-fill{height:100%;border-radius:5px;transition:width .12s ease}
-.marker-track{position:relative;height:34px;margin:18px 0 4px}
-.marker-track .mt-line{position:absolute;top:16px;left:0;right:0;height:2px;background:var(--line-s)}
-.marker{position:absolute;transform:translateX(-50%);text-align:center;top:0}
-.marker i{display:block;width:2px;height:14px;background:var(--ink-3);margin:0 auto}
-.marker span{font-family:var(--mono);font-size:8.5px;color:var(--ink-3);white-space:nowrap;display:block;margin-top:1px}
+.marker-track{position:relative;height:70px;margin:20px 0 6px}
+.marker-track .mt-line{position:absolute;top:6px;left:0;right:0;height:2px;background:var(--line-s)}
+.marker{position:absolute;top:6px;width:0}
+.marker i{display:block;width:2px;background:var(--ink-3);margin:0 auto}
+.marker span{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:8.5px;line-height:1.25;color:var(--ink-3);white-space:nowrap;background:linear-gradient(var(--bg-card),var(--bg-card));padding:0 2px}
+.marker.er span{left:auto;right:0;transform:none;text-align:right}
+.marker.el span{left:0;right:auto;transform:none;text-align:left}
 /* sim result */
 .sim-out{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;align-items:center}
 .warn-light{width:16px;height:16px;border-radius:50%;background:#2e7d32;box-shadow:0 0 0 3px rgba(46,125,50,.2);transition:all .2s}
@@ -170,7 +172,11 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 <!-- ③ 감속기 3종 -->
 <section id="sec-gear" class="card section-gap" style="border-left:4px solid #6C5CE7">
   <div class="card-title">03 · 감속기 — 하모닉 vs 유성 QDD vs 사이클로이드 <span class="badge" style="background:#6C5CE7;color:#fff">위젯 ③ 감속비 슬라이더</span></div>
-  <p class="p"><b>하모닉(스트레인 웨이브)</b>은 얇은 컵(FlexSpline)을 타원으로 눌러 이 하나 차이로 도는 시계 태엽 — 100:1 초경량·백래시 0이지만 역구동이 안 되고 충격에 취약하다(Ch.4). <b>G1은 2단 유성 약 15:1</b>을 택했고(Ch.5), 감속비를 낮춰 모터 전류만으로 토크를 읽는 <b>QDD(토크 투명성)</b>를 얻어 RL·Sim-to-Real에 유리하다(Ch.6). 대가는 백래시 ↔ Preload ↔ 역구동성의 trade-off다(Ch.7).</p>
+  <p class="p" style="margin-bottom:4px"><b>한 줄 요약</b> — 감속기는 빠르지만 약한 모터 힘을 <b>느리지만 센 힘</b>으로 바꾸는 변속기임. 셋 중 무엇을 쓰느냐로 로봇의 성격이 갈림.</p>
+  <p class="p" style="margin-top:6px"><b>① 하모닉(스트레인 웨이브)</b> — 얇은 금속 컵(FlexSpline)을 타원으로 눌러, 이(齒) 하나 차이로 아주 조금씩 돌린다. 한 단으로 <b>100:1</b>까지 줄여 초경량이고 흔들림(백래시)이 0이라 정밀하다. 대신 손으로 되돌려 돌릴 수 없고(역구동 불가) 충격에 약하다(Ch.4). → 정밀·경량이 필요한 <b>손·손목</b>에.</p>
+  <p class="p" style="margin-top:6px"><b>② 유성 QDD</b> — 작은 기어(유성) 여러 개가 힘을 나눠 받아 튼튼하고 값이 싸다. <b>G1은 2단 유성 약 15:1</b>을 택했다(Ch.5). 감속비를 낮게 잡은 덕에 <b>모터에 흐르는 전류만 봐도 관절 힘(토크)을 읽을 수 있다</b> — 이 '토크 투명성' 때문에 넘어지며 스스로 배우는 학습(RL·Sim-to-Real)에 유리하다(Ch.6). → 힘·저원가가 중요한 <b>팔·다리</b>에.</p>
+  <p class="p" style="margin-top:6px"><b>③ 사이클로이드</b> — 편심 원판이 굴러 큰 힘을 내고, 하중이 여러 이에 분산돼 <b>충격·과부하에 가장 강하다</b>. 대신 다소 무겁고 진동이 있다. → 로보티즈 등이 관절에 채택.</p>
+  <p class="p" style="font-size:12px;color:var(--ink-2)">셋 다 공짜는 없다 — 정밀도(백래시)를 잡으려 기어를 조이면(Preload) 역구동성이 나빠지는 <b>맞바꿈(trade-off)</b>이 핵심이다(Ch.7). 아래 슬라이더로 감속비를 바꾸며 이 맞바꿈을 체험할 수 있다.</p>
   <div class="quote">유성 $55~230 vs 하모닉 $150~700 — <b>'원가 파괴'가 채택 이유</b>다. Atlas도 유성 QDD 액추에이터 31개(손 제외 전체 56개). <span class="tag-est">네오오토·우림 노트</span></div>
   <div class="img-grid">
     <figure class="img-fig"><span class="hotspot-img"><img src="img/anatomy/c1b_strainwave_diagram.jpg" alt="하모닉 단면+웨이브 제너레이터"></span><figcaption><b>하모닉</b> — 타원 웨이브 제너레이터 개념도 인셋 · Munro Live 분해 영상 캡처</figcaption></figure>
@@ -187,33 +193,80 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 <!-- ④ 선형 액추에이터 -->
 <section id="sec-screw" class="card section-gap" style="border-left:4px solid #00B894">
   <div class="card-title">04 · 선형 액추에이터 — 스크류 가문</div>
-  <p class="p">Rotary(회전형)는 단순·고효율이지만 팔꿈치·무릎이 두꺼워진다. <b>Linear(선형)</b>는 모터 회전을 스크류로 직선 운동으로 바꿔 모터를 팔·다리 안쪽에 길게 배치, 큰 힘과 자유로운 패키징을 얻는다(Ch.29~30).</p>
-  <div class="scroll-x"><svg viewBox="0 0 640 150" width="100%" style="max-width:640px;min-width:520px">
-    <rect x="0" y="0" width="640" height="150" fill="var(--bg-soft)" rx="8"/>
-    <!-- ball screw -->
-    <text x="90" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#0A0A08">볼스크류</text>
-    <line x1="20" y1="60" x2="160" y2="60" stroke="#6C5CE7" stroke-width="8" stroke-linecap="round"/>
-    <circle cx="55" cy="60" r="4.5" fill="#F8B739"/><circle cx="80" cy="60" r="4.5" fill="#F8B739"/><circle cx="105" cy="60" r="4.5" fill="#F8B739"/><circle cx="130" cy="60" r="4.5" fill="#F8B739"/>
-    <text x="90" y="92" text-anchor="middle" font-size="9" fill="#8B8B82">구슬로 마찰↓ · EPS로 자동차 양산 이력</text>
-    <!-- roller screw -->
-    <text x="320" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#0A0A08">플래니터리 롤러스크류</text>
-    <line x1="250" y1="60" x2="390" y2="60" stroke="#00B894" stroke-width="8" stroke-linecap="round"/>
-    <rect x="262" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="290" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="318" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="346" y="52" width="7" height="16" fill="#FF6B6B"/><rect x="372" y="52" width="7" height="16" fill="#FF6B6B"/>
-    <text x="320" y="92" text-anchor="middle" font-size="9" fill="#8B8B82">롤러로 하중 분산 · Tesla·Figure 관심</text>
-    <!-- inverted -->
-    <text x="545" y="26" text-anchor="middle" font-size="11" font-weight="700" fill="#0A0A08">인버티드</text>
-    <rect x="485" y="50" width="120" height="20" rx="4" fill="none" stroke="#0984E3" stroke-width="3"/>
-    <line x1="500" y1="60" x2="620" y2="60" stroke="#0984E3" stroke-width="6" stroke-linecap="round"/>
-    <text x="545" y="92" text-anchor="middle" font-size="9" fill="#8B8B82">너트가 돌고 축이 직진 · 극한 패키징</text>
-    <text x="320" y="128" text-anchor="middle" font-size="10" fill="#4A4A45">연삭 시간(부품당 수 분~20분) = 원가 · "전조 양산으로 전환하는 자가 원가를 지배" (Ch.31~33)</text>
+  <p class="p" style="margin-bottom:4px"><b>한 줄 요약</b> — 모터가 <b>나사(스크류)</b>를 돌리면, 그 위에 낀 <b>너트</b>가 돌지 못하게 잡혀 있어 <b>앞뒤로 밀려난다</b>. 회전을 곧게 미는 힘으로 바꾸는 장치임.</p>
+  <p class="p" style="margin-top:6px">회전형(Rotary)은 단순·고효율이지만 팔꿈치·무릎이 두꺼워진다. <b>선형(Linear)</b>은 모터를 팔·다리 안쪽에 길게 눕혀 넣어 큰 힘과 자유로운 패키징을 얻는다(Ch.29~30). 나사산 간격(리드)이 좁을수록 <b>더 세지만 더 느리게</b> 움직인다.</p>
+  <div class="scroll-x"><svg viewBox="0 0 640 300" width="100%" style="max-width:640px;min-width:540px">
+    <defs>
+      <marker id="arL" markerWidth="9" markerHeight="9" refX="5.5" refY="3" orient="auto-start-reverse"><path d="M0 0 L6 3 L0 6 z" fill="#00B894"/></marker>
+    </defs>
+    <rect x="0" y="0" width="640" height="300" fill="var(--bg-soft)" rx="8"/>
+
+    <!-- ===== A. 원리 ===== -->
+    <text x="24" y="30" font-size="12.5" font-weight="700" fill="#0A0A08">원리 · 회전을 직선 힘으로 바꾼다</text>
+    <!-- 모터 -->
+    <rect x="24" y="60" width="58" height="48" rx="6" fill="#0A0A08"/><text x="53" y="88" text-anchor="middle" font-size="10" fill="#fff">모터</text>
+    <!-- 회전 화살표 -->
+    <path d="M74 54 a15 15 0 1 1 -11 -5" fill="none" stroke="#00B894" stroke-width="2.5" marker-end="url(#arL)"/>
+    <text x="90" y="44" font-size="9.5" fill="#00B894" font-weight="700">돌린다</text>
+    <!-- 스크류 축 -->
+    <rect x="82" y="76" width="372" height="16" rx="3" fill="#D8D6CC" stroke="#8B8B82"/>
+    <path d="M96 76 l-8 16 M110 76 l-8 16 M124 76 l-8 16 M138 76 l-8 16 M152 76 l-8 16 M166 76 l-8 16 M180 76 l-8 16 M194 76 l-8 16 M208 76 l-8 16 M222 76 l-8 16 M236 76 l-8 16 M304 76 l-8 16 M318 76 l-8 16 M332 76 l-8 16 M346 76 l-8 16 M360 76 l-8 16 M374 76 l-8 16 M388 76 l-8 16 M402 76 l-8 16 M416 76 l-8 16 M430 76 l-8 16 M444 76 l-8 16" stroke="#8B8B82" stroke-width="1.2"/>
+    <text x="180" y="70" text-anchor="middle" font-size="9" fill="#8B8B82">스크류(나사) — 제자리서 회전만</text>
+    <!-- 너트 -->
+    <rect x="250" y="66" width="42" height="36" rx="4" fill="#00B894" stroke="#0A0A08"/><text x="271" y="88" text-anchor="middle" font-size="9.5" fill="#fff" font-weight="700">너트</text>
+    <!-- 리드 표시 -->
+    <path d="M304 106 H316" stroke="#8B8B82" stroke-width="1"/><path d="M304 103 V109 M316 103 V109" stroke="#8B8B82" stroke-width="1"/>
+    <text x="360" y="110" text-anchor="middle" font-size="8.5" fill="#8B8B82">리드(나사산 한 칸) 좁을수록 세고 느림</text>
+    <!-- 직선 이동 화살표 -->
+    <line x1="150" y1="128" x2="400" y2="128" stroke="#00B894" stroke-width="2.5" marker-start="url(#arL)" marker-end="url(#arL)"/>
+    <text x="275" y="145" text-anchor="middle" font-size="10" fill="#00B894" font-weight="700">너트는 못 돌게 잡혀 있어 → 앞뒤로 직선 이동</text>
+
+    <line x1="20" y1="162" x2="620" y2="162" stroke="var(--line-s)" stroke-width="1"/>
+
+    <!-- ===== B. 종류 ===== -->
+    <text x="24" y="184" font-size="12.5" font-weight="700" fill="#0A0A08">종류 · 나사와 너트 사이를 무엇으로 굴리나</text>
+
+    <!-- 1) 볼스크류 -->
+    <text x="110" y="208" text-anchor="middle" font-size="11" font-weight="700" fill="#6C5CE7">볼스크류</text>
+    <rect x="46" y="222" width="128" height="14" rx="3" fill="#D8D6CC" stroke="#8B8B82"/>
+    <rect x="92" y="216" width="36" height="26" rx="3" fill="none" stroke="#6C5CE7" stroke-width="2"/>
+    <circle cx="98" cy="229" r="3.4" fill="#F8B739"/><circle cx="106" cy="229" r="3.4" fill="#F8B739"/><circle cx="114" cy="229" r="3.4" fill="#F8B739"/><circle cx="122" cy="229" r="3.4" fill="#F8B739"/>
+    <text x="110" y="262" text-anchor="middle" font-size="9" fill="#8B8B82">구슬(볼)로 마찰↓</text>
+    <text x="110" y="275" text-anchor="middle" font-size="9" fill="#8B8B82">EPS로 자동차 양산 이력</text>
+
+    <!-- 2) 롤러스크류 -->
+    <text x="320" y="208" text-anchor="middle" font-size="11" font-weight="700" fill="#00B894">플래니터리 롤러스크류</text>
+    <rect x="256" y="222" width="128" height="14" rx="3" fill="#D8D6CC" stroke="#8B8B82"/>
+    <rect x="300" y="214" width="7" height="30" rx="2" fill="#FF6B6B"/><rect x="312" y="214" width="7" height="30" rx="2" fill="#FF6B6B"/><rect x="324" y="214" width="7" height="30" rx="2" fill="#FF6B6B"/><rect x="336" y="214" width="7" height="30" rx="2" fill="#FF6B6B"/>
+    <text x="320" y="262" text-anchor="middle" font-size="9" fill="#8B8B82">여러 롤러로 하중 분산(고하중)</text>
+    <text x="320" y="275" text-anchor="middle" font-size="9" fill="#8B8B82">Tesla·Figure 관심</text>
+
+    <!-- 3) 인버티드 -->
+    <text x="530" y="208" text-anchor="middle" font-size="11" font-weight="700" fill="#0984E3">인버티드</text>
+    <rect x="486" y="216" width="34" height="26" rx="3" fill="#0984E3"/><text x="503" y="233" text-anchor="middle" font-size="8" fill="#fff">너트</text>
+    <path d="M516 210 a11 11 0 1 1 -8 -3" fill="none" stroke="#0984E3" stroke-width="2" marker-end="url(#arL)"/>
+    <line x1="520" y1="229" x2="592" y2="229" stroke="#4A4A45" stroke-width="5" stroke-linecap="round"/>
+    <text x="530" y="262" text-anchor="middle" font-size="9" fill="#8B8B82">너트가 돌고 축이 직진</text>
+    <text x="530" y="275" text-anchor="middle" font-size="9" fill="#8B8B82">극한 패키징</text>
   </svg></div>
+  <p class="p" style="font-size:11.5px;color:var(--ink-2)">셋 다 나사산을 <b>연삭(갈아서)</b>으로 깎는데, 부품당 수 분~20분이 걸려 이 시간이 곧 원가다. <b>"전조(轉造) 양산으로 전환하는 자가 원가를 지배한다"</b>(Ch.31~33).</p>
   <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="valuechain.html#us" target="_top">Schaeffler</a><a class="vc-badge" href="valuechain.html#kr" target="_top">에스비비테크</a></div>
 </section>
 
 <!-- ⑤ 손 해부 -->
 <section id="sec-hand" class="card section-gap" style="border-left:4px solid #0984E3">
   <div class="card-title">05 · 손 해부 — 텐덤 vs 다이렉트 <span class="badge" style="background:#0984E3;color:#fff">위젯 ⑤ 비교 커튼</span></div>
-  <p class="p">사람 손가락엔 근육이 거의 없다. 손가락을 굽히는 근육은 <b>팔뚝(전완)</b>에 있고, 힘줄이 손끝까지 힘을 배달한다. Tesla Gen3·1X NEO는 이 구조를 베꼈다 — <b>낚시릴</b> 원리로 릴을 감으면 줄이 당겨진다(Ch). Optimus는 전완 하나에 선형 액추에이터 <b>25개(손 23 + 손목 2)</b>. "모터는 근육이 아니다": 여전히 모터가 줄을 감는 방식이라 사람 손과 같지 않다.</p>
+  <p class="p" style="margin-bottom:4px"><b>한 줄 요약</b> — 사람 손가락엔 모터(근육)가 없음. 굽히는 근육은 <b>팔뚝(전완)</b>에 있고 힘줄이 손끝까지 힘을 배달함. 로봇 손도 이 방식을 베낌.</p>
+  <div class="img-grid">
+    <figure class="img-fig" style="flex:0 0 268px">
+      <span class="hotspot-img"><img src="img/anatomy/neo_hand.jpg" alt="1X NEO 25 자유도 텐던 구동 손"></span>
+      <figcaption><b>1X NEO의 손</b> — 25 DOF·손목 3 DOF. 손바닥 아래로 내려오는 파란 <b>힘줄(텐던) 다발</b>이 보인다. 실제 모터는 이 힘줄을 감는 전완 쪽에 있다. · 1X Technologies 공개</figcaption>
+    </figure>
+    <div class="img-fig">
+      <p class="p" style="margin-top:0">Tesla Gen3·1X NEO는 사람 구조를 베꼈다 — <b>낚시릴</b>처럼 모터가 줄(텐던)을 감으면 손가락이 당겨진다(Ch). Optimus는 전완 하나에 선형 액추에이터 <b>25개(손 23 + 손목 2)</b>를 넣었다. 다만 <b>"모터는 근육이 아니다"</b> — 여전히 모터가 줄을 감는 방식이라 사람 손과 똑같지는 않다.</p>
+      <p class="p" style="font-size:11.5px;color:var(--ink-2)">옆 카드의 스펙(파지력 45N·손목토크 17.75Nm·정밀도 ±0.2mm·IP68·역구동 가능)은 아래 수치와 같은 값이다.</p>
+    </div>
+  </div>
   <div class="num-row" id="neoSpec"></div>
   <p class="p" style="font-size:11px;color:var(--ink-3)">※ NEO <b>±0.2mm</b>는 1X NEO 현행 손 반복정밀도, Optimus Gen3 목표 <b>0.08mm(80µm)</b>는 다른 로봇·다른 지표(현행 스펙 vs 목표치)다.</p>
   <p class="p" style="font-family:var(--mono);font-size:11px">가운데 손잡이를 드래그해 비교 <span class="tag-est">개념 시연</span></p>
@@ -239,21 +292,61 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 <!-- ⑥ 다리·발목 RSU -->
 <section id="sec-leg" class="card section-gap" style="border-left:4px solid #E17055">
   <div class="card-title">06 · 다리·발목 — Distal Mass와 RSU</div>
-  <p class="p">같은 1kg이라도 몸통에 있는 것과 발끝에 있는 것은 관성모멘트가 극심하게 다르다 — 발목에 무거운 모터를 달면 다리를 휘두르는 데 훨씬 큰 토크가 필요하다(Ch.18). G1은 모터를 종아리에 두고 <b>타이 로드 2개</b>로 발목을 구동하는 <b>RSU(Rotary Spherical Universal)</b> 구조를 택했다 — 두 모터가 같은 방향이면 Pitch, 반대면 Roll(Ch.19~20).</p>
-  <div class="scroll-x"><svg viewBox="0 0 560 190" width="100%" style="max-width:560px;min-width:460px">
-    <rect x="0" y="0" width="560" height="190" fill="var(--bg-soft)" rx="8"/>
-    <text x="150" y="26" text-anchor="middle" font-size="11" font-weight="700">모터를 종아리로 이동</text>
-    <rect x="120" y="40" width="60" height="60" rx="6" fill="#E17055" opacity=".85"/><text x="150" y="75" text-anchor="middle" font-size="9" fill="#fff">모터×2</text>
-    <line x1="135" y1="100" x2="140" y2="160" stroke="#4A4A45" stroke-width="3"/><line x1="165" y1="100" x2="160" y2="160" stroke="#4A4A45" stroke-width="3"/>
-    <text x="150" y="150" text-anchor="middle" font-size="9" fill="#8B8B82">타이 로드 2개</text>
-    <rect x="120" y="160" width="60" height="14" rx="4" fill="#0A0A08"/><text x="150" y="186" text-anchor="middle" font-size="9" fill="#8B8B82">발목 링크</text>
-    <path d="M300 95 h60" stroke="#8B8B82" stroke-width="1.5" marker-end="url(#ar)"/>
-    <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#8B8B82"/></marker></defs>
-    <text x="450" y="26" text-anchor="middle" font-size="11" font-weight="700">Torque Sharing</text>
-    <text x="450" y="70" text-anchor="middle" font-size="10" fill="#2e7d32">↑↑ 같은 방향 = Pitch(위아래)</text>
-    <text x="450" y="95" text-anchor="middle" font-size="10" fill="#0984E3">↑↓ 반대 방향 = Roll(좌우)</text>
-    <text x="450" y="130" text-anchor="middle" font-size="9" fill="#c62828">약점: 토크 분리 어려움(투명성↓) · Open Joint 먼지 취약</text>
+  <p class="p" style="margin-bottom:4px"><b>한 줄 요약</b> — 발끝이 무거우면 다리를 휘두를 때 큰 힘이 든다. 그래서 무거운 모터는 <b>종아리로 올리고</b>, 발목은 가느다란 <b>막대(로드) 2개</b>로 원격 조종한다.</p>
+  <p class="p" style="margin-top:6px"><b>Distal Mass(말단 질량)</b> — 같은 1kg이라도 발끝에 있으면 몸통에 있을 때보다 다리를 휘두르는 데 훨씬 큰 토크가 든다. 지렛대처럼 <b>무게가 회전축에서 멀수록 힘이 더 들기</b> 때문이다(Ch.18).</p>
+  <p class="p" style="margin-top:6px"><b>RSU(Rotary Spherical Universal) 쉽게</b> — 이름은 어렵지만 원리는 간단하다. 발목에 모터를 직접 붙이는 대신, 모터 2개를 종아리에 두고 <b>막대 2개</b>로 발목판을 잡아당긴다. 두 막대를 <b>같이 당기면 발끝이 위아래로(Pitch)</b>, <b>엇갈려 당기면 발이 좌우로 기울어진다(Roll)</b>. 모터 둘이 힘을 나눠 내(Torque Sharing) 큰 힘을 내면서도 발목은 가볍다(Ch.19~20).</p>
+  <div class="scroll-x"><svg viewBox="0 0 640 300" width="100%" style="max-width:640px;min-width:560px">
+    <defs>
+      <marker id="arR" markerWidth="9" markerHeight="9" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#c62828"/></marker>
+      <marker id="arG" markerWidth="9" markerHeight="9" refX="5.5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#00B894"/></marker>
+    </defs>
+    <rect x="0" y="0" width="640" height="300" fill="var(--bg-soft)" rx="8"/>
+
+    <!-- ===== ① Distal Mass = 지렛대 ===== -->
+    <text x="18" y="28" font-size="12" font-weight="700" fill="#0A0A08">① 왜 발끝 무게가 나쁜가 — 지렛대</text>
+    <!-- 다리 A: 발끝 무게 -->
+    <circle cx="80" cy="58" r="5" fill="#0A0A08"/><text x="80" y="50" text-anchor="middle" font-size="8" fill="#8B8B82">고관절(축)</text>
+    <line x1="80" y1="63" x2="80" y2="196" stroke="#4A4A45" stroke-width="4"/>
+    <circle cx="80" cy="202" r="12" fill="#c62828"/><text x="80" y="206" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">1kg</text>
+    <path d="M60 52 a22 22 0 0 1 40 0" fill="none" stroke="#c62828" stroke-width="3" marker-end="url(#arR)"/>
+    <line x1="98" y1="63" x2="98" y2="200" stroke="#c62828" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="118" y="135" font-size="8.5" fill="#c62828">먼 거리</text>
+    <text x="80" y="232" text-anchor="middle" font-size="9" fill="#4A4A45">발끝에 모터 → <tspan fill="#c62828" font-weight="700">큰 토크</tspan></text>
+    <!-- 다리 B: 몸쪽 무게 -->
+    <circle cx="220" cy="58" r="5" fill="#0A0A08"/>
+    <line x1="220" y1="63" x2="220" y2="196" stroke="#4A4A45" stroke-width="4"/>
+    <circle cx="220" cy="92" r="12" fill="#00B894"/><text x="220" y="96" text-anchor="middle" font-size="8" fill="#fff" font-weight="700">1kg</text>
+    <path d="M206 50 a14 14 0 0 1 26 0" fill="none" stroke="#00B894" stroke-width="2.5" marker-end="url(#arG)"/>
+    <line x1="238" y1="63" x2="238" y2="92" stroke="#00B894" stroke-width="1" stroke-dasharray="3 2"/>
+    <text x="244" y="80" font-size="8.5" fill="#00B894">짧은 거리</text>
+    <text x="220" y="232" text-anchor="middle" font-size="9" fill="#4A4A45">무게를 몸쪽으로 → <tspan fill="#00B894" font-weight="700">작은 토크</tspan></text>
+    <!-- 공식 -->
+    <text x="150" y="262" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0A0A08">돌리는 힘(토크) = 무게 × 거리</text>
+    <text x="150" y="280" text-anchor="middle" font-size="8.5" fill="#8B8B82">→ 무거운 모터는 발이 아니라 종아리·허벅지로 (Ch.18)</text>
+
+    <line x1="312" y1="14" x2="312" y2="286" stroke="var(--line-s)" stroke-width="1"/>
+
+    <!-- ===== ② RSU 구조 ===== -->
+    <text x="340" y="28" font-size="12" font-weight="700" fill="#0A0A08">② RSU — 모터는 종아리, 발목은 로드 2개</text>
+    <!-- 종아리 + 모터 2개 -->
+    <rect x="418" y="46" width="96" height="42" rx="6" fill="#EDECE4" stroke="#D8D6CC"/>
+    <rect x="428" y="54" width="34" height="26" rx="4" fill="#E17055"/><text x="445" y="71" text-anchor="middle" font-size="8" fill="#fff">모터</text>
+    <rect x="470" y="54" width="34" height="26" rx="4" fill="#E17055"/><text x="487" y="71" text-anchor="middle" font-size="8" fill="#fff">모터</text>
+    <text x="466" y="42" text-anchor="middle" font-size="8.5" fill="#8B8B82">종아리 (무게를 위로)</text>
+    <!-- 로드 2개 -->
+    <line x1="446" y1="88" x2="452" y2="156" stroke="#4A4A45" stroke-width="3"/>
+    <line x1="486" y1="88" x2="480" y2="156" stroke="#4A4A45" stroke-width="3"/>
+    <text x="524" y="126" font-size="8.5" fill="#8B8B82">로드 2개</text>
+    <!-- 발목판 -->
+    <rect x="436" y="156" width="60" height="12" rx="3" fill="#0A0A08"/>
+    <text x="466" y="184" text-anchor="middle" font-size="8.5" fill="#8B8B82">발목판 (2축: Pitch·Roll)</text>
+    <!-- Pitch/Roll 범례 -->
+    <text x="340" y="212" font-size="9.5" fill="#2e7d32" font-weight="700">↓↓ 두 로드 같이 당김 = 발끝 위아래(Pitch)</text>
+    <text x="340" y="232" font-size="9.5" fill="#0984E3" font-weight="700">↓↑ 엇갈려 당김 = 발 좌우 기울임(Roll)</text>
+    <text x="340" y="256" font-size="8.5" fill="#8B8B82">모터 2개가 힘을 나눠 냄(Torque Sharing) → 큰 힘·경량 발목</text>
+    <text x="340" y="276" font-size="8" fill="#c62828">약점: 모터별 토크 분리 어려움(투명성↓)·열린 관절→먼지 취약</text>
   </svg></div>
+  <p class="p" style="font-size:11.5px;color:var(--ink-2);margin-top:10px"><b>왜 밸류체인이 에스피지·로보티즈인가</b> — 다리의 무릎·고관절은 결국 <b>유성 QDD 액추에이터(감속기+모터 한 모듈)</b>다. <b>에스피지(058610)</b>는 이 유성감속기 QDD 액추에이터를 SDD로 양산에 들어갔고, <b>로보티즈(108490)</b>는 다이나믹셀 액추에이터(사이클로이드 DYD·유성 QDD 하이브리드)로 관절 모듈을 만든다 — 둘 다 다리 관절을 국산화할 부품 후보다.</p>
   <div class="badge-row"><span class="lbl">🔗 밸류체인</span><a class="vc-badge" href="valuechain.html#kr" target="_top">에스피지</a><a class="vc-badge" href="valuechain.html#kr" target="_top">로보티즈</a></div>
 </section>
 
@@ -289,7 +382,8 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
   <div class="card" style="margin-top:16px;border-left:3px solid #0984E3">
     <div class="card-title" style="border-color:var(--line)">🇰🇷 실전 사례 — <a href="valuechain.html#kr" target="_top" style="color:#0984E3;text-decoration:none">한라캐스트 (125490) ↗</a> · "구조체 방열"의 실제 밸류체인</div>
     <div class="img-grid">
-      <figure class="img-fig" style="flex:0 0 230px"><span class="hotspot-img"><img src="img/anatomy/heatsink_diecast.jpg" alt="다이캐스트 알루미늄 방열판"></span><figcaption>다이캐스트 알루미늄 방열판(핀 구조) — 칩·전력변환부 열을 프레임으로 퍼뜨리는 '전기 변환' 케이스류의 형상 예시. 출처 Wikimedia Commons (CC0) · 한라캐스트 실제 제품 아님, 형상 참고용.</figcaption></figure>
+      <figure class="img-fig" style="flex:0 0 230px"><span class="hotspot-img" style="background:#fff"><img src="img/anatomy/hanla_parts.png" alt="한라캐스트 전력 변환 장치 케이스·배터리 케이스"></span><figcaption><b>한라캐스트 실제 부품</b> — 전력 변환 장치 케이스·배터리 케이스. 칩·배터리 전환장치를 감싸며 열을 프레임으로 퍼뜨리는 다이캐스트 케이스류다. · 한라캐스트 회사소개(26.05)</figcaption></figure>
+      <figure class="img-fig" style="flex:0 0 230px"><span class="hotspot-img"><img src="img/anatomy/heatsink_diecast.jpg" alt="다이캐스트 알루미늄 방열판"></span><figcaption>참고: 다이캐스트 알루미늄 방열판(핀 구조) — 열을 프레임으로 퍼뜨리는 방열 형상 예시. 출처 Wikimedia Commons (CC0) · 일반 형상 참고용.</figcaption></figure>
       <div class="img-fig">
         <p class="p" style="margin-top:0"><b>'전기 변환'</b>(칩·배터리 전환장치의 방열·보호 케이스류) — 글로벌 AI사(테슬라)향 <b>1,000억 수주·26.2 양산 개시</b>. 로봇향은 칩은 유사하나 형상 별도 개발 중. 로봇 최대 부품 = 가슴부 800톤급(자동차 전장 최대 2,500톤). 대당 콘텐츠 약 <b>3.3만원</b> <span class="tag-est">추정</span>. "액추에이터사·캐스팅사가 곧 열관리 부품사"의 한국 증거.</p>
         <a class="vc-badge" href="valuechain.html#kr" target="_top" style="font-size:9px">자세히 → KR 밸류체인 ↗</a>
@@ -355,7 +449,7 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 
 </main>
 
-<script src="data.js?v=20260712anatomy"></script>
+<script src="data.js?v=20260712"></script>
 <script>
 (function(){
   var AD = (typeof DASHBOARD_DATA !== 'undefined' && DASHBOARD_DATA.anatomyData) || {};
@@ -426,9 +520,16 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
   function pctFromRatio(r){ return Math.log10(r)/Math.log10(120)*100; }
   function renderGearMarkers(){
     var mt=document.getElementById('gearMarkers'); if(!mt) return;
-    (AD.gearMarkers||[]).forEach(function(m){
-      var d=document.createElement('div'); d.className='marker'; d.style.left=pctFromRatio(m.ratio)+'%';
-      d.innerHTML='<i></i><span>'+esc(m.label)+(m.tag?' '+esc(m.tag):'')+'</span>';
+    // 위치(pct)순 정렬 후, 서로 가까운 마커는 세로 단(tier)을 내려 라벨 겹침 제거
+    var list=(AD.gearMarkers||[]).map(function(m){ return {m:m, pct:pctFromRatio(m.ratio)}; })
+      .sort(function(a,b){ return a.pct-b.pct; });
+    var MINGAP=18, prev=-99, tier=0;
+    list.forEach(function(o){
+      if(o.pct-prev<MINGAP){ tier=(tier+1)%3; } else { tier=0; }
+      prev=o.pct;
+      var ch=12+tier*17;                                    // leader line 길이 = 단 높이
+      var d=document.createElement('div'); d.className='marker'+(o.pct>82?' er':o.pct<18?' el':''); d.style.left=o.pct+'%';
+      d.innerHTML='<i style="height:'+ch+'px"></i><span style="top:'+ch+'px">'+esc(o.m.label)+(o.m.tag?' '+esc(o.m.tag):'')+'</span>';
       mt.appendChild(d);
     });
   }
