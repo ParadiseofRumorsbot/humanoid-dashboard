@@ -239,16 +239,7 @@ const DATA = {
     dcDemandGW: 120,  // 2026E 하이퍼스케일러 DC 수요
   },
 
-  /* ── OEM 생산 목표 ── */
-  oemTargets: [
-    { name: 'Tesla', flag: '🇺🇸', target2026: '5~10만 CAPA', target2030: '100만대 목표', price: '$20~30K', battery: '2.3kWh / 2170 원통형' },
-    { name: 'AGIBOT', flag: '🇨🇳', target2026: '수만대', target2030: '-', price: '-', battery: '-' },
-    { name: 'UBTECH', flag: '🇨🇳', target2026: '1만대', target2030: '-', price: '-', battery: '-' },
-    { name: 'Unitree', flag: '🇨🇳', target2026: '-', target2030: '-', price: '$16K~', battery: '-' },
-    { name: 'Figure AI', flag: '🇺🇸', target2026: '-', target2030: '-', price: '-', battery: '-' },
-    { name: 'Agility', flag: '🇺🇸', target2026: '1만 CAPA', target2030: '3만대(28E)', price: '-', battery: '-' },
-    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026 여름)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
-  ],
+  /* oemTargets → OEM 정본(market_company OEM②)으로 융합 이관 (26-07-12 v4) */
 
   /* ── 한국 밸류체인 ── */
   krValueChain: [
@@ -331,7 +322,6 @@ function render() {
   renderTamOutput();
   renderBatteryDemand();
   renderPowerDemand();
-  renderOemTargets();
 }
 
 function renderScenarioTabs() {
@@ -532,18 +522,7 @@ function renderUsValueChain() {
 
 /* renderPhysicalAILayers() 미호출 죽은 코드 제거 — 원가 정본은 components #cost (26-07-12 v4) */
 
-function renderOemTargets() {
-  const el = $('#oemGrid');
-  let html = '<div class="capa-th" style="text-align:left">OEM</div><div class="capa-th">2026 목표</div><div class="capa-th">2028~30 목표</div><div class="capa-th">단가 목표</div><div class="capa-th">배터리</div>';
-  DATA.oemTargets.forEach(o => {
-    html += `<div class="capa-td" style="text-align:left;font-weight:600">${o.flag} ${o.name}</div>`;
-    html += `<div class="capa-td" style="text-align:right">${o.target2026}</div>`;
-    html += `<div class="capa-td" style="text-align:right">${o.target2030}</div>`;
-    html += `<div class="capa-td" style="text-align:right">${o.price}</div>`;
-    html += `<div class="capa-td" style="text-align:right;font-size:10px">${o.battery}</div>`;
-  });
-  el.innerHTML = html;
-}
+/* renderOemTargets() → OEM 정본(market_company OEM②)으로 융합 이관 (26-07-12 v4) */
 
 function handleYear(v) {
   S.year=+v;
@@ -716,12 +695,11 @@ a{color:inherit}
     </div>
   </section>
 
-  <!-- ═══ 3.5 2025 실적 & OEM 목표 ═══ -->
+  <!-- ═══ 3.5 OEM 목표 — OEM 정본으로 융합 이관 (26-07-12 v4), 요약 스텁만 ═══ -->
   <section class="card">
-    <div class="card-title">🏭 OEM Production Targets</div>
-    <div class="scroll-x">
-      <div class="oem-grid" id="oemGrid"></div>
-    </div>
+    <div class="card-title">🏭 OEM 생산 목표 요약 <span class="badge" style="background:var(--bg-soft);color:var(--ink-2)">정본: 기업별 TAM</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>한 줄 요약:</b> 각사 선언 목표는 Tesla 2026 5~10만 CAPA→2030 100만대, Agility 1만 CAPA, BD 2028E 3만 CAPA 등임. 모델 비교·목표 전체 표·실측 Tracker는 OEM 정본에서 봄. 위 시뮬레이터 출하 시나리오의 참고 입력값임.</div>
+    <a href="market.html#company" target="_top" style="font-size:11px;color:#0984E3;font-weight:600;text-decoration:none">OEM 정본 전체 보기 ↗</a>
   </section>
 
 

@@ -83,40 +83,11 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
   </section>
 
 
-  <section class="card section-gap">
-    <div class="card-title">📡 Production Tracker (2024~2026) <span class="badge" style="background:#00B894;color:#fff">각사 발표·언론종합</span></div>
-    <div class="num-row">
-      <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">Agibot 누적</div><div class="num-value">10,000대</div><div class="num-sub">2026.03 기준 · Source: Agibot</div></div>
-      <div class="num-box" style="border-left:3px solid #3498db"><div class="num-label">Figure AI 생산</div><div class="num-value">160대/월</div><div class="num-sub">Source: Figure AI</div></div>
-      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">중국 데이터 팩토리</div><div class="num-value">50+개소</div><div class="num-sub">Source: 휴머노이드로봇상하이유한공사</div></div>
-    </div>
-    <div class="num-row">
-      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">Ukraine 1Q26 로봇 미션</div><div class="num-value">22,000건</div><div class="num-sub">Source: The Sun</div></div>
-      <div class="num-box" style="border-left:3px solid #E17055"><div class="num-label">Uforce 누적 미션</div><div class="num-value">150,000+건</div><div class="num-sub">Source: 각사</div></div>
-    </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">글로벌 휴머노이드 생산량 2024~2025 추적 기반 (각사 발표·언론종합). 중국 제조사 중심 빠른 스케일업 진행 중.</div>
-    <!-- ── 가산: 실증 정량 (각사 발표 원데이터) ── -->
-    <div style="margin:16px 0 8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">실증 정량 — 양산 라인·실증 (각사 발표)</div>
-    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:620px">
-      <thead><tr style="border-bottom:2px solid var(--ink)">
-        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">기업·모델</th>
-        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">생산능력·라인</th>
-        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">실증 정량</th>
-      </tr></thead>
-      <tbody>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Figure AI (BotQ)</td><td style="padding:7px 9px;white-space:normal">캘리 BotQ 연 1.2만대(향후 4년 10만대 선언) · 월 생산 4월 ~150대→5월 ~250대 · 9,000+ 액추에이터·10종+ SKU</td><td style="padding:7px 9px;white-space:normal">양품률 최종라인 80%+·배터리라인 99.3% · 라이브스트리밍으로 원격조작(teleop) 미개입 입증</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 1X Technologies (NEO)</td><td style="padding:7px 9px;white-space:normal">캘리 5.8만 sqft 연 1만대 → 2027년 10만대 목표</td><td style="padding:7px 9px;white-space:normal">사전예약 1만대 완판 · 가격 ~$20,000 / 구독 $499/월 (2026.06 기준)</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Agility (Digit v5)</td><td style="padding:7px 9px;white-space:normal">오레곤 RoboFab 연 1만대 · 엔비디아 Halos 안전시스템 업계 최초 탑재</td><td style="padding:7px 9px;white-space:normal">$3억 수주 = Digit v5 1,000대·3년 RaaS·마일스톤 달성 시 인식(즉시 매출 아님) · 누적 실증 65,000시간(Amazon·Toyota·GXO·BMW)</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Leju (KUAVO, 화웨이 모델/OS)</td><td style="padding:7px 9px;white-space:normal">선전 30분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">화웨이 모델/OS 연계</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Engine AI (T800)</td><td style="padding:7px 9px;white-space:normal">선전 15분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">18만위안 (가격)</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 AgiBot</td><td style="padding:7px 9px;white-space:normal">Loncheer 공장 대량생산 라인</td><td style="padding:7px 9px;white-space:normal">6/23–28 양산 라인 라이브스트리밍</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Boston Dynamics × DHL</td><td style="padding:7px 9px;white-space:normal">Stretch 1,000대+ MOU</td><td style="padding:7px 9px;white-space:normal">시간당 700케이스 하역</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇰🇷 Boston Dynamics × 현대제철</td><td style="padding:7px 9px;white-space:normal">당진 2냉연 104개소</td><td style="padding:7px 9px;white-space:normal">Spot 자율순찰</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Figure AI × BMW</td><td style="padding:7px 9px;white-space:normal">스파르탄버그 실증 11개월</td><td style="padding:7px 9px;white-space:normal">누적 1,250시간 · X3 3만대 생산 기여</td></tr>
-        <tr><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 1X Technologies × EQT</td><td style="padding:7px 9px;white-space:normal">2030년까지 NEO 최대 1만대 공급계약(25.12)</td><td style="padding:7px 9px;white-space:normal">-</td></tr>
-      </tbody>
-    </table></div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사 발표(원데이터). 통화·시점 병기. 공개 파트너십·캡티브 채널 기준 Agility·BD·Tesla 우위 [언론종합]</div>
+  <!-- Production Tracker는 OEM 정본으로 융합 이관 (26-07-12 v4) — 여기는 요약 스텁만 -->
+  <section class="card section-gap" style="border-left:3px solid #00B894">
+    <div class="card-title">📡 OEM 목표 vs 실적 요약 <span class="badge" style="background:var(--bg-soft);color:var(--ink-2)">정본: 시장·경쟁 › 기업별 TAM</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>한 줄 요약:</b> 실측 실적은 <b>Agibot 누적 10,000대</b>(26.03)·<b>Figure 월 ~250대</b> 수준으로 선언된 목표(테슬라 2030 100만대 등)와 간극이 큼. 모델 비교·생산 목표·양산 라인·실증 정량(Production Tracker)은 전부 OEM 정본에 모아뒀음.</div>
+    <a href="market.html#company" target="_top" style="font-size:11px;color:#00B894;font-weight:600;text-decoration:none">OEM 정본 전체 보기 ↗</a>
   </section>
 
   <section class="card section-gap">

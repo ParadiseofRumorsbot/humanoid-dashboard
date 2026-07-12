@@ -86,8 +86,22 @@ window.addEventListener('DOMContentLoaded',render);
     <a href="tech.html#parts:cost" target="_top" style="font-size:11px;color:#FF6B6B;font-weight:600;text-decoration:none">원가/BOM 정본 전체 보기 ↗</a>
   </section>
 
+  <!-- ═══ OEM 정본 도입 (신규 · 융합 v4) ═══ -->
+  <section id="oem" class="card section-gap" style="border-left:4px solid #0984E3">
+    <div class="card-title">🤖 OEM 정본 — 목표는 100만대, 실적은 월 수백 대 <span class="badge" style="background:#0984E3;color:#fff">전 탭 OEM 비교 기준점</span></div>
+    <div style="background:rgba(9,132,227,0.06);border-left:4px solid #0984E3;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:14px">
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7"><b>한 줄 요약:</b> 가격 <b>$15~50K</b> 밴드에서 중국(AGIBOT·Unitree)이 물량으로, 미국(Optimus·Figure)이 캡티브 채널로 맞서는 구도임. 선언된 목표(테슬라 2030년 100만대)와 실측 실적(Figure 월 ~250대, Agibot 누적 1만대)의 간극이 커서, <b>목표(선언)와 실적(실증)을 나눠 읽어야</b> 함. OEM 비교 숫자는 이 섹션이 기준점임.</div>
+    </div>
+    <div class="num-row" style="margin-bottom:12px">
+      <div class="num-box" style="border-left:3px solid #0984E3"><div class="num-label">양산 가격 밴드</div><div class="num-value">$15~50K</div><div class="num-sub">5개 모델 · ① 비교 · Robozaps</div></div>
+      <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">최대 목표: Tesla 2030</div><div class="num-value">100만대</div><div class="num-sub">2026은 5~10만 CAPA · ② 목표</div></div>
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">실측 최대: Agibot 누적</div><div class="num-value">10,000대</div><div class="num-sub">2026.03 기준 · ③ 실적</div></div>
+    </div>
+    <div style="font-size:11px;color:var(--ink-2);line-height:1.7">읽는 순서: <b>① 모델 비교</b>(스펙·가격) → <b>② 생산 목표</b>(각사 선언) → <b>③ 목표 vs 실적</b>(양산 라인·실증 정량). 하드웨어 스펙 레이더는 <a href="tech.html#parts" target="_top" style="color:#0984E3">부품 탭 ↗</a>, 물량→시장 환산은 <a href="market.html#tam" target="_top" style="color:#0984E3">TAM 시뮬레이터 ↗</a>.</div>
+  </section>
+
   <section class="card section-gap">
-    <div class="card-title">🤖 2026 휴머노이드 모델 비교 <span class="badge" style="background:var(--ink);color:var(--bg)">Robozaps</span></div>
+    <div class="card-title">🤖 OEM① 2026 모델 비교 <span class="badge" style="background:var(--ink);color:var(--bg)">Robozaps</span></div>
     <div class="scroll-x">
       <div style="display:grid;grid-template-columns:100px 80px 70px 80px 80px 1fr;gap:0;font-family:var(--mono);font-size:11px">
         <div class="th" style="text-align:left">모델</div><div class="th">가격</div><div class="th">높이</div><div class="th">무게</div><div class="th">2026 생산목표</div><div class="th" style="text-align:left">비고</div>
@@ -99,6 +113,67 @@ window.addEventListener('DOMContentLoaded',render);
       </div>
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:6px">Source: Robozaps. 가격은 양산 기준 추정치. 스펙 · 생산목표는 각사 공식 발표 기반.</div>
+  </section>
+
+  <!-- ═══ OEM② 생산 목표 — TAM 시뮬 탭에서 융합 이관 (26-07-12 v4) ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">🏭 OEM② 생산 목표 (2026 / 2028~30) <span class="badge" style="background:var(--ink);color:var(--bg)">각사 발표</span></div>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">OEM</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">2026 목표</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">2028~30 목표</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">단가 목표</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">배터리</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Tesla</td><td style="text-align:right;padding:7px 9px">5~10만 CAPA</td><td style="text-align:right;padding:7px 9px">100만대 목표</td><td style="text-align:right;padding:7px 9px">$20~30K</td><td style="text-align:right;padding:7px 9px">2.3kWh / 2170 원통형</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 AGIBOT</td><td style="text-align:right;padding:7px 9px">수만대</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 UBTECH</td><td style="text-align:right;padding:7px 9px">1만대</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Unitree</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">$16K~</td><td style="text-align:right;padding:7px 9px">-</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Figure AI</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Agility</td><td style="text-align:right;padding:7px 9px">1만 CAPA</td><td style="text-align:right;padding:7px 9px">3만대(28E)</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">-</td></tr>
+        <tr><td style="padding:7px 9px;font-weight:600">🇺🇸 Boston Dynamics</td><td style="text-align:right;padding:7px 9px">RMAC 개소 (2026 여름)</td><td style="text-align:right;padding:7px 9px">3만 CAPA (2028E)</td><td style="text-align:right;padding:7px 9px">-</td><td style="text-align:right;padding:7px 9px">Self-swappable</td></tr>
+      </tbody>
+    </table></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">출처: 각사 발표·언론 종합. 목표는 선언치 — 실측은 아래 ③ Tracker와 대조해 읽을 것.</div>
+  </section>
+
+  <!-- ═══ OEM③ Production Tracker — 경쟁 현황 탭에서 융합 이관 (26-07-12 v4) ═══ -->
+  <section class="card section-gap">
+    <div class="card-title">📡 OEM③ 목표 vs 실적 — Production Tracker (2024~2026) <span class="badge" style="background:#00B894;color:#fff">각사 발표·언론종합</span></div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">Agibot 누적</div><div class="num-value">10,000대</div><div class="num-sub">2026.03 기준 · Source: Agibot</div></div>
+      <div class="num-box" style="border-left:3px solid #3498db"><div class="num-label">Figure AI 생산</div><div class="num-value">160대/월</div><div class="num-sub">Source: Figure AI</div></div>
+      <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">중국 데이터 팩토리</div><div class="num-value">50+개소</div><div class="num-sub">Source: 휴머노이드로봇상하이유한공사</div></div>
+    </div>
+    <div class="num-row">
+      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">Ukraine 1Q26 로봇 미션</div><div class="num-value">22,000건</div><div class="num-sub">Source: The Sun</div></div>
+      <div class="num-box" style="border-left:3px solid #E17055"><div class="num-label">Uforce 누적 미션</div><div class="num-value">150,000+건</div><div class="num-sub">Source: 각사</div></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">글로벌 휴머노이드 생산량 2024~2025 추적 기반 (각사 발표·언론종합). 중국 제조사 중심 빠른 스케일업 진행 중.</div>
+    <!-- ── 가산: 실증 정량 (각사 발표 원데이터) ── -->
+    <div style="margin:16px 0 8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">실증 정량 — 양산 라인·실증 (각사 발표)</div>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:620px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">기업·모델</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">생산능력·라인</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">실증 정량</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Figure AI (BotQ)</td><td style="padding:7px 9px;white-space:normal">캘리 BotQ 연 1.2만대(향후 4년 10만대 선언) · 월 생산 4월 ~150대→5월 ~250대 · 9,000+ 액추에이터·10종+ SKU</td><td style="padding:7px 9px;white-space:normal">양품률 최종라인 80%+·배터리라인 99.3% · 라이브스트리밍으로 원격조작(teleop) 미개입 입증</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 1X Technologies (NEO)</td><td style="padding:7px 9px;white-space:normal">캘리 5.8만 sqft 연 1만대 → 2027년 10만대 목표</td><td style="padding:7px 9px;white-space:normal">사전예약 1만대 완판 · 가격 ~$20,000 / 구독 $499/월 (2026.06 기준)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Agility (Digit v5)</td><td style="padding:7px 9px;white-space:normal">오레곤 RoboFab 연 1만대 · 엔비디아 Halos 안전시스템 업계 최초 탑재</td><td style="padding:7px 9px;white-space:normal">$3억 수주 = Digit v5 1,000대·3년 RaaS·마일스톤 달성 시 인식(즉시 매출 아님) · 누적 실증 65,000시간(Amazon·Toyota·GXO·BMW)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Leju (KUAVO, 화웨이 모델/OS)</td><td style="padding:7px 9px;white-space:normal">선전 30분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">화웨이 모델/OS 연계</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 Engine AI (T800)</td><td style="padding:7px 9px;white-space:normal">선전 15분당 1대 · 연 1만대</td><td style="padding:7px 9px;white-space:normal">18만위안 (가격)</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇨🇳 AgiBot</td><td style="padding:7px 9px;white-space:normal">Loncheer 공장 대량생산 라인</td><td style="padding:7px 9px;white-space:normal">6/23–28 양산 라인 라이브스트리밍</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Boston Dynamics × DHL</td><td style="padding:7px 9px;white-space:normal">Stretch 1,000대+ MOU</td><td style="padding:7px 9px;white-space:normal">시간당 700케이스 하역</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇰🇷 Boston Dynamics × 현대제철</td><td style="padding:7px 9px;white-space:normal">당진 2냉연 104개소</td><td style="padding:7px 9px;white-space:normal">Spot 자율순찰</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 Figure AI × BMW</td><td style="padding:7px 9px;white-space:normal">스파르탄버그 실증 11개월</td><td style="padding:7px 9px;white-space:normal">누적 1,250시간 · X3 3만대 생산 기여</td></tr>
+        <tr><td style="padding:7px 9px;font-weight:600;white-space:normal">🇺🇸 1X Technologies × EQT</td><td style="padding:7px 9px;white-space:normal">2030년까지 NEO 최대 1만대 공급계약(25.12)</td><td style="padding:7px 9px;white-space:normal">-</td></tr>
+      </tbody>
+    </table></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사 발표(원데이터). 통화·시점 병기. 공개 파트너십·캡티브 채널 기준 Agility·BD·Tesla 우위 [언론종합]</div>
   </section>
 
   <section class="card section-gap">
