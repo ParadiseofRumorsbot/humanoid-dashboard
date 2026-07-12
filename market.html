@@ -88,7 +88,11 @@ function showSub(tab, btn){
 }
 document.getElementById('frame').addEventListener('load', bindResize);
 window.addEventListener('resize', fit);
-window.addEventListener('DOMContentLoaded', function(){ showSub('tam', document.querySelector('#subTabs .st-btn')); });
+window.addEventListener('DOMContentLoaded', function(){
+  var tab = (location.hash||'').replace('#','').split(':')[0];
+  if (!SUB[tab]) tab = 'tam';
+  showSub(tab, document.querySelector('#subTabs .st-btn[data-tab="'+tab+'"]'));
+});
 </script>
 </body>
 </html>

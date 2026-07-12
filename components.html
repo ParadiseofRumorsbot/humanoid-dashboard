@@ -30,6 +30,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
+<script src="data.js?v=20260712unify"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -199,39 +200,7 @@ function showPart(i) {
 // ═══════════════════════════════════════
 // 3. HUMANOID JOINT MAP
 // ═══════════════════════════════════════
-const OEM_SPECS = {
-  optimus: {name:'Tesla Optimus',dof:22,joints:[
-    {x:150,y:50,name:'목',type:'유성',torque:'5Nm'},
-    {x:110,y:90,name:'어깨R',type:'하모닉',torque:'40Nm'},{x:190,y:90,name:'어깨L',type:'하모닉',torque:'40Nm'},
-    {x:90,y:140,name:'팔꿈치R',type:'유성',torque:'20Nm'},{x:210,y:140,name:'팔꿈치L',type:'유성',torque:'20Nm'},
-    {x:80,y:185,name:'손목R',type:'하모닉',torque:'5Nm'},{x:220,y:185,name:'손목L',type:'하모닉',torque:'5Nm'},
-    {x:130,y:200,name:'허리',type:'하모닉',torque:'80Nm'},
-    {x:120,y:250,name:'엉덩이R',type:'하모닉',torque:'100Nm'},{x:180,y:250,name:'엉덩이L',type:'하모닉',torque:'100Nm'},
-    {x:115,y:310,name:'무릎R',type:'유성',torque:'60Nm'},{x:185,y:310,name:'무릎L',type:'유성',torque:'60Nm'},
-    {x:110,y:370,name:'발목R',type:'하모닉',torque:'40Nm'},{x:190,y:370,name:'발목L',type:'하모닉',torque:'40Nm'},
-  ]},
-  atlas: {name:'BD Atlas',dof:56,joints:[
-    {x:150,y:50,name:'목(3DoF)',type:'유성',torque:'15Nm'},
-    {x:100,y:90,name:'어깨R(3DoF)',type:'유성',torque:'80Nm'},{x:200,y:90,name:'어깨L',type:'유성',torque:'80Nm'},
-    {x:80,y:130,name:'팔R(2DoF)',type:'유성',torque:'40Nm'},{x:220,y:130,name:'팔L',type:'유성',torque:'40Nm'},
-    {x:70,y:170,name:'손목R(3DoF)',type:'하모닉',torque:'10Nm'},{x:230,y:170,name:'손목L',type:'하모닉',torque:'10Nm'},
-    {x:60,y:195,name:'손R(12DoF)',type:'하모닉',torque:'2Nm'},{x:240,y:195,name:'손L',type:'하모닉',torque:'2Nm'},
-    {x:150,y:200,name:'허리(3DoF)',type:'유성',torque:'120Nm'},
-    {x:120,y:250,name:'엉덩이R(3DoF)',type:'유성',torque:'150Nm'},{x:180,y:250,name:'엉덩이L',type:'유성',torque:'150Nm'},
-    {x:115,y:310,name:'무릎R',type:'유성',torque:'100Nm'},{x:185,y:310,name:'무릎L',type:'유성',torque:'100Nm'},
-    {x:110,y:370,name:'발목R(2DoF)',type:'유성',torque:'60Nm'},{x:190,y:370,name:'발목L',type:'유성',torque:'60Nm'},
-  ]},
-  g1: {name:'Unitree G1',dof:23,joints:[
-    {x:150,y:55,name:'목',type:'유성',torque:'3Nm'},
-    {x:110,y:90,name:'어깨R',type:'유성',torque:'25Nm'},{x:190,y:90,name:'어깨L',type:'유성',torque:'25Nm'},
-    {x:90,y:140,name:'팔꿈치R',type:'유성',torque:'15Nm'},{x:210,y:140,name:'팔꿈치L',type:'유성',torque:'15Nm'},
-    {x:80,y:180,name:'손목R',type:'유성',torque:'3Nm'},{x:220,y:180,name:'손목L',type:'유성',torque:'3Nm'},
-    {x:130,y:200,name:'허리',type:'유성',torque:'50Nm'},
-    {x:120,y:250,name:'엉덩이R',type:'유성',torque:'60Nm'},{x:180,y:250,name:'엉덩이L',type:'유성',torque:'60Nm'},
-    {x:115,y:310,name:'무릎R',type:'유성',torque:'40Nm'},{x:185,y:310,name:'무릎L',type:'유성',torque:'40Nm'},
-    {x:110,y:370,name:'발목R',type:'유성',torque:'25Nm'},{x:190,y:370,name:'발목L',type:'유성',torque:'25Nm'},
-  ]},
-};
+const OEM_SPECS = DASHBOARD_DATA.oemSpecs; // 데이터 정본: data.js (인라인 중복 제거, 26-07-12 일원화)
 let selOEM = 'optimus';
 const typeColor = {'유성':'#F8B739','하모닉':'#6C5CE7','사이클로이드':'#FF6B6B'};
 
@@ -417,14 +386,7 @@ function animateWalk() {
 // ═══════════════════════════════════════
 // 5. RADAR CHART
 // ═══════════════════════════════════════
-const RADAR_OEM = {
-  optimus:{name:'Optimus Gen2',color:'#FF6B6B',h:173,w:56,dof:22,payload:9,battery:2.3,asp:25,gear:'하모닉',customer:'자사 공장',pos:'범용 양산형',note:'Gen3 26.6말 설계승인·9월 주1,000대 지침'},
-  figure:{name:'Figure 03',color:'#6C5CE7',h:168,w:61,dof:30,payload:10,battery:2,asp:25,gear:'하모닉',customer:'BMW',pos:'미국 공장용',note:'OpenAI World Model'},
-  atlas:{name:'BD Atlas',color:'#F8B739',h:190,w:90,dof:56,payload:50,battery:5,asp:138,gear:'유성 QDD',customer:'현대차그룹',pos:'하이엔드 산업용',note:'RMAC 2026년 8월 개소, 30K CAPA (28E)'},
-  digit:{name:'Agility Digit',color:'#00B894',h:175,w:65,dof:28,payload:16,battery:3,asp:45,gear:'하모닉',customer:'Amazon·GXO',pos:'물류 특화',note:'캐나다 토요타 7대 배치'},
-  g1:{name:'Unitree G1',color:'#E17055',h:132,w:35,dof:23,payload:2,battery:1.5,asp:13.5,gear:'유성',customer:'범용',pos:'중국 저가형',note:'26년 8월 IPO, BOM 790만원'},
-  neo:{name:'1X Neo',color:'#0984E3',h:168,w:30,dof:75,payload:25,battery:2,asp:20,gear:'유성',customer:'일반 소비자',pos:'서비스·가정용',note:'26H2 소비자 배송 시작'},
-};
+const RADAR_OEM = DASHBOARD_DATA.radarOEM; // 데이터 정본: data.js (인라인 중복 제거, 26-07-12 일원화)
 let radarSel = ['optimus','g1'];
 
 function renderRadar() {
@@ -581,6 +543,7 @@ window.addEventListener('DOMContentLoaded', () => {
   <!-- ═══ 1. Reducer Animations ═══ -->
   <section class="card section-gap">
     <div class="card-title">⚙️ 감속기 3종 구동 원리 <span class="badge" style="background:#FF6B6B;color:#fff">실시간 애니메이션</span></div>
+    <p style="font-size:11px;color:var(--ink-3);margin-bottom:10px">감속기가 왜 필요한지·종류별 이야기 정본은 <a href="tech.html#anatomy" target="_top" style="color:#6C5CE7">해부 탭 03 감속기 ↗</a> — 여기는 구동 원리 애니메이션과 스펙 데이터만 담는다.</p>
     <div class="ctrl-row">
       <button class="on" onclick="gearRunning=!gearRunning;this.classList.toggle('on')">⏯ 재생/정지</button>
       <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">속도:</span>
@@ -631,7 +594,7 @@ window.addEventListener('DOMContentLoaded', () => {
   <!-- ═══ 1.3 Dexterous Hand 원가·부위별 액추에이터 ═══ -->
   <section class="card section-gap" style="border-left:4px solid #00B894">
     <div class="card-title">🖐️ Dexterous Hand 원가·내구 + 부위별 액추에이터 방식 <span class="badge" style="background:#00B894;color:#fff">로보티즈 IR · 자체추정</span></div>
-    <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">거대 OEM이 AI·몸체를 자체화해도 <b>저원가·고내구 dexterous 손</b>은 외부 조달 유인이 큰 '부품 니치'. 로보티즈는 핸드 원가 우위 + BD 뉴아틀라스 손 공급 레퍼런스로 이 니치를 파고듦.</p>
+    <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">거대 OEM이 AI·몸체를 자체화해도 <b>저원가·고내구 dexterous 손</b>은 외부 조달 유인이 큰 '부품 니치'. 로보티즈는 핸드 원가 우위 + BD 뉴아틀라스 손 공급 레퍼런스로 이 니치를 파고듦. <a href="tech.html#anatomy" target="_top" style="color:#00B894">손 구조·원리 정본: 해부 05 ↗</a></p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
       <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #00B894">
         <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:4px">로보티즈 핸드 (전류제어 교체형)</div>
@@ -1138,6 +1101,7 @@ window.addEventListener('DOMContentLoaded', () => {
   <!-- ═══ 5. Radar Chart ═══ -->
   <section class="card section-gap">
     <div class="card-title">📊 OEM 스펙 비교 <span class="badge" style="background:var(--ink);color:var(--bg)">최대 3개 선택 · 축 반전 적용</span></div>
+    <p style="font-size:11px;color:var(--ink-3);margin-bottom:10px">모델별 가격·생산목표·스펙 비교의 정본은 <a href="market.html#company" target="_top" style="color:#0984E3">시장·경쟁 › 기업별 TAM ↗</a> — 여기는 하드웨어 관점 레이더 차트만 유지.</p>
     <div class="st-tabs" id="radarBtns" style="margin-bottom:12px"></div>
     <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start">
       <div id="radarSvg" style="flex:0 0 auto"></div>
@@ -1184,7 +1148,7 @@ window.addEventListener('DOMContentLoaded', () => {
   <!-- ═══ 1.4 로봇 열 관리 (공냉식) ═══ -->
   <section id="thermal" class="card section-gap" style="border-left:4px solid #FF6B6B">
     <div class="card-title">🌡️ 로봇 열 관리 — 공냉식 기반 · 액추에이터 = 사실상 열관리 부품사 <span class="badge" style="background:#FF6B6B;color:#fff">자체추정</span></div>
-    <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">휴머노이드는 실내·충전 환경에서 작동해 <b>배터리 용량보다 열이 작업시간을 좌우</b>. 주 열원은 관절마다 있는 <b>액추에이터</b>이고, 관절이 움직여 냉각수 배관을 두를 수 없어 <b>패시브 공냉식이 기본</b>(고발열부에만 수냉 선택 추가). 별도 냉각 시스템 역할이 작아지는 대신 <b>발열 억제·열전도·방열이 액추에이터 부품 자체에 내재화</b> → 액추에이터사가 단순 구동부품사가 아니라 열관리 부품사가 됨.</p>
+    <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">휴머노이드는 <b>배터리 용량보다 열이 작업시간을 좌우</b> — 왜 그런지("로봇=난로") 이야기 정본은 <a href="tech.html#anatomy" target="_top" style="color:#FF6B6B">해부 07 열관리 ↗</a>. 여기는 공냉/수냉 데이터와 부품·벤더 표만 담는다.</p>
 
     <div class="scroll-x" style="margin-bottom:12px"><table style="width:100%;border-collapse:collapse;font-size:11px">
       <thead><tr style="border-bottom:2px solid var(--ink)">
@@ -1244,7 +1208,6 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 언론 종합 · BD 공식 · Gen3 열관리 분석노트(26.07.10) · 자체추정</div>
   </section>
 
-<script src="data.js?v=20260602b"></script>
 <script>
 (function(){
 const D = DASHBOARD_DATA;
