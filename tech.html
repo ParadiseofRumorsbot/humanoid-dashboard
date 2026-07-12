@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>기술 · Humanoid Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#FAFAF6;--bg-grid:#F0EFE8;--bg-card:#FFF;--bg-soft:#F5F4ED;--ink:#0A0A08;--ink-2:#4A4A45;--ink-3:#8B8B82;--line:#E2E1D8;--line-s:#C5C3B7;--sans:'Pretendard',-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;background-image:linear-gradient(var(--bg-grid) .5px,transparent .5px),linear-gradient(90deg,var(--bg-grid) .5px,transparent .5px);background-size:32px 32px}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 100px}
+a{color:inherit}
+.hdr{margin-bottom:16px}
+.hdr-tag{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px;display:flex;align-items:center;gap:10px}.hdr-tag::before{content:'';width:24px;height:1px;background:var(--ink-3)}
+.hdr h1{font-size:28px;font-weight:300;letter-spacing:-.02em;line-height:1.2;margin-bottom:6px}
+.hdr h1 b{font-family:var(--mono);font-size:.8em;background:var(--ink);color:var(--bg);padding:2px 10px 4px;border-radius:4px;display:inline-block;margin-right:6px;vertical-align:3px}
+.hdr-sub{font-size:13px;color:var(--ink-2);max-width:680px}
+.st-tabs{display:flex;gap:3px;background:var(--bg-soft);padding:3px;border-radius:7px;flex-wrap:wrap}
+.st-btn{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.04em;padding:8px 12px;border:none;border-radius:5px;background:transparent;color:var(--ink-2);cursor:pointer;transition:all .18s}.st-btn:hover{color:var(--ink)}.st-btn.on{background:var(--ink);color:var(--bg)}
+.st-grp{font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);align-self:center;padding:0 4px 0 8px}
+.sub-cap{font-size:11.5px;color:var(--ink-2);line-height:1.6;padding:9px 12px;margin-top:10px;background:var(--bg-soft);border-radius:7px;border-left:3px solid var(--line-s)}
+.frame-wrap{margin-top:12px}
+#frame{width:100%;border:0;display:block;background:transparent;min-height:600px}
+@media(max-width:700px){main{padding:16px 12px 80px}.st-btn{font-size:10px;padding:7px 9px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hdr">
+    <div class="hdr-tag">Humanoid Dashboard</div>
+    <h1><b>기술</b>Technology</h1>
+    <p class="hdr-sub">로봇을 어떻게 만드나 — 전체 그림(기술 설명)부터 소프트웨어(두뇌)와 하드웨어(몸·부품)까지 한 탭에서.</p>
+    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">대문</a><a href="framework.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">프레임워크</a><a href="market.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">시장·경쟁</a><a href="tech.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">기술</a><a href="valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">밸류체인</a><a href="valuation.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">밸류에이션</a></nav>
+  </header>
+
+  <div class="st-tabs" id="subTabs">
+    <button class="st-btn on" data-tab="overview" onclick="showSub('overview',this)">📖 기술 설명</button>
+    <button class="st-btn"    data-tab="sw"       onclick="showSub('sw',this)">🧠 소프트웨어</button>
+    <span class="st-grp">하드웨어</span>
+    <button class="st-btn"    data-tab="anatomy"  onclick="showSub('anatomy',this)">🔬 해부</button>
+    <button class="st-btn"    data-tab="parts"    onclick="showSub('parts',this)">🔩 부품</button>
+  </div>
+  <div class="sub-cap" id="subCap"></div>
+
+  <div class="frame-wrap">
+    <iframe id="frame" scrolling="no" title="기술 서브 페이지"></iframe>
+  </div>
+</main>
+
+<script>
+/* 서브탭 = 원본 페이지를 그대로 담는 iframe (콘텐츠 무수정 · 스크립트 충돌 격리) */
+var SUB = {
+  overview: 'technology.html',
+  sw:       'physical_ai.html',
+  anatomy:  'anatomy.html',
+  parts:    'components.html'
+};
+var CAP = {
+  overview: '전체 그림 — 2020→2026 로드맵·Physical AI 로드맵·Q&A·용어 사전. 큰 흐름을 먼저 잡는다.',
+  sw:       '소프트웨어(두뇌) — VLA·Dual System·월드 모델(WFM)·데이터 전쟁·온디바이스·범용 OS.',
+  anatomy:  '하드웨어 · 해부(이야기책) — 부위별로 "왜 이렇게 생겼나"를 그림과 함께 읽는다.',
+  parts:    '하드웨어 · 부품(데이터북) — 감속기·모터·센서 스펙·원가·시뮬레이터. 해부와 짝을 이룬다.'
+};
+
+function fit(){
+  var f = document.getElementById('frame');
+  try { f.style.height = f.contentWindow.document.body.scrollHeight + 'px'; } catch(e) {}
+}
+function bindResize(){
+  var f = document.getElementById('frame');
+  try {
+    fit();
+    if (window.ResizeObserver) new ResizeObserver(function(){ fit(); }).observe(f.contentWindow.document.body);
+  } catch(e) {}
+}
+function showSub(tab, btn){
+  if (!SUB[tab]) tab = 'overview';
+  var btns = document.querySelectorAll('#subTabs .st-btn');
+  for (var i=0;i<btns.length;i++) btns[i].classList.remove('on');
+  if (btn) btn.classList.add('on');
+  else { var b=document.querySelector('#subTabs .st-btn[data-tab="'+tab+'"]'); if(b) b.classList.add('on'); }
+  document.getElementById('subCap').textContent = CAP[tab];
+  document.getElementById('frame').src = SUB[tab];
+  if (history.replaceState) history.replaceState(null,'','#'+tab);
+}
+document.getElementById('frame').addEventListener('load', bindResize);
+window.addEventListener('resize', fit);
+window.addEventListener('DOMContentLoaded', function(){
+  var tab = (location.hash||'').replace('#','');
+  if (!SUB[tab]) tab = 'overview';
+  showSub(tab, null);
+});
+</script>
+</body>
+</html>

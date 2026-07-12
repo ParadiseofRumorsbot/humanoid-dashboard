@@ -84,6 +84,7 @@ a{color:inherit}
   .num-value{font-size:16px}
   .demand-grid{grid-template-columns:1fr}
 }
+.th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}.td{padding:6px 6px;border-bottom:1px solid var(--line);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 </style>
 </head>
 <body>
@@ -92,7 +93,7 @@ a{color:inherit}
     <div class="hdr-tag">Humanoid Dashboard</div>
     <h1><b>Investment</b>Framework</h1>
     <p class="hdr-sub">"액추에이터는 뉴턴의 법칙을 따른다" — 소프트웨어로 압축되지 않는 물리 레이어가 구조적 수혜 자산.</p>
-    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="framework.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">프레임워크</a><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">TAM 시뮬레이터</a><a href="company_tam.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기업별 TAM</a><a href="components.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">부품 기술</a><a href="anatomy.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">휴머노이드 해부</a><a href="physical_ai.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">Physical AI</a><a href="technology.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술 설명</a><a href="us_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">US 밸류체인</a><a href="kr_valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">KR 밸류체인</a><a href="competition.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">경쟁 구도</a><a href="valuation.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">밸류에이션</a></nav>
+    <nav style="display:flex;gap:8px;margin:12px 0 20px;font-size:11.5px;flex-wrap:wrap"><a href="index.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">대문</a><a href="framework.html" style="color:#4ecdc4;text-decoration:none;padding:4px 10px;border-radius:6px;background:#1e293b">프레임워크</a><a href="market.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">시장·경쟁</a><a href="tech.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">기술</a><a href="valuechain.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">밸류체인</a><a href="valuation.html" style="color:#6b7a99;text-decoration:none;padding:4px 10px;border-radius:6px;">밸류에이션</a></nav>
   </header>
 
   <section class="card">
@@ -370,6 +371,44 @@ a{color:inherit}
     <style>#updateLogContent.open{max-height:2000px}</style>
   </section>
 
+  <!-- ⬇ competition NVIDIA vs Google 풀스택·한국 소버린 OS 카드 이동 (탭 통합) -->
+  <section class="card section-gap">
+    <div class="card-title">⚔️ NVIDIA vs Google — 풀스택 전쟁 <span class="badge" style="background:#76B900;color:#fff">레이어 간 경쟁</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px">AI 밸류체인은 5단계 레이어(에너지→칩→인프라→모델→앱)로 구성된다. 유저의 지불은 한정적이므로 <b>어떤 레이어가 부가가치를 가져가느냐</b>가 핵심이다. 한 레이어를 장악하면 pricing power가 강해지고 다른 레이어의 수익이 감소한다. 지금 <b>NVIDIA(칩→위)와 Google(앱→아래)</b>이 서로의 영역으로 침투하며 양방향 수직통합 충돌이 벌어지고 있다.</p>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">레이어</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px;color:#76B900">NVIDIA (칩→위로 확장)</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px;color:#4285F4">Google (앱→아래로 확장)</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">NVIDIA 대응 전략</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">L2 칩</td><td style="padding:7px 9px;white-space:normal">GPU 시장점유율 ~60% (실질). Blackwell·Vera Rubin</td><td style="padding:7px 9px;white-space:normal"><b>TPU</b> — 비매품이지만 실질 No.2. 유증으로 데이터센터 확장</td><td style="padding:7px 9px;white-space:normal;color:var(--ink-3)">기존 장악 레이어</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">L3 인프라</td><td style="padding:7px 9px;white-space:normal">DGX SuperPOD 설계 + 네오클라우드 연합 육성</td><td style="padding:7px 9px;white-space:normal">Capa 기준 <b>글로벌 1위</b>(내부용 포함). AWS는 판매 1위</td><td style="padding:7px 9px;white-space:normal"><b>네오클라우드 연합</b> — 코어위브·네이버 등으로 AWS·Google 독점 견제</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">L4 모델</td><td style="padding:7px 9px;white-space:normal"><b>Nemotron 연합</b> 12사(앤스로픽·OpenAI 제외) + Cosmos WFM</td><td style="padding:7px 9px;white-space:normal">Gemini — 모델 절대 강자. 최신 앱·검색 생태계 직결</td><td style="padding:7px 9px;white-space:normal"><b>LLM 연합</b> — 다수 파트너와 공동개발로 구글 단독 장악 방지</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">L5 앱</td><td style="padding:7px 9px;white-space:normal">GR00T(로봇) · Alpamayo(AV) · 에이전틱 AI</td><td style="padding:7px 9px;white-space:normal">Google 앱 생태계 · Waymo(자율주행) · 구글지도</td><td style="padding:7px 9px;white-space:normal"><b>Physical AI 연합</b> — 코스모스 플랫폼으로 데이터 파트너 확보</td></tr>
+        <tr style="background:rgba(118,185,0,0.06)"><td style="padding:7px 9px;font-weight:600">Physical AI<br>데이터</td><td style="padding:7px 9px;white-space:normal">직접 보유 적음 → 코스모스 플랫폼으로 파트너 모집</td><td style="padding:7px 9px;white-space:normal"><b>Waymo + 구글지도</b> — 전세계 물리 데이터. Tesla도 SSD 데이터 최다</td><td style="padding:7px 9px;white-space:normal"><b>데이터 연합</b> — 네이버(지도+1784)+기타. 경쟁자 데이터에 의존 불가</td></tr>
+      </tbody>
+    </table></div>
+    <div style="background:rgba(118,185,0,0.06);border-left:3px solid #76B900;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.6">
+      <b style="color:#76B900">NVIDIA 연합군 전략의 핵심:</b> NVIDIA가 칩 외 모든 레이어에서 연합을 형성하는 이유는 Google 견제다. Google은 TPU(칩)→Cloud(인프라)→Gemini(모델)→앱→Waymo/지도(Physical AI)까지 <b>수직통합을 완성</b>해가고 있다. NVIDIA는 칩을 기반으로 각 레이어에 파트너를 세워 대항하는 <b>수평 연합(horizontal alliance)</b> 전략이다. 네이버가 NVIDIA에 매력적인 이유 — 미국 밖에서 검색·지도·DC운영·로봇배치 경험을 동시에 갖춘 유일한 파트너.
+    </div>
+    <div style="background:rgba(248,183,57,0.06);border-left:3px solid #F8B739;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:8px;font-size:11px;color:var(--ink-2);line-height:1.6">
+      <b style="color:#F8B739">투자 시사점 — 레이어 간 부가가치 이동:</b> 한 레이어 독점 시 pricing power 강화 → 다른 레이어 수익 축소. 지금 칩 레이어(NVIDIA)가 최대 부가가치를 내고 있으나, Google이 인프라·칩으로 내려올수록 이 구도가 바뀔 수 있다. <b>BD/현대차가 HW+제어IP+데이터를 직접 쥔 수직통합 플레이어인 이유</b>도 같은 논리 — 한 레이어에 종속되면 pricing power를 빼앗긴다.
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Naver IR (2026.06.08) · 자체정리</div>
+  </section>
+  <section class="card section-gap">
+    <div class="card-title">🇰🇷 한국 소버린 운영 OS 포지션 <span class="badge" style="background:#0a9c96;color:#fff">네이버 ARC</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px">하드웨어·출하량은 중국, 모델·칩은 미국이 장악. 그러나 <b>다수 로봇을 현장에서 굴리는 '운영·플릿 OS' 레이어</b>는 아직 빈 칸에 가깝고, 한국에선 <b>네이버 ARC</b>가 자체 LLM·자국 클라우드·매핑 디지털트윈과 묶인 <b>소버린 번들</b>로 진입. 단 NVIDIA Mega·OSMO가 같은 층에 진입 中이라 '글로벌 독점'이 아니라 '한국 데이터 주권' 포지션.</p>
+    <div class="scroll-x"><div style="display:grid;grid-template-columns:120px 1fr 1fr 1fr;gap:0;font-size:11px">
+      <div class="th" style="text-align:left">구분</div><div class="th" style="text-align:left">운영·플릿 OS 전략</div><div class="th" style="text-align:left">플랫폼·파트너</div><div class="th" style="text-align:left">최근 마일스톤</div>
+      <div class="td" style="text-align:left;font-weight:600;white-space:normal">네이버 (035420)</div><div class="td" style="white-space:normal">소버린 운영 인프라 — 매핑 트윈+플릿 OS 한국 단독</div><div class="td" style="white-space:normal">NVIDIA Omniverse·Isaac(파트너)·자체 1784/ALIKE·ARC·삼성전자(SoC)</div><div class="td" style="white-space:normal">GTC Taipei 2026 AI팩토리 파트너·국방 AX 신설·1784 가동</div>
+      <div class="td" style="text-align:left;font-weight:600;white-space:normal">NVIDIA</div><div class="td" style="white-space:normal">플릿 오케스트레이션 직접 진입</div><div class="td" style="white-space:normal">Isaac Mega·OSMO·Cosmos·GR00T 자체</div><div class="td" style="white-space:normal">Mega/OSMO·GR00T 레퍼런스(26.10)</div>
+      <div class="td" style="text-align:left;font-weight:600;white-space:normal">순수 플릿 SW</div><div class="td" style="white-space:normal">창고·AMR 중심 플릿 관리</div><div class="td" style="white-space:normal">InOrbit·Formant·Foxglove 등</div><div class="td" style="white-space:normal">물류 현장 중심·풀스택/소버린 아님</div>
+    </div></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">네이버 차별점은 '빈 레이어 독점'이 아니라 한국 데이터 주권 기반 소버린 번들. 출처: 각사 IR · 언론 종합</div>
+  </section>
 </main>
 </body>
 </html>
