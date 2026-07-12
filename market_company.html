@@ -79,24 +79,11 @@ window.addEventListener('DOMContentLoaded',render);
     </div>
   </section>
 
-  <section class="card section-gap">
-    <div class="card-title">🔧 BOM 원가 구조 심층 <span class="badge" style="background:#FF6B6B;color:#fff">McKinsey · Robozaps</span></div>
-    <div class="num-row">
-      <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">액추에이터 BOM 비중</div><div class="num-value">40~60%</div><div class="num-sub">McKinsey·Robozaps (전신 BOM 광의) · G1 66%·풀스택 34.5%와 범위차</div></div>
-      <div class="num-box" style="border-left:3px solid #636E72"><div class="num-label">글로벌 액추에이터 공급사</div><div class="num-value">&lt;10곳</div><div class="num-sub">표준화 제품 부재 · Source: McKinsey</div></div>
-    </div>
-    <div style="margin-top:16px;margin-bottom:8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">생산 규모별 제조 원가 곡선</div>
-    <div class="scroll-x">
-      <div style="display:grid;grid-template-columns:120px repeat(4,1fr);gap:0;font-family:var(--mono);font-size:11px">
-        <div class="th" style="text-align:left">항목</div><div class="th">1대</div><div class="th">100대</div><div class="th">1,000대</div><div class="th">10,000대</div>
-        <div class="td" style="text-align:left;font-weight:600">제조 원가</div><div class="td" style="text-align:right">$150K+</div><div class="td" style="text-align:right">$80~100K</div><div class="td" style="text-align:right">$40~60K</div><div class="td" style="text-align:right">$20~30K</div>
-        <div class="td" style="text-align:left;font-weight:600">원가 절감률</div><div class="td" style="text-align:right">-</div><div class="td" style="text-align:right">~40%</div><div class="td" style="text-align:right">~65%</div><div class="td" style="text-align:right">~80%</div>
-      </div>
-    </div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">Source: Robozaps. 규모의 경제 효과: 10,000대 양산 시 프로토타입 대비 원가 ~80% 절감</div>
-    <div style="margin-top:12px;padding:10px 12px;background:var(--bg-soft);border-radius:7px;border-left:3px solid #FF6B6B;font-size:11px;color:var(--ink-2);line-height:1.7">
-      ⚓ <b>BOM 앵커 정합</b> <span style="font-family:var(--mono);font-size:9px;color:#FF6B6B">[자체추정]</span> — 양산 정착 BOM ~$25,000 기준, 액추에이터 56%(~$14,000)는 모터·감속기·스크류·베어링·자석·센서를 모두 포함하는 단일 풀임 → 개별 부품사 ASP를 수직 합산하면 중복계산이므로 금지 (components.html과 동일 기준). [자체추정]
-    </div>
+  <!-- 원가/BOM 상세는 정본으로 융합 이관 (26-07-12 v4) — 여기는 요약 스텁만 -->
+  <section class="card section-gap" style="border-left:3px solid #FF6B6B">
+    <div class="card-title">💰 원가/BOM 요약 <span class="badge" style="background:var(--bg-soft);color:var(--ink-2)">정본: 기술 › 하드웨어 › 부품</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:8px"><b>한 줄 요약:</b> 양산 정착 BOM <b>~$25,000</b>에 액추에이터가 <b>56%</b>(~$14,000)로 단일 최대 풀이고, 1만대 양산 시 프로토타입($150K+) 대비 원가 <b>~80% 절감</b>됨 [자체추정 · McKinsey · Robozaps]. G1 실측 분해·8개 카테고리 표·관점 병기(G1 66% / 풀스택 34.5% / McKinsey 40~60%)·생산 규모별 원가 곡선·ASP×물량 시뮬레이터는 전부 정본에 모아뒀음.</div>
+    <a href="tech.html#parts:cost" target="_top" style="font-size:11px;color:#FF6B6B;font-weight:600;text-decoration:none">원가/BOM 정본 전체 보기 ↗</a>
   </section>
 
   <section class="card section-gap">
@@ -168,19 +155,8 @@ const DATA = {
         { name: '제어 (Control)', pct: 6.6, cost: 6000, items: 'PLC·네트워크 연계', color: '#F8B739' },
         { name: '두뇌 (Brain)', pct: 5.5, cost: 4999, items: 'Jetson AGX Orin $2K, SW $3K', color: '#6C5CE7' },
       ]
-    },
-    humanoid: {
-      source: 'McKinsey',
-      ranges: { low: 30000, base: 90000, high: 150000 },
-      breakdown: [
-        { name: '액추에이터', pctRange: '40~60%', color: '#FF6B6B' },
-        { name: '센싱·인지', pctRange: '10~20%', color: '#00B894' },
-        { name: '연산·제어', pctRange: '10~15%', color: '#6C5CE7' },
-        { name: '구조 부품', pctRange: '5~10%', color: '#636E72' },
-        { name: '배터리', pctRange: '5~10%', color: '#4ecdc4' },
-        { name: '기타 (냉각·배선)', pctRange: '10~15%', color: '#A29BFE' },
-      ]
     }
+    /* humanoid 원가 데이터 → 정본 data.js physicalAILayers.humanoid에서 components가 렌더 (26-07-12 v4 융합 이관) */
   },
   cellBom: [
     { item: '로봇 본체', cost: 35000, layer: '실행', note: '중소형~중형 협동로봇 (UR5e $30~45K)' },
@@ -222,19 +198,7 @@ function render() {
   });
   $('#cellBomGrid').innerHTML = bhtml;
 
-  // Humanoid cost table
-  const hum = DATA.physicalAILayers.humanoid;
-  let hhtml = '<div class="capa-th" style="text-align:left">구성요소</div><div class="capa-th">비중</div><div class="capa-th">저가 $30K</div><div class="capa-th">기본 $90K</div><div class="capa-th">고가 $150K</div>';
-  hum.breakdown.forEach(b => {
-    const pcts = b.pctRange.replace(/%/g,'').split('~').map(Number);
-    const lo = pcts[0]/100, hi = (pcts[1]||pcts[0])/100;
-    hhtml += `<div class="capa-td" style="text-align:left;border-left:3px solid ${b.color};padding-left:10px;font-weight:600">${b.name}</div>`;
-    hhtml += `<div class="capa-td" style="text-align:center">${b.pctRange}</div>`;
-    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(30000*lo/1000).toFixed(1)}~${(30000*hi/1000).toFixed(1)}K</div>`;
-    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(90000*lo/1000).toFixed(1)}~${(90000*hi/1000).toFixed(1)}K</div>`;
-    hhtml += `<div class="capa-td" style="text-align:right;font-family:var(--mono)">$${(150000*lo/1000).toFixed(1)}~${(150000*hi/1000).toFixed(1)}K</div>`;
-  });
-  $('#humCostGrid').innerHTML = hhtml;
+  // Humanoid cost table → 원가 정본(components)으로 융합 이관 (26-07-12 v4)
 
   // Timeline
   let thtml = '';
@@ -309,16 +273,9 @@ window.renderROI=renderROI;
     </div>
   </section>
 
+  <!-- 휴머노이드 원가 구조(McKinsey)는 원가 정본으로 융합 이관 (26-07-12 v4). IFR 산업용 로봇 설치 대수 팩트는 아래 유지 -->
   <section class="card section-gap">
-    <div class="card-title">🤖 휴머노이드 원가 구조 <span class="badge" style="background:var(--ink);color:var(--bg)">McKinsey</span></div>
-    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px">대당 제조 비용 <strong>$30K~$150K</strong> 범위. 액추에이터가 40~60%로 최대 비용 항목 <span style="color:var(--ink-3);font-size:10px">(McKinsey 전신 BOM 광의 기준 · 저가형 Unitree G1은 66%, 풀스택 $55~78K는 34.5% — 출처·범위 차이, 부품기술 탭 참조)</span>. IFR 기준 2024년 산업용 로봇 연간 설치 542,100대 (4년 연속 50만대+).</p>
-    <div class="scroll-x">
-      <div id="humCostGrid" style="display:grid;grid-template-columns:110px 80px repeat(3,1fr);gap:0;font-family:var(--mono);font-size:11px"></div>
-    </div>
-  </section>
-
-  <section class="card section-gap">
-    <div class="card-title">⏱️ 도입 시기별 수혜 영역</div>
+    <div class="card-title">⏱️ 도입 시기별 수혜 영역 <span class="badge" style="background:var(--bg-soft);color:var(--ink-2)">IFR 2024 산업용 로봇 설치 542,100대 (4년 연속 50만대+)</span></div>
     <div id="timelineGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px"></div>
     <div style="margin-top:12px;font-size:10.5px;color:var(--ink-3);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px">
       <strong>핵심:</strong> 실행 부품은 초기 매출 규모가 크지만 경쟁 심화·가격 하락 압력. 두뇌·SW 계층은 고객별 공정 데이터·운영 노하우 기반 <strong>Lock-in 효과</strong>. Regal Rexnord는 2025년 미국 휴머노이드 OEM으로부터 <strong>$40M 수주</strong> 확보.

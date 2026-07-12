@@ -465,6 +465,25 @@ function renderSim(){
 }
 
 // ═══════════════════════════════════════
+// 7. McKINSEY COST GRID (원가② 병기 · 데이터 정본: data.js)
+// ═══════════════════════════════════════
+function renderMckCost(){
+  const hum=DASHBOARD_DATA.physicalAILayers.humanoid;
+  const R=hum.ranges;
+  const th=(t,align)=>'<div style="padding:6px 8px;border-bottom:2px solid var(--ink);font-size:9px;font-weight:700;text-align:'+(align||'right')+'">'+t+'</div>';
+  let h=th('구성요소','left')+th('비중','center')+th('저가 $'+(R.low/1000)+'K')+th('기본 $'+(R.base/1000)+'K')+th('고가 $'+(R.high/1000)+'K');
+  hum.breakdown.forEach(b=>{
+    const p=b.pctRange.replace(/%/g,'').split('~').map(Number);
+    const lo=p[0]/100, hi=(p[1]||p[0])/100;
+    const cell=base=>'<div style="padding:6px 8px;border-bottom:1px solid var(--line);text-align:right">$'+(base*lo/1000).toFixed(1)+'~'+(base*hi/1000).toFixed(1)+'K</div>';
+    h+='<div style="padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;font-weight:600;border-left:3px solid '+b.color+'">'+b.name+'</div>';
+    h+='<div style="padding:6px 8px;border-bottom:1px solid var(--line);text-align:center">'+b.pctRange+'</div>';
+    h+=cell(R.low)+cell(R.base)+cell(R.high);
+  });
+  document.getElementById('mckCostGrid').innerHTML=h;
+}
+
+// ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
 window.addEventListener('DOMContentLoaded', () => {
@@ -474,6 +493,7 @@ window.addEventListener('DOMContentLoaded', () => {
   renderJointMap();
   renderRadar();
   renderSim();
+  renderMckCost();
 });
 </script>
 </head>
@@ -932,9 +952,23 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체정리</div>
   </section>
 
+  <!-- ═══ 2.0 원가/BOM 정본 도입 (신규 · 융합 v4) ═══ -->
+  <section id="cost" class="card section-gap" style="border-left:4px solid #FF6B6B">
+    <div class="card-title">💰 원가/BOM 정본 — 휴머노이드는 얼마짜리 기계인가 <span class="badge" style="background:#FF6B6B;color:#fff">전 탭 원가 기준점</span></div>
+    <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:14px">
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7"><b>한 줄 요약:</b> 풀스택 1대 제조원가는 지금 <b>$55~78K</b>, 양산이 정착되면 <b>~$25K</b>(BOM 앵커)까지 내려감. 어떤 기준으로 잘라도 최대 비용 항목은 액추에이터(관절 모터 모듈)로, 관점에 따라 BOM의 <b>34.5~66%</b>를 차지함. 하락의 주된 동력은 중국 부품 침투라 "원가 절감 = 중국화"의 양면이 있음. 대시보드의 원가 숫자는 이 섹션이 기준점임.</div>
+    </div>
+    <div class="num-row" style="margin-bottom:12px">
+      <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">현재 풀스택 제조원가</div><div class="num-value">$55~78K</div><div class="num-sub">8개 카테고리 분해 · ② 구조 [자체추정]</div></div>
+      <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">양산 BOM 내 액추에이터</div><div class="num-value">56%</div><div class="num-sub">~$14K · 단일 최대 풀 · 관점별 34.5~66% [자체추정·역산]</div></div>
+      <div class="num-box" style="border-left:3px solid #00B894"><div class="num-label">양산 정착 BOM 앵커</div><div class="num-value">~$25K</div><div class="num-sub">@플랫폼당 1만대+ · ③ 하락 경로 [자체추정]</div></div>
+    </div>
+    <div style="font-size:11px;color:var(--ink-2);line-height:1.7">읽는 순서: <b>① 실측</b>(실제 팔리는 G1의 부품값) → <b>② 구조</b>(풀스택은 무엇에 돈이 드나 + 관점 병기) → <b>③ 하락 경로</b>(왜·얼마나 싸지나) → <b>④ 시장 환산</b>(원가가 곧 부품사 시장규모). 이 값이 나오는 공학적 이유는 <a href="tech.html#anatomy:sec-actuator" target="_top" style="color:#FF6B6B">해부 02 액추에이터 ↗</a>에서 이야기로 읽음.</div>
+  </section>
+
   <!-- ═══ 2. Actuator Exploded View ═══ -->
   <section class="card section-gap">
-    <div class="card-title">🔩 액추에이터 원가 분해 <span class="badge" style="background:var(--ink);color:var(--bg)">Unitree G1 기준</span></div>
+    <div class="card-title">🔩 원가① 실측 — 액추에이터 원가 분해 <span class="badge" style="background:var(--ink);color:var(--bg)">Unitree G1 기준</span></div>
     <p style="font-size:11px;color:var(--ink-2);margin-bottom:10px">각 부품을 클릭하면 상세 정보가 표시됩니다.</p>
     <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start">
       <div id="explodedSvg" style="flex:1;min-width:280px"></div>
@@ -963,42 +997,9 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
   </section>
 
-  <!-- ═══ 2.5 원가 하락 트렌드 ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #00B894">
-    <div class="card-title">💰 원가 하락 트렌드 — 연 ~40% 하락, 중국 부품 침투 <span class="badge" style="background:#00B894;color:#fff">자체추정 · 언론 종합</span></div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
-      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid var(--ink-3)">
-        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">프로토타입 (1대)</div>
-        <div style="font-family:var(--mono);font-size:18px;font-weight:700">$150K+</div>
-      </div>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #F8B739">
-        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">소량 (100대)</div>
-        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#F8B739">$80~100K</div>
-        <div style="font-size:9px;color:var(--ink-3)">-40%</div>
-      </div>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #E17055">
-        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">중량 (1,000대)</div>
-        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#E17055">$40~60K</div>
-        <div style="font-size:9px;color:var(--ink-3)">-65%</div>
-      </div>
-      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #00B894">
-        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">양산 (10,000대+)</div>
-        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#00B894">$20~30K</div>
-        <div style="font-size:9px;color:var(--ink-3)">-80%</div>
-      </div>
-    </div>
-    <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px">
-      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
-        <b>원가 절감의 이면:</b> 부품가가 연 ~40% 하락하는 주된 원인은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">중국 부품 침투</span>. 중국 Green Harmonic 등이 일·한 대비 <b>30~40% 저가</b>로 공급 → "원가 절감 = 중국화" 구도.<br>
-        한국 부품사(에스피지·로보티즈·하이젠알앤엠)는 <b>기술 차별화(토크밀도·백드라이버빌리티) + 글로벌 OEM 직접 수주</b>로 가격 경쟁을 회피해야 함.
-      </div>
-    </div>
-    <div style="font-size:10px;color:var(--ink-3)">출처: 자체추정 · 언론 종합</div>
-  </section>
-
   <!-- ═══ 2.6 풀스택 휴머노이드 풀 BOM ═══ -->
   <section class="card section-gap" style="border-left:4px solid #6C5CE7">
-    <div class="card-title">📊 풀스택 휴머노이드 원가 구조 — 8개 카테고리 <span class="badge" style="background:#6C5CE7;color:#fff">자체추정</span></div>
+    <div class="card-title">📊 원가② 구조 — 풀스택 8개 카테고리와 BOM 앵커 <span class="badge" style="background:#6C5CE7;color:#fff">자체추정</span></div>
     <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">총 제조원가 <b>$55,000~78,000</b> 기준 분해. 저가형 G1(액추에이터 66%)과 달리 풀스택은 센서·열관리·컴퓨팅이 더해져 <b>액추에이터 비중 34.5%</b>로 낮아지지만 여전히 <b>단일 최대 부품</b>.</p>
     <!-- (A) 풀 중복합산 경고 콜아웃 -->
     <div style="background:rgba(255,107,107,0.10);border:2px solid #FF6B6B;border-radius:10px;padding:14px 18px;margin-bottom:14px">
@@ -1052,6 +1053,79 @@ window.addEventListener('DOMContentLoaded', () => {
       <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-top:8px">구동계(52%) 내 액추에이터 원가 분해: <b>모터 29% · 유성감속기 28% · 엔코더 19% · 베어링 12% · 기타 12%</b></div>
       <div style="font-size:9px;color:var(--ink-3);margin-top:6px">⚠ 위 앵커·풀스택 표와 분류 경계가 상이한 별도 관점 — 수직 합산 금지</div>
     </div>
+    <!-- (F) McKinsey 광의 프레임 — 시장·경쟁 탭에서 융합 이관 (26-07-12 v4) -->
+    <div style="background:var(--bg-soft);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:10px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#FF6B6B;letter-spacing:.06em;margin-bottom:6px">📐 McKinsey 광의 프레임 (또 다른 병기 관점) <span style="font-weight:600;color:var(--ink-3)">[McKinsey · Robozaps]</span></div>
+      <div class="num-row" style="margin-bottom:10px">
+        <div class="num-box" style="border-left:3px solid #FF6B6B"><div class="num-label">액추에이터 BOM 비중</div><div class="num-value">40~60%</div><div class="num-sub">McKinsey·Robozaps (전신 BOM 광의) · G1 66%·풀스택 34.5%와 범위차</div></div>
+        <div class="num-box" style="border-left:3px solid #636E72"><div class="num-label">글로벌 액추에이터 공급사</div><div class="num-value">&lt;10곳</div><div class="num-sub">표준화 제품 부재 · Source: McKinsey</div></div>
+      </div>
+      <div class="scroll-x"><div id="mckCostGrid" style="display:grid;grid-template-columns:130px 80px repeat(3,1fr);gap:0;font-family:var(--mono);font-size:10.5px;min-width:520px"></div></div>
+      <div style="font-size:10px;color:var(--ink-3);margin-top:6px">대당 제조 비용 <b>$30K~$150K</b> 범위 (McKinsey 전신 BOM 광의). ⚠ 위 표들과 분류 경계·출처가 상이한 별도 관점 — 수직 합산 금지. 데이터 정본: data.js physicalAILayers</div>
+    </div>
+  </section>
+
+  <!-- ═══ 2.5 원가 하락 트렌드 ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #00B894">
+    <div class="card-title">💰 원가③ 하락 경로 — 연 ~40% 하락, 중국 부품 침투 <span class="badge" style="background:#00B894;color:#fff">자체추정 · 언론 종합</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid var(--ink-3)">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">프로토타입 (1대)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700">$150K+</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #F8B739">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">소량 (100대)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#F8B739">$80~100K</div>
+        <div style="font-size:9px;color:var(--ink-3)">-40%</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #E17055">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">중량 (1,000대)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#E17055">$40~60K</div>
+        <div style="font-size:9px;color:var(--ink-3)">-65%</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px;text-align:center;border-top:3px solid #00B894">
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:4px">양산 (10,000대+)</div>
+        <div style="font-family:var(--mono);font-size:18px;font-weight:700;color:#00B894">$20~30K</div>
+        <div style="font-size:9px;color:var(--ink-3)">-80%</div>
+      </div>
+    </div>
+    <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px">
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
+        <b>원가 절감의 이면:</b> 부품가가 연 ~40% 하락하는 주된 원인은 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">중국 부품 침투</span>. 중국 Green Harmonic 등이 일·한 대비 <b>30~40% 저가</b>로 공급 → "원가 절감 = 중국화" 구도.<br>
+        한국 부품사(에스피지·로보티즈·하이젠알앤엠)는 <b>기술 차별화(토크밀도·백드라이버빌리티) + 글로벌 OEM 직접 수주</b>로 가격 경쟁을 회피해야 함.
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3)">출처: 자체추정 · 언론 종합 · Robozaps(생산 규모별 원가 곡선)</div>
+  </section>
+
+  <!-- ═══ 6. ASP × Volume Simulator (원가④, 26-07-12 v4 이동) ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #F8B739">
+    <div class="card-title">📈 원가④ 시장 환산 — ASP × 물량 시뮬레이터 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
+    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">OEM을 선택하면 ASP가 자동 설정됩니다. ASP와 연간 출하량을 조절해 전체 시장규모와 부품별 배분을 확인하세요.</p>
+    <div class="st-tabs" id="simOemTabs" style="margin-bottom:14px"></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">ASP (대당 가격)</span>
+          <span id="simAspVal" style="font-family:var(--mono);font-size:14px;font-weight:700">$25K</span>
+        </div>
+        <input id="simAspSlider" class="sim-slider" type="range" min="10" max="200" step="5" value="25" oninput="renderSim()">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$10K</span><span>$200K</span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">연간 출하량</span>
+          <span id="simVolVal" style="font-family:var(--mono);font-size:14px;font-weight:700">100만대</span>
+        </div>
+        <input id="simVolSlider" class="sim-slider" type="range" min="1" max="500" step="1" value="100" oninput="renderSim()">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>1만대</span><span>500만대</span></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap">
+      <div class="num-box" style="border:2px solid #F8B739;flex:1"><div class="num-label">전체 시장규모</div><div class="num-value" id="simTotal" style="color:#F8B739">-</div><div class="num-sub" id="simTotalKRW">-</div></div>
+    </div>
+    <div id="simBars"></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">풀스택 BOM 비중 기준 (자체추정). 저가형(G1)은 액추에이터 비중 66%로 상이.</div>
   </section>
 
   <!-- ═══ 3. Joint Map ═══ -->
@@ -1115,35 +1189,6 @@ window.addEventListener('DOMContentLoaded', () => {
   </section>
 
 
-  <!-- ═══ 6. ASP × Volume Simulator ═══ -->
-  <section class="card section-gap" style="border-left:4px solid #F8B739">
-    <div class="card-title">📈 ASP × 물량 시뮬레이터 — 부품별 시장규모 <span class="badge" style="background:#F8B739;color:#000">인터랙티브</span></div>
-    <p style="font-size:11px;color:var(--ink-2);margin-bottom:12px">OEM을 선택하면 ASP가 자동 설정됩니다. ASP와 연간 출하량을 조절해 전체 시장규모와 부품별 배분을 확인하세요.</p>
-    <div class="st-tabs" id="simOemTabs" style="margin-bottom:14px"></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">ASP (대당 가격)</span>
-          <span id="simAspVal" style="font-family:var(--mono);font-size:14px;font-weight:700">$25K</span>
-        </div>
-        <input id="simAspSlider" class="sim-slider" type="range" min="10" max="200" step="5" value="25" oninput="renderSim()">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>$10K</span><span>$200K</span></div>
-      </div>
-      <div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--ink-3)">연간 출하량</span>
-          <span id="simVolVal" style="font-family:var(--mono);font-size:14px;font-weight:700">100만대</span>
-        </div>
-        <input id="simVolSlider" class="sim-slider" type="range" min="1" max="500" step="1" value="100" oninput="renderSim()">
-        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:8px;color:var(--ink-3);margin-top:2px"><span>1만대</span><span>500만대</span></div>
-      </div>
-    </div>
-    <div style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap">
-      <div class="num-box" style="border:2px solid #F8B739;flex:1"><div class="num-label">전체 시장규모</div><div class="num-value" id="simTotal" style="color:#F8B739">-</div><div class="num-sub" id="simTotalKRW">-</div></div>
-    </div>
-    <div id="simBars"></div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">풀스택 BOM 비중 기준 (자체추정). 저가형(G1)은 액추에이터 비중 66%로 상이.</div>
-  </section>
 
   <!-- ═══ 1.4 로봇 열 관리 (공냉식) ═══ -->
   <section id="thermal" class="card section-gap" style="border-left:4px solid #FF6B6B">
