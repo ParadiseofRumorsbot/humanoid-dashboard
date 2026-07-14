@@ -1165,7 +1165,7 @@ const DASHBOARD_DATA = {
     {
       date: '2026-07-14',
       title: '휴머노이드 해부(anatomy.html) §11 "국내 연구 지도 — 로봇의 몸(KAIST)" 신설 — 뇌 편중 논지 + 감각·손·다리 부위별 KAIST 연구 매핑',
-      source: '지유니버스 유튜브 영상 정리(KAIST APR 로봇 최고경영자 과정 소개) · 소속 KAIST 표기·개별 연구자·연구실명 생략 · 논문 원문 미대조',
+      source: 'KAIST',
       changes: [
         'anatomy: §11 신규 섹션 — 매핑 테이블 5행(감각=AMCW 코엑셜 라이다·청각지능 / 손-근육=SEA·CRSEA / 손-피부=로봇피부 임피던스+음향토모 / 손-햅틱=유전탄성체 패치 / 다리=하운드·MOR)',
         'anatomy: §11 심화 4블록(라이다 멀티패스·SEA·피부 2경로·MOR sim-to-real) + 해부 §02·§05·§06·§09 상호링크 · 정적 HTML(JS 의존 없음)',
