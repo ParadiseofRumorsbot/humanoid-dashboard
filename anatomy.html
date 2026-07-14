@@ -447,6 +447,74 @@ a.vc-badge:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
   <div class="badge-row"><span class="lbl">🔗 밸류체인 총정리</span><a class="vc-badge vc-note" href="valuechain.html#kr" target="_top" style="text-decoration:none">네오오토 212560 ↗</a><a class="vc-badge vc-note" href="valuechain.html#kr" target="_top" style="text-decoration:none">한라캐스트 125490 ↗</a><a class="vc-badge vc-note" href="valuechain.html#kr" target="_top" style="text-decoration:none">우림피티에스 101170 ↗</a><a class="vc-badge" href="valuechain.html#kr" target="_top">현대모비스</a><a class="vc-badge" href="valuechain.html#kr" target="_top">에스비비테크</a><a class="vc-badge" href="valuechain.html#kr" target="_top">로보티즈</a><a class="vc-badge" href="valuechain.html#kr" target="_top">에스피지</a></div>
 </section>
 
+<!-- ⑪ 국내 연구 지도 — 로봇의 몸 (KAIST) -->
+<section id="sec-kaist" class="card section-gap" style="border-left:4px solid #0984E3">
+  <div class="card-title">11 · 국내 연구 지도 — 로봇의 몸 (KAIST) <span class="badge" style="background:#0984E3;color:#fff">학계 · 업스트림 역량</span></div>
+
+  <div class="quote">"로봇 AI의 발전은 뇌(VLA·월드모델·데이터셋·시뮬 학습)에 쏠려 있고, 그 밑엔 '몸은 이미 준비됐다'는 조용한 전제가 깔려 있다. 그러나 현장의 병목은 훨씬 더 물리적인 곳 — 미끄러운 표면·예상 밖 무게중심·마찰·충격·경사·작은 턱 — 에서 터진다."</div>
+
+  <p class="p">실험실에서 잘 잡히던 물체도 현장에선 놓치고, 평지에서 잘 걷던 로봇도 실제 바닥에선 무너진다. <b>손의 촉각·다리의 구동기·센서·저수준 제어기</b>가 물리적 변화를 버티지 못하면 상위 AI가 아무리 좋은 행동을 계획해도 로봇은 안정적으로 움직이지 못한다 → <b>피지컬 AI = 똑똑한 뇌 + 실제 세계와 만나는 몸</b>을 함께 봐야 하는 이유.</p>
+
+  <p class="p">그리고 이 <b>'몸'에 해당하는 기술 — 정밀기계·센서·구동기·제어·로봇 하드웨어·제조 — 은 한국이 오래 강점을 쌓아온 영역</b>이다. 해외 빅테크의 휴머노이드 영상에 주목하는 동안, 국내 <b>KAIST</b>에선 로봇의 몸을 이루는 핵심 연구가 이미 깊게 진행돼 왔다. 아래는 KAIST의 대표 로봇 연구를 '몸' 관점(감각→손→다리)으로 묶어 본 해부 탭 부위별 섹션에 연결한 지도다.</p>
+
+  <div class="scroll-x" style="margin-top:14px">
+    <table style="width:100%;border-collapse:collapse;min-width:760px">
+      <thead><tr><th class="th">부위</th><th class="th">연구 분야 · 소속</th><th class="th">핵심 기술</th><th class="th">왜 중요한가</th><th class="th">해부 연결</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="td"><b>감각 — 눈·귀</b></td>
+          <td class="td">KAIST · 광학·음향 센싱</td>
+          <td class="td">AMCW 코엑셜 스캐닝 라이다 + 청각지능(음향 이벤트 감지)</td>
+          <td class="td">금속·모서리·좁은 구조물의 <b>다중 반사(멀티패스 간섭)</b>를 억제해 믿을 수 있는 깊이 감각. 카메라가 못 보는 방향의 사건을 소리로 감지.</td>
+          <td class="td"><a href="#sec-sensor" style="font-family:var(--mono);font-size:10.5px;color:#0984E3;text-decoration:none;white-space:nowrap">§09 센서 ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td"><b>손 — 근육</b></td>
+          <td class="td">KAIST · 웨어러블·엑소스켈레톤</td>
+          <td class="td">직렬 탄성 구동기(SEA) · 소형 회전형 CRSEA</td>
+          <td class="td">모터-출력부 사이 <b>탄성요소</b>로 사람에게 안전·부드럽게 힘 전달. 스프링 변형량으로 전달 중인 힘을 추정.</td>
+          <td class="td"><a href="#sec-actuator" style="font-family:var(--mono);font-size:10.5px;color:#0984E3;text-decoration:none;white-space:nowrap">§02 액추에이터 ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td"><b>손 — 피부</b></td>
+          <td class="td">KAIST · 바이오로보틱스·촉각</td>
+          <td class="td">생체모방 로봇 피부(전기임피던스 + 음향 토모그래피)</td>
+          <td class="td">손끝이 아닌 <b>전신 접촉</b> 감지 — 깊은 압력=임피던스, 긁힘=마이크 진동. 손상 후 기능 복원.</td>
+          <td class="td"><a href="#sec-sensor" style="font-family:var(--mono);font-size:10.5px;color:#0984E3;text-decoration:none;white-space:nowrap">§09 센서 ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td"><b>손 — 햅틱</b></td>
+          <td class="td">KAIST · 햅틱스·HRI</td>
+          <td class="td">피부 부착형 햅틱 패치(유전 탄성체 액추에이터)</td>
+          <td class="td">로봇이 느낀 접촉을 <b>사람 피부로 되돌림</b> → 원격조작 품질↑ → 정책학습용 행동데이터 품질↑.</td>
+          <td class="td"><a href="#sec-hand" style="font-family:var(--mono);font-size:10.5px;color:#0984E3;text-decoration:none;white-space:nowrap">§05 손 ↗</a></td>
+        </tr>
+        <tr>
+          <td class="td"><b>다리</b></td>
+          <td class="td">KAIST · 동적보행·사족로봇</td>
+          <td class="td">KAIST 하운드 · 모터 작동영역(MOR) 반영 강화학습</td>
+          <td class="td">관절공간 명령을 <b>모터공간</b>으로 변환, 실제 토크-속도 작동영역 반영 → <b>sim-to-real 격차</b> 축소.</td>
+          <td class="td"><a href="#sec-leg" style="font-family:var(--mono);font-size:10.5px;color:#0984E3;text-decoration:none;white-space:nowrap">§06 다리 ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px;background:var(--bg-soft)">
+    <div class="card-title" style="border-color:var(--line)">🔬 심화 — 몸의 4대 난제와 해법</div>
+    <div class="num-row">
+      <div class="num-box" style="min-width:210px"><div class="num-label">① 라이다 — 멀티패스</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px">Direct ToF가 펄스 왕복시간을 직접 잰다면, <b>AMCW</b>는 연속광의 세기를 주파수로 변조해 반사광의 <b>위상 지연</b>으로 거리 계산. <b>코엑셜</b> 구조(송·수신 광축 일치)로 다중경로 반사를 정밀 모델링 → 금속·모서리 깊이 왜곡↓.</div></div>
+      <div class="num-box" style="min-width:210px"><div class="num-label">② 구동기 — SEA·CRSEA</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px">모터와 출력부 사이 <b>스프링(탄성요소)</b>으로 충격 흡수. 스프링 비틀림·변형을 측정해 사람에게 전달 중인 힘을 추정. CRSEA는 <b>웜기어</b>로 소형·회전형에 충분한 토크.</div></div>
+      <div class="num-box" style="min-width:210px"><div class="num-label">③ 피부 — 2대 감각경로</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px">바깥 탄성층+안쪽 전도성 <b>하이드로젤</b>층(인간 피부 모방). 깊은 압력→임피던스로 위치·세기, 가벼운 긁힘→미세 진동을 마이크로 감지. 적은 센서로 <b>넓고 겹치는 수용영역</b> → 접촉 위치·형태 재구성.</div></div>
+      <div class="num-box" style="min-width:210px"><div class="num-label">④ 다리 — MOR·sim2real</div><div style="font-size:11.5px;color:var(--ink-2);margin-top:3px">실제 모터의 토크-속도 작동영역은 사각형이 아니라 <b>고속일수록 토크가 제한</b>됨. URDF의 사각형 제한은 고속+고토크 동시를 허용하는 듯 보여 sim에선 되던 정책이 실물에선 실패. 학습 단계부터 <b>MOR</b>를 반영해 격차↓.</div></div>
+    </div>
+  </div>
+
+  <div class="quote" style="margin-top:16px">로봇의 지능은 모델 안에서만 완성되지 않는다 — <b>감지 센서 + 손·촉각 + 구동기·다리</b>가 한 몸에서 맞물릴 때 현실에서 작동한다. 그래서 "어떤 AI 모델이 좋은가"만큼 "그 모델이 실제 로봇의 몸과 어떻게 연결되는가"를 함께 봐야 한다.</div>
+
+  <p class="p" style="font-size:11px;color:var(--ink-3);margin-top:10px">출처: 지유니버스 유튜브 영상 정리(KAIST APR 로봇 최고경영자 과정 소개 영상). 소속은 <b>KAIST</b>로 표기하고 개별 연구자·연구실명은 생략. 기술 서술은 영상 설명 기준이며 논문 원문은 미대조 — 세부 명칭·수치는 확인 후 보정 가능.</p>
+</section>
+
 </main>
 
 <script src="data.js?v=20260712"></script>
