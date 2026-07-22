@@ -206,19 +206,8 @@ function renderSidebar() {
 
 /* ── 앵커 이동: iframe 안이면 부모(tech.html)를 스크롤, 아니면 자체 스크롤 ── */
 function scrollToTargetEl(el){
-  try {
-    var y = el.getBoundingClientRect().top + window.pageYOffset;
-    var pw = window.parent;
-    if (pw && pw !== window && pw.document) {
-      var ifr = pw.document.getElementById('frame');
-      if (ifr) {
-        var top = ifr.getBoundingClientRect().top + pw.pageYOffset + y - 12;
-        pw.scrollTo({ top: top, behavior: 'auto' }); /* 크로스프레임 smooth는 브라우저가 무시 → auto */
-        return;
-      }
-    }
-  } catch(e) {}
-  try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(e2) {}
+  /* #frame이 내부 스크롤하므로 자체 scrollIntoView로 목차 이동 */
+  try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(e) {}
 }
 
 /* ── Scroll Spy ── */
