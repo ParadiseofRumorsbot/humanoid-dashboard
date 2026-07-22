@@ -1054,7 +1054,7 @@ const DASHBOARD_DATA = {
         { href: 'tech.html#sw', label: '🧠 소프트웨어 스택 ↗' },
         { href: 'tech.html#hw', label: '🦾 하드웨어·부품 ↗' },
         { href: 'tech.html#sw', label: '🔒 데이터 Lock-in 팩트체크 ↗' },
-        { href: 'tech.html#hw', label: '📅 하반기 이벤트 캘린더 ↗' },
+        { href: 'index.html#sec-event-calendar', label: '📅 하반기 이벤트 캘린더 (대문) ↗' },
       ]},
     ],
   },

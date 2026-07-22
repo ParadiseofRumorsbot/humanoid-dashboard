@@ -110,7 +110,7 @@ document.getElementById('frame').addEventListener('load', function(){
   }
 });
 window.addEventListener('resize', fit);
-window.addEventListener('DOMContentLoaded', function(){
+function applyHash(){
   var h = (location.hash||'').replace('#','');
   var tab = h, anchor = null;
   if (h.indexOf(':') >= 0) { tab = h.split(':')[0]; anchor = h.split(':')[1]; }
@@ -118,7 +118,9 @@ window.addEventListener('DOMContentLoaded', function(){
   if (!SUB[tab]) tab = 'overview';
   pendingAnchor = anchor;
   showSub(tab, null);
-});
+}
+window.addEventListener('DOMContentLoaded', applyHash);
+window.addEventListener('hashchange', applyHash); /* 같은 tech.html 내 크로스링크(#sw/#hw)는 해시만 바뀌므로 hashchange로 서브탭 전환 */
 </script>
 </body>
 </html>
