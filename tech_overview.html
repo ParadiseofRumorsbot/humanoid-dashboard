@@ -18,7 +18,7 @@ a{color:inherit}
 
 /* ── Page-wrap: sidebar + main ── */
 .page-wrap{display:flex;max-width:1400px;margin:0 auto;padding:0 20px}
-.sidebar{width:240px;min-width:240px;position:sticky;top:0;height:100vh;overflow-y:auto;padding:32px 0 40px;border-right:1px solid var(--line);scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.sidebar{width:240px;min-width:240px;padding:32px 0 40px;border-right:1px solid var(--line)}/* iframe 안: sticky·100vh·overflow 제거 — 목차 위에서 휠이 갇히던 문제 + fit 순환 해소(외형은 flex-stretch 유지) */
 .sidebar::-webkit-scrollbar{width:4px}
 .sidebar::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
 .sidebar-hdr{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);padding:0 20px 12px;border-bottom:1px solid var(--line);margin-bottom:8px}

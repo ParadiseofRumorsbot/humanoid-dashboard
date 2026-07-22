@@ -31,6 +31,25 @@
 .flywheel-content p{font-size:11px;color:var(--ink-2)}
 .flywheel-metric{font-family:var(--mono);font-size:10px;color:#4ecdc4;font-weight:600}
 @media(max-width:700px){.spec-grid{grid-template-columns:repeat(2,1fr)}}
+/* 해체 누락 CSS 복원 2 — NVIDIA 생태계(arch)·학습루프(pipeline)·AI팩토리 케이크(cake-layer) */
+.arch-diagram{background:var(--bg-soft);border-radius:10px;padding:16px 20px;margin:14px 0;border:1px solid var(--line)}
+.arch-flow{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;margin:10px 0}
+.arch-box{padding:8px 14px;border-radius:6px;font-family:var(--mono);font-size:10px;font-weight:700;color:#fff;text-align:center;min-width:80px}
+.arch-arrow{font-size:16px;color:var(--ink-3);padding:0 4px}
+.pipeline-flow{display:flex;gap:0;align-items:stretch;flex-wrap:wrap;margin:12px 0}
+.pipeline-step{flex:1;min-width:120px;padding:10px 12px;background:var(--bg-soft);border-radius:8px;text-align:center;position:relative;margin-right:8px}
+.pipeline-step:last-child{margin-right:0}
+.pipeline-step::after{content:'\2192';position:absolute;right:-12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ink-3)}
+.pipeline-step:last-child::after{display:none}
+.pipeline-icon{font-size:20px;margin-bottom:4px}
+.pipeline-name{font-family:var(--mono);font-size:10px;font-weight:700;color:var(--ink)}
+.pipeline-desc{font-size:9px;color:var(--ink-3);line-height:1.4;margin-top:2px}
+.cake-layer{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;margin-bottom:6px;color:#fff;font-size:12px}
+.cake-layer .layer-num{font-family:var(--mono);font-size:20px;font-weight:700;opacity:.6;min-width:28px}
+.cake-layer .layer-info{flex:1}
+.cake-layer .layer-name{font-weight:700;font-size:13px}
+.cake-layer .layer-desc{font-size:10px;opacity:.85;margin-top:1px}
+@media(max-width:700px){.pipeline-flow{flex-direction:column}.pipeline-step::after{display:none}}
 .th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}.td{padding:6px;border-bottom:1px solid var(--line);font-size:11px}
 .hm-cell{font-family:var(--mono);font-size:10px;padding:6px 8px;text-align:center;border:1px solid var(--line)}.hm-green{background:#e8f5e9;color:#2e7d32}.hm-yellow{background:#fff8e1;color:#f57f17}.hm-red{background:#ffebee;color:#c62828}
 svg text{font-family:'JetBrains Mono',monospace}
