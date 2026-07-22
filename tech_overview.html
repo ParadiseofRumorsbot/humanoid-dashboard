@@ -167,7 +167,7 @@ main{flex:1;min-width:0;max-width:1100px;padding:24px 0 100px 32px}
   .glossary-grid{grid-template-columns:1fr}
 }
 </style>
-<script src="data.js?v=20260712"></script>
+<script src="data.js?v=20260722"></script>
 <script>
 const D = DASHBOARD_DATA;
 const $ = s => document.querySelector(s);
@@ -189,14 +189,36 @@ function renderSidebar() {
     const num = String(idx).padStart(2,'0');
     html += `<div class="sidebar-group">${num}. ${group.group}</div>`;
     group.items.forEach(item => {
-      html += `<a href="#${item.id}" class="sidebar-link" data-target="${item.id}">${item.label}</a>`;
-      mobileHtml += `<a href="#${item.id}">${item.label}</a>`;
+      if (item.href) { /* 다른 탭 크로스링크 — 최상위 프레임으로 이동 */
+        html += `<a href="${item.href}" class="sidebar-link sidebar-ext" target="_top">${item.label}</a>`;
+        mobileHtml += `<a href="${item.href}" target="_top">${item.label}</a>`;
+      } else {
+        html += `<a href="#${item.id}" class="sidebar-link" data-target="${item.id}">${item.label}</a>`;
+        mobileHtml += `<a href="#${item.id}">${item.label}</a>`;
+      }
     });
     idx++;
   });
   document.getElementById('sidebarNav').innerHTML = html;
   const mobileEl = document.getElementById('tocMobile');
   if (mobileEl) mobileEl.innerHTML = mobileHtml;
+}
+
+/* ── 앵커 이동: iframe 안이면 부모(tech.html)를 스크롤, 아니면 자체 스크롤 ── */
+function scrollToTargetEl(el){
+  try {
+    var y = el.getBoundingClientRect().top + window.pageYOffset;
+    var pw = window.parent;
+    if (pw && pw !== window && pw.document) {
+      var ifr = pw.document.getElementById('frame');
+      if (ifr) {
+        var top = ifr.getBoundingClientRect().top + pw.pageYOffset + y - 12;
+        pw.scrollTo({ top: top, behavior: 'auto' }); /* 크로스프레임 smooth는 브라우저가 무시 → auto */
+        return;
+      }
+    }
+  } catch(e) {}
+  try { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch(e2) {}
 }
 
 /* ── Scroll Spy ── */
@@ -225,12 +247,13 @@ function initScrollSpy() {
 
   sections.forEach(s => observer.observe(s.el));
 
-  // Sidebar link smooth scroll
+  // Sidebar link smooth scroll (iframe이면 부모 프레임을 스크롤)
   links.forEach(link => {
     link.addEventListener('click', e => {
+      if (!link.dataset.target) return; // 크로스링크(href)는 기본 이동 허용
       e.preventDefault();
       const target = document.getElementById(link.dataset.target);
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (target) scrollToTargetEl(target);
     });
   });
 }
@@ -807,7 +830,7 @@ function toggleLog() {
   btn.textContent = el.classList.contains('open') ? '▲ 접기' : '▼ 펼치기';
 }
 
-window.addEventListener('DOMContentLoaded', function(){ render(); document.querySelectorAll('#sidebarNav .sidebar-link, #tocMobile a').forEach(function(a){ var id=a.dataset.target||(a.getAttribute('href')||'').slice(1); if(id && !document.getElementById(id)) a.remove(); }); });
+window.addEventListener('DOMContentLoaded', function(){ render(); document.querySelectorAll('#sidebarNav .sidebar-link[data-target], #tocMobile a').forEach(function(a){ var id=a.dataset.target; if(id && !document.getElementById(id)) a.remove(); }); });
 </script>
 </head>
 <body>
@@ -1120,7 +1143,7 @@ window.addEventListener('DOMContentLoaded', function(){ render(); document.query
             </thead>
             <tbody>
               <tr><td>🇺🇸 Tesla</td><td>5~10만 CAPA</td><td style="font-weight:700">100만대 목표</td><td>$20~30K</td><td>2.3kWh / 2170 원통형</td></tr>
-              <tr><td>🇺🇸 Boston Dynamics</td><td>RMAC 개소 (여름)</td><td>3만 CAPA (2028E)</td><td>—</td><td>Self-swappable</td></tr>
+              <tr><td>🇺🇸 Boston Dynamics</td><td>RMAC 개소 (2026년 8~9월)</td><td>3만 CAPA (2028E)</td><td>—</td><td>Self-swappable</td></tr>
               <tr><td>🇨🇳 AGIBOT</td><td>수만대</td><td>—</td><td>—</td><td>—</td></tr>
               <tr><td>🇨🇳 UBTECH</td><td>1만대</td><td>—</td><td>—</td><td>—</td></tr>
               <tr><td>🇨🇳 Unitree</td><td>—</td><td>—</td><td>$16K~</td><td>—</td></tr>
@@ -1213,13 +1236,13 @@ window.addEventListener('DOMContentLoaded', function(){ render(); document.query
         <span style="font-size:10px;color:var(--ink-3)">머스크의 기한 약속 602건 분석 (2011~2026.1, NYT)</span><br>
         NYT가 머스크 SNS+IR 콜에서 기한 명시 공개 약속 <b>602건</b>을 집계: 달성 ~19% · 지연·실패 ~35% · 검증불가·모호 ~33% · 마감 미도래 ~13%. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">기한 약속은 평균 19%만 그대로 지켜짐</span> → 100만 대 야망에 'NYT 19% rule'을 적용하면 BD 3만 대와의 자릿수 격차가 좁혀짐.<br><br>
         <b>② 휴머노이드 데이터는 '판매 대수'가 아니라 '배치+텔레오퍼레이션'에서 나옴.</b> 차 운전 데이터 ≠ 휴머노이드 조작 데이터. 흥미롭게 <b>테슬라조차</b> 자사 프리몬트 공장에 옵티머스 1,000대+를 배치하고 인간 작업 영상으로 학습 → "많이 팔면 데이터가 쌓인다"는 논리 자체가 휴머노이드엔 안 맞음.<br><br>
-        <b>③ BD 데이터 기반은 base case.</b> 30년 동적제어 IP + Spot 산업현장 배치 + 현대차 HMGMA 캡티브(RMAC 26 여름) + Google DeepMind Gemini ER로 작업성공률 상승. 대시보드 양산 타임라인이 BD 3만·테슬라 100만을 <b>동시</b> 표기하는 이유 — 둘 다 base case이고, "BD가 데이터 못 쌓는다"는 전제는 틀린 가설.<br><br>
+        <b>③ BD 데이터 기반은 base case.</b> 30년 동적제어 IP + Spot 산업현장 배치 + 현대차 HMGMA 캡티브(RMAC 2026년 8~9월) + Google DeepMind Gemini ER로 작업성공률 상승. 대시보드 양산 타임라인이 BD 3만·테슬라 100만을 <b>동시</b> 표기하는 이유 — 둘 다 base case이고, "BD가 데이터 못 쌓는다"는 전제는 틀린 가설.<br><br>
         <b>④ 단, 진짜 칼날 = 테슬라 수직계열화.</b> 테슬라가 액추에이터·손·칩까지 사내+삼성 파운드리로 내재화하면 모비스·에스피지·에스비비테크 등 한국 부품사는 우산 밖 → <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">"테슬라가 이기면 한국 부품 논리가 깨진다"는 리스크는 사실</span>이고 Bear case에 명시 유지.<br><br>
         <b>⑤ 정답: 두뇌·캐파는 양보, 한국은 픽앤셔블.</b> 두뇌(추론칩·VLA·WFM)는 NVIDIA·테슬라 양보. 한국 노출 = ①감속기·액추에이터(모비스·에스피지·에스비비테크) ②칩주변 반도체(삼성전기·대덕) ③데이터 디바이스(현대차·로보티즈) ④운영 OS(네이버). 테슬라가 두뇌·캐파에서 이겨도 BD·중국·연구소 생태계가 굴러가는 한 한국 부품·운영 레이어엔 매출이 들어옴.<br><br>
         <b>한 줄:</b> 100만 대는 캐파·야망(NYT 19% rule), 데이터는 판매가 아니라 공장 배치(테슬라도 1,000대), BD 2028은 base case. 단 테슬라 수직계열화가 한국 부품 논리의 진짜 리스크인 건 인정.<br>
         <span style="font-size:10px;color:var(--ink-3)">출처: NYT(2026.6.2) · Omdia · Trendforce · 자체추정 · 언론 종합</span></div></div></div>
       <div style="margin-top:4px"><div class="qa-q" onclick="var a=this.nextElementSibling,r=this.querySelector('.ar');if(a.style.maxHeight&&a.style.maxHeight!=='0px'){a.style.maxHeight='0px';r.textContent='▼'}else{a.style.maxHeight='900px';r.textContent='▲'}"><span>Q. BD Atlas·옵티머스·Unitree 데모 보면 곧 상용화 아니냐?</span><span class="ar" style="color:var(--ink-3)">▼</span></div><div class="qa-a"><div class="qa-a-inner"><b>데모 1회 성공 ≠ 현장 매일 안정 가동.</b> 냉장고를 드는 Atlas, 셔츠 접는 옵티머스, 계단 오르는 G1 영상을 보면 "내년이면 공장 투입"처럼 느껴지지만, 실제 <b>현장 배치 실적</b>은 데모와 다름:<br><br>
-        • <b>BD</b>: RMAC 2026 여름 개소 → 현대차 HMGMA 파일럿(수십 대 수준)<br>
+        • <b>BD</b>: RMAC 2026년 8~9월 개소 → 현대차 HMGMA 파일럿(수십 대 수준)<br>
         • <b>Tesla</b>: 프리몬트 자사 공장 옵티머스 1,000대+ 배치(외부 판매 아직 없음 · NYT 19% rule)<br>
         • <b>AGIBOT</b>: 10,000대 누적(중국 제조업 · 단순 작업 중심)<br>
         • <b>Figure</b>: BMW 라인 160대/월(초기 파일럿)<br><br>

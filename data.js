@@ -190,7 +190,7 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   oemTargets: [
     { name: 'Tesla', flag: '🇺🇸', target2026: '5~10만 CAPA', target2030: '100만대 목표', price: '$20~30K', battery: '2.3kWh / 2170 원통형' },
-    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026년 8월)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
+    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026년 8~9월)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
     { name: 'AGIBOT', flag: '🇨🇳', target2026: '수만대', target2030: '-', price: '-', battery: '-' },
     { name: 'UBTECH', flag: '🇨🇳', target2026: '1만대', target2030: '-', price: '-', battery: '-' },
     { name: 'Unitree', flag: '🇨🇳', target2026: '-', target2030: '-', price: '$16K~', battery: '-' },
@@ -491,7 +491,7 @@ const DASHBOARD_DATA = {
   radarOEM: {
     optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'Gen3 26.6말 설계승인·9월 주1,000대 지침' },
     figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'Helix 자체 내재화 (OpenAI 결별)' },
-    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '유성 QDD', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8월 개소, 30K CAPA (28E)' },
+    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '유성 QDD', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8~9월 개소, 30K CAPA (28E)' },
     digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
     g1: { name: 'Unitree G1', color: '#E17055', h: 132, w: 35, dof: 23, payload: 2, battery: 1.5, asp: 13.5, gear: '유성', customer: '범용', pos: '중국 저가형', note: '26년 8월 IPO, BOM 790만원' },
     neo: { name: '1X Neo', color: '#0984E3', h: 168, w: 30, dof: 75, payload: 25, battery: 2, asp: 20, gear: '유성', customer: '일반 소비자', pos: '서비스·가정용', note: '26H2 소비자 배송 시작' },
@@ -521,7 +521,7 @@ const DASHBOARD_DATA = {
   hmgRobotics: {
     source: 'JPM Conference 2026 / HMG IR',
     captiveDemand: 25000,
-    rmcaLaunch: '2026년 8월',
+    rmcaLaunch: '2026년 8~9월',
     factoryCapacity: 30000,
     actuatorPlantCapacity: 350000,
     actuatorPlantLaunch: 2028,
@@ -1042,44 +1042,19 @@ const DASHBOARD_DATA = {
     },
 
     /* ── 사이드바 섹션 구조 (7-Parts 스토리 아크) ── */
+    // 해체(technology.html→physical_ai/components) 후 실제 남은 섹션만 + 이동 콘텐츠는 크로스링크(href)
     sidebarSections: [
-      { group: '팩트체크', items: [
-        { id: 'sec-factcheck', label: '액추에이터 데이터 Lock-in' },
-      ]},
-      { group: '도입', items: [
+      { group: '기술 개요', items: [
         { id: 'sec-snapshot', label: '⚡ Before → After' },
         { id: 'sec-demand', label: '수요 논거 4 Pillars' },
-        { id: 'sec-ondevice-hero', label: '핵심 질문' },
-        { id: 'conclusion-callout', label: '📌 소결' },
-      ]},
-      { group: 'Part 1 — 범용 OS', items: [
-        { id: 'sec-paradigm', label: '패러다임 시프트 + AI 스택' },
-      ]},
-      { group: 'Part 2 — 부드러운 제어', items: [
-        { id: 'sec-flowmatch', label: '플로우 매칭 + VLA 진화' },
-      ]},
-      { group: 'Part 3 — 뇌·몸 분리', items: [
-        { id: 'sec-cogact', label: 'Dual System + 3대장 비교' },
-      ]},
-      { group: 'Part 4 — 물리적 상상력', items: [
-        { id: 'sec-wfmintro', label: 'WFM 개요 + 심화' },
-      ]},
-      { group: 'Part 5 — 실전 경량화', items: [
-        { id: 'sec-ondevice', label: '온디바이스 최적화' },
-      ]},
-      { group: 'Part 6 — 데이터+시뮬', items: [
-        { id: 'sec-pipeline', label: '데이터 + 디지털 트윈' },
-        { id: 'sec-bd-learning', label: '🦾 Part 6.5 BD Atlas 학습' },
-      ]},
-      { group: 'Part 7 — HW+인프라', items: [
-        { id: 'sec-atlas', label: 'HW + 인프라 + 투자' },
-        { id: 'sec-event-calendar', label: '📅 하반기 이벤트 캘린더' },
-        { id: 'sec-bearcase', label: '⚠️ 리스크 & 반론' },
-        { id: 'sec-stock-picks', label: '🎯 종목별 투자 포인트' },
-      ]},
-      { group: '부록', items: [
         { id: 'sec-faq', label: '❓ 예상 질문 Q&A' },
         { id: 'sec-glossary', label: '용어 사전' },
+      ]},
+      { group: '연결 — 다른 탭', items: [
+        { href: 'tech.html#sw', label: '🧠 소프트웨어 스택 ↗' },
+        { href: 'tech.html#hw', label: '🦾 하드웨어·부품 ↗' },
+        { href: 'tech.html#sw', label: '🔒 데이터 Lock-in 팩트체크 ↗' },
+        { href: 'tech.html#hw', label: '📅 하반기 이벤트 캘린더 ↗' },
       ]},
     ],
   },

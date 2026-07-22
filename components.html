@@ -16,6 +16,21 @@
 .section-gap{margin-top:32px}
 .scroll-x{overflow-x:auto}
 .num-row{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}.num-box{background:var(--bg-soft);border-radius:8px;padding:10px 14px;min-width:120px}.num-label{font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600}.num-value{font-family:var(--mono);font-size:20px;font-weight:700;line-height:1.3}.num-sub{font-size:10px;color:var(--ink-3)}
+/* 해체(technology.html→components) 시 누락된 CSS 복원 — spec 카드·원가 바·플라이휠 */
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.spec-item{background:var(--bg-soft);border-radius:8px;padding:12px 14px;text-align:center}
+.spec-item .val{font-family:var(--mono);font-size:22px;font-weight:700;line-height:1.2}
+.spec-item .lbl{font-family:var(--mono);font-size:9px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.spec-item .sub{font-size:10px;color:var(--ink-3);margin-top:2px}
+.cost-bar{height:28px;border-radius:4px;display:flex;align-items:center;padding:0 10px;font-family:var(--mono);font-size:10px;color:#fff;font-weight:600;transition:width .4s}
+.flywheel-step{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.flywheel-step:last-child{border-bottom:none}
+.flywheel-num{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--ink-3);min-width:32px;text-align:center;line-height:1}
+.flywheel-content{flex:1}
+.flywheel-content h4{font-size:12px;font-weight:700;margin-bottom:2px}
+.flywheel-content p{font-size:11px;color:var(--ink-2)}
+.flywheel-metric{font-family:var(--mono);font-size:10px;color:#4ecdc4;font-weight:600}
+@media(max-width:700px){.spec-grid{grid-template-columns:repeat(2,1fr)}}
 .th{padding:5px 6px 8px;font-size:9px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;font-weight:600;border-bottom:1px solid var(--line-s)}.td{padding:6px;border-bottom:1px solid var(--line);font-size:11px}
 .hm-cell{font-family:var(--mono);font-size:10px;padding:6px 8px;text-align:center;border:1px solid var(--line)}.hm-green{background:#e8f5e9;color:#2e7d32}.hm-yellow{background:#fff8e1;color:#f57f17}.hm-red{background:#ffebee;color:#c62828}
 svg text{font-family:'JetBrains Mono',monospace}
@@ -30,7 +45,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
-<script src="data.js?v=20260712"></script>
+<script src="data.js?v=20260722"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -2201,7 +2216,15 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
       <!-- 📅 하반기 이벤트 캘린더 (인터랙티브) -->
       <div id="sec-event-calendar" style="border-top:2px solid var(--line);margin-top:20px;padding-top:16px">
-        <div style="font-family:var(--mono);font-size:10px;color:#F8B739;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">📅 하반기 이벤트 캘린더 — 월별 촉매 클릭</div>
+        <div style="font-family:var(--mono);font-size:10px;color:#F8B739;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:10px">📅 하반기 이벤트 캘린더 — 월별 촉매 클릭 <span style="color:var(--ink-3);text-transform:none;letter-spacing:0">(7/22 기준)</span></div>
+        <details style="margin-bottom:12px;background:var(--bg-soft);border-radius:8px">
+          <summary style="cursor:pointer;padding:9px 12px;font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;list-style:none">🗂️ 지난 이벤트 (6월) — 펼치기</summary>
+          <div style="padding:0 14px 12px;font-size:11px;color:var(--ink-2);line-height:1.7">
+            <b style="color:#F8B739">젠슨 황 방한 (6/4~8)</b> — 성수동 '제2의 깐부회동'(정의선·최태원·구광모·이해진) → 현대차·LG·네이버 순방. 현대차그룹·NVIDIA AI 기술센터 새만금 구체화(9조원). 빅테크(NVIDIA·구글·삼성전자) 현대차 로봇법인·BD 지분 투자 가능성 거론. Computex GR00T·Cosmos 3.0·Alpamayo 2 발표.<br>
+            <b style="color:#FF6B6B">BD 풋옵션(6~7월)→콜옵션(7~8월)</b> — 소프트뱅크 풋옵션 가능성 낮음 → 현대차 콜옵션으로 BD 100% 확보 또는 빅테크 SI 유치. Figure AI 외부 판매 시작. 삼현 Communication Day(7/8) AXLON 공개.
+            <div style="font-size:9px;color:var(--ink-3);margin-top:6px">[언론 종합 · 각사 공시]</div>
+          </div>
+        </details>
         <div style="display:flex;gap:0;margin-bottom:12px;border-radius:8px;overflow:hidden;border:1px solid var(--line)">
           <style>
             .ev-tab{flex:1;padding:10px 6px;text-align:center;cursor:pointer;font-family:var(--mono);font-size:10px;font-weight:600;background:var(--bg-soft);color:var(--ink-3);border-right:1px solid var(--line);transition:.15s;position:relative}
@@ -2212,29 +2235,25 @@ window.addEventListener('DOMContentLoaded', render);
             .ev-panel{display:none;padding:12px 14px;background:var(--bg-soft);border-radius:8px;margin-bottom:12px;font-size:11px;color:var(--ink-2);line-height:1.7}
             .ev-panel.ev-show{display:block}
           </style>
-          <div class="ev-tab ev-active" onclick="evSwitch(0,this)">6월 초<div class="ev-stars">★★★★★</div></div>
-          <div class="ev-tab" onclick="evSwitch(1,this)">6월 중<div class="ev-stars">★★★★</div></div>
-          <div class="ev-tab" onclick="evSwitch(2,this)">3Q26<div class="ev-stars">★★★★</div></div>
-          <div class="ev-tab" onclick="evSwitch(3,this)">7~8월<div class="ev-stars">★★★★★</div></div>
-          <div class="ev-tab" onclick="evSwitch(4,this)">4Q26<div class="ev-stars">★★★★</div></div>
-          <div class="ev-tab" onclick="evSwitch(5,this)">미정<div class="ev-stars">★★★</div></div>
+          <div class="ev-tab ev-active" onclick="evSwitch(0,this)">7~8월<div class="ev-stars">★★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(1,this)">9월<div class="ev-stars">★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(2,this)">10월<div class="ev-stars">★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(3,this)">11~12월<div class="ev-stars">★★★★★</div></div>
+          <div class="ev-tab" onclick="evSwitch(4,this)">2H26<div class="ev-stars">★★★★</div></div>
         </div>
-        <div class="ev-panel ev-show" id="evp0"><b style="color:#F8B739">젠슨 황 방한 (6/4~8)</b><br>
-          • <b>6/4</b> 방한 → <b>6/5</b> 성수동 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">'제2의 깐부회동'(정의선·최태원·구광모·이해진)</span> → <b>6/8</b> 현대차 양재사옥·LG 트윈타워·네이버 사옥 순차 방문<br>
-          • <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">현대차그룹·NVIDIA AI 기술센터 새만금 설립 구체화</span> — 엔비디아 박사급 핵심 인력 한국 파견, 정부·대학·기업 공동 피지컬 AI 원천기술 개발. 현대차 새만금에 9조원 투입(수소에너지+AI데이터센터+로봇 제조공장)<br>
-          • <b>빅테크(NVIDIA·구글·삼성전자) 현대차 로봇법인(RMAC·로보틱스아메리카)·BD 지분 투자 가능성</b> 거론 — 구글 2025년 말 BD 지분 투자 타진(현대차 거절), 삼성전자 M&A 조직 BD 지분 투자 검토 중(2026.06.16 언론). 현대차 전 세계 100개 공장 = 테슬라 제외 유일한 대규모 제조 데이터 파트너 <span style="font-size:9px;color:var(--ink-3)">[언론 종합 · 채널체크]</span><br>
-          • 2025년 1차 회동 → GPU 26만 장+AI 기술센터 MOU가 구체화. 이번에도 협업 계약 여부가 핵심<br>
-          • Computex에서 <b>GR00T 레퍼런스·Cosmos 3.0·Alpamayo 2</b> 발표 완료<br>
-          <span style="font-size:10px;color:var(--ink-3)">[언론 종합 · NVIDIA · 각사 공시]</span></div>
-        <div class="ev-panel" id="evp1"><b style="color:#FF6B6B">BD 풋옵션 행사기간(6~7월) → 콜옵션(7~8월)</b> + <b>유니트리 상장 심사</b><br>소프트뱅크 풋옵션 행사 가능성 낮음(채무불이행 부담금 2.8억$) → 현대차그룹 콜옵션 행사로 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">BD 100% 확보 또는 빅테크 SI 투자 유치</span>. 삼성전자 BD 지분 투자 검토 중(2026.06.16 언론), 구글도 2025년 말 타진 이력. Pre-IPO 라운드로 fair price 구체화 전망. 유니트리 2H26 상장 예정(심천). + Figure AI 외부 판매 시작, 휴머노이드 상업 계약 확산.<br><span style="font-size:10px;color:var(--ink-3)">[현대차·BD·현대글로비스 공시 · 언론 종합 / Unitree IPO]</span></div>
-        <div class="ev-panel" id="evp2"><b style="color:#00B894">BD RMAC 개소 (2026년 8월)</b><br>현대차 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로봇 훈련센터 가동 → Atlas 공장 투입 시작</span>. 물리 데이터 생산 원년. RMAC에서 학습된 Atlas가 2028년 HMGMA에 투입되는 첫 단추. + BD+Google DeepMind 미국 세일즈 로드쇼 진행 중.<br><span style="font-size:10px;color:var(--ink-3)">[현대차 IR]</span></div>
-        <div class="ev-panel" id="evp3"><b style="color:#6C5CE7">테슬라 옵티머스 V3 출시 (7월말~8월)</b><br><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">연내 최대 이벤트</span>. 프리몬트에서 생산 시작 후 텍사스 2공장 본격 양산. V3 양산 규모 + 머스크 언급 차세대 V4 로드맵 여부에 따라 <b>글로벌 휴머노이드 산업 전개 속도 결정</b>. + 2026 북중미 월드컵 기간 로보틱스 쇼케이스 기대.<br>• <b>7/8 삼현 Communication Day</b> — 휴머노이드용 액추에이터 'AXLON' 공개<br><span style="font-size:10px;color:var(--ink-3)">[Tesla 공식 · 삼현 IR · 자체추정]</span></div>
-        <div class="ev-panel" id="evp4"><b style="color:#E17055">테슬라 V3 대량 양산 (4Q26)</b> + <b>유니트리 상장 (2H26)</b><br>휴머노이드 산업 양산단계 진입 확인. 글로벌 2번째 휴머노이드 IPO(유니트리). <b>NVIDIA GR00T 레퍼런스 로봇 출시(10월)</b> — Unitree H2 Plus+Jetson Thor.<br>• <b>11월 미국 중간선거</b> — Physical AI, 정당 리스크에서 중립적 테마로 부각될 전망 <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span><br><span style="font-size:10px;color:var(--ink-3)">[Tesla·NVIDIA·Unitree]</span></div>
-        <div class="ev-panel" id="evp5"><b style="color:var(--ink-3)">미정 — 추가 촉매</b><br>• 글로벌 휴머노이드 OEM 추가 참여(상·or 추가 투자) → 밸류체인 확장<br>• <b>하반기 현대차 CID</b> 예고 <span style="font-size:9px;color:var(--ink-3)">[현대차 IR·언론종합]</span><br>• <b>Humanoid ROBOT Act</b> — 연방정부의 중·러·이란·북한산 AI 휴머노이드 구매 금지, 2025.11 발의. 연내 통과는 기대 시나리오 <span style="font-size:9px;color:var(--ink-3)">[법안·언론종합]</span><br>• <b>Section 232 로보틱스·산업기계 조사</b> — 상무부 BIS 2025.09 개시, 2026년 관세/쿼터 결정 가능성 <span style="font-size:9px;color:var(--ink-3)">[연방관보]</span><br>• <b>2026년 로보틱스 행정명령 준비</b> — 상무장관 주도, 업계 CEO와 전략 수립 중 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span><br><span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
+        <div class="ev-panel ev-show" id="evp0"><b style="color:#6C5CE7">테슬라 2Q26 어닝콜 & Optimus 출시 여부</b> <span style="color:#F8B739">★★★★★</span><br>
+          • <b>목요일 새벽 실적발표</b> — <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">옵티머스 관련 내용이 핵심</span>. 프리몬트 생산 시작 후 텍사스 2공장 본격 양산 여부, 출시 규모 + 머스크 차세대 로드맵 언급에 따라 <b>글로벌 휴머노이드 산업 전개 속도 결정</b>.<br>
+          • <b>현대차 2Q26 실적 (금)</b> — <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로봇 관련 언급이 핵심</span>.<br>
+          • <b>현대차 2026 CEO Investor Day (8/26)</b> ★★★ — 하반기 모멘텀 일정.<br>
+          <span style="font-size:10px;color:var(--ink-3)">[Tesla·현대차 IR · 자체추정]</span></div>
+        <div class="ev-panel" id="evp1"><b style="color:#00B894">BD RMAC 개소 (2026년 8~9월)</b> ★★★★<br>현대차 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">로봇 훈련센터 가동 → Atlas 공장 투입 시작</span>. 물리 데이터 생산 원년. RMAC에서 학습된 Atlas가 2028년 HMGMA 투입의 첫 단추. BD+Google DeepMind 미국 세일즈 로드쇼 진행.<br>• <b>유니트리 상장</b> ★★ — 2H26 심천 상장 예정.<br><span style="font-size:10px;color:var(--ink-3)">[현대차 IR / Unitree IPO]</span></div>
+        <div class="ev-panel" id="evp2"><b style="color:#E17055">Agility Robotics 상장</b> ★★<br>물류 특화 휴머노이드(Digit) 상장 추진.<br>• <b>NVIDIA GR00T 레퍼런스 로봇 출시</b> — Unitree H2 Plus + Jetson Thor.<br><span style="font-size:10px;color:var(--ink-3)">[Agility · NVIDIA]</span></div>
+        <div class="ev-panel" id="evp3"><b style="color:#6C5CE7">테슬라 Optimus Gen 3 양산 여부</b> ★★★★★<br><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">연내 최대 이벤트</span>. Gen 3 양산 규모·수율 확인이 휴머노이드 산업 <b>양산단계 진입</b>의 최종 확인점. 머스크 차세대 로드맵 언급 여부도 관건.<br>• <b>11월 미국 중간선거</b> — Physical AI, 정당 리스크에서 중립적 테마로 부각 전망 <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span><br><span style="font-size:10px;color:var(--ink-3)">[Tesla · 자체추정]</span></div>
+        <div class="ev-panel" id="evp4"><b style="color:var(--ink-3)">2H26 관통 촉매</b><br>• <b>미국 로보틱스 법안 제정 구체화</b> ★★★★ — Humanoid ROBOT Act(중·러·이란·북한산 AI 휴머노이드 구매 금지, 2025.11 발의) + Section 232 로보틱스·산업기계 조사(BIS 2025.09 개시, 관세/쿼터) + 2026 로보틱스 행정명령 준비. 연내 통과는 기대 시나리오 <span style="font-size:9px;color:var(--ink-3)">[법안·연방관보·언론종합]</span><br>• <b>삼성 로보틱스 사업 구체화 여부</b> ★★★ — 삼성전자 로보틱스 사업 추진 발표. 사업 구체화·BD 지분 투자 검토 진전 여부 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span><br>• <b>BD 외부 투자자 유치 여부</b> ★★★★ — 빅테크 SI 투자·Pre-IPO 라운드로 fair price 구체화. 글로벌 휴머노이드 OEM 추가 참여 시 밸류체인 확장 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span><br><span style="font-size:10px;color:var(--ink-3)">[법안·언론 종합 · 각사 공시]</span></div>
         <script>function evSwitch(i,el){document.querySelectorAll('.ev-tab').forEach(t=>t.classList.remove('ev-active'));document.querySelectorAll('.ev-panel').forEach(p=>p.classList.remove('ev-show'));el.classList.add('ev-active');document.getElementById('evp'+i).classList.add('ev-show')}</script>
         <div style="background:rgba(255,107,107,0.06);border-left:4px solid #FF6B6B;border-radius:0 10px 10px 0;padding:12px 16px">
           <div style="font-family:var(--mono);font-size:9px;color:#FF6B6B;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin-bottom:6px">📌 이벤트 그 다음을 봐야</div>
-          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">이벤트 자체보다 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">이후 구체화 여부</span>가 주가를 결정. 젠슨 방한 → Physical AI 협업 계약? RMAC → Atlas 실투입 데이터? 옵티머스 V3 → 양산 수량·V4 로드맵? 이벤트 발생 시 "그래서 뭐가 구체화됐냐"를 확인해야 함. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
+          <div style="font-size:11px;color:var(--ink-2);line-height:1.7">이벤트 자체보다 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">이후 구체화 여부</span>가 주가를 결정. 테슬라 어닝콜 → Optimus 출시·양산 수량? RMAC → Atlas 실투입 데이터? Gen 3 → 양산 수율? 로보틱스 법안 → 실제 통과? 이벤트 발생 시 "그래서 뭐가 구체화됐냐"를 확인해야 함. <span style="font-size:10px;color:var(--ink-3)">[자체추정]</span></div>
         </div>
       </div>
       <!-- 상용화 3조건과 운영 OS 레이어 -->
@@ -2575,7 +2594,7 @@ window.addEventListener('DOMContentLoaded', render);
           <li>액추에이터 8종 → 2종 통합 설계</li>
           <li>현대모비스 BD 모든 액추에이터 100% 공급 공식 발표</li>
           <li>HMG 역할: 모비스(부품) / 오토에버(SI) / 글로비스(물류)</li>
-          <li>RMAC 2026 여름 개소 / 양산공장 2028 개소 30K CAPA</li>
+          <li>RMAC 2026년 8~9월 개소 / 양산공장 2028 개소 30K CAPA</li>
           <li>HMG 내부 배포 2.5만대 captive demand</li>
           <li>Google DeepMind AI Partnership</li>
           <li>기술 설명 탭 신설 / KR 밸류체인 업데이트</li>
