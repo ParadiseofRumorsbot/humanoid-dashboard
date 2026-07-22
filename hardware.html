@@ -24,10 +24,10 @@ iframe{width:100%;border:0;display:block;background:transparent;min-height:400px
 </div>
 
 <div id="sec-hw-anatomy"></div>
-<iframe id="fA" src="anatomy.html" scrolling="no" title="휴머노이드 해부"></iframe>
+<iframe id="fA" src="anatomy.html" title="휴머노이드 해부"></iframe>
 
 <div class="hw-divider" id="sec-hw-parts">🔩 부품 기술 — 데이터북</div>
-<iframe id="fB" src="components.html" scrolling="no" title="부품 기술"></iframe>
+<iframe id="fB" src="components.html" title="부품 기술"></iframe>
 
 <script>
 function fitInner(f){
@@ -37,6 +37,7 @@ function fitInner(f){
   var f = document.getElementById(id);
   f.addEventListener('load', function(){
     fitInner(f);
+    [150,500,1200,2500].forEach(function(d){ setTimeout(function(){ fitInner(f); }, d); });
     try {
       if (window.ResizeObserver) new ResizeObserver(function(){ fitInner(f); }).observe(f.contentWindow.document.body);
     } catch(e) {}

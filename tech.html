@@ -45,7 +45,7 @@ a{color:inherit}
   <div class="sub-cap" id="subCap"></div>
 
   <div class="frame-wrap">
-    <iframe id="frame" scrolling="no" title="기술 서브 페이지"></iframe>
+    <iframe id="frame" title="기술 서브 페이지"></iframe>
   </div>
 </main>
 
@@ -71,6 +71,7 @@ function bindResize(){
   var f = document.getElementById('frame');
   try {
     fit();
+    [150,500,1200,2500].forEach(function(d){ setTimeout(fit, d); });
     if (window.ResizeObserver) new ResizeObserver(function(){ fit(); }).observe(f.contentWindow.document.body);
   } catch(e) {}
 }
