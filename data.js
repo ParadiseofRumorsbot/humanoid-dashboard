@@ -489,7 +489,7 @@ const DASHBOARD_DATA = {
   },
 
   radarOEM: {
-    optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'Gen3 26.6말 설계승인·9월 주1,000대 지침' },
+    optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'Gen3 26.6말 설계승인·9월 주1,000대 지침 · Gen4=Austin 연1,000만대 aspirational·PCB 내재화(2Q26 컨콜)' },
     figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'Helix 자체 내재화 (OpenAI 결별)' },
     atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '유성 QDD', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8~9월 개소, 30K CAPA (28E)' },
     digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
@@ -1137,6 +1137,15 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-07-23',
+      title: 'Optimus 4 계획 반영(2Q26 컨콜) — Austin 생산·연 1,000만대 aspirational·PCB 내재화 · Fremont 1세대 라인 연내 생산(초기 물량 Optimus Academy용)',
+      source: 'Tesla 2Q26 Earnings Call(26.07.22) · TSLA 2Q26 Earnings Call 노션 노트',
+      changes: [
+        'data.js: radarOEM.optimus note — Gen3 지침 뒤에 Gen4(Optimus 4) Austin 연 1,000만대 aspirational·PCB 내재화 추가 (components RADAR_OEM은 data.js 정본 참조라 자동 반영)',
+        'components: ASP표 출처 주석에 Gen4 계획 병기',
+      ],
+    },
     {
       date: '2026-07-14',
       title: '휴머노이드 해부(anatomy.html) §11 "국내 연구 지도 — 로봇의 몸(KAIST)" 신설 — 뇌 편중 논지 + 감각·손·다리 부위별 KAIST 연구 매핑',
