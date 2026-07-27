@@ -657,25 +657,26 @@ C = ARC 매출 × PSR × 실현확률</div>
             <div class="slider-range"><span>$35B</span><span>$70B</span></div>
           </div>
           <div class="slider-group">
-            <div class="slider-label"><span>네이버 에쿼티 비중</span><span class="val" id="nv_v_eqRatio">10%</span></div>
-            <input type="range" id="nv_s_eqRatio" min="5" max="20" step="1" value="10" oninput="calc()">
-            <div class="slider-range"><span>5%</span><span>20%</span></div>
+            <div class="slider-label"><span>네이버 직접 출자 비중</span><span class="val" id="nv_v_eqRatio">10%</span></div>
+            <input type="range" id="nv_s_eqRatio" min="0" max="20" step="1" value="10" oninput="calc()">
+            <div class="slider-range"><span>0% (공시상 미확정)</span><span>20%</span></div>
           </div>
         </div>
         <div class="result-row">
           <div class="result-box"><div class="label">1GW 총 CAPEX</div><div class="value" id="nv_r_capexKrw">-</div><div class="sub" id="nv_r_capexUsd">-</div></div>
-          <div class="result-box"><div class="label">네이버 에쿼티</div><div class="value" id="nv_r_nvEquity">-</div><div class="sub" id="nv_r_nvEquityUsd">-</div></div>
+          <div class="result-box"><div class="label">네이버 출자 누계 (1GW)</div><div class="value" id="nv_r_nvEquity">-</div><div class="sub" id="nv_r_nvEquityUsd">-</div></div>
           <div class="result-box"><div class="label">연간 투자 (6년)</div><div class="value" id="nv_r_annualInv">-</div><div class="sub">분할 집행</div></div>
           <div class="result-box"><div class="label">FCF 대비</div><div class="value" id="nv_r_fcfRatio">-</div><div class="sub">2025E FCF ~2.0조</div></div>
         </div>
         <div id="nv_capex_warn"></div>
-        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin:16px 0 8px">에쿼티 투자 ROI (1GW 완성 기준)</div>
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin:16px 0 8px">Phase 1 자기자본 부담 vs 엔비디아 유증 유입</div>
         <div class="result-row">
-          <div class="result-box"><div class="label">네이버 투자금</div><div class="value" id="nv_r_eqInvest">-</div><div class="sub">에쿼티 출자</div></div>
-          <div class="result-box"><div class="label">AI 팩토리 EV (1GW)</div><div class="value" id="nv_r_aiFactoryEv">-</div><div class="sub">PSR Raw</div></div>
-          <div class="result-box h-green"><div class="label">네이버 지분가치</div><div class="value" id="nv_r_eqValue" style="color:#00B894">-</div><div class="sub">지분율 적용</div></div>
-          <div class="result-box h-gold"><div class="label">투자 배수</div><div class="value" id="nv_r_eqMultiple" style="color:#F8B739">-</div><div class="sub">출자금 대비</div></div>
+          <div class="result-box"><div class="label">Phase1 인프라 CAPEX</div><div class="value" id="nv_r_p1capex">-</div><div class="sub" id="nv_r_p1capexUsd">-</div></div>
+          <div class="result-box"><div class="label">네이버 Phase1 출자</div><div class="value" id="nv_r_eqInvest">-</div><div class="sub">출자 비중 적용</div></div>
+          <div class="result-box"><div class="label">엔비디아 유증 유입</div><div class="value">1.48조</div><div class="sub">$1.0B · 26.11.20 상장</div></div>
+          <div class="result-box h-green"><div class="label">순 자기자본 부담</div><div class="value" id="nv_r_netBurden" style="color:#00B894">-</div><div class="sub" id="nv_r_coverage">-</div></div>
         </div>
+        <div class="note">* B(AI 팩토리) 레이어는 OpCo 지분 100% 기준으로 이미 전액 귀속했으므로, 여기서 출자 비중을 다시 곱하는 '에쿼티 ROI' 계산은 <b>중복 계상</b>이라 제거함. 이 섹션의 역할은 밸류 산출이 아니라 <b>자금 부담 가능성 점검</b>에 한정됨. 공시상 컴퓨팅 인프라 $9B은 Brookfield PF 조성 방안이며 네이버 직접 투자금액은 미확정이므로, 출자 비중 0%도 유효한 시나리오임.</div>
       </div>
 
       <!-- ⑦ 자금조달 구조 & 선결조건 -->
@@ -985,9 +986,15 @@ function calc(){
   if(fcfRatio>60)w.innerHTML='<div class="warn"><b>⚠️ FCF 대비 연간 투자 '+fcfRatio.toFixed(0)+'%:</b> 기존 FCF(~2.0조)의 절반 이상을 투입. 추가 차입·유증 없이는 빠듯 → SPV 레버리지·전략적 파트너 에쿼티가 핵심.</div>';
   else if(fcfRatio>30)w.innerHTML='<div class="derived"><b>✅ FCF 대비 '+fcfRatio.toFixed(0)+'%:</b> 기존 FCF로 커버 가능. 단 주주환원 여력은 축소될 수 있음.</div>';
   else w.innerHTML='<div class="derived"><b>✅ FCF 대비 '+fcfRatio.toFixed(0)+'%:</b> 충분히 감당 가능. 주주환원 병행 가능.</div>';
-  const nvShare=fullRaw*eqRatio,eqMult=nvShare/nvEqKrw;
-  $('nv_r_eqInvest').textContent=nvEqKrw.toFixed(1)+'조';$('nv_r_aiFactoryEv').textContent=f(fullRaw);
-  $('nv_r_eqValue').textContent=f(nvShare);$('nv_r_eqMultiple').textContent=eqMult.toFixed(1)+'×';
+  // Phase1 자기자본 부담 vs 엔비디아 유증 유입 (밸류 산출 아님 — 자금 부담 점검 전용)
+  const NV_ISSUE=1.4809;                                  // 엔비디아 제3자배정 유증 1조 4,809억 (260727 공시)
+  const p1CapexUsd=capexB*(p1mw/1000),p1CapexKrw=p1CapexUsd*FX/1000;
+  const p1EqKrw=p1CapexKrw*eqRatio,netBurden=p1EqKrw-NV_ISSUE;
+  $('nv_r_p1capex').textContent=p1CapexKrw.toFixed(1)+'조';$('nv_r_p1capexUsd').textContent='$'+p1CapexUsd.toFixed(1)+'B';
+  $('nv_r_eqInvest').textContent=p1EqKrw.toFixed(2)+'조';
+  $('nv_r_netBurden').textContent=(netBurden<=0?'순유입 ':'')+Math.abs(netBurden).toFixed(2)+'조';
+  $('nv_r_netBurden').style.color=netBurden<=0?'#00B894':'#FF6B6B';
+  $('nv_r_coverage').textContent=p1EqKrw>0?('유증 커버율 '+(NV_ISSUE/p1EqKrw*100).toFixed(0)+'%'):'출자 0% 시나리오';
 }
 
 window.addEventListener('DOMContentLoaded',()=>{calcV2();calc();});
