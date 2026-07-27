@@ -905,7 +905,8 @@ function f(n){return n>=10?n.toFixed(1)+'조':n>=1?n.toFixed(2)+'조':(n*10000).
 function setScenario(key,btn){
   const s=SCENARIOS[key];
   for(const k in s){const el=$('nv_s_'+k);if(el)el.value=s[k];}
-  document.querySelectorAll('.scenario-btn').forEach(b=>b.classList.remove('on'));
+  // #naver-tab 스코프 필수 — 전역 '.scenario-btn'로 잡으면 HMG 시나리오 버튼(#hmg_btn_*)의 on까지 지워짐
+  document.querySelectorAll('#naver-tab .scenario-btn').forEach(b=>b.classList.remove('on'));
   if(btn)btn.classList.add('on');
   calc();
 }
