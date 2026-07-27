@@ -452,7 +452,7 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
         GPU를 개별 기업이 직접 구축하는 대신 <b>클라우드에서 필요한 만큼 빌려쓰는(GPUaaS)</b> 모델. 전력(MW) 규모에서 매출을 산출하고 PSR로 평가. Phase 1(200MW)은 잠재고객 단독 계약 의사로 실현 확률이 높고, 1GW까지의 증분은 자본조달 과제로 낮은 확률 적용.
         <div class="logic-formula">매출 = 전력(MW) × MW당 매출
 B = [Phase1 매출 × PSR × 확률(高)] + [증분(1GW) 매출 × PSR × 확률(低)]</div>
-        <b>CoreWeave 비교 앵커:</b> NVIDIA가 지분투자한 순수 네오클라우드. 시총 $54.77B / 약 850MW = <b>954억원/MW</b>(FX 1,480.9 기준). 네이버 AI 팩토리 MW에 트랜스플랜트해 PSR 방식의 현실성 점검.
+        <b>CoreWeave 비교 앵커:</b> NVIDIA가 지분투자한 순수 네오클라우드. <b>네이버와 동일 시점(2026.07.27)</b> 시총 $39.22B / 약 850MW = <b>683억원/MW</b>(FX 1,480.9 기준). 네이버 AI 팩토리 MW에 트랜스플랜트해 PSR 방식의 현실성 점검. 단 CoreWeave는 순차입금 $32.9B(EV의 46%)를 지고 있어 <b>EV 기준으로는 1,256억원/MW</b>이며, 네이버는 GPU 자산·부채가 SPV에 귀속되는 오프밸런스 구조이므로 <b>시총 기준 앵커가 비교 가능성이 높음</b>.
         <h4>[C] Physical AI OS — ARC (CoreWeave에 없는 프리미엄)</h4>
         NVIDIA는 파운데이션 모델(GR00T)·시뮬(Isaac)까지만 제공하고 <b>다수 로봇을 현장에서 운영·관제하는 OS는 빈 칸</b>. 이 자리를 네이버 ARC(멀티로봇 인텔리전스)가 채움. CoreWeave(순수 클라우드)에는 없는 차별적 가치.
         <div class="logic-formula">ARC 매출 = 연결 로봇 대수 × 대당 ARPU(OS 수수료 + GPU 클라우딩)
@@ -548,17 +548,19 @@ C = ARC 매출 × PSR × 실현확률</div>
         <div style="background:#0d1117;border-radius:10px;padding:14px 16px;margin:12px 0">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
             <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#fff">⚓ CoreWeave 비교 앵커</span>
-            <span style="font-family:var(--mono);font-size:9px;color:#8b949e">NasdaqGS: CRWV · NVIDIA 지분투자 네오클라우드</span>
+            <span style="font-family:var(--mono);font-size:9px;color:#8b949e">NasdaqGS: CRWV · NVIDIA 지분투자 네오클라우드 · 2026.07.27 종가 $74.02 기준</span>
           </div>
           <div class="cw-card">
-            <div class="cw-stat"><div class="l">Market Cap</div><div class="v">$54.77B</div></div>
-            <div class="cw-stat"><div class="l">EV</div><div class="v">$79.59B</div></div>
-            <div class="cw-stat"><div class="l">Revenue</div><div class="v">$6.23B</div></div>
-            <div class="cw-stat"><div class="l">EV/Sales</div><div class="v">12.8x</div></div>
-            <div class="cw-stat"><div class="l">시총/MW</div><div class="v">954억</div></div>
+            <div class="cw-stat"><div class="l">Market Cap</div><div class="v">$39.22B</div></div>
+            <div class="cw-stat"><div class="l">EV</div><div class="v">$72.10B</div></div>
+            <div class="cw-stat"><div class="l">LTM Revenue</div><div class="v">$6.23B</div></div>
+            <div class="cw-stat"><div class="l">LTM EV/Sales</div><div class="v">11.58x</div></div>
+            <div class="cw-stat"><div class="l">Net Debt</div><div class="v">$32.88B</div></div>
+            <div class="cw-stat"><div class="l">시총/MW</div><div class="v">683억</div></div>
+            <div class="cw-stat"><div class="l">EV/MW</div><div class="v">1,256억</div></div>
           </div>
-          <div style="font-size:10.5px;color:#c9d1d9;line-height:1.6">시총 $54.77B ≈ <b style="color:#fff">81.1조</b> / 850MW = <b style="color:#fff">954억원/MW</b> 트랜스플랜트 →
-          네이버 Phase 1(<span id="nv_cw_p1mw">200</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_p1">19.1조</b> · Full(<span id="nv_cw_fmw">1,000</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_full">95.4조</b>. <span style="color:#8b949e">NVIDIA 지분투자 후 CoreWeave 3.7조→상장 36조→현재 79조(10~20배).</span></div>
+          <div style="font-size:10.5px;color:#c9d1d9;line-height:1.6">시총 $39.22B ≈ <b style="color:#fff">58.1조</b> / 850MW = <b style="color:#fff">683억원/MW</b> 트랜스플랜트 →
+          네이버 Phase 1(<span id="nv_cw_p1mw">200</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_p1">13.7조</b> · Full(<span id="nv_cw_fmw">1,000</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_full">68.3조</b>. <span style="color:#8b949e">NVIDIA 지분투자 후 CoreWeave 3.7조→상장 36조→현재 58조(약 16배). 다만 52주 고점 $153.20 → 현재 $74.02로 <b style="color:#f0883e">1년간 −40%</b>, 시총도 6/8 시점 $54.77B 대비 −28% — 네오클라우드 멀티플 자체가 디레이팅 중이라는 점을 앵커 해석에 반영해야 함.</span></div>
         </div>
         <div class="result-row">
           <div class="result-box"><div class="label">Phase 1 매출</div><div class="value" id="nv_r_p1rev">-</div><div class="sub" id="nv_r_p1op">-</div></div>
@@ -878,7 +880,7 @@ function calcV2(){
 
 // ═══════════ 네이버 SOTP calc ═══════════
 const FX=1480.9, MCAP=35.31, SHARES=159318, FCF=2.0;
-const CW_MCAP_USD=54.77, CW_MW=850;
+const CW_MCAP_USD=39.2156, CW_MW=850;   // 2026.07.27 종가 $74.02 기준 시총 $39,215.60M (TIKR)
 const CW_MCAP_KRW=CW_MCAP_USD*FX/1000, CW_PER_MW=CW_MCAP_KRW/CW_MW;
 const MW_TIMELINE=[{yr:'2027H1',mw:55},{yr:'2027',mw:100},{yr:'2028',mw:200},{yr:'2029',mw:400},{yr:'2030',mw:600},{yr:'2031',mw:800},{yr:'2032',mw:1000}];
 const SCENARIOS={
