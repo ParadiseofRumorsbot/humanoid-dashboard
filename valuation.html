@@ -449,9 +449,15 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
         현재 NAVER는 2026E 지배주주순이익 <b>13.6배</b>에 거래되며, 로봇/Physical AI 가치는 <b>미반영</b> 상태. 기존 사업은 성숙 사업이므로 순이익 기준 P/E로 평가.
         <div class="logic-formula">A = 2026E 지배주주순이익 × Target P/E</div>
         <h4>[B] AI 팩토리 — GPU 클라우드(네오클라우드)</h4>
-        GPU를 개별 기업이 직접 구축하는 대신 <b>클라우드에서 필요한 만큼 빌려쓰는(GPUaaS)</b> 모델. 전력(MW) 규모에서 매출을 산출하고 PSR로 평가. Phase 1(200MW)은 잠재고객 단독 계약 의사로 실현 확률이 높고, 1GW까지의 증분은 자본조달 과제로 낮은 확률 적용.
+        GPU를 개별 기업이 직접 구축하는 대신 <b>클라우드에서 필요한 만큼 빌려쓰는(GPUaaS)</b> 모델. 전력(MW) 규모에서 매출을 산출하고 <b>EBITDA × EV/EBITDA</b>로 평가. Phase 1(200MW)은 잠재고객 단독 계약 의사로 실현 확률이 높고, 1GW까지의 증분은 자본조달 과제로 낮은 확률 적용.
         <div class="logic-formula">매출 = 전력(MW) × MW당 매출
-B = [Phase1 매출 × PSR × 확률(高)] + [증분(1GW) 매출 × PSR × 확률(低)]</div>
+EBITDA = 매출 × OpCo EBITDA 마진 (GPU 리스료 차감 후)
+B = [Phase1 EBITDA × EV/EBITDA × 확률(高)] + [증분(1GW) EBITDA × EV/EBITDA × 확률(低)]</div>
+        <b>왜 PSR이 아니라 EV/EBITDA인가:</b> 네오클라우드·데이터센터 밸류의 표준은 PSR이 아님. 콜로·Powered Shell은 <b>NOI ÷ Cap Rate</b>(자산가치 접근), 네오클라우드는 <b>EV/EBITDA</b>가 지배적임. 네이버는 셸의 임대인이 아니라 <b>임차인 겸 GPUaaS 운영자</b>이므로 NOI÷Cap이 아닌 EV/EBITDA를 적용함. 배수 9배는 "CoreWeave류 네오클라우드 레인지" 기준.
+        <div class="logic-formula">SKT 노트 ⑤(자산 보유): 108억 × EBITDA 55% × 9배 = 534.6억 EV/MW − 부채 364억(레버리지 70%) = 170.6억/MW
+네이버 OpCo(리스): 108억 × EBITDA 20% × 9배 = 194.4억/MW (부채 0 — GPU 자산·부채는 SPV 귀속)</div>
+        <b>OpCo 마진을 20%로 두는 이유:</b> SKT 노트의 EBITDA 55%는 GPU를 <b>직접 보유</b>하는 주체 기준임(투하자본 520억/MW, 레버리지 70%). 네이버는 260727 IR에서 확인된 대로 SPV에서 GPU를 <b>임차</b>하고 컴퓨팅 비용을 매출원가로 인식하므로, 리스료 차감 후 마진은 이보다 크게 낮음. 대신 자산·부채를 지지 않아 EV→Equity 부채 차감이 불필요함. <span style="color:var(--ink-3)">리스 구조가 부채 원리금을 영업비용으로 치환한 것이므로 위 두 경로가 170억 vs 194억으로 수렴하는 것이 정상임(교차검증 통과).</span>
+        <b>지분율:</b> SKT는 프로젝트 SPC의 소수지분 디벨로퍼(15~35%)라 귀속가치를 별도 할인해야 하나, 네이버는 260727 IR에서 <b>OpCo 지분 거의 100% 연결</b>을 확인했으므로 지분 할인 없이 전액 귀속함.
         <b>CoreWeave 비교 앵커:</b> NVIDIA가 지분투자한 순수 네오클라우드. <b>네이버와 동일 시점(2026.07.27)</b> 시총 $39.22B / 약 850MW = <b>683억원/MW</b>(FX 1,480.9 기준). 네이버 AI 팩토리 MW에 트랜스플랜트해 PSR 방식의 현실성 점검. 단 CoreWeave는 순차입금 $32.9B(EV의 46%)를 지고 있어 <b>EV 기준으로는 1,256억원/MW</b>이며, 네이버는 GPU 자산·부채가 SPV에 귀속되는 오프밸런스 구조이므로 <b>시총 기준 앵커가 비교 가능성이 높음</b>.
         <h4>[C] Physical AI OS — ARC (CoreWeave에 없는 프리미엄)</h4>
         NVIDIA는 파운데이션 모델(GR00T)·시뮬(Isaac)까지만 제공하고 <b>다수 로봇을 현장에서 운영·관제하는 OS는 빈 칸</b>. 이 자리를 네이버 ARC(멀티로봇 인텔리전스)가 채움. CoreWeave(순수 클라우드)에는 없는 차별적 가치.
@@ -495,8 +501,8 @@ C = ARC 매출 × PSR × 실현확률</div>
 
       <!-- ② AI Factory -->
       <div class="nv-section">
-        <div class="nv-title">② AI 팩토리 (GPU 클라우드) <span class="nv-badge" style="background:#00B894;color:#fff">MW → 매출 → PSR</span></div>
-        <div class="desc">200MW(Phase 1, 2028 확보) → 1GW(5~6년). GPUaaS '빌려쓰는' 모델. Phase 1은 잠재고객 단독 계약 의사로 가시성 高, 증분은 자본조달 과제로 확률 低.</div>
+        <div class="nv-title">② AI 팩토리 (GPU 클라우드) <span class="nv-badge" style="background:#00B894;color:#fff">MW → 매출 → EBITDA → EV/EBITDA</span></div>
+        <div class="desc">200MW(Phase 1, 2028 확보) → 1GW(5~6년). GPUaaS '빌려쓰는' 모델. Phase 1은 잠재고객 단독 계약 의사로 가시성 高, 증분은 자본조달 과제로 확률 低. <b>밸류 방식을 PSR → EV/EBITDA로 전환</b>(SKT 노트 네오클라우드 레이어와 방법론 정합).</div>
         <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600;margin:12px 0 8px">PHASE 1 — 200MW (2028, 확보 완료)</div>
         <div class="grid2">
           <div class="slider-group">
@@ -526,24 +532,25 @@ C = ARC 매출 × PSR × 실현확률</div>
         <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin:16px 0 8px">공통 파라미터</div>
         <div class="grid3">
           <div class="slider-group">
-            <div class="slider-label"><span>MW당 매출 (억원)</span><span class="val" id="nv_v_revMw">200억</span></div>
-            <input type="range" id="nv_s_revMw" min="150" max="250" step="5" value="200" oninput="calc()">
-            <div class="slider-range"><span>150억</span><span>250억</span></div>
+            <div class="slider-label"><span>MW당 매출 (억원)</span><span class="val" id="nv_v_revMw">150억</span></div>
+            <input type="range" id="nv_s_revMw" min="90" max="260" step="1" value="150" oninput="calc()">
+            <div class="slider-range"><span>90억 (CW 실적)</span><span>260억</span></div>
           </div>
           <div class="slider-group">
-            <div class="slider-label"><span>AI Factory OPM</span><span class="val" id="nv_v_aiOpm">20%</span></div>
-            <input type="range" id="nv_s_aiOpm" min="15" max="30" step="1" value="20" oninput="calc()">
-            <div class="slider-range"><span>15%</span><span>30%</span></div>
+            <div class="slider-label"><span>OpCo EBITDA 마진</span><span class="val" id="nv_v_aiOpm">20%</span></div>
+            <input type="range" id="nv_s_aiOpm" min="10" max="40" step="1" value="20" oninput="calc()">
+            <div class="slider-range"><span>10%</span><span>40%</span></div>
           </div>
           <div class="slider-group">
-            <div class="slider-label"><span>AI Factory PSR</span><span class="val" id="nv_v_aiPsr">5.0배</span></div>
-            <input type="range" id="nv_s_aiPsr" min="3" max="15" step="0.5" value="5" oninput="calc()">
-            <div class="slider-range"><span>3배</span><span>15배</span></div>
+            <div class="slider-label"><span>AI Factory EV/EBITDA</span><span class="val" id="nv_v_aiMult">9.0배</span></div>
+            <input type="range" id="nv_s_aiMult" min="5" max="20" step="0.5" value="9" oninput="calc()">
+            <div class="slider-range"><span>5배</span><span>20배</span></div>
           </div>
         </div>
+        <div class="info" style="border-left-color:#00B894;background:rgba(0,184,148,0.06)"><b style="color:#00B894">MW당 매출 — 시나리오로 분리한 이유:</b> 이 항목이 B 레이어 최대 스윙 팩터이며 소스 간 2배 차이가 존재함. <b>Bear 108억</b> = CoreWeave 실적 역산(LTM Revenue $6.23B ÷ 850MW = $7.33M/MW) 및 SKT 노트 네오클라우드 벤치 $7~9M/MW 하단 — 두 독립 소스가 일치. <b>Bull 200억</b> = 네이버 IR 260703 자체 제시치(1GW 환산 20~25조), 단 원문이 "코로+네오클 혼합"·"이해 편의상 제시치"라 명시했고 260727에 200MW 전량 GPUaaS로 확정되며 혼합 전제는 무효화됨. <b>Base 150억</b> = 중간값.</div>
         <div class="derived">
-          <b>Phase 1 (200MW):</b> <span id="nv_d_p1mw2">200</span>MW × <span id="nv_d_revMw2">200</span>억 = 매출 <b><span id="nv_d_p1rev">4.0조</span></b> · OP <span id="nv_d_p1op">0.8조</span> → 가치 <span id="nv_d_p1val">20.0조</span> × <span id="nv_d_p1prob2">85%</span> = <b><span id="nv_d_p1final">17.0조</span></b><br>
-          <b>증분 (→1GW):</b> <span id="nv_d_incrmw">800</span>MW × <span id="nv_d_revMw3">200</span>억 = 매출 <b><span id="nv_d_incrrev">16.0조</span></b> → 가치 <span id="nv_d_incrval">80.0조</span> × <span id="nv_d_fullprob2">50%</span> = <b><span id="nv_d_incrfinal">40.0조</span></b>
+          <b>Phase 1 (200MW):</b> <span id="nv_d_p1mw2">200</span>MW × <span id="nv_d_revMw2">150</span>억 = 매출 <b><span id="nv_d_p1rev">3.0조</span></b> × EBITDA <span id="nv_d_p1op">0.6조</span> × EV/EBITDA <span id="nv_d_mult2">9</span>배 → 가치 <span id="nv_d_p1val">5.4조</span> × <span id="nv_d_p1prob2">80%</span> = <b><span id="nv_d_p1final">4.3조</span></b><br>
+          <b>증분 (→1GW):</b> <span id="nv_d_incrmw">800</span>MW × <span id="nv_d_revMw3">150</span>억 = 매출 <b><span id="nv_d_incrrev">12.0조</span></b> × EBITDA <span id="nv_d_incrop">2.4조</span> → 가치 <span id="nv_d_incrval">21.6조</span> × <span id="nv_d_fullprob2">45%</span> = <b><span id="nv_d_incrfinal">9.7조</span></b>
         </div>
         <div style="background:#0d1117;border-radius:10px;padding:14px 16px;margin:12px 0">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
@@ -628,7 +635,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="result-box h-gold"><div class="label">업사이드</div><div class="value" id="nv_r_upside" style="color:#F8B739">-</div><div class="sub">vs 현재</div></div>
           <div class="result-box"><div class="label">적정 주가</div><div class="value" id="nv_r_tp">-</div><div class="sub">159,318천주(소각·유증 반영)</div></div>
         </div>
-        <div class="note">* SOTP = A(기존 P/E) + B(AI팩토리 PSR×확률) + C(ARC PSR×확률). 현재 시총 35.3조는 A(기존사업 적정가치 46.8조)에도 못 미치는 수준이므로, 업사이드는 기존사업 디스카운트 해소 + B+C(Physical AI)에서 발생.</div>
+        <div class="note">* SOTP = A(기존 P/E) + B(AI팩토리 EBITDA×EV/EBITDA×확률) + C(ARC PSR×확률). 현재 시총 35.3조는 A(기존사업 적정가치 46.8조)에도 못 미치는 수준이므로, 업사이드는 기존사업 디스카운트 해소 + B+C(Physical AI)에서 발생. C(ARC)는 소프트웨어·OS 사업이라 EBITDA 가시성이 없어 PSR 유지.</div>
       </div>
 
       <!-- ⑤ Timeline -->
@@ -884,9 +891,12 @@ const CW_MCAP_USD=39.2156, CW_MW=850;   // 2026.07.27 종가 $74.02 기준 시�
 const CW_MCAP_KRW=CW_MCAP_USD*FX/1000, CW_PER_MW=CW_MCAP_KRW/CW_MW;
 const MW_TIMELINE=[{yr:'2027H1',mw:55},{yr:'2027',mw:100},{yr:'2028',mw:200},{yr:'2029',mw:400},{yr:'2030',mw:600},{yr:'2031',mw:800},{yr:'2032',mw:1000}];
 const SCENARIOS={
-  bear:{legacyNi:2.3,legacyPe:15,p1mw:200,p1prob:65,fullmw:800,fullprob:25,revMw:170,aiOpm:18,aiPsr:3,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:30,capex:55,eqRatio:12},
-  base:{legacyNi:2.6,legacyPe:18,p1mw:200,p1prob:80,fullmw:1000,fullprob:45,revMw:200,aiOpm:20,aiPsr:5,arcRobots:50,arcArpu:120,arcPsr:15,arcProb:45,capex:45,eqRatio:10},
-  bull:{legacyNi:3.0,legacyPe:22,p1mw:250,p1prob:95,fullmw:1200,fullprob:70,revMw:220,aiOpm:25,aiPsr:8,arcRobots:200,arcArpu:200,arcPsr:20,arcProb:60,capex:40,eqRatio:8},
+  // revMw: Bear 108억=CoreWeave 실적 역산($6.23B÷850MW=$7.33M/MW)·SKT 노트 네오클라우드 벤치 $7~9M 하단
+  //        Bull 200억=네이버 IR 260703 자체 제시(1GW 20~25조) / Base 150억=양 극단의 중간
+  // aiMult: EV/EBITDA. SKT 노트 ⑤ DSX AI 클라우드 "EV/EBITDA 9배(CoreWeave류 네오클라우드 레인지)"
+  bear:{legacyNi:2.3,legacyPe:15,p1mw:200,p1prob:65,fullmw:800,fullprob:25,revMw:108,aiOpm:15,aiMult:7,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:30,capex:55,eqRatio:12},
+  base:{legacyNi:2.6,legacyPe:18,p1mw:200,p1prob:80,fullmw:1000,fullprob:45,revMw:150,aiOpm:20,aiMult:9,arcRobots:50,arcArpu:120,arcPsr:15,arcProb:45,capex:45,eqRatio:10},
+  bull:{legacyNi:3.0,legacyPe:22,p1mw:250,p1prob:95,fullmw:1200,fullprob:70,revMw:200,aiOpm:25,aiMult:12,arcRobots:200,arcArpu:200,arcPsr:20,arcProb:60,capex:40,eqRatio:8},
 };
 function $(id){return document.getElementById(id);}
 function v(id){return parseFloat($(id).value);}
@@ -902,7 +912,7 @@ function calc(){
   const legNi=v('nv_s_legacyNi'),legPe=v('nv_s_legacyPe');
   const p1mw=v('nv_s_p1mw'),p1prob=v('nv_s_p1prob')/100;
   const fullmw=v('nv_s_fullmw'),fullprob=v('nv_s_fullprob')/100;
-  const revMw=v('nv_s_revMw'),aiOpm=v('nv_s_aiOpm')/100,aiPsr=v('nv_s_aiPsr');
+  const revMw=v('nv_s_revMw'),aiOpm=v('nv_s_aiOpm')/100,aiMult=v('nv_s_aiMult');
   const arcRobots=v('nv_s_arcRobots'),arcArpu=v('nv_s_arcArpu'),arcPsr=v('nv_s_arcPsr'),arcProb=v('nv_s_arcProb')/100;
   const capexB=v('nv_s_capex'),eqRatio=v('nv_s_eqRatio')/100;
   $('nv_v_legacyNi').textContent=legNi.toFixed(1)+'조원';
@@ -913,7 +923,7 @@ function calc(){
   $('nv_v_fullprob').textContent=(fullprob*100).toFixed(0)+'%';
   $('nv_v_revMw').textContent=revMw+'억';
   $('nv_v_aiOpm').textContent=(aiOpm*100).toFixed(0)+'%';
-  $('nv_v_aiPsr').textContent=aiPsr.toFixed(1)+'배';
+  $('nv_v_aiMult').textContent=aiMult.toFixed(1)+'배';
   $('nv_v_arcRobots').textContent=arcRobots+'만대';
   $('nv_v_arcArpu').textContent=arcArpu+'만원';
   $('nv_v_arcPsr').textContent=arcPsr+'배';
@@ -925,20 +935,21 @@ function calc(){
   $('nv_d_legPe').textContent=legPe;
   $('nv_d_legVal').textContent=legVal.toFixed(1)+'조원';
   $('nv_r_legVal').textContent=f(legVal);
-  const p1rev=p1mw*revMw/10000,p1op=p1rev*aiOpm,p1raw=p1rev*aiPsr,p1final=p1raw*p1prob;
-  const incrMw=Math.max(0,fullmw-p1mw),incrRev=incrMw*revMw/10000,incrRaw=incrRev*aiPsr,incrFinal=incrRaw*fullprob;
-  const fullRev=fullmw*revMw/10000,fullOp=fullRev*aiOpm,fullRaw=fullRev*aiPsr;
+  // 밸류 체인: 매출 → EBITDA(OpCo, GPU 리스료 차감 후) → × EV/EBITDA. SPV 오프밸런스라 부채 차감 없음
+  const p1rev=p1mw*revMw/10000,p1op=p1rev*aiOpm,p1raw=p1op*aiMult,p1final=p1raw*p1prob;
+  const incrMw=Math.max(0,fullmw-p1mw),incrRev=incrMw*revMw/10000,incrOp=incrRev*aiOpm,incrRaw=incrOp*aiMult,incrFinal=incrRaw*fullprob;
+  const fullRev=fullmw*revMw/10000,fullOp=fullRev*aiOpm,fullRaw=fullOp*aiMult;
   const partB=p1final+incrFinal;
-  $('nv_d_p1mw2').textContent=p1mw;$('nv_d_revMw2').textContent=revMw;
+  $('nv_d_p1mw2').textContent=p1mw;$('nv_d_revMw2').textContent=revMw;$('nv_d_mult2').textContent=aiMult;
   $('nv_d_p1rev').textContent=p1rev.toFixed(1)+'조';$('nv_d_p1op').textContent=p1op.toFixed(1)+'조';
   $('nv_d_p1val').textContent=p1raw.toFixed(1)+'조';$('nv_d_p1prob2').textContent=(p1prob*100).toFixed(0)+'%';
   $('nv_d_p1final').textContent=p1final.toFixed(1)+'조';
   $('nv_d_incrmw').textContent=incrMw;$('nv_d_revMw3').textContent=revMw;
-  $('nv_d_incrrev').textContent=incrRev.toFixed(1)+'조';$('nv_d_incrval').textContent=incrRaw.toFixed(1)+'조';
+  $('nv_d_incrrev').textContent=incrRev.toFixed(1)+'조';$('nv_d_incrop').textContent=incrOp.toFixed(1)+'조';$('nv_d_incrval').textContent=incrRaw.toFixed(1)+'조';
   $('nv_d_fullprob2').textContent=(fullprob*100).toFixed(0)+'%';$('nv_d_incrfinal').textContent=incrFinal.toFixed(1)+'조';
-  $('nv_r_p1rev').textContent=f(p1rev);$('nv_r_p1op').textContent='OP '+f(p1op);
+  $('nv_r_p1rev').textContent=f(p1rev);$('nv_r_p1op').textContent='EBITDA '+f(p1op);
   $('nv_r_p1val').textContent=f(p1final);
-  $('nv_r_fullrev').textContent=f(fullRev);$('nv_r_fullop').textContent='OP '+f(fullOp);
+  $('nv_r_fullrev').textContent=f(fullRev);$('nv_r_fullop').textContent='EBITDA '+f(fullOp);
   $('nv_r_partB').textContent=f(partB);
   $('nv_cw_p1mw').textContent=p1mw;$('nv_cw_fmw').textContent=fullmw.toLocaleString();
   $('nv_cw_p1').textContent=f(p1mw*CW_PER_MW);$('nv_cw_full').textContent=f(fullmw*CW_PER_MW);
