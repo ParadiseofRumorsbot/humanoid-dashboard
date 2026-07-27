@@ -725,7 +725,7 @@ const DASHBOARD_DATA = {
       fiveLayerCake: [
         { layer: 1, name: 'Energy', desc: '전력 공급 인프라 (원전·데이터센터 전력). 반도체·DC 메가투자 가속 시 2031년경 전력 부족이 최대 병목 [자체추정]', color: '#636E72', icon: '⚡', kr: '—' },
         { layer: 2, name: 'Chips', desc: 'GPU/DPU/NIC (Blackwell, Vera Rubin, Dynamo)', color: '#6C5CE7', icon: '🔲', kr: '삼성전기·대덕전자 (칩 주변 수동소자·기판)' },
-        { layer: 3, name: 'Infrastructure', desc: 'AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD)', color: '#0984E3', icon: '🏗️', kr: '네이버클라우드 (아시아 AI 팩토리 · 200MW→1GW 확장)' },
+        { layer: 3, name: 'Infrastructure', desc: 'AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD · 차세대 플랫폼 DSX)', color: '#0984E3', icon: '🏗️', kr: '네이버클라우드 (각 세종 첫 거점 → 아태·유럽·중동 · 200MW→1GW)' },
         { layer: 4, name: 'Foundation Models', desc: 'Cosmos(WFM)·GR00T·NeMo — 두뇌·모델 (글로벌 장악)', color: '#F8B739', icon: '🧠', kr: '네이버 (하이퍼클로바X · Nemotron LLM 연합)' },
         { layer: '5a', name: 'Applications — 시뮬·학습·배포', desc: 'Omniverse·Isaac Sim·OSMO — 로봇을 학습시켜 배포하는 파이프라인 오케스트레이션', color: '#00B894', icon: '🤖', kr: '직접 노출 없음' },
         { layer: '5b', name: 'Field Operations OS — 현장 운영', desc: '배포된 다수 로봇을 현장에서 실시간 운영·관제·작업분배·충돌회피. NVIDIA 스택의 빈 레이어 (Mega/OSMO는 시뮬 내 오케스트레이션, 현실 배치 아님)', color: '#0a9c96', icon: '🛰️', kr: '★ 네이버 ARC (1784 실배치 가동) · 현대오토에버 Robot OS' },

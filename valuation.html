@@ -424,8 +424,8 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
           <div style="text-align:right;max-width:210px"><div style="font-family:var(--mono);font-size:8px;opacity:.6;text-transform:uppercase">🇰🇷 한국</div><div style="font-size:11px;font-weight:600">네이버 (하이퍼클로바X · Nemotron LLM 연합)</div></div>
         </div>
         <div style="background:#0984E3;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff">
-          <div style="flex:1"><div style="font-family:var(--mono);font-size:13px;font-weight:700">L3. Infrastructure</div><div style="font-size:10px;opacity:.85;margin-top:2px">AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD)</div></div>
-          <div style="text-align:right;max-width:210px"><div style="font-family:var(--mono);font-size:8px;opacity:.7;text-transform:uppercase">🇰🇷 한국</div><div style="font-size:11px;font-weight:600">네이버클라우드 (아시아 AI 팩토리 · 200MW→1GW 확장)</div></div>
+          <div style="flex:1"><div style="font-family:var(--mono);font-size:13px;font-weight:700">L3. Infrastructure</div><div style="font-size:10px;opacity:.85;margin-top:2px">AI 데이터센터, 네트워킹, 쿨링 (DGX SuperPOD · 차세대 플랫폼 DSX 도입)</div></div>
+          <div style="text-align:right;max-width:210px"><div style="font-family:var(--mono);font-size:8px;opacity:.7;text-transform:uppercase">🇰🇷 한국</div><div style="font-size:11px;font-weight:600">네이버클라우드 (각 세종 첫 거점 → 아태·유럽·중동 · 200MW→1GW)</div></div>
         </div>
         <div style="background:#6C5CE7;border-radius:10px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff">
           <div style="flex:1"><div style="font-family:var(--mono);font-size:13px;font-weight:700">L2. Chips</div><div style="font-size:10px;opacity:.85;margin-top:2px">GPU/DPU/NIC (Blackwell, Vera Rubin, Dynamo)</div></div>
@@ -444,21 +444,21 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
       <summary>📐 밸류에이션 로직 (계산 방법)</summary>
       <div class="logic-body">
         <div class="logic-formula">SOTP 적정 시총 = A(기존사업) + B(AI 팩토리) + C(Physical AI OS · ARC)
-업사이드 = (SOTP − 현재 시총 44.5조) / 44.5조</div>
+업사이드 = (SOTP − 현재 시총 35.3조) / 35.3조</div>
         <h4>[A] 기존 사업 — 지배주주순이익 × P/E</h4>
-        현재 NAVER는 2026E 지배주주순이익 <b>17.2배</b>에 거래되며, 로봇/Physical AI 가치는 <b>미반영</b> 상태. 기존 사업은 성숙 사업이므로 순이익 기준 P/E로 평가.
+        현재 NAVER는 2026E 지배주주순이익 <b>13.6배</b>에 거래되며, 로봇/Physical AI 가치는 <b>미반영</b> 상태. 기존 사업은 성숙 사업이므로 순이익 기준 P/E로 평가.
         <div class="logic-formula">A = 2026E 지배주주순이익 × Target P/E</div>
         <h4>[B] AI 팩토리 — GPU 클라우드(네오클라우드)</h4>
         GPU를 개별 기업이 직접 구축하는 대신 <b>클라우드에서 필요한 만큼 빌려쓰는(GPUaaS)</b> 모델. 전력(MW) 규모에서 매출을 산출하고 PSR로 평가. Phase 1(200MW)은 잠재고객 단독 계약 의사로 실현 확률이 높고, 1GW까지의 증분은 자본조달 과제로 낮은 확률 적용.
         <div class="logic-formula">매출 = 전력(MW) × MW당 매출
 B = [Phase1 매출 × PSR × 확률(高)] + [증분(1GW) 매출 × PSR × 확률(低)]</div>
-        <b>CoreWeave 비교 앵커:</b> NVIDIA가 지분투자한 순수 네오클라우드. 시총 $54.77B / 약 850MW = <b>934억원/MW</b>. 네이버 AI 팩토리 MW에 트랜스플랜트해 PSR 방식의 현실성 점검.
+        <b>CoreWeave 비교 앵커:</b> NVIDIA가 지분투자한 순수 네오클라우드. 시총 $54.77B / 약 850MW = <b>954억원/MW</b>(FX 1,480.9 기준). 네이버 AI 팩토리 MW에 트랜스플랜트해 PSR 방식의 현실성 점검.
         <h4>[C] Physical AI OS — ARC (CoreWeave에 없는 프리미엄)</h4>
         NVIDIA는 파운데이션 모델(GR00T)·시뮬(Isaac)까지만 제공하고 <b>다수 로봇을 현장에서 운영·관제하는 OS는 빈 칸</b>. 이 자리를 네이버 ARC(멀티로봇 인텔리전스)가 채움. CoreWeave(순수 클라우드)에는 없는 차별적 가치.
         <div class="logic-formula">ARC 매출 = 연결 로봇 대수 × 대당 ARPU(OS 수수료 + GPU 클라우딩)
 C = ARC 매출 × PSR × 실현확률</div>
         <b>플라이휠:</b> ARC에 로봇이 연결될수록 → 네이버클라우드 GPU·인프라 매출 증가. 로봇 사업부 + 클라우드 사업부 동시 보유(브레인리스 구조)로만 가능 — 순수 로봇사·순수 클라우드는 불가. <b>사우디 소버린 수출(슈퍼앱·디지털트윈·클라우드 MOU)</b>은 본 모델에 미반영된 추가 옵션.
-        <div class="note" style="margin-top:14px">* 환율 1,450원/$ · 현재 시총 44.5조(2026.06.08) · 발행주식 163,848천주 · 2025E FCF ~2.0조. 모든 수치는 가정 기반 추정치. 출처: Naver IR(2026.06.08)·네이버 공시·CoreWeave 시장데이터·자체추정.</div>
+        <div class="note" style="margin-top:14px">* 환율 1,480.9원/$(260727 유증 공시 적용) · 현재 시총 35.3조(2026.07.27 종가) · 발행주식 159,318천주(8/3 자사주 4,901,094주 소각 + 11/20 유증 7,241,564주 반영) · 2025E FCF ~2.0조. 모든 수치는 가정 기반 추정치. 출처: Naver IR(2026.06.08)·260703 탐방·260727 IR 통화·260727 DART 공시 3건·CoreWeave 시장데이터·자체추정.</div>
       </div>
     </details>
 
@@ -473,7 +473,7 @@ C = ARC 매출 × PSR × 실현확률</div>
     <div class="card">
       <!-- ① Legacy -->
       <div class="nv-title">① 기존 사업 (Legacy) <span class="nv-badge" style="background:var(--ink);color:var(--bg)">순이익 × P/E</span></div>
-      <div class="desc">네이버 플랫폼(광고+서비스) + 파이낸셜 + 글로벌 콘텐츠. 2025 매출 12.04조 · OP 2.21조(OPM 18.3%). 현재 2026E 순이익 17.2배 거래 — 로봇 가치 미반영.</div>
+      <div class="desc">네이버 플랫폼(광고+서비스) + 파이낸셜 + 글로벌 콘텐츠. 2025 매출 12.04조 · OP 2.21조(OPM 18.3%). 현재 2026E 순이익 13.6배 거래 — 로봇 가치 미반영. 8/3 자사주 1조 170억 소각으로 EPS +3.2% 상향 요인.</div>
       <div class="grid2">
         <div class="slider-group">
           <div class="slider-label"><span>2026E 지배주주순이익</span><span class="val" id="nv_v_legacyNi">2.6조원</span></div>
@@ -486,7 +486,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="slider-range"><span>12배</span><span>30배</span></div>
         </div>
       </div>
-      <div class="derived"><b>기존 사업 적정 가치:</b> 순이익 <span id="nv_d_legNi">2.6조</span> × P/E <span id="nv_d_legPe">18</span>배 = <b><span id="nv_d_legVal">46.8조원</span></b> <span style="color:var(--ink-3)">(현재 시총 44.5조 ≈ 기존 사업)</span></div>
+      <div class="derived"><b>기존 사업 적정 가치:</b> 순이익 <span id="nv_d_legNi">2.6조</span> × P/E <span id="nv_d_legPe">18</span>배 = <b><span id="nv_d_legVal">46.8조원</span></b> <span style="color:var(--ink-3)">(현재 시총 35.3조 &lt; 기존 사업 적정가치 — 주가 −17%(6/8→7/27) 하락분 반영)</span></div>
       <div class="result-row">
         <div class="result-box"><div class="label">2025 매출</div><div class="value">12.04조</div><div class="sub">YoY +12.1%</div></div>
         <div class="result-box"><div class="label">2025 OP</div><div class="value">2.21조</div><div class="sub">OPM 18.3%</div></div>
@@ -505,8 +505,8 @@ C = ARC 매출 × PSR × 실현확률</div>
             <div class="slider-range"><span>100MW</span><span>300MW</span></div>
           </div>
           <div class="slider-group">
-            <div class="slider-label"><span>Phase 1 실현 확률</span><span class="val" id="nv_v_p1prob">85%</span></div>
-            <input type="range" id="nv_s_p1prob" min="50" max="100" step="5" value="85" oninput="calc()">
+            <div class="slider-label"><span>Phase 1 실현 확률</span><span class="val" id="nv_v_p1prob">80%</span></div>
+            <input type="range" id="nv_s_p1prob" min="50" max="100" step="5" value="80" oninput="calc()">
             <div class="slider-range"><span>50%</span><span>100%</span></div>
           </div>
         </div>
@@ -518,8 +518,8 @@ C = ARC 매출 × PSR × 실현확률</div>
             <div class="slider-range"><span>400MW</span><span>1,500MW</span></div>
           </div>
           <div class="slider-group">
-            <div class="slider-label"><span>증분(1GW) 실현 확률</span><span class="val" id="nv_v_fullprob">50%</span></div>
-            <input type="range" id="nv_s_fullprob" min="20" max="80" step="5" value="50" oninput="calc()">
+            <div class="slider-label"><span>증분(1GW) 실현 확률</span><span class="val" id="nv_v_fullprob">45%</span></div>
+            <input type="range" id="nv_s_fullprob" min="20" max="80" step="5" value="45" oninput="calc()">
             <div class="slider-range"><span>20%</span><span>80%</span></div>
           </div>
         </div>
@@ -555,10 +555,10 @@ C = ARC 매출 × PSR × 실현확률</div>
             <div class="cw-stat"><div class="l">EV</div><div class="v">$79.59B</div></div>
             <div class="cw-stat"><div class="l">Revenue</div><div class="v">$6.23B</div></div>
             <div class="cw-stat"><div class="l">EV/Sales</div><div class="v">12.8x</div></div>
-            <div class="cw-stat"><div class="l">시총/MW</div><div class="v">934억</div></div>
+            <div class="cw-stat"><div class="l">시총/MW</div><div class="v">954억</div></div>
           </div>
-          <div style="font-size:10.5px;color:#c9d1d9;line-height:1.6">시총 $54.77B ≈ <b style="color:#fff">79.4조</b> / 850MW = <b style="color:#fff">934억원/MW</b> 트랜스플랜트 →
-          네이버 Phase 1(<span id="nv_cw_p1mw">200</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_p1">18.7조</b> · Full(<span id="nv_cw_fmw">1,000</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_full">93.4조</b>. <span style="color:#8b949e">NVIDIA 지분투자 후 CoreWeave 3.7조→상장 36조→현재 79조(10~20배).</span></div>
+          <div style="font-size:10.5px;color:#c9d1d9;line-height:1.6">시총 $54.77B ≈ <b style="color:#fff">81.1조</b> / 850MW = <b style="color:#fff">954억원/MW</b> 트랜스플랜트 →
+          네이버 Phase 1(<span id="nv_cw_p1mw">200</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_p1">19.1조</b> · Full(<span id="nv_cw_fmw">1,000</span>MW) ≈ <b style="color:#58a6ff" id="nv_cw_full">95.4조</b>. <span style="color:#8b949e">NVIDIA 지분투자 후 CoreWeave 3.7조→상장 36조→현재 79조(10~20배).</span></div>
         </div>
         <div class="result-row">
           <div class="result-box"><div class="label">Phase 1 매출</div><div class="value" id="nv_r_p1rev">-</div><div class="sub" id="nv_r_p1op">-</div></div>
@@ -590,8 +590,8 @@ C = ARC 매출 × PSR × 실현확률</div>
           </div>
         </div>
         <div class="slider-group" style="max-width:50%">
-          <div class="slider-label"><span>ARC 실현 확률</span><span class="val" id="nv_v_arcProb">40%</span></div>
-          <input type="range" id="nv_s_arcProb" min="15" max="80" step="5" value="40" oninput="calc()">
+          <div class="slider-label"><span>ARC 실현 확률</span><span class="val" id="nv_v_arcProb">45%</span></div>
+          <input type="range" id="nv_s_arcProb" min="15" max="80" step="5" value="45" oninput="calc()">
           <div class="slider-range"><span>15%</span><span>80%</span></div>
         </div>
         <div class="derived" style="border-left-color:#0a9c96;background:rgba(10,156,150,0.06)"><b style="color:#0a9c96">ARC 가치:</b> <span id="nv_d_arcRobots2">50</span>만대 × <span id="nv_d_arcArpu2">120</span>만원 = 매출 <b><span id="nv_d_arcRev">0.6조</span></b> → 가치 <span id="nv_d_arcRaw">9.0조</span> × <span id="nv_d_arcProb2">40%</span> = <b><span id="nv_d_arcFinal">3.6조</span></b></div>
@@ -621,12 +621,12 @@ C = ARC 매출 × PSR × 실현확률</div>
           </div>
         </div>
         <div class="result-row">
-          <div class="result-box h-gold"><div class="label">현재 시총</div><div class="value">44.5조</div><div class="sub">2026.06.08</div></div>
+          <div class="result-box h-gold"><div class="label">현재 시총</div><div class="value">35.3조</div><div class="sub">2026.07.27 종가</div></div>
           <div class="result-box h-gold"><div class="label">SOTP 적정 시총</div><div class="value" id="nv_r_sotp" style="color:#F8B739">-</div><div class="sub">A+B+C</div></div>
           <div class="result-box h-gold"><div class="label">업사이드</div><div class="value" id="nv_r_upside" style="color:#F8B739">-</div><div class="sub">vs 현재</div></div>
-          <div class="result-box"><div class="label">적정 주가</div><div class="value" id="nv_r_tp">-</div><div class="sub">163,848천주</div></div>
+          <div class="result-box"><div class="label">적정 주가</div><div class="value" id="nv_r_tp">-</div><div class="sub">159,318천주(소각·유증 반영)</div></div>
         </div>
-        <div class="note">* SOTP = A(기존 P/E) + B(AI팩토리 PSR×확률) + C(ARC PSR×확률). 현재 시총 44.5조 ≈ A(기존사업)이므로 업사이드는 B+C(Physical AI)에서 발생.</div>
+        <div class="note">* SOTP = A(기존 P/E) + B(AI팩토리 PSR×확률) + C(ARC PSR×확률). 현재 시총 35.3조는 A(기존사업 적정가치 46.8조)에도 못 미치는 수준이므로, 업사이드는 기존사업 디스카운트 해소 + B+C(Physical AI)에서 발생.</div>
       </div>
 
       <!-- ⑤ Timeline -->
@@ -634,18 +634,18 @@ C = ARC 매출 × PSR × 실현확률</div>
         <div class="nv-title">⑤ MW 램프업 · 매출 타임라인 <span class="nv-badge" style="background:#6C5CE7;color:#fff">2027~2032</span></div>
         <div class="desc">IR 로드맵 기반 연도별 누적 MW 및 추정 매출. MW당 매출 슬라이더에 연동.</div>
         <div id="nv_timeline"></div>
-        <div class="note">* 2027H1 55MW → 2027말 100MW → 2028 200MW(Phase1) → 2029 400MW(세종) → 2030 600MW(추가 리스) → 2031 800MW → 2032 1,000MW. IR 로드맵 기반 자체추정.</div>
+        <div class="note">* 2027H1 55MW → 2027말 100MW → 2028 200MW(Phase1)까지는 <b>260727 공시 원문과 정확히 일치(검증 완료)</b>. 2029 400MW(세종) → 2030 600MW(추가 리스) → 2031 800MW → 2032 1,000MW 구간은 IR 로드맵 기반 자체추정.</div>
       </div>
 
       <!-- ⑥ CAPEX -->
       <div class="nv-section">
         <div class="nv-title">⑥ CAPEX · 에쿼티 투자 분석 <span class="nv-badge" style="background:#FF6B6B;color:#fff">자본 부담</span></div>
-        <div class="desc">1GW 구축 총비용 $50~60B(70~87조). Phase1은 네이버 $1B + 전략적 파트너 $1B → SPV 펀딩. 기존 사업 FCF로 감당 가능한지 점검.</div>
+        <div class="desc">260727 공시 기준 200MW 컴퓨팅 인프라 $9B → 1GW 환산 $45B(67조). Phase1 자금은 <b>엔비디아 $1B 네이버 유증 + Brookfield $9B PF</b> 구조로, 네이버 직접 투자금액은 공시상 <b>미확정</b>. 아래는 네이버가 에쿼티를 일부 부담할 경우의 시나리오 점검임.</div>
         <div class="grid2">
           <div class="slider-group">
-            <div class="slider-label"><span>1GW 총 CAPEX ($B)</span><span class="val" id="nv_v_capex">$55B</span></div>
-            <input type="range" id="nv_s_capex" min="40" max="70" step="1" value="55" oninput="calc()">
-            <div class="slider-range"><span>$40B</span><span>$70B</span></div>
+            <div class="slider-label"><span>1GW 총 CAPEX ($B)</span><span class="val" id="nv_v_capex">$45B</span></div>
+            <input type="range" id="nv_s_capex" min="35" max="70" step="1" value="45" oninput="calc()">
+            <div class="slider-range"><span>$35B</span><span>$70B</span></div>
           </div>
           <div class="slider-group">
             <div class="slider-label"><span>네이버 에쿼티 비중</span><span class="val" id="nv_v_eqRatio">10%</span></div>
@@ -668,8 +668,38 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="result-box h-gold"><div class="label">투자 배수</div><div class="value" id="nv_r_eqMultiple" style="color:#F8B739">-</div><div class="sub">출자금 대비</div></div>
         </div>
       </div>
+
+      <!-- ⑦ 자금조달 구조 & 선결조건 -->
+      <div class="nv-section">
+        <div class="nv-title">⑦ 자금조달 구조 &amp; 선결조건 체크포인트 <span class="nv-badge" style="background:#FF6B6B;color:#fff">260727 공시</span></div>
+        <div class="desc">B(AI 팩토리) 밸류는 확률로 할인되지만, 실제로는 <b>$9B PF 조성 여부가 B 전체의 ON/OFF 스위치</b>임. 260727 공시 기준 계약이 체결된 것은 엔비디아 신주인수계약뿐이고, 나머지는 협의 단계임.</div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;margin:14px 0">
+          <div style="background:rgba(0,184,148,0.08);border:1px solid rgba(0,184,148,0.35);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div style="flex:1"><div style="font-size:12px;font-weight:700;color:#00B894">① 엔비디아 $1.0B — 네이버 본체 제3자배정 유상증자</div><div style="font-size:10.5px;color:var(--ink-2);margin-top:3px">7,241,564주(잠정) × 204,500원 = 1조 4,809억원 · 할인율 0% · 1년 의무보유 · 이사회 26.07.24</div></div>
+            <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#00B894;white-space:nowrap">계약 체결 ✅</div>
+          </div>
+          <div style="background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.35);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div style="flex:1"><div style="font-size:12px;font-weight:700;color:#FF6B6B">② Brookfield $9.0B — 컴퓨팅 인프라 PF 조성</div><div style="font-size:10.5px;color:var(--ink-2);margin-top:3px">공시 원문: “조성하는 방안이 <b>제안되어 있으며</b>… 정식 계약 체결을 위한 협의 진행 중”. <b>12주간 독점적 우선협상대상자로 선정할 계획</b>. 당사 직접 투자금액 미확정</div></div>
+            <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#FF6B6B;white-space:nowrap">협의 단계 ⚠️</div>
+          </div>
+        </div>
+
+        <div class="warn"><b>⚠️ 유증 선결조건 (공시 '나. 선결조건'):</b> 본 유상증자로 조달한 자금을 <b>제외하고</b>, AI Factory 사업 확장에 사용하기 위한 <b>최소 90억 달러 규모의 컴퓨팅 인프라를 확보</b>하는 것. → <b>②가 불발되면 ①도 납입되지 않음.</b> 납입일 2026-10-30·상장 2026-11-20은 “계약서상 최대 기한이며 동 기한은 연장될 수 있음”.</div>
+
+        <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin:16px 0 8px">확인 예정 이벤트 (연내)</div>
+        <table style="width:100%;border-collapse:collapse;font-size:11px">
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 8px;font-weight:600;width:120px">2026.08.03</td><td style="padding:7px 8px">자기주식 4,901,094주(1조 170억) 소각 → 발행주식총수 152,076,491주</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 8px;font-weight:600">~2026.10월 중</td><td style="padding:7px 8px"><b>Brookfield 12주 독점 우선협상 만료</b> → 정식계약 체결 공시 여부가 최대 분기점</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 8px;font-weight:600">2026.10.30</td><td style="padding:7px 8px">유증 납입일(최대 기한). 선결조건 충족 시 조기 확정·재공시 예정</td></tr>
+          <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 8px;font-weight:600">2026.11.20</td><td style="padding:7px 8px">신주 상장 → 발행주식총수 159,318,055주 (환율에 따라 변동, 확정 시 정정공시)</td></tr>
+          <tr><td style="padding:7px 8px;font-weight:600">연내</td><td style="padding:7px 8px"><b>200MW 고객사 수주공시</b> (260703 탐방 “7월 내” 목표 → 260727 “연내”로 지연). MW당 연 매출·계약기간·Take-or-Pay 명기 여부가 ②의 PSR 가정 검증 포인트</td></tr>
+        </table>
+
+        <div class="note" style="margin-top:12px">* 260703 탐방 대비 [불일치] 2건: (1) OpCo 지분 “네이버·전략파트너 각 1조, 비연결” → “거의 100%, 연결”. (2) 엔비디아 역할 공시 정정으로 “글로벌 고객 발굴 및 매출·사업 리스크 공동 부담” 문구 삭제 → 고객 확보 리스크 전량 네이버 귀속.</div>
+      </div>
     </div>
-    <div class="note" style="margin-top:12px">출처: Naver IR (2026.06.08) · 네이버 공시 재무데이터 · CoreWeave 시장데이터 · 자체추정. by.bullsasset · 본 시뮬레이터는 참고 자료이며 모든 수치는 가정 기반 추정치입니다.</div>
+    <div class="note" style="margin-top:12px">출처: Naver IR (2026.06.08) · 260703 네이버 탐방 · 260727 IR 통화 · 260727 DART 공시 3건(주요사항보고서 유상증자결정 20260727000001 · 주식소각결정 20260727800009 · [기재정정] 장래사업·경영계획 20260727800006) · CoreWeave 시장데이터 · 자체추정. by.bullsasset · 본 시뮬레이터는 참고 자료이며 모든 수치는 가정 기반 추정치입니다.</div>
   </div>
 
   <section id="robotis-val" class="card section-gap">
@@ -847,14 +877,14 @@ function calcV2(){
 }
 
 // ═══════════ 네이버 SOTP calc ═══════════
-const FX=1450, MCAP=44.5, SHARES=163848, FCF=2.0;
+const FX=1480.9, MCAP=35.31, SHARES=159318, FCF=2.0;
 const CW_MCAP_USD=54.77, CW_MW=850;
 const CW_MCAP_KRW=CW_MCAP_USD*FX/1000, CW_PER_MW=CW_MCAP_KRW/CW_MW;
 const MW_TIMELINE=[{yr:'2027H1',mw:55},{yr:'2027',mw:100},{yr:'2028',mw:200},{yr:'2029',mw:400},{yr:'2030',mw:600},{yr:'2031',mw:800},{yr:'2032',mw:1000}];
 const SCENARIOS={
-  bear:{legacyNi:2.3,legacyPe:15,p1mw:200,p1prob:70,fullmw:800,fullprob:30,revMw:170,aiOpm:18,aiPsr:3,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:25,capex:60,eqRatio:12},
-  base:{legacyNi:2.6,legacyPe:18,p1mw:200,p1prob:85,fullmw:1000,fullprob:50,revMw:200,aiOpm:20,aiPsr:5,arcRobots:50,arcArpu:120,arcPsr:15,arcProb:40,capex:55,eqRatio:10},
-  bull:{legacyNi:3.0,legacyPe:22,p1mw:250,p1prob:95,fullmw:1200,fullprob:70,revMw:220,aiOpm:25,aiPsr:8,arcRobots:200,arcArpu:200,arcPsr:20,arcProb:60,capex:50,eqRatio:8},
+  bear:{legacyNi:2.3,legacyPe:15,p1mw:200,p1prob:65,fullmw:800,fullprob:25,revMw:170,aiOpm:18,aiPsr:3,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:30,capex:55,eqRatio:12},
+  base:{legacyNi:2.6,legacyPe:18,p1mw:200,p1prob:80,fullmw:1000,fullprob:45,revMw:200,aiOpm:20,aiPsr:5,arcRobots:50,arcArpu:120,arcPsr:15,arcProb:45,capex:45,eqRatio:10},
+  bull:{legacyNi:3.0,legacyPe:22,p1mw:250,p1prob:95,fullmw:1200,fullprob:70,revMw:220,aiOpm:25,aiPsr:8,arcRobots:200,arcArpu:200,arcPsr:20,arcProb:60,capex:40,eqRatio:8},
 };
 function $(id){return document.getElementById(id);}
 function v(id){return parseFloat($(id).value);}
