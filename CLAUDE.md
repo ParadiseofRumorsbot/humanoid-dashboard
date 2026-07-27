@@ -46,3 +46,71 @@
 - 테스트가 없는 코드(대시보드·스크립트·자동화): 실행이 곧 테스트 —
   스크립트 실행, 페이지 열어 콘솔 에러 확인, 산출물 직접 확인.
 - 코드 변경으로 산출 수치가 달라지면 변경 전/후 값을 반드시 나란히 보고.
+
+
+---
+
+# CLAUDE.md — humanoid-dashboard
+
+**이 레포(휴머노이드 로봇 투자 대시보드, 정적 HTML/JS)에서 Claude가 작업할 때의 규칙.**
+
+## 0. 작업 원칙
+
+- **변경 전 승인**: 무엇을·왜·어느 파일에서 바꾸는지 설명하고 승인받은 뒤 구현. 완료 선언 전 실제 렌더로 검증.
+- **데이터 보호**: 하드코딩된 수치·출처 표기·데이터 값은 다른 작업 중 부수 수정 절대 금지. 값이 틀려 보여도 보고만 — 대시보드 수치에는 별도 검증 이력이 있음.
+- **출처 표기**: 증권사명 명기 금지 — 원데이터 출처만 표기. 자체 추정치는 "자체 추정" 명시.
+- **비밀값 금지**: 토큰·API 키·Notion DB/collection ID는 레포에 기록 금지 — GH Secrets/로컬 메모리에서만 관리.
+
+## 1. Git — 여러 PC에서 작업하는 레포
+
+- origin/main 직접 푸시 방식(브랜치/PR 없음).
+- 여러 컴퓨터에서 같은 계정으로 작업함 → **작업 시작 전 반드시 `git fetch` + `git merge --ff-only origin/main`으로 최신화**. 로컬이 수십 커밋 뒤처져 있을 수 있음.
+
+## 2. 파일 구조
+
+| 파일 | 역할 |
+|---|---|
+| index.html | 대문 |
+| framework.html | 프레임워크 — 독립 페이지 |
+| market.html | 시장·경쟁 — iframe 컨테이너 |
+| tech.html | 기술(분량 최대) — iframe 컨테이너 |
+| valuechain.html | 밸류체인 — iframe 컨테이너 |
+| valuation.html | 밸류에이션 — 독립 페이지 |
+| data.js | 공통 데이터 `DASHBOARD_DATA`(sidebar·updateLog·glossary·aiFactory 등) |
+
+- 서브 콘텐츠 파일: tech_overview · physical_ai · anatomy · components · market_tam · market_company · market_competition · kr_valuechain · us_valuechain
+- tech의 hw(하드웨어) 서브탭은 **3중 중첩**: tech.html → hardware.html → anatomy.html + components.html
+- framework·valuation은 iframe 없는 독립 페이지 — iframe 관련 규칙(§3) 비적용.
+
+## 3. iframe 패턴 — 스크롤 함정 3종
+
+market·tech·valuechain은 서브탭을 iframe으로 로드하고, JS `fit()`이 iframe 높이를 콘텐츠에 맞춰 늘려 **바깥 페이지가 스크롤**되는 구조. 이 패턴을 손댈 때:
+
+1. **`scrolling="no"` 복원 금지** — fit 실패 시 콘텐츠가 스크롤 불가로 갇힘(커밋 a343979에서 제거). fit 재시도 타이머도 안전망이므로 유지.
+2. **iframe 서브페이지 안에 `100vh` / `overflow-y:auto` / `position:sticky` 스크롤 컨테이너 금지** — 사이드바 휠 트랩 유발(커밋 00d5300: 목차 위에서 휠이 사이드바에 갇혀 페이지가 안 스크롤됨). 외형은 flex-stretch로 유지 가능.
+3. **크로스프레임 앵커는 `behavior:'smooth'` 금지 → `'auto'` 사용** — 브라우저가 크로스프레임 smooth를 무시함. in-page 앵커(`#해시`/`scrollIntoView`)는 부모 프레임을 못 움직이므로, 부모 프레임을 직접 스크롤하는 tech_overview의 `scrollToTargetEl` 패턴(커밋 4d20541)을 따를 것.
+
+## 4. CSS 해체 누락 — 반복 회귀
+
+- 반복된 사고: 콘텐츠를 파일 간 이동·해체할 때 **CSS 클래스 정의를 같이 옮기지 않아** 디자인이 깨짐. 사례: spec-grid/spec-item/cost-bar/flywheel(커밋 4d20541), arch-*/pipeline-*/cake-layer(커밋 00d5300).
+- **"디자인 깨짐" 신고 시 개별 수리 전 포괄 감사부터**: 브라우저 JS로 DOM에서 사용 중인 클래스 vs 스타일시트에 정의된 클래스를 비교해 미정의분을 일괄 추출.
+- 정본 CSS는 physical_ai.html · tech_overview.html에 있음 — 여기서 복사해 올 것.
+- 앞으로 콘텐츠를 옮길 때는 사용된 클래스의 CSS 정의를 반드시 함께 이동.
+
+## 5. data.js 캐시버스팅
+
+- 각 HTML이 `<script src="data.js?v=YYYYMMDD">`로 로드 → **data.js 수정 시 참조 파일들의 버전 쿼리를 오늘 날짜로 bump 필수**. 안 하면 브라우저가 옛 data.js 캐시를 써서 반영 안 됨.
+- 버전 쿼리 참조 파일 4개: anatomy · components · physical_ai · tech_overview.
+- 반복 등장 데이터(예: 특정 시설 개소일)는 여러 HTML에 하드코딩 중복돼 있음 → 수정 시 전 파일 일괄 검색·수정. 단 **updateLog의 과거 이력 항목은 보존**(당시 기록이므로 소급 수정 금지).
+- updateLog는 모든 페이지에 표시되는 공용 요소 — 콘텐츠 반영 시 updateLog에도 항목 추가.
+
+## 6. 로컬 실행·검증
+
+- `.claude/launch.json`에 `py -m http.server` 설정 있음 → preview로 로컬 서버 실행.
+- 레이아웃·스크롤·iframe 관련 변경은 반드시 브라우저에서 실제 렌더·스크롤 동작을 확인한 뒤 완료 선언.
+- iframe 구조 특성상 개별 서브페이지 단독 열람과 컨테이너 경유 열람의 동작이 다를 수 있음 — 검증은 메인 탭(컨테이너) 경유로.
+
+## 7. 반복 작업 패턴
+
+- 이 레포의 전형적 작업: 영상·리포트 데이터를 받아 해당 탭에 반영. 시작 전 어느 탭·어느 파일에 어떻게 넣을지 제안하고 승인 후 진행.
+- 콘텐츠 추가 시 체크리스트: ① 대상 파일 반영 → ② 중복 하드코딩 여부 전 파일 검색 → ③ data.js 수정했으면 캐시버스터 bump → ④ updateLog 추가 → ⑤ 브라우저 렌더 확인.
