@@ -450,11 +450,12 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
         <div class="logic-formula">(1) 플랫폼      = 8,042.3 × OPM 35% × (1−세율 24%) × P/E 16.0x  = 34,228.0십억
 (2) 파이낸셜    = 기업가치 4,936.0 × 지분율 69.0%                   =  3,405.8십억
 (3) 웹툰        = 시총 1,860.0 × 지분율 63.3% × (1−할인 40%)        =    706.4십억
-(4) 엔터프라이즈 = 2027E 매출 1,926.0 × Target P/S 4.5x             =  8,667.0십억
+(4) 엔터프라이즈(기존 클라우드) = (1,926.0 − AIDC 혼입 1,050.0) × OPM 15% × (1−24%) × PER 20배 = 1,997.3십억
 (5) LY          = 시총 26,788.5 × 64.7% × 50.0% × (1−할인 40%)      =  5,199.6십억
-                                                          A 합계   = 52,206.8십억 (52.21조)</div>
-        <b style="color:#FF6B6B">⚠️ (4) 엔터프라이즈 = AIDC — B와의 중복 주의:</b> 엔터프라이즈는 네이버클라우드 부문이고 AI 팩토리 GPUaaS 매출도 최종적으로 이 부문에 인식됨. 다만 2027E 매출 1,926십억에 AI 팩토리는 <b>실질적으로 미포함</b>으로 판단함 — 본 모델상 2027 AI 팩토리는 연중 평균 약 70MW × 150억 ≈ <b>1.05조</b>인데, 이게 포함됐다면 기존 클라우드 본업이 0.88조로 2025년 대비 <b>반토막 역성장</b>이 되어 비현실적이기 때문임. 기본 중복차감은 0이고 슬라이더로 조절 가능함.
-        <span style="color:var(--ink-3)">멀티플 정합성도 함께 볼 것: 엔터프라이즈는 매출 대비 <b>4.5x</b>인 반면, B 레이어는 150억/MW × EBITDA 20% × 9배 = 270억/MW로 매출 대비 <b>1.8x</b>임. 같은 AIDC 매출에 2.5배 다른 멀티플이 적용되는 구조이므로, 중복차감을 켜면 밸류가 크게 움직임(1.05조 차감 시 A −4.7조).</span>
+                                                          A 합계   = 45,537.1십억 (45.54조)
+※ 리포트 원표는 (4)에 AIDC 포함 8,667.0십억 → A 52,206.8십억(52.21조). 본 모델은 AIDC를 B로 분리</div>
+        <b>(4) 엔터프라이즈의 범위 — 기존 클라우드만 (AIDC 혼입 차감):</b> 엔터프라이즈(네이버클라우드) 부문은 <b>① 기존 클라우드 ② AIDC(AI 팩토리) ③ ARC</b>로 구성되며, A의 (4)는 <b>①만</b> 반영하고 ②는 B, ③은 C에서 별도 평가함. <b>리포트의 1,926십억에는 ② AIDC가 포함</b>돼 있음(실적 2025 564.2 · 2026F ~655 대비 organic으로 도달 불가, AIDC 미반영 증권사 추정 2027F 784.7 vs 반영 추정 2,058.3 — 260710·260716 리포트 교차확인). 따라서 <b>기본 혼입 차감 1,050십억</b>(본 모델 2027 AIDC ≈ 70MW × 150억)을 빼서 ①만 남김 — 잔여 876십억은 2026F 대비 +34%로 정상 성장. 차감 0이면 AIDC가 A와 B에 이중 계상됨.
+        <span style="color:var(--ink-3)">멀티플 정합성: (4)는 매출 대비 <b>4.5x</b>, B 레이어는 유효 약 <b>0.7x</b>(270억/MW ÷ 150억 = 1.8x × 확률 80% × 지분 50%). 같은 AIDC 매출을 리포트는 본 모델 대비 약 6배 후하게 평가하며, 혼입 차감 1.05조 이동으로 A −4.7조 / B +0.8조 순효과 −3.9조가 발생함.</span>
         <b>주식수 차이:</b> 원 리포트는 156,852천주(증자 전)로 적정주가 332,752원을 산출하나, 본 모델은 <b>159,411천주</b>(8/3 자사주 소각 + 11/20 유증 반영, FX 1,500 기준)를 사용하므로 동일 A 합계라도 주당 가치가 다소 낮게 나옴.
         <h4>[B] AI 팩토리 — GPU 클라우드(네오클라우드)</h4>
         GPU를 개별 기업이 직접 구축하는 대신 <b>클라우드에서 필요한 만큼 빌려쓰는(GPUaaS)</b> 모델. 전력(MW) 규모에서 매출을 산출하고 <b>EBITDA × EV/EBITDA</b>로 평가. Phase 1(200MW)은 잠재고객 단독 계약 의사로 실현 확률이 높고, 1GW까지의 증분은 자본조달 과제로 낮은 확률 적용.
@@ -463,9 +464,9 @@ EBITDA = 매출 × OpCo EBITDA 마진 (GPU 리스료 차감 후)
 B = [Phase1 EBITDA × EV/EBITDA × 확률(高) × 네이버 지분 50%]
   + [증분(1GW) EBITDA × EV/EBITDA × 확률(低) × 네이버 지분 10%]</div>
         <b>왜 PSR이 아니라 EV/EBITDA인가:</b> 네오클라우드·데이터센터 밸류의 표준은 PSR이 아님. 콜로·Powered Shell은 <b>NOI ÷ Cap Rate</b>(자산가치 접근), 네오클라우드는 <b>EV/EBITDA</b>가 지배적임. 네이버는 셸의 임대인이 아니라 <b>임차인 겸 GPUaaS 운영자</b>이므로 NOI÷Cap이 아닌 EV/EBITDA를 적용함. 배수 9배는 "CoreWeave류 네오클라우드 레인지" 기준.
-        <div class="logic-formula">SKT 노트 ⑤(자산 보유): 108억 × EBITDA 55% × 9배 = 534.6억 EV/MW − 부채 364억(레버리지 70%) = 170.6억/MW
+        <div class="logic-formula">자산 보유형(비교): 108억 × EBITDA 55% × 9배 = 534.6억 EV/MW − 부채 364억(레버리지 70%) = 170.6억/MW
 네이버 OpCo(리스): 108억 × EBITDA 20% × 9배 = 194.4억/MW (부채 0 — GPU 자산·부채는 SPV 귀속)</div>
-        <b>OpCo 마진을 20%로 두는 이유:</b> SKT 노트의 EBITDA 55%는 GPU를 <b>직접 보유</b>하는 주체 기준임(투하자본 520억/MW, 레버리지 70%). 네이버는 260727 IR에서 확인된 대로 SPV에서 GPU를 <b>임차</b>하고 컴퓨팅 비용을 매출원가로 인식하므로, 리스료 차감 후 마진은 이보다 크게 낮음. 대신 자산·부채를 지지 않아 EV→Equity 부채 차감이 불필요함. <span style="color:var(--ink-3)">리스 구조가 부채 원리금을 영업비용으로 치환한 것이므로 위 두 경로가 170억 vs 194억으로 수렴하는 것이 정상임(교차검증 통과).</span>
+        <b>OpCo 마진을 20%로 두는 이유:</b> 비교치의 EBITDA 55%는 GPU를 <b>직접 보유</b>하는 주체 기준임(투하자본 520억/MW, 레버리지 70%). 네이버는 260727 IR에서 확인된 대로 SPV에서 GPU를 <b>임차</b>하고 컴퓨팅 비용을 매출원가로 인식하므로, 리스료 차감 후 마진은 이보다 크게 낮음. 대신 자산·부채를 지지 않아 EV→Equity 부채 차감이 불필요함. <span style="color:var(--ink-3)">리스 구조가 부채 원리금을 영업비용으로 치환한 것이므로 위 두 경로가 170억 vs 194억으로 수렴하는 것이 정상임(교차검증 통과).</span>
         <b>지분율 — B 레이어 최대 조정 요인:</b> 260615 신사업 설명회 도식 기준 200MW 자금은 <b>네이버 $1B + 전략적투자자 $1B + SPV 외부조달 $8B = 총 $10B</b>이며, 네이버·전략적투자자가 합작회사 <b>JV(가칭 네이버 AI Compute) = OpCo</b>를 세우고 네이버가 <b>50%+1주</b>를 보유함. 200MW 초과 증분 구간은 <b>지분 10%만 참여</b>. 따라서 B는 구간별 지분율을 곱해 귀속함 — Phase1 ×50%, 증분 ×10%.
         <span style="color:var(--ink-3)">Phase1 50%+1주는 지배력(연결) 유지선이고, 증분 10%는 별도 비히클 참여로 보아 Phase1 지분이 희석되지 않는 것으로 가정함. 만약 동일 OpCo 증자로 희석되면 블렌디드 18%가 되어 B는 더 낮아짐.</span>
         <b style="color:#FF6B6B">[불일치]</b> 260727 IR 통화에서 담당자는 “OpCo 지분은 거의 100%로 가져가 연결한다”고 답변했으나, 이는 <b>지배력(연결)을 지분율로 잘못 표현</b>한 것으로 판단함 — 50%+1주로도 연결은 성립하며, 260615는 설명회 자료 기반 1차 소스인 반면 260727 담당자는 해당 문답에서 세부 미확인을 반복함. <b>260615 기준(50%+1주)을 채택</b>함.
@@ -490,7 +491,7 @@ C = ARC 매출 × PSR × 실현확률</div>
     <div class="card">
       <!-- ① Legacy -->
       <div class="nv-title">① 본업 SOTP (5-Part) <span class="nv-badge" style="background:var(--ink);color:var(--bg)">플랫폼 + 파이낸셜 + 웹툰 + 엔터프라이즈 + LY</span></div>
-      <div class="desc">본업을 5개 부문으로 나눠 각각 평가함. <b>(1) 플랫폼</b>은 2027E 세후 영업이익 × 글로벌 peer P/E, <b>(4) 엔터프라이즈</b>는 2027E 매출 × P/S, <b>(2)(3)(5)</b>는 기업가치·시총 × 지분율(상장 자회사는 할인율 적용). <span style="color:var(--ink-3)">A는 3개 시나리오 공통 고정이며 시나리오 스윙은 B·C에서만 발생함. 지분율·할인율은 사실관계라 상수 고정이고, 각 부문의 스윙 팩터만 슬라이더로 노출함.</span></div>
+      <div class="desc">본업을 5개 부문으로 나눠 각각 평가함. <b>(1) 플랫폼</b>은 2027E 세후 영업이익 × 글로벌 peer P/E, <b>(4) 엔터프라이즈는 기존 클라우드만</b> 2027E 매출 × P/S로 평가(AIDC는 B, ARC는 C 레이어), <b>(2)(3)(5)</b>는 기업가치·시총 × 지분율(상장 자회사는 할인율 적용). <span style="color:var(--ink-3)">A는 3개 시나리오 공통 고정이며 시나리오 스윙은 B·C에서만 발생함. 지분율·할인율은 사실관계라 상수 고정이고, 각 부문의 스윙 팩터만 슬라이더로 노출함.</span></div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin:14px 0 8px">(1) 네이버 플랫폼 (서치·쇼핑) — 2027E 세후 영업이익 × Target P/E</div>
       <div class="grid2">
         <div class="slider-group">
@@ -516,26 +517,31 @@ C = ARC 매출 × PSR × 실현확률</div>
       </div>
       <div class="derived"><b>(1) 플랫폼 적정 가치:</b> 매출 <span id="nv_d_legRev">8,042.3</span>십억 × OPM <span id="nv_d_legOpm">35</span>% = 영업이익 <b><span id="nv_d_legOp">2,814.8</span></b>십억 × (1−<span id="nv_d_legTax">24</span>%) = 세후 영업이익 <b><span id="nv_d_legNopat">2,139.3</span></b>십억 × <span id="nv_d_legPe">16.0</span>배 = <b><span id="nv_d_legVal">34,228.0십억 (34.2조)</span></b> <span style="color:var(--ink-3)">(AIDC 부각 전 본업 시장가치 ~35조와 사실상 일치)</span></div>
 
-      <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;font-weight:600;margin:18px 0 8px">(4) 엔터프라이즈 (네이버클라우드) — 2027E 매출 × Target P/S ⚠️ AIDC 중복 구간</div>
-      <div class="warn"><b>⚠️ 엔터프라이즈 = AIDC 사업 주체 — B(AI 팩토리)와 중복 가능:</b> 엔터프라이즈는 네이버클라우드 부문이고 AI 팩토리 GPUaaS도 결국 이 부문에 인식됨. 다만 <b>2027E 매출 1,926십억에 AI 팩토리 매출은 실질적으로 미포함</b>으로 판단함 — 본 모델상 2027 AI 팩토리는 상반기 55MW → 연말 100MW라 연중 평균 약 70MW × 150억 ≈ <b>1.05조</b>인데, 이게 1,926십억에 포함됐다면 기존 클라우드 본업이 0.88조로 <b>2025년 대비 반토막 역성장</b>이 되어 비현실적이기 때문임. <span style="color:var(--ink-3)">따라서 기본 중복차감 0으로 두되, 아래 슬라이더로 조절 가능함. 참고로 P/S 4.5배는 매출 대비 4.5x이고 B 레이어(150억/MW × EBITDA 20% × 9배 = 270억/MW)는 매출 대비 1.8x라, 같은 AIDC 매출에 2.5배 다른 멀티플이 적용된다는 점도 감안해야 함.</span></div>
+      <div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;font-weight:600;margin:18px 0 8px">(4) 엔터프라이즈 — 기존 클라우드만 (리포트 1,926 − AIDC 혼입 1,050) → 세후이익 × PER 20배 · AIDC는 B, ARC는 C에서 별도 평가</div>
+      <div class="warn"><b>엔터프라이즈 부문 3분해:</b> 엔터프라이즈(네이버클라우드)는 <b>① 기존 클라우드 ② AIDC(AI 팩토리) ③ ARC</b>로 구성됨. 본 SOTP는 A의 (4)에 <b>①만</b> 담고, ②는 B 레이어(EBITDA×EV/EBITDA×확률×지분율), ③은 C 레이어(PSR×확률)에서 각각 평가함. <b style="color:#FF6B6B">리포트의 2027E 매출 1,926십억에는 ② AIDC가 포함돼 있음</b> — 실적상 엔터프라이즈 매출은 2025 <b>564.2십억</b> · 2026F ~655십억이고, AIDC를 반영하지 않는 증권사 추정 2027F는 784.7십억(organic +17%)인 반면 AIDC 반영 추정은 2,058.3십억임(리포트 2건, 260710·260716). 1,926은 organic만으로 도달 불가(+194%)이므로 AIDC ~1.1조 포함이 확실함. <b>따라서 기본 혼입 차감 = 1,050십억</b>(본 모델 2027 AIDC: 연중 평균 ~70MW × 150억)을 빼서 ①만 남김 → 잔여 876십억은 2026F 대비 +34%로 정상적 organic 성장. <span style="color:var(--ink-3)">차감 0으로 두면 AIDC가 A(P/S 4.5x)와 B(EBITDA×9배×확률×지분)에 이중 계상됨 — (4)는 매출 대비 4.5x, B는 유효 약 0.7x(1.8x × 확률 80% × 지분 50%)라 리포트가 AIDC를 본 모델 대비 약 6배 후하게 평가하는 셈. ③ ARC 매출은 아직 유의미하지 않아(260727 IR) 차감 불요.</span></div>
       <div class="grid3">
         <div class="slider-group">
-          <div class="slider-label"><span>2027E 엔터프라이즈 매출 (십억원)</span><span class="val" id="nv_v_entRev">1,926.0</span></div>
+          <div class="slider-label"><span>2027E 기존 클라우드 매출 (십억원)</span><span class="val" id="nv_v_entRev">1,926.0</span></div>
           <input type="range" id="nv_s_entRev" min="1200" max="3000" step="0.1" value="1926" oninput="calc()">
           <div class="slider-range"><span>1,200</span><span>3,000</span></div>
         </div>
         <div class="slider-group">
-          <div class="slider-label"><span>Target P/S (글로벌 peer 2027 평균)</span><span class="val" id="nv_v_entPs">4.5배</span></div>
-          <input type="range" id="nv_s_entPs" min="2" max="10" step="0.1" value="4.5" oninput="calc()">
-          <div class="slider-range"><span>2배</span><span>10배</span></div>
+          <div class="slider-label"><span>기존 클라우드 OPM</span><span class="val" id="nv_v_entOpm">15%</span></div>
+          <input type="range" id="nv_s_entOpm" min="5" max="30" step="1" value="15" oninput="calc()">
+          <div class="slider-range"><span>5%</span><span>30%</span></div>
         </div>
         <div class="slider-group">
-          <div class="slider-label"><span>AI 팩토리 중복차감 매출 (십억원)</span><span class="val" id="nv_v_entOverlap">0.0</span></div>
-          <input type="range" id="nv_s_entOverlap" min="0" max="1500" step="10" value="0" oninput="calc()">
-          <div class="slider-range"><span>0 (미포함 판단)</span><span>1,500</span></div>
+          <div class="slider-label"><span>Target PER</span><span class="val" id="nv_v_entPer">20배</span></div>
+          <input type="range" id="nv_s_entPer" min="10" max="30" step="0.5" value="20" oninput="calc()">
+          <div class="slider-range"><span>10배</span><span>30배</span></div>
+        </div>
+        <div class="slider-group">
+          <div class="slider-label"><span>AIDC 혼입 차감 매출 (십억원)</span><span class="val" id="nv_v_entOverlap">1,050.0</span></div>
+          <input type="range" id="nv_s_entOverlap" min="0" max="1500" step="10" value="1050" oninput="calc()">
+          <div class="slider-range"><span>0 (리포트 원값)</span><span>1,500</span></div>
         </div>
       </div>
-      <div class="derived"><b>(4) 엔터프라이즈 적정 가치:</b> (매출 <span id="nv_d_entRev">1,926.0</span> − 중복차감 <span id="nv_d_entOverlap">0.0</span>) × P/S <span id="nv_d_entPs">4.5</span>배 = <b><span id="nv_d_entVal">8,667.0십억 (8.67조)</span></b></div>
+      <div class="derived"><b>(4) 엔터프라이즈(기존 클라우드) 적정 가치:</b> (매출 <span id="nv_d_entRev">1,926.0</span> − AIDC 차감 <span id="nv_d_entOverlap">1,050.0</span>) × OPM <span id="nv_d_entOpm">15</span>% × (1−세율 <span id="nv_d_entTax">24</span>%) × PER <span id="nv_d_entPer">20.0</span>배 = <b><span id="nv_d_entVal">1,997.3십억 (2.00조)</span></b> <span style="color:var(--ink-3)">(PSR → PER 전환: 이익 기반 평가. OPM 15%는 증권사 신규 클라우드 전망 준용, 세율은 (1)과 공통)</span></div>
 
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin:18px 0 8px">(2) 파이낸셜 · (3) 웹툰 · (5) LY — 지분율 × 할인율 (지분율·할인율은 상수 고정)</div>
       <div class="grid3">
@@ -556,7 +562,7 @@ C = ARC 매출 × PSR × 실현확률</div>
         </div>
       </div>
       <div class="derived">
-        <b>(2) 파이낸셜:</b> 기업가치 <span id="nv_d_finEv">4,936.0</span>십억 × 지분율 <b>69.0%</b> = <b><span id="nv_d_finVal">3,405.8십억</span></b> <span style="color:var(--ink-3)">(2025.11 두나무와의 주식 교환 결정 시 평가받은 기업가치 적용)</span><br>
+        <b>(2) 파이낸셜:</b> 기업가치 <span id="nv_d_finEv">4,936.0</span>십억 × 지분율 <b>69.0%</b> = <b><span id="nv_d_finVal">3,405.8십억</span></b> <span style="color:var(--ink-3)">(2025.11 두나무와의 주식 교환 결정 시 평가받은 기업가치 적용. ⚠️ 교환 일정 12/31로 지연 중(260710 리포트) — 교환 무산·재협상 시 하향 리스크)</span><br>
         <b>(3) 웹툰:</b> 시총 <span id="nv_d_webtoonMc">1,860.0</span>십억(\$1.24B × FX 1,500) × 지분율 <b>63.3%</b> × (1−할인율 <b>40%</b>) = <b><span id="nv_d_webtoonVal">706.4십억</span></b> <span style="color:var(--ink-3)">(현재가 반영 · 자회사 상장 할인 · 원 리포트는 내재 FX 1,463 적용해 1,814.2십억)</span><br>
         <b>(5) LY:</b> 시총 <span id="nv_d_lyMc">26,788.5</span>십억(≈¥3,000B) × A홀딩스의 LY 지분 <b>64.7%</b> × NAVER의 A홀딩스 지분 <b>50.0%</b> × (1−할인율 <b>40%</b>) = <b><span id="nv_d_lyVal">5,199.6십억</span></b>
       </div>
@@ -566,7 +572,7 @@ C = ARC 매출 × PSR × 실현확률</div>
         <div class="result-box"><div class="label">(3) 웹툰</div><div class="value" id="nv_r_webtoonVal">-</div><div class="sub">지분 63.3% · 할인 40%</div></div>
       </div>
       <div class="result-row">
-        <div class="result-box"><div class="label">(4) 엔터프라이즈</div><div class="value" id="nv_r_entVal" style="color:#FF6B6B">-</div><div class="sub" id="nv_r_entSub">P/S 4.5x · AIDC 중복 주의</div></div>
+        <div class="result-box"><div class="label">(4) 엔터프라이즈 (기존 클라우드)</div><div class="value" id="nv_r_entVal" style="color:#FF6B6B">-</div><div class="sub" id="nv_r_entSub">기존 클라우드 · P/S 4.5x</div></div>
         <div class="result-box"><div class="label">(5) LY</div><div class="value" id="nv_r_lyVal">-</div><div class="sub">64.7%×50% · 할인 40%</div></div>
         <div class="result-box h-green"><div class="label">본업 SOTP 합계 (A)</div><div class="value" id="nv_r_legVal" style="color:#00B894">-</div><div class="sub" id="nv_r_legSub">-</div></div>
       </div>
@@ -574,8 +580,9 @@ C = ARC 매출 × PSR × 실현확률</div>
       <!-- ② AI Factory -->
       <div class="nv-section">
         <div class="nv-title">② AI 팩토리 (GPU 클라우드) <span class="nv-badge" style="background:#00B894;color:#fff">MW → 매출 → EBITDA → EV/EBITDA</span></div>
-        <div class="desc">200MW(Phase 1, 2028 확보) → 1GW(5~6년). GPUaaS '빌려쓰는' 모델. Phase 1은 잠재고객 단독 계약 의사로 가시성 高, 증분은 자본조달 과제로 확률 低. <b>밸류 방식을 PSR → EV/EBITDA로 전환</b>(SKT 노트 네오클라우드 레이어와 방법론 정합).</div>
+        <div class="desc">200MW(Phase 1, 2028 확보) → 1GW(5~6년). GPUaaS '빌려쓰는' 모델. Phase 1은 잠재고객 단독 계약 의사로 가시성 高, 증분은 자본조달 과제로 확률 低. <b>밸류 방식을 PSR → EV/EBITDA로 전환</b>(네오클라우드 표준 방법론 정합).</div>
         <div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:600;margin:12px 0 8px">PHASE 1 — 200MW (2028, 확보 완료)</div>
+        <div class="info" style="border-left-color:#00B894;background:rgba(0,184,148,0.06)"><b style="color:#00B894">Phase 1 확률 100%(Base) 근거 [자체추정]:</b> 전략적투자자(OpCo $1B 파트너)·200MW 고객사 모두 <b>엔트로픽으로 강하게 추정</b>함. 뒷받침 — 260615 설명회 "엔트로픽·구글·xAI와 신규 계약(약 3년) 논의", 260716 리포트 "단일 고객이 200MW 이상 원함, 미국 빅테크 추정", 엔트로픽은 자체 DC 없이 외부 캐파 의존 + 아시아 리전 수요. 반증 조건: 수주공시의 고객사명.</div>
         <div class="grid2">
           <div class="slider-group">
             <div class="slider-label"><span>Phase 1 전력 (MW)</span><span class="val" id="nv_v_p1mw">200MW</span></div>
@@ -583,8 +590,8 @@ C = ARC 매출 × PSR × 실현확률</div>
             <div class="slider-range"><span>100MW</span><span>300MW</span></div>
           </div>
           <div class="slider-group">
-            <div class="slider-label"><span>Phase 1 실현 확률</span><span class="val" id="nv_v_p1prob">80%</span></div>
-            <input type="range" id="nv_s_p1prob" min="50" max="100" step="5" value="80" oninput="calc()">
+            <div class="slider-label"><span>Phase 1 실현 확률</span><span class="val" id="nv_v_p1prob">100%</span></div>
+            <input type="range" id="nv_s_p1prob" min="50" max="100" step="5" value="100" oninput="calc()">
             <div class="slider-range"><span>50%</span><span>100%</span></div>
           </div>
         </div>
@@ -633,7 +640,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           </div>
         </div>
         <div class="warn"><b>⚠️ 지분율이 B 레이어 최대 조정 요인:</b> 260615 설명회 도식상 200MW 자금은 <b>네이버 $1B + 전략적투자자 $1B + SPV 외부조달 $8B = 총 $10B</b>이며, 합작회사 <b>JV(가칭 네이버 AI Compute) = OpCo</b>를 네이버가 <b>50%+1주</b> 보유. 200MW 초과 증분은 <b>지분 10%만 참여</b>. <b style="color:#FF6B6B">[불일치]</b> 260727 IR 통화의 “OpCo 지분 거의 100%” 답변은 지배력(연결)을 지분율로 잘못 표현한 것으로 판단해 <b>260615 기준을 채택</b>함 — 50%+1주로도 연결은 성립함. 증분 10%는 별도 비히클 참여로 보아 Phase1 지분이 희석되지 않는 것으로 가정(동일 OpCo 증자로 희석되면 블렌디드 18%가 되어 B는 더 낮아짐).</div>
-        <div class="info" style="border-left-color:#00B894;background:rgba(0,184,148,0.06)"><b style="color:#00B894">MW당 매출 — 시나리오로 분리한 이유:</b> 이 항목이 B 레이어 최대 스윙 팩터이며 소스 간 2배 차이가 존재함. <b>Bear 108억</b> = CoreWeave 실적 역산(LTM Revenue $6.23B ÷ 850MW = $7.33M/MW) 및 SKT 노트 네오클라우드 벤치 $7~9M/MW 하단 — 두 독립 소스가 일치. <b>Bull 200억</b> = 네이버 IR 260703 자체 제시치(1GW 환산 20~25조), 단 원문이 "코로+네오클 혼합"·"이해 편의상 제시치"라 명시했고 260727에 200MW 전량 GPUaaS로 확정되며 혼합 전제는 무효화됨. <b>Base 150억</b> = 중간값. <span style="color:var(--ink-3)">260615 설명회의 “xAI와 현 시세 대비 약 3배 높은 가격에 장기계약 논의”는 상단을 지지하는 두 번째 소스이나, 원문이 급매 프리미엄(다음달 즉시 공급 가능 여부)을 사유로 명시했고 논의 단계라 지속 단가로 보기 어려워 Bull 근거는 IR 제시치로 유지함.</span></div>
+        <div class="info" style="border-left-color:#00B894;background:rgba(0,184,148,0.06)"><b style="color:#00B894">MW당 매출 — 시나리오로 분리한 이유:</b> 이 항목이 B 레이어 최대 스윙 팩터이며 소스 간 2배 차이가 존재함. <b>Bear 108억</b> = CoreWeave 실적 역산(LTM Revenue $6.23B ÷ 850MW = $7.33M/MW) 및 네오클라우드 벤치 $7~9M/MW 하단 — 두 독립 소스가 일치. <b>Bull 200억</b> = 네이버 IR 260703 자체 제시치(1GW 환산 20~25조), 단 원문이 "코로+네오클 혼합"·"이해 편의상 제시치"라 명시했고 260727에 200MW 전량 GPUaaS로 확정되며 혼합 전제는 무효화됨. <b>Base 150억</b> = 중간값. <b>교차검증(260716 리포트)</b>: 신규 클라우드 2030E 매출 12.44조 · 가정(1단계 200 + 3단계 250 완판 + 세종 270×60%×80% + 신규 50MW) 유효 ~630MW → <b>약 197억/MW</b> — Bull 200억을 지지하는 증권사 독립 추정. 동 리포트 OPM 15% 전망은 Bear 마진과 일치. <span style="color:var(--ink-3)">260615 설명회의 “xAI와 현 시세 대비 약 3배 높은 가격에 장기계약 논의”는 상단을 지지하는 두 번째 소스이나, 원문이 급매 프리미엄(다음달 즉시 공급 가능 여부)을 사유로 명시했고 논의 단계라 지속 단가로 보기 어려워 Bull 근거는 IR 제시치로 유지함.</span></div>
         <div class="derived">
           <b>Phase 1 (200MW):</b> <span id="nv_d_p1mw2">200</span>MW × <span id="nv_d_revMw2">150</span>억 = 매출 <b><span id="nv_d_p1rev">3.0조</span></b> × EBITDA <span id="nv_d_p1op">0.6조</span> × EV/EBITDA <span id="nv_d_mult2">9</span>배 → 가치 <span id="nv_d_p1val">5.4조</span> × 확률 <span id="nv_d_p1prob2">80%</span> × <b>지분 <span id="nv_d_p1stake2">50</span>%</b> = <b><span id="nv_d_p1final">2.2조</span></b><br>
           <b>증분 (→1GW):</b> <span id="nv_d_incrmw">800</span>MW × <span id="nv_d_revMw3">150</span>억 = 매출 <b><span id="nv_d_incrrev">12.0조</span></b> × EBITDA <span id="nv_d_incrop">2.4조</span> → 가치 <span id="nv_d_incrval">21.6조</span> × 확률 <span id="nv_d_fullprob2">45%</span> × <b>지분 <span id="nv_d_incrstake2">10</span>%</b> = <b><span id="nv_d_incrfinal">1.0조</span></b>
@@ -721,7 +728,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="result-box h-gold"><div class="label">업사이드</div><div class="value" id="nv_r_upside" style="color:#F8B739">-</div><div class="sub">vs 현재</div></div>
           <div class="result-box"><div class="label">적정 주가</div><div class="value" id="nv_r_tp">-</div><div class="sub">159,411천주(소각·유증 반영)</div></div>
         </div>
-        <div class="note">* SOTP = A(본업 5-Part) + B(AI팩토리 EBITDA×EV/EBITDA×확률×<b>지분율</b>) + C(ARC PSR×확률). A 52.19조는 리포트 5-Part 기준이며 그중 (1)플랫폼 34.2조는 AIDC 부각 전 본업 시장가치 ~35조와 사실상 일치하는 앵커임. <b>A만으로도 현재 시총 35.3조 대비 상당한 업사이드가 나오므로, B+C는 그 위에 얹히는 Physical AI 프리미엄</b>임. <b style="color:#FF6B6B">단 A의 (4)엔터프라이즈는 AIDC 사업 주체라 B와 중복 가능</b> — 중복차감 슬라이더로 조절할 것. C(ARC)는 소프트웨어·OS 사업이라 EBITDA 가시성이 없어 PSR 유지.</div>
+        <div class="note">* SOTP = A(본업 5-Part) + B(AI팩토리 EBITDA×EV/EBITDA×확률×<b>지분율</b>) + C(ARC PSR×확률). A 45.54조는 리포트 5-Part(FX 1,500 재환산)에서 <b>(4)에 혼입된 AIDC 1,050십억을 차감해 B 레이어로 분리하고, 기존 클라우드를 P/S 4.5x → 세후이익 × PER 20배로 전환</b>한 값이며, (1)플랫폼 34.2조는 AIDC 부각 전 본업 시장가치 ~35조와 사실상 일치하는 앵커임. 리포트 원표 그대로면 A 52.21조(AIDC를 P/S 4.5x로 A에 계상)로, 리포트 목표주가 33만원은 사실상 <b>본업 + AIDC(4.5x 전액)</b>의 값임. 본 모델은 AIDC를 B(EBITDA×9배×확률×지분 50%)로 옮겨 유효 0.7x로 보수 평가하고, 그 위에 C(ARC)를 얹는 구조. C(ARC)는 소프트웨어·OS 사업이라 EBITDA 가시성이 없어 PSR 유지.</div>
       </div>
 
       <!-- ⑤ Timeline -->
@@ -774,6 +781,47 @@ C = ARC 매출 × PSR × 실현확률</div>
       <div class="nv-section">
         <div class="nv-title">⑦ 자금조달 구조 &amp; 선결조건 체크포인트 <span class="nv-badge" style="background:#FF6B6B;color:#fff">260727 공시</span></div>
         <div class="desc">B(AI 팩토리) 밸류는 확률로 할인되지만, 실제로는 <b>$9B PF 조성 여부가 B 전체의 ON/OFF 스위치</b>임. 260727 공시 기준 계약이 체결된 것은 엔비디아 신주인수계약뿐이고, 나머지는 협의 단계임.</div>
+        <div style="background:var(--bg-2,rgba(128,128,128,0.05));border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:14px 0">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin-bottom:8px">자금조달·지배구조 도식 (260615 설명회 재구성 · 엔트로픽 라벨은 자체추정)</div>
+          <svg viewBox="0 0 780 420" style="width:100%;max-width:780px;display:block" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="nvArw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-3)"/></marker>
+              <marker id="nvArwR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#FF6B6B"/></marker>
+            </defs>
+            <rect x="60" y="32" width="210" height="60" rx="12" fill="rgba(0,184,148,0.10)" stroke="#00B894" stroke-width="1.6"/>
+            <text x="165" y="58" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="middle">네이버 ($1B)</text>
+            <text x="165" y="78" font-size="11" fill="var(--ink-2)" text-anchor="middle">OpCo 지분 50%+1주 · 연결</text>
+            <rect x="450" y="32" width="230" height="60" rx="12" fill="rgba(0,184,148,0.10)" stroke="#00B894" stroke-width="1.6"/>
+            <text x="565" y="58" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="middle">전략적투자자 ($1B)</text>
+            <text x="565" y="78" font-size="11" fill="#FF6B6B" text-anchor="middle">엔트로픽 강추정 [자체추정]</text>
+            <rect x="255" y="162" width="290" height="76" rx="14" fill="rgba(240,168,64,0.10)" stroke="#f0a840" stroke-width="2"/>
+            <text x="400" y="190" font-size="15" font-weight="700" fill="var(--ink)" text-anchor="middle">JV (네이버 AI 컴퓨트) = OpCo</text>
+            <text x="400" y="211" font-size="11.5" fill="var(--ink-2)" text-anchor="middle">운영사 · GPU 미보유 · 매출/비용 인식 주체</text>
+            <text x="400" y="228" font-size="11.5" fill="var(--ink-2)" text-anchor="middle">지배 50%+1주 (연결 성립)</text>
+            <rect x="628" y="168" width="128" height="64" rx="12" fill="rgba(128,128,128,0.08)" stroke="var(--ink-3)" stroke-width="1.4"/>
+            <text x="692" y="195" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="middle">고객</text>
+            <text x="692" y="215" font-size="11" fill="var(--ink-2)" text-anchor="middle">컴퓨트 구매</text>
+            <text x="692" y="248" font-size="10.5" fill="#FF6B6B" text-anchor="middle">엔트로픽 추정 [자체]</text>
+            <rect x="42" y="318" width="230" height="62" rx="12" fill="rgba(128,128,128,0.08)" stroke="var(--ink-3)" stroke-width="1.4"/>
+            <text x="157" y="343" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="middle">재무적투자자 (FI)</text>
+            <text x="157" y="363" font-size="11" fill="var(--ink-2)" text-anchor="middle">SPB 과반~80% · Brookfield $9B PF</text>
+            <rect x="318" y="318" width="270" height="62" rx="12" fill="rgba(88,166,255,0.10)" stroke="#58a6ff" stroke-width="1.8"/>
+            <text x="453" y="343" font-size="14" font-weight="700" fill="var(--ink)" text-anchor="middle">SPB (자산보유 SPV)</text>
+            <text x="453" y="363" font-size="11" fill="var(--ink-2)" text-anchor="middle">GPU 자산 소유 (Equity+Debt) · 오프밸런스</text>
+            <line x1="200" y1="92" x2="330" y2="160" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#nvArw)"/>
+            <text x="226" y="132" font-size="11" fill="var(--ink-2)">자본 출자</text>
+            <line x1="540" y1="92" x2="452" y2="160" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#nvArw)"/>
+            <text x="514" y="132" font-size="11" fill="var(--ink-2)">자본 출자</text>
+            <line x1="547" y1="200" x2="625" y2="200" stroke="#FF6B6B" stroke-width="3" marker-end="url(#nvArwR)"/>
+            <text x="586" y="189" font-size="11.5" font-weight="700" fill="#FF6B6B" text-anchor="middle">컴퓨트 판매 ★</text>
+            <line x1="368" y1="240" x2="410" y2="315" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#nvArw)"/>
+            <text x="328" y="280" font-size="11" fill="var(--ink-2)">지분(소수)</text>
+            <line x1="492" y1="315" x2="452" y2="242" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#nvArw)"/>
+            <text x="494" y="280" font-size="11" fill="var(--ink-2)">GPU 리스</text>
+            <line x1="274" y1="349" x2="314" y2="349" stroke="var(--ink-3)" stroke-width="1.6" marker-end="url(#nvArw)"/>
+          </svg>
+          <div class="note" style="margin-top:8px">* 200MW 총 $10B = 네이버 $1B + 전략적투자자 $1B + SPV 외부조달 $8B(Brookfield PF). OpCo는 GPU를 SPB에서 리스해 자산·부채 미계상 — B 레이어 EV/EBITDA(부채 차감 불요) 논리의 근거 구조.</div>
+        </div>
 
         <div style="display:flex;flex-direction:column;gap:8px;margin:14px 0">
           <div style="background:rgba(0,184,148,0.08);border:1px solid rgba(0,184,148,0.35);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px">
@@ -993,14 +1041,14 @@ const LY_AH=0.647, LY_NAVER_AH=0.50, LY_DISC=0.40; // (5) A홀딩스의 LY 지�
 const SCENARIOS={
   // legacy*: A는 "AIDC 부각 전 본업 시장가치 ~35조" 고정 앵커 → 3개 시나리오 공통.
   //          8,042.3십억 × OPM 35% × (1−세율 24%) × peer P/E 16.0배 = 34,228.0십억(34.2조)
-  // revMw: Bear 108억=CoreWeave 실적 역산($6.23B÷850MW=$7.33M/MW)·SKT 노트 네오클라우드 벤치 $7~9M 하단
+  // revMw: Bear 108억=CoreWeave 실적 역산($6.23B÷850MW=$7.33M/MW)·네오클라우드 벤치 $7~9M 하단
   //        Bull 200억=네이버 IR 260703 자체 제시(1GW 20~25조) / Base 150억=양 극단의 중간
-  // aiMult: EV/EBITDA. SKT 노트 ⑤ DSX AI 클라우드 "EV/EBITDA 9배(CoreWeave류 네오클라우드 레인지)"
+  // aiMult: EV/EBITDA 9배(CoreWeave류 네오클라우드 레인지)
   // p1stake/incrStake: 260615 설명회 — 200MW까지 OpCo 50%+1주, 초과 증분은 10%. 계약 구조라 시나리오 공통
   // capex: 260615 "1GW까지 $50~60B"
-  bear:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entPs:4.5,entOverlap:0,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:200,p1prob:65,fullmw:800,fullprob:25,revMw:108,aiOpm:15,aiMult:7,p1stake:50,incrStake:10,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:30,capex:60,eqShare:20},
-  base:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entPs:4.5,entOverlap:0,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:200,p1prob:80,fullmw:1000,fullprob:45,revMw:150,aiOpm:20,aiMult:9,p1stake:50,incrStake:10,arcRobots:50,arcArpu:120,arcPsr:15,arcProb:45,capex:55,eqShare:20},
-  bull:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entPs:4.5,entOverlap:0,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:250,p1prob:95,fullmw:1200,fullprob:70,revMw:200,aiOpm:25,aiMult:12,p1stake:50,incrStake:10,arcRobots:200,arcArpu:200,arcPsr:20,arcProb:60,capex:50,eqShare:20},
+  bear:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entOpm:15,entPer:20,entOverlap:1050,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:200,p1prob:65,fullmw:800,fullprob:25,revMw:108,aiOpm:15,aiMult:7,p1stake:50,incrStake:10,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:30,capex:60,eqShare:20},
+  base:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entOpm:15,entPer:20,entOverlap:1050,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:200,p1prob:100,fullmw:1000,fullprob:45,revMw:150,aiOpm:20,aiMult:9,p1stake:50,incrStake:10,arcRobots:50,arcArpu:120,arcPsr:15,arcProb:45,capex:55,eqShare:20},
+  bull:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entOpm:15,entPer:20,entOverlap:1050,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:250,p1prob:100,fullmw:1200,fullprob:70,revMw:200,aiOpm:25,aiMult:12,p1stake:50,incrStake:10,arcRobots:200,arcArpu:200,arcPsr:20,arcProb:60,capex:50,eqShare:20},
 };
 function $(id){return document.getElementById(id);}
 function v(id){return parseFloat($(id).value);}
@@ -1015,7 +1063,7 @@ function setScenario(key,btn){
 }
 function calc(){
   const legRev=v('nv_s_legacyRev'),legOpm=v('nv_s_legacyOpm')/100,legTax=v('nv_s_legacyTax')/100,legPe=v('nv_s_legacyPe');
-  const entRev=v('nv_s_entRev'),entPs=v('nv_s_entPs'),entOverlap=v('nv_s_entOverlap');
+  const entRev=v('nv_s_entRev'),entOpm=v('nv_s_entOpm')/100,entPer=v('nv_s_entPer'),entOverlap=v('nv_s_entOverlap');
   const finEv=v('nv_s_finEv'),webtoonMc=v('nv_s_webtoonMc'),lyMc=v('nv_s_lyMc');
   const p1mw=v('nv_s_p1mw'),p1prob=v('nv_s_p1prob')/100;
   const fullmw=v('nv_s_fullmw'),fullprob=v('nv_s_fullprob')/100;
@@ -1048,11 +1096,13 @@ function calc(){
   const legOp=legRev*legOpm,legNopat=legOp*(1-legTax),platVal=legNopat*legPe/1000;
   const finVal=finEv*FIN_STAKE/1000;                                    // (2) 파이낸셜
   const webtoonVal=webtoonMc*WEBTOON_STAKE*(1-WEBTOON_DISC)/1000;       // (3) 웹툰
-  const entNetRev=Math.max(0,entRev-entOverlap),entVal=entNetRev*entPs/1000; // (4) 엔터프라이즈(AIDC 중복차감 후)
+  // (4) 기존 클라우드: (매출−AIDC 혼입) × OPM × (1−세율) × PER. 세율은 (1) 플랫폼과 공통 슬라이더
+  const entNetRev=Math.max(0,entRev-entOverlap),entNopat=entNetRev*entOpm*(1-legTax),entVal=entNopat*entPer/1000;
   const lyVal=lyMc*LY_AH*LY_NAVER_AH*(1-LY_DISC)/1000;                  // (5) LY
   const legVal=platVal+finVal+webtoonVal+entVal+lyVal;
   $('nv_v_entRev').textContent=nb(entRev);
-  $('nv_v_entPs').textContent=entPs.toFixed(1)+'배';
+  $('nv_v_entOpm').textContent=(entOpm*100).toFixed(0)+'%';
+  $('nv_v_entPer').textContent=entPer.toFixed(0)+'배';
   $('nv_v_entOverlap').textContent=nb(entOverlap);
   $('nv_v_finEv').textContent=nb(finEv);
   $('nv_v_webtoonMc').textContent=nb(webtoonMc);
@@ -1064,14 +1114,15 @@ function calc(){
   $('nv_d_legNopat').textContent=nb(legNopat);
   $('nv_d_legPe').textContent=legPe.toFixed(1);
   $('nv_d_legVal').textContent=nb(legNopat*legPe)+'십억 ('+platVal.toFixed(1)+'조)';
-  $('nv_d_entRev').textContent=nb(entRev);$('nv_d_entOverlap').textContent=nb(entOverlap);$('nv_d_entPs').textContent=entPs.toFixed(1);
-  $('nv_d_entVal').textContent=nb(entNetRev*entPs)+'십억 ('+entVal.toFixed(2)+'조)';
+  $('nv_d_entRev').textContent=nb(entRev);$('nv_d_entOverlap').textContent=nb(entOverlap);
+  $('nv_d_entOpm').textContent=(entOpm*100).toFixed(0);$('nv_d_entTax').textContent=(legTax*100).toFixed(0);$('nv_d_entPer').textContent=entPer.toFixed(1);
+  $('nv_d_entVal').textContent=nb(entNopat*entPer)+'십억 ('+entVal.toFixed(2)+'조)';
   $('nv_d_finEv').textContent=nb(finEv);$('nv_d_finVal').textContent=nb(finEv*FIN_STAKE)+'십억';
   $('nv_d_webtoonMc').textContent=nb(webtoonMc);$('nv_d_webtoonVal').textContent=nb(webtoonMc*WEBTOON_STAKE*(1-WEBTOON_DISC))+'십억';
   $('nv_d_lyMc').textContent=nb(lyMc);$('nv_d_lyVal').textContent=nb(lyMc*LY_AH*LY_NAVER_AH*(1-LY_DISC))+'십억';
   $('nv_r_platVal').textContent=f(platVal);$('nv_r_finVal').textContent=f(finVal);
   $('nv_r_webtoonVal').textContent=f(webtoonVal);$('nv_r_entVal').textContent=f(entVal);
-  $('nv_r_entSub').textContent=entOverlap>0?('중복차감 '+nb(entOverlap)+'십억 적용'):'P/S '+entPs.toFixed(1)+'x · 중복차감 없음';
+  $('nv_r_entSub').textContent=(entOverlap>0?('AIDC 차감 '+nb(entOverlap)+' · '):'')+'OPM '+(entOpm*100).toFixed(0)+'%·PER '+entPer.toFixed(0)+'x';
   $('nv_r_lyVal').textContent=f(lyVal);
   $('nv_r_legVal').textContent=f(legVal);
   $('nv_r_legSub').textContent='본업만 기준 주가 '+Math.round(legVal*1e12/(SHARES*1000)/1000)+'천원';
