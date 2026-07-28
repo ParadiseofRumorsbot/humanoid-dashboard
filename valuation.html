@@ -452,7 +452,8 @@ details.logic .logic-body h4{font-family:var(--mono);font-size:11px;color:var(--
 (3) 웹툰        = 시총 1,860.0 × 지분율 63.3% × (1−할인 40%)        =    706.4십억
 (4) 엔터프라이즈(기존 클라우드) = (1,926.0 − AIDC 혼입 1,050.0) × OPM 15% × (1−24%) × PER 20배 = 1,997.3십억
 (5) LY          = 시총 26,788.5 × 64.7% × 50.0% × (1−할인 40%)      =  5,199.6십억
-                                                          A 합계   = 45,537.1십억 (45.54조)
+                                                5-Part 이론가 합계 = 45,537.1십억 (45.54조)
+★ A 채택값 = 시장가치 앵커 35.0조 — AIDC 부각 전 본업 시총. 이론가 대비 −23% 할인
 ※ 리포트 원표는 (4)에 AIDC 포함 8,667.0십억 → A 52,206.8십억(52.21조). 본 모델은 AIDC를 B로 분리</div>
         <b>(4) 엔터프라이즈의 범위 — 기존 클라우드만 (AIDC 혼입 차감):</b> 엔터프라이즈(네이버클라우드) 부문은 <b>① 기존 클라우드 ② AIDC(AI 팩토리) ③ ARC</b>로 구성되며, A의 (4)는 <b>①만</b> 반영하고 ②는 B, ③은 C에서 별도 평가함. <b>리포트의 1,926십억에는 ② AIDC가 포함</b>돼 있음(실적 2025 564.2 · 2026F ~655 대비 organic으로 도달 불가, AIDC 미반영 증권사 추정 2027F 784.7 vs 반영 추정 2,058.3 — 260710·260716 리포트 교차확인). 따라서 <b>기본 혼입 차감 1,050십억</b>(본 모델 2027 AIDC ≈ 70MW × 150억)을 빼서 ①만 남김 — 잔여 876십억은 2026F 대비 +34%로 정상 성장. 차감 0이면 AIDC가 A와 B에 이중 계상됨.
         <span style="color:var(--ink-3)">멀티플 정합성: (4)는 매출 대비 <b>4.5x</b>, B 레이어는 유효 약 <b>0.7x</b>(270억/MW ÷ 150억 = 1.8x × 확률 80% × 지분 50%). 같은 AIDC 매출을 리포트는 본 모델 대비 약 6배 후하게 평가하며, 혼입 차감 1.05조 이동으로 A −4.7조 / B +0.8조 순효과 −3.9조가 발생함.</span>
@@ -490,8 +491,18 @@ C = ARC 매출 × PSR × 실현확률</div>
 
     <div class="card">
       <!-- ① Legacy -->
-      <div class="nv-title">① 본업 SOTP (5-Part) <span class="nv-badge" style="background:var(--ink);color:var(--bg)">플랫폼 + 파이낸셜 + 웹툰 + 엔터프라이즈 + LY</span></div>
+      <div class="nv-title">① 본업 (A) — 시장가치 앵커 35조 <span class="nv-badge" style="background:var(--ink);color:var(--bg)">5-Part 이론가는 참고</span></div>
       <div class="desc">본업을 5개 부문으로 나눠 각각 평가함. <b>(1) 플랫폼</b>은 2027E 세후 영업이익 × 글로벌 peer P/E, <b>(4) 엔터프라이즈는 기존 클라우드만</b> 2027E 매출 × P/S로 평가(AIDC는 B, ARC는 C 레이어), <b>(2)(3)(5)</b>는 기업가치·시총 × 지분율(상장 자회사는 할인율 적용). <span style="color:var(--ink-3)">A는 3개 시나리오 공통 고정이며 시나리오 스윙은 B·C에서만 발생함. 지분율·할인율은 사실관계라 상수 고정이고, 각 부문의 스윙 팩터만 슬라이더로 노출함.</span></div>
+      <div class="grid2">
+        <div class="slider-group">
+          <div class="slider-label"><span><b>본업 밸류 A — 시장가치 앵커 (조원)</b></span><span class="val" id="nv_v_anchorA" style="color:#00B894">35.0조</span></div>
+          <input type="range" id="nv_s_anchorA" min="30" max="55" step="0.5" value="35" oninput="calc()">
+          <div class="slider-range"><span>30조</span><span>55조 (리포트 원표 52.2)</span></div>
+        </div>
+        <div class="slider-group" style="display:flex;flex-direction:column;justify-content:center">
+          <div class="derived" style="margin:0"><b>A 채택 = 앵커 35.0조</b> — AIDC 부각 전 본업이 시장에서 실제 받던 가격. <span style="color:var(--ink-3)">아래 5-Part 이론가 <span id="nv_d_fiveSum">45.5조</span> 대비 <span id="nv_d_anchorDisc">−23%</span> 할인 = 리레이팅 리스크·컨글로머릿 할인 반영. 5-Part는 구성 근거·상단 참고용으로 유지.</span></div>
+        </div>
+      </div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin:14px 0 8px">(1) 네이버 플랫폼 (서치·쇼핑) — 2027E 세후 영업이익 × Target P/E</div>
       <div class="grid2">
         <div class="slider-group">
@@ -574,7 +585,7 @@ C = ARC 매출 × PSR × 실현확률</div>
       <div class="result-row">
         <div class="result-box"><div class="label">(4) 엔터프라이즈 (기존 클라우드)</div><div class="value" id="nv_r_entVal" style="color:#FF6B6B">-</div><div class="sub" id="nv_r_entSub">기존 클라우드 · P/S 4.5x</div></div>
         <div class="result-box"><div class="label">(5) LY</div><div class="value" id="nv_r_lyVal">-</div><div class="sub">64.7%×50% · 할인 40%</div></div>
-        <div class="result-box h-green"><div class="label">본업 SOTP 합계 (A)</div><div class="value" id="nv_r_legVal" style="color:#00B894">-</div><div class="sub" id="nv_r_legSub">-</div></div>
+        <div class="result-box h-green"><div class="label">본업 적정가치 A (시장 앵커)</div><div class="value" id="nv_r_legVal" style="color:#00B894">-</div><div class="sub" id="nv_r_legSub">-</div></div>
       </div>
 
       <!-- ② AI Factory -->
@@ -730,7 +741,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="result-box h-gold"><div class="label">업사이드</div><div class="value" id="nv_r_upside" style="color:#F8B739">-</div><div class="sub">vs 현재</div></div>
           <div class="result-box"><div class="label">적정 주가</div><div class="value" id="nv_r_tp">-</div><div class="sub">159,411천주(소각·유증 반영)</div></div>
         </div>
-        <div class="note">* SOTP = A(본업 5-Part) + B(AI팩토리 EBITDA×EV/EBITDA×확률×<b>지분율</b>) + C(ARC PSR×확률). A 45.54조는 리포트 5-Part(FX 1,500 재환산)에서 <b>(4)에 혼입된 AIDC 1,050십억을 차감해 B 레이어로 분리하고, 기존 클라우드를 P/S 4.5x → 세후이익 × PER 20배로 전환</b>한 값이며, (1)플랫폼 34.2조는 AIDC 부각 전 본업 시장가치 ~35조와 사실상 일치하는 앵커임. 리포트 원표 그대로면 A 52.21조(AIDC를 P/S 4.5x로 A에 계상)로, 리포트 목표주가 33만원은 사실상 <b>본업 + AIDC(4.5x 전액)</b>의 값임. 본 모델은 AIDC를 B(EBITDA×9배×확률×지분 50%)로 옮겨 유효 0.7x로 보수 평가하고, 그 위에 C(ARC)를 얹는 구조. C(ARC)는 소프트웨어·OS 사업이라 EBITDA 가시성이 없어 PSR 유지.</div>
+        <div class="note">* SOTP = A(본업 5-Part) + B(AI팩토리 EBITDA×EV/EBITDA×확률×<b>지분율</b>) + C(ARC PSR×확률). A 채택값 <b>35.0조는 AIDC 부각 전 본업이 시장에서 실제 받던 가격(시장가치 앵커)</b>이며, 5-Part 이론가 45.54조(리포트에서 AIDC 분리·기존 클라우드 PER 20배 전환)는 구성 근거·상단 참고로 병기함. 이론가 대비 −23% 할인은 리레이팅 리스크·컨글로머릿 할인의 반영이고, (1)플랫폼 34.2조는 AIDC 부각 전 본업 시장가치 ~35조와 사실상 일치하는 앵커임. 리포트 원표 그대로면 A 52.21조(AIDC를 P/S 4.5x로 A에 계상)로, 리포트 목표주가 33만원은 사실상 <b>본업 + AIDC(4.5x 전액)</b>의 값임. 본 모델은 AIDC를 B(EBITDA×9배×확률×지분 50%)로 옮겨 유효 0.7x로 보수 평가하고, 그 위에 C(ARC)를 얹는 구조. C(ARC)는 소프트웨어·OS 사업이라 EBITDA 가시성이 없어 PSR 유지.</div>
       </div>
 
       <!-- ⑤ Timeline -->
@@ -1083,7 +1094,7 @@ const SCENARIOS={
   // aiMult: EV/EBITDA 9배(CoreWeave류 네오클라우드 레인지)
   // p1stake/incrStake: 260615 설명회 — 200MW까지 OpCo 50%+1주, 초과 증분은 10%. 계약 구조라 시나리오 공통
   // capex: 260615 "1GW까지 $50~60B"
-  bear:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entOpm:15,entPer:20,entOverlap:1050,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:200,p1prob:65,fullmw:800,fullprob:25,revMw:108,aiOpm:15,aiMult:7,p1stake:50,incrStake:10,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:30,capex:60,eqShare:20},
+  bear:{anchorA:35,anchorA:35,anchorA:35,legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entOpm:15,entPer:20,entOverlap:1050,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:200,p1prob:65,fullmw:800,fullprob:25,revMw:108,aiOpm:15,aiMult:7,p1stake:50,incrStake:10,arcRobots:20,arcArpu:80,arcPsr:8,arcProb:30,capex:60,eqShare:20},
   base:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entOpm:15,entPer:20,entOverlap:1050,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:200,p1prob:100,fullmw:1000,fullprob:45,revMw:150,aiOpm:20,aiMult:9,p1stake:50,incrStake:10,arcRobots:50,arcArpu:120,arcPsr:15,arcProb:45,capex:55,eqShare:20},
   bull:{legacyRev:8042.3,legacyOpm:35,legacyTax:24,legacyPe:16,entRev:1926,entOpm:15,entPer:20,entOverlap:1050,finEv:4936,webtoonMc:1860,lyMc:26788.5,p1mw:250,p1prob:100,fullmw:1200,fullprob:70,revMw:200,aiOpm:25,aiMult:12,p1stake:50,incrStake:10,arcRobots:200,arcArpu:200,arcPsr:20,arcProb:60,capex:50,eqShare:20},
 };
@@ -1136,7 +1147,11 @@ function calc(){
   // (4) 기존 클라우드: (매출−AIDC 혼입) × OPM × (1−세율) × PER. 세율은 (1) 플랫폼과 공통 슬라이더
   const entNetRev=Math.max(0,entRev-entOverlap),entNopat=entNetRev*entOpm*(1-legTax),entVal=entNopat*entPer/1000;
   const lyVal=lyMc*LY_AH*LY_NAVER_AH*(1-LY_DISC)/1000;                  // (5) LY
-  const legVal=platVal+finVal+webtoonVal+entVal+lyVal;
+  const fiveSum=platVal+finVal+webtoonVal+entVal+lyVal;   // 5-Part 이론가 (참고)
+  const legVal=v('nv_s_anchorA');                          // A 채택값 = 시장가치 앵커
+  $('nv_v_anchorA').textContent=legVal.toFixed(1)+'조';
+  $('nv_d_fiveSum').textContent=fiveSum.toFixed(1)+'조';
+  $('nv_d_anchorDisc').textContent=(legVal<fiveSum?'−':'+')+Math.abs((1-legVal/fiveSum)*100).toFixed(0)+'%';
   $('nv_v_entRev').textContent=nb(entRev);
   $('nv_v_entOpm').textContent=(entOpm*100).toFixed(0)+'%';
   $('nv_v_entPer').textContent=entPer.toFixed(0)+'배';
@@ -1162,7 +1177,7 @@ function calc(){
   $('nv_r_entSub').textContent=(entOverlap>0?('AIDC 차감 '+nb(entOverlap)+' · '):'')+'OPM '+(entOpm*100).toFixed(0)+'%·PER '+entPer.toFixed(0)+'x';
   $('nv_r_lyVal').textContent=f(lyVal);
   $('nv_r_legVal').textContent=f(legVal);
-  $('nv_r_legSub').textContent='본업만 기준 주가 '+Math.round(legVal*1e12/(SHARES*1000)/1000)+'천원';
+  $('nv_r_legSub').textContent='본업만 '+Math.round(legVal*1e12/(SHARES*1000)/1000)+'천원 · 이론가 '+fiveSum.toFixed(1)+'조';
   // 밸류 체인: 매출 → EBITDA(OpCo, GPU 리스료 차감 후) → × EV/EBITDA. SPV 오프밸런스라 부채 차감 없음
   // 지분율(260615): Phase1 OpCo 50%+1주 · 증분 10%. 확률 가중 후 구간별 지분율로 귀속
   const p1rev=p1mw*revMw/10000,p1op=p1rev*aiOpm,p1raw=p1op*aiMult,p1final=p1raw*p1prob*p1stake;
