@@ -780,7 +780,7 @@ C = ARC 매출 × PSR × 실현확률</div>
             <div class="slider-range"><span>80억</span><span>250억 (각 세종 1차 약 163)</span></div>
           </div>
         </div>
-        <div class="info"><b>자체 구축 시나리오:</b> 리스 구간은 셸·전력을 콜로 사업자가 부담(월세=OPEX)하지만, 세종 증설·그린필드를 <b>자체 자산으로 지으면 셸·전력 공사비가 네이버 본체 CAPEX</b>로 나감(GPU는 기존대로 SPV 리스 유지 가정). 참고: 세종 증설 250MW × 150억 = 3.75조 → 총부담 6.6조·FCF 55% / +그린필드 300MW = 11.1조·FCF 93%. <span style="color:var(--ink-3)">자체 자산은 감가상각(150억/MW ÷ 15년)으로 연결 영업이익을 깎아 A(1)에도 하향 요인이나, 가정 중첩을 피해 자동 연동은 하지 않음 — 총부담·FCF%에만 반영됨.</span></div>
+        <div class="info"><b>자체 구축 시나리오:</b> 리스 구간은 셸·전력을 콜로 사업자가 부담(월세=OPEX)하지만, 세종 증설·그린필드를 <b>자체 자산으로 지으면 셸·전력 공사비가 네이버 본체 CAPEX</b>로 나감(GPU는 기존대로 SPV 리스 유지 가정). <b>Phase1 200MW는 타사 콜로 임차라 이 이슈와 무관</b> — 세종은 증분 구간(2029~30 증설)임. 참고: 세종 증설 250MW × 150억 = 3.75조 → 총부담 6.6조·FCF 55% / +그린필드 300MW = 11.1조·FCF 93%. <span style="color:var(--ink-3)">자체 자산은 감가상각(150억/MW ÷ 15년)으로 연결 영업이익을 깎아 A(1)에도 하향 요인이나, 가정 중첩을 피해 자동 연동은 하지 않음 — 총부담·FCF%에만 반영됨.</span></div>
         <div class="derived"><b>Phase 1은 $10B 고정</b>(260615 $10B · 260727 공시 $9B+α와 정합) — 총 CAPEX 슬라이더를 올려도 Phase1은 불변이고 증분 구간에만 배분됨. <span style="color:var(--ink-3)">Phase1 네이버 출자 = $10B × 에쿼티 20% × 지분 50% = <b>$1B</b> → 260615 도식의 “네이버 $1B”과 정확히 일치(교차검증 통과).</span></div>
         <div class="result-row">
           <div class="result-box"><div class="label">1GW 총 CAPEX</div><div class="value" id="nv_r_capexKrw">-</div><div class="sub" id="nv_r_capexUsd">-</div></div>
@@ -852,6 +852,13 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="note" style="margin-top:8px">* 200MW 총 $10B = 네이버 $1B + 전략적투자자 $1B + SPV 외부조달 $8B(Brookfield PF). OpCo는 GPU를 SPB에서 리스해 자산·부채 미계상 — B 레이어 EV/EBITDA(부채 차감 불요) 논리의 근거 구조.</div>
         </div>
 
+        <div class="derived"><b>돈 흐름 — 누가 내고 누가 받나 (Phase1):</b><br>
+        ① 브룩필드 <b>$9B(13.5조)</b> → SPV → GPU 구매대금 → <b>엔비디아 수취</b><br>
+        ② 엔비디아 <b>$1B(1.5조)</b> → 네이버 본체 (유증 — 200MW 공사비가 아니라 네이버 지분 매입대금)<br>
+        ③ 네이버 $1B + 전략적투자자 $1B → OpCo 에쿼티<br>
+        ④ 운영기: 고객 → OpCo(매출) → SPV(GPU 리스료) → 대주단(원리금 상환)<br>
+        <span style="color:#FF6B6B">정산하면 엔비디아는 <b>순수취 +$8B</b> — "내주는 쪽"이 아니라 "받는 쪽"임. 공시 정정으로 역할이 "GPU 공급의 주체"로 축소된 것과 정합(서큘러 딜 구조).</span></div>
+        <div class="note"><b>장소 구분 — 세종 ≠ 200MW:</b> Phase1 200MW는 <b>타사 콜로 임차</b>(사업자·지역 비공개, 셸·전력은 콜로 사업자 부담)이고, <b>세종(각 세종)은 증분 구간의 2029~30 자체 증설분</b>(로드맵 200~300MW)임. 공시의 "각 세종을 첫 거점으로" 문구는 사업 거점 서술이며, 260727 IR 문답(Q10·11·13·21) 기준 200MW의 물리적 실체는 타사 콜로임. ⑥의 자체 구축 시나리오는 증분 구간에만 해당하고 200MW와는 무관함.</div>
         <div style="display:flex;flex-direction:column;gap:8px;margin:14px 0">
           <div style="background:rgba(0,184,148,0.08);border:1px solid rgba(0,184,148,0.35);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:12px">
             <div style="flex:1"><div style="font-size:12px;font-weight:700;color:#00B894">① 엔비디아 $1.0B — 네이버 본체 제3자배정 유상증자</div><div style="font-size:10.5px;color:var(--ink-2);margin-top:3px">7,241,564주(잠정) × 204,500원 = 1조 4,809억원 · 할인율 0% · 1년 의무보유 · 이사회 26.07.24</div></div>
