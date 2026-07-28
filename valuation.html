@@ -467,7 +467,7 @@ B = [Phase1 EBITDA × EV/EBITDA × 확률(高) × 네이버 지분 50%]
         <b>왜 PSR이 아니라 EV/EBITDA인가:</b> 네오클라우드·데이터센터 밸류의 표준은 PSR이 아님. 콜로·Powered Shell은 <b>NOI ÷ Cap Rate</b>(자산가치 접근), 네오클라우드는 <b>EV/EBITDA</b>가 지배적임. 네이버는 셸의 임대인이 아니라 <b>임차인 겸 GPUaaS 운영자</b>이므로 NOI÷Cap이 아닌 EV/EBITDA를 적용함. 배수 9배는 "CoreWeave류 네오클라우드 레인지" 기준.
         <div class="logic-formula">자산 보유형(비교): 108억 × EBITDA 55% × 9배 = 534.6억 EV/MW − 부채 364억(레버리지 70%) = 170.6억/MW
 네이버 OpCo(리스): 108억 × EBITDA 20% × 9배 = 194.4억/MW (부채 0 — GPU 자산·부채는 SPV 귀속)</div>
-        <b>OpCo 마진을 20%로 두는 이유:</b> 비교치의 EBITDA 55%는 GPU를 <b>직접 보유</b>하는 주체 기준임(투하자본 520억/MW, 레버리지 70%). 네이버는 260727 IR에서 확인된 대로 SPV에서 GPU를 <b>임차</b>하고 컴퓨팅 비용을 매출원가로 인식하므로, 리스료 차감 후 마진은 이보다 크게 낮음. 대신 자산·부채를 지지 않아 EV→Equity 부채 차감이 불필요함. <span style="color:var(--ink-3)">리스 구조가 부채 원리금을 영업비용으로 치환한 것이므로 위 두 경로가 170억 vs 194억으로 수렴하는 것이 정상임(교차검증 통과).</span>
+        <b>OpCo 마진을 20%로 두는 이유:</b> 비교치의 EBITDA 55%는 GPU를 <b>직접 보유</b>하는 주체 기준임(투하자본 520억/MW, 레버리지 70%). 네이버는 260727 IR에서 확인된 대로 SPV에서 GPU를 <b>임차</b>하고 컴퓨팅 비용을 매출원가로 인식하므로, 리스료 차감 후 마진은 이보다 크게 낮음. 대신 자산·부채를 지지 않아 EV→Equity 부채 차감이 불필요함. <span style="color:var(--ink-3)">리스 구조가 부채 원리금을 영업비용으로 치환한 것이므로 위 두 경로가 170억 vs 194억으로 수렴하는 것이 정상임(교차검증 통과). <b>비용 스택 분해(260723 PSP 딜 실측으로 최초 확보)</b>: MW당 비용 120억 중 콜로 셸 임차 ~28~36억($1.86~2.37/W/yr, HUT·WULF 15년 계약 실측) + GPU 리스료·운영비 ~85~90억 — 마진 20% 가정의 하부 구조가 실측과 정합.</span>
         <b>지분율 — B 레이어 최대 조정 요인:</b> 260615 신사업 설명회 도식 기준 200MW 자금은 <b>네이버 $1B + 전략적투자자 $1B + SPV 외부조달 $8B = 총 $10B</b>이며, 네이버·전략적투자자가 합작회사 <b>JV(가칭 네이버 AI Compute) = OpCo</b>를 세우고 네이버가 <b>50%+1주</b>를 보유함. 200MW 초과 증분 구간은 <b>지분 10%만 참여</b>. 따라서 B는 구간별 지분율을 곱해 귀속함 — Phase1 ×50%, 증분 ×10%.
         <span style="color:var(--ink-3)">Phase1 50%+1주는 지배력(연결) 유지선이고, 증분 10%는 별도 비히클 참여로 보아 Phase1 지분이 희석되지 않는 것으로 가정함. 만약 동일 OpCo 증자로 희석되면 블렌디드 18%가 되어 B는 더 낮아짐.</span>
         <b style="color:#FF6B6B">[불일치]</b> 260727 IR 통화에서 담당자는 “OpCo 지분은 거의 100%로 가져가 연결한다”고 답변했으나, 이는 <b>지배력(연결)을 지분율로 잘못 표현</b>한 것으로 판단함 — 50%+1주로도 연결은 성립하며, 260615는 설명회 자료 기반 1차 소스인 반면 260727 담당자는 해당 문답에서 세부 미확인을 반복함. <b>260615 기준(50%+1주)을 채택</b>함.
@@ -477,7 +477,7 @@ B = [Phase1 EBITDA × EV/EBITDA × 확률(高) × 네이버 지분 50%]
         <div class="logic-formula">ARC 매출 = 연결 로봇 대수 × 대당 ARPU(OS 수수료 + GPU 클라우딩)
 C = ARC 매출 × PSR × 실현확률</div>
         <b>플라이휠:</b> ARC에 로봇이 연결될수록 → 네이버클라우드 GPU·인프라 매출 증가. 로봇 사업부 + 클라우드 사업부 동시 보유(브레인리스 구조)로만 가능 — 순수 로봇사·순수 클라우드는 불가. <b>사우디 소버린 수출(슈퍼앱·디지털트윈·클라우드 MOU)</b>은 본 모델에 미반영된 추가 옵션.
-        <div class="note" style="margin-top:14px">* <b>환율 1,500원/$ 가정</b>(260727 유증 공시는 1,480.9 잠정 적용) · 현재 시총 35.3조(2026.07.27 종가) · 발행주식 <b>159,411천주</b>(8/3 자사주 4,901,094주 소각 + 11/20 유증 7,334,963주 반영 — 유증 신주수는 $1.0B ÷ 204,500원으로 환율에 따라 변동) · 2025E FCF ~2.0조. 모든 수치는 가정 기반 추정치. 출처: Naver IR(2026.06.08)·260615 신사업 설명회·260703 탐방·260727 IR 통화·260727 DART 공시 3건·리포트 SOTP 표·CoreWeave 시장데이터·자체추정.</div>
+        <div class="note" style="margin-top:14px">* <b>환율 1,500원/$ 가정</b>(260727 유증 공시는 1,480.9 잠정 적용) · 현재 시총 35.3조(2026.07.27 종가) · 발행주식 <b>159,411천주</b>(8/3 자사주 4,901,094주 소각 + 11/20 유증 7,334,963주 반영 — 유증 신주수는 $1.0B ÷ 204,500원으로 환율에 따라 변동) · 2025E FCF ~2.0조. 모든 수치는 가정 기반 추정치. 출처: Naver IR(2026.06.08)·260615 신사업 설명회·260703 탐방·260727 IR 통화·260727 DART 공시 3건·리포트 SOTP 표·CoreWeave 시장데이터·글로벌 PSP 커버리지(260723, 셸 단가·임차료·딜 경제성 벤치)·자체추정.</div>
       </div>
     </details>
 
@@ -657,6 +657,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <b>증분 (→1GW):</b> <span id="nv_d_incrmw">800</span>MW × <span id="nv_d_revMw3">150</span>억 = 매출 <b><span id="nv_d_incrrev">12.0조</span></b> × EBITDA <span id="nv_d_incrop">2.4조</span> → 가치 <span id="nv_d_incrval">21.6조</span> × 확률 <span id="nv_d_fullprob2">45%</span> × <b>지분 <span id="nv_d_incrstake2">10</span>%</b> = <b><span id="nv_d_incrfinal">1.0조</span></b>
         </div>
         <div class="derived"><b>1GW 풀가동 시 연간 손익 귀속 (확률 미적용):</b> 매출 <b><span id="nv_f_rev">15.0조</span></b> − GPU 리스료·운영비 <span id="nv_f_cost">12.0조</span> = OpCo EBITDA <b><span id="nv_f_ebitda">3.0조</span></b> → 네이버 귀속 <b style="color:#00B894"><span id="nv_f_attr">0.54조</span></b> (Phase1 ×50% + 증분 ×10%)<br>
+        <span style="color:var(--ink-3)">비용 12조의 구성: 콜로 셸 임차 ~0.7조(28~36억/MW, PSP 딜 실측) + GPU 리스료·운영 ~11.3조.</span><br>
         <span style="color:var(--ink-3)">회계 표시 착시 주의: 연결 손익계산서에는 Phase1 매출만 <b>전액</b> 잡히고(지분 50%인데 100% 표시, 파트너 몫은 비지배 차감) 증분 매출은 지분법이라 <b>미표시</b>. 연결 매출에 P/S를 걸면 이중 왜곡 — 본 모델이 B를 지분 기준으로 분리 계산하는 이유.</span></div>
         <div style="background:var(--bg-2,rgba(128,128,128,0.05));border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0">
           <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin-bottom:8px">1GW 수취액·레버 분석 — 왜 업사이드의 스윙은 B가 아니라 C인가 (Base 기준 실측, 슬라이더로 재현 가능)</div>
@@ -803,10 +804,10 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="slider-group">
             <div class="slider-label"><span>자체 셸·전력 구축비 (억/MW)</span><span class="val" id="nv_v_shellCost">150억</span></div>
             <input type="range" id="nv_s_shellCost" min="80" max="250" step="5" value="150" oninput="calc()">
-            <div class="slider-range"><span>80억</span><span>250억 (각 세종 1차 약 163)</span></div>
+            <div class="slider-range"><span>80억</span><span>250억 (각 세종 163 · PSP 딜 150~180)</span></div>
           </div>
         </div>
-        <div class="info"><b>자체 구축 시나리오:</b> 리스 구간은 셸·전력을 콜로 사업자가 부담(월세=OPEX)하지만, 세종 증설·그린필드를 <b>자체 자산으로 지으면 셸·전력 공사비가 네이버 본체 CAPEX</b>로 나감(GPU는 기존대로 SPV 리스 유지 가정). <b>Phase1 200MW는 타사 콜로 임차라 이 이슈와 무관</b> — 세종은 증분 구간(2029~30 증설)임. 참고: 세종 증설 250MW × 150억 = 3.75조 → 총부담 6.6조·FCF 55% / +그린필드 300MW = 11.1조·FCF 93%. <span style="color:var(--ink-3)">자체 자산은 감가상각(150억/MW ÷ 15년)으로 연결 영업이익을 깎아 A(1)에도 하향 요인이나, 가정 중첩을 피해 자동 연동은 하지 않음 — 총부담·FCF%에만 반영됨.</span></div>
+        <div class="info"><b>자체 구축 시나리오:</b> 리스 구간은 셸·전력을 콜로 사업자가 부담(월세=OPEX)하지만, 세종 증설·그린필드를 <b>자체 자산으로 지으면 셸·전력 공사비가 네이버 본체 CAPEX</b>로 나감(GPU는 기존대로 SPV 리스 유지 가정). <b>Phase1 200MW는 타사 콜로 임차라 이 이슈와 무관</b> — 세종은 증분 구간(2029~30 증설)임. 참고: 세종 증설 250MW × 150억 = 3.75조 → 총부담 6.6조·FCF 55% / +그린필드 300MW = 11.1조·FCF 93%. <b>셸 단가 150억/MW 근거(삼중 검증)</b>: 각 세종 1차 실측 6,500억/40MW≈163억 + 글로벌 PSP(전 비트코인 마이너) AI DC 전환 딜 실측 $10~12/W=150~180억(260723 글로벌 IB 커버리지) — 레인지 하단 채택. <span style="color:var(--ink-3)">자체 자산은 감가상각(150억/MW ÷ 15년)으로 연결 영업이익을 깎아 A(1)에도 하향 요인이나, 가정 중첩을 피해 자동 연동은 하지 않음 — 총부담·FCF%에만 반영됨.</span></div>
         <div class="derived"><b>Phase 1은 $10B 고정</b>(260615 $10B · 260727 공시 $9B+α와 정합) — 총 CAPEX 슬라이더를 올려도 Phase1은 불변이고 증분 구간에만 배분됨. <span style="color:var(--ink-3)">Phase1 네이버 출자 = $10B × 에쿼티 20% × 지분 50% = <b>$1B</b> → 260615 도식의 “네이버 $1B”과 정확히 일치(교차검증 통과).</span></div>
         <div class="result-row">
           <div class="result-box"><div class="label">1GW 총 CAPEX</div><div class="value" id="nv_r_capexKrw">-</div><div class="sub" id="nv_r_capexUsd">-</div></div>
