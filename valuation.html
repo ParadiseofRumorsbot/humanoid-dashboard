@@ -645,6 +645,8 @@ C = ARC 매출 × PSR × 실현확률</div>
           <b>Phase 1 (200MW):</b> <span id="nv_d_p1mw2">200</span>MW × <span id="nv_d_revMw2">150</span>억 = 매출 <b><span id="nv_d_p1rev">3.0조</span></b> × EBITDA <span id="nv_d_p1op">0.6조</span> × EV/EBITDA <span id="nv_d_mult2">9</span>배 → 가치 <span id="nv_d_p1val">5.4조</span> × 확률 <span id="nv_d_p1prob2">80%</span> × <b>지분 <span id="nv_d_p1stake2">50</span>%</b> = <b><span id="nv_d_p1final">2.2조</span></b><br>
           <b>증분 (→1GW):</b> <span id="nv_d_incrmw">800</span>MW × <span id="nv_d_revMw3">150</span>억 = 매출 <b><span id="nv_d_incrrev">12.0조</span></b> × EBITDA <span id="nv_d_incrop">2.4조</span> → 가치 <span id="nv_d_incrval">21.6조</span> × 확률 <span id="nv_d_fullprob2">45%</span> × <b>지분 <span id="nv_d_incrstake2">10</span>%</b> = <b><span id="nv_d_incrfinal">1.0조</span></b>
         </div>
+        <div class="derived"><b>1GW 풀가동 시 연간 손익 귀속 (확률 미적용):</b> 매출 <b><span id="nv_f_rev">15.0조</span></b> − GPU 리스료·운영비 <span id="nv_f_cost">12.0조</span> = OpCo EBITDA <b><span id="nv_f_ebitda">3.0조</span></b> → 네이버 귀속 <b style="color:#00B894"><span id="nv_f_attr">0.54조</span></b> (Phase1 ×50% + 증분 ×10%)<br>
+        <span style="color:var(--ink-3)">회계 표시 착시 주의: 연결 손익계산서에는 Phase1 매출만 <b>전액</b> 잡히고(지분 50%인데 100% 표시, 파트너 몫은 비지배 차감) 증분 매출은 지분법이라 <b>미표시</b>. 연결 매출에 P/S를 걸면 이중 왜곡 — 본 모델이 B를 지분 기준으로 분리 계산하는 이유.</span></div>
         <div style="background:#0d1117;border-radius:10px;padding:14px 16px;margin:12px 0">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
             <span style="font-family:var(--mono);font-size:11px;font-weight:700;color:#fff">⚓ CoreWeave 비교 앵커</span>
@@ -743,6 +745,17 @@ C = ARC 매출 × PSR × 실현확률</div>
       <div class="nv-section">
         <div class="nv-title">⑥ CAPEX · 에쿼티 투자 분석 <span class="nv-badge" style="background:#FF6B6B;color:#fff">자본 부담</span></div>
         <div class="desc">260615 설명회 기준 <b>200MW = $10B</b>(네이버 $1B + 전략적투자자 $1B + SPV 외부조달 $8B → 에쿼티 비중 20%), <b>1GW까지 $50~60B</b>. 260727 공시의 컴퓨팅 인프라 $9B은 Brookfield PF 조성분으로 SPV 외부조달에 해당함. 네이버 부담은 <b>구간별 CAPEX × 에쿼티 비중 × 해당 구간 지분율</b>(②의 지분 슬라이더 연동)로 산출하므로, 증분 구간은 지분 10%만큼만 부담함.</div>
+        <div style="background:var(--bg-2,rgba(128,128,128,0.05));border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:12px 0">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;margin-bottom:10px">자금 사다리 — "82조를 낼 수 있나"가 아니라 "연 5천억을 낼 수 있나"가 올바른 질문</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:11px">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:150px;color:var(--ink-2);font-family:var(--mono);font-size:10px">1GW 총 CAPEX</span><div style="flex:1;background:rgba(128,128,128,0.10);border-radius:5px;height:20px"><div id="nv_l_totalBar" style="width:100%;height:100%;background:rgba(128,128,128,0.25);border-radius:5px"></div></div><b id="nv_l_total" style="width:130px;text-align:right;font-family:var(--mono)">82.5조</b></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:150px;color:var(--ink-2);font-family:var(--mono);font-size:10px">├ 부채·PF (남의 돈)</span><div style="flex:1;background:rgba(128,128,128,0.10);border-radius:5px;height:20px"><div id="nv_l_debtBar" style="width:80%;height:100%;background:rgba(88,166,255,0.45);border-radius:5px"></div></div><b id="nv_l_debt" style="width:130px;text-align:right;font-family:var(--mono);color:#58a6ff">66.0조 (80%)</b></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:150px;color:var(--ink-2);font-family:var(--mono);font-size:10px">└ 에쿼티 (종잣돈)</span><div style="flex:1;background:rgba(128,128,128,0.10);border-radius:5px;height:20px"><div id="nv_l_eqBar" style="width:20%;height:100%;background:rgba(240,168,64,0.55);border-radius:5px"></div></div><b id="nv_l_eq" style="width:130px;text-align:right;font-family:var(--mono);color:#f0a840">16.5조 (20%)</b></div>
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:150px;color:var(--ink-2);font-family:var(--mono);font-size:10px">&nbsp;&nbsp;&nbsp;└ 네이버 출자</span><div style="flex:1;background:rgba(128,128,128,0.10);border-radius:5px;height:20px"><div id="nv_l_nvBar" style="width:3.5%;height:100%;background:#00B894;border-radius:5px;min-width:6px"></div></div><b id="nv_l_nv" style="width:130px;text-align:right;font-family:var(--mono);color:#00B894">2.85조 (3.5%)</b></div>
+            <div id="nv_l_ownRow" style="display:none;align-items:center;gap:8px"><span style="width:150px;color:var(--ink-2);font-family:var(--mono);font-size:10px">＋ 자체 구축 CAPEX</span><div style="flex:1;background:rgba(128,128,128,0.10);border-radius:5px;height:20px"><div id="nv_l_ownBar" style="width:5%;height:100%;background:#FF6B6B;border-radius:5px;min-width:6px"></div></div><b id="nv_l_own" style="width:130px;text-align:right;font-family:var(--mono);color:#FF6B6B">-</b></div>
+          </div>
+          <div class="derived" style="margin-top:10px"><b>네이버 연간 부담:</b> <span id="nv_l_annual">0.48조</span> = 2025E FCF(~2.0조)의 <b id="nv_l_fcfPct" style="color:#00B894">24%</b>. <span style="color:var(--ink-3)">에쿼티의 90%(증분 기준)는 파트너 몫이고 부채는 SPV가 리스료 수입으로 상환 — 네이버가 82조를 내는 주체가 아님. 단 "2%만 부담"은 파트너·PF가 계획대로 모일 때 성립.</span></div>
+        </div>
         <div class="grid2">
           <div class="slider-group">
             <div class="slider-label"><span>1GW 총 CAPEX ($B)</span><span class="val" id="nv_v_capex">$55B</span></div>
@@ -755,10 +768,25 @@ C = ARC 매출 × PSR × 실현확률</div>
             <div class="slider-range"><span>5%</span><span>40%</span></div>
           </div>
         </div>
+        <div class="grid2">
+          <div class="slider-group">
+            <div class="slider-label"><span>자체 구축 MW (세종 증설·그린필드)</span><span class="val" id="nv_v_ownMw">0MW</span></div>
+            <input type="range" id="nv_s_ownMw" min="0" max="600" step="10" value="0" oninput="calc()">
+            <div class="slider-range"><span>0 (전 구간 리스)</span><span>600MW</span></div>
+          </div>
+          <div class="slider-group">
+            <div class="slider-label"><span>자체 셸·전력 구축비 (억/MW)</span><span class="val" id="nv_v_shellCost">150억</span></div>
+            <input type="range" id="nv_s_shellCost" min="80" max="250" step="5" value="150" oninput="calc()">
+            <div class="slider-range"><span>80억</span><span>250억 (각 세종 1차 약 163)</span></div>
+          </div>
+        </div>
+        <div class="info"><b>자체 구축 시나리오:</b> 리스 구간은 셸·전력을 콜로 사업자가 부담(월세=OPEX)하지만, 세종 증설·그린필드를 <b>자체 자산으로 지으면 셸·전력 공사비가 네이버 본체 CAPEX</b>로 나감(GPU는 기존대로 SPV 리스 유지 가정). 참고: 세종 증설 250MW × 150억 = 3.75조 → 총부담 6.6조·FCF 55% / +그린필드 300MW = 11.1조·FCF 93%. <span style="color:var(--ink-3)">자체 자산은 감가상각(150억/MW ÷ 15년)으로 연결 영업이익을 깎아 A(1)에도 하향 요인이나, 가정 중첩을 피해 자동 연동은 하지 않음 — 총부담·FCF%에만 반영됨.</span></div>
         <div class="derived"><b>Phase 1은 $10B 고정</b>(260615 $10B · 260727 공시 $9B+α와 정합) — 총 CAPEX 슬라이더를 올려도 Phase1은 불변이고 증분 구간에만 배분됨. <span style="color:var(--ink-3)">Phase1 네이버 출자 = $10B × 에쿼티 20% × 지분 50% = <b>$1B</b> → 260615 도식의 “네이버 $1B”과 정확히 일치(교차검증 통과).</span></div>
         <div class="result-row">
           <div class="result-box"><div class="label">1GW 총 CAPEX</div><div class="value" id="nv_r_capexKrw">-</div><div class="sub" id="nv_r_capexUsd">-</div></div>
           <div class="result-box"><div class="label">네이버 출자 누계 (1GW)</div><div class="value" id="nv_r_nvEquity">-</div><div class="sub" id="nv_r_nvEquityUsd">-</div></div>
+          <div class="result-box"><div class="label">자체 구축 CAPEX</div><div class="value" id="nv_r_ownCapex">-</div><div class="sub">셸·전력 (자체 MW×단가)</div></div>
+          <div class="result-box h-purple"><div class="label">총 부담 (출자+자체)</div><div class="value" id="nv_r_totalBurden" style="color:#6C5CE7">-</div><div class="sub">6년 분할 기준</div></div>
           <div class="result-box"><div class="label">연간 투자 (6년)</div><div class="value" id="nv_r_annualInv">-</div><div class="sub">분할 집행</div></div>
           <div class="result-box"><div class="label">FCF 대비</div><div class="value" id="nv_r_fcfRatio">-</div><div class="sub">2025E FCF ~2.0조</div></div>
         </div>
@@ -774,6 +802,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="result-box"><div class="label">증분 CAPEX (→1GW)</div><div class="value" id="nv_r_incrcapex">-</div><div class="sub" id="nv_r_incrcapexUsd">-</div></div>
           <div class="result-box"><div class="label">네이버 증분 출자</div><div class="value" id="nv_r_incrEqInvest">-</div><div class="sub">에쿼티 × 지분 10%</div></div>
         </div>
+        <div class="derived"><b>"지분 10%"의 의미 — 에쿼티 통장에 대한 비율:</b> 지분율은 소유권(에쿼티)의 비율이고 부채는 소유권이 없음. "총액의 10% = 6.75조"가 되려면 <b>부채가 0</b>이어야 하는데 SPV 구조(외부 80%)와 모순. 증분 67.5조 기준 — 에쿼티 20%(모델): 네이버 <b>1.35조</b>(CAPEX의 2%) · 에쿼티 40%: 2.70조(4%) · 에쿼티 100%(부채 0): 6.75조(10%). Phase1은 50%×20%=총액의 10%라 두 개념이 우연히 일치했던 것.</div>
         <div class="note">* 이 섹션의 역할은 밸류 산출이 아니라 <b>자금 부담 가능성 점검</b>에 한정됨 — B 레이어에서 이미 지분율을 곱해 귀속했으므로 여기서 다시 곱하는 '에쿼티 ROI' 계산은 중복 계상임. 공시상 네이버 직접 투자금액은 <b>미확정</b>이며 $9B은 Brookfield PF 조성 “방안이 제안된” 단계이므로, 출자 0% 시나리오도 유효함. 260615 “1GW까지 $50~60B”와 260727 공시 환산치($9B/200MW → 1GW $45B) 사이에 소스 차이가 있어 슬라이더 기본값은 260615 레인지를 따름.</div>
       </div>
 
@@ -845,6 +874,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <tr><td style="padding:7px 8px;font-weight:600">연내</td><td style="padding:7px 8px"><b>200MW 고객사 수주공시</b> (260703 탐방 “7월 내” 목표 → 260727 “연내”로 지연). MW당 연 매출·계약기간·Take-or-Pay 명기 여부가 ②의 PSR 가정 검증 포인트</td></tr>
         </table>
 
+        <div class="note" style="margin-top:12px"><b>자금구조 리스크 체크 4:</b> ① <b>임차계약 = 사실상 신용보강</b> — 부채 66조는 SPV 몫이지만 대주단의 담보는 OpCo(네이버 연결)의 장기 리스료 약정. 네이버 노출 단위는 66조가 아니라 연 리스료임 ② <b>파트너 에쿼티 90% 미확정</b> — "2%만 부담"은 남이 98%를 낼 때 성립. 브룩필드 정식계약이 첫 관문 ③ <b>엔비디아 이중 지위</b> — GPU 판매자이자 주주. 리스료의 원가를 이해상충 당사자가 결정(네오클라우드 서큘러 딜 비판과 동일 구조) ④ <b>연결매출 착시</b> — 증분 매출은 지분법이라 연결에 미표시, Phase1은 지분 50%임에도 전액 표시.</div>
         <div class="note" style="margin-top:12px">* OpCo 지분 [불일치] 3개 소스: (1) 260615 설명회 “네이버+전략적투자자 합작회사, 네이버 <b>50%+</b> 소유” → (2) 260703 탐방 “각 1조씩, 네이버 소수지분이라 <b>비연결</b>” → (3) 260727 IR 통화 “<b>거의 100%</b>로 가져가 연결”. 본 모델은 <b>(1) 260615 = 50%+1주</b>를 채택함(설명회 자료 기반 1차 소스이며, 50%+1주로도 연결은 성립하므로 (3)과 양립 가능). (2)는 (3)에 의해 명시적으로 번복됨.<br>* 엔비디아 역할 [불일치]: 공시 정정으로 “글로벌 고객 발굴 및 매출·사업 리스크 공동 부담” 문구 삭제 → “GPU 공급의 주체”로 축소, 고객 확보 리스크 전량 네이버 귀속.</div>
       </div>
     </div>
@@ -1173,10 +1203,38 @@ function calc(){
   const p1EqKrw=p1CapexKrw*eqShare*p1stake,incrEqKrw=incrCapexKrw*eqShare*incrStake;
   const nvEqKrw=p1EqKrw+incrEqKrw;
   const nvEqUsd=nvEqKrw/FX*1000;
-  const annualInv=nvEqKrw/6;
+  // 자체 구축(세종 증설·그린필드): 셸·전력 공사비는 네이버 본체 CAPEX (GPU는 SPV 리스 유지)
+  const ownMw=v('nv_s_ownMw'),shellCost=v('nv_s_shellCost');
+  const ownCapex=ownMw*shellCost/10000;
+  const totalBurden=nvEqKrw+ownCapex;
+  const annualInv=totalBurden/6;
   const fcfRatio=annualInv/FCF*100;
+  $('nv_v_ownMw').textContent=ownMw+'MW';
+  $('nv_v_shellCost').textContent=shellCost+'억';
+  // 자금 사다리
+  const eqPool=capexKrw*eqShare,debtPool=capexKrw-eqPool;
+  $('nv_l_total').textContent=capexKrw.toFixed(1)+'조';
+  $('nv_l_debt').textContent=debtPool.toFixed(1)+'조 ('+((1-eqShare)*100).toFixed(0)+'%)';
+  $('nv_l_eq').textContent=eqPool.toFixed(1)+'조 ('+(eqShare*100).toFixed(0)+'%)';
+  $('nv_l_nv').textContent=nvEqKrw.toFixed(2)+'조 ('+(nvEqKrw/capexKrw*100).toFixed(1)+'%)';
+  $('nv_l_debtBar').style.width=((1-eqShare)*100)+'%';
+  $('nv_l_eqBar').style.width=(eqShare*100)+'%';
+  $('nv_l_nvBar').style.width=Math.max(nvEqKrw/capexKrw*100,0.8)+'%';
+  $('nv_l_ownRow').style.display=ownCapex>0?'flex':'none';
+  if(ownCapex>0){$('nv_l_own').textContent=ownCapex.toFixed(2)+'조';$('nv_l_ownBar').style.width=Math.max(ownCapex/capexKrw*100,0.8)+'%';}
+  $('nv_l_annual').textContent=annualInv.toFixed(2)+'조';
+  $('nv_l_fcfPct').textContent=fcfRatio.toFixed(0)+'%';
+  $('nv_l_fcfPct').style.color=fcfRatio>60?'#FF6B6B':(fcfRatio>30?'#f0a840':'#00B894');
+  // 손익 귀속 흐름 (풀가동 연간, 확률 미적용)
+  const attrOp=p1op*p1stake+incrOp*incrStake;
+  $('nv_f_rev').textContent=fullRev.toFixed(1)+'조';
+  $('nv_f_cost').textContent=(fullRev-fullOp).toFixed(1)+'조';
+  $('nv_f_ebitda').textContent=fullOp.toFixed(1)+'조';
+  $('nv_f_attr').textContent=attrOp.toFixed(2)+'조';
   $('nv_r_capexKrw').textContent=capexKrw.toFixed(0)+'조';$('nv_r_capexUsd').textContent='$'+capexB+'B';
   $('nv_r_nvEquity').textContent=nvEqKrw.toFixed(1)+'조';$('nv_r_nvEquityUsd').textContent='$'+nvEqUsd.toFixed(1)+'B';
+  $('nv_r_ownCapex').textContent=ownCapex>0?ownCapex.toFixed(2)+'조':'0 (전 구간 리스)';
+  $('nv_r_totalBurden').textContent=totalBurden.toFixed(2)+'조';
   $('nv_r_annualInv').textContent=f(annualInv);$('nv_r_fcfRatio').textContent=fcfRatio.toFixed(0)+'%';
   const w=$('nv_capex_warn');
   if(fcfRatio>60)w.innerHTML='<div class="warn"><b>⚠️ FCF 대비 연간 투자 '+fcfRatio.toFixed(0)+'%:</b> 기존 FCF(~2.0조)의 절반 이상을 투입. 추가 차입·유증 없이는 빠듯 → SPV 레버리지·전략적 파트너 에쿼티가 핵심.</div>';
