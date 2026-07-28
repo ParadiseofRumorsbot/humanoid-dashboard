@@ -770,6 +770,7 @@ C = ARC 매출 × PSR × 실현확률</div>
           <div class="result-box h-gold"><div class="label">업사이드</div><div class="value" id="nv_r_upside" style="color:#F8B739">-</div><div class="sub">vs 현재</div></div>
           <div class="result-box"><div class="label">적정 주가</div><div class="value" id="nv_r_tp">-</div><div class="sub">159,411천주(소각·유증 반영)</div></div>
         </div>
+        <div class="derived"><b>옵션 구조 분해 — "확실한 층"과 "옵션"의 구분:</b> 본업+B만(C 제외) = <b><span id="nv_x_excSotp">38.7조</span> · <span id="nv_x_excTp">24.3만원</span> · <span id="nv_x_excUp">+10%</span></b> ← 실체 높은 층(본업 시장검증 + B 계약 임박). C(ARC) <span id="nv_x_cVal">4.05조</span>는 옵션(+<span id="nv_x_cUp">11</span>%p 기여, 확률 45% 가중). <span style="color:var(--ink-3)">현 시총 35.3조 = 본업 35.0조 + 0.3조 — 시장은 B·C 합계 <span id="nv_x_bcSum">7.7조</span> 중 약 4%만 반영 중. 즉 다운사이드는 본업 앵커가 받치고, B 실현만으로 +10%, C는 현재가에 사실상 공짜로 딸려오는 콜옵션(Bull 행사 시 +145%).</span></div>
         <div class="note">* SOTP = A(본업 5-Part) + B(AI팩토리 EBITDA×EV/EBITDA×확률×<b>지분율</b>) + C(ARC PSR×확률). A 채택값 <b>35.0조는 AIDC 부각 전 본업이 시장에서 실제 받던 가격(시장가치 앵커)</b>이며, 5-Part 이론가 45.54조(리포트에서 AIDC 분리·기존 클라우드 PER 20배 전환)는 구성 근거·상단 참고로 병기함. 이론가 대비 −23% 할인은 리레이팅 리스크·컨글로머릿 할인의 반영이고, (1)플랫폼 34.2조는 AIDC 부각 전 본업 시장가치 ~35조와 사실상 일치하는 앵커임. 리포트 원표 그대로면 A 52.21조(AIDC를 P/S 4.5x로 A에 계상)로, 리포트 목표주가 33만원은 사실상 <b>본업 + AIDC(4.5x 전액)</b>의 값임. 본 모델은 AIDC를 B(EBITDA×9배×확률×지분 50%)로 옮겨 유효 0.7x로 보수 평가하고, 그 위에 C(ARC)를 얹는 구조. C(ARC)는 소프트웨어·OS 사업이라 EBITDA 가시성이 없어 PSR 유지.</div>
       </div>
 
@@ -1233,6 +1234,14 @@ function calc(){
   $('nv_d_arcProb2').textContent=(arcProb*100).toFixed(0)+'%';$('nv_d_arcFinal').textContent=partC.toFixed(1)+'조';
   $('nv_r_arcRev').textContent=f(arcRev);$('nv_r_arcRaw').textContent=f(arcRaw);$('nv_r_partC').textContent=f(partC);
   const sotp=legVal+partB+partC;
+  // 옵션 구조 분해: C 제외(본업+B) vs C 옵션 기여
+  const excSotp=legVal+partB, excTp=excSotp*1e12/(SHARES*1000), excUp=(excSotp-MCAP)/MCAP*100;
+  $('nv_x_excSotp').textContent=f(excSotp);
+  $('nv_x_excTp').textContent=(excTp/10000).toFixed(1)+'만원';
+  $('nv_x_excUp').textContent=(excUp>=0?'+':'')+excUp.toFixed(0)+'%';
+  $('nv_x_cVal').textContent=f(partC);
+  $('nv_x_cUp').textContent=(partC/MCAP*100).toFixed(0);
+  $('nv_x_bcSum').textContent=f(partB+partC);
   const upside=(sotp-MCAP)/MCAP*100;
   const tp=sotp*1e12/(SHARES*1000);
   $('nv_sotp_leg').textContent=f(legVal);$('nv_sotp_b').textContent=f(partB);$('nv_sotp_c').textContent=f(partC);
