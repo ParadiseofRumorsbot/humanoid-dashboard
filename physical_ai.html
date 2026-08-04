@@ -165,7 +165,7 @@ a{color:inherit}
 .validation-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid;background:var(--bg-soft)}
 .tech-analogy{background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:10.5px;color:#aaa;line-height:1.6;border-left:3px solid}
 </style>
-<script src="data.js?v=20260803"></script>
+<script src="data.js?v=20260804"></script>
 <script>
 (function(){
 const D = DASHBOARD_DATA;
@@ -1230,6 +1230,21 @@ window.addEventListener('DOMContentLoaded', render);
           <div class="num-box" style="border-left:3px solid #6C5CE7"><div class="num-label">PHYSICS</div><div class="num-value">Emergent</div><div class="num-sub">중력·부력·반사 자체 습득</div></div>
         </div>
         <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: NVIDIA Jim Fan (AI Infrastructure Network 2026)</div>
+        <!-- ── 26.7 실증 스냅샷 (26-08-04 가산) ── -->
+        <div style="background:var(--bg-soft);border-radius:10px;padding:14px;margin-top:12px;border-left:4px solid #E17055">
+          <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;margin-bottom:8px">26.7 실증 스냅샷 — 아키텍처는 몇 달 단위로 바뀐다</div>
+          <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">업계 접근법이 <b>VLA(입력→행동 직접 매핑) → world action model(행동 전 결과 예측)</b>로 이동 중이나, <b>어느 아키텍처가 이길지는 최고 연구자들도 모른다</b>는 것이 업계의 솔직한 상태. 지속 우위는 단일 아키텍처가 아니라 <b>실환경 데이터 플라이휠</b>(배치→성공·실패 데이터 수집→모델 개선→재배치)과 HW-AI 통합 속도에서 나올 가능성.</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:var(--bg-card);border:1px solid var(--line);border-radius:8px;padding:10px 12px">
+              <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#6C5CE7;margin-bottom:4px">Robostral Navigate (Mistral, 8B)</div>
+              <div style="font-size:11px;color:var(--ink-2);line-height:1.6">RGB <b>단일 카메라</b> 내비게이션 — LiDAR·depth·멀티캠 없이 미학습 R2R-CE 환경 <b>76.6% 성공</b>. 시뮬 40만 궤적·6,000씬 학습, 휠·레그·비행 플랫폼 공용. 저비용 vision-only 확산 신호 — 단 벤치마크·선별 데모 단계, 안전critical 환경 신뢰성 미입증. <span style="font-size:9px;color:var(--ink-3)">[Mistral 발표]</span></div>
+            </div>
+            <div style="background:var(--bg-card);border:1px solid var(--line);border-radius:8px;padding:10px 12px">
+              <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;margin-bottom:4px">ACT-2 (Sunday Robotics)</div>
+              <div style="font-size:11px;color:var(--ink-2);line-height:1.6">미학습 가정집 빨래 개기 785회 시도 <b>99.1% 성공</b>·품질 4.72/5·중앙값 2분13초. 광범위 사전학습 후 <b>파인튜닝 시연 1회로 전이</b> 주장 + 환경 폭·적응량을 함께 보고하는 'Solve' 평가 프레임 제안. <b>⚠️ 회사 자체 보고 — 외부 독립 검증 없음</b>, 단일 태스크 한정, 사이클타임 느림. <span style="font-size:9px;color:var(--ink-3)">[Sunday Robotics 발표]</span></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- 심화: VLA 아키텍처 진화 -->
@@ -1693,6 +1708,23 @@ window.addEventListener('DOMContentLoaded', render);
         로보티즈는 우즈베키스탄에 2만평 데이터 팩토리 + 액추에이터 양산 공장 건설 중, 2026 4Q 가동 예정.
         <span style="font-size:10px;color:var(--ink-3)">[현대차 IR / 로보티즈 IR]</span>
       </p>
+      <!-- ── 데이터 밸류체인 분화 (26-08-04 가산) ── -->
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:16px;border-left:4px solid #E17055">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;letter-spacing:.08em;margin-bottom:8px">데이터 밸류체인 분화 — 수집은 커모디티, 차별화는 후공정</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">중국은 데이터가 핵심 병목으로 남아 있으나, <b>외주 수집 자체는 이미 커모디티화</b> 진행(중국 데이터 팩토리 50+개소). 차별화 영역은 수집 이후의 후공정으로 이동:</div>
+        <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:8px">
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#636E72">수집</div><div style="font-size:9px;color:var(--ink-3)">외주화·커모디티화 ↓</div></div>
+          <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#6C5CE7">라벨링</div><div style="font-size:9px;color:var(--ink-3)">차별화 ↑</div></div>
+          <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#0984E3">태스크 분해</div><div style="font-size:9px;color:var(--ink-3)">차별화 ↑</div></div>
+          <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#F8B739">품질평가</div><div style="font-size:9px;color:var(--ink-3)">차별화 ↑</div></div>
+          <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#00B894">Post-training</div><div style="font-size:9px;color:var(--ink-3)">차별화 ↑↑</div></div>
+        </div>
+        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">인티그레이터·모델 개발사의 경쟁 우위는 "얼마나 모았나"가 아니라 <b>모은 데이터를 얼마나 빨리 모델 개선으로 되돌리는가</b>(플라이휠 회전 속도)로 이동. 위 WAM 섹션 「26.7 실증 스냅샷」의 결론과 동일 축. <span style="font-size:9px;color:var(--ink-3)">[자체정리, 26.7 업계 동향 종합]</span></div>
+      </div>
       <!-- DreamGen — 실데이터 부족을 합성으로 푸는 NVIDIA 방식 -->
       <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:16px;border-left:4px solid #76B900">
         <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#76B900;letter-spacing:.08em;margin-bottom:8px">DREAMGEN — 실데이터 병목을 합성 데이터로 우회 (NVIDIA GR00T)</div>
@@ -1908,6 +1940,17 @@ window.addEventListener('DOMContentLoaded', render);
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#E17055;color:#fff;padding:2px 8px;border-radius:4px">2026-08-04</span>
+          <span style="font-size:12px;font-weight:600">WAM 섹션 26.7 실증 스냅샷 · 데이터 밸류체인 분화 박스 가산</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">Mistral·Sunday Robotics 발표 · 자체정리</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>26.7 실증 스냅샷: Robostral Navigate(8B, RGB 단일카메라 76.6%)·Sunday ACT-2(빨래 개기 99.1% — 자체보고·외부 미검증 명기) + "어느 아키텍처가 이길지 미정, 우위는 데이터 플라이휠" 프레임</li>
+          <li>데이터 밸류체인 분화: 수집(커모디티화↓) vs 라벨링·태스크분해·품질평가·post-training(차별화↑) 5단 플로우</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#76B900;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>

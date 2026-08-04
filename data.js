@@ -1138,6 +1138,20 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   updateLog: [
     {
+      date: '2026-08-04',
+      title: '26.7 로보틱스 동향 일괄 반영 — 정책·규제/펀딩/특허(교차검증)/Tracker 8행/GRoM 시나리오/장기 앵커/노동 리스크/실증 지표 5종',
+      source: '정부 발표(MIIT·SASAC)·미 의회 발의안·PitchBook·GGII·Google Patents·GreyB·치차차·각사 발표·업계 추정(2025.12)·자체정리',
+      changes: [
+        'market_competition: 정책·규제 지형 카드(中 26년말 1만대급·시나리오 100개+ vs 美 GUARD Act 드론 전례) + 휴머노이드 한정 VC 펀딩 시계열($558M→26YTD $6.6B, CBInsights $40.7B와 분모 상이 명기) + 특허 지형 카드(3개 집계 병기 — 절대치 3~30배 괴리로 순위·추세만 채택, Roblox·Unity 키워드 혼입 증거) + GR00T 카드 보강(학계 채택·Halos 안전 스택)',
+        'market_company: OEM③ Tracker 8행 추가(XPeng IRON·Walden·UBTECH Walker S2·Figure×Catalyst·Robotera×SF/中국우정·Mitsubishi×Highlanders·State Grid 발주 구성분해) + 자본시장 이벤트 트래커 신설(LimX·Agility SPAC[미확정]·현대차 BD 잔여지분[미확인]·BD 월섬 $100mn) + 노동·사회적 수용 리스크 카드(현대차 노조 Atlas 교섭) + Tesla 비고 갱신(S/X라인 46일 철거)·1X 25 DoF 핸드 병기',
+        'market_tam: GRoM Base 시나리오 추가(2030 40만→2040 4,740만대, ASP 이원화 $200k→$75k/$49k→$21k, 홀수해 로그선형 보간 [자체추정]) + 장기 앵커 카드(휴머노이드 매출 비중 2030 5%→2050 30%, 누적 채택 2036 2,810만→2050 ~10억대)',
+        'components: Leaderdrive 월 ~5만대 실측 병기 + 스크류·구동부품 중국 공급 구도 박스(Hengli 70%+·XCC 98만세트·Shuanglin·Leadshine 100만개 목표·Zhaowei) + 로보틱스 라이다 출하 실측(Hesai 11.8만·Robosense 18.6만대, 1Q26)',
+        'physical_ai: WAM 섹션에 26.7 실증 스냅샷(Robostral Navigate 76.6%·Sunday ACT-2 99.1% — 자체보고 명기) + 데이터 밸류체인 분화 박스(수집 커모디티화 vs 라벨링·태스크분해·품질평가·post-training 차별화)',
+        'framework: 실증 검증 지표 5종 카드(가동시간·개입률·유지보수·재구매·회수기간) + 6조건 카드에 ⓿ 사회적 수용(Social License) 전제조건 박스',
+        '검증 노트: 특허 절대치는 Google Patents(키워드)·GreyB(분류)·치차차(중국 누적 2,895) 간 괴리 커 순위·추세만 채택. State Grid Rmb68억은 휴머노이드 500+양팔 3,000+4족 5,000 혼성 — 단독 발주 아님. Humanoid 100 지수 성과·EY EV 수치는 미반영(각각 라벨-값 매핑 불확실 / EV 대시보드 소관)',
+      ],
+    },
+    {
       date: '2026-08-03',
       title: '네이버 SOTP — 260803 회사 공식 사업구조안 반영: 스프레드 귀속률 50/10% → 100% (Base SOTP 42.7조→54.2조, 26.8만→34.0만원, +21%→+53%)',
       source: '260803 회사 공식 「1단계 200MW 사업 구조(안)」 · 260731 KB증권 NAVER AIDC 세미나 · 자체 재계산',

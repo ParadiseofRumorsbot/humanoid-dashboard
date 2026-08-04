@@ -90,11 +90,54 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     <a href="market.html#company" target="_top" style="font-size:11px;color:#00B894;font-weight:600;text-decoration:none">OEM 정본 전체 보기 ↗</a>
   </section>
 
+  <!-- ═══ 정책·규제 지형 (26-08-04 신설) ═══ -->
+  <section class="card section-gap" style="border-left:4px solid #0984E3">
+    <div class="card-title">🏛️ 정책·규제 지형 — 中 배치 드라이브 vs 美 수입 차단 <span class="badge" style="background:#0984E3;color:#fff">정부 발표·의회 발의안</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px"><b>한 줄 요약:</b> 중국은 국가 프로그램으로 실배치를 밀어붙이고(26년말 1만대급), 미국은 드론 전례를 따라 중국산 로봇 수입 차단 입법을 개시. EV에서 벌어진 <b>관세→기술규제→표준 기반 진입차단</b> 3단 전개가 로봇에서 반복될 개연성.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div style="background:rgba(231,76,60,0.06);border-radius:10px;padding:14px;border-left:4px solid #e74c3c">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#e74c3c;margin-bottom:6px">🇨🇳 중국 — 배치 드라이브 (MIIT+SASAC, 26.6)</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">
+          · 26년말까지 <b>1만대급 배치능력 + 고부가 응용 시나리오 100개+</b> 목표<br>
+          · 실증현장 의무 지정: <b>성(省)별 ≥20개소 · 중앙 SOE별 ≥10개소</b> → 휴머노이드 훈련 환경으로 전환<br>
+          · 지방정부·SOE 이행계획 6월말 제출 → <b>11월 중간평가</b><br>
+          · 로봇, 15차 5개년계획 전략신흥산업 <b>최초 편입</b>(26.3)<br>
+          · SOE 실구매 개시: State Grid Rmb68억 발주(구성: 휴머노이드 500·양팔 3,000·4족 5,000 — OEM 정본 Tracker 참조)
+        </div>
+        <div style="font-size:9.5px;color:var(--ink-3);margin-top:6px">⚠️ 국가 주도 배치 목표가 지속 가능한 상업 수요·유닛 이코노믹스로 직결되는 것은 아님</div>
+      </div>
+      <div style="background:rgba(52,152,219,0.06);border-radius:10px;padding:14px;border-left:4px solid #3498db">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#3498db;margin-bottom:6px">🇺🇸 미국 — GUARD Act (초당파 발의, 미입법)</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">
+          · 중국 등 우려국산 휴머노이드·4족 로봇을 <b>국가안보 심사</b> 대상화<br>
+          · 위험 판정 또는 <b>1년 내 미심사 시 FCC Covered List 자동 등재</b> → 수입 차단<br>
+          · <b>드론 전례</b>(FCC 25.12 — 신규 중국산 드론·핵심부품 인증 차단)와 동일 구조 → 심사 강화가 아니라 사실상 수입금지로 귀결 가능<br>
+          · 역설: 미국 연구실 상당수가 저가 중국산(Unitree 등)에 의존 — 시행 시 <b>R&D 비용 상승</b> 리스크 동반
+        </div>
+        <div style="font-size:9.5px;color:var(--ink-3);margin-top:6px">⚠️ 발의 단계 — 입법 여부·범위(부품·제조 파트너십 확장) 미정</div>
+      </div>
+    </div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7"><b>EV 블록화와의 대칭 [자체정리]:</b> 드론(FCC 인증 차단) → EV(관세·현지화 요건·배터리 이력 추적) → 휴머노이드(GUARD Act)로 이어지는 동일 패턴. 미·EU가 EV에서 구축한 수단(징벌 관세·부품 원산지 정량 요건·데이터 주권 규제)이 로봇에 이식될 경우, 중국 부품 의존이 큰 밸류체인(감속기·모터·자석)의 원가 구조에 직접 영향.</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 중국 정부 발표(MIIT·SASAC)·미 의회 발의안·FCC(원데이터) · 대칭 프레임은 [자체정리]</div>
+  </section>
+
   <section class="card section-gap">
     <div class="card-title">💰 글로벌 로보틱스 VC 투자 <span class="badge" style="background:#6C5CE7;color:#fff">CBInsights</span></div>
     <div class="num-row">
-      <div class="num-box" style="border:2px solid #6C5CE7"><div class="num-label">2025 VC 투자 총액</div><div class="num-value">$40.7B</div><div class="num-sub">Source: CBInsights</div></div>
+      <div class="num-box" style="border:2px solid #6C5CE7"><div class="num-label">2025 VC 투자 총액 (로보틱스 전체)</div><div class="num-value">$40.7B</div><div class="num-sub">Source: CBInsights</div></div>
+      <div class="num-box" style="border:2px solid #E17055"><div class="num-label">2026 YTD 휴머노이드 한정</div><div class="num-value">$6.6B</div><div class="num-sub">7/15 기준, 25년 연간($5.1B) 기추월 · Source: PitchBook</div></div>
     </div>
+    <!-- ── 휴머노이드 한정 글로벌 VC 펀딩 시계열 (26-08-04 신설) ── -->
+    <div style="margin:16px 0 8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">휴머노이드 한정 글로벌 VC 펀딩 추이 (PitchBook 'Humanoid Robotics' 분류)</div>
+    <div class="scroll-x"><div style="display:grid;grid-template-columns:90px 90px 1fr;gap:0;font-family:var(--mono);font-size:11px">
+      <div class="td" style="font-weight:600">2021</div><div class="td" style="text-align:right">$558M</div><div class="td"><div style="height:14px;width:8%;background:linear-gradient(90deg,#E17055,#F8B739);border-radius:2px;min-width:6px"></div></div>
+      <div class="td" style="font-weight:600">2022</div><div class="td" style="text-align:right">$568M</div><div class="td"><div style="height:14px;width:9%;background:linear-gradient(90deg,#E17055,#F8B739);border-radius:2px;min-width:6px"></div></div>
+      <div class="td" style="font-weight:600">2023</div><div class="td" style="text-align:right">$862M</div><div class="td"><div style="height:14px;width:13%;background:linear-gradient(90deg,#E17055,#F8B739);border-radius:2px;min-width:6px"></div></div>
+      <div class="td" style="font-weight:600">2024</div><div class="td" style="text-align:right">$1.7B</div><div class="td"><div style="height:14px;width:26%;background:linear-gradient(90deg,#E17055,#F8B739);border-radius:2px"></div></div>
+      <div class="td" style="font-weight:600">2025</div><div class="td" style="text-align:right">$5.1B</div><div class="td"><div style="height:14px;width:77%;background:linear-gradient(90deg,#E17055,#F8B739);border-radius:2px"></div></div>
+      <div class="td" style="font-weight:700">2026 YTD</div><div class="td" style="text-align:right;font-weight:700">$6.6B</div><div class="td"><div style="height:14px;width:100%;background:linear-gradient(90deg,#E17055,#FF6B6B);border-radius:2px"></div></div>
+    </div></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">2026 YTD는 7/15 기준 — 반년 만에 2025 연간 총액 추월. 중국 파이낸싱 건수도 26년 월 40~61건으로 24년(월 3~10건) 대비 급증 [GGII·각사 발표]. ⚠️ 위 $40.7B(CBInsights)는 <b>로보틱스 전체</b>, 이 시계열(PitchBook)은 <b>휴머노이드 분류 한정</b> — 분모가 다른 별개 지표.</div>
     <!-- ── 가산: 주요 휴머노이드 기업가치 비교 (통화·시점 병기) ── -->
     <div style="margin:16px 0 8px;font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600">주요 기업가치 비교 (통화·시점 병기)</div>
     <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
@@ -116,6 +159,37 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     </table></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">밸류 자체는 각사/언론(원데이터) · 환산·해석은 [자체추정]. 통화·시점 병기.</div>
   </section>
+
+  <!-- ═══ 특허 지형 (26-08-04 신설 · 복수 소스 교차검증) ═══ -->
+  <section class="card section-gap" style="border-left:3px solid #6C5CE7">
+    <div class="card-title">📜 휴머노이드 특허 지형 — 中 압도적 물량, 집계마다 절대치 상이 <span class="badge" style="background:#6C5CE7;color:#fff">복수 소스 병기</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px"><b>한 줄 요약:</b> 어떤 집계로 봐도 <b>중국이 압도적 1위(전체의 ~70~80%)</b>·급증세, 한국은 3~5위권 소수라는 방향은 강건함. 단 <b>절대 건수는 집계 기준(키워드 언급 vs 분류)에 따라 3~30배 괴리</b> — 절대치 단독 인용 금지, 순위·추세만 사용.</div>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:620px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">집계 소스 (기준·마감시점)</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">🇨🇳 중국</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">🇺🇸 미국</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">🇯🇵 일본</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">🇰🇷 한국</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;white-space:normal"><b>Google Patents</b> — "humanoid" <b>키워드 언급</b>, 특허청(출원 오피스)별, 최근 5년 누적 (26.7)</td><td style="text-align:right;padding:7px 9px;font-weight:700">8,629</td><td style="text-align:right;padding:7px 9px">1,659</td><td style="text-align:right;padding:7px 9px">1,105</td><td style="text-align:right;padding:7px 9px">331</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;white-space:normal"><b>GreyB</b> — 휴머노이드 로보틱스 <b>기술분류</b> 기반 (2026 집계)</td><td style="text-align:right;padding:7px 9px;font-weight:700">9,975</td><td style="text-align:right;padding:7px 9px">2,574</td><td style="text-align:right;padding:7px 9px">2,235</td><td style="text-align:right;padding:7px 9px">1,147</td></tr>
+        <tr><td style="padding:7px 9px;white-space:normal"><b>치차차(企查查)</b> — 중국 내 '휴머노이드 로봇' 분류 <b>누적</b> (26.6.22)</td><td style="text-align:right;padding:7px 9px;font-weight:700">2,895</td><td style="text-align:right;padding:7px 9px;color:var(--ink-3)">—</td><td style="text-align:right;padding:7px 9px;color:var(--ink-3)">—</td><td style="text-align:right;padding:7px 9px;color:var(--ink-3)">—</td></tr>
+      </tbody>
+    </table></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #e74c3c">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#e74c3c;margin-bottom:4px">중국 연도별 급증 (치차차 집계)</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">2023년 132건 → 2024년 623건 → <b>2025년 1,342건(+115%)</b> → 26년 상반기 313건. 2021년 이후 출원이 누적의 <b>85.9%</b> — 최근 5년에 집중.</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #F8B739">
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#d39e00;margin-bottom:4px">⚠️ 키워드 집계의 혼입 증거</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">Google Patents 미국 상위 출원인(5년): Boston Dynamics 90 · <b>Roblox 85</b> · Sanctuary 64 · Figure 39 · UBTech 36 · Honda 34 · <b>Unity 32</b> · Tesla 17 — 게임·아바타 특허가 "humanoid" 언급으로 혼입됨. 키워드 집계는 상한치로만 읽을 것.</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: Google Patents·GreyB·치차차(중국로봇망 인용) — 각 집계 기준·마감시점 병기(원데이터). KIPO 공식 휴머노이드 단독 통계는 미발간(26.8 확인) — 교차검증 결과 절대치 불일치로 순위·추세만 채택 [자체정리].</div>
+  </section>
   <!-- ── 가산: NVIDIA GR00T 레퍼런스 휴머노이드 + 자체엣지 사례 ── -->
   <section class="card section-gap" style="border-left:4px solid #76B900">
     <div class="card-title">🤖 NVIDIA GR00T 레퍼런스 휴머노이드 + 자체엣지 사례 <span class="badge" style="background:#76B900;color:#fff">각사 · NVIDIA</span></div>
@@ -126,6 +200,9 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       <div class="num-box" style="border-left:3px solid #F8B739"><div class="num-label">Galbot 밸류(中 비상장)</div><div class="num-value">260억위안</div><div class="num-sub">~5조원 · 비상장 최고 밸류 · Source: 각사·언론</div></div>
     </div>
     <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-top:4px">보수적인 <b>Fanuc도 엔비디아 채택</b>(ROBOGUIDE + Isaac Sim 디지털트윈). <b>Galbot</b>(中 비상장 최고 밸류 260억위안~5조원): 자체 Grasp/Grocery VLA로 약국·편의점 실증.</div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#76B900">보강 (26.7):</b> ① 레퍼런스 채택 예정 기관 — <b>Stanford·ETH Zurich·Ai2·UC San Diego</b> 등(초기 타깃은 상업 운영이 아닌 연구실 — 중복 통합작업 제거·NVIDIA 스택의 연구 표준화 효과). ② <b>Halos for Robotics</b> — IGX Thor 컴퓨트 + Halos OS + 외부 안전 에이전트 + 인증 시험소(제3자 인증 지원)로 구성된 피지컬 AI 안전 풀스택. <b>Agility가 첫 휴머노이드 파트너</b>(Digit 인체감지·안전 아키텍처 통합). 휴머노이드가 펜스 안 데모 → 공유 산업 환경으로 이동하는 국면에서 <b>안전 인증·검증이 주요 게이팅 요인</b>으로 부상. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA·각사]</span>
+    </div>
     <div style="background:rgba(118,185,0,0.06);border-left:3px solid #76B900;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#76B900">핵심 톤:</b> 엔비디아 동맹은 이제 기본 전제이고, 차별화는 <b>독점데이터·양산신뢰성·실증·라이브스트리밍</b>에서 온다. <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사·NVIDIA(원데이터). 위 '중국 2026E 생산 M/S' 카드의 Unitree H2 Plus 채택 박스와 동일 사건의 사양 보완.</div>
   </section>
@@ -156,6 +233,19 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-08-04</span>
+          <span style="font-size:12px;font-weight:600">정책·규제 지형 / 휴머노이드 한정 VC 펀딩 / 특허 지형(교차검증) 신설 · GR00T 보강</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">정부 발표·미 의회 발의안·PitchBook·GGII·Google Patents·GreyB·치차차·NVIDIA</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>정책·규제 카드: 中 MIIT+SASAC(26년말 1만대급·시나리오 100개+·성별 ≥20개소) vs 美 GUARD Act(드론 FCC 전례) + EV 블록화 대칭 프레임</li>
+          <li>VC 카드에 휴머노이드 한정 펀딩 시계열 추가: 21년 $558M → 25년 $5.1B → 26 YTD(7/15) $6.6B — CBInsights $40.7B(로보틱스 전체)와 분모 상이 명기</li>
+          <li>특허 지형 카드: 3개 집계 병기(Google Patents 키워드 / GreyB 분류 / 치차차 중국 누적 2,895) — 절대치 3~30배 괴리로 순위·추세만 채택, Roblox·Unity 혼입 증거 명기</li>
+          <li>GR00T 카드 보강: 학계 채택 기관(Stanford·ETH·Ai2·UCSD) + Halos 안전 스택(Agility 첫 파트너)</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>

@@ -139,6 +139,31 @@ const DATA = {
         2040: [6091, 16500, 15500],
       }
     },
+    grom_base: {
+      name: 'GRoM Base',
+      source: '업계 추정 (2025.12)',
+      desc: '글로벌 휴머노이드 전망(25.12 업계 모델). 2030년 40만→2040년 4,740만→2050년 2.02억대. ASP 이원화(고소득 $200k→$75k / 중국·중저소득권 $49k→$21k)·교체주기 6년 가정. 짝수해 원표 기준, 홀수해(31/33/35/37/39)는 로그선형 보간 [자체추정].',
+      shipments: {
+        // 2024~2025는 실적(타 시나리오와 동일), 2026~은 모델 짝수해 원값 + 홀수해 보간
+        2024: [2.3, 4500, 800],
+        2025: [13.4, 4700, 1200],
+        2026: [30, 5000, 1800],
+        2027: [60, 5400, 2600],
+        2028: [150, 5900, 3500],
+        2029: [320, 6500, 4500],
+        2030: [400, 7200, 5500],
+        2031: [770, 7800, 6500],
+        2032: [1500, 8500, 7500],
+        2033: [2290, 9200, 8500],
+        2034: [3500, 10000, 9500],
+        2035: [5860, 11000, 10500],
+        2036: [9800, 12000, 11500],
+        2037: [15200, 13000, 12500],
+        2038: [23500, 14000, 13500],
+        2039: [33400, 15000, 14500],
+        2040: [47400, 16500, 15500],
+      }
+    },
   },
 
   /* ── 2025년 실적 업체별 출하량 (각사 발표·언론종합, 2025) ── */
@@ -693,6 +718,37 @@ a{color:inherit}
     <div class="scroll-x">
       <div class="capa-grid-5" id="shipmentGrid"></div>
     </div>
+  </section>
+
+  <!-- ═══ 3.4 장기 앵커 — 폼팩터 비중·누적 채택 (26-08-04 신설) ═══ -->
+  <section class="card section-gap" style="border-left:3px solid #6C5CE7">
+    <div class="card-title">🧭 장기 앵커 — 로봇 폼팩터별 매출 비중·휴머노이드 누적 채택 <span class="badge" style="background:#6C5CE7;color:#fff">업계 추정 (2025.12)</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px"><b>한 줄 요약:</b> 글로벌 로봇 하드웨어 매출은 2050년 <b>$25.1조</b>(Bull $40.3조 / Bear $10.1조)까지 성장 전망이나, <b>휴머노이드 비중은 2030년 5% → 2050년 30%</b> — 향후 5년 로봇 수익 풀은 여전히 드론·전문서비스·산업용 중심. 위 GRoM Base 시나리오(휴머노이드 단독)의 균형추로 읽을 것.</div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:6px">폼팩터 전체 vs 휴머노이드 (하드웨어 최종판매 기준, SW·유지보수 제외)</div>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:9px">지표</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">2026E</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">2030E</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">2040E</th>
+        <th style="text-align:right;padding:7px 9px;font-family:var(--mono);font-size:9px">2050E</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 9px;font-weight:600">전체 로봇 매출 ($bn)</td><td style="text-align:right;padding:6px 9px">138</td><td style="text-align:right;padding:6px 9px">540</td><td style="text-align:right;padding:6px 9px">8,780</td><td style="text-align:right;padding:6px 9px;font-weight:700">25,053</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 9px;font-weight:600">└ 휴머노이드 ($bn)</td><td style="text-align:right;padding:6px 9px">4</td><td style="text-align:right;padding:6px 9px">28</td><td style="text-align:right;padding:6px 9px">2,009</td><td style="text-align:right;padding:6px 9px;font-weight:700">7,510</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 9px;font-weight:600;color:#6C5CE7">└ 휴머노이드 비중</td><td style="text-align:right;padding:6px 9px;color:#6C5CE7">2.9%</td><td style="text-align:right;padding:6px 9px;color:#6C5CE7">5.1%</td><td style="text-align:right;padding:6px 9px;color:#6C5CE7">22.9%</td><td style="text-align:right;padding:6px 9px;color:#6C5CE7;font-weight:700">30.0%</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 9px;font-weight:600">전체 로봇 판매 (백만대)</td><td style="text-align:right;padding:6px 9px">29</td><td style="text-align:right;padding:6px 9px">93</td><td style="text-align:right;padding:6px 9px">605</td><td style="text-align:right;padding:6px 9px">1,427</td></tr>
+        <tr><td style="padding:6px 9px;font-weight:600">전체 로봇 가동대수 (백만대)</td><td style="text-align:right;padding:6px 9px">128</td><td style="text-align:right;padding:6px 9px">343</td><td style="text-align:right;padding:6px 9px">2,186</td><td style="text-align:right;padding:6px 9px">6,460</td></tr>
+      </tbody>
+    </table></div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin:12px 0 6px">휴머노이드 누적 채택 커브 (글로벌, 총 잠재 ~10억대 가정)</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:8px">
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">2036</div><div style="font-family:var(--mono);font-size:15px;font-weight:700">2,810만대</div><div style="font-size:9px;color:var(--ink-3)">침투 ~2.8%</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #E17055"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">2040</div><div style="font-family:var(--mono);font-size:15px;font-weight:700">1억 3,850만대</div><div style="font-size:9px;color:var(--ink-3)">침투 ~13.6%</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">2044</div><div style="font-family:var(--mono);font-size:15px;font-weight:700">4.3억대</div><div style="font-size:9px;color:var(--ink-3)">침투 ~42.2%</div></div>
+      <div style="background:var(--bg-soft);border-radius:8px;padding:10px 12px;text-align:center;border-top:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">2050</div><div style="font-family:var(--mono);font-size:15px;font-weight:700">~10억대</div><div style="font-size:9px;color:var(--ink-3)">소득그룹별: 中포함 상중위 5.04억 · 고소득 2.96억 · 중하위 2.04억 · 저소득 0.14억</div></div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3)">출처: 업계 추정 (2025.12) — 하드웨어 최종판매 기준(SW·서비스·유지보수·공급망 제외, 포함 시 배수 확대 여지). Bull/Bear 분기는 2035년 이후($2,664bn까지 3안 동일). 누적 채택은 판매 아닌 보급(adoption) 기준.</div>
   </section>
 
   <!-- ═══ 3.5 OEM 목표 — OEM 정본으로 융합 이관 (26-07-12 v4), 요약 스텁만 ═══ -->

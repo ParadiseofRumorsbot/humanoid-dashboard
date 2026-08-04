@@ -64,7 +64,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
-<script src="data.js?v=20260803"></script>
+<script src="data.js?v=20260804"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -690,9 +690,20 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
     <!-- ── 가산: 하모닉/HDS 생산능력 비교 ── -->
     <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:12px;font-size:11px;color:var(--ink-2);line-height:1.7">
-      <b style="color:#6C5CE7">하모닉/HDS 생산능력 (M/S 보완):</b> <b>하모닉드라이브시스템스(6324.T) 연 230만대</b> vs 경쟁사 <b>리더드라이브(Leaderdrive) 60만대 → 2027년 160만대</b>. HDS는 다국적 거점(일본·독일·미국)으로 중국의존을 낮춰 서구권 메이저의 핵심 대체공급선 역할. 미국 capa 월 8–9천대 → FY26 월 1–1.5만대로 확대.<br>
+      <b style="color:#6C5CE7">하모닉/HDS 생산능력 (M/S 보완):</b> <b>하모닉드라이브시스템스(6324.T) 연 230만대</b> vs 경쟁사 <b>리더드라이브(Leaderdrive) 60만대 → 2027년 160만대</b>(26.7 기준 월 ~5만대 출하 실측 — 연 60만대 페이스와 정합, 모듈 관련 프로젝트 참여 [각사·언론]). HDS는 다국적 거점(일본·독일·미국)으로 중국의존을 낮춰 서구권 메이저의 핵심 대체공급선 역할. 미국 capa 월 8–9천대 → FY26 월 1–1.5만대로 확대.<br>
       <b style="color:#E17055">※ 테슬라 옵티머스向 하모닉 감속기 벤더는 현재 미정 [미확인]</b>.<br>
       <span style="font-size:9px;color:var(--ink-3)">출처: 각사(원데이터). 위 GGII M/S(2024)와 별개 지표(생산능력)로 병기.</span>
+    </div>
+    <!-- ── 스크류·기타 구동부품 중국 공급 구도 (26-08-04 가산) ── -->
+    <div style="background:rgba(231,76,60,0.06);border-left:3px solid #e74c3c;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#e74c3c">스크류·기타 구동부품 — 중국 공급 구도 (26.7 기준):</b>
+      <b>Hengli Hydraulic(601100.CN)</b> 바디 스크류 점유 <b>70%+ 시사</b>(캐파는 멕시코 중심 준비) ·
+      <b>XCC(603667.CN)</b> Rmb11억 투자 → 플래니터리 롤러스크류 <b>연 98만세트</b> 신공장 ·
+      <b>Shuanglin(300100.CN)</b> 휴머노이드용 롤러스크류·연마기 개발, 1만대 캐파 26.6월 계획 ·
+      <b>Leadshine(002979.CN)</b> 프레임리스 토크모터 25년 ~12만개 출하 → <b>26년 100만개 목표</b> ·
+      <b>Zhaowei(003021.CN)</b> 덱스터러스 핸드·모터·모듈, 26년 매출 2배 가이던스(태국 캐파 준비).
+      점유율·목표치는 각사 IR·발언 기준 선언치 — 실출하와 구분해 읽을 것.
+      <span style="font-size:9px;color:var(--ink-3)">[각사 IR·언론]</span>
     </div>
   </section>
 
@@ -1186,7 +1197,16 @@ window.addEventListener('DOMContentLoaded', () => {
         한국 부품사(에스피지·로보티즈·하이젠알앤엠)는 <b>기술 차별화(토크밀도·백드라이버빌리티) + 글로벌 OEM 직접 수주</b>로 가격 경쟁을 회피해야 함.
       </div>
     </div>
-    <div style="font-size:10px;color:var(--ink-3)">출처: 자체추정 · 언론 종합 · Robozaps(생산 규모별 원가 곡선)</div>
+    <!-- ── 로보틱스 라이다 출하 실측 (26-08-04 가산) ── -->
+    <div style="background:rgba(0,184,148,0.06);border-left:4px solid #00B894;border-radius:0 10px 10px 0;padding:12px 16px;margin-bottom:10px">
+      <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
+        <b style="color:#00997b">센서에서도 같은 구도 — 로보틱스 라이다 출하 실측 (1Q26):</b>
+        <b>Hesai 11.8만대(+137.8% YoY)</b> · <b>Robosense 18.6만대(+1,458.8% YoY)</b>.
+        중국 라이다 2사의 로보틱스向 출하가 분기 30만대 규모로 급증 — "원가 절감 = 중국화" 구도가 감속기·모터에 이어 센서로 확산 중. Hesai는 라이다 외 <b>액추에이터 모듈</b>도 공급 개시(로보틱스 매출 초기 단계).
+        <span style="font-size:9px;color:var(--ink-3)">[각사 실적 발표]</span>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3)">출처: 자체추정 · 언론 종합 · Robozaps(생산 규모별 원가 곡선) · 라이다 출하는 각사 실적(원데이터)</div>
   </section>
 
   <!-- ═══ 6. ASP × Volume Simulator (원가④, 26-07-12 v4 이동) ═══ -->
@@ -2482,6 +2502,18 @@ window.addEventListener('DOMContentLoaded', render);
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px">2026-08-04</span>
+          <span style="font-size:12px;font-weight:600">감속기③에 스크류·구동부품 중국 공급 구도 · 원가③에 로보틱스 라이다 출하 실측 가산</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">각사 IR·실적 발표·언론</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>Leaderdrive 26.7 기준 월 ~5만대 출하 실측 병기(연 60만대 페이스와 정합)</li>
+          <li>스크류·구동부품 박스 신설: Hengli 바디 스크류 70%+ 시사(캐파 멕시코 중심)·XCC 연 98만세트 투자·Shuanglin 1만대 캐파 계획·Leadshine 토크모터 26년 100만개 목표·Zhaowei 26년 매출 2배 가이던스 — 선언치/실출하 구분 명기</li>
+          <li>원가③에 라이다 실측 가산: 1Q26 Hesai 11.8만대(+137.8%)·Robosense 18.6만대(+1,458.8%) — "원가 절감 = 중국화" 구도의 센서 확산 근거</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-07-10</span>
