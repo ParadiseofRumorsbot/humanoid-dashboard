@@ -261,7 +261,7 @@ const DASHBOARD_DATA = {
     { company: 'NVIDIA', ticker: 'NVDA', layer: '두뇌', parts: 'GPU·시뮬레이션·Omniverse·Jetson Thor', note: '피지컬 AI 두뇌 인프라 대표. 훈련→시뮬레이션→현장추론 3계층 컴퓨팅', tp: '$269.82', cp: '$211.50' },
     { company: 'Amazon', ticker: 'AMZN', layer: '두뇌·통합', parts: 'AWS·물류 자동화·창고 로봇', note: '클라우드 M/S 28% + 대규모 물류 자동화 실사용자', tp: '$312.94', cp: '$271.17' },
     { company: 'Rockwell Automation', ticker: 'ROK', layer: '제어', parts: 'PLC·모션제어·산업용 네트워크', note: '기존 공장 제어 병목 대표. PLC 글로벌 M/S 2위', tp: '-', cp: '-' },
-    { company: 'Novanta', ticker: 'NOVT', layer: '실행·인지', parts: '정밀 모션·힘토크 센서·로봇 말단부', note: 'ATI Industrial 인수. 로보틱스&자동화 매출 32.5%', tp: '$157.00', cp: '$136.28' },
+    { company: 'Novanta', ticker: 'NOVT', layer: '실행·인지', parts: '정밀 모션·서보 드라이브·힘토크 센서·로봇 말단부', note: 'ATI Industrial 인수. 로보틱스&자동화 매출 32.5%. 휴머노이드 servo drive 첫 수주(26.2Q)', tp: '$157.00', cp: '$136.28' },
     { company: 'Cognex', ticker: 'CGNX', layer: '인지', parts: '머신비전·검사 자동화·OneVision', note: '비정형 작업 확산의 인지 계층 대표. 물류·자동차 85%', tp: '$67.60', cp: '$65.92' },
     { company: 'Timken', ticker: 'TKR', layer: '실행', parts: '고정밀 베어링·리니어모션·동력전달', note: 'Cone Drive·Spinea·Rollon 보유. Industrial Motion +12% YoY', tp: '$122.42', cp: '$116.34' },
     { company: 'Regal Rexnord', ticker: 'RRX', layer: '실행', parts: '모터·드라이브·감속기·베어링·액추에이터', note: '2025 휴머노이드 OEM $40M 수주. 관절 시스템 통합 공급', tp: '$243.56', cp: '$206.26' },
@@ -1137,6 +1137,16 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-08-07',
+      title: 'Novanta 서보 드라이브 계층 등재 — 휴머노이드 노출이 힘토크 센서 단일 계층에서 구동제어까지 확장',
+      source: 'Novanta 2Q26 어닝콜(26-08-06)',
+      changes: [
+        'market_competition: 「모터 제어 레이어」 표에 「서보 드라이브(모듈)」 행 신설(게이트드라이버 다음) — MCU/FOC+게이트드라이버+전력단을 묶은 관절 구동 보드 계층. 장악 기업은 Novanta(NOVT) 단독 표기이고 26.2Q 휴머노이드 트레이닝 시설향 첫 유의미 수주가 근거. 그 외 공급사는 확인된 소스가 없어 미확인으로 명기',
+        'us_valuechain·market_tam·data.js usValueChain: Novanta parts에 「서보 드라이브」 추가, note에 「휴머노이드 servo drive 첫 수주(26.2Q)」 추가. us_valuechain 계층별 분류 실행(EXECUTION) 설명에 「서보드라이브」 추가',
+        '미변경(보고만): Novanta cp $136.28 스냅샷(26-08-06 종가 $163.32 대비 낮음), 로보틱스&자동화 매출 32.5%(2Q26 실측 33.2%), data.js servo(서보모터) M/S 파이 — Novanta는 모터가 아닌 드라이브 공급사라 점유율 창작을 피해 미등재',
+      ],
+    },
     {
       date: '2026-08-04',
       title: '26.7 로보틱스 동향 일괄 반영 — 정책·규제/펀딩/특허(교차검증)/Tracker 8행/GRoM 시나리오/장기 앵커/노동 리스크/실증 지표 5종',
