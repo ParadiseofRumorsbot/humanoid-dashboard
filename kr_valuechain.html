@@ -210,9 +210,9 @@ function renderExpo(){
 const TL_DATA=[
   {y:2024,label:'시제품',events:['BD Atlas 전기식 시제품 공개','Tesla Optimus Gen2 시연','Unitree G1 출시 ($16K~)'],tag:'초기'},
   {y:2025,label:'소량생산',events:['AGIBOT 5,168대 출하 (1위)','Unitree 5,500대','총 14,768대 (각사 발표·언론종합)','LG에너지솔루션 로봇 배터리 공급 시작','로보티즈 AI Worker 상체 휴머노이드 공개(4월, 전부품 국산·LG 협력)','LG이노텍-BD Atlas 비전센싱 모듈 공동개발 파트너십(5월)'],tag:'중국 주도'},
-  {y:2026,label:'RMAC 개소',events:['RMAC 2026년 8~9월 개소','에스비비테크 천안 공장 이전(26.3)·200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 행사기간(6~7월)→콜옵션(7~8월)','삼성전자·구글 BD 지분 투자 검토','로보스타 코스닥150 편입','LG전자 CLOiD 공개(CES 2026)·로봇사업센터 신설(CEO 직속)·가정용 로봇 연내 국내 출시 목표','LG전자 AXIUM 액추에이터 파일럿 라인 완공(고객 인증 中)'],tag:'BD 준비'},
+  {y:2026,label:'RMAC 개소',events:['RMAC 2026년 8~9월 개소','에스비비테크 천안 공장 이전(26.3)·200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 행사기간(6~7월)→콜옵션(7~8월)','삼성전자·구글 BD 지분 투자 검토','로보스타 코스닥150 편입','LG전자 CLOiD 공개(CES 2026)·로봇사업센터 신설(CEO 직속)·가정용 로봇 연내 국내 출시 목표','LG전자 AXIUM 액추에이터 파일럿 라인 완공(고객 인증 中)','현대차그룹 로봇훈련학습센터 한·미·중 설립 발표(8.6) — 새만금 로봇 제조(향후 파운드리 확장)·미국 BD 핵심 설계·중국 부품 공급망','모비스 31개 바디 액추에이터 11월 시제품 납품 개시 예정'],tag:'BD 준비'},
   {y:2027,label:'매출 인식',events:['현대모비스 BD 매출 인식 시작','HL만도 Spot 2세대 공급','현대오토에버 Robot OS','현대글로비스 물류 테스트베드','네이버 ARC 플릿 OS 상용화 착수'],tag:'KR 매출 시작'},
-  {y:2028,label:'양산 원년',events:['BD 양산공장 30K CAPA 개소','모비스 액추에이터 35만개','삼성SDI 헝가리 양산','HL만도 휴머노이드 공급 원년','두산로보틱스 산업용 상용화','NAVER-NVIDIA-LG 가정용 로봇 본격화'],tag:'본격 양산'},
+  {y:2028,label:'양산 원년',events:['BD 양산공장 30K CAPA 개소','모비스 액추에이터 35만개','삼성SDI 헝가리 양산','HL만도 휴머노이드 공급 원년','두산로보틱스 산업용 상용화','NAVER-NVIDIA-LG 가정용 로봇 본격화','Atlas 미국 조지아 공장 투입(→2030 부품 조립 공정 활용) (언론종합)'],tag:'본격 양산'},
   {y:2029,label:'확산',events:['BD 외부 고객 확장','원가 하락 가속 ($40~60K대)','수직 통합 진행','네이버 브레인리스 GPU 클라우딩 확대'],tag:'확산'},
   {y:2030,label:'대량 양산',events:['BD 3만대+ 양산','HMG 2.5만대 captive demand','글로벌 69~120만대 (시나리오별)','ASP $25~50K 구간 진입','가정용 휴머노이드 시장 본격 개화','LG전자 액추에이터 매출 본격 기여 구간 [자체추정]'],tag:'대량 양산'},
 ];
@@ -613,6 +613,53 @@ window.addEventListener('DOMContentLoaded',()=>{
     </div>
   </section>
 
+  <!-- ═══ BD Atlas 양산 검증 체크리스트 & 현황 (26-08-12 신설) ═══ -->
+  <section id="bd-checklist" class="card section-gap" style="border-left:4px solid #E17055">
+    <div class="card-title">🛠 BD Atlas — 양산 검증 체크리스트 & 현황 스냅샷 <span class="badge" style="background:#E17055;color:#fff">26.08</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;line-height:1.7">경쟁 기준이 <b>개별 로봇 성능(보행·가반하중·자유도) → 현장 배치 Fleet 규모·데이터 플라이휠</b>로 이동하는 국면. 초기 수백 대의 Atlas는 매출원이라기보다 <span style="background:rgba(225,112,85,0.12);padding:1px 4px;border-radius:3px;font-weight:600">Real-world Data 생산설비</span>에 가까움 — 배치→데이터→학습→Fleet 전체 성능 개선→추가 배치의 선순환이 형성되면 선발-후발 격차는 HW 성능 이상으로 확대 [자체추정]</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #E17055">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#E17055;margin-bottom:6px">현황 스냅샷 (26.08)</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li>RMAC 데이터 운용 조직 <b>2교대 체제</b> 수립</li>
+          <li>Atlas <b>머리 모듈화</b> 개발 · <b>원자력 시설 해체</b> 등 특수시장 공략 추진(8.5 보도)</li>
+          <li><b>28년 미국 조지아 공장 투입 → 30년 부품 조립 공정 활용</b> 로드맵</li>
+          <li>현대차그룹 로봇훈련학습센터 한·미·중(8.6) — 새만금 제조(→파운드리)·미국 BD 설계·중국 공급망</li>
+        </ul>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:6px">[언론종합]</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #0984E3">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#0984E3;margin-bottom:6px">양산 성숙도 — 26~27년 확인할 KPI</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li>현재: 숙련 엔지니어가 1대씩 조정, 제조 엔지니어가 Tool·Jig·Fixture·작업지시서 직접 설계 = <b>공정 표준화 전 단계</b></li>
+          <li>체크 KPI는 단순 CAPA가 아니라 <span style="background:rgba(9,132,227,0.12);padding:1px 4px;border-radius:3px;font-weight:600">Production Yield · 로봇당 조립시간 · Rework 비율 · 생산 자동화 수준</span></li>
+          <li>부품 구조 자체를 제조성·공급망 관점에서 재설계 中 → 양산 속도는 BD 조립 CAPA가 아니라 <b>부품사(액추에이터·감속기·센서) 증설 속도</b>가 결정. 다음 경쟁 = Cost+Quality+Delivery</li>
+        </ul>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:6px">[언론종합 · 자체추정]</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #6C5CE7">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#6C5CE7;margin-bottom:6px">감속기 — 최고 성능보다 최적 조합</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li>BD: 감속기가 성능·내구성·중량·원가 결정 핵심 — <b>유성·베벨·변형파동(하모닉)·사이클로이드 트레이드오프를 동시 검토</b></li>
+          <li>최적화 축: 효율·중량·크기·백래시·피로수명·Duty Cycle·공차·제조성·원가 → <b>관절 위치·요구 성능별 여러 구조 혼합 적용 가능성</b></li>
+          <li>※ 층위 구분: 기술 탭의 'Atlas <b>바디</b> 액추에이터 = 유성 2종·모비스 내재화'(Corp Day 확정분)와 별개로, 전체 아키텍처(손·특수 관절 포함)는 복수 방식 검토 단계</li>
+          <li>확인 포인트: 성능 단품이 아니라 <b>실제 Duty Cycle 충족 + 양산 수율 + 원가</b>를 동시 확보하는 벤더</li>
+        </ul>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:6px">[언론종합 · 자체추정]</div>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #00B894">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#00B894;margin-bottom:6px">데이터 — 양보다 생산 수율</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li>로봇 학습엔 성공·실패/접촉·힘/공간·관절상태가 시간축 정렬된 멀티모달 데이터 필요 — <b>고품질 학습 데이터 생성 수율 현재 50~60% 수준</b></li>
+          <li>로봇 데이터는 직접 구동해 생성 → 시간당 가치·비용 모두 높음. 훈련센터 3국의 목적 = 양 확대가 아닌 <b>반복가능·표준화된 Data Factory</b></li>
+          <li>Sim-to-Real: 양손 조작·유연물체·조립 공차·마찰·충돌 복구 등 접촉 많은 작업에서 갭 큼 → Simulation과 실제 Fleet의 Failure Case를 잇는 <b>Closed-loop</b>이 장기 경쟁력</li>
+        </ul>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:6px">[언론종합 · 자체추정]</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3)">출처: 언론종합 · [자체추정]. 수율 50~60% 등 정황 수치는 업계 파악치 — 회사 공식 발표 아님.</div>
+  </section>
+
   <!-- ═══ 밸류에이션 → Valuation 탭 이동 ═══ -->
   <section class="card section-gap" style="border-left:4px solid #F8B739">
     <div class="card-title">💰 밸류에이션 시뮬레이터 <span class="badge" style="background:#F8B739;color:#1a1a1a">Valuation 탭으로 이동</span></div>
@@ -664,6 +711,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li>BD+Google DeepMind <b>미국 세일즈 로드쇼 2026 하반기 개시</b> (첫 고객 Google DeepMind; 자동차·물류·반도체·식음료·건설·에너지 타깃)</li>
         <li>그룹 <b>지배구조 재편의 정점</b> — 풋옵션(6~7월) 미행사 시 콜옵션(7~8월) 행사 → HMG 100% 또는 빅테크 SI 투자 유치. Pre-IPO 라운드로 BD fair price 구체화</li>
         <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">그리퍼 제외 회전형 액추에이터 31개 단독 벤더 수주 확정</span>(2026.07). 그리퍼용 직구동 액추에이터는 BD와 공동개발(IP는 BD 보유, 대량 양산 리엔지니어링·2/3차 벤더 선정권은 모비스). 퍼셉션 모듈·배터리 시스템은 연내 참여 여부 결정. 이익 기여는 Atlas 양산 본격화되는 2027년 이후 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span></li>
+        <li><b>31개 바디 액추에이터, 11월부터 시제품 납품 개시 예정</b> — 평가 기준이 부품 절대 성능에서 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">양산성·신뢰성(동일 사양을 싸고·많이·안정 품질로)</span>으로 이동하는 구간 <span style="font-size:9px;color:var(--ink-3)">[언론종합 26.08]</span></li>
       </ul>
     </div>
 
@@ -841,6 +889,19 @@ window.addEventListener('DOMContentLoaded',()=>{
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#E17055;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12 ②</span>
+          <span style="font-size:12px;font-weight:600">BD Atlas 양산 검증·현황 스냅샷 신설 · 모비스 11월 시제품 납품 · 훈련센터 3국 · 기능별 BoM 병기(기술 탭)</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">언론종합 · Google DeepMind · [자체추정]</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li><b>🛠 BD Atlas 양산 검증 체크리스트 & 현황 스냅샷 신설</b> — RMAC 2교대·머리 모듈화·원자력 특수시장·28 조지아→30 조립공정 / KPI(수율·조립시간·Rework·자동화) / 감속기 4방식 트레이드오프 검토(바디 유성 2종 확정분과 층위 구분 명시) / 데이터 생성 수율 50~60%·Data Factory·Sim-to-Real</li>
+          <li>모비스 카드: 31개 바디 액추에이터 <b>11월 시제품 납품 개시 예정</b> + 평가 기준 양산성·신뢰성 이동 1줄</li>
+          <li>타임라인: 26년(훈련센터 한·미·중 8.6 발표·모비스 11월 납품)·28년(Atlas 조지아 공장 투입) 이벤트 추가</li>
+          <li>기술 탭(components): 원가② 섹션에 <b>부위(기능)별 가치 분해 병기</b>(다리 26.6·손 17.3·어깨 14.3 등 [자체추정]) — 부품별 분해(센서 37%·배터리 0.5%)는 기존 3관점과 분류 경계 상이로 병기 보류. Dexterous Hand 섹션에 Gemini Robotics 2 성공률(그리퍼 74~90% vs 다지형 32~92%, Google DeepMind) 정량 근거 추가</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#A50034;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12</span>

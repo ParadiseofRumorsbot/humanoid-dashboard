@@ -64,7 +64,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
-<script src="data.js?v=20260812"></script>
+<script src="data.js?v=20260812b"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -728,6 +728,16 @@ window.addEventListener('DOMContentLoaded', () => {
   <section id="hand" class="card section-gap" style="border-left:4px solid #00B894">
     <div class="card-title">🖐️ Dexterous Hand 원가·내구 + 부위별 액추에이터 방식 <span class="badge" style="background:#00B894;color:#fff">로보티즈 IR · 자체추정</span></div>
     <p style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:12px">거대 OEM이 AI·몸체를 자체화해도 <b>저원가·고내구 dexterous 손</b>은 외부 조달 유인이 큰 '부품 니치'. 로보티즈는 핸드 원가 우위 + BD 뉴아틀라스 손 공급 레퍼런스로 이 니치를 파고듦. <a href="tech.html#anatomy" target="_top" style="color:#00B894">손 구조·원리 정본: 해부 05 ↗</a></p>
+    <!-- 다지형 손 난이도 정량 근거 (26-08-12 가산) -->
+    <div style="background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:12px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;letter-spacing:.06em;margin-bottom:6px">📏 '손 = 최난 하드웨어'의 정량 근거 — Gemini Robotics 2 공개 성공률</div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.75">
+        <b>그리퍼(Franka Duo):</b> 픽앤플레이스 74.2% · 툴 키팅 78.9% · 정밀 삽입 89.6% — 실용권 진입.<br>
+        <b>다지형 손(Apollo + Sharpa hands):</b> 나사 풀기 92% vs <span style="background:rgba(0,184,148,0.12);padding:1px 4px;border-radius:3px;font-weight:600">나사 조이기 36% · 쓰레받기 32% · 지퍼백 40% · 봉투 묶기 44%</span> — 접촉·힘 이해가 필요한 태스크에서 급락.<br>
+        <b>해석:</b> 그리퍼 태스크는 성숙 단계, 다지형 정밀 조작은 미해결 — Vision만으로 부족하며 접촉·힘·미끄러짐 정보가 필요. Atlas도 접촉·힘·진동·온도 촉각 데이터를 고대역폭 처리하는 방향으로 개발 中 (언론종합).
+      </div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: Google DeepMind 공개자료(원데이터) · 언론종합</div>
+    </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
       <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-left:3px solid #00B894">
         <div style="font-size:12px;font-weight:700;color:#00B894;margin-bottom:4px">로보티즈 핸드 (전류제어 교체형)</div>
@@ -1181,6 +1191,23 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="scroll-x"><div id="mckCostGrid" style="display:grid;grid-template-columns:130px 80px repeat(3,1fr);gap:0;font-family:var(--mono);font-size:10.5px;min-width:520px"></div></div>
       <div style="font-size:10px;color:var(--ink-3);margin-top:6px">대당 제조 비용 <b>$30K~$150K</b> 범위 (McKinsey 전신 BOM 광의). ⚠ 위 표들과 분류 경계·출처가 상이한 별도 관점 — 수직 합산 금지. 데이터 정본: data.js physicalAILayers</div>
+    </div>
+    <!-- (G) 부위(기능)별 가치 분해 병기 (26-08-12 가산) -->
+    <div style="background:var(--bg-soft);border-left:3px solid #00B894;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:10px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00B894;letter-spacing:.06em;margin-bottom:6px">📐 부위(기능)별 가치 분해 — 옵티머스 Gen2 (또 다른 병기 관점) <span style="font-weight:600;color:var(--ink-3)">[자체추정]</span></div>
+      <div class="scroll-x"><div style="display:grid;grid-template-columns:repeat(9,1fr);gap:6px;min-width:640px">
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #FF6B6B"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">다리</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#FF6B6B">26.6%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">손</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#00B894">17.3%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #6C5CE7"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">어깨</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#6C5CE7">14.3%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #E17055"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">발</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#E17055">12.2%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #0984E3"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">팔</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#0984E3">10.7%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #F8B739"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">골반</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#F8B739">9.5%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #A29BFE"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">허리</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#8577e6">4.8%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid #636E72"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">머리</div><div style="font-family:var(--mono);font-size:15px;font-weight:700">3.8%</div></div>
+        <div style="background:var(--bg);border-radius:8px;padding:10px 6px;text-align:center;border-top:3px solid var(--line-s)"><div style="font-family:var(--mono);font-size:9px;color:var(--ink-3)">기타</div><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:var(--ink-3)">0.8%</div></div>
+      </div></div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-top:8px"><b>읽는 법:</b> 하체(다리+발+골반+허리) 합산 <b>≈ 53%</b>로 가치 절반이 이동·하중 지지에 집중. <b>손이 단일 부위 2위(17.3%)</b> — 위 Dexterous Hand 섹션의 '손=최난·고가치 니치' 방증. 부품별 분해(센서 37%·배터리 0.5% 등)는 기존 3관점과 분류 경계 정의가 달라 병기 보류(Update Log 참조).</div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">⚠ 위 표들과 분류 경계가 상이한 별도 관점 — 수직 합산 금지. 부위별 가치 = 해당 부위 액추에이터·구조·센서 합산 추정 [자체추정]</div>
     </div>
   </section>
 
