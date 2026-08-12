@@ -114,7 +114,7 @@ const DATA = [
   { company: '삼현', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
   // ── 배터리·소재 ──
   { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 2170', customer: 'Optimus + 로봇 6곳', note: '미국 AZ 현지조달 · LG 클로이·베어로보틱스 Carti100에 원통형 실납품 (언론종합) · 원통형·전고체·BMS를 휴머노이드 인에이블러로 공식화(회사 자료)', cat: 'batt' },
-  { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산 · Physical AI(로봇)용 파우치형 전고체 개발 중 (언론종합)', cat: 'batt' },
+  { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산 · Physical AI(로봇)용 파우치형 전고체 개발 중 (언론종합) · E-Atlas 부품 도식(현대차그룹·BD 자료)에 배터리 담당사로 표기 [미확인]', cat: 'batt' },
   { company: '대주전자재료', ticker: '078600', parts: '실리콘 음극재', customer: '-', note: '고출력 배터리 핵심', cat: 'batt' },
   { company: '엘앤에프', ticker: '066970', parts: '하이니켈 양극재', customer: '-', note: 'NCMA 양극재', cat: 'batt' },
   { company: 'SK온', ticker: '-', parts: '배터리', customer: '현대위아 AMR·주차로봇', note: 'AMR·주차로봇용 배터리 공급 협력 (언론종합)', cat: 'batt' },
@@ -166,7 +166,7 @@ const EXPO={
       {n:'LG이노텍',t:'011070',exp:2,role:'BD Atlas 비전센싱 모듈 공동개발(25.5, 인지 SW는 BD) · ToF·FMCW LiDAR·Aeva 투자 · 매출 가시화 전',when:'공동개발'},
       {n:'에스비비테크',t:'389500',exp:2,role:'국내 하모닉 감속기 1위 · 26.3 천안 액추에이터 전용공장 이전(수직계열화) · 가동률 ~10%→풀가동 시 CAPA 10배 여력(IR) · 현대차 MobED 구동기 26년 양산 · K9 자주포 레퍼런스 · 26년 200대 초기 ramp',when:'2026~'},
       {n:'네오오토',t:'212560',exp:2,role:'현대기아 EV 동력전달계 정밀기어 선도(현대트랜시스 76.6%·현대차 8.8%·기아 4.5%) · 유성기어 EV 2단변속기 IP·美특허(US11,885,414) · 모비스 인휠감속기 시제품 협업(무인전술/소방차량) · 로봇팔 관절 소형감속기·AMR 구동모듈 자체개발 · 로봇부품 정관 추가(26.3)·가동률 84% · Atlas 바디 유성과 기술 부합이나 모비스 내재화·휴머노이드 직접 진출 미확정',when:'시제품'},
-      {n:'삼성SDI',t:'006400',exp:2,role:'원통형 배터리 · 헝가리 2028',when:'2028~'},
+      {n:'삼성SDI',t:'006400',exp:2,role:'원통형 배터리 · 헝가리 2028 · E-Atlas 도식 배터리 담당사 표기 [미확인]',when:'2028~'},
       {n:'엘앤에프',t:'066970',exp:1,role:'하이니켈 NCMA 양극재',when:'2027~'},
       {n:'한라캐스트',t:'125490',exp:2,role:'Al/Mg 다이캐스팅 구조체 · 마그네슘 국내 독보적(Optimus V2 외장소재 이력) · 글로벌 휴머노이드사 개발 수주 · 수주잔고 1.2조',when:'개발 수주'},
     ]},
@@ -681,6 +681,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li>① 3대 취약부품(액추에이터·로봇손·센서) 중 <span style="background:rgba(9,132,227,0.12);padding:1px 4px;border-radius:3px;font-weight:600">초소형 부품</span>을 집중 개발하는 기업이 중·대형보다 구조적 수혜 위치</li>
         <li>② <b>자체 데이터 파이프라인</b>으로 모델학습용 양질의 합성데이터를 뽑는 기업 → AI 학습 단계 차별화</li>
         <li>초기 시장 창출 동력: <b>새만금 로봇 파운드리 · 대경권 부품 클러스터 · 정부 선제구매(교육·국방)</b></li>
+        <li>배경: 한국 로봇밀도 <b>1,012대/만 명 — 세계 1위</b> (IFR) → 자동화 수용성 세계 최상위</li>
+        <li>정부 타임라인: <b>2028 휴머노이드 상용화 · 2030 피지컬 AI</b> 목표 (언론종합)</li>
         <li style="color:var(--ink-3);font-style:italic">※ 본 박스는 산업 구조 코멘트로, 개별 종목 투자판단은 대시보드 범위 밖(사용자 위임)</li>
       </ul>
       <div style="font-size:9px;color:var(--ink-3);margin-top:8px;text-align:right">출처: 산업부 3대 메가프로젝트 국민보고회 (2026.06.29, 원데이터)</div>
@@ -694,6 +696,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
         <li>강력한 본업 위에 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">모빌리티 테크 기업으로 체질 개선</span> 진행 중 → 프리미엄 요인</li>
         <li>휴머노이드 로봇 밸류체인 내재화가 시장에서 긍정적 평가</li>
+        <li>HMG 그룹사 역할 분담 — 현대차 <b>AI 제조 플랫폼</b> / 기아 <b>품질·서비스·운영 AI</b> (현대차그룹 자료)</li>
         <li>산업용 특화 휴머노이드 경쟁력은 <b>보스턴 다이내믹스가 단연 압도적</b></li>
         <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">빅테크(구글·삼성) BD 지분 투자 관심</span> → BD가 빅테크가 주목하는 검증된 자산 확인. IPO 전 Pre-IPO 라운드로 fair price 구체화 전망</li>
         <li>본업 + 미래 경쟁력 확보에도 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">시총 94.7조원(26.07.08) → 도요타 441조원 정조준</span></li>
@@ -889,6 +892,18 @@ window.addEventListener('DOMContentLoaded',()=>{
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12 ③</span>
+          <span style="font-size:12px;font-weight:600">삼성SDI E-Atlas 배터리 연결 · HMG 그룹사 역할 분담 · 로봇밀도 세계 1위 · 정부 로드맵</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">현대차그룹 자료 · IFR · 언론종합</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>삼성SDI DATA·노출 매트릭스: E-Atlas 부품 도식(현대차그룹·BD 자료) <b>배터리 담당사 표기</b> 추가 [미확인 — 공식 계약 발표 아님]</li>
+          <li>현대차 카드: HMG 그룹사 역할 분담 1줄 — 현대차 <b>AI 제조 플랫폼</b> / 기아 <b>품질·서비스·운영 AI</b></li>
+          <li>정부 3M 전략 박스: 한국 로봇밀도 <b>1,012대/만 명 세계 1위</b>(IFR) 배경 + 정부 타임라인(<b>2028 휴머노이드 상용화 · 2030 피지컬 AI</b>) 2줄 추가</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#E17055;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12 ②</span>

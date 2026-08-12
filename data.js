@@ -1139,6 +1139,16 @@ const DASHBOARD_DATA = {
   updateLog: [
     {
       date: '2026-08-12',
+      title: '삼성SDI E-Atlas 배터리 연결·HMG 그룹사 역할 분담·로봇밀도 세계 1위·정부 로드맵 (3차)',
+      source: '현대차그룹 자료 · IFR · 언론종합',
+      changes: [
+        'kr_valuechain: 삼성SDI DATA·노출 매트릭스에 E-Atlas 부품 도식(현대차그룹·BD 자료) 배터리 담당사 표기 추가 [미확인 — 공식 계약 발표 아님]',
+        'kr_valuechain: 현대차 카드에 HMG 그룹사 역할 분담 1줄 — 현대차 AI 제조 플랫폼 / 기아 품질·서비스·운영 AI (현대차그룹 자료)',
+        'kr_valuechain: 정부 3M 전략 박스에 한국 로봇밀도 1,012대/만 명 세계 1위(IFR) 배경 1줄 + 정부 타임라인(2028 휴머노이드 상용화 · 2030 피지컬 AI 목표) 1줄 추가',
+      ],
+    },
+    {
+      date: '2026-08-12',
       title: 'BD Atlas 양산 검증 체크리스트·현황 스냅샷 신설 · 모비스 11월 시제품 납품 · 훈련센터 3국 · 기능별 BoM 병기 (2차)',
       source: '언론종합 · Google DeepMind · [자체추정]',
       changes: [
