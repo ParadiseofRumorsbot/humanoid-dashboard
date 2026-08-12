@@ -97,6 +97,7 @@ const DATA = [
   { company: 'HL만도', ticker: '204320', parts: '액추에이터·주차로봇', customer: 'BD Spot·EV', note: '2028 휴머노이드 공급 원년', cat: 'act' },
   { company: '에스엘', ticker: '005765', parts: '레그모듈·MobED 위탁생산', customer: 'BD·현대차', note: '배터리팩 포함 위탁생산', cat: 'act' },
   { company: '계양전기', ticker: '012200', parts: '액추에이터 (대당 12개)', customer: '현대차 MobED', note: '-', cat: 'act' },
+  { company: 'LG전자', ticker: '066570', parts: 'AXIUM 통합 액추에이터(모터+감속기+엔코더·브레이크 일체)·CLOiD 휴머노이드', customer: '자사 CLOiD → 외부 로봇 OEM 목표', note: '파일럿 생산라인 완공·고객 인증 진행 중, 부품 매출 기여 2030년 이후 [자체추정] (회사 공개자료)', cat: 'act' },
   // ── 제어·SW·물류 (JPM 2026 신규) ──
   { company: '현대오토에버', ticker: '307950', parts: 'SI·관제·Robot OS', customer: 'BD·HMG', note: 'HMG 로보틱스 시스템 통합 담당 (JPM 2026)', cat: 'ctrl' },
   { company: '현대글로비스', ticker: '086280', parts: '생산·판매 물류', customer: 'BD·HMG', note: 'SCM 백본 · 물류 테스트베드 (JPM 2026)', cat: 'ctrl' },
@@ -112,11 +113,13 @@ const DATA = [
   { company: '한국피아이엠', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
   { company: '삼현', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
   // ── 배터리·소재 ──
-  { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 2170', customer: 'Optimus + 로봇 6곳', note: '미국 AZ 현지조달 · LG 클로이·베어로보틱스 Carti100에 원통형 실납품 (언론종합)', cat: 'batt' },
+  { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 2170', customer: 'Optimus + 로봇 6곳', note: '미국 AZ 현지조달 · LG 클로이·베어로보틱스 Carti100에 원통형 실납품 (언론종합) · 원통형·전고체·BMS를 휴머노이드 인에이블러로 공식화(회사 자료)', cat: 'batt' },
   { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산 · Physical AI(로봇)용 파우치형 전고체 개발 중 (언론종합)', cat: 'batt' },
   { company: '대주전자재료', ticker: '078600', parts: '실리콘 음극재', customer: '-', note: '고출력 배터리 핵심', cat: 'batt' },
   { company: '엘앤에프', ticker: '066970', parts: '하이니켈 양극재', customer: '-', note: 'NCMA 양극재', cat: 'batt' },
   { company: 'SK온', ticker: '-', parts: '배터리', customer: '현대위아 AMR·주차로봇', note: 'AMR·주차로봇용 배터리 공급 협력 (언론종합)', cat: 'batt' },
+  // ── 센서·비전 ──
+  { company: 'LG이노텍', ticker: '011070', parts: '로봇 비전센싱 모듈·ToF 3D 센싱·FMCW LiDAR', customer: 'BD Atlas(공동개발)', note: '25.5 BD와 Atlas 비전센싱 모듈 공동개발(인지 SW는 BD 담당) · Aeva 지분투자(4D LiDAR) · 매출 가시화 전 (언론종합)', cat: 'sens' },
   // ── 제어·SW ──
   { company: '알에스오토메이션', ticker: '140670', parts: '제어기', customer: '-', note: '-', cat: 'ctrl' },
   { company: '아진에스텍', ticker: '-', parts: '제어기', customer: '-', note: '-', cat: 'ctrl' },
@@ -126,8 +129,8 @@ const DATA = [
 ];
 const $ = s => document.querySelector(s);
 function render() {
-  const catNames={act:'액추에이터',gear:'감속기',body:'구조·외장',batt:'배터리·소재',ctrl:'제어·SW',mil:'군사·방산'};
-  const catColors={act:'#FF6B6B',gear:'#6C5CE7',body:'#636E72',batt:'#4ecdc4',ctrl:'#0984E3',mil:'#e74c3c'};
+  const catNames={act:'액추에이터',gear:'감속기',body:'구조·외장',batt:'배터리·소재',sens:'센서·비전',ctrl:'제어·SW',mil:'군사·방산'};
+  const catColors={act:'#FF6B6B',gear:'#6C5CE7',body:'#636E72',batt:'#4ecdc4',sens:'#00B894',ctrl:'#0984E3',mil:'#e74c3c'};
   let html = '';
   let lastCat = '';
   DATA.forEach(c => {
@@ -159,7 +162,8 @@ const EXPO={
     cos:[
       {n:'에스피지',t:'058610',exp:3,role:'사이클로이드 감속기 QDD · LG 협력',when:'2026~'},
       {n:'로보티즈',t:'108490',exp:3,role:'사이클로이드(DYD)·유성 QDD·로봇손 · 우즈벡 26.4Q 가동',when:'2026~'},
-      {n:'LG에너지솔루션',t:'373220',exp:3,role:'원통형 배터리 2170 · Optimus+6곳',when:'2025~'},
+      {n:'LG에너지솔루션',t:'373220',exp:3,role:'원통형 배터리 2170 · Optimus+6곳 · 전고체·BMS 로봇 확장(회사 자료)',when:'2025~'},
+      {n:'LG이노텍',t:'011070',exp:2,role:'BD Atlas 비전센싱 모듈 공동개발(25.5, 인지 SW는 BD) · ToF·FMCW LiDAR·Aeva 투자 · 매출 가시화 전',when:'공동개발'},
       {n:'에스비비테크',t:'389500',exp:2,role:'국내 하모닉 감속기 1위 · 26.3 천안 액추에이터 전용공장 이전(수직계열화) · 가동률 ~10%→풀가동 시 CAPA 10배 여력(IR) · 현대차 MobED 구동기 26년 양산 · K9 자주포 레퍼런스 · 26년 200대 초기 ramp',when:'2026~'},
       {n:'네오오토',t:'212560',exp:2,role:'현대기아 EV 동력전달계 정밀기어 선도(현대트랜시스 76.6%·현대차 8.8%·기아 4.5%) · 유성기어 EV 2단변속기 IP·美특허(US11,885,414) · 모비스 인휠감속기 시제품 협업(무인전술/소방차량) · 로봇팔 관절 소형감속기·AMR 구동모듈 자체개발 · 로봇부품 정관 추가(26.3)·가동률 84% · Atlas 바디 유성과 기술 부합이나 모비스 내재화·휴머노이드 직접 진출 미확정',when:'시제품'},
       {n:'삼성SDI',t:'006400',exp:2,role:'원통형 배터리 · 헝가리 2028',when:'2028~'},
@@ -176,7 +180,7 @@ const EXPO={
   swos:{name:'SW/OS 플랫폼',desc:'애플리케이션단 운영 레이어 — 플릿 오케스트레이션 OS · 매핑 디지털트윈 · GPU 클라우딩. NVIDIA AI Factory 기준 L5b(현장 운영OS) — OSMO·Mega는 시뮬·학습 오케스트레이션이고, ARC는 1784 빌딩 현장 실배치. NVIDIA Mega/OSMO도 진입 中이라 빈 레이어 독점이 아니라 한국 소버린 번들이 차별점.',color:'#F8B739',
     cos:[
       {n:'네이버',t:'035420',exp:3,role:'한국 피지컬 AI 소버린 풀스택 — 하이퍼클로바X(Seoul World Model 구축中) + 1784·ALIKE 매핑 디지털트윈 + 네이버랩스 ARC 플릿 OS(브레인리스 GPU 클라우딩) + 각 세종 자국 클라우드 + 국방 AX(B2G). 운영 OS는 NVIDIA Mega/OSMO와 경쟁',when:'2027~'},
-      {n:'LG전자',t:'066570',exp:2,role:'가정용 휴머노이드 HW · NAVER-NVIDIA 동맹',when:'2028~'},
+      {n:'LG전자',t:'066570',exp:2,role:'가정용 휴머노이드(CLOiD) HW · AXIUM 액추에이터 파일럿 라인 완공(고객 인증 中) · NAVER-NVIDIA 동맹',when:'2028~'},
       {n:'현대오토에버',t:'307950',exp:3,role:'HMG Robot OS · BD SI 통합',when:'2027~'},
       {n:'네이버클라우드',t:'NCloud',exp:2,role:'로봇 GPU 클라우드 인프라 · 엣지-클라우드 분산',when:'2027~'},
     ]},
@@ -205,12 +209,12 @@ function renderExpo(){
 // ═══ 양산 타임라인 ═══
 const TL_DATA=[
   {y:2024,label:'시제품',events:['BD Atlas 전기식 시제품 공개','Tesla Optimus Gen2 시연','Unitree G1 출시 ($16K~)'],tag:'초기'},
-  {y:2025,label:'소량생산',events:['AGIBOT 5,168대 출하 (1위)','Unitree 5,500대','총 14,768대 (각사 발표·언론종합)','LG에너지솔루션 로봇 배터리 공급 시작'],tag:'중국 주도'},
-  {y:2026,label:'RMAC 개소',events:['RMAC 2026년 8~9월 개소','에스비비테크 천안 공장 이전(26.3)·200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 행사기간(6~7월)→콜옵션(7~8월)','삼성전자·구글 BD 지분 투자 검토','로보스타 코스닥150 편입'],tag:'BD 준비'},
+  {y:2025,label:'소량생산',events:['AGIBOT 5,168대 출하 (1위)','Unitree 5,500대','총 14,768대 (각사 발표·언론종합)','LG에너지솔루션 로봇 배터리 공급 시작','로보티즈 AI Worker 상체 휴머노이드 공개(4월, 전부품 국산·LG 협력)','LG이노텍-BD Atlas 비전센싱 모듈 공동개발 파트너십(5월)'],tag:'중국 주도'},
+  {y:2026,label:'RMAC 개소',events:['RMAC 2026년 8~9월 개소','에스비비테크 천안 공장 이전(26.3)·200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 행사기간(6~7월)→콜옵션(7~8월)','삼성전자·구글 BD 지분 투자 검토','로보스타 코스닥150 편입','LG전자 CLOiD 공개(CES 2026)·로봇사업센터 신설(CEO 직속)·가정용 로봇 연내 국내 출시 목표','LG전자 AXIUM 액추에이터 파일럿 라인 완공(고객 인증 中)'],tag:'BD 준비'},
   {y:2027,label:'매출 인식',events:['현대모비스 BD 매출 인식 시작','HL만도 Spot 2세대 공급','현대오토에버 Robot OS','현대글로비스 물류 테스트베드','네이버 ARC 플릿 OS 상용화 착수'],tag:'KR 매출 시작'},
   {y:2028,label:'양산 원년',events:['BD 양산공장 30K CAPA 개소','모비스 액추에이터 35만개','삼성SDI 헝가리 양산','HL만도 휴머노이드 공급 원년','두산로보틱스 산업용 상용화','NAVER-NVIDIA-LG 가정용 로봇 본격화'],tag:'본격 양산'},
   {y:2029,label:'확산',events:['BD 외부 고객 확장','원가 하락 가속 ($40~60K대)','수직 통합 진행','네이버 브레인리스 GPU 클라우딩 확대'],tag:'확산'},
-  {y:2030,label:'대량 양산',events:['BD 3만대+ 양산','HMG 2.5만대 captive demand','글로벌 69~120만대 (시나리오별)','ASP $25~50K 구간 진입','가정용 휴머노이드 시장 본격 개화'],tag:'대량 양산'},
+  {y:2030,label:'대량 양산',events:['BD 3만대+ 양산','HMG 2.5만대 captive demand','글로벌 69~120만대 (시나리오별)','ASP $25~50K 구간 진입','가정용 휴머노이드 시장 본격 개화','LG전자 액추에이터 매출 본격 기여 구간 [자체추정]'],tag:'대량 양산'},
 ];
 function renderTL(){
   const yr=+document.getElementById('tlSlider').value;
@@ -486,6 +490,73 @@ window.addEventListener('DOMContentLoaded',()=>{
     <div style="font-size:10px;color:var(--ink-3)">출처: 언론 종합 / 채널체크 / [자체추정]</div>
   </section>
 
+  <!-- ═══ 한국 대기업-로봇사 지분 동맹 맵 (26-08-12 신설) ═══ -->
+  <section id="equity-map" class="card section-gap" style="border-left:4px solid #0984E3">
+    <div class="card-title">🤝 한국 대기업-로봇사 지분 동맹 맵 <span class="badge" style="background:#0984E3;color:#fff">DART</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;line-height:1.7">한국 휴머노이드 개발은 <b>대기업-로봇 개발사 지분 동맹</b> 구조로 재편 중. 공통 패턴은 <span style="background:rgba(9,132,227,0.12);padding:1px 4px;border-radius:3px;font-weight:600">소수지분 선취득 + 콜옵션으로 경영권 경로 확보</span>. 로봇사는 자본·대규모 배치환경·브랜드를, 대기업은 시장진입 속도·핵심기술 내재화·장기 원가절감을 얻는 교환 구조.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #1428A0">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#1428A0;margin-bottom:6px">삼성전자 → 레인보우로보틱스 (277810)</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li>23.1 유증 590억(10.2%) → 23.3 278억 추가 + <b>콜옵션 44.07%(6년)</b> 체결</li>
+          <li>24.12 콜옵션 일부 행사 2,675억(주당 67,956원, +20.3%p) → <b>합산 35% 최대주주</b></li>
+          <li>미래로봇추진단 신설(CEO 직속) — HUBO 개발자 오준호 KAIST 명예교수 합류</li>
+          <li>레인보우: KAIST 휴머노이드랩 출신·감속기 포함 전 부품 내재화, 현 매출은 산업용 중심</li>
+        </ul>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #EA5455">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#EA5455;margin-bottom:6px">SK(SK배터리아메리카) → 유일로보틱스 (388720)</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li>24.6 유증 371억(13.5%, 주당 24,014원) 2대주주</li>
+          <li>25.4 <b>콜옵션 23.1%(주당 28,000원, 5년)</b> — 전량 행사 시 최대 ~36%(희석 기준)</li>
+          <li>미국 배터리공장 자동화 배치 목적 · 25.3 휴머노이드·피지컬AI·AMR 다각화 로드맵 발표</li>
+        </ul>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #A50034">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#A50034;margin-bottom:6px">LG전자 → 베어로보틱스 외 4사</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li><b>베어로보틱스</b>: 24.3 $60M(21%+콜옵션 30%) → 25.1 행사 $180M → <b>51% 자회사</b>. CLOi 상업로봇 사업 이관·플릿SW 통합</li>
+          <li><b>로보스타</b>: 18년 540억+330억 → <b>33.4%</b> (산업용 로봇)</li>
+          <li><b>로보티즈</b>: 17.12 90억 → 현 <b>7.2%</b> (휴머노이드 액추에이터·2대주주)</li>
+          <li><b>엔젤로보틱스</b>: 17.5 → 현 <b>6.4%</b> (웨어러블)</li>
+          <li>피투자사 24년 순이익: 베어 -245억 · 로보티즈 +21억 · 로보스타 -61억 · 엔젤 -66억</li>
+        </ul>
+      </div>
+      <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #00B894">
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#00B894;margin-bottom:6px">두산 → 두산로보틱스 (454910) · 자체 트랙</div>
+        <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
+          <li>외부 지분 동맹 대신 <b>사내 AI·휴머노이드 TF(2H25)</b> + K-휴머노이드 얼라이언스 이중 트랙</li>
+          <li>국내 협동로봇 선두 — 매출 ~90% 로봇팔 · 고객 60~70% 북미</li>
+          <li>1년 내 제조현장 지능형 로봇 솔루션 → 이동·양팔협조·충돌회피 휴머노이드 기반 기술 확보 목표</li>
+        </ul>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3)">출처: DART(지분·금액·콜옵션) · 각사 발표·언론종합. 지분율은 발표 시점 기준 — 이후 유증·행사로 변동 가능. 종목 등재·수혜 판단은 사용자 위임.</div>
+  </section>
+
+  <!-- ═══ LG그룹 로봇 스택 (26-08-12 신설) ═══ -->
+  <section id="lg-stack" class="card section-gap" style="border-left:4px solid #A50034">
+    <div class="card-title">🧩 LG그룹 로봇 스택 — 계열사 역할 분담 <span class="badge" style="background:#A50034;color:#fff">각사 공개자료</span></div>
+    <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;line-height:1.7">로봇 5대 레이어(엔드포인트HW·센서·인터페이스·전력·배포SW) 중 4개를 계열사가 직접 커버하고, 컴퓨트는 NVIDIA 협력(AI 팩토리 — 로보틱스·자율주행·DC·GPU클라우드)으로 보완하는 구조. HMG(BD 수직계열)와 다른 <b>그룹 수평 분업형</b> 접근.</p>
+    <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px">
+      <thead><tr style="border-bottom:2px solid var(--ink)">
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:10px">레이어</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:10px">계열사</th>
+        <th style="text-align:left;padding:7px 9px;font-family:var(--mono);font-size:10px">로봇 관련 역할·팩트</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">엔드포인트·통합</td><td style="padding:7px 9px;font-weight:700">LG전자</td><td style="padding:7px 9px;color:var(--ink-2)">CLOiD 가정용 휴머노이드·AXIUM 액추에이터·베어로보틱스(51%) 서비스로봇 플릿SW·스마트팩토리 60곳+ 구축 경험</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">인지(센서)</td><td style="padding:7px 9px;font-weight:700">LG이노텍</td><td style="padding:7px 9px;color:var(--ink-2)">BD Atlas 비전센싱 모듈 공동개발 · ToF·FMCW LiDAR·Aeva 4D LiDAR 협력 · 차량 센싱(카메라·레이더·V2X) 겸용</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">인터페이스</td><td style="padding:7px 9px;font-weight:700">LG디스플레이</td><td style="padding:7px 9px;color:var(--ink-2)">벤더블 P-OLED '로봇 페이스'(얼굴 전체를 감싸는 곡면 표시) · 서비스로봇 전면 터치스크린 패널</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">전력</td><td style="padding:7px 9px;font-weight:700">LG에너지솔루션</td><td style="padding:7px 9px;color:var(--ink-2)">서비스로봇용 원통형 실납품(클로이·Carti100) · 전고체·BMS를 휴머노이드 인에이블러로 공식화</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">배포·운영 SW</td><td style="padding:7px 9px;font-weight:700">LG CNS</td><td style="padding:7px 9px;color:var(--ink-2)">로봇 플릿관리 클라우드·AX(로보틱스 트랜스포메이션)·스마트물류 SI — 베어로보틱스 플릿SW와 결합 여지</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">산업용 거점</td><td style="padding:7px 9px;font-weight:700">로보스타(33.4%)</td><td style="padding:7px 9px;color:var(--ink-2)">전자·반도체·디스플레이·배터리 산업용 로봇·자동화 — 그룹 스마트팩토리와 연결</td></tr>
+        <tr><td style="padding:7px 9px;font-weight:600">AI 연구</td><td style="padding:7px 9px;font-weight:700">LG AI연구원</td><td style="padding:7px 9px;color:var(--ink-2)">EXAONE·에이전트·피지컬 인텔리전스 연구 조직화</td></tr>
+      </tbody>
+    </table></div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사 공개자료·언론종합. 레이어 구분은 [자체정리]. LG U+(로봇 5G/IoT 연결성)는 구체 계약 확인 전이라 표에서 제외.</div>
+  </section>
+
   <!-- ═══ 딜 파급효과 & 기업별 밸류 임팩트 (토글) ═══ -->
   <section class="card section-gap" style="border-left:4px solid #FF6B6B">
     <div style="cursor:pointer;user-select:none;display:flex;align-items:center;justify-content:space-between;gap:8px" onclick="var t=this.nextElementSibling;var b=this.querySelector('.tgl-btn');if(t.style.maxHeight==='0px'){t.style.maxHeight='5200px';b.textContent='▲ 접기'}else{t.style.maxHeight='0px';b.textContent='▼ 펼치기'}">
@@ -550,7 +621,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   </section>
   <!-- ═══ 🎯 종목별 투자 포인트 상세 ═══ -->
   <section id="sec-stock-detail" class="card section-gap" style="border-left:4px solid #FF6B6B">
-    <div class="card-title">🎯 종목별 투자 포인트 — 상세 <span class="badge" style="background:#FF6B6B;color:#fff">10종목</span></div>
+    <div class="card-title">🎯 종목별 투자 포인트 — 상세 <span class="badge" style="background:#FF6B6B;color:#fff">14종목</span></div>
 
     <!-- ═══ 정부 정책 수혜 구조 맥락 (개별 종목 판단 X · 산업 구조 코멘트) ═══ -->
     <div style="background:rgba(9,132,227,0.05);border:1px dashed #0984E3;border-radius:10px;padding:14px 18px;margin-bottom:14px">
@@ -719,6 +790,35 @@ window.addEventListener('DOMContentLoaded',()=>{
       </ul>
     </div>
 
+    <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:4px solid #A50034">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#A50034">LG전자 (066570)</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">인증 中 · 매출 2030+</div>
+      </div>
+      <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
+        <li><span style="background:rgba(165,0,52,0.10);padding:1px 4px;border-radius:3px;font-weight:600">AXIUM 통합 액추에이터 — 60년 모터·인버터 기술의 로봇 전환</span> — 모터+감속기+엔코더·브레이크 일체(Integrated Drive)·컨트롤러·열관리를 단일 모듈로 공급하는 통합모듈 전략(단품 모터 공급 아님)</li>
+        <li>차별 기술 3종(회사 공개자료): ① 분할 스테이터 코어로 동일 출력 대비 소형·고토크밀도 ② <b>에너지 하베스팅</b> — 역방향 모션 회생으로 가동시간 연장 ③ <b>3D 방열</b> — 다층 알루미늄 하우징으로 고부하에서 부품 95°C 이하 유지</li>
+        <li><b>파일럿 생산라인 완공 → 고객 인증(qualification) 진행 중.</b> 부품 매출 기여는 2028~29년 이전 제한적, 2030년 이후 본격 — 중장기 연 1~2조원 잠재 규모 [자체추정]</li>
+        <li>픽스앤셔블 전략: 자사 CLOiD를 넘어 외부 로봇 OEM 부품 공급 지향. 산업용 로봇 대당 6개+, 휴머노이드 30~40개 소요 [자체추정] — 내부 로봇·스마트팩토리로 선검증 후 외판</li>
+        <li><b>CLOiD</b>(CES 2026): 머리·몸통·5지 양팔·휠베이스 휴머노이드형 — 조리·세탁 시연, ThinQ 연동, 관절에 AXIUM 탑재. 연내 국내 출시 목표(25년 베타). 로봇사업센터 CEO 직속 신설(사업개발-영업-운영 통합)</li>
+        <li>지분 네트워크: 베어로보틱스 51%(서비스로봇·플릿SW) · 로보스타 33.4% · 로보티즈 7.2% · 엔젤로보틱스 6.4% (DART) · NVIDIA 협력(휴머노이드·AI 팩토리)</li>
+      </ul>
+    </div>
+
+    <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:4px solid #00B894">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#00B894">LG이노텍 (011070)</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">공동개발 · 매출 가시화 전</div>
+      </div>
+      <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
+        <li><span style="background:rgba(0,184,148,0.12);padding:1px 4px;border-radius:3px;font-weight:600">BD Atlas 비전센싱 모듈 공동개발(25.5)</span> — 인지 데이터 기반 SW는 BD 담당. E-Atlas 부품 도식(현대차그룹·BD 자료)에서 <b>센서 레이어 담당사로 명기</b> — '로봇의 눈' 포지션</li>
+        <li>카메라모듈 기반(광학솔루션 매출 80%+) → "움직이는 모든 것"으로 확장(CEO 발언·언론): 초슬림 LiDAR 모듈·ToF 3D 센싱·로봇용 커스텀 카메라</li>
+        <li><b>FMCW LiDAR 자체 개발 + Aeva 지분투자</b> — 차량·산업장비·로봇·컨슈머 대상 4D LiDAR 협력 (언론종합)</li>
+        <li>인접 확장: 차량 센싱(카메라·레이더·LiDAR·V2X)·인캐빈·언더디스플레이 카메라 · FC-BGA 기판(AI 가속기·서버·오토모티브로 확대 중)</li>
+        <li>리스크: 스마트폰(단일 고객) 사이클 의존 여전 · 로봇 비전 매출 가시화 전 단계 — 수주·양산 이벤트가 체크포인트</li>
+      </ul>
+    </div>
+
     <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:4px solid #6C5CE7">
       <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#6C5CE7;margin-bottom:4px">🪜 로봇 액추에이터 수주 4단계 — 어디까지 왔나</div>
       <div style="font-size:10px;color:var(--ink-3);margin-bottom:10px">감속기·액추에이터 부품사가 로봇 OEM에 진입하는 단계. 뒤로 갈수록 매출 가시성↑. [자체추정·언론종합]</div>
@@ -741,6 +841,21 @@ window.addEventListener('DOMContentLoaded',()=>{
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#A50034;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12</span>
+          <span style="font-size:12px;font-weight:600">LG 로봇 스택 일괄 반영 — LG전자 AXIUM·LG이노텍 신규 카드·지분 동맹 맵·그룹 스택·타임라인</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">DART · 각사 공개자료 · 언론종합 · [자체추정]</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li><b>LG전자 카드 신규</b> — AXIUM 통합 액추에이터(에너지 하베스팅·3D 방열·분할 스테이터), 파일럿 라인 완공·고객 인증 中, 매출 기여 2030+ [자체추정], CLOiD·로봇사업센터·지분 네트워크</li>
+          <li><b>LG이노텍(011070) 신규 등재</b> — DATA(센서·비전 카테고리 신설)·노출 매트릭스·종목 카드: BD Atlas 비전센싱 모듈 공동개발(25.5)·FMCW LiDAR·Aeva</li>
+          <li><b>🤝 대기업-로봇사 지분 동맹 맵 신설</b> — 삼성→레인보우(35% 최대주주)·SK→유일(13.5%+콜옵션 23.1%)·LG→베어(51%)/로보스타/로보티즈/엔젤·두산 자체 TF (DART)</li>
+          <li><b>🧩 LG그룹 로봇 스택 신설</b> — 계열사 레이어 분담표(전자·이노텍·디스플레이·엔솔·CNS·로보스타·AI연구원)</li>
+          <li>타임라인: 25년(AI Worker·이노텍-BD)·26년(CLOiD·로봇사업센터·AXIUM 파일럿)·30년(LG 액추에이터 기여 구간) 이벤트 추가</li>
+          <li>LGES 카드에 전고체·BMS 휴머노이드 공식화 1줄 보강 · 종목별 투자 포인트 배지 10→14종목(기존 12카드 대비 낡은 표기 정정 포함)</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#6C5CE7;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>
