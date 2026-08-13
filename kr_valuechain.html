@@ -204,6 +204,8 @@ function renderExpo(){
     +'</div>';
   });
   document.getElementById('expoGrid').innerHTML=html;
+  // 탭마다 행 수가 달라 높이가 변함 → 컨테이너(iframe) 높이 재계산 요청
+  if(window.parent!==window&&typeof window.parent.fit==='function') window.parent.fit();
 }
 
 // ═══ 양산 타임라인 ═══
@@ -294,6 +296,7 @@ function renderMobis(){
 }
 window.addEventListener('DOMContentLoaded',()=>{
   render();
+  renderExpo();
   const rb=document.getElementById('rbMcap'); if(rb&&MARKET_CAP['108490']) rb.textContent=MARKET_CAP['108490'].toFixed(1);
 });
 </script>
@@ -316,6 +319,22 @@ window.addEventListener('DOMContentLoaded',()=>{
         <div id="grid"></div>
       </div>
     </div>
+  </section>
+
+  <!-- ═══ 한국 노출 매핑 ═══ -->
+  <section id="expo-matrix" class="card section-gap" style="border-left:4px solid #00B894">
+    <div class="card-title">🎯 한국 노출 매트릭스 — 그룹별 <span class="badge" style="background:#00B894;color:#fff">4단계 노출도</span></div>
+    <div id="expoTabs" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div>
+    <div id="expoDesc" style="font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-bottom:12px"></div>
+    <div class="scroll-x">
+      <div style="min-width:640px">
+        <div style="display:grid;grid-template-columns:100px 60px 1fr 60px;gap:10px;padding-bottom:6px;border-bottom:2px solid var(--line-s);font-family:var(--mono);font-size:9px;color:var(--ink-3);font-weight:600;text-transform:uppercase">
+          <div>기업</div><div style="text-align:center">노출도</div><div>역할</div><div style="text-align:center">시점</div>
+        </div>
+        <div id="expoGrid"></div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:10px">노출도 4단계(소·중·대·극대)는 공급 확정도·매출 기여 시점 기준 [자체추정]. 개별 역할 설명의 출처는 각 항목에 병기.</div>
   </section>
 
   <section class="card section-gap">
@@ -892,6 +911,19 @@ window.addEventListener('DOMContentLoaded',()=>{
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#00B894;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12 ④</span>
+          <span style="font-size:12px;font-weight:600">🎯 한국 노출 매트릭스 섹션 복원 — 표시되지 않던 표를 화면에 노출</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">구조 수정 (데이터 변경 없음)</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li><b>증상</b> — 노출 매트릭스 데이터(EXPO)와 렌더 함수는 있었으나 <b>표를 담을 HTML 컨테이너와 호출부가 처음부터 누락</b>돼 있어, 이 표는 그동안 화면에 전혀 표시되지 않았음(레포 최초 커밋부터 지속). 데이터 값은 무손실 상태</li>
+          <li><b>조치</b> — 컨테이너(탭·설명·헤더·그리드) 마크업 신설 + 페이지 로드 시 렌더 호출 추가 → <b>HMG Captive·독립 부품사·로봇 플랫폼/방산·SW/OS 4개 그룹</b> 노출도 표 정상 표시</li>
+          <li>이에 따라 기존 로그의 「DATA·노출 매트릭스 추가」 항목들(한라캐스트·LG이노텍·삼성SDI 등)이 <b>실제 화면에 반영</b>됨</li>
+          <li style="color:var(--ink-3)">※ 미복원(보고만) — 양산 타임라인·현대모비스 밸류에이션 블록도 동일하게 컨테이너 부재. 모비스분은 밸류에이션 탭 이관 완료분이며, 타임라인은 복원 여부 별도 판단 필요</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12 ③</span>
