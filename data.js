@@ -12,7 +12,7 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   fx: 1450,
   version: '2.0',
-  lastUpdated: '2026-05-20',
+  lastUpdated: '2026-08-23',
 
   /* ══════════════════════════════════════
      연도별 출하량 시나리오 (단위: 천 대)
@@ -78,9 +78,9 @@ const DASHBOARD_DATA = {
   shipments2025: [
     { name: 'AGIBOT', units: 5168, country: '🇨🇳' },
     { name: 'Unitree', units: 5500, country: '🇨🇳' },
-    { name: 'UBTECH', units: 1000, country: '🇨🇳' },
+    { name: 'UBTECH', units: 1079, country: '🇨🇳' },
     { name: 'Fourier Intelligence', units: 500, country: '🇨🇳' },
-    { name: 'Leju Robotics', units: 100, country: '🇨🇳' },
+    { name: 'Leju Robotics', units: 577, country: '🇨🇳' },
     { name: 'Tesla', units: 1000, country: '🇺🇸' },
     { name: 'Agility Robotics', units: 1000, country: '🇺🇸' },
     { name: 'Figure AI', units: 400, country: '🇺🇸' },
@@ -337,13 +337,13 @@ const DASHBOARD_DATA = {
   competitionShipments: {
     2025: [
       { n: 'AGIBOT', u: 5168, f: '🇨🇳' }, { n: 'Unitree', u: 5500, f: '🇨🇳' },
-      { n: 'UBTECH', u: 1000, f: '🇨🇳' }, { n: 'Fourier', u: 500, f: '🇨🇳' },
-      { n: 'Leju', u: 100, f: '🇨🇳' },
+      { n: 'UBTECH', u: 1079, f: '🇨🇳' }, { n: 'Fourier', u: 500, f: '🇨🇳' },
+      { n: 'Leju', u: 577, f: '🇨🇳' },
       { n: 'Tesla', u: 1000, f: '🇺🇸' }, { n: 'Agility', u: 1000, f: '🇺🇸' },
       { n: 'Figure AI', u: 400, f: '🇺🇸' }, { n: '1X', u: 100, f: '🇺🇸' },
     ],
     2026: [
-      { n: 'AGIBOT', u: 10000, f: '🇨🇳' }, { n: 'Unitree', u: 12000, f: '🇨🇳' },
+      { n: 'AGIBOT', u: 20000, f: '🇨🇳' }, { n: 'Unitree', u: 12000, f: '🇨🇳' },
       { n: 'UBTECH', u: 7000, f: '🇨🇳' }, { n: 'Leju', u: 3000, f: '🇨🇳' },
       { n: 'Fourier', u: 2000, f: '🇨🇳' },
       { n: 'Figure AI', u: 3000, f: '🇺🇸' }, { n: 'Tesla', u: 1000, f: '🇺🇸' },
@@ -1137,6 +1137,17 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-08-23',
+      title: 'WRC 2026 참관 계기 출하 실적 갱신 — Leju 577대(招股书)·UBTECH 1,079대(회사 발표)·AGIBOT 26E 상향',
+      source: '각사 발표·공시(乐聚 招股书·UBTech WRC 2026 발표·上海证券报) · 언론종합',
+      changes: [
+        'data.js·market_tam·market_competition: 2025 실적 UBTECH 1,000→1,079(WRC 현장 발표·풀사이즈 구현지능 기준)·Leju 100→577(창업판 招股书 Kuavo 판매) — 2025 합계 14,768→15,324대',
+        'data.js·market_competition: 2026E AGIBOT 10,000→20,000 [자체추정] — 회사 발표 26.6 누적 생산 1.5만대(25년말 ~5.1천대) 기반 연율화',
+        'tech_overview(카운트업·FAQ)·kr_valuechain(타임라인): 2025 합계 15,324대 일괄 반영',
+        '보고만(미수정): chinaProduction2026 점유 파이(Unitree 49%>AgiBot 30%)가 갱신된 26E 출하(AgiBot 20,000>Unitree 12,000)와 순위 역전 — 정합화 별도 판단 필요 · UBTECH 26E 7,000은 U1 소비자 선주문 13,361대(9/16 인도 개시) 확인 후 상향 검토',
+      ],
+    },
     {
       date: '2026-08-12',
       title: '한국 노출 매트릭스 섹션 복원 — 표시되지 않던 표를 화면에 노출 (4차, 구조 수정)',
