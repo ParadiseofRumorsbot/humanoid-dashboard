@@ -385,11 +385,12 @@ const DASHBOARD_DATA = {
     capacity: { y2024: 489.7, y2025E: 600 },
   },
 
+  /* [자체추정] 26E 출하 갱신(26-08-23, AgiBot 20,000>Unitree 12,000)과 정합화. 현재 렌더 미사용 데이터 */
   chinaProduction2026: [
-    { n: 'Unitree', ms: 49, c: '#6C5CE7' }, { n: 'AgiBot', ms: 30, c: '#FF6B6B' },
-    { n: 'UBTech', ms: 8, c: '#F8B739' }, { n: 'Fourier', ms: 5, c: '#00B894' },
-    { n: 'Galbot', ms: 3, c: '#E17055' }, { n: 'MagicLab', ms: 2, c: '#636E72' },
-    { n: '기타', ms: 3, c: 'var(--line)' },
+    { n: 'AgiBot', ms: 42, c: '#FF6B6B' }, { n: 'Unitree', ms: 25, c: '#6C5CE7' },
+    { n: 'UBTech', ms: 15, c: '#F8B739' }, { n: 'Leju', ms: 6, c: '#A29BFE' },
+    { n: 'Fourier', ms: 4, c: '#00B894' }, { n: 'Galbot', ms: 3, c: '#E17055' },
+    { n: 'MagicLab', ms: 2, c: '#636E72' }, { n: '기타', ms: 3, c: 'var(--line)' },
   ],
 
   /* ══════════════════════════════════════
@@ -495,6 +496,11 @@ const DASHBOARD_DATA = {
     digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
     g1: { name: 'Unitree G1', color: '#E17055', h: 132, w: 35, dof: 23, payload: 2, battery: 1.5, asp: 13.5, gear: '유성', customer: '범용', pos: '중국 저가형', note: '26년 8월 IPO, BOM 790만원' },
     neo: { name: '1X Neo', color: '#0984E3', h: 168, w: 30, dof: 75, payload: 25, battery: 2, asp: 20, gear: '유성', customer: '일반 소비자', pos: '서비스·가정용', note: '26H2 소비자 배송 시작' },
+    /* 신규 기체(26-08-23, WRC/WAIC 공개분) — partial: 미공개 수치가 있어 스펙 표에만 표시, 레이더·ASP 시뮬레이터 제외. 관절별 감속기·토크 미공개로 oemSpecs(해부 다이어그램)는 미추가 */
+    xiaomi: { name: 'Xiaomi 차세대', color: '#FF9F43', partial: true, h: 170, w: 66, dof: 66, gear: '미공개', customer: '자사 EV공장(실증)', pos: '자사 제조 실증', note: 'WRC 2026 첫 공개 — 1.70m·66kg·전신 66DoF(약 절반이 손). EV공장 4개월 실습 나사체결 98%, 26년말 소규모 상용화(회사 발표)' },
+    a3ultra: { name: 'AgiBot A3 Ultra', color: '#EE5253', partial: true, h: 174, w: 60, dof: 51, payload: 5, gear: '미공개', customer: '룽치(3C 라인) 등', pos: '중국 양산 선두권', note: 'WAIC 2026 공개 — 액티브 51DoF+OmniHand 20DoF·팔당 5kg·연속 8시간·700TOPS. 시리즈 누적 생산 1.5만대(26.6, 회사 발표)' },
+    tiangongOmni: { name: '天工 Omni', color: '#54A0FF', partial: true, h: 135, w: 39, gear: '미공개', customer: '개방 플랫폼(2차 개발)', pos: '표준·생태 플랫폼', note: 'WRC 2026 첫 공개 — 1.35m·39kg. 관절제어·센서·데이터수집 API 전면 개방(북경인형혁신중심), DoF 미공개' },
+    iron: { name: 'XPeng IRON 신형', color: '#1DD1A1', partial: true, dof: 82, gear: '미공개', customer: '자사 매장(27.1Q~)', pos: '차·로봇 칩 공용 수직통합', note: '전신 82DoF(손 22)·튜링칩 3개 2,250TOPS. 26.7.24 시험생산, 26년말 양산(월 1,000대+ 목표) — 신장·중량 미공개' },
   },
 
   /* ══════════════════════════════════════
@@ -1137,6 +1143,16 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-08-23',
+      title: 'radarOEM 신규 기체 4종(부분 스펙) 추가 · chinaProduction2026 26E 정합화 (2차)',
+      source: '각사 발표(Xiaomi WRC 2026·AgiBot WAIC 2026·북경인형·XPeng) · 언론종합 · [자체추정]',
+      changes: [
+        'radarOEM: Xiaomi 차세대(1.70m·66kg·66DoF)·AgiBot A3 Ultra(1.74m·60kg·51DoF+손20)·天工 Omni(1.35m·39kg·API 개방)·XPeng IRON 신형(82DoF·2,250TOPS) 추가 — partial 플래그로 스펙 표에만 표시, 미공개 수치가 있어 레이더 차트·ASP 시뮬레이터 선택지에서 제외(components 렌더러 필터 추가)',
+        'oemSpecs(관절 해부 다이어그램)는 신규 기체의 관절별 감속기 타입·토크가 전부 미공개라 추가하지 않음 — 공개 시 반영(추측 기입 금지 원칙)',
+        'chinaProduction2026 [자체추정]: 26E 출하 갱신(AgiBot 20,000>Unitree 12,000)·SAG 반기 실측(AgiBot 44%>Unitree 31%)과 정합화 — AgiBot 42%·Unitree 25%·UBTech 15%·Leju 6%(신설)·Fourier 4%·Galbot 3%·MagicLab 2%·기타 3%. 렌더 미사용 데이터로 화면 영향 없음',
+      ],
+    },
     {
       date: '2026-08-23',
       title: 'WRC 2026 참관 계기 출하 실적 갱신 — Leju 577대(招股书)·UBTECH 1,079대(회사 발표)·AGIBOT 26E 상향',

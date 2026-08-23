@@ -64,7 +64,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
-<script src="data.js?v=20260823"></script>
+<script src="data.js?v=20260823b"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -442,7 +442,7 @@ function renderRadar() {
   radarSel.forEach((key,i)=>{const d=RADAR_OEM[key];svg+=`<rect x="8" y="${8+i*16}" width="10" height="10" rx="2" fill="${d.color}"/><text x="22" y="${16+i*16}" font-size="9" fill="var(--ink)">${d.name}</text>`;});
   svg+=`<text x="${W/2}" y="${H-4}" text-anchor="middle" font-size="7" fill="var(--ink-3)">경량성·가성비: 낮을수록(가볍고 저렴) 바깥</text>`;
   svg+='</svg>';el.innerHTML=svg;
-  document.getElementById('radarBtns').innerHTML=Object.entries(RADAR_OEM).map(([k,v])=>{const on=radarSel.includes(k);return`<button class="st-btn ${on?'on':''}" onclick="toggleRadar('${k}')">${v.name}</button>`;}).join('');
+  document.getElementById('radarBtns').innerHTML=Object.entries(RADAR_OEM).filter(([k,v])=>!v.partial).map(([k,v])=>{const on=radarSel.includes(k);return`<button class="st-btn ${on?'on':''}" onclick="toggleRadar('${k}')">${v.name}</button>`;}).join('');
   // Spec table
   const tbl=document.getElementById('specTable');
   if(tbl){let th='<div class="th" style="text-align:left">OEM</div><div class="th">포지셔닝</div><div class="th">감속기</div><div class="th">고객사</div><div class="th">비고</div>';
@@ -493,7 +493,7 @@ function renderSim(){
     +'</div>';
   });
   document.getElementById('simBars').innerHTML=bHtml;
-  document.getElementById('simOemTabs').innerHTML=Object.entries(RADAR_OEM).map(([k,v])=>
+  document.getElementById('simOemTabs').innerHTML=Object.entries(RADAR_OEM).filter(([k,v])=>!v.partial).map(([k,v])=>
     '<button class="st-btn '+(simOEM===k?'on':'')+'" onclick="pickSim(\''+k+'\')">'+v.name+'</button>'
   ).join('');
 }
