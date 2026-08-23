@@ -441,6 +441,20 @@ const DASHBOARD_DATA = {
   /* ══════════════════════════════════════
      부품 기술 (components.html)
      ══════════════════════════════════════ */
+  /* ══ 부품 국산 대체 실세가 (언론 종합 26.8 · components #price-decline 정본) ══ */
+  partsPriceDecline: {
+    source: '언론 종합(新浪·钛媒体·杭州网 26.8) · GGII',
+    note: '완제품가 인하 경쟁 병행(Unitree R1 3.99만→2.99만元 등) · 중국 공급망 국산화율 90% 보도',
+    rows: [
+      { part: '하모닉 감속기', before: '3,000~5,000元(수입)', after: '1,500~2,000元(국산)', drop: '50~60%↓', note: '중국 시장 국산화율 75.11%(GGII, 24년)' },
+      { part: '行星滚柱丝杠(롤러스크류)', before: '1만~1.5만元(수입)', after: '2,000~5,000元', drop: '60~80%↓', note: '绿的谐波·环动 등 양산 진입' },
+      { part: '서보모터', before: '수천元', after: '~500元', drop: '~80%↓', note: '' },
+      { part: '6축 힘·토크센서', before: '2만~3만元', after: '5,000~8,000元', drop: '1년 내 60%↓', note: '중국 브랜드 글로벌 점유 57.8%(24년)' },
+      { part: '3D비전·깊이카메라', before: '—', after: '1,000元급', drop: '~70%↓', note: '' },
+      { part: '灵巧手(덱스터러스 핸드)', before: '100만元+(24년 이전)', after: '~6,000元~', drop: '~99%↓', note: 'GGII 평균가 5만→1만元 이하 · 6DoF 6,000~8,000元' },
+    ],
+  },
+
   actuatorParts: [
     { name: '하우징', cost: 150, pct: '15%', color: '#636E72', supplier: '구조부품' },
     { name: '유성감속기', cost: 300, pct: '30%', color: '#FF6B6B', supplier: '메이후(Maihu)' },
@@ -448,6 +462,32 @@ const DASHBOARD_DATA = {
     { name: '인코더', cost: 200, pct: '20%', color: '#6C5CE7', supplier: '범용' },
     { name: '드라이버보드', cost: 150, pct: '15%', color: '#00B894', supplier: 'Rockchip' },
   ],
+
+  /* ══ 훈련장 수요 구조 — 데이터를 '사는' 두 경로 (physical_ai #sec-training 정본) ══ */
+  trainingDemand: {
+    source: '蓝鲸财经·腾讯新闻(数据猿)·IDC·钛媒体·甲子光年 · 현대차그룹 RMAC 보도(언론 종합 26.8.23)',
+    china: {
+      centers: '전국 데이터채집·훈련센터 90개+(계획 포함) · 최소 64개 가동(26.4말) · 13곳은 로봇 100대+ 배치',
+      loop: '지방정부·국유자본이 센터 건립 → 로봇 구매 → 텔레옵 데이터 수집 → 데이터를 제조사에 판매하는 「데이터 환매」 순환',
+      stats: [
+        { k: '25년 출하 중 전시·연구·데이터채집 용도', v: '78.4% (IDC)' },
+        { k: 'UBTech 25년 계약 중 데이터센터 비중', v: '59% (~14억元 중)' },
+        { k: 'Leju Kuavo 매출 중 데이터채집 씬', v: '45% (招股书)' },
+        { k: '국유 조달', v: '国家电网 구체지능 장비 8,500대(휴머노이드 500대 포함)' },
+        { k: '실기 데이터 시세', v: '시간당 500~1,000元 · 희소 고동역학 초당 10元' },
+      ],
+    },
+    hmg: {
+      title: 'HMG RMAC — 캡티브 훈련장 (26.8 개소)',
+      facts: [
+        '조지아 HMGMA 인근 개소 — Atlas가 실제 생산라인과 동일한 환경에서 부품 분류·조립 훈련',
+        '소규모 훈련 진행 중 → 연내 본격 가동 · 연산 3만대 CAPA(28E)',
+        '한국·중국에도 RMAC 조성 방침(8.6 발표) — 데이터 수집·가공·Atlas AI 모델 고도화 3거점',
+        'BD 플라이휠 연결: Spot 500+ 고객·40+국·누적 점검 30M회·무개입 3,000시간',
+      ],
+    },
+    verdict: '중국은 국비(정부 구매)로, HMG·Tesla는 캡티브 라인으로 같은 것을 산다 — 희소한 물리 데이터. 현 단계 수요의 1차 실체는 소비자가 아니라 데이터 인프라.',
+  },
 
   oemSpecs: {
     optimus: {
@@ -527,7 +567,7 @@ const DASHBOARD_DATA = {
   hmgRobotics: {
     source: 'JPM Conference 2026 / HMG IR',
     captiveDemand: 25000,
-    rmcaLaunch: '2026년 8~9월',
+    rmcaLaunch: '2026년 8월 개소 — 조지아 HMGMA 인근 · Atlas 소규모 훈련 진행 중, 연내 본격 가동(언론 종합 26.8.23)',
     factoryCapacity: 30000,
     actuatorPlantCapacity: 350000,
     actuatorPlantLaunch: 2028,
@@ -1143,6 +1183,16 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-08-23',
+      title: '부품 가격하락 표·훈련장 수요 구조 섹션 신설 · RMAC 개소 확정 반영 (3차)',
+      source: '언론 종합(新浪·钛媒体·杭州网·蓝鲸·甲子光年 · RMAC 보도 26.8.23) · GGII · IDC · 각사 공시',
+      changes: [
+        'components #price-decline 신설: 국산 대체 실세가 표(하모닉 50~60%↓·롤러스크류 60~80%↓·6축 힘센서 60%↓·灵巧手 ~99%↓ 등 6종) — 데이터 정본 data.js partsPriceDecline, BOM 앵커(하모닉 $350) 하향 갱신 신호 명기',
+        'physical_ai #sec-training 신설: 훈련장 수요 구조 — 중국 국비 훈련장(90개+·64 가동·데이터 환매 순환·IDC 78.4%·UBTech 59%·Leju 45%·国家电网 8,500대) vs HMG RMAC 캡티브 비교 — 데이터 정본 data.js trainingDemand',
+        'RMAC 개소 확정: hmgRobotics.rmcaLaunch·index 이벤트 캘린더 갱신 — 조지아 HMGMA 인근 개소, Atlas 실라인 동일 환경 분류·조립 훈련, 소규모 진행 중→연내 본격 가동, 한·미·중 3거점 방침(언론 종합 26.8.23)',
+      ],
+    },
     {
       date: '2026-08-23',
       title: 'radarOEM 신규 기체 4종(부분 스펙) 추가 · chinaProduction2026 26E 정합화 (2차)',

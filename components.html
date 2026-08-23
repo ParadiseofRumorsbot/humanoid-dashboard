@@ -64,7 +64,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
-<script src="data.js?v=20260823b"></script>
+<script src="data.js?v=20260823c"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -1094,6 +1094,24 @@ window.addEventListener('DOMContentLoaded', () => {
     </div>
     <div style="font-size:11px;color:var(--ink-2);line-height:1.7">읽는 순서: <b>① 실측</b>(실제 팔리는 G1의 부품값) → <b>② 구조</b>(풀스택은 무엇에 돈이 드나 + 관점 병기) → <b>③ 하락 경로</b>(왜·얼마나 싸지나) → <b>④ 시장 환산</b>(원가가 곧 부품사 시장규모). 이 값이 나오는 공학적 이유는 <a href="tech.html#anatomy:sec-actuator" target="_top" style="color:#FF6B6B">해부 02 액추에이터 ↗</a>에서 이야기로 읽음.</div>
   </section>
+
+  <!-- ═══ 원가⑤ 국산 대체 실세가 (26-08-23 신설 · 데이터 정본: data.js partsPriceDecline) ═══ -->
+  <section id="price-decline" class="card section-gap" style="border-left:4px solid #E17055">
+    <div class="card-title">📉 원가⑤ 국산 대체 실세가 — 1년 새 반토막 난 부품값 <span class="badge" style="background:#E17055;color:#fff">언론 종합 26.8</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px">①~④가 원가의 '구조'라면, 이 표는 중국 국산 대체가 만든 <b>실거래 가격의 하락 속도</b>. BOM 앵커의 하모닉 $350 대비 국산 실세가는 이미 $210~280 수준 — <b>앵커 하향 갱신 신호</b>.</div>
+    <div class="scroll-x"><div id="priceDeclineTbl"></div></div>
+    <div id="priceDeclineNote" style="font-size:10px;color:var(--ink-3);margin-top:8px"></div>
+  </section>
+  <script>
+  (function(){
+    var P=(typeof DASHBOARD_DATA!=='undefined')&&DASHBOARD_DATA.partsPriceDecline; if(!P) return;
+    var h='<table style="width:100%;border-collapse:collapse;font-size:11px;min-width:560px"><tr style="border-bottom:2px solid var(--ink)"><th style="text-align:left;padding:6px 8px">부품</th><th style="text-align:right;padding:6px 8px">과거(수입 위주)</th><th style="text-align:right;padding:6px 8px">현재(국산)</th><th style="text-align:right;padding:6px 8px">하락</th><th style="text-align:left;padding:6px 8px">비고</th></tr>';
+    P.rows.forEach(function(r){h+='<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px;font-weight:600">'+r.part+'</td><td style="padding:6px 8px;text-align:right">'+r.before+'</td><td style="padding:6px 8px;text-align:right;font-weight:700">'+r.after+'</td><td style="padding:6px 8px;text-align:right;color:#E17055;font-weight:700">'+r.drop+'</td><td style="padding:6px 8px;color:var(--ink-2)">'+(r.note||'—')+'</td></tr>';});
+    h+='</table>';
+    document.getElementById('priceDeclineTbl').innerHTML=h;
+    document.getElementById('priceDeclineNote').textContent='출처: '+P.source+' · '+P.note;
+  })();
+  </script>
 
   <!-- ═══ 2. Actuator Exploded View ═══ -->
   <section class="card section-gap">

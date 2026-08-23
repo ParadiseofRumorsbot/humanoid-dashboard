@@ -165,7 +165,7 @@ a{color:inherit}
 .validation-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid;background:var(--bg-soft)}
 .tech-analogy{background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:10.5px;color:#aaa;line-height:1.6;border-left:3px solid}
 </style>
-<script src="data.js?v=20260823b"></script>
+<script src="data.js?v=20260823c"></script>
 <script>
 (function(){
 const D = DASHBOARD_DATA;
@@ -1787,6 +1787,29 @@ window.addEventListener('DOMContentLoaded', render);
     <div style="background:rgba(255,107,107,0.10);border-left:3px solid #FF6B6B;border-radius:0 8px 8px 0;padding:10px 16px;margin:8px 0;font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.6">
       ▼ 데이터 전략을 봤음. 실제로 가장 앞서가는 BD Atlas는 현실에서 이걸 어떻게 하고 있나?
     </div>
+
+    <!-- ═══ Part 6.5 훈련장 수요 구조 (26-08-23 신설 · 데이터 정본: data.js trainingDemand) ═══ -->
+    <section id="sec-training" class="card section-gap" style="border-left:4px solid #E17055">
+      <div class="card-title">🏟️ Part 6.5 훈련장 수요 구조 — 데이터를 '사는' 두 가지 방법 <span class="badge" style="background:#E17055;color:#fff">중국 국비 vs 캡티브</span></div>
+      <div id="trainingDemandBody"></div>
+    </section>
+    <script>
+    (function(){
+      var T=(typeof DASHBOARD_DATA!=='undefined')&&DASHBOARD_DATA.trainingDemand; if(!T) return;
+      var stat=T.china.stats.map(function(s){return '<div style="display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line);font-size:11px"><span style="color:var(--ink-2)">'+s.k+'</span><b style="text-align:right">'+s.v+'</b></div>';}).join('');
+      var hmg=T.hmg.facts.map(function(f){return '<li>'+f+'</li>';}).join('');
+      document.getElementById('trainingDemandBody').innerHTML=
+        '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px">'
+        +'<div style="background:var(--bg-soft);border-radius:12px;padding:14px 16px"><div style="font-family:var(--mono);font-size:10px;color:#FF6B6B;font-weight:700;margin-bottom:8px">🇨🇳 중국 — 국비 훈련장</div>'
+        +'<div style="font-size:11.5px;font-weight:700;margin-bottom:6px">'+T.china.centers+'</div>'
+        +'<div style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">'+T.china.loop+'</div>'+stat+'</div>'
+        +'<div style="background:var(--bg-soft);border-radius:12px;padding:14px 16px"><div style="font-family:var(--mono);font-size:10px;color:#00B894;font-weight:700;margin-bottom:8px">🇰🇷🇺🇸 '+T.hmg.title+'</div>'
+        +'<ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">'+hmg+'</ul></div>'
+        +'</div>'
+        +'<div style="background:rgba(225,112,85,0.08);border-left:4px solid #E17055;border-radius:0 10px 10px 0;padding:10px 14px;margin-top:12px;font-size:11.5px;line-height:1.7"><b>결론:</b> '+T.verdict+'</div>'
+        +'<div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: '+T.source+'</div>';
+    })();
+    </script>
 
     <section id="sec-factcheck" class="card" style="border-left:4px solid #F8B739">
       <div class="card-title">🔍 로보티즈의 "액추에이터가 바뀌면 데이터 90%를 다시 쌓아야 한다" — 팩트체크 <span class="badge" style="background:#F8B739;color:#fff">로보티즈 IR</span></div>
