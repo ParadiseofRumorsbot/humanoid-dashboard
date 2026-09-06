@@ -102,7 +102,7 @@ const DATA = [
   { company: '현대오토에버', ticker: '307950', parts: 'SI·관제·Robot OS', customer: 'BD·HMG', note: 'HMG 로보틱스 시스템 통합 담당 (JPM 2026)', cat: 'ctrl' },
   { company: '현대글로비스', ticker: '086280', parts: '생산·판매 물류', customer: 'BD·HMG', note: 'SCM 백본 · 물류 테스트베드 (JPM 2026)', cat: 'ctrl' },
   // ── 감속기 ──
-  { company: '로보티즈', ticker: '108490', parts: '사이클로이드(DYD)·유성 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀(ROS 사실상 표준). 우즈벡 신공장 26.4Q 가동', cat: 'gear' },
+  { company: '로보티즈', ticker: '108490', parts: '사이클로이드(DYD)·유성 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀(ROS 사실상 표준). Q시리즈(QDD) 26.9 출시 · 우즈벡 완공 26.10~11, 가동 27년 초 이연 · 2031년 CAPA 500만개 (IR 26.9.2)', cat: 'gear' },
   { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
   { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
   { company: '네오오토', ticker: '212560', parts: '유성기어 감속기·디퍼런셜·피니언 (EV) · 로봇팔 관절 소형감속기·AMR 구동모듈', customer: 'BD 유성 부분품 후보', note: '현대기아 EV 동력전달계 정밀기어 주력 · 유성기어 2단변속기 IP·美특허 · 모비스 인휠감속기 협업 · 로봇부품 정관 추가(26.3) · Atlas 바디 유성과 기술 부합(모비스 내재화) · 휴머노이드 직접 진출 미확정 [사업보고서 26.03.19]', cat: 'gear' },
@@ -110,11 +110,11 @@ const DATA = [
   { company: '한라캐스트', ticker: '125490', parts: 'Al/Mg 다이캐스팅 구조체', customer: '글로벌 휴머노이드사(개발 수주)', note: '마그네슘 다이캐스팅 국내 독보적(Optimus V2 외장소재 이력 소재군) · 25년 글로벌 AI 자동차사 1차 협력사 등록 · 수주잔고 25년말 1.2조/1Q26 1.1조 · CAPA 1,600→2,200억(26.02 C동·26.6 D동 준공, 3Q26 증설효과) (언론종합·공시)', cat: 'body' },
   { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
   { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
-  { company: '한국피아이엠', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
+  { company: '한국피아이엠', ticker: '448900', parts: 'MIM 감속기 ASSY·티타늄 분말·구조 부품', customer: 'BD·현대차·북미 로봇사', note: '하모닉 미검토(유성·사이클로이드 2트랙) · 구조 부품 소량 양산 발주 진행, BD가 타임라인 최선두 (컨콜 26.8.27)', cat: 'gear' },
   { company: '삼현', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
   // ── 배터리·소재 ──
   { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 2170', customer: 'Optimus + 로봇 6곳', note: '미국 AZ 현지조달 · LG 클로이·베어로보틱스 Carti100에 원통형 실납품 (언론종합) · 원통형·전고체·BMS를 휴머노이드 인에이블러로 공식화(회사 자료)', cat: 'batt' },
-  { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산 · Physical AI(로봇)용 파우치형 전고체 개발 중 (언론종합) · E-Atlas 부품 도식(현대차그룹·BD 자료)에 배터리 담당사로 표기 [미확인]', cat: 'batt' },
+  { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산 · Physical AI(로봇)용 파우치형 전고체 개발 중 (언론종합) · E-Atlas 부품 도식(현대차그룹·BD 자료)에 배터리 담당사로 표기 [미확인] · 휴머노이드용 원형 셀 일부 채용 물량 확인 (IR 26.9.1)', cat: 'batt' },
   { company: '대주전자재료', ticker: '078600', parts: '실리콘 음극재', customer: '-', note: '고출력 배터리 핵심', cat: 'batt' },
   { company: '엘앤에프', ticker: '066970', parts: '하이니켈 양극재', customer: '-', note: 'NCMA 양극재', cat: 'batt' },
   { company: 'SK온', ticker: '-', parts: '배터리', customer: '현대위아 AMR·주차로봇', note: 'AMR·주차로봇용 배터리 공급 협력 (언론종합)', cat: 'batt' },
@@ -161,7 +161,7 @@ const EXPO={
   indep:{name:'독립 부품사',desc:'글로벌 휴머노이드 OEM 대상 감속기·배터리 핵심 부품 공급.',color:'#6C5CE7',
     cos:[
       {n:'에스피지',t:'058610',exp:3,role:'사이클로이드 감속기 QDD · LG 협력',when:'2026~'},
-      {n:'로보티즈',t:'108490',exp:3,role:'사이클로이드(DYD)·유성 QDD·로봇손 · 우즈벡 26.4Q 가동',when:'2026~'},
+      {n:'로보티즈',t:'108490',exp:3,role:'사이클로이드(DYD)·유성 QDD·로봇손 · 우즈벡 27년 초 가동(완공 26.10~11, IR 26.9.2)',when:'2026~'},
       {n:'LG에너지솔루션',t:'373220',exp:3,role:'원통형 배터리 2170 · Optimus+6곳 · 전고체·BMS 로봇 확장(회사 자료)',when:'2025~'},
       {n:'LG이노텍',t:'011070',exp:2,role:'BD Atlas 비전센싱 모듈 공동개발(25.5, 인지 SW는 BD) · ToF·FMCW LiDAR·Aeva 투자 · 매출 가시화 전',when:'공동개발'},
       {n:'에스비비테크',t:'389500',exp:2,role:'국내 하모닉 감속기 1위 · 26.3 천안 액추에이터 전용공장 이전(수직계열화) · 가동률 ~10%→풀가동 시 CAPA 10배 여력(IR) · 현대차 MobED 구동기 26년 양산 · K9 자주포 레퍼런스 · 26년 200대 초기 ramp',when:'2026~'},
@@ -911,6 +911,18 @@ window.addEventListener('DOMContentLoaded',()=>{
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#00B894;color:#fff;padding:2px 8px;border-radius:4px">2026-09-06</span>
+          <span style="font-size:12px;font-weight:600">컨콜 교차검증 반영 — 로보티즈·한국피아이엠·삼성SDI (26.8.27~9.2)</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">각사 IR·컨콜 (로보티즈 26.9.2 · 한국피아이엠 26.8.27 · 삼성SDI 26.9.1)</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>로보티즈: 우즈벡 완공 26.10~11·가동 27년 초(직전 4Q26 계획서 1분기 이연), Q시리즈(QDD) 26.9 출시, 2031년 CAPA 500만개</li>
+          <li>한국피아이엠(448900): MIM 감속기 ASSY·티타늄 분말·구조 부품 — BD가 타임라인 최선두, 하모닉 미검토(유성·사이클로이드 2트랙), 분류 구조·외장→감속기</li>
+          <li>삼성SDI: 휴머노이드용 원형 셀 일부 채용 물량 확인</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#00B894;color:#fff;padding:2px 8px;border-radius:4px">2026-08-12 ④</span>

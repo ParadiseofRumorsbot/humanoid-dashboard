@@ -64,7 +64,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
-<script src="data.js?v=20260823c"></script>
+<script src="data.js?v=20260906"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -1110,6 +1110,42 @@ window.addEventListener('DOMContentLoaded', () => {
     h+='</table>';
     document.getElementById('priceDeclineTbl').innerHTML=h;
     document.getElementById('priceDeclineNote').textContent='출처: '+P.source+' · '+P.note;
+  })();
+  </script>
+
+  <!-- ═══ 원가⑥ 감속기 3파전 (26-09-06 신설 · 데이터 정본: data.js gearRoutes) ═══ -->
+  <section id="gear-routes" class="card section-gap" style="border-left:4px solid #6C5CE7">
+    <div class="card-title">⚙️ 원가⑥ 감속기 3파전 — 하모닉 vs 유성(QDD) vs 사이클로이드 <span class="badge" style="background:#6C5CE7;color:#fff">각사 IR 26.8~9</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px">BOM 앵커는 하모닉 20개/대를 가정하지만, 국내 신규 진입사에서 <b>하모닉을 검토조차 하지 않는 흐름</b>이 확인됨(한국피아이엠 컨콜 26.8.27). 방식 선택이 곧 국내 밸류체인 경쟁 구도 — 하모닉(에스비비테크) vs 유성·사이클로이드(로보티즈·에스피지·한국피아이엠).</div>
+    <div class="scroll-x"><div id="gearRoutesTbl"></div></div>
+    <div id="gearRoutesNote" style="font-size:10px;color:var(--ink-3);margin-top:8px"></div>
+  </section>
+  <script>
+  (function(){
+    var G=(typeof DASHBOARD_DATA!=='undefined')&&DASHBOARD_DATA.gearRoutes; if(!G) return;
+    var h='<table style="width:100%;border-collapse:collapse;font-size:11px;min-width:640px"><tr style="border-bottom:2px solid var(--ink)"><th style="text-align:left;padding:6px 8px">방식</th><th style="text-align:left;padding:6px 8px">특성</th><th style="text-align:left;padding:6px 8px">실거래·타깃 가격</th><th style="text-align:left;padding:6px 8px">국내 진영</th><th style="text-align:left;padding:6px 8px">반대 논거</th></tr>';
+    G.rows.forEach(function(r){h+='<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px;font-weight:700">'+r.route+'</td><td style="padding:6px 8px;color:var(--ink-2)">'+r.trait+'</td><td style="padding:6px 8px">'+r.price+'</td><td style="padding:6px 8px;font-weight:600">'+r.kr+'</td><td style="padding:6px 8px;color:#E17055">'+(r.counter||'—')+'</td></tr>';});
+    h+='</table>';
+    document.getElementById('gearRoutesTbl').innerHTML=h;
+    document.getElementById('gearRoutesNote').textContent='출처: '+G.source+' · '+G.note;
+  })();
+  </script>
+
+  <!-- ═══ 원가⑦ 덱스터러스 핸드 원가·수명 (26-09-06 신설 · 데이터 정본: data.js handCost) ═══ -->
+  <section id="hand-cost" class="card section-gap" style="border-left:4px solid #00B894">
+    <div class="card-title">🖐️ 원가⑦ 덱스터러스 핸드 — 다이렉트 드라이브 vs 텐던, 원가·수명 실측 <span class="badge" style="background:#00B894;color:#fff">국내 IR 26.9</span></div>
+    <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px">핸드는 부품 중 기술 루트가 수렴되지 않은 마지막 병목. 국내 IR에서 방식별 <b>원가·자유도·수명</b>이 처음 수치로 공개됨 — 단, 경쟁 방식(텐던) 수치는 <b>로보티즈 주장</b>이므로 단일 출처임에 유의.</div>
+    <div class="scroll-x"><div id="handCostTbl"></div></div>
+    <div id="handCostNote" style="font-size:10px;color:var(--ink-3);margin-top:8px"></div>
+  </section>
+  <script>
+  (function(){
+    var H=(typeof DASHBOARD_DATA!=='undefined')&&DASHBOARD_DATA.handCost; if(!H) return;
+    var h='<table style="width:100%;border-collapse:collapse;font-size:11px;min-width:640px"><tr style="border-bottom:2px solid var(--ink)"><th style="text-align:left;padding:6px 8px">방식</th><th style="text-align:left;padding:6px 8px">자유도</th><th style="text-align:right;padding:6px 8px">무게</th><th style="text-align:right;padding:6px 8px">가격</th><th style="text-align:left;padding:6px 8px">수명·유지보수</th><th style="text-align:left;padding:6px 8px">채택</th></tr>';
+    H.rows.forEach(function(r){h+='<tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px;font-weight:700">'+r.way+'</td><td style="padding:6px 8px">'+r.dof+'</td><td style="padding:6px 8px;text-align:right">'+r.weight+'</td><td style="padding:6px 8px;text-align:right;font-weight:700">'+r.price+'</td><td style="padding:6px 8px;color:#E17055">'+r.life+'</td><td style="padding:6px 8px;color:var(--ink-2)">'+r.adopt+'</td></tr>';});
+    h+='</table>';
+    document.getElementById('handCostTbl').innerHTML=h;
+    document.getElementById('handCostNote').textContent='출처: '+H.source+' · '+H.note;
   })();
   </script>
 

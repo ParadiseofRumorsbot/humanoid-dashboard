@@ -44,27 +44,27 @@ const DATA = {
       }
     },
     gs_bull: {
-      name: 'GS Bull',
-      source: '업계 추정 (2025)',
-      desc: 'GS 낙관 전망. 2030년 25만대, 2035년 140만대, 2040년 2,300만대.',
+      name: 'GS Base',
+      source: 'Goldman Sachs (2026.8.30)',
+      desc: 'GS 기본 전망(26.8.30 상향 개정 — 구 낙관치를 base가 흡수). 2030년 89만대, 2035년 648만대. 2036~40년 [자체 연장 추정: 성장률 49%→25% 점감].',
       shipments: {
         2024: [2.3, 4500, 800],
-        2025: [13.4, 4700, 1200],
-        2026: [50, 5000, 1800],
-        2027: [80, 5400, 2600],
-        2028: [130, 5900, 3500],
-        2029: [190, 6500, 4500],
-        2030: [250, 7200, 5500],
-        2031: [380, 7800, 6500],
-        2032: [550, 8500, 7500],
-        2033: [780, 9200, 8500],
-        2034: [1050, 10000, 9500],
-        2035: [1400, 11000, 10500],
-        2036: [2000, 12000, 11500],
-        2037: [3200, 13000, 12500],
-        2038: [5500, 14000, 13500],
-        2039: [10000, 15000, 14500],
-        2040: [23000, 16500, 15500],
+        2025: [14.7, 4700, 1200],
+        2026: [75, 5000, 1800],
+        2027: [148, 5400, 2600],
+        2028: [299, 5900, 3500],
+        2029: [594, 6500, 4500],
+        2030: [890, 7200, 5500],
+        2031: [1323, 7800, 6500],
+        2032: [1966, 8500, 7500],
+        2033: [2924, 9200, 8500],
+        2034: [4351, 10000, 9500],
+        2035: [6478, 11000, 10500],
+        2036: [9400, 12000, 11500],
+        2037: [13150, 13000, 12500],
+        2038: [17750, 14000, 13500],
+        2039: [23080, 15000, 14500],
+        2040: [28850, 16500, 15500],
       }
     },
     tesla_acc: {
@@ -839,6 +839,17 @@ a{color:inherit}
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#6C5CE7;color:#fff;padding:2px 8px;border-radius:4px">2026-09-06</span>
+          <span style="font-size:12px;font-weight:600">GS 시나리오 base 개정 — 구 Bull이 신규 base로 대체(26.8.30 리포트)</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">Goldman Sachs (26.8.30)</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>구 GS Bull(2026 5만·2030 25만·2035 140만)이 발행사 26.8.30 개정에서 폐기 — 신규 base(2026 7.5만·2030 89만·2035 648만)로 교체, 명칭 GS Base로 변경</li>
+          <li>2036~40 구간은 자체 연장 추정(성장률 49%→25% 점감 가정) — 원 리포트는 2035년까지만 제시</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#FF6B6B;color:#fff;padding:2px 8px;border-radius:4px">2026-07-08</span>
