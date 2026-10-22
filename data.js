@@ -554,7 +554,7 @@ const DASHBOARD_DATA = {
   },
 
   radarOEM: {
-    optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'Gen3 26.6말 설계승인·9월 주1,000대 지침 · Gen4=Austin 연1,000만대 aspirational·PCB 내재화(2Q26 컨콜)' },
+    optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'Gen3 26.6말 설계승인·9월 주1,000대 지침 · Fremont 고볼륨 라인 초기 생산 개시·주2만대 도달 1년+·외부 인도 27년 말·AI5 탑재 27.4경(3Q26 컨콜) · Gen4=Austin 연1,000만대 aspirational·PCB 내재화(2Q26 컨콜)·Austin 공장 건설 중(3Q26 덱)' },
     figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'Helix 자체 내재화 (OpenAI 결별)' },
     atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '유성 QDD', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8~9월 개소, 30K CAPA (28E)' },
     digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
@@ -1207,6 +1207,17 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-10-22',
+      title: 'Optimus 3Q26 컨콜 일정 반영 — Fremont 고볼륨 라인 초기 생산 개시 · 주 2만대 도달 1년+ · 외부 인도 27년 말 · AI5 탑재 27.4경 · Austin 공장 건설 중',
+      source: 'Tesla Q3 2026 Update(26.10.21) · Tesla 3Q26 Earnings Call(26.10.21) · TSLA 3Q26 Earnings Call 노션 노트',
+      changes: [
+        'data.js: radarOEM.optimus note — Gen3 지침 뒤에 3Q26 콜 일정(Fremont 초기 생산 개시·주2만대 도달 1년+·외부 인도 27년 말·AI5 27.4경) 추가, Gen4 뒤에 Austin 공장 건설 중(3Q26 덱) 추가 (components RADAR_OEM은 data.js 정본 참조라 자동 반영)',
+        'components: ASP표 출처 주석에 3Q26 콜·덱 일정 병기',
+        'market_company: OEM① 모델 비교표 Optimus 비고 "26.7~8월 초기생산 목표" → "3Q26 초기생산 개시(26.10.21)" 갱신 (한 줄 칸 폭에 맞춰 "라인 전환"→"라인"으로 축약, 외부 인도 27년 말은 레이더 노트·ASP 각주에 수록 · 2026 생산목표 5,000은 콜에서 수치 미제시로 불변)',
+        'index 이벤트 캘린더(11~12월 Optimus 패널): 3Q26 콜 결과와 시연 영상 1~2개월 내 공개 예정 추가',
+      ],
+    },
     {
       date: '2026-09-06',
       title: 'GS 시나리오 base 개정 · 컨콜 교차검증 반영 — 감속기 3파전·핸드 원가 신설 (4차)',
