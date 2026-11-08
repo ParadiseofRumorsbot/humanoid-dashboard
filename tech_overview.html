@@ -167,7 +167,7 @@ main{flex:1;min-width:0;max-width:1100px;padding:24px 0 100px 32px}
   .glossary-grid{grid-template-columns:1fr}
 }
 </style>
-<script src="data.js?v=20261108"></script>
+<script src="data.js?v=20261108-2"></script>
 <script>
 const D = DASHBOARD_DATA;
 const $ = s => document.querySelector(s);
@@ -228,7 +228,6 @@ function initScrollSpy() {
         const match = sections.find(s => s.el === entry.target);
         if (match) {
           match.link.classList.add('active');
-          match.link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
         }
       }
     });

@@ -74,45 +74,60 @@ function bindResize(){
     if (window.ResizeObserver) new ResizeObserver(function(){ fit(); }).observe(f.contentWindow.document.body);
   } catch(e) {}
 }
-var pendingAnchor = null;
+var pendingAnchor = null, anchorTimer = null, currentTab = 'overview', previousDocument = null;
+function jumpToPendingAnchor(){
+  if (!pendingAnchor) return true;
+  try {
+    var doc = document.getElementById('frame').contentWindow.document;
+    if (doc === previousDocument || doc.readyState === 'loading' || doc.location.pathname.split('/').pop() !== SUB[currentTab]) return false;
+    var el = doc.getElementById(pendingAnchor);
+    var inner = doc.querySelectorAll('iframe');
+    if (currentTab === 'hw') {
+      for (var i=0;i<inner.length;i++) {
+        var child = inner[i].contentWindow.document;
+        if (child.location.href === 'about:blank' || child.readyState === 'loading' || !child.body) return false;
+        if (doc.defaultView.fitInner) doc.defaultView.fitInner(inner[i]);
+        if (!el) el = child.getElementById(pendingAnchor);
+      }
+    }
+    if (!el) return false;
+    el.scrollIntoView({block:'start',behavior:'auto'});
+    pendingAnchor = null;
+    return true;
+  } catch(e) { return false; }
+}
 function showSub(tab, btn){
+  clearInterval(anchorTimer);
+  if (btn) pendingAnchor = null;
   if (ALIAS[tab]) tab = ALIAS[tab];
   if (!SUB[tab]) tab = 'overview';
+  currentTab = tab;
   var btns = document.querySelectorAll('#subTabs .st-btn');
   for (var i=0;i<btns.length;i++) btns[i].classList.remove('on');
   if (btn) btn.classList.add('on');
   else { var b=document.querySelector('#subTabs .st-btn[data-tab="'+tab+'"]'); if(b) b.classList.add('on'); }
   document.getElementById('subCap').textContent = CAP[tab];
+  previousDocument = document.getElementById('frame').contentDocument;
   document.getElementById('frame').src = SUB[tab];
+  if (pendingAnchor) {
+    var attempts = 0;
+    anchorTimer = setInterval(function(){
+      if (jumpToPendingAnchor() || ++attempts >= 100) clearInterval(anchorTimer);
+    }, 100);
+  }
   if (history.replaceState) history.replaceState(null,'','#'+tab+(pendingAnchor?':'+pendingAnchor:''));
 }
 document.getElementById('frame').addEventListener('load', function(){
   bindResize();
-  if (pendingAnchor) {
-    var a = pendingAnchor; pendingAnchor = null;
-    setTimeout(function(){
-      try {
-        var doc = document.getElementById('frame').contentWindow.document;
-        var el = doc.getElementById(a);
-        if (!el) { /* 중첩 iframe(hardware.html) 내부 탐색 */
-          var inner = doc.querySelectorAll('iframe');
-          for (var i=0;i<inner.length;i++){
-            try {
-              var el2 = inner[i].contentWindow.document.getElementById(a);
-              if (el2) { el2.scrollIntoView({block:'start'}); return; }
-            } catch(e2) {}
-          }
-        }
-        if (el) el.scrollIntoView({block:'start'});
-      } catch(e) {}
-    }, 900);
-  }
+  if (jumpToPendingAnchor()) clearInterval(anchorTimer);
 });
 window.addEventListener('resize', fit);
 function applyHash(){
   var h = (location.hash||'').replace('#','');
   var tab = h, anchor = null;
   if (h.indexOf(':') >= 0) { tab = h.split(':')[0]; anchor = h.split(':')[1]; }
+  if (!anchor && tab === 'parts') anchor = 'sec-hw-parts';
+  if (!anchor && tab === 'anatomy') anchor = 'sec-hw-anatomy';
   if (ALIAS[tab]) tab = ALIAS[tab];
   if (!SUB[tab]) tab = 'overview';
   pendingAnchor = anchor;

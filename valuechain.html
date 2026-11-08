@@ -66,6 +66,7 @@ function bindResize(){
   } catch(e) {}
 }
 function showSub(tab, btn){
+  if (btn) pendingAnchor = null;
   if (!SUB[tab]) tab = 'kr';
   var btns = document.querySelectorAll('#subTabs .st-btn');
   for (var i=0;i<btns.length;i++) btns[i].classList.remove('on');
@@ -73,7 +74,7 @@ function showSub(tab, btn){
   else { var b=document.querySelector('#subTabs .st-btn[data-tab="'+tab+'"]'); if(b) b.classList.add('on'); }
   document.getElementById('subCap').textContent = CAP[tab];
   document.getElementById('frame').src = SUB[tab];
-  if (history.replaceState) history.replaceState(null,'','#'+tab);
+  if (history.replaceState) history.replaceState(null,'','#'+tab+(pendingAnchor?':'+pendingAnchor:''));
 }
 var pendingAnchor = null;
 document.getElementById('frame').addEventListener('load', function(){
@@ -83,20 +84,22 @@ document.getElementById('frame').addEventListener('load', function(){
     setTimeout(function(){
       try {
         var el = document.getElementById('frame').contentWindow.document.getElementById(a);
-        if (el) el.scrollIntoView({block:'start'});
+        if (el) el.scrollIntoView({block:'start',behavior:'auto'});
       } catch(e) {}
     }, 300);
   }
 });
 window.addEventListener('resize', fit);
-window.addEventListener('DOMContentLoaded', function(){
+function applyHash(){
   var h = (location.hash||'').replace('#','');
   var tab = h, anchor = null;
   if (h.indexOf(':') >= 0) { tab = h.split(':')[0]; anchor = h.split(':')[1]; }
   if (!SUB[tab]) tab = 'kr';
   pendingAnchor = anchor;
   showSub(tab, null);
-});
+}
+window.addEventListener('DOMContentLoaded', applyHash);
+window.addEventListener('hashchange', applyHash);
 </script>
 </body>
 </html>
