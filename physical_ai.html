@@ -165,7 +165,7 @@ a{color:inherit}
 .validation-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid;background:var(--bg-soft)}
 .tech-analogy{background:rgba(255,255,255,.04);border-radius:8px;padding:10px 12px;margin:8px 0;font-size:10.5px;color:#aaa;line-height:1.6;border-left:3px solid}
 </style>
-<script src="data.js?v=20261022"></script>
+<script src="data.js?v=20261108"></script>
 <script>
 (function(){
 const D = DASHBOARD_DATA;
@@ -829,7 +829,7 @@ window.addEventListener('DOMContentLoaded', render);
   </header>
 
 
-  <section class="card section-gap">
+  <section class="card section-gap" id="data-cost">
     <div class="card-title">📊 Robot Action Data 수집 비용 <span class="badge" style="background:#e74c3c;color:#fff">Silicon Valley Robotics Center</span></div>
     <div class="num-row">
       <div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">Real-World 데이터 (1Q26)</div><div class="num-value">$118/hr</div><div class="num-sub">물리적 환경 수집(원격조작) · Source: SVRC</div></div>
@@ -838,7 +838,7 @@ window.addEventListener('DOMContentLoaded', render);
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">추이(시간당, SVRC): 1Q24 $340 → 3Q24 $265 → 1Q25 $195 → 3Q25 $155 → 4Q25 $136 → <b>1Q26 $118</b></div>
     <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:var(--bg-soft);border-radius:7px;margin-top:8px">
-      <strong>시사점:</strong> 실제 환경 데이터 수집은 시뮬레이션 대비 10만배+ 비용이나 원격조작 효율화로 지속 하락 중. World Foundation Model 기반 합성 데이터로 전환하면 데이터 수집 비용 구조가 근본적으로 변화. 시뮬레이션 정확도 향상이 핵심 경쟁력.
+      <strong>해석:</strong> 위 비용은 서로 다른 수집 방식의 시간당 비용이다. 같은 시간의 데이터가 같은 학습 효과를 뜻하지 않으므로, 수집 비용과 함께 품질·작업 다양성·실제 로봇으로의 전이성을 확인해야 한다.
     </div>
     <div style="border-top:1px dashed var(--line-s);margin-top:14px;padding-top:12px">
       <div style="font-family:var(--mono);font-size:10px;color:#e74c3c;font-weight:700;letter-spacing:.08em;margin-bottom:8px">⚠️ 시뮬에서 잘되던 정책이 현장에서 실패하는 5대 원인 (Sim-to-Real Gap)</div>
@@ -852,21 +852,32 @@ window.addEventListener('DOMContentLoaded', render);
       <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(0,184,148,0.06);border-left:3px solid #00B894;border-radius:0 7px 7px 0"><b>→ 이것이 Domain Randomization이 필요한 이유</b> — 시뮬에서 무게·마찰·모터출력·조명을 무작위 변동시켜 학습하면 현장 변동성에 강건. (기술설명 탭 BD Atlas Domain Randomization 카드 참조) <span style="font-size:9px;color:var(--ink-3)">출처: 자체정리</span></div>
     </div>
     <div style="border-top:1px dashed var(--line-s);margin-top:14px;padding-top:12px">
-      <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;font-weight:700;letter-spacing:.08em;margin-bottom:8px">🔺 로봇 학습 데이터 3유형 피라미드</div>
-      <p style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:10px">데이터에는 위계가 있다. <b>하위로 갈수록 양이 많고 범용 지식</b>, <b>상위로 갈수록 embodiment-specific(특정 로봇 종속)·현실 물리제약</b>을 담는다. 세 유형을 단계별로 조합하는 것이 핵심.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px">
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #00B894">
-          <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">① 실제 데이터 (Real)</div>
-          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">실로봇 텔레오퍼레이션·모션캡처 궤적. <b>고품질·힘/속도 멀티모달</b>이나 수집이 비싸고 느림. <b>사후학습·미세조정(post-training)</b> 단계에서 가치가 급상승.</div>
+      <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;font-weight:700;letter-spacing:.08em;margin-bottom:8px">로봇 학습 데이터 확보 — 3가지 접근</div>
+      <div class="scroll-x">
+        <table class="tco-table" aria-label="로봇 학습 데이터 수집 방식 비교">
+          <thead><tr><th scope="col">방식·사례</th><th scope="col">강점·활용</th><th scope="col">비용·검증 과제</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">로봇 원격조작·현장 배치<br><span style="font-weight:400">RMAC·로보티즈 데이터 팩토리</span></th><td>실제 접촉·힘·속도 등 작업 데이터<br>사후학습·미세조정에 활용</td><td>로봇·조작자·운영 비용<br>작업 범위와 하드웨어 종속성</td></tr>
+            <tr><th scope="row">사람의 휴대형 수집 장치<br><span style="font-weight:400">Generalist · data hands</span></th><td>로봇 없이 사람의 작업을 분산 수집<br>다양한 환경의 사전학습 데이터 확보</td><td>수집·정제 비용은 여전히 존재<br>다른 로봇으로의 전이·현장 성능 검증</td></tr>
+            <tr><th scope="row">영상·시뮬레이션<br><span style="font-weight:400">웹 영상·Isaac·MuJoCo·Habitat·DreamGen</span></th><td>대규모 사전학습·반복 생성<br>가상 환경·작업 다양화</td><td>웹 영상에는 실측 힘·토크가 없음<br>합성 데이터는 Sim-to-Real 격차·연산 비용·과적합 확인</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: 기존 NVIDIA·현대차·로보티즈 자료, Generalist GEN-1(2026.04.02)·GEN-1.5(2026.08.19) · 비교 해석: 자체정리</div>
+      <div id="generalist-evaluation" style="margin-top:14px">
+        <div style="font-family:var(--mono);font-size:10px;color:#6C5CE7;font-weight:700;margin-bottom:8px">Generalist 성공률 — 학습 조건을 함께 읽기</div>
+        <div class="scroll-x">
+          <table class="tco-table" aria-label="Generalist 모델별 성공률과 학습 조건">
+            <thead><tr><th scope="col">모델·발표일</th><th scope="col">발표 성공률</th><th scope="col">학습·평가 조건</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">GEN-1 · 2026.04.02</th><td>99%</td><td>개별 작업에 대한 사후학습을 거친 평가</td></tr>
+              <tr><th scope="row">GEN-1.5 · 2026.08.19</th><td>59%</td><td>3~12초 시연 1회, 가중치 업데이트 없음 · 10개 작업 평균</td></tr>
+              <tr><th scope="row">GEN-1.5 · 2026.08.19</th><td>83%</td><td>작업당 데이터 5분, 경사하강법 10단계 · 10개 작업 평균</td></tr>
+            </tbody>
+          </table>
         </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #6C5CE7">
-          <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">② 합성 데이터 (Synthetic)</div>
-          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">Isaac·Mujoco·Habitat 시뮬레이터로 대량·빠름·다양 시나리오 생성. 단 <b>Sim-to-real gap·연산집약·오버피팅 위험</b>. <b>사전학습(pre-training)</b> 주력 데이터.</div>
-        </div>
-        <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;border-top:3px solid #E17055">
-          <div style="font-family:var(--mono);font-size:11px;font-weight:700;margin-bottom:4px">③ 웹 데이터 (Web Video)</div>
-          <div style="font-size:10.5px;color:var(--ink-2);line-height:1.55">인터넷 영상 — 싸고 대량이나 <b>힘/토크 정보 없음·라벨링 필요</b>. 범용 지식 확보용 <b>사전학습</b> 데이터.</div>
-        </div>
+        <p style="font-size:10px;color:var(--ink-2);line-height:1.6;margin-top:6px">회사 자체 발표이며 학습·평가 조건이 달라 수치만으로 직접 비교할 수 없다. 단순하고 짧은 조작 작업의 결과로, 공장의 장시간 연속 자율운영이나 무인 가동률을 뜻하지 않는다.</p>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:4px">출처: Generalist <a href="https://generalistai.com/blog/gen-1" target="_blank" rel="noopener noreferrer">GEN-1 (2026.04.02)</a> · <a href="https://generalistai.com/blog/gen-1.5" target="_blank" rel="noopener noreferrer">GEN-1.5 (2026.08.19)</a></div>
       </div>
       <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6;padding:8px 12px;background:rgba(9,132,227,0.06);border-left:3px solid #0984E3;border-radius:0 7px 7px 0;margin-top:10px"><b>→ 한국 정부의 대응:</b> 실데이터 수집의 난점을 지적하며 <b>월드모델을 활용한 대규모 합성데이터 생산 체계에 집중 투자</b> 방침. (산업부 3대 메가프로젝트 국민보고회 2026.06.29) <span style="font-size:9px;color:var(--ink-3)">출처: NVIDIA · 산업부 보고회(원데이터)</span></div>
     </div>
@@ -1710,10 +1721,10 @@ window.addEventListener('DOMContentLoaded', render);
       </p>
       <!-- ── 데이터 밸류체인 분화 (26-08-04 가산) ── -->
       <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:16px;border-left:4px solid #E17055">
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;letter-spacing:.08em;margin-bottom:8px">데이터 밸류체인 분화 — 수집은 커모디티, 차별화는 후공정</div>
-        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">중국은 데이터가 핵심 병목으로 남아 있으나, <b>외주 수집 자체는 이미 커모디티화</b> 진행(중국 데이터 팩토리 50+개소). 차별화 영역은 수집 이후의 후공정으로 이동:</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;letter-spacing:.08em;margin-bottom:8px">데이터 경쟁력 — 수집 품질에서 모델 개선까지</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">데이터 경쟁력은 수집량만으로 결정되지 않는다. <b>작업·환경의 다양성, 정확도와 모델 개선 기여</b>를 함께 봐야 한다. 중국 데이터 팩토리 50+개소 등 범용 외주 수집에는 가격경쟁이 심화될 수 있지만, 독자적인 수집 체계는 여전히 경쟁력이 될 수 있다.</div>
         <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:8px">
-          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#636E72">수집</div><div style="font-size:9px;color:var(--ink-3)">외주화·커모디티화 ↓</div></div>
+          <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#636E72">수집</div><div style="font-size:9px;color:var(--ink-3)">정확도·다양성·독자성</div></div>
           <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
           <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#6C5CE7">라벨링</div><div style="font-size:9px;color:var(--ink-3)">차별화 ↑</div></div>
           <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
@@ -1723,14 +1734,11 @@ window.addEventListener('DOMContentLoaded', render);
           <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
           <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#00B894">Post-training</div><div style="font-size:9px;color:var(--ink-3)">차별화 ↑↑</div></div>
         </div>
-        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">인티그레이터·모델 개발사의 경쟁 우위는 "얼마나 모았나"가 아니라 <b>모은 데이터를 얼마나 빨리 모델 개선으로 되돌리는가</b>(플라이휠 회전 속도)로 이동. 위 WAM 섹션 「26.7 실증 스냅샷」의 결론과 동일 축. <span style="font-size:9px;color:var(--ink-3)">[자체정리, 26.7 업계 동향 종합]</span></div>
+        <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">Generalist는 휴대형 <b>data hands</b>로 사람의 작업 데이터를 모으고, GEN-1에 <b>50만 시간 이상</b>의 데이터셋을 사용했다고 발표했다. 이는 학습 데이터 규모이며 로봇 가동시간·출하량이나 검증된 해자를 뜻하지 않는다. <span style="font-size:9px;color:var(--ink-3)">[Generalist GEN-1, 2026.04.02 · 중국 동향: 기존 26.7 자료 · 해석: 자체정리]</span></div>
       </div>
       <!-- DreamGen — 실데이터 부족을 합성으로 푸는 NVIDIA 방식 -->
       <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:16px;border-left:4px solid #76B900">
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#76B900;letter-spacing:.08em;margin-bottom:8px">DREAMGEN — 실데이터 병목을 합성 데이터로 우회 (NVIDIA GR00T)</div>
-        <div style="font-size:11px;color:var(--ink-2);line-height:1.7;margin-bottom:8px">
-          텔레오퍼레이션(사람이 로봇을 직접 조작)은 비싸고 느림. NVIDIA는 이 병목을 영상 생성으로 우회:
-        </div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#76B900;letter-spacing:.08em;margin-bottom:8px">DREAMGEN — 영상에서 액션 데이터 생성 (NVIDIA GR00T)</div>
         <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:8px">
           <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#76B900">① 실영상 수집</div><div style="font-size:9px;color:var(--ink-3)">로봇 영상으로 비디오 모델 fine-tune</div></div>
           <div style="font-size:14px;color:var(--ink-3);padding:0 4px">→</div>
@@ -1741,7 +1749,7 @@ window.addEventListener('DOMContentLoaded', render);
           <div style="background:#fff;border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:center;min-width:100px"><div style="font-size:10px;font-weight:700;color:#00B894">④ 학습 데이터</div><div style="font-size:9px;color:var(--ink-3)">합성 영상+액션으로 VLA 학습</div></div>
         </div>
         <div style="font-size:10.5px;color:var(--ink-2);line-height:1.6">
-          + <b>인간 1인칭(Egocentric) 영상</b>도 잠재 액션(Latent Actions)으로 변환해 학습 — 사람 영상을 "또 다른 로봇 데이터"로 취급. <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">"실데이터가 병목 → 합성으로 푼다"는 Cosmos 9,000조 thesis의 실증.</span> <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GR00T / DreamGen]</span>
+          + <b>인간 1인칭(Egocentric) 영상</b>도 잠재 액션(Latent Actions)으로 변환해 학습. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GR00T / DreamGen]</span>
         </div>
       </div>
       <!-- 스마트글래스·1인칭 데이터 -->
@@ -1896,8 +1904,8 @@ window.addEventListener('DOMContentLoaded', render);
       </div>
 
       <div style="background:#FFF8E1;border-radius:8px;padding:12px 14px;border-left:3px solid #F8B739;margin-bottom:10px">
-        <div style="font-size:12px;font-weight:700;color:#E17055;margin-bottom:4px">💡 로보티즈 스스로 인정한 부분이 핵심임</div>
-        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">"범용 로봇으로 발전하면 달라질 수도 있음"이라고 직접 답변함. 데이터 팩토리의 lock-in 근거가 시간이 갈수록 약해질 수 있다는 의미임.</div>
+        <div style="font-size:12px;font-weight:700;color:#E17055;margin-bottom:4px">💡 수집 방식 변화와 하드웨어 lock-in 점검</div>
+        <div style="font-size:11px;color:var(--ink-2);line-height:1.7">로보티즈도 "범용 로봇으로 발전하면 달라질 수도 있음"이라고 언급했다. Generalist처럼 로봇 없이 사람의 작업 데이터를 수집하는 방식이 확대되면, 데이터 수집 수요가 특정 로봇 하드웨어 수요로 연결되는 정도는 달라질 수 있다. 로보티즈는 장비 보급뿐 아니라 <b>고객 생태계·데이터 품질·사용권·모델 개선 기여</b>를 함께 확인해야 한다. <span style="font-size:9px;color:var(--ink-3)">[Generalist GEN-1, 2026.04.02 · 해석: 자체정리]</span></div>
       </div>
 
       <div style="font-family:var(--mono);font-size:10px;color:var(--ink-3);margin-bottom:6px">결론</div>
