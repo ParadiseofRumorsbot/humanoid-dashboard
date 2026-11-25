@@ -191,7 +191,7 @@ const DASHBOARD_DATA = {
      ══════════════════════════════════════ */
   oemTargets: [
     { name: 'Tesla', flag: '🇺🇸', target2026: '5~10만 CAPA', target2030: '100만대 목표', price: '$20~30K', battery: '2.3kWh / 2170 원통형' },
-    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026년 8~9월)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
+    { name: 'Boston Dynamics', flag: '🇺🇸', target2026: 'RMAC 개소 (2026.8)', target2030: '3만 CAPA (2028E)', price: '-', battery: 'Self-swappable' },
     { name: 'AGIBOT', flag: '🇨🇳', target2026: '수만대', target2030: '-', price: '-', battery: '-' },
     { name: 'UBTECH', flag: '🇨🇳', target2026: '1만대', target2030: '-', price: '-', battery: '-' },
     { name: 'Unitree', flag: '🇨🇳', target2026: '-', target2030: '-', price: '$16K~', battery: '-' },
@@ -223,14 +223,14 @@ const DASHBOARD_DATA = {
     { company: '계양전기', ticker: '012200', parts: '액추에이터 (대당 12개)', customer: '현대차 MobED', note: '-', cat: 'act' },
     { company: '현대오토에버', ticker: '307950', parts: 'SI·관제·Robot OS', customer: 'BD·HMG', note: 'HMG 로보틱스 시스템 통합 담당 (JPM 2026)', cat: 'ctrl' },
     { company: '현대글로비스', ticker: '086280', parts: '생산·판매 물류', customer: 'BD·HMG', note: 'SCM 백본 · 물류 테스트베드 (JPM 2026)', cat: 'ctrl' },
-    { company: '로보티즈', ticker: '108490', parts: '사이클로이드(DYD)·유성 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀. Q시리즈(QDD) 26.9 출시 · 우즈벡 완공 26.10~11, 가동 27년 초 이연 · 2031년 CAPA 500만개 (IR 26.9.2)', cat: 'gear' },
-    { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
-    { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
-    { company: '한라캐스트', ticker: '125490', parts: 'Al/Mg 다이캐스팅 구조체', customer: '글로벌 휴머노이드사(개발 수주)', note: '마그네슘 다이캐스팅 국내 독보적(Optimus V2 외장소재 이력) · 수주잔고 1.2조 · 글로벌 AI 자동차사 1차 협력사 등록 (언론종합·공시)', cat: 'body' },
+    { company: '로보티즈', ticker: '108490', parts: '사이클로이드(DYD)·유성 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀. Q시리즈(QDD) 26.9 출시 · 우즈벡 완공 26.10~11, 가동 27년 초 이연 · 2031년 CAPA 500만개 (IR 26.9.2) · 휴머노이드 \'사피엔스\' 26.11 출시(Q시리즈 23개, 27년 인도)', cat: 'gear' },
+    { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여 · 휴머노이드용 정밀 감속기 공급계약 12.07억(26.5.19)→정정 22.84억(26.7.28)·별건 19.23억(26.8.24), 상대 국내 로봇 제조사 (DART)', cat: 'gear' },
+    { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표 · 정밀감속기 CAPA 연 26만개 · 유성·하모닉·사이클로이드 3종 생산 (회사 자료 26.11)', cat: 'gear' },
+    { company: '한라캐스트', ticker: '125490', parts: 'Al/Mg 다이캐스팅 구조체', customer: '글로벌 휴머노이드사(개발 수주)', note: '마그네슘 다이캐스팅 국내 독보적(Optimus V2 외장소재 이력) · 수주잔고 1.2조 · 글로벌 AI 자동차사 1차 협력사 등록 (언론종합·공시) · 로봇 수주잔고 1Q26말 136억→2Q26말 303억(개발·샘플 단계, 회사 자료)', cat: 'body' },
     { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
     { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
-    { company: '한국피아이엠', ticker: '448900', parts: 'MIM 감속기 ASSY·티타늄 분말·구조 부품', customer: 'BD·현대차·북미 로봇사', note: '하모닉 미검토(유성·사이클로이드 2트랙) · 구조 부품 소량 양산 발주 진행, BD가 타임라인 최선두 (컨콜 26.8.27)', cat: 'gear' },
-    { company: '삼현', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
+    { company: '한국피아이엠', ticker: '448900', parts: 'MIM 감속기 ASSY·티타늄 분말·구조 부품', customer: 'BD·현대차·북미 로봇사', note: '하모닉 미검토(유성·사이클로이드 2트랙) · 구조 부품 소량 양산 발주 진행, BD가 타임라인 최선두 (컨콜 26.8.27) · 손 감속기 지름 8~20mm 개발(대당 24~40개), 글로벌 휴머노이드사향 6종 샘플 테스트·27년 초 양산 여부 결정 (회사 자료 26.11)', cat: 'gear' },
+    { company: '삼현', ticker: '-', parts: '액추에이터 모듈(모터·감속기·제어기)', customer: '북미 휴머노이드사', note: '26.9 초도 양산 계약 1건·12월 초기 물량 출하 예정 · 2공장 액추에이터 CAPA 50만개 27.4까지 확보 계획 (회사 자료 26.11)', cat: 'body' },
     { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 2170', customer: 'Optimus + 로봇 6곳', note: '미국 AZ 현지조달', cat: 'batt' },
     { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산 · 휴머노이드용 원형 셀 일부 채용 물량 확인 (IR 26.9.1)', cat: 'batt' },
     { company: '대주전자재료', ticker: '078600', parts: '실리콘 음극재', customer: '-', note: '고출력 배터리 핵심', cat: 'batt' },
@@ -555,16 +555,16 @@ const DASHBOARD_DATA = {
 
   radarOEM: {
     optimus: { name: 'Optimus Gen2', color: '#FF6B6B', h: 173, w: 56, dof: 22, payload: 9, battery: 2.3, asp: 25, gear: '하모닉', customer: '자사 공장', pos: '범용 양산형', note: 'Gen3 26.6말 설계승인·9월 주1,000대 지침 · Fremont 고볼륨 라인 초기 생산 개시·주2만대 도달 1년+·외부 인도 27년 말·AI5 탑재 27.4경(3Q26 컨콜) · Gen4=Austin 연1,000만대 aspirational·PCB 내재화(2Q26 컨콜)·Austin 공장 건설 중(3Q26 덱)' },
-    figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'Helix 자체 내재화 (OpenAI 결별)' },
-    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '유성 QDD', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 2026년 8~9월 개소, 30K CAPA (28E)' },
-    digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '하모닉', customer: 'Amazon·GXO', pos: '물류 특화', note: '캐나다 토요타 7대 배치' },
-    g1: { name: 'Unitree G1', color: '#E17055', h: 132, w: 35, dof: 23, payload: 2, battery: 1.5, asp: 13.5, gear: '유성', customer: '범용', pos: '중국 저가형', note: '26년 8월 IPO, BOM 790만원' },
+    figure: { name: 'Figure 03', color: '#6C5CE7', h: 168, w: 61, dof: 30, payload: 10, battery: 2, asp: 25, gear: '하모닉', customer: 'BMW', pos: '미국 공장용', note: 'Helix 자체 내재화 (OpenAI 결별) · BotQ 시간당 1대(26.4)·누적 1,000대+(26 여름, 회사 발표)' },
+    atlas: { name: 'BD Atlas', color: '#F8B739', h: 190, w: 90, dof: 56, payload: 50, battery: 5, asp: 138, gear: '유성 QDD', customer: '현대차그룹', pos: '하이엔드 산업용', note: 'RMAC 26.8 개소, 30K CAPA (28E) · 26.10 신형 핸드 4지·13DoF·직결 (BD 발표)' },
+    digit: { name: 'Agility Digit', color: '#00B894', h: 175, w: 65, dof: 28, payload: 16, battery: 3, asp: 45, gear: '사이클로이드(자체)', customer: '셰플러·GXO·토요타·AGCO', pos: '물류 특화', note: '자체 설계 구름 접촉식 사이클로이드·모터만 외부 조달 · 배치 확정 시설 11곳·누적 6.5만h+ · Digit 5 확정 주문 $3억+·27H1 배치 · 26.11 나스닥 상장 (회사 설명 26.11.24)' },
+    g1: { name: 'Unitree G1', color: '#E17055', h: 132, w: 35, dof: 23, payload: 2, battery: 1.5, asp: 13.5, gear: '유성', customer: '범용', pos: '중국 저가형', note: '26.8.19 상하이 과창판 상장, BOM 790만원' },
     neo: { name: '1X Neo', color: '#0984E3', h: 168, w: 30, dof: 75, payload: 25, battery: 2, asp: 20, gear: '유성', customer: '일반 소비자', pos: '서비스·가정용', note: '26H2 소비자 배송 시작' },
     /* 신규 기체(26-08-23, WRC/WAIC 공개분) — partial: 미공개 수치가 있어 스펙 표에만 표시, 레이더·ASP 시뮬레이터 제외. 관절별 감속기·토크 미공개로 oemSpecs(해부 다이어그램)는 미추가 */
     xiaomi: { name: 'Xiaomi 차세대', color: '#FF9F43', partial: true, h: 170, w: 66, dof: 66, gear: '미공개', customer: '자사 EV공장(실증)', pos: '자사 제조 실증', note: 'WRC 2026 첫 공개 — 1.70m·66kg·전신 66DoF(약 절반이 손). EV공장 4개월 실습 나사체결 98%, 26년말 소규모 상용화(회사 발표)' },
     a3ultra: { name: 'AgiBot A3 Ultra', color: '#EE5253', partial: true, h: 174, w: 60, dof: 51, payload: 5, gear: '미공개', customer: '룽치(3C 라인) 등', pos: '중국 양산 선두권', note: 'WAIC 2026 공개 — 액티브 51DoF+OmniHand 20DoF·팔당 5kg·연속 8시간·700TOPS. 시리즈 누적 생산 1.5만대(26.6, 회사 발표)' },
     tiangongOmni: { name: '天工 Omni', color: '#54A0FF', partial: true, h: 135, w: 39, gear: '미공개', customer: '개방 플랫폼(2차 개발)', pos: '표준·생태 플랫폼', note: 'WRC 2026 첫 공개 — 1.35m·39kg. 관절제어·센서·데이터수집 API 전면 개방(북경인형혁신중심), DoF 미공개' },
-    iron: { name: 'XPeng IRON 신형', color: '#1DD1A1', partial: true, dof: 82, gear: '미공개', customer: '자사 매장(27.1Q~)', pos: '차·로봇 칩 공용 수직통합', note: '전신 82DoF(손 22)·튜링칩 3개 2,250TOPS. 26.7.24 시험생산, 26년말 양산(월 1,000대+ 목표) — 신장·중량 미공개' },
+    iron: { name: 'XPeng IRON 신형', color: '#1DD1A1', partial: true, dof: 82, gear: '미공개', customer: '자사 매장(27.1Q~)', pos: '차·로봇 칩 공용 수직통합', note: '전신 82DoF(손 22)·튜링칩 3개 2,250TOPS. 26.7.24 시험생산, 26.9 광저우 신규 라인 첫 출고, 26년말 양산(월 1,000대+ 목표)·외부 판매 27년 — 신장·중량 미공개' },
   },
 
   /* ══════════════════════════════════════
@@ -806,7 +806,7 @@ const DASHBOARD_DATA = {
         { name: 'GR00T', role: 'Humanoid Foundation Model', desc: '범용 휴머노이드 AI. Dual System (N1/N1.5). Cross-Embodiment' },
         { name: 'Isaac Lab', role: '로봇 학습 프레임워크', desc: 'GPU 병렬 RL/IL 학습. Sim-to-Real Transfer Pipeline' },
         { name: 'OSMO', role: '오케스트레이션 플랫폼', desc: 'Omniverse + Cosmos 통합. 시뮬-학습-배포 전체 워크플로우 관리' },
-        { name: 'Jetson Thor', role: '로봇 엣지 컴퓨팅', desc: '차세대 로봇 SoC. GR00T 추론 실행. 275 TOPS AI 성능' },
+        { name: 'Jetson Thor', role: '로봇 엣지 컴퓨팅', desc: '차세대 로봇 SoC. GR00T 추론 실행. T5000 2,070 FP4 TFLOPS (NVIDIA)' },
       ],
       trainingLoop: [
         { step: 1, name: 'Omniverse 환경 구축', desc: '물리 정확 디지털 트윈에서 작업 시나리오 생성' },
@@ -1207,6 +1207,18 @@ const DASHBOARD_DATA = {
      Update Log — 모든 페이지에 표시
      ══════════════════════════════════════ */
   updateLog: [
+    {
+      date: '2026-11-25',
+      title: '26.11 일괄 갱신 — 설계 CAPA 표 신설 · 상장 완료 반영 · Digit 감속기 정정 · 미중 규제 일정 · 중희토 제약 · 공급망 공시',
+      source: 'Agility 회사 설명(26.11.24) · Tesla 3Q26 컨콜 · BD·현대차 IR · DART · 각사 발표·공시 · SAG·Counterpoint·Omdia·IDC · 미 의회·FCC·대통령 포고 · 중국 MIIT·상무부 · Arnold·UN Comtrade · 자체추정',
+      changes: [
+        '시장: OEM②-b 연간 설계 CAPA 추정(2026~30, 가동률 미반영) 신설 [자체추정] · Unitree 26.8.19 과창판·Agility 26.11 나스닥 상장·BD 잔여지분 인수 완료 반영 · AgiBot 누적 2만대(26.9)·Tracker 행 추가(Tesla·Apptronik·Galbot) · 2025 출하·기존 2026/27 추정은 불변',
+        '경쟁: 출하 집계 병기(26H1 SAG 1.9만대·중국 97%, 26 전망 5만~6만, 2025 기관별 점유율) · 미국 규제 일정(NDAA·FCC·GUARD Act·232조 포고·27.1 자석 규정) · 중국 표준화·희토류 통제 · 기업가치 표 갱신',
+        'KR: 모비스 \'31개 수주 확정\' → 단독 공급 전망(업계 관측)·회사 표현 병기, 11월 의왕연구소 시제품 생산 · 삼현 북미 초도 양산 계약 · 에스비비 공급계약 정정 22.84억·별건 19.23억(DART) · LG전자의 로보티즈 지분 6.6%(1Q26 분기보고서)',
+        '기술: radarOEM.digit 감속기 하모닉 → 사이클로이드(자체)·고객 정정 · NdFeB 중희토 문구 관절별 정정 + 중희토 제약 박스 · 핸드 구동 방식·센서 원가 · 감속기 공급사·관절 구성 · Jetson Thor 275 TOPS(Orin 값) → T5000 2,070 FP4 TFLOPS',
+        'SW·개요: Figure Index·Nscale 계약·Generalist GEN-0→GEN-1 · 노동 공백 최신 인용(2033년 190만) 병기 · Figure 160대/월 = BotQ 생산 정정 · 캐시버스터 v=20261125',
+      ],
+    },
     {
       date: '2026-11-08',
       title: '탭 이동·목차 스크롤·모바일 프레임워크 표시 수정',

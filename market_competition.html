@@ -55,6 +55,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     <div class="st-tabs" id="yrTabs" style="margin-bottom:12px"></div>
     <div class="num-row"><div class="num-box" style="border-left:3px solid #e74c3c"><div class="num-label">🇨🇳 중국</div><div class="num-value" id="cs">-</div></div><div class="num-box" style="border-left:3px solid #3498db"><div class="num-label">🇺🇸 미국</div><div class="num-value" id="us">-</div></div><div class="num-box"><div class="num-label">합계</div><div class="num-value" id="tu">-</div></div></div>
     <div class="scroll-x"><div id="og" style="display:grid;grid-template-columns:130px 80px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div></div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;font-size:10.5px;color:var(--ink-2);line-height:1.7;margin-top:10px"><b>집계 병기 (26.11):</b> ① <b>26년 상반기 실측</b>(SAG, 완제품사 출하) 세계 약 <b>1.9만대</b>·중국 업체 97% — AgiBot 8.4천(44%)·Unitree 5.9천(31%)·Galbot 0.9천·UBTECH 0.7천·Leju 0.6천·기타 2.5천. WRC 개막 발표치 "중국 상반기 4만대+"는 집계 범위 미상이라 병기만. ② <b>26년 연간 전망</b> 5만~6만대(Counterpoint·SAG). ③ <b>2025 점유율은 기관마다 다름</b>(AgiBot/Unitree/UBTECH) — Omdia 39/32/7%·Counterpoint 30/26/5%(Tesla 5%)·IDC 29/27/3%, 2025 설치 대수는 1.3만~1.8만대로 기관별 상이. 위 연도 탭(각사 발표 합산·자체추정)은 그대로 둠.</div>
   </section>
   <section class="card section-gap">
     <div class="card-title">🇨🇳 중국 시장 규모 <span class="badge" style="background:#e74c3c;color:#fff">CAGR 93.6%</span></div>
@@ -76,7 +77,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
   <section class="card section-gap">
     <div class="card-title">🏭 중국 2026E 생산 M/S <span class="badge" style="background:#e74c3c;color:#fff">Trendforce</span></div>
     <div id="cnProdGrid" style="display:grid;grid-template-columns:100px 60px 1fr;gap:0;font-family:var(--mono);font-size:11px"></div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">Unitree IPO: 26년 3Q 상장 예정. 예상 시총 420억위안(약 9조원). 매출 17.1억위안, 순익 2.9억위안</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:6px">Unitree: <b>26.8.19 상하이 과창판 상장</b>(688836) · 공모가 기준 시총 609.9억위안. 매출 17.1억위안, 순익 2.9억위안 · 휴머노이드 평균 판매가 23년 ~$8.5만 → 25년 1~3Q ~$2.5만, 휴머노이드 매출의 ~3/4이 교육·연구 고객(투자설명서) · 누적 1.8만대(26.8.12, 회사 발표)<br>⚠️ 위 막대(Trendforce 26E 전망: Unitree 49%>AgiBot 30%)는 26년 상반기 실측(SAG: AgiBot 8.4천 44% > Unitree 5.9천 31%)과 순위가 반대 — 실측은 위 「글로벌 출하량」 집계 병기 참조</div>
     <div style="background:rgba(118,185,0,0.06);border-left:3px solid #76B900;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.6">
       <b style="color:#76B900">★ NVIDIA GR00T 레퍼런스 = Unitree H2 Plus 채택 (2026.10):</b> NVIDIA가 GR00T Reference Humanoid의 본체로 <b>Unitree H2 Plus(31-DOF) + Sharpa Hands(22-DOF)</b>를 선택. 중국 저가 양산 대장이 글로벌 표준 레퍼런스 플랫폼의 몸으로 격상 — 중국 HW 침투력을 보여주는 상징적 사건. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA GTC Taipei 2026]</span>
     </div>
@@ -102,23 +103,27 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
           · 실증현장 의무 지정: <b>성(省)별 ≥20개소 · 중앙 SOE별 ≥10개소</b> → 휴머노이드 훈련 환경으로 전환<br>
           · 지방정부·SOE 이행계획 6월말 제출 → <b>11월 중간평가</b><br>
           · 로봇, 15차 5개년계획 전략신흥산업 <b>최초 편입</b>(26.3)<br>
-          · SOE 실구매 개시: State Grid Rmb68억 발주(구성: 휴머노이드 500·양팔 3,000·4족 5,000 — OEM 정본 Tracker 참조)
+          · SOE 실구매 개시: State Grid Rmb68억 발주(구성: 휴머노이드 500·양팔 3,000·4족 5,000 — OEM 정본 Tracker 참조)<br>
+          · <b>표준화</b>: 25.12 MIIT 휴머노이드·구체지능 표준화기술위원회 → 26.2 표준체계(2026판) → <b>26년 하반기 SW·HW 인터페이스 규범 + 국산 부품 적합성 인증</b> 개시 예고(신화망 26.3)<br>
+          · <b>희토류 통제</b>: 25.4 Dy·Tb 등 7종 수출허가제(건별 승인, 유예 대상 아님) → 25.10 확대통제(중국산 희토류 0.1%+ 포함 해외 제품 역외 적용) → 미중 합의로 유예, <b>27.1.10 유예 종료</b>(중국 상무부)
         </div>
         <div style="font-size:9.5px;color:var(--ink-3);margin-top:6px">⚠️ 국가 주도 배치 목표가 지속 가능한 상업 수요·유닛 이코노믹스로 직결되는 것은 아님</div>
       </div>
       <div style="background:rgba(52,152,219,0.06);border-radius:10px;padding:14px;border-left:4px solid #3498db">
-        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#3498db;margin-bottom:6px">🇺🇸 미국 — GUARD Act (초당파 발의, 미입법)</div>
+        <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#3498db;margin-bottom:6px">🇺🇸 미국 — 조달 금지 → 수입 차단 → 부품 원산지 (26.11)</div>
         <div style="font-size:11px;color:var(--ink-2);line-height:1.7">
           · 중국 등 우려국산 휴머노이드·4족 로봇을 <b>국가안보 심사</b> 대상화<br>
           · 위험 판정 또는 <b>1년 내 미심사 시 FCC Covered List 자동 등재</b> → 수입 차단<br>
           · <b>드론 전례</b>(FCC 25.12 — 신규 중국산 드론·핵심부품 인증 차단)와 동일 구조 → 심사 강화가 아니라 사실상 수입금지로 귀결 가능<br>
-          · 역설: 미국 연구실 상당수가 저가 중국산(Unitree 등)에 의존 — 시행 시 <b>R&D 비용 상승</b> 리스크 동반
+          · 역설: 미국 연구실 상당수가 저가 중국산(Unitree 등)에 의존 — 시행 시 <b>R&D 비용 상승</b> 리스크 동반<br>
+          · <b>일정</b>: 26.3 상원 연방기관 중국산 로봇 조달·운영 금지 법안 → 26.7 하원 FY27 NDAA에 적대국산 휴머노이드 <b>국방부 조달 금지</b> 조항(12월 상하원 조정) → 26.7 FCC 외국산 휴머노이드 <b>신규 인증 제한</b> → 26.9 GUARD Act(H.R. 9129) 하원 소위 통과 → 26.10.28 Section 232 대통령 포고(로봇·산업기계·부품 수입이 국가안보 위협, 협정 추진 지시) → <b>27.1 국방 조달 자석 규정 시행</b>(네오디뮴·사마륨코발트 자석의 채굴~제조 전 공정을 중국·러시아·이란·북한 밖에서) → 27.4.26 232조 협상 보고 시한<br>
+          · 연방정부 보행 로봇 계약 누적 1.4억$ 중 약 99%가 국방 기관(USAspending) — 국방 조달 규제가 곧 수요처 규제
         </div>
-        <div style="font-size:9.5px;color:var(--ink-3);margin-top:6px">⚠️ 발의 단계 — 입법 여부·범위(부품·제조 파트너십 확장) 미정</div>
+        <div style="font-size:9.5px;color:var(--ink-3);margin-top:6px">⚠️ GUARD Act는 하원 소위 통과 단계(본회의·상원 미정) · FCC 조치의 부품 포함 여부·동맹국 예외는 원문 미확인</div>
       </div>
     </div>
     <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--ink-2);line-height:1.7"><b>EV 블록화와의 대칭 [자체정리]:</b> 드론(FCC 인증 차단) → EV(관세·현지화 요건·배터리 이력 추적) → 휴머노이드(GUARD Act)로 이어지는 동일 패턴. 미·EU가 EV에서 구축한 수단(징벌 관세·부품 원산지 정량 요건·데이터 주권 규제)이 로봇에 이식될 경우, 중국 부품 의존이 큰 밸류체인(감속기·모터·자석)의 원가 구조에 직접 영향.</div>
-    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 중국 정부 발표(MIIT·SASAC)·미 의회 발의안·FCC(원데이터) · 대칭 프레임은 [자체정리]</div>
+    <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 중국 정부 발표(MIIT·SASAC·상무부)·미 의회(NDAA·GUARD Act)·FCC·대통령 포고·USAspending(원데이터) · 대칭 프레임은 [자체정리]</div>
   </section>
 
   <section class="card section-gap">
@@ -149,11 +154,13 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       <tbody>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Figure AI</td><td style="padding:7px 9px;white-space:normal">$39B (390억달러)</td><td style="padding:7px 9px;white-space:normal">2025.9 시리즈C</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 1X Technologies</td><td style="padding:7px 9px;white-space:normal">$10B (100억달러)</td><td style="padding:7px 9px;white-space:normal">—</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Agility</td><td style="padding:7px 9px;white-space:normal">post-money $3.1B (31억달러)</td><td style="padding:7px 9px;white-space:normal">pre-money $2.5B · CCXI와 SPAC 합병 · 2026.4Q 상장예정</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Agility</td><td style="padding:7px 9px;white-space:normal">post-money $3.1B (31억달러)</td><td style="padding:7px 9px;white-space:normal">pre-money $2.5B · CCXI와 SPAC 합병 · 26.11 나스닥 상장(AGLT)</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 DEEP Robotics</td><td style="padding:7px 9px;white-space:normal">110억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Engine AI</td><td style="padding:7px 9px;white-space:normal">100억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Leju</td><td style="padding:7px 9px;white-space:normal">95억위안 (~2조원, <span style="color:var(--ink-3)">환산 [자체추정]</span>)</td><td style="padding:7px 9px;white-space:normal">비상장</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 AgiBot</td><td style="padding:7px 9px;white-space:normal">IPO 목표 밸류 $51~64억</td><td style="padding:7px 9px;white-space:normal">IPO 추진 중 [언론종합]</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 AgiBot</td><td style="padding:7px 9px;white-space:normal">IPO 목표 밸류 $51~64억 (보도 범위 최대 $200억)</td><td style="padding:7px 9px;white-space:normal">26.7 홍콩 상장 절차 개시 [언론종합]</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇨🇳 Unitree</td><td style="padding:7px 9px;white-space:normal">공모가 기준 609.9억위안</td><td style="padding:7px 9px;white-space:normal">26.8.19 상하이 과창판 상장</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:7px 9px;font-weight:600">🇺🇸 Apptronik</td><td style="padding:7px 9px;white-space:normal">~$55억 (보도)</td><td style="padding:7px 9px;white-space:normal">26.2 $5.2억 추가 조달(시리즈A 누적 $9.35억+)</td></tr>
         <tr><td style="padding:7px 9px;font-weight:600">🇨🇳 UBTECH</td><td style="padding:7px 9px;white-space:normal">2025년 Walker 시리즈 주문액 14억위안+</td><td style="padding:7px 9px;white-space:normal">홍콩 상장 [언론종합]</td></tr>
       </tbody>
     </table></div>
@@ -201,7 +208,7 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
     </div>
     <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-top:4px">보수적인 <b>Fanuc도 엔비디아 채택</b>(ROBOGUIDE + Isaac Sim 디지털트윈). <b>Galbot</b>(中 비상장 최고 밸류 260억위안~5조원): 자체 Grasp/Grocery VLA로 약국·편의점 실증.</div>
     <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7">
-      <b style="color:#76B900">보강 (26.7):</b> ① 레퍼런스 채택 예정 기관 — <b>Stanford·ETH Zurich·Ai2·UC San Diego</b> 등(초기 타깃은 상업 운영이 아닌 연구실 — 중복 통합작업 제거·NVIDIA 스택의 연구 표준화 효과). ② <b>Halos for Robotics</b> — IGX Thor 컴퓨트 + Halos OS + 외부 안전 에이전트 + 인증 시험소(제3자 인증 지원)로 구성된 피지컬 AI 안전 풀스택. <b>Agility가 첫 휴머노이드 파트너</b>(Digit 인체감지·안전 아키텍처 통합). 휴머노이드가 펜스 안 데모 → 공유 산업 환경으로 이동하는 국면에서 <b>안전 인증·검증이 주요 게이팅 요인</b>으로 부상. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA·각사]</span>
+      <b style="color:#76B900">보강 (26.7):</b> ① 레퍼런스 채택 예정 기관 — <b>Stanford·ETH Zurich·Ai2·UC San Diego</b> 등(초기 타깃은 상업 운영이 아닌 연구실 — 중복 통합작업 제거·NVIDIA 스택의 연구 표준화 효과). ② <b>Halos for Robotics</b> — IGX Thor 컴퓨트 + Halos OS + 외부 안전 에이전트 + 인증 시험소(제3자 인증 지원)로 구성된 피지컬 AI 안전 풀스택. <b>Agility가 첫 휴머노이드 파트너</b>(Digit 인체감지·안전 아키텍처 통합). Digit 5는 사람 접근 감지 시 정지·접촉 전 바닥에 착석, 차기 IGX에 Agility 요구사항 반영·Halos를 별도 실리콘으로 분리해 메인 제어와 독립 감시(회사 설명 26.11.24) · 표준: ISO 25785-1(동적 안정 이동로봇) 초안 검토 중(Agility 공동 집필)·ISO 13482 개정안 승인투표 단계. 휴머노이드가 펜스 안 데모 → 공유 산업 환경으로 이동하는 국면에서 <b>안전 인증·검증이 주요 게이팅 요인</b>으로 부상. <span style="font-size:9px;color:var(--ink-3)">[NVIDIA·각사]</span>
     </div>
     <div style="background:rgba(118,185,0,0.06);border-left:3px solid #76B900;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7"><b style="color:#76B900">핵심 톤:</b> 엔비디아 동맹은 이제 기본 전제이고, 차별화는 <b>독점데이터·양산신뢰성·실증·라이브스트리밍</b>에서 온다. <span style="font-size:9px;color:var(--ink-3)">[자체추정]</span></div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 각사·NVIDIA(원데이터). 위 '중국 2026E 생산 M/S' 카드의 Unitree H2 Plus 채택 박스와 동일 사건의 사양 보완.</div>
@@ -234,6 +241,19 @@ window.addEventListener('DOMContentLoaded',()=>{render();renderExtra();});
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-11-25</span>
+          <span style="font-size:12px;font-weight:600">26.11 갱신 — 출하 집계 병기·Unitree 상장·미중 규제 일정·기업가치 표</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">SAG · Counterpoint · Omdia · IDC · 투자설명서 · 미 의회·FCC·대통령 포고·USAspending · 중국 MIIT·상무부 · 각사 발표</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>글로벌 출하량 카드에 집계 병기: 26H1 SAG 실측 1.9만대(중국 97%)·26 연간 전망 5만~6만대·2025 기관별 점유율 3종 — 연도 탭 값은 불변</li>
+          <li>Unitree '26년 3Q 상장 예정·예상 시총 420억위안' → 26.8.19 과창판 상장·공모가 기준 609.9억위안·ASP 추이·누적 1.8만대 / Trendforce 26E 막대와 실측 순위 반대 주석</li>
+          <li>정책 카드: 미국 일정(상원 조달 금지 법안·NDAA 조달 금지·FCC 인증 제한·GUARD Act 소위 통과·232조 포고·27.1 자석 규정)·연방 보행 로봇 계약 99% 국방 / 중국 표준화 일정·희토류 수출통제</li>
+          <li>기업가치 표: Agility 상장 완료·AgiBot 홍콩 절차·Unitree·Apptronik 행 / Halos 보강에 Digit 5 협동 안전·ISO 25785-1</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#0984E3;color:#fff;padding:2px 8px;border-radius:4px">2026-08-04</span>

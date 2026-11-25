@@ -64,7 +64,7 @@ svg text{font-family:'JetBrains Mono',monospace}
 @media(max-width:700px){main{padding:16px 12px 80px}.gear-wrap{flex-direction:column}}
 .sim-slider{-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;background:var(--line);outline:none;width:100%;cursor:pointer}.sim-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);cursor:pointer;border:3px solid var(--bg-card);box-shadow:0 1px 4px rgba(0,0,0,.15)}
 </style>
-<script src="data.js?v=20261108-2"></script>
+<script src="data.js?v=20261125"></script>
 <script>
 // ═══════════════════════════════════════
 // 1. REDUCER ANIMATIONS
@@ -722,6 +722,17 @@ window.addEventListener('DOMContentLoaded', () => {
       점유율·목표치는 각사 IR·발언 기준 선언치 — 실출하와 구분해 읽을 것.
       <span style="font-size:9px;color:var(--ink-3)">[각사 IR·언론]</span>
     </div>
+    <!-- ── 감속기·관절모듈 공급사 갱신 (26-11-25 가산) ── -->
+    <div style="background:rgba(108,92,231,0.06);border-left:3px solid #6C5CE7;border-radius:0 8px 8px 0;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b style="color:#6C5CE7">감속기·관절모듈 공급사 갱신 (26.11):</b>
+      <b>HDS</b> 가동률 ~70%로 생산 여력 잔존 · 1Q26 수주가 전 카테고리에서 급증, 미국 대형 휴머노이드 제조사 1곳의 주문 포함(고객명 미공개 — 특정 OEM으로 단정 금지) · 미국 공장 월 1만대 → 26년도 말 1.5만대(50% 증설, 일본 공장 대비 7% 수준) ·
+      <b>Leaderdrive</b> 25년 하모닉 출하 50만대 → <b>26년 목표 80만대</b>("주문이 27년까지 차 있다"), SKF와 합자(26.7), 하모닉 100만대+기전일체화 20만대 증설 ·
+      <b>Huandong(환동과기, 솽환전동의 RV 감속기 분사)</b> 국산 1위·전체 2위(24년 점유 24.98%, Nabtesco 다음), 신기지 완공 시 연산 52만대 ·
+      <b>Realman</b> 관절모듈 연산 100만대 목표·MTBF 5만시간 ·
+      <b>셰플러</b> 휴머노이드 관련 백로그 €3.5억(연매출의 1.5%, 범위는 회사 표현 기준).
+      <br><b>롤러스크류 비중국 공급</b>: 비중국 생산은 유럽 2곳뿐 · 독일 업체가 26.10 휴머노이드 부품 공장을 가동했으나 거점이 중국 · 국내는 비상장 1곳이 연 1만개 양산을 막 시작한 단계(직선형 관절은 Tesla가 고관절·무릎에 채택).
+      <span style="font-size:9px;color:var(--ink-3)">[각사 발표·HDS IR·텐센트뉴스 26.4·WRC 26.8 현장·언론종합]</span>
+    </div>
   </section>
 
   <!-- ═══ 1.3 Dexterous Hand 원가·부위별 액추에이터 (손 정본) ═══ -->
@@ -805,6 +816,17 @@ window.addEventListener('DOMContentLoaded', () => {
       </table></div>
       <div style="font-size:9px;color:var(--ink-3);margin-top:6px">가격: 각사 공개가</div>
     </div>
+    <!-- (E) 핸드 구동 방식·센서 원가 (26-11-25 가산) -->
+    <div style="background:var(--bg-soft);border-radius:8px;padding:12px 14px;margin-top:10px;border-left:3px solid #00B894">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#00997b;letter-spacing:.06em;margin-bottom:8px">🖐️ OEM별 핸드 구동 방식 · 센서 원가 · 중국 내수가 (26.11)</div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.6;margin-bottom:8px">양산 핸드는 <b>전완 텐던 → 직결</b>로 이동 중 — 텐던은 손목을 지나는 긴 와이어의 마찰·마모로 손가락 단위 수리가 어렵고, 직결은 손가락 모듈만 교체 가능. 직결은 사람 손 크기에 모터 ~20개를 넣어야 해 고감속(소형 모터)이 주류이고, 그만큼 사라지는 역구동(힘 감지)은 <b>손목 6축 F/T 센서 + 손끝 촉각센서</b>로 보완. BD 신형 핸드(26.10)는 4지·직결로 양산성·정비성을 설계 목적으로 밝힘.</div>
+      <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:10.5px;min-width:420px"><thead><tr style="border-bottom:2px solid var(--ink)"><th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">핸드</th><th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">구동 방식</th><th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">자유도</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Tesla Optimus V3</td><td style="padding:6px 8px">전완 텐던</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">22</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">1X NEO</td><td style="padding:6px 8px">전완 텐던</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">22</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Shadow Dexterous Hand</td><td style="padding:6px 8px">전완 텐던</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">20</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Unitree Dex5-S</td><td style="padding:6px 8px">직결</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">22</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">BD Atlas (26.10 신형, 4지)</td><td style="padding:6px 8px">직결</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">13</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">XPeng IRON</td><td style="padding:6px 8px">직결(추정)</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">22</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Figure 03</td><td style="padding:6px 8px">링크 또는 직결</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">16</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">AgiBot OmniHand Pro</td><td style="padding:6px 8px">링크</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">12</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Inspire RH56</td><td style="padding:6px 8px">링크</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">6</td></tr></tbody></table></div>
+      <div style="font-size:9px;color:var(--ink-3);margin:4px 0 10px">출처: 각사 공개자료·언론 종합 (26.11 기준). 다른 자료는 BD 신형 핸드를 14DoF로 표기.</div>
+      <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:10.5px;min-width:360px"><thead><tr style="border-bottom:2px solid var(--ink)"><th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">품목</th><th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">가격</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">6축 F/T 센서 Robotiq FT 300</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">$4,510</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">6축 F/T 센서 OnRobot HEX</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">$4,585</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">핸드 Unitree Dex5-S (22모터)</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">$6,350</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">핸드 로보티즈 HX5-D20 (20모터)</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">$7,704</td></tr></tbody></table></div>
+      <div style="font-size:9px;color:var(--ink-3);margin:4px 0 10px">6축 F/T 센서 1개 값이 핸드 1개 값의 59~72% — 손목에만 1개 다는 이유. 출처: 각사·리셀러 공개가(robotshop 등, 26.11). 로보티즈 HX5-D20은 자료마다 가격이 다름(카드 880만원·공개가 $7,704).</div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.6"><b>중국 핸드 내수가</b>(각사 정가): LinkerBot O6 6자유도 6,666위안(보조금 후 3,999) · AgiBot OmniHand 10자유도 9,800~14,800 · Inspire RH56 18,000 · LinkerBot L10 19,900 · Unitree Dex5-S 22자유도 39,900 · Zhaowei DM17 17자유도 40,000~50,000 · LinkerBot L20 49,900 · LinkerBot L30 플래그십 99,999 · PaXini DexH13 98,000위안.<br><b>중국 핸드 판매(GGII)</b>: 25년 1.92만개(+237%) → 26년 7.02만개 전망(+266%) → 30년 43만개 · 평균가 개당 5만위안 → 1만위안 이하 · <b>촉각센서 탑재율 ~10% → 25년말 50%+</b> · PaXini는 촉각센서 단가를 수입 10만위안급 → 199위안부터로 주장(회사 측).</div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: 각사 정가표(WRC 26.8 현장 포함)·GGII(DoNews 인용)·항저우망 26.8.19</div>
+    </div>
   </section>
 
   <!-- ═══ 1.5 전력·신호 흐름도 ═══ -->
@@ -854,6 +876,7 @@ window.addEventListener('DOMContentLoaded', () => {
         <div style="text-align:center"><div style="font-family:var(--mono);font-size:15px;font-weight:700;color:#76B900">7.5배</div><div style="font-size:9px;color:var(--ink-3)">전세대 대비 AI</div></div>
       </div>
       <div style="font-size:10px;color:var(--ink-2);margin-top:6px">ARM RISC 기반(저전력·저발열) → 로봇 몸 안 실시간 추론의 표준 칩. GPU+CPU+DLA 통합. <span style="color:#76B900">[NVIDIA GTC Taipei 2026]</span></div>
+      <div style="font-size:10px;color:var(--ink-2);margin-top:4px">갱신(26.8): Thor 보급형 T3000/T2000 추가(27.1Q 공급, NVIDIA) · 중국 D-Robotics(Horizon 분사) S600 INT8 560TOPS — Tiangong 3.0 탑재 확정·하반기 양산 인도, 고객 20여사 양산 검증 (각사 발표)</div>
     </div>
     <div style="font-size:10px;color:var(--ink-3);margin-top:8px">출처: 자체추정 · 언론 종합 · NVIDIA 공식</div>
   </section>
@@ -1119,6 +1142,12 @@ window.addEventListener('DOMContentLoaded', () => {
     <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7;margin-bottom:10px">BOM 앵커는 하모닉 20개/대를 가정하지만, 국내 신규 진입사에서 <b>하모닉을 검토조차 하지 않는 흐름</b>이 확인됨(한국피아이엠 컨콜 26.8.27). 방식 선택이 곧 국내 밸류체인 경쟁 구도 — 하모닉(에스비비테크) vs 유성·사이클로이드(로보티즈·에스피지·한국피아이엠).</div>
     <div class="scroll-x"><div id="gearRoutesTbl"></div></div>
     <div id="gearRoutesNote" style="font-size:10px;color:var(--ink-3);margin-top:8px"></div>
+    <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:11px;color:var(--ink-2);line-height:1.7">
+      <b>기체별 관절 구성 (26.11)</b> — 회전형이 대부분이고 직선형(롤러·볼스크류)은 Tesla·Apptronik이 다리에 채택.
+      <div class="scroll-x"><table style="width:100%;border-collapse:collapse;font-size:10.5px;min-width:420px"><thead><tr style="border-bottom:2px solid var(--ink)"><th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">기체 (손 제외)</th><th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">회전 관절</th><th style="text-align:right;padding:6px 8px;font-family:var(--mono);font-size:9px">선형 관절</th><th style="text-align:left;padding:6px 8px;font-family:var(--mono);font-size:9px">감속 방식</th></tr></thead><tbody><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Tesla Optimus 2</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">14</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">14</td><td style="padding:6px 8px">하모닉 + 롤러스크류</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">BD Atlas</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">21</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">6</td><td style="padding:6px 8px">유성</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Figure 02</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">30</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">0</td><td style="padding:6px 8px">미공개</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Agility Digit V4</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">26</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">0</td><td style="padding:6px 8px">사이클로이드(자체)</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Apptronik Apollo</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">4</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">24</td><td style="padding:6px 8px">하모닉 + 스크류</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">Unitree G1</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">23</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">0</td><td style="padding:6px 8px">유성</td></tr><tr style="border-bottom:1px solid var(--line)"><td style="padding:6px 8px">AgiBot A3</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">31</td><td style="text-align:right;padding:6px 8px;font-family:var(--mono)">0</td><td style="padding:6px 8px">유성</td></tr></tbody></table></div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:4px">출처: 각사 공개자료·특허(Google Patents) 기반 정리, 일부 추정 포함 · Atlas는 다리를 회전형으로 재설계했다는 회사 보고가 있어 선형 6개는 구형 설계일 수 있음 — 위 감속기 카드의 'Atlas 바디 유성 2종·모비스 내재화'와 대조해 읽을 것</div>
+      <div style="margin-top:8px"><b>국내 상장 3사 유성 관절 모듈 28종</b>(카탈로그): 에스피지 저감속 6~9:1 · 로보티즈 중감속 20~25:1 · 하이젠알앤엠 복합 유성 22~70:1, 최대 토크 3~450N·m. 2단 고감속은 기존 유성 공정의 연장이라 대응이 빠른 편이나, 복합 유성 고감속 모듈이 양산 휴머노이드 다리에 채택된 사례는 아직 없음. <span style="font-size:9px;color:var(--ink-3)">[각사 카탈로그·언론종합]</span></div>
+    </div>
   </section>
   <script>
   (function(){
@@ -1175,8 +1204,14 @@ window.addEventListener('DOMContentLoaded', () => {
     <!-- (D) 자석 콘텐츠 주석 -->
     <div style="background:var(--bg-soft);border-left:3px solid #E17055;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:14px">
       <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;letter-spacing:.06em;margin-bottom:6px">🧲 NdFeB 영구자석 — 액추에이터 풀 내 소재가치 <span style="font-weight:600;color:var(--ink-3)">[자체추정 · 역산]</span></div>
-      <div style="font-size:11px;color:var(--ink-2);line-height:1.75">대당 <b>2–3.5kg</b> 사용 × 완성 소결자석 <b>~$60–90/kg</b> ≈ 대당 <b>~$150–300</b>의 자석 소재가치(액추에이터 풀 내). NdPr 합금 벤치마크 <b>~$110/kg</b>(SMM, 2026.6). 휴머노이드 모터는 EV 대비 <b>저온·간헐부하</b>라 중희토류(Dy/Tb) 의존이 낮고 <b>경희토류(Nd/Pr) 중심</b>. 소재사는 대당이 아니라 <span style="background:rgba(225,112,85,0.14);padding:1px 4px;border-radius:3px;font-weight:600">톤 단위 판매</span>이므로 '대당 ASP'는 작다.</div>
-      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: SMM(원데이터) + 역산 [자체추정]</div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.75">대당 <b>2–3.5kg</b> 사용 × 완성 소결자석 <b>~$60–90/kg</b> ≈ 대당 <b>~$150–300</b>의 자석 소재가치(액추에이터 풀 내). NdPr 합금 벤치마크 <b>~$110/kg</b>(SMM, 2026.6). 중희토류(Dy/Tb) 의존은 <b>관절마다 다름</b> — 손가락 모터는 작고 간헐 구동이라 N·H 등급(중희토 불필요)이면 충분하지만, 몸무게를 지탱하는 <b>다리·허리 저감속 관절</b>은 상시 고토크·고발열이라 <b>UH 등급(Dy·Tb 필수)</b>이 관행(공개 관절 모듈도 90℃에서 보호 정지). 자석 사용량 자체는 경희토류(Nd/Pr) 중심. 소재사는 대당이 아니라 <span style="background:rgba(225,112,85,0.14);padding:1px 4px;border-radius:3px;font-weight:600">톤 단위 판매</span>이므로 '대당 ASP'는 작다.</div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: SMM(원데이터) + 역산 [자체추정] · 자석 등급별 Dy 함량·내열 온도는 Arnold 데이터시트</div>
+    </div>
+    <!-- (E) 중희토 제약과 감속비 (26-11-25 가산) -->
+    <div style="background:var(--bg-soft);border-left:3px solid #E17055;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:10px">
+      <div style="font-family:var(--mono);font-size:10px;font-weight:700;color:#E17055;letter-spacing:.06em;margin-bottom:6px">⛓️ 중희토 제약 — 감속비가 자석 등급을 정한다</div>
+      <div style="font-size:11px;color:var(--ink-2);line-height:1.75">① <b>원리</b>: 같은 관절 토크에서 감속비가 1/10이면 모터 전류 10배·발열 100배(발열 ∝ 전류²). 네오디뮴 자석은 내열 등급 N(80℃)~AH(220℃) 7단계이고, <b>SH(150℃) 이상은 Dy·Tb가 들어가 중국 수출허가 대상</b>, N·H 등급은 중희토 없이 생산 가능 → 감속비를 높이면 등급을 한두 단계 낮출 수 있음. 대신 고감속은 역구동이 약해 힘 감지를 관절 토크센서로, 충돌 보호를 클러치·링크로 보완해야 함.<br>② <b>공급</b>: 26년 비중국에서 상업 규모로 중희토를 분리하는 곳은 Lynas 1곳(27~28년 프랑스·미국·호주 공장 가세 예정) · 미국 금속 영구자석 수입의 <b>72.7%가 중국산</b>(2025), 모터에 든 채 들어오는 중국산(7개 품목 $12.19억)이 자석 단독 수입($2.97억)의 약 4배.<br>③ <b>규제</b>: <b>27.1 미국 국방 조달 자석 규정 시행</b> — 국방 납품용 네오디뮴·사마륨코발트 자석의 채굴·분리·정제·제조 전 공정을 중국·러시아·이란·북한 밖에서 해야 함(NDAA FY21 Sec.844) · 중국은 25.4부터 Dy·Tb 등 7종 수출허가제(유예 대상 아님).<br>④ <b>대응 수단</b>: 고감속 전환 / 표면 확산(GBD) 공법 — 같은 등급을 Dy 절반 이하로 구현하나 완전 탈중희토는 불가 / 액체 냉각 — 무게·누유 위험, 양산 사례 없음 / 무중희토 자석 샘플(Proterial)은 SH 수준은 넘지만 다리용 UH에는 미달.</div>
+      <div style="font-size:9px;color:var(--ink-3);margin-top:6px">출처: Arnold(자석 등급)·CubeMars(감속비별 전류)·UN Comtrade(2025)·IEA·Proterial·NDAA·중국 상무부 · 연결 해석은 [자체정리]</div>
     </div>
   </section>
 
@@ -1245,6 +1280,7 @@ window.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="scroll-x"><div id="mckCostGrid" style="display:grid;grid-template-columns:130px 80px repeat(3,1fr);gap:0;font-family:var(--mono);font-size:10.5px;min-width:520px"></div></div>
       <div style="font-size:10px;color:var(--ink-3);margin-top:6px">대당 제조 비용 <b>$30K~$150K</b> 범위 (McKinsey 전신 BOM 광의). ⚠ 위 표들과 분류 경계·출처가 상이한 별도 관점 — 수직 합산 금지. 데이터 정본: data.js physicalAILayers</div>
+      <div style="font-size:10.5px;color:var(--ink-2);margin-top:6px;line-height:1.6"><b>오픈소스 BOM 병기(공개 설계)</b>: Menlo Asimov v1 목표 BOM ~$1.6만 — 액추에이터 ~$7,000(~44%)·섀시·쉘 ~$7,000 · Berkeley Humanoid ~$1만 중 ~69%가 액추에이터(9:1 유성 QDD). <span style="font-size:9px;color:var(--ink-3)">[Menlo Research·UC Berkeley 공개자료]</span></div>
     </div>
     <!-- (G) 부위(기능)별 가치 분해 병기 (26-08-12 가산) -->
     <div style="background:var(--bg-soft);border-left:3px solid #00B894;border-radius:0 8px 8px 0;padding:12px 16px;margin-top:10px">
@@ -1300,7 +1336,7 @@ window.addEventListener('DOMContentLoaded', () => {
       <div style="font-size:11.5px;color:var(--ink-2);line-height:1.7">
         <b style="color:#00997b">센서에서도 같은 구도 — 로보틱스 라이다 출하 실측 (1Q26):</b>
         <b>Hesai 11.8만대(+137.8% YoY)</b> · <b>Robosense 18.6만대(+1,458.8% YoY)</b>.
-        중국 라이다 2사의 로보틱스向 출하가 분기 30만대 규모로 급증 — "원가 절감 = 중국화" 구도가 감속기·모터에 이어 센서로 확산 중. Hesai는 라이다 외 <b>액추에이터 모듈</b>도 공급 개시(로보틱스 매출 초기 단계).
+        중국 라이다 2사의 로보틱스向 출하가 분기 30만대 규모로 급증 — "원가 절감 = 중국화" 구도가 감속기·모터에 이어 센서로 확산 중. Hesai는 라이다 외 <b>액추에이터 모듈</b>도 공급 개시(로보틱스 매출 초기 단계). <b>갱신(26.9)</b>: Hesai 2Q 로보틱스 출하 전년 대비 약 3배 · 체화 AI 고객 50곳+(Unitree·Galbot 등) · JT128이 휴머노이드·4족 표준 라이다로 쓰임 · Sharpa와 액추에이터 제휴(회사 경영진).
         <span style="font-size:9px;color:var(--ink-3)">[각사 실적 발표]</span>
       </div>
     </div>
@@ -2600,6 +2636,19 @@ window.addEventListener('DOMContentLoaded', render);
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px">2026-11-25</span>
+          <span style="font-size:12px;font-weight:600">26.11 부품 갱신 — 중희토 제약·핸드 구동 방식·감속기 공급사·관절 구성</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">Arnold·CubeMars·UN Comtrade·IEA·Proterial·NDAA·중국 상무부 · 각사 발표·정가표 · GGII · HDS IR · Menlo·UC Berkeley</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>NdFeB 카드: '휴머노이드 모터는 중희토 의존이 낮다' → 관절별 구분(손 N·H / 다리·허리 저감속 UH) + 중희토 제약 박스(감속비·등급·분리 공급·수입 비중·27.1 국방 자석 규정·대응 수단)</li>
+          <li>Dexterous Hand: OEM별 구동 방식 표(텐던→직결 이동, BD 신형 4지 13DoF)·6축 F/T vs 핸드 가격·중국 핸드 내수가·GGII 판매 전망·촉각 탑재율</li>
+          <li>감속기③: HDS 가동률·수주·미국 증설, Leaderdrive 26 목표 80만, Huandong RV, Realman, 셰플러 백로그, 롤러스크류 비중국 공급 / 감속기 3파전: 기체별 관절 구성 표·국내 유성 모듈 28종</li>
+          <li>원가②: Menlo Asimov·Berkeley Humanoid 오픈소스 BOM 병기 · 라이다: Hesai 2Q 갱신 · Thor 보급형 T3000/T2000·D-Robotics S600 · 레이더: Digit 감속기 사이클로이드·고객 정정, Atlas·Figure·G1·IRON 비고 갱신 · BOM 앵커·기존 수치 불변</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#e74c3c;color:#fff;padding:2px 8px;border-radius:4px">2026-08-04</span>

@@ -102,16 +102,16 @@ const DATA = [
   { company: '현대오토에버', ticker: '307950', parts: 'SI·관제·Robot OS', customer: 'BD·HMG', note: 'HMG 로보틱스 시스템 통합 담당 (JPM 2026)', cat: 'ctrl' },
   { company: '현대글로비스', ticker: '086280', parts: '생산·판매 물류', customer: 'BD·HMG', note: 'SCM 백본 · 물류 테스트베드 (JPM 2026)', cat: 'ctrl' },
   // ── 감속기 ──
-  { company: '로보티즈', ticker: '108490', parts: '사이클로이드(DYD)·유성 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀(ROS 사실상 표준). Q시리즈(QDD) 26.9 출시 · 우즈벡 완공 26.10~11, 가동 27년 초 이연 · 2031년 CAPA 500만개 (IR 26.9.2)', cat: 'gear' },
-  { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여', cat: 'gear' },
-  { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표', cat: 'gear' },
+  { company: '로보티즈', ticker: '108490', parts: '사이클로이드(DYD)·유성 QDD 액추에이터·로봇손', customer: '글로벌 휴머노이드 OEM', note: '다이나믹셀(ROS 사실상 표준). Q시리즈(QDD) 26.9 출시 · 우즈벡 완공 26.10~11, 가동 27년 초 이연 · 2031년 CAPA 500만개 (IR 26.9.2) · 휴머노이드 \'사피엔스\' 26.11 출시(Q시리즈 23개, 27년 인도)', cat: 'gear' },
+  { company: '에스비비테크', ticker: '389500', parts: '하모닉 감속기', customer: '대기업 휴머노이드', note: '26년 200대 생산, 매출 10% 기여 · 휴머노이드용 정밀 감속기 공급계약 12.07억(26.5.19)→정정 22.84억(26.7.28)·별건 19.23억(26.8.24), 상대 국내 로봇 제조사 (DART)', cat: 'gear' },
+  { company: '에스피지', ticker: '058610', parts: '유성감속기 QDD 액추에이터', customer: '-', note: '26 상반기 SDD 양산, 연 5천대 목표 · 정밀감속기 CAPA 연 26만개 · 유성·하모닉·사이클로이드 3종 생산 (회사 자료 26.11)', cat: 'gear' },
   { company: '네오오토', ticker: '212560', parts: '유성기어 감속기·디퍼런셜·피니언 (EV) · 로봇팔 관절 소형감속기·AMR 구동모듈', customer: 'BD 유성 부분품 후보', note: '현대기아 EV 동력전달계 정밀기어 주력 · 유성기어 2단변속기 IP·美특허 · 모비스 인휠감속기 협업 · 로봇부품 정관 추가(26.3) · Atlas 바디 유성과 기술 부합(모비스 내재화) · 휴머노이드 직접 진출 미확정 [사업보고서 26.03.19]', cat: 'gear' },
   // ── 구조·외장 ──
-  { company: '한라캐스트', ticker: '125490', parts: 'Al/Mg 다이캐스팅 구조체', customer: '글로벌 휴머노이드사(개발 수주)', note: '마그네슘 다이캐스팅 국내 독보적(Optimus V2 외장소재 이력 소재군) · 25년 글로벌 AI 자동차사 1차 협력사 등록 · 수주잔고 25년말 1.2조/1Q26 1.1조 · CAPA 1,600→2,200억(26.02 C동·26.6 D동 준공, 3Q26 증설효과) (언론종합·공시)', cat: 'body' },
+  { company: '한라캐스트', ticker: '125490', parts: 'Al/Mg 다이캐스팅 구조체', customer: '글로벌 휴머노이드사(개발 수주)', note: '마그네슘 다이캐스팅 국내 독보적(Optimus V2 외장소재 이력 소재군) · 25년 글로벌 AI 자동차사 1차 협력사 등록 · 수주잔고 25년말 1.2조/1Q26 1.1조 · CAPA 1,600→2,200억(26.02 C동·26.6 D동 준공, 3Q26 증설효과) (언론종합·공시) · 로봇 수주잔고 1Q26말 136억→2Q26말 303억(개발·샘플 단계, 회사 자료)', cat: 'body' },
   { company: '화신', ticker: '010690', parts: '바디/앞부분', customer: 'BD Atlas 후보', note: '기존 샤시 업체', cat: 'body' },
   { company: '서연이화', ticker: '200880', parts: '외장·골격', customer: '-', note: '-', cat: 'body' },
-  { company: '한국피아이엠', ticker: '448900', parts: 'MIM 감속기 ASSY·티타늄 분말·구조 부품', customer: 'BD·현대차·북미 로봇사', note: '하모닉 미검토(유성·사이클로이드 2트랙) · 구조 부품 소량 양산 발주 진행, BD가 타임라인 최선두 (컨콜 26.8.27)', cat: 'gear' },
-  { company: '삼현', ticker: '-', parts: '액추에이터 부품', customer: '-', note: '-', cat: 'body' },
+  { company: '한국피아이엠', ticker: '448900', parts: 'MIM 감속기 ASSY·티타늄 분말·구조 부품', customer: 'BD·현대차·북미 로봇사', note: '하모닉 미검토(유성·사이클로이드 2트랙) · 구조 부품 소량 양산 발주 진행, BD가 타임라인 최선두 (컨콜 26.8.27) · 손 감속기 지름 8~20mm 개발(대당 24~40개), 글로벌 휴머노이드사향 6종 샘플 테스트·27년 초 양산 여부 결정 (회사 자료 26.11)', cat: 'gear' },
+  { company: '삼현', ticker: '-', parts: '액추에이터 모듈(모터·감속기·제어기)', customer: '북미 휴머노이드사', note: '26.9 초도 양산 계약 1건·12월 초기 물량 출하 예정 · 2공장 액추에이터 CAPA 50만개 27.4까지 확보 계획 (회사 자료 26.11)', cat: 'body' },
   // ── 배터리·소재 ──
   { company: 'LG에너지솔루션', ticker: '373220', parts: '원통형 배터리 2170', customer: 'Optimus + 로봇 6곳', note: '미국 AZ 현지조달 · LG 클로이·베어로보틱스 Carti100에 원통형 실납품 (언론종합) · 원통형·전고체·BMS를 휴머노이드 인에이블러로 공식화(회사 자료)', cat: 'batt' },
   { company: '삼성SDI', ticker: '006400', parts: '원통형 배터리', customer: '현대차 MobED', note: '헝가리 2028 양산 · Physical AI(로봇)용 파우치형 전고체 개발 중 (언론종합) · E-Atlas 부품 도식(현대차그룹·BD 자료)에 배터리 담당사로 표기 [미확인] · 휴머노이드용 원형 셀 일부 채용 물량 확인 (IR 26.9.1)', cat: 'batt' },
@@ -212,7 +212,7 @@ function renderExpo(){
 const TL_DATA=[
   {y:2024,label:'시제품',events:['BD Atlas 전기식 시제품 공개','Tesla Optimus Gen2 시연','Unitree G1 출시 ($16K~)'],tag:'초기'},
   {y:2025,label:'소량생산',events:['AGIBOT 5,168대 출하 (1위)','Unitree 5,500대','총 15,324대 (각사 발표·언론종합)','LG에너지솔루션 로봇 배터리 공급 시작','로보티즈 AI Worker 상체 휴머노이드 공개(4월, 전부품 국산·LG 협력)','LG이노텍-BD Atlas 비전센싱 모듈 공동개발 파트너십(5월)'],tag:'중국 주도'},
-  {y:2026,label:'RMAC 개소',events:['RMAC 2026년 8~9월 개소','에스비비테크 천안 공장 이전(26.3)·200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 행사기간(6~7월)→콜옵션(7~8월)','삼성전자·구글 BD 지분 투자 검토','로보스타 코스닥150 편입','LG전자 CLOiD 공개(CES 2026)·로봇사업센터 신설(CEO 직속)·가정용 로봇 연내 국내 출시 목표','LG전자 AXIUM 액추에이터 파일럿 라인 완공(고객 인증 中)','현대차그룹 로봇훈련학습센터 한·미·중 설립 발표(8.6) — 새만금 로봇 제조(향후 파운드리 확장)·미국 BD 핵심 설계·중국 부품 공급망','모비스 31개 바디 액추에이터 11월 시제품 납품 개시 예정'],tag:'BD 준비'},
+  {y:2026,label:'RMAC 개소',events:['RMAC 개소(26.8)','에스비비테크 천안 공장 이전(26.3)·200대 생산','에스피지 SDD 양산','BD+DeepMind 세일즈 로드쇼','소프트뱅크 풋옵션 행사기간(6~7월)→콜옵션(7~8월)','삼성전자·구글 BD 지분 투자 검토','로보스타 코스닥150 편입','LG전자 CLOiD 공개(CES 2026)·로봇사업센터 신설(CEO 직속)·가정용 로봇 연내 국내 출시 목표','LG전자 AXIUM 액추에이터 파일럿 라인 완공(고객 인증 中)','현대차그룹 로봇훈련학습센터 한·미·중 설립 발표(8.6) — 새만금 로봇 제조(향후 파운드리 확장)·미국 BD 핵심 설계·중국 부품 공급망','모비스 의왕연구소 Atlas용 액추에이터 시제품 생산 개시(26.11, 3Q26 실적 발표)','삼현 북미 휴머노이드사 초도 양산 계약(9월)·12월 초기 출하','BD 신형 4지 13DoF 직결 핸드 공개(10월)'],tag:'BD 준비'},
   {y:2027,label:'매출 인식',events:['현대모비스 BD 매출 인식 시작','HL만도 Spot 2세대 공급','현대오토에버 Robot OS','현대글로비스 물류 테스트베드','네이버 ARC 플릿 OS 상용화 착수'],tag:'KR 매출 시작'},
   {y:2028,label:'양산 원년',events:['BD 양산공장 30K CAPA 개소','모비스 액추에이터 35만개','삼성SDI 헝가리 양산','HL만도 휴머노이드 공급 원년','두산로보틱스 산업용 상용화','NAVER-NVIDIA-LG 가정용 로봇 본격화','Atlas 미국 조지아 공장 투입(→2030 부품 조립 공정 활용) (언론종합)'],tag:'본격 양산'},
   {y:2029,label:'확산',events:['BD 외부 고객 확장','원가 하락 가속 ($40~60K대)','수직 통합 진행','네이버 브레인리스 GPU 클라우딩 확대'],tag:'확산'},
@@ -404,7 +404,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         </div>
       </div>
       <div style="background:var(--bg-soft);border-radius:8px;padding:10px 14px;font-size:10px;color:var(--ink-2);line-height:1.7">
-        <b>타임라인(확정):</b> 풋옵션 행사 시한 6/20 → <b>소프트뱅크 풋옵션 행사(9.65%)</b> → 현대차그룹 <b>6/22 임시이사회</b>서 3.25억$ 전량 인수 의결 → <b>BD 100% 완전 자회사</b> → 아틀라스 상용화·나스닥 IPO 속도전
+        <b>타임라인(확정):</b> 풋옵션 행사 시한 6/20 → <b>소프트뱅크 풋옵션 행사(9.65%)</b> → 현대차그룹 <b>6/22 임시이사회</b>서 3.25억$ 전량 인수 의결 → <b>BD 100% 완전 자회사</b> → 아틀라스 상용화·나스닥 IPO 경로 확보 — 단 경영진은 27년 상장 가능성이 낮다고 언급(Reuters)
         <span style="font-size:9px;color:var(--ink-3);display:block;margin-top:4px">출처: 언론 종합 2026.06.19 / 일부 [자체추정]</span>
       </div>
     </div>
@@ -536,7 +536,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
           <li><b>베어로보틱스</b>: 24.3 $60M(21%+콜옵션 30%) → 25.1 행사 $180M → <b>51% 자회사</b>. CLOi 상업로봇 사업 이관·플릿SW 통합</li>
           <li><b>로보스타</b>: 18년 540억+330억 → <b>33.4%</b> (산업용 로봇)</li>
-          <li><b>로보티즈</b>: 17.12 90억 → 현 <b>7.2%</b> (휴머노이드 액추에이터·2대주주)</li>
+          <li><b>로보티즈</b>: 17.12 90억 → 현 <b>6.6%</b>(26.3말 6.56%, 분기보고서 — 25년 유상증자로 희석) (휴머노이드 액추에이터·2대주주)</li>
           <li><b>엔젤로보틱스</b>: 17.5 → 현 <b>6.4%</b> (웨어러블)</li>
           <li>피투자사 24년 순이익: 베어 -245억 · 로보티즈 +21억 · 로보스타 -61억 · 엔젤 -66억</li>
         </ul>
@@ -638,14 +638,18 @@ window.addEventListener('DOMContentLoaded',()=>{
     <p style="font-size:11.5px;color:var(--ink-2);margin-bottom:12px;line-height:1.7">경쟁 기준이 <b>개별 로봇 성능(보행·가반하중·자유도) → 현장 배치 Fleet 규모·데이터 플라이휠</b>로 이동하는 국면. 초기 수백 대의 Atlas는 매출원이라기보다 <span style="background:rgba(225,112,85,0.12);padding:1px 4px;border-radius:3px;font-weight:600">Real-world Data 생산설비</span>에 가까움 — 배치→데이터→학습→Fleet 전체 성능 개선→추가 배치의 선순환이 형성되면 선발-후발 격차는 HW 성능 이상으로 확대 [자체추정]</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
       <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #E17055">
-        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#E17055;margin-bottom:6px">현황 스냅샷 (26.08)</div>
+        <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#E17055;margin-bottom:6px">현황 스냅샷 (26.11)</div>
         <ul style="margin:0;padding-left:14px;font-size:10.5px;color:var(--ink-2);line-height:1.7">
           <li>RMAC 데이터 운용 조직 <b>2교대 체제</b> 수립</li>
           <li>Atlas <b>머리 모듈화</b> 개발 · <b>원자력 시설 해체</b> 등 특수시장 공략 추진(8.5 보도)</li>
           <li><b>28년 미국 조지아 공장 투입 → 30년 부품 조립 공정 활용</b> 로드맵</li>
           <li>현대차그룹 로봇훈련학습센터 한·미·중(8.6) — 새만금 제조(→파운드리)·미국 BD 설계·중국 공급망</li>
+          <li>26년 Atlas 물량은 <b>현대차·Google에 배정</b>, 외부 고객은 27년 초부터 (BD·언론종합)</li>
+          <li>Atlas 원가 비중 <b>액추에이터 60%·손 20%</b> · 부품 단가 현재 버전 대비 <b>60~80% 추가 인하</b> 목표 (현대차 IR 26.6)</li>
+          <li>26.10 신형 핸드 공개 — <b>4지·13DoF·직결</b>, 양산성·정비성을 설계 목적으로 명시 (BD 발표 · 다른 자료는 14DoF로 표기)</li>
+          <li>부품 협력사에 <b>장기 사업계획 갱신 요청</b> — 미래 공급망 구성 논의 (한국경제 26.8.13)</li>
         </ul>
-        <div style="font-size:9px;color:var(--ink-3);margin-top:6px">[언론종합]</div>
+        <div style="font-size:9px;color:var(--ink-3);margin-top:6px">[언론종합 · 현대차 IR · BD 발표]</div>
       </div>
       <div style="background:var(--bg-soft);border-radius:10px;padding:14px 16px;border-left:4px solid #0984E3">
         <div style="font-family:var(--mono);font-size:11px;font-weight:700;color:#0984E3;margin-bottom:6px">양산 성숙도 — 26~27년 확인할 KPI</div>
@@ -732,8 +736,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li><b>2027 매출 인식 시작 · 2028 1차 생산목표 35만개</b>(Atlas 11,000개 분량). 이후 <b>Hand Actuator 이관</b> + 궁극적으로 액추에이터+센서+제어기 융합 공급</li>
         <li>BD+Google DeepMind <b>미국 세일즈 로드쇼 2026 하반기 개시</b> (첫 고객 Google DeepMind; 자동차·물류·반도체·식음료·건설·에너지 타깃)</li>
         <li>그룹 <b>지배구조 재편의 정점</b> — 풋옵션(6~7월) 미행사 시 콜옵션(7~8월) 행사 → HMG 100% 또는 빅테크 SI 투자 유치. Pre-IPO 라운드로 BD fair price 구체화</li>
-        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">그리퍼 제외 회전형 액추에이터 31개 단독 벤더 수주 확정</span>(2026.07). 그리퍼용 직구동 액추에이터는 BD와 공동개발(IP는 BD 보유, 대량 양산 리엔지니어링·2/3차 벤더 선정권은 모비스). 퍼셉션 모듈·배터리 시스템은 연내 참여 여부 결정. 이익 기여는 Atlas 양산 본격화되는 2027년 이후 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span></li>
-        <li><b>31개 바디 액추에이터, 11월부터 시제품 납품 개시 예정</b> — 평가 기준이 부품 절대 성능에서 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">양산성·신뢰성(동일 사양을 싸고·많이·안정 품질로)</span>으로 이동하는 구간 <span style="font-size:9px;color:var(--ink-3)">[언론종합 26.08]</span></li>
+        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">그리퍼 제외 회전형 액추에이터 31개 단독 공급 전망</span>(2026.07 보도) — 회사 표현은 '초기 양산 단독 공급사·대당 약 30개'·'액추에이터 핵심 부품 내재화 방침'이며 31개 전량은 업계 관측(확정 공시 아님). 그리퍼용 직구동 액추에이터는 BD와 공동개발(IP는 BD 보유, 대량 양산 리엔지니어링·2/3차 벤더 선정권은 모비스). 퍼셉션 모듈·배터리 시스템은 연내 참여 여부 결정. 이익 기여는 Atlas 양산 본격화되는 2027년 이후 <span style="font-size:9px;color:var(--ink-3)">[언론종합]</span></li>
+        <li><b>26.11부터 의왕연구소에서 Atlas용 액추에이터 시제품 생산</b>(3Q26 실적 발표) — 평가 기준이 부품 절대 성능에서 <span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">양산성·신뢰성(동일 사양을 싸고·많이·안정 품질로)</span>으로 이동하는 구간 <span style="font-size:9px;color:var(--ink-3)">[언론종합 26.08]</span></li>
       </ul>
     </div>
 
@@ -760,6 +764,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">사이클로이드 감속기 전문 — 로봇 핵심 부품 국산화 수혜</span></li>
         <li>로봇·방산 분야 채택율↑ · LG 협력 · 글로벌 휴머노이드 시장 진출</li>
         <li>SDD 액추에이터 26.06 6기종 → 연말 20기종+ 목표, 150분 연속토크 기준 발열 30%+ 감소(모터온도 93→67℃)(회사 IR). 6월말 미국 컨퍼런스 참가로 북미 진출 개시. 레인보우로보틱스 RB-Y1 하모닉/유성 감속기 전량 공급</li>
+        <li>정밀감속기 CAPA <b>연 26만개</b>(유성·하모닉·사이클로이드 3종 모두 생산) · 레인보우 RB-Y2 27.6 양산 계획 · 미국 업체향 소형 액추에이터 시제품 공급 <span style="font-size:9px;color:var(--ink-3)">[회사 자료 26.11]</span></li>
       </ul>
     </div>
 
@@ -782,6 +787,7 @@ window.addEventListener('DOMContentLoaded',()=>{
       <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
         <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">NVIDIA 공동 로봇 플랫폼 공식화 여부</span> 주목</li>
         <li>에이전틱 AI 기반 지능형 로봇 · 2028 산업용 휴머노이드 상용화</li>
+        <li>25년 미국 오넥시아(공장 자동화 설계·설치) 인수, 25.9부터 연결 → 26년 매출 +200~300% 기대(25.12 컨콜) · 27년 이후 매출 1,200억·손익분기 목표</li>
       </ul>
     </div>
 
@@ -817,7 +823,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li>26.3 천안 액추에이터 전용공장 이전 → <b>감속기-액추에이터 수직계열화</b></li>
         <li>현대차 로보틱스랩 MobED 구동기 26년 양산 전환 · K9 자주포 레퍼런스</li>
         <li>가동률 ~10% → 신공장 풀가동 시 <b>CAPA 10배 여력</b>(IR) · 26년 200대 초기 ramp</li>
-        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">26.05.18 공시: 휴머노이드 로봇용 정밀 감속기 공급계약 12.07억원</span>(직전 매출 대비 16.7%, 계약기간 ~28.04, 상대 국내 로봇 제조사)(DART). 현대차그룹 MobeD향 DnL 모듈 2Q26말 양산, 25.12 후속 플랫폼 수주(27년 양산 추정). 수주잔고 4Q24 77.7억 → 1Q26 112.8억원(분기보고서)</li>
+        <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">26.05.18 공시: 휴머노이드 로봇용 정밀 감속기 공급계약 12.07억원</span>(직전 매출 대비 16.7%, 계약기간 ~28.04, 상대 국내 로봇 제조사)(DART) → <b>26.7.28 정정 22.84억원</b>(매출 대비 31.7%, 변경 계약) · <b>26.8.24 별건 19.23억원</b>(26.7%, 동일 성격 국내 로봇 제조사)(DART). 현대차그룹 MobeD향 DnL 모듈 2Q26말 양산, 25.12 후속 플랫폼 수주(27년 양산 추정). 수주잔고 4Q24 77.7억 → 1Q26 112.8억원(분기보고서)</li>
       </ul>
     </div>
 
@@ -832,18 +838,19 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li><b>모비스 인휠감속기 시제품 협업</b>(NE차종·골프카·무인전술/소방차량) · 로봇팔 관절 소형감속기·물류로봇(AMR/AGV) 구동모듈 자체개발 · 로봇부품 제조판매 정관 추가(26.3)</li>
         <li><b>예산 제4공장 준공(2026.6)</b> — CAPA 940억·첨단 기어가공 7,452㎡ · 전동화+로봇 액추에이터 감속기 정밀부품 생산거점 · <b>생산거점 국내(예산) 단일</b>·자체 해외공장 없음(북미는 현대트랜시스 멕시코·스텔란티스 경유 간접 공급) <span style="font-size:9px;color:var(--ink-3)">[사업보고서 26.03.19·언론종합]</span></li>
         <li>유성 정밀가공이 <b>Atlas 바디 유성 2종 방향과 기술 부합</b> → 유성 부분품 공급 후보. 단 모비스 기어 내재화·휴머노이드 직접 진출 미확정</li>
+        <li>26.9 오토인더스트리와 <b>포괄적 주식교환 결의</b>(완전자회사 편입·지배구조 일원화) · 통합 매출 약 6,623억원 목표 · 로봇·모빌리티 구동모듈 1,000억원 신규 투자 계획 <span style="font-size:9px;color:var(--ink-3)">[26.9 간담회]</span></li>
       </ul>
     </div>
 
     <div style="background:var(--bg-soft);border-radius:10px;padding:14px 18px;margin-bottom:12px;border-left:4px solid #FDCB6E">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
         <div style="font-family:var(--mono);font-size:12px;font-weight:700;color:#C99A2E">삼현 (437730)</div>
-        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">Proto 수주 · 미국공장 없음</div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);background:var(--bg);padding:2px 8px;border-radius:4px">초도 양산 계약 · 미국공장 없음</div>
       </div>
       <ul style="margin:0;padding-left:16px;font-size:11px;color:var(--ink-2);line-height:1.8">
         <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">네오오토 최근접 comp — 액추에이터 2차 협력사·감속기</span> (감속기+모터+액추에이터 일괄)</li>
         <li>자동차(스마트 액추에이터) → <b>방산·로봇</b> 확장 · 방산/로봇 매출 2025년 154억(+42.5%·비중 16%)·1Q26 32억(+88%)</li>
-        <li><b>글로벌 로봇기업 액추에이터 Proto 개발 수주</b>(양산 품질 검증 단계) · 연내 양산 수주 가시화 시 2027 창원2공장 생산</li>
+        <li>글로벌 로봇기업 액추에이터 Proto 개발 수주 → <b>26.9 북미 휴머노이드사 초도 양산 계약 1건</b> · 12월 초기 물량 출하 예정 · 2공장 액추에이터 CAPA 50만개 27.4까지 확보 계획 <span style="font-size:9px;color:var(--ink-3)">[회사 자료 26.11]</span></li>
         <li>R&D 비중 매출 대비 25%·인력 35%(117/330명) 선행 투자기 · <b>미국 생산거점 없음</b>(네오오토와 동일 약점)</li>
       </ul>
     </div>
@@ -857,6 +864,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li><span style="background:rgba(255,107,107,0.12);padding:1px 4px;border-radius:3px;font-weight:600">마그네슘 다이캐스팅 국내 독보적</span> — 마그네슘 = 철 대비 25%·알루미늄 대비 65% 무게, 경량화 핵심 소재. Optimus V2 외장소재 이력 소재군</li>
         <li>글로벌 휴머노이드사向 <b>개발 수주 개시</b> · 25년 글로벌 AI 자동차사 <b>1차 협력사 등록</b></li>
         <li>수주잔고 <b>25년말 1.2조원 / 1Q26 1.1조원</b>(25년 매출의 7.3년분) · CAPA 매출기준 1,600억→2,200억원(26.02 C동·26.6 D동 준공, 3Q26 증설효과) <span style="font-size:9px;color:var(--ink-3)">[언론종합·공시]</span></li>
+        <li>로봇 수주잔고 <b>1Q26말 136억 → 2Q26말 303억원</b>(프레임·구동부 케이스·방열 케이스, 개발·샘플 단계) · 2Q26말 전사 수주잔고는 EV 프로젝트 취소로 -15.9% <span style="font-size:9px;color:var(--ink-3)">[회사 자료]</span></li>
       </ul>
     </div>
 
@@ -871,7 +879,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         <li><b>파일럿 생산라인 완공 → 고객 인증(qualification) 진행 중.</b> 부품 매출 기여는 2028~29년 이전 제한적, 2030년 이후 본격 — 중장기 연 1~2조원 잠재 규모 [자체추정]</li>
         <li>픽스앤셔블 전략: 자사 CLOiD를 넘어 외부 로봇 OEM 부품 공급 지향. 산업용 로봇 대당 6개+, 휴머노이드 30~40개 소요 [자체추정] — 내부 로봇·스마트팩토리로 선검증 후 외판</li>
         <li><b>CLOiD</b>(CES 2026): 머리·몸통·5지 양팔·휠베이스 휴머노이드형 — 조리·세탁 시연, ThinQ 연동, 관절에 AXIUM 탑재. 연내 국내 출시 목표(25년 베타). 로봇사업센터 CEO 직속 신설(사업개발-영업-운영 통합)</li>
-        <li>지분 네트워크: 베어로보틱스 51%(서비스로봇·플릿SW) · 로보스타 33.4% · 로보티즈 7.2% · 엔젤로보틱스 6.4% (DART) · NVIDIA 협력(휴머노이드·AI 팩토리)</li>
+        <li>지분 네트워크: 베어로보틱스 51%(서비스로봇·플릿SW) · 로보스타 33.4% · 로보티즈 6.6%(26.3말 6.56%) · 엔젤로보틱스 6.4% (DART) · NVIDIA 협력(휴머노이드·AI 팩토리)</li>
+        <li>로봇 액추에이터 빅테크 수주 보도(MTN 26.9) · 베어로보틱스 나스닥 상장 추진 보도 <span style="font-size:9px;color:var(--ink-3)">[보도]</span></li>
       </ul>
     </div>
 
@@ -898,7 +907,7 @@ window.addEventListener('DOMContentLoaded',()=>{
         <div style="background:var(--bg);border-radius:8px;padding:8px 10px;border-top:3px solid #A29BFE"><div style="font-family:var(--mono);font-weight:700;margin-bottom:3px">③ Spec-in</div><div style="color:var(--ink-3);line-height:1.5">설계 협의·단가 협의</div></div>
         <div style="background:var(--bg);border-radius:8px;padding:8px 10px;border-top:3px solid #00B894"><div style="font-family:var(--mono);font-weight:700;margin-bottom:3px">④ 수주확정</div><div style="color:var(--ink-3);line-height:1.5">물량·가격 확정</div></div>
       </div>
-      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.7;margin-top:10px"><b>위치 추정</b> — <b style="color:#C99A2E">삼현</b>: 글로벌 로봇기업 <b>Proto 개발 수주</b>(②~③). <b style="color:#8577e6">네오오토</b>: 시제·모비스 협업 단계(①~②, 휴머노이드 직접 수주 미확인). <b style="color:#E17055">HL만도</b>: BD 4족보행 액추에이터 공급 중(④ 일부)·휴머노이드는 PoC. <b style="color:#FF6B6B">현대모비스</b>: Atlas 양산 설계 참여(④).</div>
+      <div style="font-size:10.5px;color:var(--ink-2);line-height:1.7;margin-top:10px"><b>위치 추정</b> — <b style="color:#C99A2E">삼현</b>: 북미 휴머노이드사 <b>초도 양산 계약</b>(④ 일부, 26.9 — Proto 개발 수주 다음 단계). <b style="color:#8577e6">네오오토</b>: 시제·모비스 협업 단계(①~②, 휴머노이드 직접 수주 미확인). <b style="color:#E17055">HL만도</b>: BD 4족보행 액추에이터 공급 중(④ 일부)·휴머노이드는 PoC. <b style="color:#FF6B6B">현대모비스</b>: Atlas 양산 설계 참여(④).</div>
       <div style="font-size:9px;color:var(--ink-3);margin-top:8px;border-top:1px dashed var(--line);padding-top:6px">⚠️ <b>내재화 벽</b> — 정밀 하모닉 감속기는 국내사도 일본(HDS 등) 소싱 의존. HL만도·현대모비스 모두 감속기를 <b>M&amp;A·JV로 내재화 추진</b> → 비계열 외주사(네오오토 등)는 '부분품 외주' 수준으로 상한 제한 가능. [언론종합]</div>
     </div>
 
@@ -911,6 +920,20 @@ window.addEventListener('DOMContentLoaded',()=>{
       📋 Update Log <span class="badge" style="background:var(--ink);color:var(--bg)">▼ 펼치기</span>
     </div>
     <div id="updateLogContent" style="max-height:0;overflow:hidden;transition:max-height .3s ease">
+      <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+          <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#00B894;color:#fff;padding:2px 8px;border-radius:4px">2026-11-25</span>
+          <span style="font-size:12px;font-weight:600">26.11 공급망 갱신 — 모비스 표현 정정·삼현 초도 양산·에스비비 정정공시·LG 지분 6.6%</span>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);margin-bottom:6px">DART · 각사 IR·실적 발표 · 회사 자료 · 현대차 IR · BD 발표 · 언론종합</div>
+        <ul style="font-size:11px;color:var(--ink-2);line-height:1.7;padding-left:16px;margin:0">
+          <li>현대모비스: '31개 수주 확정' → 31개 단독 공급 전망(업계 관측)·회사 표현 '초기 양산 단독 공급사·대당 약 30개' 병기, 11월 의왕연구소 시제품 생산(3Q26 실적 발표)</li>
+          <li>삼현: Proto 수주 → 26.9 북미 휴머노이드사 초도 양산 계약·12월 출하·2공장 CAPA 50만개(27.4) / 수주 4단계 위치 ④ 일부</li>
+          <li>에스비비테크: 공급계약 12.07억 → 26.7.28 정정 22.84억·26.8.24 별건 19.23억(DART)</li>
+          <li>LG전자의 로보티즈 지분 7.2% → 6.6%(1Q26 분기보고서 6.56%) · 한라캐스트 로봇 수주잔고 136→303억 · 에스피지 정밀감속기 CAPA 26만개 · 네오오토 주식교환·1,000억 투자 · 두산로보틱스 오넥시아 연결 · 한국피아이엠 손 감속기 샘플</li>
+          <li>BD: 26년 물량 현대차·Google 배정·외부 고객 27년 초·원가 비중(액추 60%·손 20%)·부품 단가 60~80% 추가 인하 목표·신형 4지 13DoF 핸드 · IPO 문구에 경영진 '27년 가능성 낮음' 발언 병기</li>
+        </ul>
+      </div>
       <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed var(--line)">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
           <span style="font-family:var(--mono);font-size:11px;font-weight:700;background:#00B894;color:#fff;padding:2px 8px;border-radius:4px">2026-09-06</span>
